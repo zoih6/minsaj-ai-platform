@@ -15,7 +15,7 @@ Nasaq's real risk is not the framework, and it is not "missing OOP". The deliver
 
 - **v8** — editors broke on phones because page roots lacked container contexts (a boundary between shell and page was violated).
 - **v11** — dialogs were dead on phones because portaled elements escaped every container context (a rendering-context boundary was violated).
-- **today** — 13 files import `@nasaq/mock-api` directly (the data-source boundary is leaking; §4).
+- **today** — 12 files (13 import statements) reach into `@nasaq/mock-api` directly (the data-source boundary is leaking; §4).
 
 Every regression so far came from a **boundary violation**, not a technology choice. This file exists to make boundaries explicit, checkable, and expensive to break.
 
@@ -114,9 +114,16 @@ src/components ◄─────────┘              ▼               
 
 ---
 
-## 4. The ServiceProvider seam (dependency inversion — top architectural priority)
+## 4. The ServiceProvider seam (dependency inversion — the #1 backend-readiness preparation)
 
 `docs/05-BACKEND-INTEGRATION-READINESS.md` §3 already declares this seam. This section makes it **law**.
+
+**Scheduling (owner decision, 2026-09-17):** execution is **deferred to backend kickoff** — this
+is a frontend-only refactor, but its value materializes only when a real backend exists. During
+the frontend phase this section is a frozen plan plus one binding rule: **no new direct
+`@nasaq/mock-api` imports**; new data access routes through the existing chokepoints (the
+`service-workbench` provider, `src/lib/data`). The protocol below (§4.3) executes as step 1 of
+the backend migration checklist (`docs/05` §9).
 
 ### 4.1 The target interface
 
@@ -134,7 +141,7 @@ export interface ServiceProvider {
 
 The mock implementation (`createDeterministicMockServiceClient` + friends) and the future HTTP/SSE implementation both satisfy this interface. When the backend lands, **no feature file changes** — only the provider registration.
 
-### 4.2 Current debt inventory (measured 2026-09-17, v11 — 13 files)
+### 4.2 Current debt inventory (measured 2026-09-17, v12 — 12 files, 13 import statements; frozen per §4 scheduling)
 
 **Category A — client construction (should resolve through provider registration):**
 

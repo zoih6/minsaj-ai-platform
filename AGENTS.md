@@ -129,7 +129,9 @@ STATE.md                     # living handoff snapshot — update EVERY task
     violations by rule ID (`ARCH-§n` / `DEG-§n`). Any visual/layout task follows the 8-step
     workflow in DEG §15 (AUDIT → … → REGRESSION CHECK) — the forbidden workflow "see problem →
     patch CSS on that screen → next" is what this repo exists to prevent. No new direct
-    `@nasaq/mock-api` imports outside the provider registration (ARCH §4).
+    `@nasaq/mock-api` imports — new data access routes through the existing chokepoints
+    (service-workbench provider · `src/lib/data`) until the provider registration lands at
+    backend kickoff (ARCH §4, owner decision 2026-09-17).
 
 ### CSS layer order (sacred — `src/app/universal.css`)
 
