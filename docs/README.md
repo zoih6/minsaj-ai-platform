@@ -53,3 +53,6 @@ Industry-standard documents (validated against current practice — Atlassian, P
 | **Runbook** | Operations Runbook | Incident response, ops procedures | ◻ backend phase |
 
 **Chosen posture:** a compact, modern suite (PRD-led) instead of the heavyweight enterprise stack (BRD→MRD→FRD→SRS chain). Heavy documents are deferred until the phase that needs them (OpenAPI + ERD + Runbook at backend kickoff; KPI framework after the prototype success criteria are set).
+| `08-AGENT-OPERATING-MODEL.md` | Explanation | How agents are directed on this repo: system architecture, standards followed, decision log (ADR) |
+| `REFERENCES.md` | Reference | Research sources & standards with primary links |
+

@@ -9,6 +9,10 @@
 
 </div>
 
+> 🤖 **For AI coding agents (read this first):** read [`AGENTS.md`](./AGENTS.md) — the single
+> entry point (open AGENTS.md standard). Then check [`STATE.md`](./STATE.md) for the current
+> snapshot. Skills live in `.claude/skills/` (Agent Skills format). Do not start work without both.
+
 ---
 
 <div dir="rtl">
@@ -49,8 +53,9 @@ src/components/{app-shell, universal, domain}  # القشرة والمكونات
 src/features/                                  # research · learn · create · service-workbench
 src/lib/viewports.ts                           # مصدر الحقيقة الوحيد للـ breakpoints
 packages/{contracts, i18n, mock-api, ui}       # حزم Monorepo
-docs/                                          # 10 وثائق احترافية (PRD, UX, Design System…)
-agent.md                                       # ملف استمرارية المشروع (اقرأه أولاً)
+docs/                                          # وثائق احترافية (00-08 + REFERENCES + CHANGELOG)
+AGENTS.md / STATE.md / CLAUDE.md                # نظام توجيه الوكلاء (اقرأ AGENTS.md أولاً)
+.claude/skills/                                # 7 مهارات Agent Skills (SKILL.md)
 ```
 
 ## الوثائق (`docs/` — إنجليزية)
