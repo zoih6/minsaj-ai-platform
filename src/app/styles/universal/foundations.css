@@ -1,0 +1,298 @@
+/* ============================================================
+   NASAQ DESIGN SYSTEM — "Luminous Premium" v2.0
+   Single source of truth for all visual tokens.
+   Replaces the dual conflicting systems (forest/teal + luma).
+   ============================================================ */
+
+@import "tailwindcss";
+
+:root {
+  /* ---- Canonical palette ---- */
+  --u-bg: #f5f6fb;
+  --u-bg-deep: #eef0f8;
+  --u-surface: #ffffff;
+  --u-surface-glass: rgba(255, 255, 255, 0.86);
+  --u-surface-solid: #ffffff;
+
+  --u-ink: #0f1225;
+  --u-ink-soft: #2a2d47;
+  --u-muted: #5b5f7e;
+  --u-faint: #8387a2;
+
+  --u-line: #e5e7f2;
+  --u-line-strong: #d0d3e6;
+
+  --u-primary: #5548e0;
+  --u-primary-strong: #4539c9;
+  --u-primary-deep: #372da8;
+  --u-primary-soft: #edeaff;
+  --u-primary-glow: rgba(85, 72, 224, 0.24);
+
+  --u-cyan: #0ea8cf;
+  --u-cyan-soft: #e4f6fc;
+  --u-mint: #0fae7c;
+  --u-mint-soft: #e4f6ef;
+  --u-pink: #e2579a;
+  --u-pink-soft: #fdeef6;
+  --u-amber: #d98a2b;
+  --u-amber-soft: #fbf1e2;
+  --u-danger: #d7373f;
+  --u-danger-soft: #fdecec;
+
+  /* ---- Elevation (layered, tinted — never flat grey) ---- */
+  --u-shadow-xs: 0 1px 2px rgba(16, 18, 40, 0.05);
+  --u-shadow-sm: 0 1px 2px rgba(16, 18, 40, 0.04), 0 6px 20px rgba(60, 58, 130, 0.07);
+  --u-shadow-md: 0 2px 6px rgba(16, 18, 40, 0.04), 0 16px 44px rgba(58, 56, 128, 0.11);
+  --u-shadow-lg: 0 4px 10px rgba(16, 18, 40, 0.05), 0 28px 80px rgba(70, 64, 160, 0.16), 0 8px 24px rgba(38, 40, 80, 0.06);
+  --u-shadow-xl: 0 8px 18px rgba(16, 18, 40, 0.07), 0 40px 110px rgba(70, 64, 160, 0.22);
+
+  /* ---- Radii scale (consistent geometry) ---- */
+  --u-radius-xs: 8px;
+  --u-radius-sm: 12px;
+  --u-radius: 16px;
+  --u-radius-lg: 22px;
+  --u-radius-xl: 30px;
+
+  /* ---- Layout metrics (aliased to the responsive architecture tokens
+        defined in layout.css — one geometry source, no drift) ---- */
+  --u-sidebar: var(--nq-sidebar-expanded, 264px);
+  --u-sidebar-collapsed: var(--nq-sidebar-rail, 76px);
+  --u-topbar: 66px;
+  --u-content-max: var(--nq-content-max, 1520px);
+  --u-reading-max: 780px;
+  --u-page-gutter: var(--nq-gutter, clamp(14px, 1.1vw + 10px, 32px));
+  --u-section-space: clamp(56px, 7vw, 112px);
+  --u-touch: 44px;
+
+  /* ---- Typography scale (fluid) ---- */
+  --u-text-xs: clamp(11.5px, 0.75rem, 12.5px);
+  --u-text-sm: clamp(13px, 0.84rem, 14px);
+  --u-text-md: clamp(15px, 0.96rem, 16px);
+  --u-text-lg: clamp(17px, 1.12rem, 19px);
+  --u-text-xl: clamp(21px, 1.4rem, 24px);
+
+  /* ---- Motion contract: productive by default, expressive for milestones ---- */
+  --u-motion-duration-instant: 80ms;
+  --u-motion-duration-fast: 130ms;
+  --u-motion-duration-moderate: 200ms;
+  --u-motion-duration-slow: 300ms;
+  --u-motion-duration-expressive: 480ms;
+  --u-motion-duration-progress: 760ms;
+  --u-motion-duration-activity-cycle: 900ms;
+  --u-motion-delay-stagger: 50ms;
+  --u-motion-ease-standard: cubic-bezier(.22, 1, .36, 1);
+  --u-motion-ease-enter: cubic-bezier(0, 1.2, .32, 1);
+  --u-motion-ease-exit: cubic-bezier(.4, 0, 1, 1);
+  --u-motion-ease-emphasized: cubic-bezier(.34, .1, .24, 1);
+  --u-motion-ease-spring: cubic-bezier(.3, 1.4, .4, 1);
+  --u-motion-distance-xs: 2px;
+  --u-motion-distance-sm: 4px;
+  --u-motion-distance-md: 8px;
+  --u-motion-distance-lg: 18px;
+
+  /* Compatibility aliases (pre-U1.2) */
+  --u-ease: var(--u-motion-ease-standard);
+  --u-fast: var(--u-motion-duration-fast);
+  --u-normal: var(--u-motion-duration-moderate);
+
+  /* ---- Dark premium shell (sidebar) ---- */
+  --u-shell-bg: #0d1020;
+  --u-shell-bg-2: #141834;
+  --u-shell-line: rgba(148, 152, 200, 0.14);
+  --u-shell-ink: #e9eaf6;
+  --u-shell-ink-soft: #b8bad6;
+  --u-shell-muted: #7e84ab;
+  --u-shell-hover: rgba(120, 120, 210, 0.12);
+  --u-shell-active: linear-gradient(135deg, rgba(96, 84, 240, 0.32), rgba(96, 84, 240, 0.1));
+  --u-shell-active-line: rgba(124, 110, 250, 0.55);
+
+  color-scheme: light;
+
+  /* ============================================================
+     LEGACY TOKEN BRIDGE — maps the old "forest/teal" namespace
+     onto the new premium palette so every legacy component
+     inherits the unified look. No page keeps the old green skin.
+     ============================================================ */
+  --bg: var(--u-bg);
+  --surface: var(--u-surface);
+  --surface-subtle: #f0f1f9;
+  --surface-raised: #ffffff;
+  --text: var(--u-ink);
+  --text-muted: var(--u-muted);
+  --text-faint: var(--u-faint);
+  --border: var(--u-line);
+  --border-strong: var(--u-line-strong);
+  --forest: var(--u-ink);
+  --forest-hover: #23264a;
+  --teal: var(--u-primary);
+  --teal-hover: var(--u-primary-strong);
+  --teal-subtle: var(--u-primary-soft);
+  --amber: var(--u-amber);
+  --amber-ink: #8c5a12;
+  --amber-subtle: var(--u-amber-soft);
+  --danger: var(--u-danger);
+  --danger-subtle: var(--u-danger-soft);
+  --info: #0d7fa6;
+  --info-subtle: #e4f3fa;
+  --success: #0d9463;
+  --success-subtle: var(--u-mint-soft);
+  --focus: var(--u-primary);
+  --shadow-1: var(--u-shadow-sm);
+  --shadow-2: var(--u-shadow-md);
+  --sidebar-width: var(--u-sidebar);
+  --sidebar-collapsed: var(--u-sidebar-collapsed);
+}
+
+/* ---- Service identity colors (jewel-tone, harmonized S/L) ---- */
+[data-service="ask"] { --service: #5b4fe4; --service-rgb: 91, 79, 228; --service-soft: #edecff; --service-deep: #463bca; }
+[data-service="learn"] { --service: #7a55d8; --service-rgb: 122, 85, 216; --service-soft: #f1ecfd; --service-deep: #6541c2; }
+[data-service="research"] { --service: #0e9fc4; --service-rgb: 14, 159, 196; --service-soft: #e3f6fc; --service-deep: #0a7f9e; }
+[data-service="create"] { --service: #dc5596; --service-rgb: 220, 85, 150; --service-soft: #fdedf5; --service-deep: #b83f79; }
+[data-service="code"] { --service: #4566d2; --service-rgb: 69, 102, 210; --service-soft: #eaedfc; --service-deep: #3550b3; }
+[data-service="analyze"] { --service: #c07c17; --service-rgb: 192, 124, 23; --service-soft: #fbf0dc; --service-deep: #9a610c; }
+[data-service="explore"] { --service: #16a377; --service-rgb: 22, 163, 119; --service-soft: #e3f6ee; --service-deep: #10835f; }
+
+/* ============================================================
+   BASE — reset, typography, shared element styling
+   ============================================================ */
+* { box-sizing: border-box; }
+html { background: var(--u-bg); scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--u-bg);
+  color: var(--u-ink);
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, "Segoe UI", Arial, sans-serif;
+  font-size: var(--u-text-md);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[lang="en"] body { font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", "Segoe UI", Arial, sans-serif; }
+
+button, input, textarea, select { font: inherit; }
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+img, svg { max-width: 100%; height: auto; }
+
+:focus-visible { outline: 2.5px solid var(--u-primary); outline-offset: 3px; border-radius: 4px; }
+::selection { background: #d9d5ff; color: #2a1f66; }
+
+/* Refined scrollbars */
+* { scrollbar-width: thin; scrollbar-color: #c4c7dd transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 99px; background: #c4c7dd padding-box; }
+*::-webkit-scrollbar-thumb:hover { background: #a9add0 padding-box; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.ltr-value { direction: ltr; unicode-bidi: isolate; display: inline-block; font-family: "IBM Plex Sans", sans-serif; }
+.mono { font-family: "IBM Plex Mono", monospace; direction: ltr; unicode-bidi: isolate; }
+
+.skip-link {
+  position: fixed; z-index: 200; inset-block-start: 10px; inset-inline-start: 10px;
+  transform: translateY(-160%);
+  padding: 10px 16px;
+  border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-sm);
+  background: var(--u-surface); color: var(--u-primary);
+  font-weight: 650; box-shadow: var(--u-shadow-md);
+  transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-enter);
+}
+.skip-link:focus { transform: none; }
+
+/* ============================================================
+   ROOT SURFACES
+   ============================================================ */
+.universal-site,
+.universal-app-shell {
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+  color: var(--u-ink);
+  background: var(--u-bg);
+  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, sans-serif;
+  font-size: var(--u-text-md);
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+html[lang="en"] :is(.universal-site, .universal-app-shell) { font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif; }
+
+:is(.universal-site, .universal-app-shell) :focus-visible { outline: 3px solid var(--u-primary-glow); outline-offset: 3px; }
+:is(.universal-site, .universal-app-shell) :is(h1, h2, h3, [id]) { scroll-margin-block-start: calc(var(--u-topbar) + 20px); }
+:is(.universal-site, .universal-app-shell) :is(button, input, textarea, select) { font: inherit; }
+:is(.universal-site, .universal-app-shell) :is(button, a, input, textarea, select) { -webkit-tap-highlight-color: transparent; }
+
+:is(.universal-site, .universal-app-shell) button {
+  touch-action: manipulation;
+  transition:
+    color var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    background var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    transform var(--u-motion-duration-fast) var(--u-motion-ease-spring);
+}
+:is(.universal-site, .universal-app-shell) button:active { filter: brightness(.97); }
+:is(.universal-site, .universal-app-shell) ::selection { color: var(--u-ink); background: #dcd9ff; }
+:is(.universal-site, .universal-app-shell) :is(button, a)[aria-disabled="true"],
+:is(.universal-site, .universal-app-shell) :is(button, input, textarea, select):disabled { cursor: not-allowed; opacity: .55; pointer-events: none; }
+:is(.universal-site, .universal-app-shell) :is(input, textarea)::placeholder { color: #8f93ad; opacity: 1; }
+
+html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { transform: rotate(180deg); }
+
+/* ============================================================
+   SHARED PRIMITIVES
+   ============================================================ */
+.universal-container { width: min(1240px, calc(100% - (var(--u-page-gutter) * 2))); margin-inline: auto; }
+
+.luma-kicker {
+  width: fit-content; display: inline-flex; align-items: center; gap: 8px;
+  color: var(--u-primary); font-size: 13px; font-weight: 700; letter-spacing: .01em;
+}
+.luma-kicker svg { padding: 4px; border-radius: 7px; background: var(--u-primary-soft); box-sizing: content-box; }
+
+.luma-button {
+  min-height: var(--u-touch); padding: 0 19px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  border: 1px solid transparent; border-radius: 13px;
+  text-decoration: none; font-weight: 650; cursor: pointer; touch-action: manipulation;
+  transition:
+    transform var(--u-motion-duration-moderate) var(--u-motion-ease-spring),
+    box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard),
+    background var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    filter var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) { .luma-button:hover { transform: translateY(-2px); } }
+.luma-button:active { transform: translateY(0) scale(.975); }
+.luma-button--small { min-height: var(--u-touch); padding-inline: 16px; border-radius: 11px; font-size: 13px; }
+.luma-button--large { min-height: 54px; padding-inline: 26px; border-radius: 15px; font-size: 15px; }
+
+.luma-button--primary {
+  color: white;
+  background: linear-gradient(135deg, #6d5ff2, #5143e2 55%, #4a3cd8);
+  box-shadow: 0 10px 28px var(--u-primary-glow), inset 0 1px rgba(255, 255, 255, .3);
+}
+.luma-button--primary:hover { box-shadow: 0 16px 40px rgba(85, 72, 224, .34), inset 0 1px rgba(255, 255, 255, .3); filter: saturate(1.06); }
+
+.luma-button--ink { color: white; background: linear-gradient(180deg, #232749, #14172e); box-shadow: 0 8px 22px rgba(20, 23, 46, .2); }
+.luma-button--ink:hover { background: linear-gradient(180deg, #2b2f57, #191d38); }
+
+.luma-button--ghost {
+  color: var(--u-ink-soft);
+  border-color: var(--u-line-strong);
+  background: rgba(255, 255, 255, .75);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 14px rgba(44, 47, 82, .05);
+}
+.luma-button--ghost:hover { border-color: #b9bcda; background: white; box-shadow: var(--u-shadow-sm); }
+
+.luma-text-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--u-primary); text-decoration: none; font-weight: 650;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.luma-text-link:hover { color: var(--u-primary-strong); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }

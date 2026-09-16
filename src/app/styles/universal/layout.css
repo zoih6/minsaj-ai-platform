@@ -1,0 +1,229 @@
+/* ==========================================================================
+   NASAQ RESPONSIVE LAYOUT ARCHITECTURE — intrinsic primitives
+   --------------------------------------------------------------------------
+   Principles (no per-element media patches):
+   1. Reflow by AVAILABLE SPACE: container queries + auto-fill grids.
+   2. One fluid token scale: clamp() spacing/type — no fixed magic numbers.
+   3. Logical properties only (inline-start/end, block-start/end) → RTL-safe.
+   4. Shared components adapt once here → every page inherits the fix.
+
+   Breakpoint contract (sync with src/lib/viewports.ts):
+     mobile  < 768   | tablet  768–1023 | desktop 1024–1439 | wide ≥1440
+   ========================================================================== */
+
+/* ---- 1. Fluid token scale (mobile-first values, clamped upward) -------- */
+:root {
+  /* Horizontal page gutters: 14px phone → 32px desktop (fluid) */
+  --nq-gutter: clamp(14px, 1.1vw + 10px, 32px);
+  /* Vertical page rhythm */
+  --nq-gap-xs: clamp(6px, 0.5vw + 4px, 10px);
+  --nq-gap-sm: clamp(10px, 0.8vw + 7px, 16px);
+  --nq-gap-md: clamp(14px, 1.2vw + 10px, 24px);
+  --nq-gap-lg: clamp(20px, 1.8vw + 14px, 36px);
+  /* Card padding: 14px phone → 24px desktop */
+  --nq-pad-card: clamp(14px, 1vw + 10px, 24px);
+  /* Sidebar geometry (modes driven by shell.css) */
+  --nq-sidebar-expanded: 264px;
+  --nq-sidebar-rail: 76px;
+  /* Content measure caps per context */
+  --nq-measure-read: 72ch;
+  --nq-content-max: 1520px;
+  /* Touch target floor — accessibility invariant on every interactive el */
+  --nq-touch: 44px;
+  /* Fluid type ramp (display → caption) */
+  --nq-text-hero: clamp(32px, 5.4vw + 14px, 58px);
+  --nq-text-h1: clamp(26px, 2.6vw + 16px, 40px);
+  --nq-text-h2: clamp(20px, 1.4vw + 15px, 27px);
+  --nq-text-h3: clamp(16px, 0.6vw + 14px, 19px);
+  --nq-text-body: clamp(13.5px, 0.2vw + 13px, 15px);
+  --nq-text-small: clamp(12px, 0.15vw + 11.6px, 13px);
+  --nq-text-caption: 11.5px;
+}
+
+/* ---- 2. Flow container: pages declare themselves as containers.
+        Components inside reflow against AVAILABLE width (after sidebar),
+        not raw viewport width — true adaptive behavior. ------------------ */
+.nq-flow {
+  container-type: inline-size;
+  container-name: nq-flow;
+  width: 100%;
+  min-width: 0; /* grid/flex overflow guard — never let children stretch it */
+  display: flex;
+  flex-direction: column;
+  gap: var(--nq-gap-md);
+}
+
+/* ---- 3. Page header: title block + actions as a wrapping cluster.
+        Wraps naturally; actions never overlap the title on narrow widths. */
+.nq-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--nq-gap-sm) var(--nq-gap-md);
+}
+.nq-page-header__copy { min-width: min(100%, 340px); flex: 1 1 340px; }
+.nq-page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nq-gap-xs);
+  flex: 0 1 auto;
+}
+@container nq-flow (max-width: 560px) {
+  .nq-page-header__actions { width: 100%; }
+  .nq-page-header__actions > * { flex: 1 1 auto; }
+}
+
+/* ---- 4. Card grid: the workhorse. Auto-fill + minmax means cards choose
+        their own column count from available width — 1 col on phones,
+        2 on tablets, 3–4 on desktops, with ZERO per-page overrides. ------ */
+.nq-grid {
+  display: grid;
+  gap: var(--nq-gap-sm);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--nq-grid-min, 250px), 100%), 1fr));
+}
+.nq-grid--tight { --nq-grid-min: 200px; }
+.nq-grid--roomy { --nq-grid-min: 300px; }
+.nq-grid--stats { --nq-grid-min: 150px; }
+
+/* ---- 5. Stack: vertical rhythm between sections ----------------------- */
+.nq-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nq-gap-md);
+  min-width: 0;
+}
+.nq-stack--tight { gap: var(--nq-gap-sm); }
+
+/* ---- 6. Cluster: wrapping row of chips/actions/filters ---------------- */
+.nq-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nq-gap-xs) var(--nq-gap-sm);
+  min-width: 0;
+}
+.nq-cluster--between { justify-content: space-between; }
+.nq-cluster--end { justify-content: flex-end; }
+.nq-cluster--stretch { align-items: stretch; }
+.nq-cluster > * { min-width: 0; margin: 0; }
+
+/* ---- 7. Split: content + aside. Collapses to a single column when the
+        CONTAINER can no longer afford both — not when the viewport says so. */
+.nq-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--nq-split-aside, 300px));
+  gap: var(--nq-gap-md);
+  align-items: start;
+  min-width: 0;
+}
+.nq-split > * { min-width: 0; }
+@container nq-flow (max-width: 880px) {
+  .nq-split { grid-template-columns: minmax(0, 1fr); }
+}
+.nq-split--aside-start {
+  grid-template-columns: minmax(0, var(--nq-split-aside, 280px)) minmax(0, 1fr);
+}
+
+/* ---- 8. Data list: the shared responsive "table".
+        Wide space  → header row + grid rows (real table feel).
+        Narrow space → each row becomes a labelled card. Content contract:
+          .nq-data-list > [data-label] cells inside rows.
+        The header can carry data-labels too; on narrow containers we
+        simply hide it and inline every cell label. ----------------------- */
+.nq-data-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--u-line, #e4e6ef);
+  border-radius: 16px;
+  background: var(--u-surface-solid, #fff);
+  overflow: hidden;
+}
+.nq-data-list__head,
+.nq-data-list__row {
+  display: grid;
+  grid-template-columns: var(--nq-data-cols, minmax(0, 1.6fr) minmax(90px, 0.7fr) minmax(80px, 0.5fr) 96px);
+  align-items: center;
+  gap: var(--nq-gap-xs);
+  padding: 10px clamp(12px, 1vw + 8px, 18px);
+}
+.nq-data-list__head {
+  border-block-end: 1px solid var(--u-line, #e4e6ef);
+  color: var(--u-faint, #6a6e85);
+  font-size: var(--nq-text-caption);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.nq-data-list__row {
+  border-block-end: 1px solid var(--u-line, #e4e6ef);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.nq-data-list__row:last-child { border-block-end: 0; }
+.nq-data-list__row:hover { background: rgba(96, 84, 240, 0.04); }
+.nq-data-list__row > * { min-width: 0; overflow-wrap: anywhere; }
+
+@container nq-flow (max-width: 640px) {
+  .nq-data-list__head { display: none; }
+  .nq-data-list__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px var(--nq-gap-sm);
+    padding: 14px clamp(12px, 1vw + 8px, 18px);
+  }
+  .nq-data-list__row > * {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 34px;
+  }
+  .nq-data-list__row > *::before {
+    content: attr(data-label);
+    color: var(--u-faint, #6a6e85);
+    font-size: 10.5px;
+    font-weight: 650;
+    white-space: nowrap;
+  }
+  .nq-data-list__row > :first-child {
+    grid-column: 1 / -1;
+    min-height: 0;
+    padding-block-end: 6px;
+    margin-block-end: 6px;
+    border-block-end: 1px solid var(--u-line, #e4e6ef);
+  }
+  .nq-data-list__row > :first-child::before { display: none; }
+  .nq-data-list__row > :last-child { justify-content: flex-end; }
+  .nq-data-list__row > :last-child::before { margin-inline-end: auto; }
+}
+
+/* ---- 9. Safe horizontal scroller for genuinely wide artifacts
+        (flow canvases, comparison tables). Keeps them inside their box
+        instead of blowing out the page. ----------------------------------- */
+.nq-scroll-x {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---- 10. Modal / dialog geometry: always inside the viewport --------- */
+.nq-dialog-sheet {
+  width: min(560px, calc(100vw - 2 * var(--nq-gutter)));
+  max-height: min(78dvh, 720px);
+}
+.nq-dialog-wide { width: min(760px, calc(100vw - 2 * var(--nq-gutter))); }
+
+/* ---- 11. Touch invariants: interactive floors survive every reflow --- */
+@container nq-flow (max-width: 640px) {
+  .nq-cluster button:not([data-nq-keep-size]),
+  .nq-data-list__row button,
+  .nq-grid button { min-height: 40px; }
+}
+
+/* Reduced motion / forced colors invariants (kept local, system-wide) */
+@media (prefers-reduced-motion: reduce) {
+  .nq-data-list__row, .nq-split, .nq-grid { transition: none; }
+}

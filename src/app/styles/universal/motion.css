@@ -1,0 +1,466 @@
+/* U1.2 Motion & Feedback Language
+ * Functional, finite, RTL-safe, and equivalent under reduced motion.
+ */
+
+/* Shared interaction response */
+:is(.universal-site,.universal-app-shell) :is(a,button,[role="tab"]) {
+  transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+  transition-duration: var(--u-motion-duration-fast);
+  transition-timing-function: var(--u-motion-ease-standard);
+}
+:is(.universal-site,.universal-app-shell) :is(button,a):active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(var(--u-motion-distance-xs)) scale(.985);
+}
+:is(.universal-site,.universal-app-shell) :is(textarea,input,select) {
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+:is(.adaptive-service-tile,.adaptive-recent-card,.universal-service-card,.universal-library-item,.service-template-grid button,.service-mini-library > a) {
+  transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  :is(.adaptive-service-tile,.adaptive-recent-card,.universal-service-card,.universal-library-item,.service-template-grid button,.service-mini-library > a):hover {
+    transform: translateY(calc(-1 * var(--u-motion-distance-sm)));
+  }
+}
+
+/* Finite page hierarchy and top-level continuity */
+.universal-hero__copy { animation: u-enter-soft var(--u-motion-duration-expressive) var(--u-motion-ease-enter) both; }
+.universal-demo-card { animation: u-enter-soft var(--u-motion-duration-expressive) var(--u-motion-ease-enter) var(--u-motion-delay-stagger) both; }
+.universal-route-frame { animation: u-route-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both; }
+@keyframes u-enter-soft {
+  from { opacity: 0; transform: translateY(var(--u-motion-distance-lg)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes u-route-in {
+  from { opacity: .35; }
+  to { opacity: 1; }
+}
+
+/* Marketing ambience settles instead of looping forever. */
+.universal-live-dot { animation: u-live-settle var(--u-motion-duration-activity-cycle) var(--u-motion-ease-standard) 2 both; }
+@keyframes u-live-settle {
+  0%,100% { opacity: 1; box-shadow: 0 0 0 4px rgba(32,186,133,.13); }
+  50% { opacity: .55; box-shadow: 0 0 0 7px rgba(32,186,133,.05); }
+}
+.universal-float-card--1 { animation: u-scene-card-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter) both; }
+.universal-float-card--2 { animation: u-scene-card-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter) var(--u-motion-delay-stagger) both; }
+.universal-float-card--3 { animation: u-scene-card-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter) calc(var(--u-motion-delay-stagger) * 2) both; }
+@keyframes u-scene-card-in {
+  from { opacity: 0; transform: translateY(var(--u-motion-distance-md)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile marketing menu keeps an exit state without leaving focusable content behind. */
+.universal-mobile-menu-region {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  transition: grid-template-rows var(--u-motion-duration-moderate) var(--u-motion-ease-exit), opacity var(--u-motion-duration-fast) var(--u-motion-ease-exit), visibility 0s linear var(--u-motion-duration-moderate);
+}
+.universal-mobile-menu-region[data-state="open"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  transition-timing-function: var(--u-motion-ease-enter);
+  transition-delay: 0s;
+}
+.universal-mobile-menu-region > div { min-height: 0; overflow: hidden; }
+
+/* Shell container transforms and disclosure continuity */
+.universal-shell-sidebar {
+  transition: width var(--u-motion-duration-moderate) var(--u-motion-ease-standard), transform var(--u-motion-duration-slow) var(--u-motion-ease-standard), visibility 0s linear var(--u-motion-duration-slow);
+}
+.universal-shell-main { transition: margin-inline-start var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+.universal-shell-advanced > svg { transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+.universal-shell-advanced-region {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  transition: grid-template-rows var(--u-motion-duration-moderate) var(--u-motion-ease-exit), opacity var(--u-motion-duration-fast) var(--u-motion-ease-exit), visibility 0s linear var(--u-motion-duration-moderate);
+}
+.universal-shell-advanced-region[data-state="open"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  transition-timing-function: var(--u-motion-ease-enter);
+  transition-delay: 0s;
+}
+.universal-shell-advanced-region > div { min-height: 0; overflow: hidden; }
+.universal-shell-backdrop {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--u-motion-duration-moderate) var(--u-motion-ease-exit), visibility 0s linear var(--u-motion-duration-moderate);
+}
+.universal-shell-backdrop[data-state="open"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-timing-function: var(--u-motion-ease-enter);
+  transition-delay: 0s;
+}
+.universal-notifications {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-1 * var(--u-motion-distance-sm))) scale(.985);
+  transform-origin: top right;
+  transition: opacity var(--u-motion-duration-fast) var(--u-motion-ease-exit), transform var(--u-motion-duration-fast) var(--u-motion-ease-exit), visibility 0s linear var(--u-motion-duration-fast);
+}
+[dir="rtl"] .universal-notifications { transform-origin: top left; }
+.universal-notifications[data-state="open"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-duration: var(--u-motion-duration-moderate);
+  transition-timing-function: var(--u-motion-ease-enter);
+  transition-delay: 0s;
+}
+
+/* Radix overlays and dialogs retain their close animation before unmount. */
+:is(.adaptive-dialog-overlay,.universal-command-overlay)[data-state="open"] { animation: u-overlay-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both; }
+:is(.adaptive-dialog-overlay,.universal-command-overlay)[data-state="closed"] { animation: u-overlay-out var(--u-motion-duration-fast) var(--u-motion-ease-exit) both; }
+@keyframes u-overlay-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes u-overlay-out { from { opacity: 1; } to { opacity: 0; } }
+
+.adaptive-dialog { --u-dialog-inline-shift: -50%; }
+[dir="rtl"] .adaptive-dialog { --u-dialog-inline-shift: 50%; }
+.adaptive-dialog[data-state="open"] { animation: u-dialog-in var(--u-motion-duration-slow) var(--u-motion-ease-enter) both; }
+.adaptive-dialog[data-state="closed"] { animation: u-dialog-out var(--u-motion-duration-fast) var(--u-motion-ease-exit) both; }
+@keyframes u-dialog-in {
+  from { opacity: 0; transform: translate(var(--u-dialog-inline-shift),calc(-50% + var(--u-motion-distance-md))) scale(.985); }
+  to { opacity: 1; transform: translate(var(--u-dialog-inline-shift),-50%) scale(1); }
+}
+@keyframes u-dialog-out {
+  from { opacity: 1; transform: translate(var(--u-dialog-inline-shift),-50%) scale(1); }
+  to { opacity: 0; transform: translate(var(--u-dialog-inline-shift),calc(-50% + var(--u-motion-distance-sm))) scale(.99); }
+}
+.universal-command { --u-command-inline-shift: -50%; }
+[dir="rtl"] .universal-command { --u-command-inline-shift: 50%; }
+.universal-command[data-state="open"] { animation: u-command-in var(--u-motion-duration-slow) var(--u-motion-ease-enter) both; }
+.universal-command[data-state="closed"] { animation: u-command-out var(--u-motion-duration-fast) var(--u-motion-ease-exit) both; }
+@keyframes u-command-in {
+  from { opacity: 0; transform: translate(var(--u-command-inline-shift),var(--u-motion-distance-md)) scale(.985); }
+  to { opacity: 1; transform: translate(var(--u-command-inline-shift),0) scale(1); }
+}
+@keyframes u-command-out {
+  from { opacity: 1; transform: translate(var(--u-command-inline-shift),0) scale(1); }
+  to { opacity: 0; transform: translate(var(--u-command-inline-shift),var(--u-motion-distance-sm)) scale(.99); }
+}
+
+/* Shared feedback primitive */
+.u-feedback {
+  --u-feedback-accent: var(--service,var(--u-primary));
+  --u-feedback-soft: var(--service-soft,var(--u-primary-soft));
+  min-height: 70px;
+  margin-block-start: 9px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 40px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 20%,var(--u-line));
+  border-radius: 14px;
+  color: var(--u-feedback-accent);
+  background: linear-gradient(135deg,var(--u-feedback-soft),#fff);
+  animation: u-feedback-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both;
+}
+.u-feedback[data-feedback-state="error"] { --u-feedback-accent: #b63d54; --u-feedback-soft: #fff0f3; }
+.u-feedback[data-feedback-state="success"] { --u-feedback-accent: #13785b; --u-feedback-soft: #e9f8f2; }
+.u-feedback[data-feedback-state="info"] { --u-feedback-accent: var(--u-primary); --u-feedback-soft: var(--u-primary-soft); }
+.u-feedback__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 16%,transparent);
+  border-radius: 12px;
+  color: var(--u-feedback-accent);
+  background: #fff;
+  box-shadow: var(--u-shadow-sm);
+}
+.u-feedback[data-feedback-state="working"] .u-feedback__icon svg { animation: u-status-spin var(--u-motion-duration-activity-cycle) linear infinite; }
+.u-feedback__body { min-width: 0; }
+.u-feedback__body > small,.u-feedback__body > strong { display: block; }
+.u-feedback__body > small { color: var(--u-feedback-accent); font-size: 12px; font-weight: 700; }
+.u-feedback__body > strong { margin-block-start: 2px; color: var(--u-ink); font-size: 14px; }
+.u-feedback__body > p { margin: 3px 0 0; color: var(--u-muted); font-size: 13px; line-height: 1.55; }
+.u-feedback__progress { width: min(260px,100%); height: 4px; margin-block-start: 9px; display: block; overflow: hidden; border-radius: 99px; background: color-mix(in srgb,var(--u-feedback-accent) 12%,#fff); }
+.u-feedback__progress > i { width: 82%; height: 100%; display: block; border-radius: inherit; background: var(--u-feedback-accent); transform-origin: inline-start center; animation: u-progress-grow var(--u-motion-duration-progress) var(--u-motion-ease-standard) both; }
+.u-feedback__action { display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
+.u-feedback__action :is(a,button) { min-height: var(--u-touch); padding-inline: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 18%,var(--u-line)); border-radius: 10px; color: var(--u-feedback-accent); background: #fff; text-decoration: none; font-size: 13px; font-weight: 700; cursor: pointer; }
+.u-feedback__action :is(a,button):first-child:not(:only-child) { color: #fff; background: var(--u-feedback-accent); }
+@keyframes u-feedback-in {
+  from { opacity: 0; transform: translateY(var(--u-motion-distance-sm)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes u-status-spin { to { transform: rotate(360deg); } }
+@keyframes u-progress-grow {
+  from { width: 14%; opacity: .65; }
+  to { width: 82%; opacity: 1; }
+}
+
+/* Integration adjustments replace one-off feedback geometry. */
+.adaptive-thinking,.adaptive-ready,.service-working,.universal-demo-result { margin-block-start: 9px; }
+.adaptive-ready,.universal-demo-result { animation: u-feedback-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both; }
+.universal-demo-result { grid-template-columns: 40px minmax(0,1fr); }
+.universal-demo-result .u-feedback__action { grid-column: 2; justify-content: flex-start; }
+.adaptive-task-submit[data-loading="true"],.service-start-button[data-loading="true"],.universal-send[data-loading="true"] { cursor: wait; }
+:is(.adaptive-task-submit,.service-start-button,.universal-send)[data-loading="true"] svg { animation: u-status-spin var(--u-motion-duration-activity-cycle) linear infinite; }
+:is(.adaptive-task-composer,.service-prompt-area) textarea[aria-invalid="true"] { border-color: #b63d54; box-shadow: 0 0 0 4px rgba(182,61,84,.08); }
+.service-output { animation: u-feedback-in var(--u-motion-duration-slow) var(--u-motion-ease-enter) both; }
+.service-path-card li > span,.service-path-card li::after { transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+.service-path-card li.is-complete > span { transform: scale(1.04); }
+
+/* Persistent, dismissible completion feedback.
+   Portaled to document.body, so the offset reads --nq-tabbar-reserve from
+   :root (mobile) to float ABOVE the bottom tab bar instead of on top of it. */
+.u-feedback-toast {
+  position: fixed;
+  z-index: 140;
+  inset-inline-end: max(18px,env(safe-area-inset-right));
+  inset-block-end: calc(max(18px,env(safe-area-inset-bottom)) + var(--nq-tabbar-reserve, 0px));
+  width: min(390px,calc(100vw - 28px));
+  min-height: 58px;
+  padding: 7px 7px 7px 13px;
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr) 44px;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #bfe0d3;
+  border-radius: 15px;
+  color: #11684f;
+  background: rgba(247,255,251,.98);
+  box-shadow: var(--u-shadow-lg);
+  animation: u-toast-in var(--u-motion-duration-slow) var(--u-motion-ease-enter) both;
+}
+.u-feedback-toast[data-tone="info"] { border-color: #d4d0ff; color: var(--u-primary); background: rgba(250,249,255,.98); }
+.u-feedback-toast > span { width: 33px; height: 33px; display: grid; place-items: center; border-radius: 10px; color: white; background: currentColor; }
+.u-feedback-toast > span svg { color: white; }
+.u-feedback-toast p { margin: 0; color: var(--u-ink-soft); font-size: 13px; font-weight: 650; line-height: 1.5; }
+.u-feedback-toast button { width: var(--u-touch); height: var(--u-touch); display: grid; place-items: center; border: 0; border-radius: 10px; color: var(--u-muted); background: transparent; cursor: pointer; }
+@keyframes u-toast-in {
+  from { opacity: 0; transform: translateY(var(--u-motion-distance-md)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Empty state recovery and bounded item entrance */
+.universal-library-empty { animation: u-feedback-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both; }
+.universal-library-empty button { min-height: var(--u-touch); margin-block-start: 12px; padding-inline: 16px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-primary); background: #fff; font-weight: 700; cursor: pointer; }
+
+/* The route loader remains meaningful when motion is absent. */
+.route-loading__mark { animation-duration: var(--u-motion-duration-activity-cycle); }
+
+@media (max-width: 820px) {
+  .universal-shell-sidebar { transition: transform var(--u-motion-duration-slow) var(--u-motion-ease-standard), visibility 0s linear var(--u-motion-duration-slow); }
+  .universal-app-shell[data-mobile-open="true"] .universal-shell-sidebar { transition-delay: 0s; }
+  .u-feedback { grid-template-columns: 40px minmax(0,1fr); }
+  .u-feedback__action { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); }
+  .universal-demo-result .u-feedback__action { grid-column: 1 / -1; }
+  .universal-app-shell .u-feedback-toast { inset-block-end: calc(88px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 600px) {
+  .adaptive-dialog[data-state="open"],.universal-command[data-state="open"] { animation: u-sheet-in var(--u-motion-duration-slow) var(--u-motion-ease-enter) both; }
+  .adaptive-dialog[data-state="closed"],.universal-command[data-state="closed"] { animation: u-sheet-out var(--u-motion-duration-fast) var(--u-motion-ease-exit) both; }
+  @keyframes u-sheet-in {
+    from { opacity: 0; transform: none; }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes u-sheet-out {
+    from { opacity: 1; transform: none; }
+    to { opacity: 0; transform: none; }
+  }
+  .u-feedback { padding: 10px; }
+  .u-feedback-toast { inset-inline: 14px; width: auto; }
+}
+
+@media (hover: none) {
+  :is(.adaptive-service-tile,.adaptive-recent-card,.universal-service-card,.universal-library-item,.service-template-grid button,.service-mini-library > a):hover { transform: none; }
+}
+
+@media (forced-colors: active) {
+  .u-feedback,.u-feedback-toast,.u-feedback__icon,.u-feedback__action :is(a,button),.universal-library-empty button { border: 1px solid CanvasText; background: Canvas; box-shadow: none; }
+  .u-feedback__icon,.u-feedback-toast > span { color: Highlight; }
+  .u-feedback__progress { border: 1px solid CanvasText; background: Canvas; }
+  .u-feedback__progress > i { background: Highlight; }
+}
+
+/* Equivalent path: preserve semantics and state cues, remove spatial/non-essential motion. */
+@media (prefers-reduced-motion: reduce) {
+  :is(.universal-site,.universal-app-shell) *,
+  :is(.universal-site,.universal-app-shell) *::before,
+  :is(.universal-site,.universal-app-shell) *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+  :is(.universal-hero__copy,.universal-demo-card,.universal-float-card,.universal-route-frame,.u-feedback,.u-feedback-toast) { transform: none !important; }
+  .u-feedback[data-feedback-state="working"] .u-feedback__icon svg,
+  :is(.adaptive-task-submit,.service-start-button,.universal-send)[data-loading="true"] svg,
+  .route-loading__mark { animation: none !important; transform: none !important; }
+  .u-feedback__progress > i { width: 68%; animation: none !important; }
+}
+
+/* ============================================================
+   SCROLL REVEAL — sections lift in as they enter the viewport.
+   State is added by <ScrollFx/>; visuals live here only.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .will-reveal { opacity: 0; transform: translateY(22px); }
+  .will-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--u-motion-duration-expressive) var(--u-motion-ease-enter), transform var(--u-motion-duration-expressive) var(--u-motion-ease-enter);
+  }
+  /* Stagger children inside revealed grids */
+  .adaptive-service-grid.will-reveal > *, .adaptive-recent-grid.will-reveal > * { opacity: 0; }
+  .adaptive-service-grid.is-revealed > *, .adaptive-recent-grid.is-revealed > * {
+    opacity: 1;
+    transition: opacity var(--u-motion-duration-slow) var(--u-motion-ease-enter), transform var(--u-motion-duration-slow) var(--u-motion-ease-enter);
+  }
+  .adaptive-service-grid.is-revealed > *:nth-child(1) { transition-delay: 0ms; }
+  .adaptive-service-grid.is-revealed > *:nth-child(2) { transition-delay: 60ms; }
+  .adaptive-service-grid.is-revealed > *:nth-child(3) { transition-delay: 120ms; }
+  .adaptive-service-grid.is-revealed > *:nth-child(4) { transition-delay: 180ms; }
+  .adaptive-service-grid.is-revealed > *:nth-child(5) { transition-delay: 240ms; }
+  .adaptive-service-grid.is-revealed > *:nth-child(6) { transition-delay: 300ms; }
+  .adaptive-service-grid.is-revealed > *:nth-child(7) { transition-delay: 360ms; }
+  .adaptive-recent-grid.is-revealed > *:nth-child(2) { transition-delay: 70ms; }
+  .adaptive-recent-grid.is-revealed > *:nth-child(3) { transition-delay: 140ms; }
+  .adaptive-recent-grid.is-revealed > *:nth-child(4) { transition-delay: 210ms; }
+}
+
+/* Hero gradient shimmer for headline accent */
+@media (prefers-reduced-motion: no-preference) {
+  .universal-hero__copy h1 span {
+    background-size: 200% 100%;
+    animation: u-gradient-drift 9s var(--u-motion-ease-standard) infinite alternate;
+  }
+}
+@keyframes u-gradient-drift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* Ambient glow breathing */
+@media (prefers-reduced-motion: no-preference) {
+  .universal-hero__glow--one { animation: u-glow-breathe 12s ease-in-out infinite alternate; }
+  .universal-hero__glow--two { animation: u-glow-breathe 14s ease-in-out infinite alternate-reverse; }
+}
+@keyframes u-glow-breathe {
+  from { opacity: .75; transform: translateX(0) scale(1); }
+  to { opacity: 1; transform: translateX(24px) scale(1.06); }
+}
+
+/* Floating cards gentle hover */
+@media (prefers-reduced-motion: no-preference) {
+  .universal-float-card--1 { animation: u-scene-card-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter) both, u-float-drift 7s ease-in-out 1s infinite alternate; }
+  .universal-float-card--2 { animation: u-scene-card-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter) var(--u-motion-delay-stagger) both, u-float-drift 8s ease-in-out 1.4s infinite alternate-reverse; }
+  .universal-float-card--3 { animation: u-scene-card-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter) calc(var(--u-motion-delay-stagger) * 2) both, u-float-drift 9s ease-in-out 1.8s infinite alternate; }
+}
+@keyframes u-float-drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+/* ============================================================
+   R1 INTERACTION POLISH — surface-level micro-motion layer.
+   Staggered card entrances · state-component entrances ·
+   row affordances. All under no-preference (reduced-motion safe).
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Stagger children of revealed card grids (library, projects) —
+     same cadence as the home grids above. */
+  .universal-library-grid.will-reveal > *,
+  .project-library.will-reveal > * { opacity: 0; }
+  .universal-library-grid.is-revealed > *,
+  .project-library.is-revealed > * {
+    opacity: 1;
+    transition: opacity var(--u-motion-duration-slow) var(--u-motion-ease-enter),
+                transform var(--u-motion-duration-slow) var(--u-motion-ease-enter);
+  }
+  .universal-library-grid.is-revealed > *:nth-child(2),
+  .project-library.is-revealed > *:nth-child(2) { transition-delay: 60ms; }
+  .universal-library-grid.is-revealed > *:nth-child(3),
+  .project-library.is-revealed > *:nth-child(3) { transition-delay: 120ms; }
+  .universal-library-grid.is-revealed > *:nth-child(4),
+  .project-library.is-revealed > *:nth-child(4) { transition-delay: 180ms; }
+  .universal-library-grid.is-revealed > *:nth-child(5),
+  .project-library.is-revealed > *:nth-child(5) { transition-delay: 240ms; }
+  .universal-library-grid.is-revealed > *:nth-child(6),
+  .project-library.is-revealed > *:nth-child(6) { transition-delay: 300ms; }
+  .universal-library-grid.is-revealed > *:nth-child(7),
+  .project-library.is-revealed > *:nth-child(7) { transition-delay: 360ms; }
+  .universal-library-grid.is-revealed > *:nth-child(8),
+  .project-library.is-revealed > *:nth-child(8) { transition-delay: 420ms; }
+
+  /* Stats cards rise one-by-one after their container reveals */
+  .ops-stats.will-reveal > div { opacity: 0; }
+  .ops-stats.is-revealed > div {
+    opacity: 1;
+    transition: opacity var(--u-motion-duration-slow) var(--u-motion-ease-enter),
+                transform var(--u-motion-duration-slow) var(--u-motion-ease-enter);
+  }
+  .ops-stats.is-revealed > div:nth-child(2) { transition-delay: 70ms; }
+  .ops-stats.is-revealed > div:nth-child(3) { transition-delay: 140ms; }
+  .ops-stats.is-revealed > div:nth-child(4) { transition-delay: 210ms; }
+
+  /* State components (empty/error) enter with a gentle rise —
+     they typically replace content, so the entrance signals the swap */
+  .u-empty, .u-error-state {
+    animation: u-state-rise var(--u-motion-duration-slow) var(--u-motion-ease-enter) both;
+  }
+  @keyframes u-state-rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Skeleton surfaces fade in — avoids a hard flash of bare blocks */
+  .u-surface-loading, .route-skeleton {
+    animation: u-fade-in var(--u-motion-duration-moderate) linear both;
+  }
+  @keyframes u-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Run rows: soft affordance on hover (desktop pointer only) */
+  @media (hover: hover) {
+    .runs-table tbody tr {
+      transition: background-color var(--u-motion-duration-fast) linear,
+                  box-shadow var(--u-motion-duration-fast) linear;
+    }
+    .runs-table tbody tr:hover {
+      background-color: color-mix(in srgb, var(--u-primary) 3.5%, transparent);
+    }
+    [dir="rtl"] .runs-table tbody tr:hover {
+      box-shadow: inset -2px 0 0 var(--u-primary);
+    }
+    [dir="ltr"] .runs-table tbody tr:hover {
+      box-shadow: inset 2px 0 0 var(--u-primary);
+    }
+  }
+
+  /* Project cards: consistent lift with library items */
+  @media (hover: hover) {
+    .project-library-card {
+      transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard),
+                  box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard),
+                  border-color var(--u-motion-duration-moderate) linear;
+    }
+    .project-library-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--u-shadow-sm);
+      border-color: color-mix(in srgb, var(--u-primary) 26%, var(--u-line));
+    }
+  }
+}

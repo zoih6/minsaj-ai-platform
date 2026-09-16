@@ -1,0 +1,12 @@
+/* Nasaq Universal Experience — ordered global entrypoint */
+@import "./styles/universal/foundations.css";
+@import "./styles/universal/layout.css";
+@import "./styles/universal/states.css";
+@import "./styles/universal/marketing.css";
+@import "./styles/universal/shell.css";
+@import "./styles/universal/home.css";
+@import "./styles/universal/workspaces.css";
+@import "./styles/universal/library.css";
+@import "./styles/universal/responsive.css";
+@import "./styles/universal/motion.css";
+@import "./styles/universal/workbench.css";
