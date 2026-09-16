@@ -11,6 +11,7 @@ import "@fontsource/ibm-plex-mono/400.css";
 import "../globals.css";
 import "../universal.css";
 import { getDictionary, getDirection, isLocale, locales } from "@nasaq/i18n";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -32,7 +33,9 @@ export default async function LocaleLayout({ children, params }: Readonly<{ chil
 
   return (
     <html lang={locale} dir={getDirection(locale)} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

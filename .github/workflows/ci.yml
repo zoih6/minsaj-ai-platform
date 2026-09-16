@@ -23,6 +23,9 @@ jobs:
       - name: Layout guards (every page root must declare a container-query context)
         run: node scripts/check-layout-guards.mjs
 
+      - name: Theme contrast guard (WCAG AA in light + dark)
+        run: node scripts/check-theme-contrast.mjs
+
       - name: Lint
         run: bun run lint
 

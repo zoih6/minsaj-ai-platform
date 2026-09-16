@@ -190,9 +190,27 @@ Wording for truth labels, statuses, and error contracts is **dictionary-owned** 
 | Saved to Library | حُفظ في المكتبة | Saved to Library |
 | Partial output | مخرج جزئي | Partial output |
 
-## 12. Dark Mode (provisional)
+## 12. Dark Mode — «Luminous Premium Dark» (shipped in Phase 10)
 
-Token architecture is ready (semantic tokens indirection); timing is a roadmap open question. Rule when it ships: **no new raw colors** — only token value remaps per theme.
+Dual-theme is LIVE: `next-themes` writes `data-theme` on `<html>` (system-follow default,
+3-state cycle toggle: light → dark → system). Architecture:
+
+- **Token split:** light values in `:root`, dark values in `:root[data-theme="dark"]`
+  (foundations.css); the legacy bridge tokens are re-defined inside both blocks, so every
+  legacy component themes itself with zero per-component work.
+- **Dark palette principles** (researched — MD3 + Apple HIG + WCAG):
+  - Surfaces are deep desaturated ink (`--u-bg #0c0e1d`, `--u-surface #151830`), **never pure
+    black**; elevation reads through lighter surfaces + violet glow.
+  - Text is off-white (`--u-ink #eceef8`), **never pure white**; text ramp brightens, never
+    darkens.
+  - Brand/service hues brighten ~10% for AA on dark; soft tints become translucent
+    (`rgba(service, .12–.16)`).
+- **Semantic surface tokens** (both themes): `--u-glass/-strong/-line`, `--u-veil`,
+  `--u-raise`, `--u-hover-veil`, `--u-field`, `--u-tint-1`, `--u-artboard`,
+  `--u-control-line` (interactive control borders, ≥3:1).
+- **Enforcement:** `scripts/check-theme-contrast.mjs` (CI) — text ≥4.5:1, icons/UI ≥3:1 in
+  BOTH themes; `scripts/verify-sweep-v10.sh` sweeps 30 routes × 3 viewports × 2 themes.
+  Full contract in `.claude/skills/theming-and-contrast/SKILL.md`.
 
 ## 13. Governance
 

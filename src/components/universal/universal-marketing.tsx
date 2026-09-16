@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { NasaqMark } from "@nasaq/ui";
 import type { Locale } from "@nasaq/contracts";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { ActivityFeedback } from "@/components/universal/activity-feedback";
 import { universalServices, type UniversalServiceId } from "@/lib/universal-content";
 
@@ -204,6 +205,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
             <a href="#trust">{copy.nav.trust}</a>
           </nav>
           <div className="universal-nav__actions">
+            <ThemeToggle locale={locale} />
             <Link className="luma-locale" href={`/${otherLocale}`} prefetch={false} aria-label={isArabic ? "English" : "العربية"}>{otherLocale.toUpperCase()}</Link>
             <Link className="luma-button luma-button--ink luma-button--small" href={appHref}>{copy.open}<ArrowLeft size={15} /></Link>
             <button className="universal-menu-button" type="button" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-controls="universal-mobile-menu" aria-label={menuOpen ? (isArabic ? "إغلاق القائمة" : "Close menu") : (isArabic ? "فتح القائمة" : "Open menu")}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>

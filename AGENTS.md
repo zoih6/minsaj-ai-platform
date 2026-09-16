@@ -30,14 +30,18 @@ npx tsc --noEmit       # TypeScript check — dev server does NOT typecheck; run
 node scripts/check-layout-guards.mjs     # ARCHITECTURAL GUARD (runs in CI, no browser):
                                           # every page.tsx must render inside a container-query
                                           # context — fails the build if a page lacks one
-bash scripts/verify-sweep-v8.sh           # FULL responsive sweep (needs dev server + browser):
-                                          # 30 routes × 3 viewports (375/768/1440) = 90 checks,
-                                          # zero horizontal overflow required
+node scripts/check-theme-contrast.mjs     # THEME GUARD (runs in CI): WCAG AA contrast for every
+                                          # critical token pair in LIGHT + DARK — fails the build
+bash scripts/verify-sweep-v10.sh           # FULL theme-aware responsive sweep (dev server + browser):
+                                          # 30 routes × 3 viewports × 2 themes = 180 checks,
+                                          # zero overflow + data-theme actually applied
 bash scripts/verify-editor-interactions.sh  # editor interactions on mobile (step nav, canvas, toasts)
 ```
 
-New route added? **Add it to the `ROUTES` matrix in `scripts/verify-sweep-v8.sh` the same day** — an
+New route added? **Add it to the `ROUTES` matrix in `scripts/verify-sweep-v10.sh` the same day** — an
 unswept route is an undelivered route (this exact blind spot shipped broken editors in v8).
+New token or color added? **Extend the pair list in `scripts/check-theme-contrast.mjs`** if it
+ ever carries text, and keep both theme blocks in `foundations.css` in sync.
 
 ## Project snapshot
 
@@ -98,7 +102,11 @@ STATE.md                     # living handoff snapshot — update EVERY task
     Respect the unified z-index ladder documented at the top of `shell.css`.
 11. **ScrollFx mounts inside page-root components, never in layouts** (hydration race — React
     hydrates lazy boundaries after layout effects).
-12. **Never commit secrets.** `.env*` is gitignored — keep it that way. Tokens live outside the repo.
+12. **No hardcoded colors — semantic tokens only.** Every color flows from `foundations.css`
+    tokens (light in `:root`, dark in `:root[data-theme="dark"]`, legacy bridge re-defined in
+    both). An un-tokenized light-mode hex is a guaranteed "white box in dark mode" bug.
+    `node scripts/check-theme-contrast.mjs` must stay green. → Skill: `theming-and-contrast`.
+13. **Never commit secrets.** `.env*` is gitignored — keep it that way. Tokens live outside the repo.
 
 ### CSS layer order (sacred — `src/app/universal.css`)
 
@@ -129,6 +137,8 @@ not push) · `≥1024` expanded (collapse → rail, persisted in localStorage).
 ### B. Delivery gate (before every push)
 
 - [ ] Layout guards green (`node scripts/check-layout-guards.mjs`)
+- [ ] Theme contrast guard green (`node scripts/check-theme-contrast.mjs`)
+- [ ] Theme-aware sweep green if visuals changed (`bash scripts/verify-sweep-v10.sh` — both themes)
 - [ ] Responsive sweep green if layout/visual changed (add new routes to the matrix first)
 - [ ] `bun run lint` → 0 errors · `npx tsc --noEmit` → 0 errors · `bun run build` → success
 - [ ] Verified **inside the artifact** (unzip / compiled CSS), not just in the dev server —
@@ -164,6 +174,7 @@ Load the matching SKILL.md **before** the work it covers:
 | `root-cause-fixing` | Whenever any bug or visual defect is reported — before writing any fix |
 | `layout-regression-defense` | Before every delivery, after CSS/layout changes, when adding pages/routes |
 | `rtl-responsive-qa` | When adding or modifying any visual component, page, or interaction |
+| `theming-and-contrast` | When adding or changing ANY color/surface/border/shadow, building components that must work in both themes, or touching theme-provider / theme-toggle / contrast issues |
 | `repo-state-maintenance` | At the END of every task, before every commit |
 | `delivery-packaging` | Whenever producing a zip, publishing to GitHub, or deploying |
 

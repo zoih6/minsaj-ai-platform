@@ -184,6 +184,21 @@ the `repo-state-maintenance` skill — never delete or edit accepted records.
   `delivery-packaging` skill.
 - **Consequences:** Dev-server results alone never justify a release.
 
+### ADR-007: next-themes as the theme engine; contrast as a CI gate — phase 10
+- **Status:** accepted
+- **Context:** The platform shipped light-only. The owner required device-follow dark mode +
+  manual toggle, and explicitly warned about the dependent failure modes (contrast, fonts,
+  motion, "random work"). Alternatives: hand-rolled provider (~80 lines, re-solves FOUC/system
+  sync/storage edge cases) vs `next-themes` (2 KB, battle-tested, the shadcn/ui standard).
+- **Decision:** Adopt `next-themes` (`attribute="data-theme"`, `defaultTheme="system"`,
+  `disableTransitionOnChange`). All colors become semantic tokens in `foundations.css`
+  (dark block `:root[data-theme="dark"]`, legacy bridge re-defined in both). Contrast is
+  CI-enforced: `scripts/check-theme-contrast.mjs` (text ≥4.5:1, UI ≥3:1, button-gradient stops,
+  both themes). Theme-aware sweep `verify-sweep-v10.sh` (30×3×2=180).
+- **Consequences:** One new dependency (justified, used). ~100 hardcoded light colors were
+  tokenized — "white box in dark mode" becomes a structural impossibility going forward
+  (hard rule 12). The guard caught 8 real AA failures, including pre-existing light-theme ones.
+
 ## 7. Maintenance
 
 This document changes through the `repo-state-maintenance` skill: new principles require a

@@ -36,6 +36,7 @@ import type { LucideIcon } from "lucide-react";
 import { NasaqMark } from "@nasaq/ui";
 import { switchLocaleInPath, type Dictionary } from "@nasaq/i18n";
 import type { Locale } from "@nasaq/contracts";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { useViewportMode } from "@/hooks/use-viewport-mode";
 
 type ShellNavItem = { id: string; label: string; href: string; icon: LucideIcon };
@@ -297,7 +298,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
               {activeItem?.id === "home" ? <small><Sparkles size={12} />{labels.adaptive}</small> : null}
             </div>
             <Dialog.Trigger asChild><button type="button" className="universal-shell-search"><Search size={16} /><span>{labels.search}</span><kbd>⌘K</kbd></button></Dialog.Trigger>
-            <div className="universal-shell-actions"><span className="universal-shell-demo"><i />{labels.demo}</span><Link href={switchLocaleInPath(pathname, alternateLocale)} prefetch={false} aria-label={labels.languageLabel}>{alternateLocale.toUpperCase()}</Link><button type="button" onClick={() => setNotificationsOpen((value) => !value)} aria-expanded={notificationsOpen} aria-controls="universal-notifications" aria-label={labels.notifications}><Bell size={18} /><i /></button><Link href={`${base}/settings`} className="universal-top-avatar">ن</Link></div>
+            <div className="universal-shell-actions"><span className="universal-shell-demo"><i />{labels.demo}</span><ThemeToggle locale={locale} /><Link href={switchLocaleInPath(pathname, alternateLocale)} prefetch={false} aria-label={labels.languageLabel}>{alternateLocale.toUpperCase()}</Link><button type="button" onClick={() => setNotificationsOpen((value) => !value)} aria-expanded={notificationsOpen} aria-controls="universal-notifications" aria-label={labels.notifications}><Bell size={18} /><i /></button><Link href={`${base}/settings`} className="universal-top-avatar">ن</Link></div>
           </header>
 
           <aside id="universal-notifications" className="universal-notifications" data-state={notificationsOpen ? "open" : "closed"} role="dialog" aria-label={labels.notifications} aria-hidden={!notificationsOpen}><header><div><span>{labels.notifications}</span><small>2</small></div><button type="button" tabIndex={notificationsOpen ? 0 : -1} onClick={() => setNotificationsOpen(false)} aria-label={labels.close}><X size={17} /></button></header><Link href={`${base}/learn`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><GraduationCap size={17} /></span><div><strong>{labels.noticeTitle}</strong><p>{labels.noticeBody}</p></div></Link><Link href={`${base}/library`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><CheckCircle2 size={17} /></span><div><strong>{labels.savedTitle}</strong><p>{labels.savedBody}</p></div></Link></aside>

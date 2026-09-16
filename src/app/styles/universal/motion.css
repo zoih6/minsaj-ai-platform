@@ -165,7 +165,7 @@
   border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 20%,var(--u-line));
   border-radius: 14px;
   color: var(--u-feedback-accent);
-  background: linear-gradient(135deg,var(--u-feedback-soft),#fff);
+  background: linear-gradient(135deg,var(--u-feedback-soft),var(--u-surface));
   animation: u-feedback-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both;
 }
 .u-feedback[data-feedback-state="error"] { --u-feedback-accent: #b63d54; --u-feedback-soft: #fff0f3; }
@@ -179,7 +179,7 @@
   border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 16%,transparent);
   border-radius: 12px;
   color: var(--u-feedback-accent);
-  background: #fff;
+  background: var(--u-surface-solid);
   box-shadow: var(--u-shadow-sm);
 }
 .u-feedback[data-feedback-state="working"] .u-feedback__icon svg { animation: u-status-spin var(--u-motion-duration-activity-cycle) linear infinite; }
@@ -191,7 +191,7 @@
 .u-feedback__progress { width: min(260px,100%); height: 4px; margin-block-start: 9px; display: block; overflow: hidden; border-radius: 99px; background: color-mix(in srgb,var(--u-feedback-accent) 12%,#fff); }
 .u-feedback__progress > i { width: 82%; height: 100%; display: block; border-radius: inherit; background: var(--u-feedback-accent); transform-origin: inline-start center; animation: u-progress-grow var(--u-motion-duration-progress) var(--u-motion-ease-standard) both; }
 .u-feedback__action { display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
-.u-feedback__action :is(a,button) { min-height: var(--u-touch); padding-inline: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 18%,var(--u-line)); border-radius: 10px; color: var(--u-feedback-accent); background: #fff; text-decoration: none; font-size: 13px; font-weight: 700; cursor: pointer; }
+.u-feedback__action :is(a,button) { min-height: var(--u-touch); padding-inline: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 1px solid color-mix(in srgb,var(--u-feedback-accent) 18%,var(--u-line)); border-radius: 10px; color: var(--u-feedback-accent); background: var(--u-surface-solid); text-decoration: none; font-size: 13px; font-weight: 700; cursor: pointer; }
 .u-feedback__action :is(a,button):first-child:not(:only-child) { color: #fff; background: var(--u-feedback-accent); }
 @keyframes u-feedback-in {
   from { opacity: 0; transform: translateY(var(--u-motion-distance-sm)); }
@@ -249,7 +249,7 @@
 
 /* Empty state recovery and bounded item entrance */
 .universal-library-empty { animation: u-feedback-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both; }
-.universal-library-empty button { min-height: var(--u-touch); margin-block-start: 12px; padding-inline: 16px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-primary); background: #fff; font-weight: 700; cursor: pointer; }
+.universal-library-empty button { min-height: var(--u-touch); margin-block-start: 12px; padding-inline: 16px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-primary); background: var(--u-surface-solid); font-weight: 700; cursor: pointer; }
 
 /* The route loader remains meaningful when motion is absent. */
 .route-loading__mark { animation-duration: var(--u-motion-duration-activity-cycle); }
@@ -462,5 +462,66 @@
       box-shadow: var(--u-shadow-sm);
       border-color: color-mix(in srgb, var(--u-primary) 26%, var(--u-line));
     }
+  }
+}
+
+/* ============================================================
+   R2 INTERACTION POLISH — theme-era refinements (Task 10)
+   Micro-interactions verified against prefers-reduced-motion.
+   ============================================================ */
+
+/* Theme toggle: icon materialises with a spring when the mode flips
+   (React swaps the icon component → remount plays the entrance). */
+@keyframes nasaq-theme-icon-in {
+  from { opacity: 0; transform: rotate(-35deg) scale(.55); }
+  to   { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+.universal-theme-toggle > svg {
+  animation: nasaq-theme-icon-in var(--u-motion-duration-moderate) var(--u-motion-ease-spring);
+}
+@media (prefers-reduced-motion: reduce) {
+  .universal-theme-toggle > svg { animation: none; }
+}
+
+/* Keyboard focus rings that FOLLOW each surface's own radius.
+   Applies to cards and interactive tiles surfaced as links. */
+:is(.universal-site, .universal-app-shell) :is(a, button):focus-visible {
+  outline: 2.5px solid var(--u-primary);
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+:is(.universal-site, .universal-app-shell) :is(.universal-service-card,
+  .universal-library-item, .adaptive-recent-card, .adaptive-service-tile,
+  .universal-trust-cards article):focus-visible {
+  outline-offset: 4px;
+  box-shadow: var(--u-shadow-md);
+}
+
+/* Card lift parity — surfaces that missed the v6 elevation pass. */
+@media (hover: hover) {
+  .universal-trust-cards article { transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard), box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard), border-color var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+  .universal-trust-cards article:hover { transform: translateY(-3px); border-color: var(--u-glass-line); box-shadow: var(--u-shadow-md); }
+  .adaptive-dialog__goals > button { transition: transform var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
+  .adaptive-dialog__goals > button:hover { transform: translateY(-2px); }
+}
+
+/* Elevated contrast preference: solidify translucency, deepen borders. */
+@media (prefers-contrast: more) {
+  :root {
+    --u-glass: var(--u-surface-solid);
+    --u-glass-strong: var(--u-surface-solid);
+    --u-veil: var(--u-surface-solid);
+    --u-raise: var(--u-surface-solid);
+    --u-hover-veil: rgba(21, 26, 66, 0.12);
+  }
+  :root[data-theme="dark"] {
+    --u-glass: var(--u-surface-solid);
+    --u-glass-strong: var(--u-surface-solid);
+    --u-veil: var(--u-surface-solid);
+    --u-raise: var(--u-surface-solid);
+    --u-hover-veil: rgba(255, 255, 255, 0.16);
+  }
+  :is(.universal-site, .universal-app-shell) :is(a, button):focus-visible {
+    outline-width: 3.5px;
   }
 }
