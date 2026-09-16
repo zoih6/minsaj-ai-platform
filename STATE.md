@@ -5,7 +5,7 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-17 — Phase 13 · **Current version:** v13.0 · **Branch:** `main`
+**Last updated:** 2026-09-17 — Phase 13.1 · **Current version:** v13.1 · **Branch:** `main` (local commit eb1419b NOT pushed — awaiting owner review)
 
 ## Current status
 
@@ -23,6 +23,13 @@
   8-step agent workflow, owner's explicit orders). Both are BINDING (AGENTS.md hard rule 15).
   Decision: hybrid functional-first — NO mandatory OOP layer; classes only with 2+ of
   identity/state/lifecycle/invariants/interchangeability.
+- **Phase 13.1: B1–B5 design-system unification EXECUTED + owner's identity package v25 folded in.**
+  Zero legacy color vars (was 1011) · legacy bridge deleted (124 defs) · 1249 hardcoded colors
+  tokenized · dark mode = pure value-swap (28 per-element rules dissolved) · breakpoints
+  19→12 documented canonical ladder · icon scale 21→6+3 with a NEW CI guard (check-icon-scale.mjs)
+  · official folded-ribbon NasaqMark + favicon + public/brand (25 SVGs) + brand.css surface
+  vocabulary (grid/ribbon/glow/ghost). All gates green incl. sweep 182/182 and VLM 9-10/10.
+  **NOT pushed — owner reviews locally at localhost:3000 first (explicit instruction).**
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
 ## Quality gates (last verified: Phase 13, 2026-09-17)
@@ -37,6 +44,7 @@
 | Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
 | Dialog-aware sweep (`scripts/verify-sweep-v11.sh`) | ✅ 182/182 (+ en-locale run 182/182 during the audit = 364 total) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
+| Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
 | CI (GitHub Actions) | ✅ green on `main` (`5741b8f`) |
 
 ## Portal/container isolation (NEW — Phase 11 architecture)

@@ -1,0 +1,161 @@
+{
+  "legacy_by_var": {},
+  "by_file": {
+    "src/app/globals.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 28,
+      "rgba": 30
+    },
+    "src/app/styles/universal/foundations.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 208,
+      "rgba": 79
+    },
+    "src/app/styles/universal/home.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 0,
+      "rgba": 14
+    },
+    "src/app/styles/universal/layout.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 7,
+      "rgba": 1
+    },
+    "src/app/styles/universal/library.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 1,
+      "rgba": 4
+    },
+    "src/app/styles/universal/marketing.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 4,
+      "rgba": 36
+    },
+    "src/app/styles/universal/motion.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 2,
+      "rgba": 6
+    },
+    "src/app/styles/universal/responsive.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 4,
+      "rgba": 0
+    },
+    "src/app/styles/universal/shell.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 16,
+      "rgba": 46
+    },
+    "src/app/styles/universal/states.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 0,
+      "rgba": 1
+    },
+    "src/app/styles/universal/workbench.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 0,
+      "rgba": 29
+    },
+    "src/app/styles/universal/workspaces.css": {
+      "legacy": 0,
+      "legacy_detail": {},
+      "hex": 2,
+      "rgba": 6
+    }
+  },
+  "hex_top": {
+    "#ffffff": 9,
+    "#6d5ff2": 8,
+    "#5143e2": 4,
+    "#4a3cd8": 4,
+    "#3a3f6e": 4,
+    "#e4e6ef": 4,
+    "#f0f1fa": 4,
+    "#c4c7dd": 3,
+    "#078ebd": 3,
+    "#e9eaf6": 3,
+    "#fff": 3,
+    "#0f1225": 2,
+    "#5548e0": 2,
+    "#e4f6ef": 2,
+    "#776dff": 2,
+    "#23bfe2": 2,
+    "#0d1020": 2,
+    "#e75f9d": 2,
+    "#5d6298": 2,
+    "#8d80f8": 2,
+    "#6659ea": 2,
+    "#4cc4e0": 2,
+    "#3ecb9a": 2,
+    "#ef85b6": 2,
+    "#7a92e8": 2,
+    "#38b8d9": 2,
+    "#12152c": 2,
+    "#4a4f80": 2,
+    "#10132a": 2,
+    "#6a6e85": 2,
+    "#c8c3ff": 1,
+    "#d58b43": 1,
+    "#d4d1ff": 1,
+    "#a8c1b6": 1,
+    "#d9e7e1": 1,
+    "#5a4ce6": 1,
+    "#5242e0": 1,
+    "#262a4e": 1,
+    "#2e3358": 1,
+    "#1a1e39": 1,
+    "#e14b52": 1,
+    "#e75a60": 1,
+    "#dc4048": 1,
+    "#0b6c8c": 1,
+    "#c4e8d5": 1,
+    "#b52f37": 1,
+    "#bfc2d9": 1,
+    "#c9c6ef": 1,
+    "#cfd2e8": 1,
+    "#edecfb": 1,
+    "#dedbf8": 1,
+    "#f7f6fd": 1,
+    "#f0eef9": 1,
+    "#f0f1f9": 1,
+    "#2a2d47": 1,
+    "#5b5f7e": 1,
+    "#666b8c": 1,
+    "#23264a": 1,
+    "#e8e6f5": 1,
+    "#d3d1e9": 1,
+    "#4539c9": 1,
+    "#372da8": 1,
+    "#ebe7ff": 1,
+    "#0b8cab": 1,
+    "#e4f6fc": 1,
+    "#0d9f70": 1,
+    "#e2579a": 1,
+    "#fdeef6": 1,
+    "#c07317": 1,
+    "#fbf1e2": 1,
+    "#d7373f": 1,
+    "#fdecec": 1,
+    "#6d4d10": 1,
+    "#8d2f2f": 1,
+    "#235c4b": 1,
+    "#0d5c72": 1,
+    "#d8d5ff": 1,
+    "#f0d9b4": 1,
+    "#f2c5c3": 1,
+    "#cdeadd": 1
+  },
+  "total_hex": 272,
+  "total_rgba": 252
+}

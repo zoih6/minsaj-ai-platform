@@ -29,6 +29,9 @@ jobs:
       - name: Theme contrast guard (WCAG AA in light + dark)
         run: node scripts/check-theme-contrast.mjs
 
+      - name: Icon scale guard (icon sizes must stay on the documented ladder)
+        run: node scripts/check-icon-scale.mjs
+
       - name: Lint
         run: bun run lint
 
