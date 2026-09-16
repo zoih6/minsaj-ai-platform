@@ -5,7 +5,7 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-17 — Phase 11 · **Current version:** v11.0 · **Branch:** `main` (`5741b8f`)
+**Last updated:** 2026-09-17 — Phase 12 · **Current version:** v12.0 · **Branch:** `main` (`50a27e9`)
 
 ## Current status
 
@@ -16,6 +16,13 @@
   mobile rules (trapped in `@container` while `<Dialog.Portal>` mounts outside every container);
   all portaled dialogs are now phone bottom sheets, a NEW CI gate blocks the pattern forever,
   and the sweep grew a dialog-geometry sentinel.
+- **Phase 12 (docs-only, no app code touched): governance law pair** — `ARCHITECTURE-RULES.md`
+  (layer/import/ServiceProvider/class rules, with the measured 13-file mock-import debt
+  inventory + strangler extraction protocol) and `DESIGN-ENGINEERING-GOVERNANCE.md` (16
+  sections: token scales, `nq-*` vocabulary, 18 anti-patterns, visual QA protocol, mandatory
+  8-step agent workflow, owner's explicit orders). Both are BINDING (AGENTS.md hard rule 15).
+  Decision: hybrid functional-first — NO mandatory OOP layer; classes only with 2+ of
+  identity/state/lifecycle/invariants/interchangeability.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
 ## Quality gates (last verified: Phase 11, 2026-09-17)
@@ -50,19 +57,38 @@
 
 ## Open items / next steps (priority order)
 
-1. **M4 — Session-journey depth** (`docs/07-ROADMAP.md`): intent routing from home
+1. **ServiceProvider extraction** (now LAW: `ARCHITECTURE-RULES.md` §4): interface into
+   `packages/contracts` → provider registration in `src/lib/provider.ts` → migrate the 13
+   debt files one-per-commit (order: B snapshots → A client construction → C move domain
+   helpers out of mock-api). Done-when `rg "@nasaq/mock-api" src/` hits only the registration.
+2. **Icon-size normalization** (now LAW: `DESIGN-ENGINEERING-GOVERNANCE.md` §6): 12 distinct
+   sizes measured (11–22px) → sanctioned scale 12/14/16/18/20/24; normalize surfaces as they
+   are touched (rehabilitation rule DEG §12.1).
+3. **M4 — Session-journey depth** (`docs/07-ROADMAP.md`): intent routing from home
    (FR-ASK-003..007); save-to-library → resume flow (US-004..006).
-2. **Backend integration** per `docs/05-BACKEND-INTEGRATION-READINESS.md` (ServiceProvider seam;
+4. **Backend integration** per `docs/05-BACKEND-INTEGRATION-READINESS.md` (ServiceProvider seam;
    contracts ready in `packages/contracts`).
-3. **Dependency cleanup opportunity:** `prisma`, `next-auth`, `framer-motion`, `zustand`,
+5. **Dependency cleanup opportunity:** `prisma`, `next-auth`, `framer-motion`, `zustand`,
    `@tanstack/*`, `z-ai-web-dev-sdk` remain installed with zero imports (kept deliberately for
    bun.lock stability). Remove only after independent verification. `next-themes` is USED (theme system).
-4. Rotate GitHub/Vercel tokens if not yet done (owner action; tokens never lived in this repo).
-5. Sandbox-only note: `skills/` (platform artifacts, untracked) is now in `tsconfig` exclude —
+6. Rotate GitHub/Vercel tokens if not yet done (owner action; tokens never lived in this repo).
+7. Sandbox-only note: `skills/` (platform artifacts, untracked) is now in `tsconfig` exclude —
    local builds match CI again.
 
 ## Recent handoff notes
 
+- **Phase 12 (2026-09-17):** Owner asked for permanent anti-mess governance after confirming the
+  v11 dialog fix works. Wrote the binding law pair at repo root: `ARCHITECTURE-RULES.md`
+  (hybrid functional-first MADR — explicitly NO mandatory OOP; layer map to as-built folders;
+  one-way import law; ServiceProvider seam with the measured 13-file direct-import inventory
+  split into A client-construction / B snapshots / C stranded domain helpers, strangler
+  protocol, done-when criterion; class-justification checklist requiring 2+ of identity/state/
+  lifecycle/invariants/interchangeability — Run yes, Button never) and
+  `DESIGN-ENGINEERING-GOVERNANCE.md` (16 sections + token quick-reference + the owner's
+  explicit 8 orders; philosophy "fix the system that produced the problem"; measured icon
+  debt: 12 sizes; third-patch rule; forbidden workflow "see problem → patch CSS → next" banned).
+  Wired into AGENTS.md (read order, repo map, hard rule 15, doc map) + docs/README. Review
+  citations now use ARCH-§n / DEG-§n. Docs-only phase: zero app-code changes, gates untouched.
 - **Phase 11 (2026-09-17):** Root-caused the "خصّص تجربتك not built for mobile" report to the
   portal/container mismatch — a SYSTEMIC pattern (4 dialog families affected), not one dialog.
   Fixed all of them as unified bottom sheets; found & killed a second latent bug (premium layer
