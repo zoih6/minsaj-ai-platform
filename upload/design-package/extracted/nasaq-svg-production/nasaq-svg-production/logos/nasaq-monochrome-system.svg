@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <rect width="800" height="200" fill="white"/>
+  <g font-family="'Inter', sans-serif" font-size="10" fill="#6B7280">
+    <text x="20" y="20">Monochrome System • Nasaq AI</text>
+  </g>
+  <!-- Black on white -->
+  <g transform="translate(20,40) scale(0.12)">
+    <g fill="#0F172A">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="20" y="180" font-family="monospace" font-size="9" fill="#9CA3AF">Black on White</text>
+  
+  <!-- White on black -->
+  <rect x="210" y="30" width="160" height="120" rx="16" fill="#0F172A"/>
+  <g transform="translate(230,50) scale(0.12)">
+    <g fill="white">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="210" y="180" font-family="monospace" font-size="9" fill="#9CA3AF">White on Black</text>
+  
+  <!-- White on violet -->
+  <rect x="400" y="30" width="160" height="120" rx="16" fill="#6366F1"/>
+  <g transform="translate(420,50) scale(0.12)">
+    <g fill="white">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="400" y="180" font-family="monospace" font-size="9" fill="#9CA3AF">White on Violet #6366F1</text>
+  
+  <!-- Violet on light -->
+  <rect x="590" y="30" width="160" height="120" rx="16" fill="#E0DFFF"/>
+  <g transform="translate(610,50) scale(0.12)">
+    <g fill="#6366F1">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="590" y="180" font-family="monospace" font-size="9" fill="#9CA3AF">Violet on Light #E0DFFF</text>
+</svg>

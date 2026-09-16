@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="nasaq-icon-home" viewBox="0 0 24 24"><path d="M3 9L12 2L21 9V20H15V14H9V20H3V9Z" fill="none" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="nasaq-icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="#0F172A" stroke-width="1.5"/><path d="M16 16L20 20" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="nasaq-icon-folder" viewBox="0 0 24 24"><path d="M3 7H10L12 9H21V19H3V7Z" fill="none" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="nasaq-icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="#0F172A" stroke-width="1.5"/><path d="M12 2V4M12 20V22M2 12H4M20 12H22M4.9 4.9L6.3 6.3M17.7 17.7L19.1 19.1M4.9 19.1L6.3 17.7M17.7 6.3L19.1 4.9" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round"/></symbol>
+</svg>

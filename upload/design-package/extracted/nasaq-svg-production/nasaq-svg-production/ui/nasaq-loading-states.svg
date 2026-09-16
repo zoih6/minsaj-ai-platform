@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 120" width="600" height="120">
+  <rect width="600" height="120" fill="white"/>
+  <g font-family="'Inter', sans-serif" font-size="9" fill="#9CA3AF">
+    <text x="20" y="20">Loading States • Fragment → Nasaq</text>
+  </g>
+  <!-- Step 1: fragments -->
+  <g transform="translate(20,40) scale(0.08)" opacity="0.3">
+    <g fill="#6366F1">
+      <circle cx="200" cy="200" r="40"/><circle cx="600" cy="300" r="30"/><circle cx="400" cy="600" r="35"/>
+    </g>
+  </g>
+  <text x="20" y="110" font-family="monospace" font-size="8" fill="#6B7280">01 Fragment</text>
+  
+  <!-- Step 2: gathering -->
+  <g transform="translate(140,40) scale(0.08)" opacity="0.5">
+    <g fill="#6366F1">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="140" y="110" font-family="monospace" font-size="8" fill="#6B7280">02 Gathering</text>
+  
+  <!-- Step 3: alignment -->
+  <g transform="translate(260,40) scale(0.1)" opacity="0.7">
+    <g fill="#6366F1">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="260" y="110" font-family="monospace" font-size="8" fill="#6B7280">03 Alignment</text>
+  
+  <!-- Step 4: interlocking -->
+  <g transform="translate(380,40) scale(0.11)" opacity="0.9">
+    <g fill="#6366F1">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="380" y="110" font-family="monospace" font-size="8" fill="#6B7280">04 Interlock</text>
+  
+  <!-- Step 5: complete -->
+  <g transform="translate(500,40) scale(0.12)">
+    <g fill="#6366F1">
+      <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z"/><path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z"/>
+    </g>
+  </g>
+  <text x="500" y="110" font-family="monospace" font-size="8" fill="#0F172A" font-weight="700">05 Nasaq ✓</text>
+</svg>
