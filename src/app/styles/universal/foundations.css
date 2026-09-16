@@ -19,6 +19,13 @@
   --u-muted: #5b5f7e;
   --u-faint: #666b8c;
 
+  /* Inverse emphasis surfaces — pills/marks/avatars carrying white text.
+     ROLE: background only. Never for text color (that inversion is the
+     v13 audit bug class: --forest mapped to --u-ink flipped in dark). */
+  --u-inverse-surface: #0f1225;
+  --u-inverse-surface-hover: #23264a;
+  --u-on-inverse: #ffffff;
+
   --u-line: #e5e7f2;
   --u-line-strong: #d0d3e6;
 
@@ -166,6 +173,14 @@
   --u-ink-soft: #cdd0e4;
   --u-muted: #9ba0bf;
   --u-faint: #8489a8;
+
+  /* Inverse emphasis surfaces — dark mode keeps a DARK elevated surface so
+     on-inverse (white) text stays readable (13.5:1). Do NOT map this to
+     --u-ink: ink flips light in dark mode (audit finding P0-1, the
+     white-on-light invisible-text bug class). */
+  --u-inverse-surface: #262b52;
+  --u-inverse-surface-hover: #333a6e;
+  --u-on-inverse: #ffffff;
 
   --u-line: #3a3f6e;
   --u-line-strong: #5d6298;

@@ -328,7 +328,7 @@ A visual change is done when ALL hold — the delivery gate in `AGENTS.md` §B p
 | **Touch** | `--u-touch` 44 |
 | **Bands (container)** | 1040 / 880 / 640 / 430 |
 | **Breakpoints (viewport)** | 768 / 1024 / 1440 |
-| **Color** | semantic `--u-*` only (primary family, ink, muted, line, danger) + jewel accents (cyan/mint/pink/amber) + shell family — see `foundations.css`; never literals |
+| **Color** | semantic `--u-*` only (primary family, ink, muted, line, danger) + jewel accents (cyan/mint/pink/amber) + shell family + **inverse emphasis** (`--u-inverse-surface`/`-hover` for pills carrying `--u-on-inverse` text — background role ONLY, never map to `--u-ink`, which flips light in dark mode) — see `foundations.css`; never literals |
 
 ## Appendix B — The explicit orders (verbatim intent from the owner, binding)
 

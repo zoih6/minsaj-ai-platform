@@ -5,7 +5,7 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-17 — Phase 12 · **Current version:** v12.0 · **Branch:** `main` (`50a27e9`)
+**Last updated:** 2026-09-17 — Phase 13 · **Current version:** v13.0 · **Branch:** `main`
 
 ## Current status
 
@@ -25,7 +25,7 @@
   identity/state/lifecycle/invariants/interchangeability.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 11, 2026-09-17)
+## Quality gates (last verified: Phase 13, 2026-09-17)
 
 | Gate | Status |
 |---|---|
@@ -33,10 +33,10 @@
 | `bun run lint` (ESLint) | ✅ 0 errors |
 | `npx tsc --noEmit` | ✅ 0 errors |
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
-| **Portal/container isolation** (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced, NEW in Phase 11) |
-| Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ all pairs AA (CI-enforced) |
-| **Dialog-aware sweep** (`scripts/verify-sweep-v11.sh`) | ✅ 182/182 (30 routes × 3 viewports × 2 themes + 2 dialog sentinels) |
-| Live production dialog check (Vercel, 390px) | ✅ bottom sheet verified on `main` deployment |
+| Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
+| Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
+| Dialog-aware sweep (`scripts/verify-sweep-v11.sh`) | ✅ 182/182 (+ en-locale run 182/182 during the audit = 364 total) |
+| Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
 | CI (GitHub Actions) | ✅ green on `main` (`5741b8f`) |
 
 ## Portal/container isolation (NEW — Phase 11 architecture)
@@ -55,32 +55,43 @@
   the LAST block in `globals.css` and uses `[role="dialog"]` specificity so it always wins.
   Keep it last.
 
-## Open items / next steps (priority order)
+## Open items / next steps (priority order — from docs/AUDIT.md)
 
-1. **M4 — Session-journey depth** (current-phase priority, owner 2026-09-17): intent routing
-   from home (FR-ASK-003..007); save-to-library → resume flow (US-004..006). New data access
-   goes through the existing chokepoints (workbench provider · `src/lib/data`) — no new direct
-   `@nasaq/mock-api` imports (the §4 freeze).
-2. **Icon-size normalization** (now LAW: `DESIGN-ENGINEERING-GOVERNANCE.md` §6): 12 distinct
-   sizes measured (11–22px) → sanctioned scale 12/14/16/18/20/24; normalize surfaces as they
-   are touched (rehabilitation rule DEG §12.1).
-3. **DEFERRED → backend kickoff — ServiceProvider extraction** (owner decision 2026-09-17):
-   frontend-only refactor (interface in `packages/contracts` + registration in
-   `src/lib/provider.ts`) but zero user-visible value in the frontend phase. Plan is frozen in
-   `ARCHITECTURE-RULES.md` §4: 12-file / 13-import inventory (A client-construction ·
-   B snapshots · C stranded domain helpers), strangler protocol, done-when criterion. Executes
-   as step 1 of the backend migration checklist (`docs/05` §9). Until then: §4 freeze applies.
-4. **Backend integration** per `docs/05-BACKEND-INTEGRATION-READINESS.md` (the phase that
-   triggers item 3; contracts ready in `packages/contracts`).
-5. **Dependency cleanup opportunity:** `prisma`, `next-auth`, `framer-motion`, `zustand`,
-   `@tanstack/*`, `z-ai-web-dev-sdk` remain installed with zero imports (kept deliberately for
-   bun.lock stability). Remove only after independent verification. `next-themes` is USED (theme system).
-6. Rotate GitHub/Vercel tokens if not yet done (owner action; tokens never lived in this repo).
-7. Sandbox-only note: `skills/` (platform artifacts, untracked) is now in `tsconfig` exclude —
-   local builds match CI again.
+1. **B1 — color unification** (the big one, 3 batches): migrate 1150 legacy var
+   usages → `--u-*` (1022 of them in globals.css); tokenize the 567 hardcoded
+   colors; delete the 124-token legacy bridge; rebuild dark on value-swapping
+   only (remove the 28 per-element `[data-theme=dark]` overrides). Baseline:
+   `scripts/audit-scan.py` (re-run after each batch).
+2. **B2 — responsiveness**: globals in-flow @media patches (~70 selectors at
+   1120/840/820/680/620) → container bands; `100vh`→`100dvh` ×8; close the 7
+   drift container bands (560/720/840/900/980/1080/1120); decision needed on
+   marketing art-direction (container context or documented exception).
+   NEVER touch shell 768/1024/1440 or portaled 640/430.
+3. **B3 — icons**: normalize 22 sizes → sanctioned 12/14/16/18/20/24 (touch-a-
+   surface-normalize rule, DEG §12.1).
+4. **B4 — UI vocabulary**: unify bottom-nav active state (pill vs color-only),
+   selection states, card gradient language; document an extended z-ladder.
+5. **B5 — accessibility polish**: dark borders/elevation depth, home
+   placeholder tone, research input/chips (VLM findings in AUDIT.md §4).
+6. **M4 — session-journey depth** (FR-ASK-003..007; US-004..006) — runs in
+   parallel; new data access via existing chokepoints only.
+7. **DEFERRED → backend kickoff — ServiceProvider extraction** (owner decision
+   2026-09-17): plan frozen in `ARCHITECTURE-RULES.md` §4.
 
 ## Recent handoff notes
 
+- **Phase 13 (2026-09-17):** Comprehensive visual/design audit (docs/AUDIT.md — owner's
+  spec: prioritized حاجز/مهم/تحسين with evidence). Measured: 1150 legacy var uses (89% in
+  globals.css), 567 hardcoded colors in rules, 28 per-element dark overrides, 30 width
+  thresholds (19 @media + 11 container), 100vh×8, 22 icon sizes. **Flagship verified defect
+  (P0-1):** `--forest` bridge maps to `--u-ink` → white text on light pill in dark mode
+  (1.15:1) on 10 interactive patterns — confirmed live on 2 pages, root-caused end-to-end.
+  **Fixed same-day:** new `--u-inverse-surface`/`-hover`/`--u-on-inverse` tokens (correct
+  role, both themes), 10 rules migrated, contrast guard extended to 46 pairs AND made
+  comment-stripping (a `--token:` inside a CSS comment used to NaN the parser). Audit
+  methodology note: VLM claims were each verified by DOM/pixels — one survived (the pill),
+  one was rejected ("white bottom bar" = misread). Ops lesson: running `next build` while
+  the dev server runs clobbers shared `.next` → restart dev before sweeping.
 - **Phase 12 (2026-09-17):** Owner asked for permanent anti-mess governance after confirming the
   v11 dialog fix works. Wrote the binding law pair at repo root: `ARCHITECTURE-RULES.md`
   (hybrid functional-first MADR — explicitly NO mandatory OOP; layer map to as-built folders;

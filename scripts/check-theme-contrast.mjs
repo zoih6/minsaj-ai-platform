@@ -17,7 +17,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const css = readFileSync(join(root, "src/app/styles/universal/foundations.css"), "utf8");
+/* strip comments BEFORE parsing — a `--token:` pattern inside a CSS comment
+   would otherwise be read as a definition (v13 lesson: a doc comment
+   mentioning "--u-ink:" made the real token resolve to NaN and fail CI) */
+const css = readFileSync(join(root, "src/app/styles/universal/foundations.css"), "utf8")
+  .replace(/\/\*[\s\S]*?\*\//g, "");
 
 /* ---------- tiny color engine ---------- */
 const srgb = (c) => {
@@ -88,6 +92,11 @@ const pairs = [
   ["u-primary", "u-primary-soft", "text"],
   ["u-control-line", "u-surface", "ui"],
   ["u-primary", "u-bg", "ui"],
+  /* inverse emphasis surfaces (v13 audit P0-1): white text must hold on the
+     inverse pill in BOTH themes — this is the pair that would have caught
+     the --forest→--u-ink invisible-text bug before it shipped */
+  ["u-on-inverse", "u-inverse-surface", "text"],
+  ["u-on-inverse", "u-inverse-surface-hover", "text"],
 ];
 
 /* button gradient stops (worst = lightest stop keeps labels AA) */
