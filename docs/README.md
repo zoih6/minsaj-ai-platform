@@ -16,6 +16,13 @@
 | 07 | [Roadmap](./07-ROADMAP.md) | Step-by-step execution plan (R0 → R4 with milestones M1-M13) | Everyone |
 | — | [Changelog](./CHANGELOG.md) | Phase-by-phase delivery record (Arabic) | Everyone |
 
+### Root-level governance law (outside this folder, beside `AGENTS.md`)
+
+| Document | Governs | Read it |
+|---|---|---|
+| [`ARCHITECTURE-RULES.md`](../ARCHITECTURE-RULES.md) | Code boundaries: layer map, import direction, ServiceProvider seam (with the current direct-import debt inventory), the class-justification rule, anti-bloat catalog | Before writing/moving ANY code |
+| [`DESIGN-ENGINEERING-GOVERNANCE.md`](../DESIGN-ENGINEERING-GOVERNANCE.md) | The visual system: tokens (spacing/type/icon/radius/motion scales), layout vocabulary (`nq-*`), responsive rules, anti-pattern catalog, visual QA protocol, the 8-step agent workflow, definition of done | Before touching ANY component, page, CSS, token, or icon |
+
 ## How to Use This Suite
 
 - **New to the project?** Read 00 → 01 → 07.

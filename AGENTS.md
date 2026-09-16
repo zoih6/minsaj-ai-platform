@@ -5,7 +5,9 @@
 > Copilot, Devin, Jules, Amp, Windsurf…) working on this repository. Read it fully before touching any code.
 
 **Read order (mandatory):** `AGENTS.md` (this file) → `STATE.md` (current snapshot & handoff notes) →
-`docs/` (deep reference, as needed) → `.claude/skills/*/SKILL.md` (load on demand, by trigger).
+`ARCHITECTURE-RULES.md` + `DESIGN-ENGINEERING-GOVERNANCE.md` (the binding law: code boundaries &
+the visual system) → `docs/` (deep reference, as needed) → `.claude/skills/*/SKILL.md` (load on
+demand, by trigger).
 
 **Owner language: Arabic (RTL).** Always talk to the owner in Arabic. Repository documentation is English.
 
@@ -68,6 +70,8 @@ packages/{contracts,i18n,mock-api,ui}/   # monorepo packages
 docs/                        # professional doc suite (00-08) — see docs/README.md
 scripts/                     # verification & guard scripts (CI depends on them)
 .claude/skills/              # Agent Skills (SKILL.md format) — indexed below
+ARCHITECTURE-RULES.md        # code boundaries law (layers, ServiceProvider seam, class rule)
+DESIGN-ENGINEERING-GOVERNANCE.md  # visual system law (tokens, layout, QA workflow)
 STATE.md                     # living handoff snapshot — update EVERY task
 ```
 
@@ -119,6 +123,13 @@ STATE.md                     # living handoff snapshot — update EVERY task
     both). An un-tokenized light-mode hex is a guaranteed "white box in dark mode" bug.
     `node scripts/check-theme-contrast.mjs` must stay green. → Skill: `theming-and-contrast`.
 14. **Never commit secrets.** `.env*` is gitignored — keep it that way. Tokens live outside the repo.
+15. **The governance pair is binding law.** `ARCHITECTURE-RULES.md` (layering, import direction,
+    ServiceProvider seam, class justification) and `DESIGN-ENGINEERING-GOVERNANCE.md` (tokens,
+    spacing/type/icon scales, layout vocabulary, QA workflow) govern EVERY change. Review
+    violations by rule ID (`ARCH-§n` / `DEG-§n`). Any visual/layout task follows the 8-step
+    workflow in DEG §15 (AUDIT → … → REGRESSION CHECK) — the forbidden workflow "see problem →
+    patch CSS on that screen → next" is what this repo exists to prevent. No new direct
+    `@nasaq/mock-api` imports outside the provider registration (ARCH §4).
 
 ### CSS layer order (sacred — `src/app/universal.css`)
 
@@ -207,6 +218,13 @@ can read them, Claude Code auto-discovers them natively.
 | `07-ROADMAP` | Reference | M1–M13 milestones |
 | `08-AGENT-OPERATING-MODEL` | Explanation | How agents are directed on this repo + decision log |
 | `CHANGELOG` | Reference | Phase history (Arabic) |
+
+**Plus two root-level law documents standing beside this file (binding on every change):**
+[`ARCHITECTURE-RULES.md`](./ARCHITECTURE-RULES.md) — structure law: layer map, import direction,
+ServiceProvider seam + debt inventory, class-justification policy, anti-bloat catalog.
+[`DESIGN-ENGINEERING-GOVERNANCE.md`](./DESIGN-ENGINEERING-GOVERNANCE.md) — visual system law:
+token scales (spacing/type/icon/radius/motion), `nq-*` layout vocabulary, responsive rules,
+anti-pattern catalog, visual QA protocol, 8-step agent workflow, definition of done.
 
 *Classified per the Diátaxis framework.
 
