@@ -108,7 +108,7 @@
 
 - Bun runtime; `bun install` then `bun run dev` on `:3000` (redirects to `/ar`).
 - Sandbox workspace (if working in the original environment): live source in `src/` + `packages/`,
-  delivery zip in `download/nasaq-ai-frontend-v11.zip`, cumulative `worklog.md` at root,
+  delivery zip in `download/nasaq-ai-frontend-v12.zip`, cumulative `worklog.md` at root,
   deploy tokens in `scripts/.deploy.env` (never committed). **Always push to GitHub before
   destructive workspace operations — it is the single source of truth.**
 
