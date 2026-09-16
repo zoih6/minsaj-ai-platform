@@ -724,7 +724,10 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
    drops its route padding and content cap for these surfaces so the builder
    fills the frame exactly at every breakpoint. Mobile keeps the bottom-nav
    clearance. */
-.builder-page, .flow-editor-page { width: 100%; margin: 0; min-height: calc(100dvh - var(--u-topbar, 64px)); background: #f4f5fa; }
+/* Builder + flow editor pages carry their own ops-page container context so the
+   container-query bands below apply to them too. WITHOUT this, the 3-column
+   desktop grid (874px+) renders on phones — the v8 mobile bug. */
+.builder-page, .flow-editor-page { width: 100%; margin: 0; min-height: calc(100dvh - var(--u-topbar, 64px)); background: #f4f5fa; container-type: inline-size; container-name: ops-page; }
 .universal-shell-content:has(.builder-page),
 .universal-shell-content:has(.flow-editor-page) { width: 100%; padding: 0; }
 @media (max-width: 820px) {
