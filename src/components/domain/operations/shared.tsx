@@ -64,7 +64,7 @@ export function LibraryToolbar({ locale, query, onQueryChange, filters, activeFi
 export function LibraryEmpty({ locale, onReset }: { locale: Locale; onReset: () => void }) {
   return (
     <div className="library-empty">
-      <Search size={22} aria-hidden="true" />
+      <Search size={20} aria-hidden="true" />
       <strong>{locale === "ar" ? "لا توجد نتائج مطابقة" : "No matching results"}</strong>
       <p>{locale === "ar" ? "غيّر كلمات البحث أو أعد ضبط الفلتر." : "Try another search term or reset the filter."}</p>
       <button className="button button--outline button--compact" type="button" onClick={onReset}>{locale === "ar" ? "إعادة الضبط" : "Reset"}</button>

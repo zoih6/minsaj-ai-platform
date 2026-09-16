@@ -109,7 +109,7 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
         <div className="conversation-thread">
           <div className="user-message"><p>{submittedPrompt}</p>{attached ? <span className="attachment-chip"><Paperclip size={12} />{t.fileName}</span> : null}</div>
           <article className="assistant-message">
-            <div className="assistant-mark"><NasaqMark size={30} /></div>
+            <div className="assistant-mark"><NasaqMark size={28} /></div>
             <div className="assistant-copy">
               <div className="assistant-meta"><strong>{t.model}</strong><Badge tone="brand">{status === "streaming" ? (locale === "ar" ? "يكتب" : "Streaming") : (status === "stopped" ? t.stopped : (locale === "ar" ? "مكتمل" : "Completed"))}</Badge></div>
               <p>{words.slice(0, responseLength).join(" ")}{status === "streaming" ? <span className="stream-caret" aria-hidden="true" /> : null}</p>
@@ -125,12 +125,12 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
   return (
     <section className="chat-start">
       <div className="chat-start__inner">
-        <div className="chat-kicker"><NasaqMark size={42} /></div>
+        <div className="chat-kicker"><NasaqMark size={46} /></div>
         <h1>{t.title}</h1>
         <p className="chat-start__intro">{t.intro}</p>
         <div className="demo-note"><span />{t.demoNotice}</div>
         <form className="composer-shell" onSubmit={(event) => { event.preventDefault(); submit(); }}>
-          {attached ? <div className="attachment-preview"><Paperclip size={13} /><span>{t.fileName}</span><button type="button" onClick={() => setAttached(false)} aria-label={locale === "ar" ? "إزالة الملف" : "Remove file"}><X size={13} /></button></div> : null}
+          {attached ? <div className="attachment-preview"><Paperclip size={14} /><span>{t.fileName}</span><button type="button" onClick={() => setAttached(false)} aria-label={locale === "ar" ? "إزالة الملف" : "Remove file"}><X size={14} /></button></div> : null}
           <textarea value={draft} onChange={(event) => setDraft(event.target.value)} placeholder={t.placeholder} aria-label={t.placeholder} />
           <div className="composer-bottom">
             <div className="composer-tools">
@@ -141,7 +141,7 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
               <button type="button" className={`composer-tool${compare ? " is-active" : ""}`} onClick={() => setCompare((value) => !value)}><GitCompareArrows size={14} /><span>{t.compare}</span></button>
               <button type="button" className={`composer-tool${attached ? " is-active" : ""}`} onClick={() => setAttached((value) => !value)}><Paperclip size={14} /><span>{t.attach}</span></button>
             </div>
-            <button className="send-button" type="submit" disabled={!draft.trim()} aria-label={locale === "ar" ? "إرسال" : "Send"}><Send size={15} /></button>
+            <button className="send-button" type="submit" disabled={!draft.trim()} aria-label={locale === "ar" ? "إرسال" : "Send"}><Send size={16} /></button>
           </div>
         </form>
         <div className="starter-grid">

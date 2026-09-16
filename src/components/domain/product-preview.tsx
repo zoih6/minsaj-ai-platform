@@ -360,12 +360,12 @@ export function ProductPreview({ locale }: { locale: Locale }) {
       <header className="preview-site-header">
         <div className="preview-site-header__inner">
           <Link className="brand-lockup" href={`/${locale}`}>
-            <NasaqMark size={36} />
+            <NasaqMark size={34} />
             <span>نَسَق</span>
           </Link>
           <div className="preview-breadcrumb"><span>{t.preview}</span><span aria-hidden="true">/</span><strong>Chat → Agent → Flow</strong></div>
           <div className="preview-header-actions">
-            <Link className="preview-back-link" href={`/${locale}`}><BackArrow size={15} aria-hidden="true" />{t.back}</Link>
+            <Link className="preview-back-link" href={`/${locale}`}><BackArrow size={16} aria-hidden="true" />{t.back}</Link>
             <Link className="locale-link" href={`/${otherLocale}/preview`} aria-label={locale === "ar" ? "التبديل إلى الإنجليزية" : "Switch to Arabic"}>{otherLocale.toUpperCase()}</Link>
             <Link className="button button--secondary button--default" href={`/${locale}/app/home`}>{t.openApp}</Link>
           </div>
@@ -379,7 +379,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
             <h1 id="preview-title">{t.titleA}<span>{t.titleB}</span></h1>
             <p>{t.intro}</p>
             <div className="preview-proof-line" aria-label={t.briefTitle}>
-              {t.briefItems.map((item) => <span key={item}><Check size={13} aria-hidden="true" />{item}</span>)}
+              {t.briefItems.map((item) => <span key={item}><Check size={14} aria-hidden="true" />{item}</span>)}
             </div>
           </div>
           <aside className="preview-brief" aria-label={t.briefTitle}>
@@ -397,7 +397,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
           <div className="preview-workspace__bar">
             <div className="preview-workspace__identity"><NasaqMark size={28} /><span><strong>{t.workspace}</strong><small>{scenario.project}</small></span></div>
             <div className="preview-simulation-state"><span className="preview-live-dot" aria-hidden="true" />{t.local}</div>
-            <div className="preview-workspace__meta"><LockKeyhole size={13} aria-hidden="true" /><span>{t.noExternal}</span><span className="mono">DEMO-024</span></div>
+            <div className="preview-workspace__meta"><LockKeyhole size={14} aria-hidden="true" /><span>{t.noExternal}</span><span className="mono">DEMO-024</span></div>
           </div>
 
           <div className="preview-workspace__body">
@@ -405,7 +405,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
               <NasaqMark size={34} />
               {stageOrder.map((item) => {
                 const Icon = stageIcons[item];
-                return <button key={item} type="button" className={stage === item ? "is-active" : ""} onClick={() => changeStage(item)} aria-label={t.stages[item]} aria-current={stage === item ? "page" : undefined}><Icon size={17} /></button>;
+                return <button key={item} type="button" className={stage === item ? "is-active" : ""} onClick={() => changeStage(item)} aria-label={t.stages[item]} aria-current={stage === item ? "page" : undefined}><Icon size={18} /></button>;
               })}
               <span className="preview-rail__spacer" />
               <button type="button" onClick={() => { setStage("chat"); resetRun(); }} aria-label={locale === "ar" ? "إعادة ضبط المعاينة" : "Reset preview"}><RotateCcw size={16} /></button>
@@ -438,7 +438,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
                       onClick={() => changeStage(item)}
                       onKeyDown={(event) => handleTabKey(event, index)}
                     >
-                      <span className="preview-stage-tabs__icon">{passed ? <Check size={15} /> : <Icon size={15} />}</span>
+                      <span className="preview-stage-tabs__icon">{passed ? <Check size={16} /> : <Icon size={16} />}</span>
                       <span><strong><b>0{index + 1}</b>{t.stages[item]}</strong><small>{t.stageMeta[item]}</small></span>
                       <em>{passed ? t.done : selected ? t.active : t.queued}</em>
                     </button>
@@ -455,14 +455,14 @@ export function ProductPreview({ locale }: { locale: Locale }) {
                     </div>
                     <div className="preview-message preview-message--user"><span>{t.promptLabel}</span><p>{scenario.prompt}</p></div>
                     <article className="preview-answer">
-                      <div className="preview-answer__mark"><NasaqMark size={31} /></div>
+                      <div className="preview-answer__mark"><NasaqMark size={28} /></div>
                       <div><div className="preview-answer__meta"><strong>{t.answerLabel}</strong><Badge tone="success">{t.done}</Badge></div><p>{scenario.answer}</p></div>
                     </article>
                     <section className="preview-evidence" aria-labelledby="preview-evidence-title">
-                      <div><span><FileCheck2 size={15} /></span><div><h3 id="preview-evidence-title">{t.evidence}</h3><p>{t.evidenceNote}</p></div></div>
+                      <div><span><FileCheck2 size={16} /></span><div><h3 id="preview-evidence-title">{t.evidence}</h3><p>{t.evidenceNote}</p></div></div>
                       <ol>{scenario.insights.map((insight, index) => <li key={insight}><span>0{index + 1}</span>{insight}</li>)}</ol>
                     </section>
-                    <div className="preview-panel-action"><span><CircleDollarSign size={14} /> <b className="ltr-value">$0.18</b> · {t.sourceCount}</span><button className="button button--primary button--default" type="button" onClick={() => changeStage("agent")}>{t.toAgent}<DirectionArrow size={15} /></button></div>
+                    <div className="preview-panel-action"><span><CircleDollarSign size={14} /> <b className="ltr-value">$0.18</b> · {t.sourceCount}</span><button className="button button--primary button--default" type="button" onClick={() => changeStage("agent")}>{t.toAgent}<DirectionArrow size={16} /></button></div>
                   </div>
                 ) : null}
 
@@ -484,10 +484,10 @@ export function ProductPreview({ locale }: { locale: Locale }) {
                           <div><dt><CircleDollarSign size={14} />{t.budget}</dt><dd className="ltr-value">{t.budgetValue}</dd></div>
                           <div><dt><LockKeyhole size={14} />{t.approvalRule}</dt><dd>{t.approvalValue}</dd></div>
                         </dl>
-                        <div className="preview-tool-row"><span><Globe2 size={13} /> WEB · READ</span><span><Database size={13} /> FILES · READ</span></div>
+                        <div className="preview-tool-row"><span><Globe2 size={14} /> WEB · READ</span><span><Database size={14} /> FILES · READ</span></div>
                       </section>
                     </div>
-                    <div className="preview-panel-action"><span><ShieldCheck size={14} /> {locale === "ar" ? "الخطة لا تعمل قبل اعتمادك" : "The plan cannot run before approval"}</span><button className="button button--primary button--default" type="button" onClick={() => changeStage("flow")}>{t.toFlow}<DirectionArrow size={15} /></button></div>
+                    <div className="preview-panel-action"><span><ShieldCheck size={14} /> {locale === "ar" ? "الخطة لا تعمل قبل اعتمادك" : "The plan cannot run before approval"}</span><button className="button button--primary button--default" type="button" onClick={() => changeStage("flow")}>{t.toFlow}<DirectionArrow size={16} /></button></div>
                   </div>
                 ) : null}
 
@@ -508,7 +508,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
                           return (
                             <div className={`preview-flow-node is-${state}`} key={node}>
                               <span className="preview-flow-node__index">0{index + 1}</span>
-                              <span className="preview-flow-node__icon">{state === "completed" ? <Check size={17} /> : <NodeIcon size={17} />}</span>
+                              <span className="preview-flow-node__icon">{state === "completed" ? <Check size={18} /> : <NodeIcon size={18} />}</span>
                               <strong>{node}</strong>
                               <small>{state === "completed" ? t.done : state === "running" ? t.running : state === "approval" ? t.awaiting : state === "paused" ? t.paused : state === "ready" ? (locale === "ar" ? "جاهز" : "Ready") : t.queued}</small>
                               {index < scenario.flowNodes.length - 1 ? <span className="preview-flow-connector" aria-hidden="true"><DirectionArrow size={14} /></span> : null}
@@ -524,8 +524,8 @@ export function ProductPreview({ locale }: { locale: Locale }) {
                         <div><button className="button button--primary button--compact" type="button" onClick={approvePreview}>{t.approve}</button><button className="button button--quiet button--compact" type="button" onClick={() => setRunStatus("paused")}>{t.keepPaused}</button></div>
                       </div>
                     ) : null}
-                    {runStatus === "paused" ? <div className="preview-paused-note" role="status"><LockKeyhole size={17} /><span><strong>{t.paused}</strong>{locale === "ar" ? " — حُفظت الحالة ويمكنك إعادة المعاينة دون تنفيذ الإجراء." : " — state preserved; you can rerun without executing the action."}</span></div> : null}
-                    {runStatus === "completed" ? <div className="preview-complete-note" role="status"><Check size={17} /><span><strong>{t.completed}</strong>{locale === "ar" ? " — سُجلت النتيجة والإيصال دون تنفيذ خارجي." : " — result and receipt recorded with no external execution."}</span></div> : null}
+                    {runStatus === "paused" ? <div className="preview-paused-note" role="status"><LockKeyhole size={18} /><span><strong>{t.paused}</strong>{locale === "ar" ? " — حُفظت الحالة ويمكنك إعادة المعاينة دون تنفيذ الإجراء." : " — state preserved; you can rerun without executing the action."}</span></div> : null}
+                    {runStatus === "completed" ? <div className="preview-complete-note" role="status"><Check size={18} /><span><strong>{t.completed}</strong>{locale === "ar" ? " — سُجلت النتيجة والإيصال دون تنفيذ خارجي." : " — result and receipt recorded with no external execution."}</span></div> : null}
                   </div>
                 ) : null}
               </div>
@@ -540,7 +540,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
               </div>
               <section className="preview-activity" aria-labelledby="preview-activity-title">
                 <h3 id="preview-activity-title">{t.activity}</h3>
-                <ol>{events.map((event, index) => <li key={`${event}-${index}`} className={index === events.length - 1 ? "is-current" : ""}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{event}</strong><small><Clock3 size={11} /> {index === events.length - 1 ? (locale === "ar" ? "الآن" : "Now") : `${index + 1}m`}</small></div></li>)}</ol>
+                <ol>{events.map((event, index) => <li key={`${event}-${index}`} className={index === events.length - 1 ? "is-current" : ""}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{event}</strong><small><Clock3 size={12} /> {index === events.length - 1 ? (locale === "ar" ? "الآن" : "Now") : `${index + 1}m`}</small></div></li>)}</ol>
               </section>
               <div className="preview-safety-card"><LockKeyhole size={16} /><div><strong>{t.safetyTitle}</strong><p>{t.safetyBody}</p></div></div>
               <div className="preview-receipt"><div><span>{t.receipt}</span><strong className="mono">DEMO-024</strong></div><div><span>{t.sourceCount}</span><span>{t.duration}</span></div></div>

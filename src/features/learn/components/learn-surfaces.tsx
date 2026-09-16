@@ -464,7 +464,7 @@ export function LearnLessonSurface({
       {engaged ? <p className="u2-learn__note" data-testid="u2-learn-engaged">{ui("lessonEngaged")}</p> : null}
       <div className="u2-learn__actions">
         <button type="button" data-testid="u2-learn-engage" onClick={onEngage} aria-pressed={engaged}>
-          <Sparkles size={15} aria-hidden="true" />
+          <Sparkles size={16} aria-hidden="true" />
           {ui("lessonActive")}
         </button>
         <button type="button" className="u2-learn__primary" data-testid="u2-learn-lesson-continue" onClick={onContinue}>
@@ -552,7 +552,7 @@ export function LearnCheckSurface({
       </fieldset>
       {hintKey !== null ? (
         <p className="u2-learn__hint" data-testid="u2-learn-hint" data-hint-level={state.ui.hintLevel}>
-          <Lightbulb size={15} aria-hidden="true" />
+          <Lightbulb size={16} aria-hidden="true" />
           <span>
             {template(ui("checkHintLevel"), { level: formatServiceNumber(locale, state.ui.hintLevel) })}
             {": "}
@@ -562,15 +562,15 @@ export function LearnCheckSurface({
       ) : null}
       <div className="u2-learn__actions">
         <button type="button" data-testid="u2-learn-hint-button" onClick={onHint} disabled={state.ui.hintLevel >= 2}>
-          <Lightbulb size={15} aria-hidden="true" />
+          <Lightbulb size={16} aria-hidden="true" />
           {ui("checkHint")}
         </button>
         <button type="button" className="u2-learn__primary" data-testid="u2-learn-check-submit" onClick={onSubmit}>
-          <Check size={15} aria-hidden="true" />
+          <Check size={16} aria-hidden="true" />
           {ui("checkSubmit")}
         </button>
         <button type="button" data-testid="u2-learn-check-skip" onClick={onSkip}>
-          <SkipForward size={15} aria-hidden="true" />
+          <SkipForward size={16} aria-hidden="true" />
           {ui("checkSkip")}
         </button>
       </div>
@@ -665,7 +665,7 @@ export function LearnCheckpointSurface({
         </button>
         <button type="button" data-testid="u2-learn-checkpoint-save" onClick={onSave}>{ui("checkpointSave")}</button>
         <button type="button" data-testid="u2-learn-handoff" onClick={onHandoff}>
-          <ListOrdered size={15} aria-hidden="true" />
+          <ListOrdered size={16} aria-hidden="true" />
           {ui("completeSearch")}
         </button>
       </div>

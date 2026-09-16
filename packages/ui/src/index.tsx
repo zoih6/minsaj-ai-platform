@@ -40,13 +40,18 @@ export function Badge({ className, tone = "neutral", ...props }: BadgeProps) {
 }
 
 export function NasaqMark({ size = 34, title }: { size?: number; title?: string }) {
+  /* Official brand symbol (identity package v25): folded-ribbon mark on a
+     rounded app-icon tile. Tile = currentColor (context tints it); ribbon
+     reads in white + soft white by default; CSS may override via the
+     --mark-line-one / --mark-line-two hooks (kept from the previous mark). */
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" role={title ? "img" : undefined} aria-hidden={title ? undefined : true}>
       {title ? <title>{title}</title> : null}
       <rect width="40" height="40" rx="9" fill="currentColor" />
-      <path d="M8.5 25.5c5.6 0 6.2-8.5 11.3-8.5 5.3 0 5.5-7 11.7-7" fill="none" stroke="var(--mark-line-one, #A7DBC8)" strokeWidth="2.8" strokeLinecap="round" />
-      <path d="M8.5 14.5c5.7 0 6.1 8.4 11.5 8.4 5.1 0 5.6 7.1 11.5 7.1" fill="none" stroke="var(--mark-line-two, #D58B43)" strokeWidth="2.8" strokeLinecap="round" />
-      <circle cx="20" cy="20" r="3.4" fill="#FFFDF8" stroke="currentColor" strokeWidth="1.6" />
+      <g transform="translate(1.4,-0.1) scale(0.0375)">
+        <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z" fill="var(--mark-line-one, #ffffff)" />
+        <path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z" fill="var(--mark-line-two, rgba(255,255,255,0.55))" />
+      </g>
     </svg>
   );
 }

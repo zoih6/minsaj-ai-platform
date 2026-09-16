@@ -1,18 +1,22 @@
 /* ============================================================
-   NASAQ DESIGN SYSTEM — "Luminous Premium" v2.0
+   NASAQ DESIGN SYSTEM — "Luminous Premium" v3.0 (B1 unified)
    Single source of truth for all visual tokens.
-   Replaces the dual conflicting systems (forest/teal + luma).
+   v3: legacy forest/teal bridge RETIRED — every rule consumes
+   --u-* / --nq-* tokens only. Brand identity package v25
+   (indigo #6366F1 · lavender #E0DFFF · obsidian #0F172A)
+   folded in as gradients, covers, hero surfaces.
    ============================================================ */
 
 @import "tailwindcss";
 
 :root {
-  /* ---- Canonical palette ---- */
-  --u-bg: #f5f6fb;
-  --u-bg-deep: #eef0f8;
+  /* ---- Canonical palette (v3: canvas leans violet — identity pkg) ---- */
+  --u-bg: #f7f6fd;
+  --u-bg-deep: #f0eef9;
   --u-surface: #ffffff;
   --u-surface-glass: rgba(255, 255, 255, 0.86);
   --u-surface-solid: #ffffff;
+  --u-surface-subtle: #f0f1f9;
 
   --u-ink: #0f1225;
   --u-ink-soft: #2a2d47;
@@ -26,13 +30,13 @@
   --u-inverse-surface-hover: #23264a;
   --u-on-inverse: #ffffff;
 
-  --u-line: #e5e7f2;
-  --u-line-strong: #d0d3e6;
+  --u-line: #e8e6f5;
+  --u-line-strong: #d3d1e9;
 
   --u-primary: #5548e0;
   --u-primary-strong: #4539c9;
   --u-primary-deep: #372da8;
-  --u-primary-soft: #edeaff;
+  --u-primary-soft: #ebe7ff;
   --u-primary-glow: rgba(85, 72, 224, 0.24);
 
   --u-cyan: #0b8cab;
@@ -45,6 +49,46 @@
   --u-amber-soft: #fbf1e2;
   --u-danger: #d7373f;
   --u-danger-soft: #fdecec;
+
+  /* ---- B1 status tint system: ink-on-soft text + soft-surface borders.
+     Pattern: every *-soft surface pairs with *-ink text and *-soft-line
+     border, both themes. Kills the per-element dark-rule debt. ---- */
+  --u-amber-ink: #6d4d10;
+  --u-danger-ink: #8d2f2f;
+  --u-mint-ink: #235c4b;
+  --u-cyan-ink: #0d5c72;
+  --u-primary-soft-line: #d8d5ff;
+  --u-amber-soft-line: #f0d9b4;
+  --u-danger-soft-line: #f2c5c3;
+  --u-mint-soft-line: #cdeadd;
+  --u-cyan-soft-line: #c8dfe9;
+  --u-amber-line-strong: #dca54e;
+
+  /* ---- B1 cover art: 4 hues × ink + gradient (library cards, recent
+     cards, workspace covers). Theme-aware in the dark block below. ---- */
+  --u-cover-1-ink: #635bff;
+  --u-cover-1-grad: linear-gradient(145deg, #ece9ff, #f7f6ff);
+  --u-cover-2-ink: #078ebd;
+  --u-cover-2-grad: linear-gradient(145deg, #e3f7fd, #f5fcff);
+  --u-cover-3-ink: #d34f94;
+  --u-cover-3-grad: linear-gradient(145deg, #ffebf5, #fff7fb);
+  --u-cover-4-ink: #4766e5;
+  --u-cover-4-grad: linear-gradient(145deg, #e8edff, #f7f9ff);
+
+  /* ---- B1 hero & brand gradients (identity package v25) ----
+     Spectrum story violet→cyan (the green tail read as a legacy remnant in
+     VLM review — dropped; cyan keeps the multi-service signal). ---- */
+  --u-hero-grad: linear-gradient(90deg, #5548e0 4%, #7d5af0 38%, #3f86d4 72%, #0b8cab);
+  --u-primary-grad: linear-gradient(135deg, #6d5ff2, #5143e2 55%, #4a3cd8);
+  --u-primary-grad-strong: linear-gradient(135deg, #6d5ff2, #5a4ce6 55%, #5242e0);
+  --u-danger-grad: linear-gradient(135deg, #e14b52, #d7373f);
+  --u-danger-grad-strong: linear-gradient(135deg, #e75a60, #dc4048);
+  --u-avatar-grad: linear-gradient(135deg, #776dff, #23bfe2);
+  --u-surface-tint: #f2f1ff;
+  --u-hero-surface: linear-gradient(145deg, #f5f3ff, #f6fbff 58%, #ffffff);
+  --u-card-tint: linear-gradient(145deg, #f1efff, #fafaff);
+  --u-lavender: #e0dfff;
+  --u-scrim: rgba(15, 18, 37, 0.54);
 
   /* ---- Elevation (layered, tinted — never flat grey) ---- */
   --u-shadow-xs: 0 1px 2px rgba(16, 18, 40, 0.05);
@@ -102,7 +146,7 @@
   --u-fast: var(--u-motion-duration-fast);
   --u-normal: var(--u-motion-duration-moderate);
 
-  /* ---- Dark premium shell (sidebar) ---- */
+  /* ---- Dark premium shell (sidebar) — permanent identity ---- */
   --u-shell-bg: #0d1020;
   --u-shell-bg-2: #141834;
   --u-shell-line: rgba(148, 152, 200, 0.14);
@@ -112,42 +156,22 @@
   --u-shell-hover: rgba(120, 120, 210, 0.12);
   --u-shell-active: linear-gradient(135deg, rgba(96, 84, 240, 0.32), rgba(96, 84, 240, 0.1));
   --u-shell-active-line: rgba(124, 110, 250, 0.55);
+  --u-shell-accent: #b7adff;
+  --u-shell-icon: #9ca2c6;
+  --u-shell-icon-bright: #c3c8e8;
+  --u-shell-icon-dim: #8e94b8;
+  --u-shell-online: #2fd693;
+  --u-shell-online-halo: rgba(47, 214, 147, 0.16);
+  --u-shell-alert: #e75f9d;
+  --u-shell-grad-new: linear-gradient(135deg, #7a68fa, #5548e0);
+  --u-shell-grad-link: linear-gradient(180deg, #9b8eff, #6d5ff2);
+  --u-shell-grad-avatar: linear-gradient(135deg, #6d5ff2, #4a3cd8);
+  --u-shell-grad-avatar-top: linear-gradient(135deg, #6d5ff2, #4337c6);
+  --u-shell-grad-bg: linear-gradient(180deg, #10132a 0%, #0d1020 60%, #0b0e1c 100%);
+  --u-ink-grad: linear-gradient(180deg, #232749, #14172e);
+  --u-ink-grad-hover: linear-gradient(180deg, #2b2f57, #191d38);
 
   color-scheme: light;
-
-  /* ============================================================
-     LEGACY TOKEN BRIDGE — maps the old "forest/teal" namespace
-     onto the new premium palette so every legacy component
-     inherits the unified look. No page keeps the old green skin.
-     ============================================================ */
-  --bg: var(--u-bg);
-  --surface: var(--u-surface);
-  --surface-subtle: #f0f1f9;
-  --surface-raised: #ffffff;
-  --text: var(--u-ink);
-  --text-muted: var(--u-muted);
-  --text-faint: var(--u-faint);
-  --border: var(--u-line);
-  --border-strong: var(--u-line-strong);
-  --forest: var(--u-ink);
-  --forest-hover: #23264a;
-  --teal: var(--u-primary);
-  --teal-hover: var(--u-primary-strong);
-  --teal-subtle: var(--u-primary-soft);
-  --amber: var(--u-amber);
-  --amber-ink: #8c5a12;
-  --amber-subtle: var(--u-amber-soft);
-  --danger: var(--u-danger);
-  --danger-subtle: var(--u-danger-soft);
-  --info: #0d7fa6;
-  --info-subtle: #e4f3fa;
-  --success: #0d9463;
-  --success-subtle: var(--u-mint-soft);
-  --focus: var(--u-primary);
-  --shadow-1: var(--u-shadow-sm);
-  --shadow-2: var(--u-shadow-md);
-  --sidebar-width: var(--u-sidebar);
-  --sidebar-collapsed: var(--u-sidebar-collapsed);
 }
 
 /* ============================================================
@@ -182,7 +206,11 @@
   --u-inverse-surface-hover: #333a6e;
   --u-on-inverse: #ffffff;
 
-  --u-line: #3a3f6e;
+  /* B5: dark lines raised one step (#3a3f6e → #424873) — decorative dividers
+     stay subtle by design (MD3 dark outline guidance), while component
+     boundaries use --u-line-strong (#5d6298 = 3.09:1 on surface, WCAG
+     1.4.11 compliant). Both verified: guard covers token pairs. */
+  --u-line: #424873;
   --u-line-strong: #5d6298;
 
   --u-primary: #8d80f8;
@@ -202,6 +230,42 @@
   --u-danger: #ef7d82;
   --u-danger-soft: rgba(239, 125, 130, 0.15);
 
+  /* ---- B1 status tint system — dark (replaces per-element dark rules) ---- */
+  --u-surface-subtle: #1b1f3d;
+  --u-amber-ink: #eec48a;
+  --u-danger-ink: #f0a3a6;
+  --u-mint-ink: #8fd8b8;
+  --u-cyan-ink: #7fd4ea;
+  --u-primary-soft-line: rgba(141, 128, 248, 0.38);
+  --u-amber-soft-line: rgba(230, 169, 81, 0.38);
+  --u-danger-soft-line: rgba(239, 125, 130, 0.38);
+  --u-mint-soft-line: rgba(62, 203, 154, 0.38);
+  --u-cyan-soft-line: rgba(76, 196, 224, 0.38);
+  --u-amber-line-strong: rgba(230, 169, 81, 0.55);
+
+  /* ---- B1 cover art — dark ---- */
+  --u-cover-1-ink: #a99bff;
+  --u-cover-1-grad: linear-gradient(145deg, #241f4d, #1a1b3a);
+  --u-cover-2-ink: #4cc4e0;
+  --u-cover-2-grad: linear-gradient(145deg, #0e3242, #0d2030);
+  --u-cover-3-ink: #ef85b6;
+  --u-cover-3-grad: linear-gradient(145deg, #40173a, #2e1430);
+  --u-cover-4-ink: #7a92e8;
+  --u-cover-4-grad: linear-gradient(145deg, #18234d, #141a38);
+
+  /* ---- B1 hero & brand gradients — dark ---- */
+  --u-hero-grad: linear-gradient(90deg, #8d80f8 4%, #a78bfa 38%, #6ea8e8 72%, #38b8d9);
+  --u-primary-grad: linear-gradient(135deg, #6659ea, #584ae4 55%, #4f41d9);
+  --u-primary-grad-strong: linear-gradient(135deg, #6d61ef, #6153e8 55%, #584ade);
+  --u-danger-grad: linear-gradient(135deg, #ef6b71, #ef7d82);
+  --u-danger-grad-strong: linear-gradient(135deg, #f37f85, #f06970);
+  --u-avatar-grad: linear-gradient(135deg, #776dff, #23bfe2);
+  --u-surface-tint: #17153a;
+  --u-hero-surface: linear-gradient(145deg, #1b1a38, #141a30 58%, var(--u-surface));
+  --u-card-tint: linear-gradient(145deg, #1c1938, #12152c);
+  --u-lavender: #35326b;
+  --u-scrim: rgba(2, 3, 10, 0.62);
+
   /* Elevation — heavier alpha + violet breath, per MD3 dark guidance */
   --u-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --u-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.36), 0 6px 20px rgba(0, 0, 0, 0.42);
@@ -211,35 +275,17 @@
 
   color-scheme: dark;
 
-  /* Legacy token bridge — dark values */
-  --surface-subtle: #1b1f3d;
-  --surface-raised: #1b1f3d;
-  --forest: var(--u-ink);
-  --forest-hover: #262b52;
-  --teal: var(--u-primary);
-  --teal-hover: var(--u-primary-strong);
-  --teal-subtle: var(--u-primary-soft);
-  --amber: var(--u-amber);
-  --amber-ink: #eec48a;
-  --amber-subtle: var(--u-amber-soft);
-  --danger: var(--u-danger);
-  --danger-subtle: var(--u-danger-soft);
-  --info: #5ec4e2;
-  --info-subtle: rgba(94, 196, 226, 0.14);
-  --success: var(--u-mint);
-  --success-subtle: var(--u-mint-soft);
-
   /* Glass/veil primitives (translucent surfaces used by chips, ghost buttons) */
   --u-veil: rgba(27, 31, 61, 0.66);
   --u-veil-hover: rgba(34, 39, 74, 0.92);
-  --u-veil-line: #4a4f80;
+  --u-veil-line: #4f5588;
 
   /* Interactive surfaces & veils — dark variants */
   --u-hover-veil: rgba(255, 255, 255, 0.07);
   --u-control-line: #5d6298;
   --u-glass: rgba(21, 24, 48, 0.66);
   --u-glass-strong: rgba(21, 24, 48, 0.92);
-  --u-glass-line: #3a3f6e;
+  --u-glass-line: #424873;
   --u-raise: rgba(255, 255, 255, 0.1);
   --u-field: #10132a;
   --u-artboard: #101325;
@@ -410,19 +456,19 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 
 .luma-button--primary {
   color: white;
-  background: linear-gradient(135deg, #6d5ff2, #5143e2 55%, #4a3cd8);
+  background: var(--u-primary-grad);
   box-shadow: 0 10px 28px var(--u-primary-glow), inset 0 1px rgba(255, 255, 255, .3);
 }
 .luma-button--primary:hover { box-shadow: 0 16px 40px rgba(85, 72, 224, .34), inset 0 1px rgba(255, 255, 255, .3); filter: saturate(1.06); }
-/* Dark: deepened stops keep white label ≥ 5:1 (worst stop #6659ea = 5.02:1) */
+/* Dark stops arrive via the --u-primary-grad token (worst stop ≥ 5:1 on white) */
 :root[data-theme="dark"] .luma-button--primary {
-  background: linear-gradient(135deg, #6659ea, #584ae4 55%, #4f41d9);
+  background: var(--u-primary-grad);
   box-shadow: 0 10px 30px var(--u-primary-glow), inset 0 1px rgba(255, 255, 255, .22);
 }
 :root[data-theme="dark"] .luma-button--primary:hover { box-shadow: 0 16px 44px rgba(141, 128, 248, .4), inset 0 1px rgba(255, 255, 255, .22); }
 
-.luma-button--ink { color: white; background: linear-gradient(180deg, #232749, #14172e); box-shadow: 0 8px 22px rgba(20, 23, 46, .2); }
-.luma-button--ink:hover { background: linear-gradient(180deg, #2b2f57, #191d38); }
+.luma-button--ink { color: white; background: var(--u-ink-grad); box-shadow: 0 8px 22px rgba(20, 23, 46, .2); }
+.luma-button--ink:hover { background: var(--u-ink-grad-hover); }
 /* Dark: ink button becomes a quiet translucent secondary (GitHub-dark pattern) —
    a solid light pill would glare on dark surfaces (VLM-flagged). */
 :root[data-theme="dark"] .luma-button--ink { color: var(--u-ink); background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.14); box-shadow: 0 4px 14px rgba(0, 0, 0, .35); }

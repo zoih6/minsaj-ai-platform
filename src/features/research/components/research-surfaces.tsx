@@ -274,7 +274,7 @@ export function ResearchClarifySurface({
           aria-pressed={answered(question.id)?.usedDefault === true}
           onClick={() => onDefault(question.id)}
         >
-          <ShieldQuestion size={15} aria-hidden="true" />
+          <ShieldQuestion size={16} aria-hidden="true" />
           {ui("clarifyUseDefault")}
         </button>
       </fieldset>
@@ -401,7 +401,7 @@ export function ResearchPlanReviewSurface({
       <div className="u2-research__actions">
         {newest?.status === "draft" ? (
           <button type="button" className="u2-research__primary" data-testid="u2-research-plan-approve" onClick={onApprove}>
-            <Play size={15} aria-hidden="true" />
+            <Play size={16} aria-hidden="true" />
             {ui("planApprove")}
           </button>
         ) : (
@@ -489,7 +489,7 @@ export function ResearchSourceActivitySurface({
         {activity.status === "playing" ? (
           <>
             <button type="button" data-testid="u2-research-activity-next" onClick={onStep}>
-              <Play size={15} aria-hidden="true" />
+              <Play size={16} aria-hidden="true" />
               {ui("activityNext")}
             </button>
             <button
@@ -498,7 +498,7 @@ export function ResearchSourceActivitySurface({
               aria-pressed={state.ui.autoPlay}
               onClick={() => onAutoPlay(!state.ui.autoPlay)}
             >
-              {state.ui.autoPlay ? <Square size={15} aria-hidden="true" /> : <Play size={15} aria-hidden="true" />}
+              {state.ui.autoPlay ? <Square size={16} aria-hidden="true" /> : <Play size={16} aria-hidden="true" />}
               {state.ui.autoPlay ? ui("activityPause") : ui("activityPlay")}
             </button>
             <button type="button" data-testid="u2-research-activity-steer-narrow" onClick={() => onSteer("narrow_recent")}>

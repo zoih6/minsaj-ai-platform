@@ -78,9 +78,9 @@ export function FeedbackToast({ message, closeLabel, onDismiss, tone = "success"
   if (typeof document === "undefined") return null;
   return createPortal(
     <div className="u-feedback-toast" data-tone={tone} role="status" aria-live="polite" aria-atomic="true">
-      <span aria-hidden="true"><Icon size={17} /></span>
+      <span aria-hidden="true"><Icon size={18} /></span>
       <p>{message}</p>
-      <button type="button" onClick={onDismiss} aria-label={closeLabel}><X size={17} /></button>
+      <button type="button" onClick={onDismiss} aria-label={closeLabel}><X size={18} /></button>
     </div>,
     document.body,
   );

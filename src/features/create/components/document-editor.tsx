@@ -112,7 +112,7 @@ export function DocumentEditor({
                 </label>
                 {outline.length > 1 ? (
                   <button type="button" data-testid={`u2-create-outline-remove-${item.id}`} onClick={() => onOutlineRemove(item.id)}>
-                    <Trash2 size={13} aria-hidden="true" />
+                    <Trash2 size={14} aria-hidden="true" />
                     {ui(locale, "docOutlineRemove")}
                   </button>
                 ) : null}
@@ -164,7 +164,7 @@ export function DocumentEditor({
                       disabled={lastBlock}
                       {...(lastBlock ? { "aria-describedby": "u2-create-last-block-reason" } : {})}
                     >
-                      <Trash2 size={13} aria-hidden="true" />
+                      <Trash2 size={14} aria-hidden="true" />
                       {ui(locale, "docDeleteBlock")}
                     </button>
                   </div>
@@ -187,15 +187,15 @@ export function DocumentEditor({
 
           <div className="u2-create__block-add" role="group" aria-label={ui(locale, "docAddBlock")}>
             <button type="button" data-testid="u2-create-block-add-heading" onClick={() => onBlockAdd("heading")}>
-              <Plus size={13} aria-hidden="true" />
+              <Plus size={14} aria-hidden="true" />
               {ui(locale, "docAddHeading")}
             </button>
             <button type="button" data-testid="u2-create-block-add-paragraph" onClick={() => onBlockAdd("paragraph")}>
-              <Plus size={13} aria-hidden="true" />
+              <Plus size={14} aria-hidden="true" />
               {ui(locale, "docAddParagraph")}
             </button>
             <button type="button" data-testid="u2-create-block-add-list" onClick={() => onBlockAdd("list")}>
-              <Plus size={13} aria-hidden="true" />
+              <Plus size={14} aria-hidden="true" />
               {ui(locale, "docAddList")}
             </button>
           </div>
@@ -249,7 +249,7 @@ function OutlineAdd({ locale, onAdd }: { locale: Locale; onAdd: (label: string) 
         <input type="text" name="outline-label" maxLength={120} placeholder={ui(locale, "docOutlinePlaceholder")} data-testid="u2-create-outline-add-input" />
       </label>
       <button type="submit" data-testid="u2-create-outline-add">
-        <Plus size={13} aria-hidden="true" />
+        <Plus size={14} aria-hidden="true" />
         {ui(locale, "docAddOutline")}
       </button>
     </form>

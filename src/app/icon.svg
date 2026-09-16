@@ -1,11 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stop-color="#7A70FF"/><stop offset="1" stop-color="#4F47E8"/></linearGradient>
-    <linearGradient id="a" x1="14" y1="18" x2="51" y2="45" gradientUnits="userSpaceOnUse"><stop stop-color="#B9F4FF"/><stop offset="1" stop-color="#66D7F2"/></linearGradient>
-    <linearGradient id="b" x1="14" y1="46" x2="51" y2="19" gradientUnits="userSpaceOnUse"><stop stop-color="#FFD4E9"/><stop offset="1" stop-color="#FF91C5"/></linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="17" fill="url(#bg)"/>
-  <path d="M14 20c10 0 13 24 24 24 5 0 8-4 12-10" fill="none" stroke="url(#a)" stroke-width="5" stroke-linecap="round"/>
-  <path d="M14 44c10 0 13-24 24-24 5 0 8 4 12 10" fill="none" stroke="url(#b)" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="32" cy="32" r="5" fill="white" fill-opacity=".96"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#5548e0"/>
+  <g transform="translate(3.05,2.65) scale(0.0575)">
+    <path d="M 737 384 L 647 368 L 420 467 L 577 559 L 710 492 L 780 496 L 434 724 L 420 756 L 420 896 L 727 721 L 768 680 L 780 460 Z" fill="#ffffff"/>
+    <path d="M 556 176 L 278 340 L 243 375 L 212 652 L 244 705 L 322 709 L 483 619 L 422 606 L 327 556 L 220 544 L 539 335 L 556 299 Z" fill="rgba(255,255,255,0.6)"/>
+  </g>
 </svg>

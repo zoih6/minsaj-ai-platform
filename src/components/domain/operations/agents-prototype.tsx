@@ -33,7 +33,7 @@ export function AgentsPrototype({ locale, agents }: { locale: Locale; agents: Ag
       <ScrollFx />
       <header className="page-header ops-page-header">
         <div className="page-header__copy"><p className="page-eyebrow">{ar ? "تفويض موثوق" : "Trusted delegation"}</p><h1 className="page-title">{ar ? "الوكلاء" : "Agents"}</h1><p className="page-description">{ar ? "فوّض العمل المركب عبر خطة وأدوات وحدود وموافقة ظاهرة قبل التشغيل." : "Delegate complex work through a visible plan, tools, limits, and approval before execution."}</p></div>
-        <Link className="button button--primary button--default" href={`/${locale}/app/agents/new`}><Plus size={15} />{ar ? "إنشاء وكيل" : "Create agent"}</Link>
+        <Link className="button button--primary button--default" href={`/${locale}/app/agents/new`}><Plus size={16} />{ar ? "إنشاء وكيل" : "Create agent"}</Link>
       </header>
 
       <OperationsStats items={[
@@ -51,11 +51,11 @@ export function AgentsPrototype({ locale, agents }: { locale: Locale; agents: Ag
 
       {visibleAgents.length ? <section className="agent-library" aria-label={ar ? "مكتبة الوكلاء" : "Agent library"}>{visibleAgents.map((agent) => (
         <article className="agent-card" key={agent.id}>
-          <div className="agent-card__head"><span className="agent-avatar"><Bot size={19} /></span><Badge tone={agent.status === "published" ? "success" : "warning"}>{agent.status === "published" ? (ar ? "منشور" : "Published") : (ar ? "مسودة" : "Draft")}</Badge></div>
+          <div className="agent-card__head"><span className="agent-avatar"><Bot size={18} /></span><Badge tone={agent.status === "published" ? "success" : "warning"}>{agent.status === "published" ? (ar ? "منشور" : "Published") : (ar ? "مسودة" : "Draft")}</Badge></div>
           <div className="agent-card__copy"><span className="mono">V{agent.version}</span><h2>{localize(agent.name, locale)}</h2><p>{localize(agent.description, locale)}</p></div>
-          <dl className="agent-card__facts"><div><dt><Boxes size={13} />{ar ? "النموذج" : "Model"}</dt><dd>{agent.model}</dd></div><div><dt><Wrench size={13} />{ar ? "الأدوات" : "Tools"}</dt><dd>{agent.toolCount}</dd></div><div><dt><Play size={13} />{ar ? "التشغيلات" : "Runs"}</dt><dd>{agent.runCount}</dd></div></dl>
+          <dl className="agent-card__facts"><div><dt><Boxes size={14} />{ar ? "النموذج" : "Model"}</dt><dd>{agent.model}</dd></div><div><dt><Wrench size={14} />{ar ? "الأدوات" : "Tools"}</dt><dd>{agent.toolCount}</dd></div><div><dt><Play size={14} />{ar ? "التشغيلات" : "Runs"}</dt><dd>{agent.runCount}</dd></div></dl>
           <div className="agent-card__policy"><ShieldCheck size={14} /><span>{ar ? "أي أثر خارجي ينتظر موافقة" : "External effects always await approval"}</span></div>
-          <div className="agent-card__actions"><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `جُهز تشغيل تجريبي للوكيل «${localize(agent.name, locale)}».` : `Demo run prepared for “${localize(agent.name, locale)}”.`)}><Play size={13} />{ar ? "تشغيل تجريبي" : "Demo run"}</button><Link href={`/${locale}/app/agents/${agent.id}/edit`}>{ar ? "فتح المنشئ" : "Open builder"}<DirectionArrow size={14} /></Link></div>
+          <div className="agent-card__actions"><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `جُهز تشغيل تجريبي للوكيل «${localize(agent.name, locale)}».` : `Demo run prepared for “${localize(agent.name, locale)}”.`)}><Play size={14} />{ar ? "تشغيل تجريبي" : "Demo run"}</button><Link href={`/${locale}/app/agents/${agent.id}/edit`}>{ar ? "فتح المنشئ" : "Open builder"}<DirectionArrow size={14} /></Link></div>
         </article>
       ))}</section> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
       {notice ? <DemoToast message={notice} /> : null}

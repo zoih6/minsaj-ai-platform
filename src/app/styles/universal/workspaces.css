@@ -61,7 +61,7 @@
    Layout changes only: splits collapse, rails become strips,
    absolute decorations return to flow. Never size-squeezing.
    ============================================================ */
-@container service-space (max-width: 900px) {
+@container service-space (max-width: 880px) {
   .service-studio { grid-template-columns: minmax(0, 1fr); }
   .service-path-card { position: static; }
 }

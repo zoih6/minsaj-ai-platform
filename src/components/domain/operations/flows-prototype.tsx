@@ -32,7 +32,7 @@ export function FlowsPrototype({ locale, flows }: { locale: Locale; flows: FlowS
       <ScrollFx />
       <header className="page-header ops-page-header">
         <div className="page-header__copy"><p className="page-eyebrow">{ar ? "منطق قابل للتدقيق" : "Auditable logic"}</p><h1 className="page-title">{ar ? "التدفقات" : "Flows"}</h1><p className="page-description">{ar ? "اربط المحفّز بالوكيل والأدوات والموافقة في مسار مرئي يمكن اختباره قبل النشر." : "Connect triggers, agents, tools, and approval in a visible path you can test before publishing."}</p></div>
-        <Link className="button button--primary button--default" href={`/${locale}/app/flows/new`}><Plus size={15} />{ar ? "تدفق جديد" : "New flow"}</Link>
+        <Link className="button button--primary button--default" href={`/${locale}/app/flows/new`}><Plus size={16} />{ar ? "تدفق جديد" : "New flow"}</Link>
       </header>
 
       <OperationsStats items={[
@@ -53,13 +53,13 @@ export function FlowsPrototype({ locale, flows }: { locale: Locale; flows: FlowS
         <article className="flow-card" key={flow.id}>
           <div className="flow-card__header"><div className="flow-card__identity"><span><Workflow size={18} /></span><div><h2>{localize(flow.name, locale)}</h2><p>{localize(flow.description, locale)}</p></div></div><Badge tone={flow.status === "published" ? "success" : flow.status === "draft" ? "warning" : "neutral"}>{flow.status === "published" ? (ar ? "نشط" : "Active") : flow.status === "draft" ? (ar ? "مسودة" : "Draft") : (ar ? "مؤرشف" : "Archived")}</Badge></div>
           <div className="flow-mini-map" aria-label={ar ? "معاينة عقد التدفق" : "Flow node preview"}>
-            <div><span><TimerReset size={15} /></span><small>{ar ? "محفّز" : "Trigger"}</small></div><i />
-            <div><span><Bot size={15} /></span><small>{ar ? "وكيل" : "Agent"}</small></div><i />
-            <div><span><GitFork size={15} /></span><small>{ar ? "شرط" : "Condition"}</small></div><i />
-            <div className="is-approval"><span><CheckSquare2 size={15} /></span><small>{ar ? "موافقة" : "Approval"}</small></div>
+            <div><span><TimerReset size={16} /></span><small>{ar ? "محفّز" : "Trigger"}</small></div><i />
+            <div><span><Bot size={16} /></span><small>{ar ? "وكيل" : "Agent"}</small></div><i />
+            <div><span><GitFork size={16} /></span><small>{ar ? "شرط" : "Condition"}</small></div><i />
+            <div className="is-approval"><span><CheckSquare2 size={16} /></span><small>{ar ? "موافقة" : "Approval"}</small></div>
           </div>
           <dl className="flow-card__facts"><div><dt>{ar ? "العقد" : "Nodes"}</dt><dd>{flow.nodeCount}</dd></div><div><dt>{ar ? "التشغيلات" : "Runs"}</dt><dd>{flow.runCount}</dd></div><div><dt>{ar ? "آخر تشغيل" : "Last run"}</dt><dd>{flow.runCount ? (ar ? "منذ ساعتين" : "2h ago") : (ar ? "لم يبدأ" : "Never")}</dd></div></dl>
-          <div className="flow-card__footer"><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `بدأ اختبار آمن للتدفق «${localize(flow.name, locale)}» دون آثار خارجية.` : `Safe test started for “${localize(flow.name, locale)}” with no external effects.`)}><Play size={13} />{ar ? "اختبار" : "Test"}</button><Link href={`/${locale}/app/flows/${flow.id}/edit`}>{ar ? "فتح المحرر" : "Open editor"}<DirectionArrow size={14} /></Link></div>
+          <div className="flow-card__footer"><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `بدأ اختبار آمن للتدفق «${localize(flow.name, locale)}» دون آثار خارجية.` : `Safe test started for “${localize(flow.name, locale)}” with no external effects.`)}><Play size={14} />{ar ? "اختبار" : "Test"}</button><Link href={`/${locale}/app/flows/${flow.id}/edit`}>{ar ? "فتح المحرر" : "Open editor"}<DirectionArrow size={14} /></Link></div>
         </article>
       ))}</section> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
       {notice ? <DemoToast message={notice} /> : null}

@@ -268,9 +268,9 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
         <aside id="universal-shell-sidebar" className="universal-shell-sidebar" aria-label={isArabic ? "التنقل الرئيسي" : "Primary navigation"}>
           <div className="universal-shell-brand-row">
-            <Link href={`/${locale}/app/home`} className="universal-shell-brand"><span><NasaqMark size={34} /></span><b>{isArabic ? "نَسَق" : "Nasaq"}</b><Sparkles size={11} /></Link>
+            <Link href={`/${locale}/app/home`} className="universal-shell-brand"><span><NasaqMark size={34} /></span><b>{isArabic ? "نَسَق" : "Nasaq"}</b><Sparkles size={12} /></Link>
             <button type="button" className="universal-shell-collapse" onClick={toggleSidebar} aria-label={railActive ? labels.expand : labels.collapse} title={railActive ? labels.expand : labels.collapse}>{railActive ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button>
-            <button type="button" className="universal-shell-close" onClick={() => setMobileOpen(false)} aria-label={labels.close}><X size={19} /></button>
+            <button type="button" className="universal-shell-close" onClick={() => setMobileOpen(false)} aria-label={labels.close}><X size={18} /></button>
           </div>
 
           <Link href={`${base}/home`} className="universal-shell-new" onClick={closeTransient} title={labels.start}><span><Plus size={18} /></span><b>{labels.start}</b></Link>
@@ -278,7 +278,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
           <nav className="universal-shell-nav">
             <div className="universal-shell-nav__main">{primaryItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
             <div className="universal-shell-nav__utility"><ShellNavLink item={utilityItems[0]} active={isActive(utilityItems[0].href)} onNavigate={closeTransient} />
-              <button type="button" className={`universal-shell-advanced${advancedOpen ? " is-open" : ""}`} onClick={toggleAdvanced} aria-expanded={advancedOpen} aria-controls="universal-advanced-nav" title={labels.advanced}><span><Sparkles size={17} /></span><b>{labels.advanced}</b><ChevronDown size={14} /></button>
+              <button type="button" className={`universal-shell-advanced${advancedOpen ? " is-open" : ""}`} onClick={toggleAdvanced} aria-expanded={advancedOpen} aria-controls="universal-advanced-nav" title={labels.advanced}><span><Sparkles size={18} /></span><b>{labels.advanced}</b><ChevronDown size={14} /></button>
               <div id="universal-advanced-nav" ref={advancedRegionRef} className="universal-shell-advanced-region" data-state={advancedOpen ? "open" : "closed"} aria-hidden={!advancedOpen}>
                 <div className="universal-shell-advanced-list">{advancedItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} tabIndex={advancedOpen ? 0 : -1} key={item.id} />)}</div>
               </div>
@@ -286,7 +286,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
           </nav>
 
           <div className="universal-shell-profile">
-            <Link href={`${base}/settings`} onClick={closeTransient} title={labels.settings}><span className="universal-shell-avatar">ن</span><span><strong>{labels.personal}</strong><small>{labels.adaptive}</small></span><Settings size={15} /></Link>
+            <Link href={`${base}/settings`} onClick={closeTransient} title={labels.settings}><span className="universal-shell-avatar">ن</span><span><strong>{labels.personal}</strong><small>{labels.adaptive}</small></span><Settings size={16} /></Link>
           </div>
         </aside>
 
@@ -301,13 +301,13 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
             <div className="universal-shell-actions"><span className="universal-shell-demo"><i />{labels.demo}</span><ThemeToggle locale={locale} /><Link href={switchLocaleInPath(pathname, alternateLocale)} prefetch={false} aria-label={labels.languageLabel}>{alternateLocale.toUpperCase()}</Link><button type="button" onClick={() => setNotificationsOpen((value) => !value)} aria-expanded={notificationsOpen} aria-controls="universal-notifications" aria-label={labels.notifications}><Bell size={18} /><i /></button><Link href={`${base}/settings`} className="universal-top-avatar">ن</Link></div>
           </header>
 
-          <aside id="universal-notifications" className="universal-notifications" data-state={notificationsOpen ? "open" : "closed"} role="dialog" aria-label={labels.notifications} aria-hidden={!notificationsOpen}><header><div><span>{labels.notifications}</span><small>2</small></div><button type="button" tabIndex={notificationsOpen ? 0 : -1} onClick={() => setNotificationsOpen(false)} aria-label={labels.close}><X size={17} /></button></header><Link href={`${base}/learn`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><GraduationCap size={17} /></span><div><strong>{labels.noticeTitle}</strong><p>{labels.noticeBody}</p></div></Link><Link href={`${base}/library`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><CheckCircle2 size={17} /></span><div><strong>{labels.savedTitle}</strong><p>{labels.savedBody}</p></div></Link></aside>
+          <aside id="universal-notifications" className="universal-notifications" data-state={notificationsOpen ? "open" : "closed"} role="dialog" aria-label={labels.notifications} aria-hidden={!notificationsOpen}><header><div><span>{labels.notifications}</span><small>2</small></div><button type="button" tabIndex={notificationsOpen ? 0 : -1} onClick={() => setNotificationsOpen(false)} aria-label={labels.close}><X size={18} /></button></header><Link href={`${base}/learn`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><GraduationCap size={18} /></span><div><strong>{labels.noticeTitle}</strong><p>{labels.noticeBody}</p></div></Link><Link href={`${base}/library`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><CheckCircle2 size={18} /></span><div><strong>{labels.savedTitle}</strong><p>{labels.savedBody}</p></div></Link></aside>
 
           <main id="main-content" className="universal-shell-content"><div className="universal-route-frame nq-flow" key={pathname}>{children}</div></main>
         </div>
 
         <nav className="universal-shell-mobile-nav" aria-label={isArabic ? "التنقل على الهاتف" : "Mobile navigation"}>
-          {[primaryItems[0], primaryItems[1], primaryItems[4], primaryItems[7], utilityItems[0]].map((item) => { const Icon = item.icon; return <Link href={item.href} className={isActive(item.href) ? "is-active" : ""} aria-current={isActive(item.href) ? "page" : undefined} key={item.id}><Icon size={19} /><span>{item.label}</span></Link>; })}
+          {[primaryItems[0], primaryItems[1], primaryItems[4], primaryItems[7], utilityItems[0]].map((item) => { const Icon = item.icon; return <Link href={item.href} className={isActive(item.href) ? "is-active" : ""} aria-current={isActive(item.href) ? "page" : undefined} key={item.id}><Icon size={18} /><span>{item.label}</span></Link>; })}
         </nav>
       </div>
 
@@ -316,7 +316,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         <Dialog.Content className="universal-command" aria-describedby={undefined}>
           <Dialog.Title className="sr-only">{labels.search}</Dialog.Title>
           <div className="universal-command__input"><Search size={20} /><input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder={labels.searchHint} aria-label={labels.searchHint} /><Dialog.Close asChild><button type="button" aria-label={labels.close}><X size={18} /></button></Dialog.Close></div>
-          <div className="universal-command__results"><span>{isArabic ? "الخدمات والوجهات" : "Services and destinations"}</span>{filtered.length ? filtered.map((item) => { const Icon = item.icon; return <Link href={item.href} onClick={closeTransient} key={item.id}><span><Icon size={17} /></span><b>{item.label}</b><Command size={13} /></Link>; }) : <p>{labels.noResult}</p>}</div>
+          <div className="universal-command__results"><span>{isArabic ? "الخدمات والوجهات" : "Services and destinations"}</span>{filtered.length ? filtered.map((item) => { const Icon = item.icon; return <Link href={item.href} onClick={closeTransient} key={item.id}><span><Icon size={18} /></span><b>{item.label}</b><Command size={14} /></Link>; }) : <p>{labels.noResult}</p>}</div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

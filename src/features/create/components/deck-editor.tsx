@@ -86,7 +86,7 @@ export function DeckEditor({
             ))}
           </ol>
           <button type="button" data-testid="u2-create-slide-add" onClick={onSlideAdd} disabled={atCapacity}>
-            <Plus size={13} aria-hidden="true" />
+            <Plus size={14} aria-hidden="true" />
             {ui(locale, "deckAddSlide")}
           </button>
           <p className="u2-create__note">{ui(locale, "deckOneSlideNote")}</p>
@@ -104,7 +104,7 @@ export function DeckEditor({
               onClick={() => onSlideMove(current.id, "up")}
               disabled={currentIndex === 0}
             >
-              <ArrowUp size={13} aria-hidden="true" />
+              <ArrowUp size={14} aria-hidden="true" />
               {ui(locale, "deckMoveUp")}
             </button>
             <button
@@ -113,7 +113,7 @@ export function DeckEditor({
               onClick={() => onSlideMove(current.id, "down")}
               disabled={currentIndex === slides.length - 1}
             >
-              <ArrowDown size={13} aria-hidden="true" />
+              <ArrowDown size={14} aria-hidden="true" />
               {ui(locale, "deckMoveDown")}
             </button>
             <button
@@ -122,7 +122,7 @@ export function DeckEditor({
               onClick={() => onSlideDuplicate(current.id)}
               disabled={atCapacity}
             >
-              <Copy size={13} aria-hidden="true" />
+              <Copy size={14} aria-hidden="true" />
               {ui(locale, "deckDuplicateSlide")}
             </button>
             <button
@@ -132,7 +132,7 @@ export function DeckEditor({
               disabled={lastSlide}
               {...(lastSlide ? { "aria-describedby": "u2-create-last-slide-reason" } : {})}
             >
-              <Trash2 size={13} aria-hidden="true" />
+              <Trash2 size={14} aria-hidden="true" />
               {ui(locale, "deckDeleteSlide")}
             </button>
           </div>

@@ -122,7 +122,7 @@ export function FoundationHarness({ locale, initialServiceId }: { locale: Locale
     <div className="u2-harness" data-testid="u2-harness" data-service={serviceId} data-scenario={scenarioId}>
       <header className="u2-harness__head">
         <div>
-          <span className="u2-harness__eyebrow"><FlaskConical size={15} aria-hidden="true" />{copy.eyebrow}</span>
+          <span className="u2-harness__eyebrow"><FlaskConical size={16} aria-hidden="true" />{copy.eyebrow}</span>
           <h1>{copy.title}</h1>
           <p>{copy.description}</p>
         </div>
@@ -219,7 +219,7 @@ function HarnessBody({ locale, sessionId, stageCount }: { locale: Locale; sessio
           }));
         }}
       >
-        <Send size={15} aria-hidden="true" />
+        <Send size={16} aria-hidden="true" />
         {copy.handoff}
       </button>
     </div>

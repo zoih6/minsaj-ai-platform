@@ -22,7 +22,7 @@ export function ServiceSimulationBadge({
   const dictionary = getServiceDictionary(locale);
   return (
     <button type="button" className="u2-badge" onClick={onOpen} data-testid="u2-simulation-badge">
-      <ShieldAlert size={15} aria-hidden="true" />
+      <ShieldAlert size={16} aria-hidden="true" />
       <span>{dictionary.workbench.simulationBadge}</span>
     </button>
   );
@@ -123,7 +123,7 @@ export function ServiceRunStatusBar({
   return (
     <div className="u2-run" data-testid="u2-run-status" data-status={status ?? "idle"}>
       <p role="status" aria-live="polite" aria-atomic="true" aria-busy={isActive} className="u2-run__status">
-        <Icon size={15} aria-hidden="true" />
+        <Icon size={16} aria-hidden="true" />
         <span>{status === null ? dictionary.workbench.noArtifactYet : dictionary.runStatus[status]}</span>
       </p>
       <div className="u2-run__actions">

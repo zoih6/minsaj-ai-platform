@@ -463,7 +463,7 @@ export function CreateVersionSurface({
       <p className="u2-create__intro">{ui(locale, "versionIntro")}</p>
 
       <div className="u2-create__save-state" data-testid="u2-create-save-state" data-state={session.saveState}>
-        <CircleAlert size={15} aria-hidden="true" />
+        <CircleAlert size={16} aria-hidden="true" />
         <span>{ui(locale, saveStateKey(session.saveState))}</span>
         {session.saveState === "dirty" || session.saveState === "clean" ? (
           <small>{template(ui(locale, "versionNewOnSave"), { number: nextNumber })}</small>
@@ -524,7 +524,7 @@ export function CreateVersionSurface({
       ) : null}
 
       <div className="u2-create__export" data-testid="u2-create-export">
-        <Layers size={15} aria-hidden="true" />
+        <Layers size={16} aria-hidden="true" />
         <div>
           <strong>{ui(locale, "versionExportPreview")}</strong>
           <p>{ui(locale, "versionExportNote")}</p>

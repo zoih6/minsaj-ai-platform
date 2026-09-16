@@ -63,7 +63,7 @@ export default function AppError({
         </ul>
         <div className="u-error-state__actions">
           <button type="button" className="button button--primary button--compact" onClick={reset}>
-            <RotateCcw size={15} />
+            <RotateCcw size={16} />
             {isArabic ? "إعادة المحاولة" : "Try again"}
           </button>
           <Link className="button button--outline button--compact" href="/ar/app/home">

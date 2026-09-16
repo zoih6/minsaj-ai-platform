@@ -69,7 +69,7 @@
   gap: var(--nq-gap-xs);
   flex: 0 1 auto;
 }
-@container nq-flow (max-width: 560px) {
+@container nq-flow (max-width: 640px) {
   .nq-page-header__actions { width: 100%; }
   .nq-page-header__actions > * { flex: 1 1 auto; }
 }

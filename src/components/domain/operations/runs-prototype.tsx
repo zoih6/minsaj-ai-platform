@@ -63,12 +63,12 @@ export function RunsPrototype({ locale, runs, scenario = null }: { locale: Local
         />
       ) : visibleRuns.length ? <div className="runs-table-wrap"><table className="runs-table"><caption className="sr-only">{ar ? "سجل التشغيلات" : "Run history"}</caption><thead><tr><th>{ar ? "التشغيل" : "Run"}</th><th>{ar ? "الحالة" : "Status"}</th><th>{ar ? "النوع" : "Kind"}</th><th>{ar ? "آخر تحديث" : "Updated"}</th><th>{ar ? "التكلفة" : "Cost"}</th><th><span className="sr-only">{ar ? "إجراء" : "Action"}</span></th></tr></thead><tbody>{visibleRuns.map((run) => (
         <tr key={run.id}>
-          <td data-label={ar ? "التشغيل" : "Run"}><Link className="run-name-cell" href={`/${locale}/app/runs/${run.id}`}><span className="run-name-cell__icon">{run.status === "waiting_for_approval" ? <ShieldAlert size={16} /> : <Play size={15} />}</span><span><strong>{localize(run.title, locale)}</strong><small className="mono">{run.id}</small></span></Link></td>
+          <td data-label={ar ? "التشغيل" : "Run"}><Link className="run-name-cell" href={`/${locale}/app/runs/${run.id}`}><span className="run-name-cell__icon">{run.status === "waiting_for_approval" ? <ShieldAlert size={16} /> : <Play size={16} />}</span><span><strong>{localize(run.title, locale)}</strong><small className="mono">{run.id}</small></span></Link></td>
           <td data-label={ar ? "الحالة" : "Status"}><RunStatusBadge locale={locale} status={run.status} /></td>
           <td data-label={ar ? "النوع" : "Kind"}><span className="table-project">{run.kind === "flow" ? (ar ? "تدفق" : "Flow") : (ar ? "وكيل" : "Agent")}</span></td>
-          <td data-label={ar ? "آخر تحديث" : "Updated"}><span className="table-muted"><Clock3 size={13} />{ar ? "منذ دقائق" : "Minutes ago"}</span></td>
-          <td data-label={ar ? "التكلفة" : "Cost"}><span className="table-cost"><CircleDollarSign size={13} /><CostValue value={run.cost.amountMinor / 100} locale={locale} /></span></td>
-          <td><Link className="table-open" href={`/${locale}/app/runs/${run.id}`} aria-label={ar ? `فتح ${localize(run.title, locale)}` : `Open ${localize(run.title, locale)}`}><Eye size={15} /><DirectionArrow size={13} /></Link></td>
+          <td data-label={ar ? "آخر تحديث" : "Updated"}><span className="table-muted"><Clock3 size={14} />{ar ? "منذ دقائق" : "Minutes ago"}</span></td>
+          <td data-label={ar ? "التكلفة" : "Cost"}><span className="table-cost"><CircleDollarSign size={14} /><CostValue value={run.cost.amountMinor / 100} locale={locale} /></span></td>
+          <td><Link className="table-open" href={`/${locale}/app/runs/${run.id}`} aria-label={ar ? `فتح ${localize(run.title, locale)}` : `Open ${localize(run.title, locale)}`}><Eye size={16} /><DirectionArrow size={14} /></Link></td>
         </tr>
       ))}</tbody></table></div> : normalized || filter !== "all" ? (
         <SearchEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />

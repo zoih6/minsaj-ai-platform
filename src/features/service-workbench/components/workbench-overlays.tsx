@@ -55,7 +55,7 @@ function DialogFrame({
               <Dialog.Description>{description}</Dialog.Description>
             </div>
             <Dialog.Close asChild>
-              <button type="button" aria-label={closeLabel}><X size={17} aria-hidden="true" /></button>
+              <button type="button" aria-label={closeLabel}><X size={18} aria-hidden="true" /></button>
             </Dialog.Close>
           </header>
           <div className="u2-overlay__body">{children}</div>

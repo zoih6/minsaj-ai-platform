@@ -196,7 +196,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
           <Link className="luma-brand" href={`/${locale}`} aria-label={isArabic ? "نَسَق الرئيسية" : "Nasaq home"}>
             <span className="luma-brand__mark"><NasaqMark size={34} /></span>
             <span className="luma-brand__word">{isArabic ? "نَسَق" : "Nasaq"}</span>
-            <span className="luma-brand__spark"><Sparkles size={11} /></span>
+            <span className="luma-brand__spark"><Sparkles size={12} /></span>
           </Link>
           <nav className="universal-nav__links" aria-label={isArabic ? "التنقل العام" : "Public navigation"}>
             <a href="#services">{copy.nav.services}</a>
@@ -207,7 +207,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
           <div className="universal-nav__actions">
             <ThemeToggle locale={locale} />
             <Link className="luma-locale" href={`/${otherLocale}`} prefetch={false} aria-label={isArabic ? "English" : "العربية"}>{otherLocale.toUpperCase()}</Link>
-            <Link className="luma-button luma-button--ink luma-button--small" href={appHref}>{copy.open}<ArrowLeft size={15} /></Link>
+            <Link className="luma-button luma-button--ink luma-button--small" href={appHref}>{copy.open}<ArrowLeft size={16} /></Link>
             <button className="universal-menu-button" type="button" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-controls="universal-mobile-menu" aria-label={menuOpen ? (isArabic ? "إغلاق القائمة" : "Close menu") : (isArabic ? "فتح القائمة" : "Open menu")}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
           </div>
         </div>
@@ -253,18 +253,18 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
                 <span className="universal-demo-card__status">NASAQ / ADAPTIVE</span>
               </div>
               <div className="universal-demo-card__body">
-                <span className="universal-demo-orb"><ActiveIcon size={22} /></span>
+                <span className="universal-demo-orb"><ActiveIcon size={20} /></span>
                 <h2>{copy.demoTitle}</h2>
                 <div className="universal-mode-strip" role="tablist" aria-label={isArabic ? "اختر الخدمة" : "Choose a service"}>
                   {services.map((service) => {
                     const Icon = serviceIcons[service.id];
-                    return <button key={service.id} type="button" role="tab" aria-label={service.shortLabel} aria-selected={active.id === service.id} className={active.id === service.id ? "is-active" : ""} onClick={() => selectService(service.id)}><Icon size={15} /><span>{service.shortLabel}</span></button>;
+                    return <button key={service.id} type="button" role="tab" aria-label={service.shortLabel} aria-selected={active.id === service.id} className={active.id === service.id ? "is-active" : ""} onClick={() => selectService(service.id)}><Icon size={16} /><span>{service.shortLabel}</span></button>;
                   })}
                 </div>
                 <div className="universal-composer">
                   <textarea value={prompt} onChange={(event) => { cancelDemo(); setPrompt(event.target.value); setDemoState("idle"); }} placeholder={active.prompt} aria-label={active.prompt} rows={3} />
                   <div className="universal-composer__bottom">
-                    <div><button type="button" aria-label={isArabic ? "إرفاق ملف" : "Attach a file"}><Paperclip size={17} /></button><button type="button" aria-label={isArabic ? "إدخال صوتي" : "Voice input"}><Mic size={17} /></button><span>{active.eyebrow}</span></div>
+                    <div><button type="button" aria-label={isArabic ? "إرفاق ملف" : "Attach a file"}><Paperclip size={18} /></button><button type="button" aria-label={isArabic ? "إدخال صوتي" : "Voice input"}><Mic size={18} /></button><span>{active.eyebrow}</span></div>
                     <button type="button" className="universal-send" onClick={startDemo} aria-label={demoState === "working" ? copy.preparingShort : copy.send} disabled={demoState === "working"} data-loading={demoState === "working"}>{demoState === "working" ? <LoaderCircle size={18} /> : <ArrowUp size={18} />}</button>
                   </div>
                 </div>
@@ -272,7 +272,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
                 {demoState === "ready" ? <ActivityFeedback state="success" className="universal-demo-result" label={`${copy.demoReady} · ${copy.demoRoute}`} title={active.outputTitle} description={active.outputBody} action={<Link href={`/${locale}/app/${active.slug}`}>{copy.openSpace}<ArrowLeft size={14} /></Link>} /> : null}
                 {demoState === "idle" ? (
                   <div className="universal-starters">
-                    {active.starters.slice(0, 2).map((starter) => <button type="button" key={starter} onClick={() => { cancelDemo(); setPrompt(starter); setDemoState("idle"); }}>{starter}<ArrowLeft size={13} /></button>)}
+                    {active.starters.slice(0, 2).map((starter) => <button type="button" key={starter} onClick={() => { cancelDemo(); setPrompt(starter); setDemoState("idle"); }}>{starter}<ArrowLeft size={14} /></button>)}
                   </div>
                 ) : null}
               </div>
@@ -298,7 +298,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
                 const Icon = serviceIcons[service.id];
                 return (
                   <Link href={`/${locale}/app/${service.slug}`} className={`universal-service-card universal-service-card--${service.id}${index === 0 ? " universal-service-card--wide" : ""}`} data-service={service.id} key={service.id}>
-                    <div className="universal-service-card__top"><span><Icon size={21} /></span><ArrowLeft size={17} /></div>
+                    <div className="universal-service-card__top"><span><Icon size={20} /></span><ArrowLeft size={18} /></div>
                     <small>{service.eyebrow}</small>
                     <h3>{service.label}</h3>
                     <p>{service.description}</p>
@@ -334,7 +334,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
             <div className="universal-scene-frame">
               <div className="universal-scene-frame__image"><Image src="/nasaq-luminous-world.jpg" alt={isArabic ? "عالم بصري مترابط لخدمات نَسَق" : "A connected visual world for Nasaq services"} fill sizes="(max-width: 900px) 100vw, 70vw" /></div>
               <div className="universal-scene-frame__floating">
-                {copy.sceneCards.map((item, index) => <div className={`universal-float-card universal-float-card--${index + 1}`} key={item}><span>{index === 0 ? <BookOpenCheck size={18} /> : index === 1 ? <SearchCheck size={18} /> : <Code2 size={18} />}</span><strong>{item}</strong><CheckCircle2 size={15} /></div>)}
+                {copy.sceneCards.map((item, index) => <div className={`universal-float-card universal-float-card--${index + 1}`} key={item}><span>{index === 0 ? <BookOpenCheck size={18} /> : index === 1 ? <SearchCheck size={18} /> : <Code2 size={18} />}</span><strong>{item}</strong><CheckCircle2 size={16} /></div>)}
               </div>
             </div>
           </div>
@@ -344,9 +344,9 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
           <div className="universal-container universal-trust-grid">
             <div><span>{copy.trustEyebrow}</span><h2>{copy.trustTitle}</h2><p>{copy.trustBody}</p></div>
             <div className="universal-trust-cards">
-              <article><ShieldCheck size={21} /><strong>{isArabic ? "خصوصية مفهومة" : "Understandable privacy"}</strong><p>{isArabic ? "ذاكرة قابلة للرؤية والإيقاف، وليست صندوقًا غامضًا." : "Memory you can inspect and turn off—not a black box."}</p></article>
-              <article><SearchCheck size={21} /><strong>{isArabic ? "مصادر قابلة للتحقق" : "Verifiable sources"}</strong><p>{isArabic ? "افتح المصدر واعرف أين تنتهي الحقيقة ويبدأ الاستنتاج." : "Open the source and see where evidence ends and inference begins."}</p></article>
-              <article><WandSparkles size={21} /><strong>{isArabic ? "اقتراحات قابلة للتعديل" : "Editable suggestions"}</strong><p>{isArabic ? "كل تخصيص يفسر نفسه ويمكن تغييره فورًا." : "Every personalization explains itself and can be changed instantly."}</p></article>
+              <article><ShieldCheck size={20} /><strong>{isArabic ? "خصوصية مفهومة" : "Understandable privacy"}</strong><p>{isArabic ? "ذاكرة قابلة للرؤية والإيقاف، وليست صندوقًا غامضًا." : "Memory you can inspect and turn off—not a black box."}</p></article>
+              <article><SearchCheck size={20} /><strong>{isArabic ? "مصادر قابلة للتحقق" : "Verifiable sources"}</strong><p>{isArabic ? "افتح المصدر واعرف أين تنتهي الحقيقة ويبدأ الاستنتاج." : "Open the source and see where evidence ends and inference begins."}</p></article>
+              <article><WandSparkles size={20} /><strong>{isArabic ? "اقتراحات قابلة للتعديل" : "Editable suggestions"}</strong><p>{isArabic ? "كل تخصيص يفسر نفسه ويمكن تغييره فورًا." : "Every personalization explains itself and can be changed instantly."}</p></article>
             </div>
           </div>
         </section>
@@ -358,7 +358,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
       </main>
 
       <footer className="universal-footer">
-        <div className="universal-container"><div className="luma-brand"><span className="luma-brand__mark"><NasaqMark size={31} /></span><span className="luma-brand__word">{isArabic ? "نَسَق" : "Nasaq"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
+        <div className="universal-container"><div className="luma-brand"><span className="luma-brand__mark"><NasaqMark size={28} /></span><span className="luma-brand__word">{isArabic ? "نَسَق" : "Nasaq"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
       </footer>
     </div>
   );

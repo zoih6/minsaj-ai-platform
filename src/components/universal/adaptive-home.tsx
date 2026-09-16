@@ -245,11 +245,11 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
             <div className="adaptive-task-modes" role="tablist" aria-label={isArabic ? "اختر اتجاه المهمة" : "Choose a task direction"}>
               {services.map((service) => {
                 const Icon = serviceIcons[service.id];
-                return <button key={service.id} role="tab" aria-label={service.shortLabel} aria-selected={active.id === service.id} type="button" onClick={() => chooseService(service.id)} className={active.id === service.id ? "is-active" : ""}><Icon size={17} /><span>{service.shortLabel}</span></button>;
+                return <button key={service.id} role="tab" aria-label={service.shortLabel} aria-selected={active.id === service.id} type="button" onClick={() => chooseService(service.id)} className={active.id === service.id ? "is-active" : ""}><Icon size={18} /><span>{service.shortLabel}</span></button>;
               })}
             </div>
             <div className="adaptive-task-composer">
-              <div className="adaptive-task-composer__icon"><ActiveIcon size={22} /></div>
+              <div className="adaptive-task-composer__icon"><ActiveIcon size={20} /></div>
               <textarea ref={textareaRef} rows={3} value={prompt} onChange={(event) => { cancelPendingRun(); setPrompt(event.target.value); setRunState("idle"); }} placeholder={active.prompt} aria-label={active.prompt} aria-invalid={runState === "error"} aria-describedby={runState === "error" ? "adaptive-task-error" : undefined} />
               <div className="adaptive-task-composer__actions">
                 <div><button type="button" title={copy.attach} aria-label={copy.attach}><Paperclip size={18} /></button><button type="button" title={copy.voice} aria-label={copy.voice}><Mic size={18} /></button><span>{active.eyebrow}</span></div>
@@ -264,13 +264,13 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
                 label={`${copy.understood} · ${active.eyebrow}`}
                 title={active.outputTitle}
                 description={active.outputBody}
-                action={<><Link href={`/${locale}/app/${active.slug}`}>{copy.open}<ArrowLeft size={15} /></Link><button type="button" onClick={() => { cancelPendingRun(); setPrompt(""); setRunState("idle"); }}>{copy.clear}</button></>}
+                action={<><Link href={`/${locale}/app/${active.slug}`}>{copy.open}<ArrowLeft size={16} /></Link><button type="button" onClick={() => { cancelPendingRun(); setPrompt(""); setRunState("idle"); }}>{copy.clear}</button></>}
               />
             ) : null}
             {runState === "error" ? <ActivityFeedback id="adaptive-task-error" state="error" label={copy.validationLabel} title={copy.validationTitle} description={copy.validationBody} action={<button type="button" onClick={() => textareaRef.current?.focus()}>{copy.returnToPrompt}</button>} /> : null}
             {runState === "idle" ? (
               <div className="adaptive-starters">
-                {active.starters.map((starter) => <button type="button" onClick={() => { setPrompt(starter); setRunState("idle"); }} key={starter}>{starter}<ArrowLeft size={13} /></button>)}
+                {active.starters.map((starter) => <button type="button" onClick={() => { setPrompt(starter); setRunState("idle"); }} key={starter}>{starter}<ArrowLeft size={14} /></button>)}
               </div>
             ) : null}
           </div>
@@ -279,7 +279,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         <section className="adaptive-section adaptive-services-home" aria-labelledby="adaptive-services-title">
           <div className="adaptive-section__head">
             <div><span>{copy.servicesLabel}</span><h2 id="adaptive-services-title">{copy.servicesTitle}</h2><p>{copy.servicesBody}</p></div>
-            <Link href={`/${locale}/app/explore`}>{copy.seeAll}<ArrowLeft size={15} /></Link>
+            <Link href={`/${locale}/app/explore`}>{copy.seeAll}<ArrowLeft size={16} /></Link>
           </div>
           <div className="adaptive-service-grid">
             {orderedServices.map((service) => {
@@ -287,7 +287,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
               const preferred = goals.includes(service.id);
               return (
                 <Link href={`/${locale}/app/${service.slug}`} data-service={service.id} className="adaptive-service-tile" key={service.id}>
-                  <div><span><Icon size={20} /></span>{preferred ? <small><Sparkles size={11} />{copy.recommended}</small> : null}<ArrowLeft size={16} /></div>
+                  <div><span><Icon size={20} /></span>{preferred ? <small><Sparkles size={12} />{copy.recommended}</small> : null}<ArrowLeft size={16} /></div>
                   <h3>{service.label}</h3><p>{service.description}</p>
                   <span className="adaptive-service-tile__sample">{service.starters[0]}</span>
                 </Link>
@@ -299,7 +299,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         <section className="adaptive-section adaptive-recents" aria-labelledby="adaptive-recents-title">
           <div className="adaptive-section__head">
             <div><span>{copy.continueLabel}</span><h2 id="adaptive-recents-title">{copy.continueTitle}</h2></div>
-            <Link href={`/${locale}/app/library`}>{isArabic ? "افتح مكتبتي" : "Open my library"}<ArrowLeft size={15} /></Link>
+            <Link href={`/${locale}/app/library`}>{isArabic ? "افتح مكتبتي" : "Open my library"}<ArrowLeft size={16} /></Link>
           </div>
           <div className="adaptive-recent-grid">
             {recentCards.map((card, index) => {
@@ -322,20 +322,20 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         <Dialog.Overlay className="adaptive-dialog-overlay" />
         <Dialog.Content className="adaptive-dialog" aria-describedby="adaptive-dialog-description">
           <div className="adaptive-dialog__head">
-            <span><Sparkles size={21} /></span>
+            <span><Sparkles size={20} /></span>
             <div><Dialog.Title>{copy.onboardingTitle}</Dialog.Title><Dialog.Description id="adaptive-dialog-description">{copy.onboardingBody}</Dialog.Description></div>
-            <Dialog.Close asChild><button type="button" aria-label={isArabic ? "إغلاق" : "Close"}><X size={19} /></button></Dialog.Close>
+            <Dialog.Close asChild><button type="button" aria-label={isArabic ? "إغلاق" : "Close"}><X size={18} /></button></Dialog.Close>
           </div>
           <p className="adaptive-dialog__hint">{copy.onboardingHint}</p>
           <div className="adaptive-dialog__goals">
             {services.filter((service) => service.id !== "ask").map((service) => {
               const Icon = serviceIcons[service.id];
               const selected = draftGoals.includes(service.id);
-              return <button type="button" data-service={service.id} className={selected ? "is-selected" : ""} aria-pressed={selected} onClick={() => toggleDraftGoal(service.id)} key={service.id}><span><Icon size={19} /></span><div><strong>{service.label}</strong><small>{service.description}</small></div><i>{selected ? <Check size={14} /> : <Plus size={14} />}</i></button>;
+              return <button type="button" data-service={service.id} className={selected ? "is-selected" : ""} aria-pressed={selected} onClick={() => toggleDraftGoal(service.id)} key={service.id}><span><Icon size={18} /></span><div><strong>{service.label}</strong><small>{service.description}</small></div><i>{selected ? <Check size={14} /> : <Plus size={14} />}</i></button>;
             })}
           </div>
-          <div className="adaptive-dialog__privacy"><CheckCircle2 size={15} />{copy.privacy}</div>
-          <div className="adaptive-dialog__actions"><Dialog.Close asChild><button type="button" className="adaptive-dialog__cancel">{copy.cancel}</button></Dialog.Close><button type="button" className="adaptive-dialog__save" onClick={saveGoals}>{copy.save}<ArrowLeft size={15} /></button></div>
+          <div className="adaptive-dialog__privacy"><CheckCircle2 size={16} />{copy.privacy}</div>
+          <div className="adaptive-dialog__actions"><Dialog.Close asChild><button type="button" className="adaptive-dialog__cancel">{copy.cancel}</button></Dialog.Close><button type="button" className="adaptive-dialog__save" onClick={saveGoals}>{copy.save}<ArrowLeft size={16} /></button></div>
         </Dialog.Content>
       </Dialog.Portal>
       {toast ? <FeedbackToast message={toast} closeLabel={copy.dismissFeedback} onDismiss={() => setToast("")} /> : null}

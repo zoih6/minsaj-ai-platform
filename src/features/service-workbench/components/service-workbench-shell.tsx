@@ -66,7 +66,7 @@ export function ServiceWorkbenchShell({
         <div className="u2-workbench__badges">
           <ServiceSimulationBadge locale={locale} onOpen={() => actions.openReceipt(true)} />
           <button type="button" className="u2-badge u2-badge--ghost" onClick={() => actions.openStorage(true)} data-testid="u2-storage-open">
-            <Database size={15} aria-hidden="true" />
+            <Database size={16} aria-hidden="true" />
             <span>{dictionary.storage.title}</span>
           </button>
         </div>
@@ -107,7 +107,7 @@ export function ServiceWorkbenchShell({
 
       <aside className="u2-workbench__artifact" data-testid="u2-artifact-region" data-has-artifact={artifact !== undefined}>
         <header>
-          <ShieldAlert size={15} aria-hidden="true" />
+          <ShieldAlert size={16} aria-hidden="true" />
           <h2>{artifact === undefined ? dictionary.workbench.noArtifactYet : artifact.title}</h2>
         </header>
         {artifact === undefined ? null : (

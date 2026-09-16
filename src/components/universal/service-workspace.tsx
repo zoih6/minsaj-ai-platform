@@ -187,7 +187,7 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
       <header className="service-space__header">
         <div>
           <Link href={`/${locale}/app/home`} className="service-space__back"><ArrowLeft size={14} />{copy.back}</Link>
-          <span className="service-space__eyebrow"><Icon size={15} />{service.eyebrow}<i />{copy.interactive}</span>
+          <span className="service-space__eyebrow"><Icon size={16} />{service.eyebrow}<i />{copy.interactive}</span>
           <h1>{service.label}</h1>
           <p>{service.description}</p>
         </div>
@@ -196,14 +196,14 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
 
       <div className="service-tool-row" aria-label={isArabic ? "أدوات هذه المساحة" : "Tools in this space"}>
         {tools.map((tool, index) => <span key={tool}>{index === 0 ? <BrainCircuit size={14} /> : index === 1 ? <Globe2 size={14} /> : <ShieldCheck size={14} />}{tool}</span>)}
-        <small><CheckCircle2 size={13} />{isArabic ? "تتغير الأدوات حسب طلبك" : "Tools adapt to your request"}</small>
+        <small><CheckCircle2 size={14} />{isArabic ? "تتغير الأدوات حسب طلبك" : "Tools adapt to your request"}</small>
       </div>
 
       <section className="service-studio">
         <div className="service-studio__main">
           <div className="service-mode-switch" role="tablist" aria-label={isArabic ? "طريقة البدء" : "Starting mode"}>
-            <button type="button" role="tab" aria-selected={mode === "guided"} className={mode === "guided" ? "is-active" : ""} onClick={() => setMode("guided")}><WandSparkles size={15} /><span><strong>{copy.guided}</strong><small>{copy.guidedHint}</small></span></button>
-            <button type="button" role="tab" aria-selected={mode === "fast"} className={mode === "fast" ? "is-active" : ""} onClick={() => setMode("fast")}><Play size={15} /><span><strong>{copy.fast}</strong><small>{copy.fastHint}</small></span></button>
+            <button type="button" role="tab" aria-selected={mode === "guided"} className={mode === "guided" ? "is-active" : ""} onClick={() => setMode("guided")}><WandSparkles size={16} /><span><strong>{copy.guided}</strong><small>{copy.guidedHint}</small></span></button>
+            <button type="button" role="tab" aria-selected={mode === "fast"} className={mode === "fast" ? "is-active" : ""} onClick={() => setMode("fast")}><Play size={16} /><span><strong>{copy.fast}</strong><small>{copy.fastHint}</small></span></button>
           </div>
 
           <div className="service-prompt-area">
@@ -211,8 +211,8 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
             <div><small>{service.eyebrow}</small><h2>{copy.title}</h2></div>
             <textarea ref={textareaRef} rows={5} value={prompt} onChange={(event) => { cancelPendingRun(); setPrompt(event.target.value); setStatus("idle"); }} placeholder={service.prompt} aria-label={service.prompt} aria-invalid={status === "error"} aria-describedby={status === "error" ? "service-request-error" : undefined} />
             <div className="service-prompt-area__bottom">
-              <div><button type="button" aria-label={copy.attach}><Paperclip size={17} />{copy.attach}</button><button type="button" aria-label={copy.voice}><Mic size={17} />{copy.voice}</button></div>
-              <button type="button" className="service-start-button" onClick={start} disabled={status === "working"} data-loading={status === "working"}>{status === "working" ? copy.workingShort : copy.start}{status === "working" ? <LoaderCircle size={17} /> : <ArrowUp size={17} />}</button>
+              <div><button type="button" aria-label={copy.attach}><Paperclip size={18} />{copy.attach}</button><button type="button" aria-label={copy.voice}><Mic size={18} />{copy.voice}</button></div>
+              <button type="button" className="service-start-button" onClick={start} disabled={status === "working"} data-loading={status === "working"}>{status === "working" ? copy.workingShort : copy.start}{status === "working" ? <LoaderCircle size={18} /> : <ArrowUp size={18} />}</button>
             </div>
           </div>
 
@@ -223,16 +223,16 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
               <header><span><Check size={18} /></span><div><small>{copy.ready}</small><h2>{service.outputTitle}</h2></div><button type="button" onClick={reset}>{copy.restart}</button></header>
               <div className="service-output__canvas">
                 <aside>{copy.sampleSections.map((item, index) => <button type="button" className={index === 0 ? "is-active" : ""} key={item}><span>{index + 1}</span>{item}</button>)}</aside>
-                <div><span>{service.eyebrow}</span><h3>{copy.sampleTitle}</h3><p>{prompt || service.starters[0]}</p><div className="service-output__block"><WandSparkles size={18} /><p>{copy.sampleBody}</p></div><button type="button">{copy.openOutput}<ArrowLeft size={15} /></button></div>
+                <div><span>{service.eyebrow}</span><h3>{copy.sampleTitle}</h3><p>{prompt || service.starters[0]}</p><div className="service-output__block"><WandSparkles size={18} /><p>{copy.sampleBody}</p></div><button type="button">{copy.openOutput}<ArrowLeft size={16} /></button></div>
               </div>
             </article>
           ) : null}
         </div>
 
         <aside className="service-path-card">
-          <div className="service-path-card__head"><span><Sparkles size={17} /></span><div><small>{mode === "guided" ? copy.guided : copy.fast}</small><h2>{copy.pathTitle}</h2></div></div>
+          <div className="service-path-card__head"><span><Sparkles size={18} /></span><div><small>{mode === "guided" ? copy.guided : copy.fast}</small><h2>{copy.pathTitle}</h2></div></div>
           <ol>{copy.path.map((step, index) => <li className={status === "ready" || (status === "working" && index < 2) ? "is-complete" : index === 0 ? "is-current" : ""} key={step}><span>{status === "ready" || (status === "working" && index < 2) ? <Check size={12} /> : index + 1}</span><p>{step}</p></li>)}</ol>
-          <div className="service-path-card__note"><ShieldCheck size={15} /><p>{copy.transparent}</p></div>
+          <div className="service-path-card__note"><ShieldCheck size={16} /><p>{copy.transparent}</p></div>
         </aside>
       </section>
 
