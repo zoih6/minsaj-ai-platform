@@ -23,6 +23,9 @@ jobs:
       - name: Layout guards (every page root must declare a container-query context)
         run: node scripts/check-layout-guards.mjs
 
+      - name: Portal/container isolation guard (portal-rendered overlays must never be styled inside @container)
+        run: python3 scripts/check-portal-container-isolation.py
+
       - name: Theme contrast guard (WCAG AA in light + dark)
         run: node scripts/check-theme-contrast.mjs
 

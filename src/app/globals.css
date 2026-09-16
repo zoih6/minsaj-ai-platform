@@ -1120,9 +1120,6 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
   .safe-stop-banner, .completed-banner, .cancelled-banner { grid-template-columns: 34px minmax(0,1fr); }
   .safe-stop-banner > .badge { grid-column: 2; }
   .run-timeline-card, .run-plan-card, .run-output-card { padding: 13px; }
-  .approval-dialog__scope { grid-template-columns: 1fr; }
-  .approval-dialog__scope > div { border-inline-end: 0; border-block-end: 1px solid var(--border); }
-  .approval-dialog__scope > div:last-child { border-block-end: 0; }
 }
 
 /* ---- Band ≤ 430px: smallest phones — compact paddings, no luxuries ---- */
@@ -1140,8 +1137,11 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
   .node-palette__list { grid-template-columns: repeat(2,1fr); }
   .run-timeline__head { display: block; }
   .run-timeline__head .badge { margin-block-start: 5px; }
-  .form-dialog, .approval-dialog { padding: 16px; }
 }
+
+/* Portaled dialogs (.form-dialog / .approval-dialog) are styled for phones
+   in the consolidated v11 layer at the END of this file — after the premium
+   enhancement layer, so nothing can override the bottom-sheet geometry. */
 
 /* Knowledge, catalogs, usage, team, and workspace administration */
 .catalog-tabs { min-height: 46px; display: flex; align-items: stretch; gap: 2px; margin-block: -8px 20px; padding: 4px; border: 1px solid var(--border); background: var(--surface); }
@@ -1630,7 +1630,6 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
   .collection-source-list article > .mono { display: none; }
   .compare-dock { inset-block-end: 70px; align-items: stretch; flex-direction: column; }
   .compare-dock__chips { display: none; }
-  .compare-dialog, .usage-event-dialog { padding: 15px; }
   .model-detail-hero { grid-template-columns: 42px minmax(0,1fr); }
   .model-detail-hero > .button { grid-column: 1 / -1; width: 100%; }
   .skill-catalog-list > article { grid-template-columns: 36px minmax(0,1fr); }
@@ -1690,6 +1689,9 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
   .payment-method-card > .button { grid-column: 1 / -1; width: 100%; }
   .routing-mode-card > div, .routing-payer-card > div:first-of-type { grid-template-columns: 1fr; }
 }
+
+/* Portaled dialogs (.compare-dialog / .usage-event-dialog) are styled for
+   phones in the consolidated v11 layer at the END of this file. */
 
 /* ============================================================
    PREMIUM ENHANCEMENT LAYER — Nasaq Luminous v2
@@ -1829,3 +1831,42 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 /* Dark refinements — domain buttons */
 :root[data-theme="dark"] .button--primary { background: linear-gradient(135deg, #6659ea, #584ae4 60%, #4f41d9); }
 :root[data-theme="dark"] .button--primary:hover { background: linear-gradient(135deg, #6d61ef, #6153e8 60%, #584ade); }
+
+/* ============================================================
+   V11 PORTALED-DIALOG PHONE LAYER — bottom sheets on phones
+   .form-dialog / .approval-dialog / .compare-dialog /
+   .usage-event-dialog all render through <Dialog.Portal> into
+   document.body — OUTSIDE every @container context, so their
+   responsive rules can only live in @media (see
+   scripts/check-portal-container-isolation.py which blocks
+   regressions in CI). This layer is deliberately LAST so the
+   premium enhancement layer above cannot override the sheet
+   geometry (v10 lesson: border-radius was being overridden),
+   and uses [role="dialog"] specificity so it always wins.
+   ============================================================ */
+@media (max-width: 640px) {
+  [role="dialog"].form-dialog,
+  [role="dialog"].approval-dialog,
+  [role="dialog"].compare-dialog,
+  [role="dialog"].usage-event-dialog {
+    inset: auto 0 0;
+    transform: none;
+    width: 100%;
+    max-height: calc(100dvh - 12px);
+    padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+    border-radius: 20px 20px 0 0;
+  }
+  [dir="rtl"] [role="dialog"].form-dialog,
+  [dir="rtl"] [role="dialog"].approval-dialog,
+  [dir="rtl"] [role="dialog"].compare-dialog,
+  [dir="rtl"] [role="dialog"].usage-event-dialog { transform: none; }
+  .form-dialog__actions { grid-template-columns: 1fr; }
+  .form-dialog__actions .button { width: 100%; }
+  .approval-dialog__scope { grid-template-columns: 1fr; }
+  .approval-dialog__scope > div { border-inline-end: 0; border-block-end: 1px solid var(--border); }
+  .approval-dialog__scope > div:last-child { border-block-end: 0; }
+}
+@media (max-width: 430px) {
+  [role="dialog"].form-dialog,
+  [role="dialog"].approval-dialog { padding: 16px; }
+}

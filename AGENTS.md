@@ -86,27 +86,39 @@ STATE.md                     # living handoff snapshot — update EVERY task
    `flow-editor-page`, `universal-library-page`, `adaptive-home`). No container context ⇒ all
    container-query rules are dead on that page ⇒ desktop layout on phones. `scripts/check-layout-guards.mjs`
    enforces this in CI — it must stay green.
-4. **Components reflow via container queries, not media queries.** Use the primitives in
-   `layout.css` (`nq-grid`, `nq-split`, `nq-cluster`, `nq-data-list`, `nq-scroll-x`) or the four
-   container bands (1040/880/640/430). **Never** add per-element viewport media-query patches.
-5. **RTL-first: logical CSS properties only** (`inline-start/end`, `padding-inline`,
+4. **Components reflow via container queries, not media queries — EXCEPT portaled content.**
+   Use the primitives in `layout.css` (`nq-grid`, `nq-split`, `nq-cluster`, `nq-data-list`,
+   `nq-scroll-x`) or the four container bands (1040/880/640/430). **Never** add per-element
+   viewport media-query patches for in-flow content.
+5. **Portaled dialogs/overlays style via `@media`, NEVER `@container`.** Anything rendered
+   through `<Dialog.Portal>` (or `createPortal`) mounts into `document.body` — **outside every
+   `@container` context**, so container-query rules can never match it (the v11 "خصّص تجربتك"
+   bug: mobile rules existed but were dead for days). Responsive rules for `.adaptive-dialog`,
+   `.form-dialog`, `.approval-dialog`, `.compare-dialog`, `.usage-event-dialog`,
+   `.u2-overlay__content`, `.universal-command` live in viewport `@media` blocks.
+   `scripts/check-portal-container-isolation.py` blocks regressions in CI — it must stay green.
+   Phone pattern: bottom sheet (`inset: auto 0 0; transform: none; width: 100%`), safe-area
+   padding, and the consolidated phone layer in `globals.css` is deliberately LAST (after the
+   premium enhancement layer) with `[role="dialog"]` specificity so nothing overrides the sheet
+   geometry.
+6. **RTL-first: logical CSS properties only** (`inline-start/end`, `padding-inline`,
    `margin-block`…). Zero physical `left`/`right` declarations in CSS.
-6. **Bilingual content ships complete:** any user-visible string lands in Arabic AND English
+7. **Bilingual content ships complete:** any user-visible string lands in Arabic AND English
    (i18n keys in `packages/i18n` or localized copy objects). Never ship one locale only.
-7. **Motion is opt-in:** every animation lives under
+8. **Motion is opt-in:** every animation lives under
    `@media (prefers-reduced-motion: no-preference)`.
-8. **Touch targets ≥ 44×44px** (`--u-touch`).
-9. **No new dependency without proof of use** (this repo deleted 45 dead deps once — never again).
-10. **Portaled fixed elements** (toasts, floating buttons) mount to `document.body` via
+9. **Touch targets ≥ 44×44px** (`--u-touch`).
+10. **No new dependency without proof of use** (this repo deleted 45 dead deps once — never again).
+11. **Portaled fixed elements** (toasts, floating buttons) mount to `document.body` via
     `createPortal` and respect `--nq-tabbar-reserve` (defined on `:root` so portals can reach it).
     Respect the unified z-index ladder documented at the top of `shell.css`.
-11. **ScrollFx mounts inside page-root components, never in layouts** (hydration race — React
+12. **ScrollFx mounts inside page-root components, never in layouts** (hydration race — React
     hydrates lazy boundaries after layout effects).
-12. **No hardcoded colors — semantic tokens only.** Every color flows from `foundations.css`
+13. **No hardcoded colors — semantic tokens only.** Every color flows from `foundations.css`
     tokens (light in `:root`, dark in `:root[data-theme="dark"]`, legacy bridge re-defined in
     both). An un-tokenized light-mode hex is a guaranteed "white box in dark mode" bug.
     `node scripts/check-theme-contrast.mjs` must stay green. → Skill: `theming-and-contrast`.
-13. **Never commit secrets.** `.env*` is gitignored — keep it that way. Tokens live outside the repo.
+14. **Never commit secrets.** `.env*` is gitignored — keep it that way. Tokens live outside the repo.
 
 ### CSS layer order (sacred — `src/app/universal.css`)
 
