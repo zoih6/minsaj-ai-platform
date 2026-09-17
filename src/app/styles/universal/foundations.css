@@ -103,6 +103,9 @@
   --u-radius: 16px;
   --u-radius-lg: 22px;
   --u-radius-xl: 30px;
+  /* Fully-round lozenge for chip/pill controls (selection filters, goal
+     pills). A shape, not a degree of roundness — lives beside the scale. */
+  --u-radius-pill: 999px;
 
   /* ---- Layout metrics (aliased to the responsive architecture tokens
         defined in layout.css — one geometry source, no drift) ---- */

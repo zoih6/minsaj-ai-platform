@@ -235,10 +235,29 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
             <Dialog.Trigger asChild><button type="button" className="adaptive-personalize"><SlidersHorizontal size={16} />{copy.customize}</button></Dialog.Trigger>
           </header>
 
-          <div className="adaptive-goals-bar">
-            <span>{copy.focus}</span>
-            <div>{goalServices.map((service) => { const Icon = serviceIcons[service.id]; return <button type="button" className={activeId === service.id ? "is-active" : ""} onClick={() => chooseService(service.id)} key={service.id}><Icon size={14} />{service.shortLabel}</button>; })}</div>
-            <Dialog.Trigger asChild><button type="button" className="adaptive-goals-bar__change"><Plus size={14} />{copy.change}</button></Dialog.Trigger>
+          <div className="adaptive-goals-bar nq-control-bar">
+            <span className="nq-control-bar__label">{copy.focus}</span>
+            <div className="nq-control-bar__group adaptive-goals-bar__goals" role="group" aria-label={copy.focus}>
+              {goalServices.map((service) => {
+                const Icon = serviceIcons[service.id];
+                return (
+                  <button
+                    type="button"
+                    className={`nq-chip adaptive-goals-bar__goal${activeId === service.id ? " is-active" : ""}`}
+                    aria-pressed={activeId === service.id}
+                    onClick={() => chooseService(service.id)}
+                    key={service.id}
+                  >
+                    <Icon size={14} />{service.shortLabel}
+                  </button>
+                );
+              })}
+            </div>
+            <Dialog.Trigger asChild>
+              <button type="button" className="nq-chip adaptive-goals-bar__change nq-control-bar__tail">
+                <Plus size={14} />{copy.change}
+              </button>
+            </Dialog.Trigger>
           </div>
 
           <div className="adaptive-task-card">

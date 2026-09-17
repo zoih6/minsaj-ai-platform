@@ -77,6 +77,8 @@ page-root (declares container context)
 |---|---|
 | `nq-flow` | vertical flow between siblings |
 | `nq-page-header` | title/description/actions row (auto-stacks actions ≤640) |
+| `nq-control-bar` | **THE options-strip shape** (§3.5): `__label` + `__group` + `__tail` — filter bars, goal bars, chip selectors |
+| `nq-chip` | shared geometry for pill option buttons (44px · pill radius · `--u-text-sm`); surfaces own color/state only |
 | `nq-grid` + `--tight/--roomy/--stats` | auto-fill/minmax card grids (self-reflow) |
 | `nq-stack` (+`--tight`) | vertical stack |
 | `nq-cluster` (+`--between/--end/--stretch`) | inline row with wrap |
@@ -93,6 +95,28 @@ Every page root declares one: `ops-page` · `service-space` · `builder-page` ·
 ### 3.4 Forbidden in layout
 
 - nested wrappers with no layout role · fixed widths on content (`width: 347px`) · `position: absolute` as a responsiveness mechanism · negative margins as alignment patches · magic numbers (any spacing/size value not from the scales in §4–§6) · per-page spacing systems · `height: 100vh` (use `100dvh` with fallback)
+
+### 3.5 Control bars (`nq-control-bar`) — the options-strip contract (born in v14)
+
+Every "label + option chips + aux action" composition (goal bars, filter toolbars, topic
+chips) uses the primitive in `layout.css` §12 — a new surface hand-rolling its own bar is a
+reject (that exact pattern produced 5 divergent geometries and the owner's site-wide
+"التنسيق والتوزيع" report). Binding rules:
+
+1. **Labels and tails are NEVER wrapping flex-siblings of the chips.** A stranded label,
+   count, or icon is the "scattered group" defect.
+2. **Chips live in `__group`; they share one line.** Homogeneous chip sets may use
+   `--wrap` where width allows; under the 640 container band the group is ALWAYS one
+   scrollable row (the re-compose ladder, not wrap-and-pray).
+3. **Grouping rhythm (§4.3):** label/tail sit at the bar's column gap (`--nq-gap-md`),
+   ≥2× the chip gap (`--nq-gap-xs`) — inside a group sits closer than groups sit to each
+   other.
+4. **Chips are `nq-chip`** (44px touch floor, `--u-radius-pill`, `--u-text-sm`); the
+   surface layer owns ONLY color/border/state.
+5. An aux action ("تغيير", "Change") shares the chip geometry family (ghost pill) so
+   borders read equal across the strip — hierarchy comes from color, not chrome.
+6. Meta readouts (result counts) ride the `__tail` slot; hide them under the 640 band
+   rather than letting them strand.
 
 ## 4. Spacing System
 
@@ -225,6 +249,7 @@ Every entry is a real defect class with its fix. **Meeting one of these in code 
 | 16 | **Physical direction properties** | `left`/`right` in CSS | logical properties (RTL-native) |
 | 17 | **Second design system** | re-introducing an old green-era token or a new "temp" palette | `foundations.css` is the only palette; legacy bridge stays bridged |
 | 18 | **Patch on a patch** | third consecutive override on the same selector | stop; refactor the shared primitive (§0) |
+| 19 | **Hand-rolled control bar** | a new "label + chips + action" row with its own gaps/radius/heights (v14: 5 divergent copies produced the site-wide formatting report) | `nq-control-bar` + `nq-chip` (§3.5) — geometry from the primitive, color from the surface |
 
 ## 12. Refactoring Rules (design debt paydown)
 
@@ -242,7 +267,7 @@ Every entry is a real defect class with its fix. **Meeting one of these in code 
 
 1. **Guard scripts** (fast, no browser): `check-layout-guards` → `check-theme-contrast` → `check-portal-container-isolation`.
 2. **Type + lint + build**: `bun run lint` · `npx tsc --noEmit` · `bun run build` (dev tolerates what production rejects — v7 lesson).
-3. **The sweep** (`scripts/verify-sweep-v11.sh`, or newest): 30 routes × 375/768/1440 × 2 themes = 182 checks, asserting zero overflow, correct sidebar mode, `data-theme` applied, and the dialog-geometry sentinels (a real dialog opened at phone size must render as a bottom sheet: full width, 0 inset, top-only radius, no horizontal overflow).
+3. **The sweep** (`scripts/verify-sweep-v12.sh`, or newest): 30 routes × 375/768/1440 × 2 themes + sentinels = 186 checks, asserting zero overflow, correct sidebar mode, `data-theme` applied, the dialog-geometry sentinels (a real dialog opened at phone size must render as a bottom sheet: full width, 0 inset, top-only radius, no horizontal overflow), and the control-bar sentinels (chip groups stay one scrollable row, bars ≤ 2 composed rows, chips ≥ 44px at phone size).
 4. **Interaction QA**: drawer/rail/expanded cycle, dialog open/close (Escape + backdrop), command palette, toasts clear of the tab bar — `verify-editor-interactions.sh` where relevant.
 5. **VLM visual review** on screenshots of the changed surfaces: ≥ 9/10, checklist = §2 bar (hierarchy, rhythm, icon scale, no overlaps, RTL correctness). Fail → back to step 1 with the finding.
 6. **Artifact verification**: for deliveries, verify inside the built artifact (compiled CSS contains the new rules), not just the dev server (v3/v4 lesson).
@@ -317,7 +342,7 @@ A visual change is done when ALL hold — the delivery gate in `AGENTS.md` §B p
 
 | Family | Tokens |
 |---|---|
-| **Radius** | `--u-radius-xs` 8 · `sm` 12 · `(base)` 16 · `lg` 22 · `xl` 30 |
+| **Radius** | `--u-radius-xs` 8 · `sm` 12 · `(base)` 16 · `lg` 22 · `xl` 30 · `pill` 999 (chip lozenge shape) |
 | **Spacing/gaps** | `--nq-gap-xs/sm/md/lg` · `--nq-pad-card` · `--u-page-gutter` · `--u-section-space` |
 | **Measures** | `--u-content-max` 1520 · `--u-reading-max` 780 · `--nq-measure-read` 72ch |
 | **Type (UI)** | `--u-text-xs/sm/md/lg/xl` |

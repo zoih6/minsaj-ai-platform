@@ -52,11 +52,13 @@ export function LibraryToolbar({ locale, query, onQueryChange, filters, activeFi
   return (
     <div className="library-toolbar">
       <label className="library-search"><Search size={16} aria-hidden="true" /><span className="sr-only">{searchLabel}</span><input value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder={searchLabel} /></label>
-      <div className="library-filters" role="group" aria-label={locale === "ar" ? "تصفية النتائج" : "Filter results"}>
-        <SlidersHorizontal size={14} aria-hidden="true" />
-        {filters.map((filter) => <button key={filter.id} type="button" aria-pressed={activeFilter === filter.id} className={activeFilter === filter.id ? "is-active" : ""} onClick={() => onFilterChange(filter.id)}>{filter.label}</button>)}
+      <div className="nq-control-bar library-toolbar__bar">
+        <div className="nq-control-bar__group library-filters" role="group" aria-label={locale === "ar" ? "تصفية النتائج" : "Filter results"}>
+          <SlidersHorizontal size={14} aria-hidden="true" />
+          {filters.map((filter) => <button key={filter.id} type="button" aria-pressed={activeFilter === filter.id} className={`nq-chip library-filters__chip${activeFilter === filter.id ? " is-active" : ""}`} onClick={() => onFilterChange(filter.id)}>{filter.label}</button>)}
+        </div>
+        <span className="nq-control-bar__tail library-count" role="status" aria-live="polite">{locale === "ar" ? `${resultCount} نتيجة` : `${resultCount} results`}</span>
       </div>
-      <span className="library-count">{locale === "ar" ? `${resultCount} نتيجة` : `${resultCount} results`}</span>
     </div>
   );
 }

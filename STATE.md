@@ -5,7 +5,7 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-17 — Phase 13.1 · **Current version:** v13.1 · **Branch:** `main` (v13.1 pushed to origin/main — owner authorized after local review)
+**Last updated:** 2026-09-17 — Phase 14 · **Current version:** v14 · **Branch:** `main` (v14 ready to push — owner authorized full-access tokens for this session; push after final gate re-verification)
 
 ## Current status
 
@@ -23,17 +23,21 @@
   8-step agent workflow, owner's explicit orders). Both are BINDING (AGENTS.md hard rule 15).
   Decision: hybrid functional-first — NO mandatory OOP layer; classes only with 2+ of
   identity/state/lifecycle/invariants/interchangeability.
-- **Phase 13.1: B1–B5 design-system unification EXECUTED + owner's identity package v25 folded in.**
-  Zero legacy color vars (was 1011) · legacy bridge deleted (124 defs) · 1249 hardcoded colors
-  tokenized · dark mode = pure value-swap (28 per-element rules dissolved) · breakpoints
-  19→12 documented canonical ladder · icon scale 21→6+3 with a NEW CI guard (check-icon-scale.mjs)
-  · official folded-ribbon NasaqMark + favicon + public/brand (25 SVGs) + brand.css surface
-  vocabulary (grid/ribbon/glow/ghost). All gates green incl. sweep 182/182 and VLM 9-10/10.
-  **Pushed to origin/main 2026-09-17 — owner authorized after local review ("ادفع واذا في ملاحظات بكلمك");
-  all 6 CI steps re-verified locally immediately before push.**
+- **Phase 14: control-group bars unified on ONE shared primitive — the owner's site-wide
+  "التنسيق والتوزيع" report root-caused and fixed at the system layer.** New `nq-control-bar`
+  (label/group/tail — labels & tails are NEVER wrapping flex-siblings of chips) + `nq-chip`
+  (44px pill, token gaps/type) + `--u-radius-pill` token, in layout.css §12–13. Measured before:
+  goals bar 3 stranded rows (126px) on phones, ops toolbars 3 rows of 36/65/18px, filter icon
+  floating 18px off-line, gaps 2–9px / radii 0–999px / heights 29–43px off-token, 30/34px touch
+  violations. After: 2 composed rows (96px) / one scrollable chip row everywhere, all chips 44px.
+  Propagated same-push: adaptive home · ops LibraryToolbar (7 pages) · universal library ·
+  u2 chips (learn/research/create) · task-modes · view-switch · catalog/source-type tabs. Sweep
+  grew to **v12 (186 checks)** with a controlbar sentinel (single-row groups, ≤100px bars,
+  ≥44px chips — non-vacuous). Desktop VLM misread ("tail on second line") disproven by DOM
+  measurement — single 46px row, all centers y=302.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 13, 2026-09-17)
+## Quality gates (last verified: Phase 14, 2026-09-17)
 
 | Gate | Status |
 |---|---|
@@ -43,7 +47,7 @@
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
 | Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
 | Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
-| Dialog-aware sweep (`scripts/verify-sweep-v11.sh`) | ✅ 182/182 (+ en-locale run 182/182 during the audit = 364 total) |
+| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ 186/186 (+ controlbar sentinel: single-row chip groups · bars ≤100px · chips ≥44px at phone, on home + runs, non-vacuous) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
 | Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
 | CI (GitHub Actions) | ✅ green on `main` (5741b8f at audit time; v13.1: all 6 CI steps re-verified locally just before push) |
@@ -66,25 +70,16 @@
 
 ## Open items / next steps (priority order — from docs/AUDIT.md)
 
-1. **B1 — color unification** (the big one, 3 batches): migrate 1150 legacy var
-   usages → `--u-*` (1022 of them in globals.css); tokenize the 567 hardcoded
-   colors; delete the 124-token legacy bridge; rebuild dark on value-swapping
-   only (remove the 28 per-element `[data-theme=dark]` overrides). Baseline:
-   `scripts/audit-scan.py` (re-run after each batch).
-2. **B2 — responsiveness**: globals in-flow @media patches (~70 selectors at
-   1120/840/820/680/620) → container bands; `100vh`→`100dvh` ×8; close the 7
-   drift container bands (560/720/840/900/980/1080/1120); decision needed on
-   marketing art-direction (container context or documented exception).
-   NEVER touch shell 768/1024/1440 or portaled 640/430.
-3. **B3 — icons**: normalize 22 sizes → sanctioned 12/14/16/18/20/24 (touch-a-
-   surface-normalize rule, DEG §12.1).
-4. **B4 — UI vocabulary**: unify bottom-nav active state (pill vs color-only),
-   selection states, card gradient language; document an extended z-ladder.
-5. **B5 — accessibility polish**: dark borders/elevation depth, home
-   placeholder tone, research input/chips (VLM findings in AUDIT.md §4).
-6. **M4 — session-journey depth** (FR-ASK-003..007; US-004..006) — runs in
+0. **Deferred minor (from Phase 14 audit):** flow-canvas-toolbar buttons are 29px tall
+   (below the 44px touch floor) — editor utility bar, height change affects canvas
+   layout; normalize in a focused editor pass. `.universal-library-new` still carries
+   gap 7px/radius 11px literals (adjacent to, but not part of, the control-bar family).
+
+1. ~~B1–B3 (color unification · responsiveness · icons)~~ — **EXECUTED in v13.1** (see Current
+   status); kept here only as pointer. Remaining follow-ups live in item 0 above.
+2. **M4 — session-journey depth** (FR-ASK-003..007; US-004..006) — runs in
    parallel; new data access via existing chokepoints only.
-7. **DEFERRED → backend kickoff — ServiceProvider extraction** (owner decision
+3. **DEFERRED → backend kickoff — ServiceProvider extraction** (owner decision
    2026-09-17): plan frozen in `ARCHITECTURE-RULES.md` §4.
 
 ## Recent handoff notes

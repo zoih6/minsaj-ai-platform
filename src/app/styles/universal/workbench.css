@@ -10,7 +10,7 @@
 .u2-harness__head p { max-width: 760px; margin: 6px 0 0; color: var(--u-muted); font-size: 14px; line-height: 1.75; }
 .u2-harness__head > a { min-height: var(--u-touch); display: inline-flex; align-items: center; padding-inline: 14px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; font-weight: 650; text-decoration: none; }
 .u2-harness__head > a:hover { border-color: rgba(var(--u-primary-rgb, 85 76 230), .35); }
-.u2-harness__controls { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; border: 1px solid var(--u-line); border-radius: 14px; background: var(--u-surface-solid); }
+.u2-harness__controls { display: flex; flex-wrap: wrap; gap: var(--nq-gap-sm); padding: 12px; border: 1px solid var(--u-line); border-radius: 14px; background: var(--u-surface-solid); }
 .u2-harness__controls label { display: grid; gap: 5px; min-width: 160px; }
 .u2-harness__controls span { color: var(--u-muted); font-size: 12px; font-weight: 650; }
 .u2-harness__controls select { min-height: var(--u-touch); padding-inline: 10px; border: 1px solid var(--u-control-line); border-radius: 10px; color: var(--u-ink); background: var(--u-surface-solid); font-size: 13px; }
@@ -26,13 +26,13 @@
 .u2-workbench__head p { max-width: 680px; margin: 6px 0 0; color: var(--u-muted); font-size: 14px; line-height: 1.7; }
 .u2-workbench__session { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; font-size: 12px; }
 .u2-workbench__session code { padding: 2px 6px; border-radius: 7px; background: var(--u-primary-soft); color: var(--u-primary-strong); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
-.u2-workbench__badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.u2-workbench__badges { display: flex; flex-wrap: wrap; gap: var(--nq-gap-xs); }
 .u2-badge { min-height: var(--u-touch); padding-inline: 12px; display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(85, 76, 230, .3); border-radius: 11px; color: var(--u-primary-strong); background: var(--u-primary-soft); font-size: 12.5px; font-weight: 650; cursor: pointer; }
 .u2-badge--ghost { border-color: var(--u-line-strong); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-badge:hover { border-color: rgba(85, 76, 230, .5); }
 
 .u2-stages { margin-block-start: 16px; overflow: hidden; }
-.u2-stages ol { display: flex; gap: 8px; margin: 0; padding: 0 0 4px; overflow-x: auto; list-style: none; }
+.u2-stages ol { display: flex; gap: var(--nq-gap-xs); margin: 0; padding: 0 0 4px; overflow-x: auto; list-style: none; }
 /* `position: relative` keeps the visually-hidden reason span inside the
    clipped stage list instead of anchoring it to the viewport (which would
    widen the document). */
@@ -155,8 +155,9 @@
 .u2-learn__field select, .u2-learn__field input, .u2-learn__field textarea { min-height: var(--u-touch); padding: 8px 10px; border: 1px solid var(--u-control-line); border-radius: 10px; color: var(--u-ink); background: var(--u-surface-solid); font: inherit; font-size: 13px; }
 .u2-learn__field textarea { min-height: 64px; resize: vertical; }
 .u2-learn__summary { margin: 0; color: var(--u-muted); font-size: 12.5px; line-height: 1.7; }
-.u2-learn__chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.u2-learn__chips button { min-height: var(--u-touch); padding-inline: 14px; border: 1px solid var(--u-line-strong); border-radius: 999px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; cursor: pointer; }
+/* Chips ride the nq-chip primitive (layout.css §13) and the groups ride
+   nq-control-bar__group--wrap — geometry comes from there; color/state only. */
+.u2-learn__chips button { border: 1px solid var(--u-line-strong); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-learn__chips button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); font-weight: 650; }
 .u2-learn__actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .u2-learn__actions button { min-height: var(--u-touch); padding-inline: 14px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; font-weight: 650; cursor: pointer; }
@@ -239,8 +240,7 @@
 .u2-research__field > button small { color: var(--u-muted); font-size: 12px; font-weight: 500; }
 .u2-research__field select, .u2-research__field input, .u2-research__field textarea { min-height: var(--u-touch); width: 100%; max-width: 100%; padding: 8px 10px; border: 1px solid var(--u-control-line); border-radius: 10px; color: var(--u-ink); background: var(--u-surface-solid); font: inherit; font-size: 13px; }
 .u2-research__field textarea { min-height: 64px; resize: vertical; }
-.u2-research__chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.u2-research__chips button { min-height: var(--u-touch); padding-inline: 14px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--u-line-strong); border-radius: 999px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; cursor: pointer; }
+.u2-research__chips button { border: 1px solid var(--u-line-strong); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-research__chips button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); font-weight: 650; }
 .u2-research__actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .u2-research__actions button { min-height: var(--u-touch); padding-inline: 14px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; font-weight: 650; cursor: pointer; }
@@ -377,8 +377,7 @@
 .u2-create__field legend { padding-inline: 6px; color: var(--u-ink-soft); font-size: 13px; font-weight: 700; }
 .u2-create__field input, .u2-create__field textarea, .u2-create__edit-label input, .u2-create__edit-label textarea { min-height: var(--u-touch); width: 100%; max-width: 100%; padding: 8px 10px; border: 1px solid var(--u-line-strong); border-radius: 10px; color: var(--u-ink); background: var(--u-surface-solid); font: inherit; font-size: 13px; }
 .u2-create__field textarea, .u2-create__edit-label textarea { min-height: 64px; resize: vertical; }
-.u2-create__chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.u2-create__chips button { min-height: var(--u-touch); padding-inline: 14px; border: 1px solid var(--u-line-strong); border-radius: 999px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; cursor: pointer; }
+.u2-create__chips button { border: 1px solid var(--u-line-strong); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-create__chips button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); font-weight: 650; }
 .u2-create__actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .u2-create__actions button { min-height: var(--u-touch); padding-inline: 14px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; font-weight: 650; cursor: pointer; }

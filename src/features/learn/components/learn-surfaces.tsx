@@ -181,11 +181,12 @@ export function LearnBriefSurface({
 
       <fieldset className="u2-learn__field">
         <legend>{ui("briefMinutes")}</legend>
-        <div className="u2-learn__chips">
+        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-learn__chips">
           {minuteOptions.map((minutes) => (
             <button
               key={minutes}
               type="button"
+              className="nq-chip"
               aria-pressed={state.ui.draftMinutes === minutes}
               data-testid={`u2-learn-minutes-${minutes}`}
               onClick={() => onMinutes(minutes)}
@@ -198,11 +199,12 @@ export function LearnBriefSurface({
 
       <fieldset className="u2-learn__field">
         <legend>{ui("briefLevel")}</legend>
-        <div className="u2-learn__chips">
+        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-learn__chips">
           {(["beginner", "intermediate", "advanced"] as const).map((level) => (
             <button
               key={level}
               type="button"
+              className="nq-chip"
               aria-pressed={state.ui.draftLevel === level}
               data-testid={`u2-learn-level-${level}`}
               onClick={() => onLevel(level)}

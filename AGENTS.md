@@ -34,13 +34,14 @@ node scripts/check-layout-guards.mjs     # ARCHITECTURAL GUARD (runs in CI, no b
                                           # context — fails the build if a page lacks one
 node scripts/check-theme-contrast.mjs     # THEME GUARD (runs in CI): WCAG AA contrast for every
                                           # critical token pair in LIGHT + DARK — fails the build
-bash scripts/verify-sweep-v10.sh           # FULL theme-aware responsive sweep (dev server + browser):
-                                          # 30 routes × 3 viewports × 2 themes = 180 checks,
-                                          # zero overflow + data-theme actually applied
+bash scripts/verify-sweep-v12.sh           # FULL theme-aware responsive sweep (dev server + browser):
+                                          # 30 routes × 3 viewports × 2 themes + dialog & control-bar
+                                          # sentinels = 186 checks, zero overflow + data-theme applied
+                                          # + chips never shatter on phones (single-row groups, 44px floor)
 bash scripts/verify-editor-interactions.sh  # editor interactions on mobile (step nav, canvas, toasts)
 ```
 
-New route added? **Add it to the `ROUTES` matrix in `scripts/verify-sweep-v10.sh` the same day** — an
+New route added? **Add it to the `ROUTES` matrix in `scripts/verify-sweep-v12.sh` (or newest) the same day** — an
 unswept route is an undelivered route (this exact blind spot shipped broken editors in v8).
 New token or color added? **Extend the pair list in `scripts/check-theme-contrast.mjs`** if it
  ever carries text, and keep both theme blocks in `foundations.css` in sync.
@@ -163,7 +164,7 @@ not push) · `≥1024` expanded (collapse → rail, persisted in localStorage).
 
 - [ ] Layout guards green (`node scripts/check-layout-guards.mjs`)
 - [ ] Theme contrast guard green (`node scripts/check-theme-contrast.mjs`)
-- [ ] Theme-aware sweep green if visuals changed (`bash scripts/verify-sweep-v10.sh` — both themes)
+- [ ] Theme-aware sweep green if visuals changed (`bash scripts/verify-sweep-v12.sh` — both themes)
 - [ ] Responsive sweep green if layout/visual changed (add new routes to the matrix first)
 - [ ] `bun run lint` → 0 errors · `npx tsc --noEmit` → 0 errors · `bun run build` → success
 - [ ] Verified **inside the artifact** (unzip / compiled CSS), not just in the dev server —

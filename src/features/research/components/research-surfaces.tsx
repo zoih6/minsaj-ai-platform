@@ -156,11 +156,12 @@ export function ResearchBriefSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("briefAudience")}</legend>
-        <div className="u2-research__chips">
+        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
           {(["self", "team", "public"] as const).map((audience) => (
             <button
               key={audience}
               type="button"
+              className="nq-chip"
               aria-pressed={state.ui.draftAudience === audience}
               data-testid={`u2-research-audience-${audience}`}
               onClick={() => onAudience(audience)}
@@ -173,11 +174,12 @@ export function ResearchBriefSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("briefScope")}</legend>
-        <div className="u2-research__chips">
+        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
           {(["recent", "broad", "academic"] as const).map((scope) => (
             <button
               key={scope}
               type="button"
+              className="nq-chip"
               aria-pressed={state.ui.draftScope === scope}
               data-testid={`u2-research-scope-${scope}`}
               onClick={() => onScope(scope)}
@@ -367,11 +369,12 @@ export function ResearchPlanReviewSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("planSourceTypes")}</legend>
-        <div className="u2-research__chips">
+        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
           {allTypes.map((type) => (
             <button
               key={type}
               type="button"
+              className="nq-chip"
               aria-pressed={plan.sourceTypes.includes(type)}
               data-testid={`u2-research-type-${type}`}
               onClick={() => onToggleType(type)}
@@ -568,11 +571,12 @@ export function ResearchSourceReviewSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("sourcesFilter")}</legend>
-        <div className="u2-research__chips">
+        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
           {(["all", "relevant_only", "unavailable", "with_url"] as const).map((filter) => (
             <button
               key={filter}
               type="button"
+              className="nq-chip"
               aria-pressed={state.ui.sourceFilter === filter}
               data-testid={`u2-research-filter-${filter}`}
               onClick={() => onFilter(filter)}

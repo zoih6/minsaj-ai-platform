@@ -223,6 +223,94 @@
   .nq-grid button { min-height: 40px; }
 }
 
+/* ---- 12. Control bar: label + option chips + tail action.
+        THE shared shape for every "options strip" (goal bars, filter
+        toolbars, topic chips). Contract:
+          · __label / __tail are NEVER wrapping flex-siblings of the
+            chips — a stranded label or count is the "scattered group"
+            defect this primitive exists to kill.
+          · __group holds the chips only; it may wrap (--wrap) when
+            chips are homogeneous, and ALWAYS collapses to one clean
+            scrollable row under the 640 container band.
+          · Grouping rhythm (§4.3): label/tail sit ≥2× the chip gap
+            away from the group — col-gap md vs chip gap xs.
+        Consumers so far: adaptive goals bar · ops library toolbar ·
+        universal library toolbar · u2 topic chips. -------------------- */
+.nq-control-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nq-gap-xs) var(--nq-gap-md);
+  min-width: 0;
+}
+.nq-control-bar__label {
+  flex: 0 0 auto;
+  min-width: 0;
+  color: var(--u-faint);
+  font-size: var(--u-text-xs);
+  font-weight: 650;
+}
+.nq-control-bar__group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--nq-gap-xs);
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  padding-block-end: 2px; /* keeps focus rings clear of the clip */
+}
+.nq-control-bar__group::-webkit-scrollbar { display: none; }
+.nq-control-bar__group > * { flex: 0 0 auto; }
+/* Homogeneous chips (no mixed heights inside) may wrap where width
+   allows; the 640 band below still collapses them to one row. */
+.nq-control-bar__group--wrap {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+.nq-control-bar__tail {
+  flex: 0 0 auto;
+  margin-inline-start: auto; /* aux action/meta sits at the far end */
+}
+@container (max-width: 640px) {
+  /* Re-compose, don't wrap-mid-group: label + tail share the first
+     line (order pulls the tail up beside the label — flex line packing
+     is sequential, so without this the tail would strand on its own
+     row after the 100%-basis group), chips get one scrollable row. */
+  .nq-control-bar__label {
+    order: -2;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .nq-control-bar__tail { order: -1; }
+  .nq-control-bar__group,
+  .nq-control-bar__group--wrap {
+    flex: 1 1 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+}
+
+/* ---- 13. Chip: the shared geometry for pill-shaped option buttons.
+        Height, radius, type and rhythm come from here; surfaces own
+        ONLY color/border/state (service tint, primary-soft, …). ----- */
+.nq-chip {
+  min-height: var(--u-touch);
+  padding-inline: var(--nq-gap-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nq-gap-xs);
+  border-radius: var(--u-radius-pill);
+  font-size: var(--u-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 /* Reduced motion / forced colors invariants (kept local, system-wide) */
 @media (prefers-reduced-motion: reduce) {
   .nq-data-list__row, .nq-split, .nq-grid { transition: none; }
