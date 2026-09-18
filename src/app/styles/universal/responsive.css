@@ -8,8 +8,10 @@
      · library.css        → universal-library container queries
      · globals.css        → ops-page container queries (domain pages)
      · layout.css         → intrinsic primitives (mj-grid / split / data-list)
-   What remains here is ONLY full-viewport art direction for the marketing
-   site (no sidebar → viewport == container) and accessibility contracts.
+     · marketing.css      → the marketing site's full viewport ladder (v18:
+                            the page is dark-locked cinematic; its hero/demo/
+                            section breakpoints live with its components)
+   What remains here is shell chrome and the shared accessibility contracts.
 
    CANONICAL LADDERS (B2 — do not add new widths without amending this table):
    · Shell (protected):        768 · 1024 · 1440 · 1600
@@ -20,111 +22,10 @@
    · Container service-space:  880 · 640
    · Container adaptive-home:  1080 · 640
    · Container universal-library: 640
-   Rationale: phone sheet geometry AND its animation share the 640 band;
-   splits collapse uniformly at 880; the old 560/720/840/980/1120/600/380/
-   620/680 drift bands were folded into the nearest canonical band.
    ========================================================================== */
-
-/* ---- Wide desktop: give landmark sections more breathing room -------- */
-@media (min-width: 1600px) {
-  :root { --u-content-max: 1520px; }
-  .adaptive-home, .service-space, .universal-library-page { width: min(1380px, 100%); }
-  .universal-hero__grid { gap: 96px; }
-}
 
 @media (max-width: 1320px) {
   .universal-shell-demo { display: none; }
-}
-
-/* ---- Marketing: hero & sections collapse to one column ---------------- */
-@media (max-width: 1180px) {
-  .universal-nav__links { display: none; }
-  .universal-menu-button { display: grid; }
-  .universal-nav { grid-template-columns: 1fr 1fr; }
-  .universal-hero__grid { grid-template-columns: minmax(0, .82fr) minmax(470px, 1.18fr); gap: 42px; }
-  .universal-hero__copy h1 { font-size: 54px; }
-  .universal-adaptive-grid { gap: 45px; }
-}
-
-@media (max-width: 980px) {
-  .universal-hero { padding-block-start: 45px; }
-  .universal-hero__grid { grid-template-columns: minmax(0, 1fr); }
-  .universal-hero__copy { max-width: 800px; text-align: center; justify-self: center; }
-  .universal-hero__copy .luma-kicker { margin-inline: auto; }
-  .universal-hero__copy h1 { font-size: clamp(48px, 9vw, 70px); }
-  .universal-hero__copy > p { margin-inline: auto; }
-  .universal-hero__actions, .universal-trust-line { justify-content: center; }
-  .universal-demo-card { width: min(650px, 100%); justify-self: center; }
-  .universal-audience .universal-container { align-items: flex-start; flex-direction: column; }
-  .universal-audience .universal-container > div { justify-content: flex-start; }
-  .universal-service-card, .universal-service-card--wide { grid-column: span 6; }
-  .universal-adaptive-grid, .universal-trust-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-  .universal-adaptive-copy { max-width: 700px; }
-  .universal-adaptive-visual { width: min(700px, 100%); }
-  .universal-scene-frame { min-height: 500px; }
-  .universal-float-card { width: min(330px, 42%); }
-  .universal-footer .universal-container { grid-template-columns: 1fr auto; }
-  .universal-footer p { display: none; }
-}
-
-/* ---- Marketing: phone — single column, full-width actions -------------- */
-@media (max-width: 820px) {
-  .universal-container { width: min(calc(100% - 32px), 680px); }
-  .universal-nav { width: calc(100% - 24px); }
-  .universal-nav__actions .luma-button { display: none; }
-  .universal-menu-button { display: grid; }
-  .universal-section { padding: 76px 0; }
-  .universal-section-heading { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .universal-scene-frame { min-height: 430px; }
-  .universal-float-card { width: min(320px, 52%); }
-  .universal-float-card--1 { inset-inline-start: 3%; }
-  .universal-float-card--3 { inset-inline-start: 18%; }
-}
-
-@media (max-width: 640px) {
-  .universal-nav-wrap { padding-block: 8px; }
-  .universal-nav { min-height: 58px; padding-inline: 10px; border-radius: 16px; }
-  .universal-hero { min-height: 0; padding: 38px 0 66px; }
-  .universal-hero__copy { padding-block: 10px; }
-  .universal-hero__copy h1 { font-size: clamp(39px, 12vw, 48px); }
-  .universal-hero__copy > p { margin-block-start: 18px; font-size: 15px; line-height: 1.75; }
-  .universal-hero__actions { display: grid; }
-  .universal-hero__actions .luma-button { width: 100%; }
-  .universal-trust-line { display: grid; gap: 8px; text-align: start; }
-  .universal-demo-card { min-height: 0; padding-block-start: 125px; border-radius: 22px; }
-  .universal-demo-card__art { height: 175px; }
-  .universal-demo-card__body { padding: 8px 12px 16px; }
-  .universal-demo-card__body h2 { font-size: 19px; }
-  .universal-mode-strip button span { display: none; }
-  .universal-mode-strip button.is-active span { display: inline; }
-  .universal-mode-strip button { min-width: var(--u-touch); padding: 0; }
-  .universal-mode-strip button.is-active { padding-inline: 10px; }
-  .universal-composer__bottom span { display: none; }
-  .universal-starters { display: flex; overflow-x: auto; scroll-snap-type: inline mandatory; scrollbar-width: none; }
-  .universal-starters button { min-width: 82%; scroll-snap-align: start; }
-  .universal-demo-result { grid-template-columns: 38px minmax(0, 1fr); }
-  .universal-service-card, .universal-service-card--wide { grid-column: span 12; min-height: 260px; }
-  .universal-section-heading h2, .universal-adaptive-copy h2, .universal-scene-heading h2, .universal-trust-grid h2 { font-size: 33px; }
-  .universal-adaptive-visual li { grid-template-columns: 34px minmax(0, 1fr); }
-  .universal-mini-goals { grid-column: 2; }
-  .universal-auto-chip { display: none; }
-  .universal-scene-frame { min-height: 500px; }
-  .universal-scene-frame__image img { object-fit: cover; object-position: center; }
-  .universal-float-card { width: calc(100% - 32px); }
-  .universal-float-card--1 { inset: 9% 16px auto; }
-  .universal-float-card--2 { inset: 41% 16px auto; }
-  .universal-float-card--3 { inset: auto 16px 8%; }
-  .universal-trust-cards article { grid-template-columns: 42px minmax(0, 1fr); }
-  .universal-final-cta { padding-block: 82px; }
-  .universal-footer .universal-container { grid-template-columns: 1fr; }
-  .universal-footer .universal-container > span { text-align: start; }
-}
-
-@media (max-width: 430px) {
-  .universal-container { width: calc(100% - 22px); }
-  .universal-nav { width: calc(100% - 16px); }
-  .luma-brand__spark { display: none; }
-  .universal-hero__copy h1 { font-size: 38px; }
 }
 
 /* ---- Device capability contracts --------------------------------------- */

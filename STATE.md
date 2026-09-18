@@ -5,12 +5,30 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-18 — Phase 17 · **Current version:** v17 · **Branch:** `main` (logo aspect-ratio fix + permanent logo-ratio sweep sentinel)
+**Last updated:** 2026-09-18 — Phase 18 · **Current version:** v18 · **Branch:** `main` (Cinematic Dark marketing redesign per the owner's approved concept)
 
 ## Current status
 
 - **Live:** <https://minsaj-ai-platform.vercel.app> (auto-deploys on push to `main`)
 - **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (renamed from `nasaq-ai-platform` in v15 — old URL redirects)
+- **Phase 18: «Cinematic Dark» — the marketing site redesigned onto the owner's approved
+  concept (dark premium, 3D materiality, orbital motion).** The whole marketing page is now
+  DARK-LOCKED: the verified dark token set is scoped to `.universal-site` in marketing.css,
+  so the page renders cinematic-dark regardless of the theme toggle (which stays in the app
+  shell only). New: hero with the generated 3D crystal render (z-ai + 2 VLM rounds, 80KB webp)
+  framed by two animated orbital rings + 4 floating particles + fine-pointer parallax;
+  headline rewritten in the weaving voice («أفكارُك خيوطٌ، ونحن ننسجها واقعًا»);
+  nav with IntersectionObserver scroll-spy (gradient underline on the active section);
+  the interactive demo card moved to its own `#demo` section with a lead; services as glass
+  cards with glowing icon chips; the experience section stars the obsidian-mountain + violet
+  woven-ribbon render (117KB webp) with 3 spec pills; film-grain noise overlay (SVG
+  turbulence, 2.8% opacity, fixed, pointer-events-none). KEPT BY DESIGN: the official
+  owner logo everywhere (dark variant via `onDark` — the concept's generic M-monogram was
+  rejected), RTL-native header, the owner's identity film, no WebGL dependency (layered
+  renders + CSS/canvas motion instead), honest product copy. Unused assets deleted
+  (digital-loom, hero-aurora-light, luminous-world). og-image recomposed from official
+  assets on the dark backdrop (VLM PASS incl. Arabic shaping). responsive.css thinned to
+  shell chrome + shared a11y contracts (marketing ladder now lives in marketing.css).
 - **Phase 17: logo distortion root-caused and fixed — the mark now renders at the master's
   exact intrinsic ratio everywhere.** Owner report: the header symbol looked stretched/squashed
   vs the original artwork. Root cause: v16's `MinsajMark` flipped the aspect constant's meaning
@@ -75,17 +93,17 @@
   measurement — single 46px row, all centers y=302.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 17, 2026-09-18)
+## Quality gates (last verified: Phase 18, 2026-09-18)
 
 | Gate | Status |
 |---|---|
-| `bun run build` (production, Turbopack) | ✅ green (60/60 pages, post-v17) |
-| `bun run lint` (ESLint) | ✅ 0 errors (post-v17) |
-| `npx tsc --noEmit` | ✅ 0 errors (post-v17) |
+| `bun run build` (production, Turbopack) | ✅ green (60/60 pages, post-v18) |
+| `bun run lint` (ESLint) | ✅ 0 errors (post-v18) |
+| `npx tsc --noEmit` | ✅ 0 errors (post-v18) |
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
 | Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
-| Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
-| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ **194/194** (v12.1: +8 logo-ratio sentinels — every `.minsaj-mark` within ±2% of the master's 534/396 ratio, wrapper fit, header + sidebar, phone + desktop, both themes) |
+| Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (marketing dark-lock reuses the verified dark token values verbatim) |
+| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ **194/194** (v12.1: logo-ratio sentinels re-verified on the dark page — mark 1.349, wrapper fit, 0 overflow) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
 | Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
 | CI (GitHub Actions) | ✅ green on `main` (5741b8f at audit time; v13.1: all 6 CI steps re-verified locally just before push) |

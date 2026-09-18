@@ -27,7 +27,6 @@ import {
 } from "lucide-react";
 import { MinsajLogo, MinsajMark } from "@minsaj/ui";
 import type { Locale } from "@minsaj/contracts";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { ActivityFeedback } from "@/components/universal/activity-feedback";
 import { BrandMotion } from "@/components/universal/brand-motion";
 import { universalServices, type UniversalServiceId } from "@/lib/universal-content";
@@ -48,6 +47,8 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
   const [prompt, setPrompt] = useState("");
   const [demoState, setDemoState] = useState<"idle" | "working" | "ready">("idle");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const heroVisualRef = useRef<HTMLDivElement | null>(null);
   const demoTimerRef = useRef<number | null>(null);
   const active = services.find((service) => service.id === activeId) ?? services[0]!;
   const ActiveIcon = serviceIcons[active.id];
@@ -69,16 +70,61 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
     };
   }, []);
 
+  /* Scroll-spy: the nav underlines the section currently in view. */
+  useEffect(() => {
+    const ids = ["demo", "services", "adaptive", "experience", "trust"];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((node): node is HTMLElement => node !== null);
+    if (!sections.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+    for (const section of sections) observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  /* Pointer parallax on the hero crystal — fine pointers, reduced-motion safe. */
+  useEffect(() => {
+    const visual = heroVisualRef.current;
+    if (!visual) return;
+    const reduceQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointerQuery = window.matchMedia("(pointer: fine)");
+    if (reduceQuery.matches || !finePointerQuery.matches) return;
+    let raf = 0;
+    const onMove = (event: PointerEvent) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const rect = visual.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        visual.style.setProperty("--mx", x.toFixed(3));
+        visual.style.setProperty("--my", y.toFixed(3));
+      });
+    };
+    visual.addEventListener("pointermove", onMove);
+    return () => {
+      visual.removeEventListener("pointermove", onMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   const copy = isArabic
     ? {
-        nav: { services: "الخدمات", adaptive: "كيف تتكيف؟", experience: "التجربة", trust: "الثقة" },
-        open: "افتح منسج",
-        eyebrow: "منصة ذكاء اصطناعي تتشكل حولك",
-        headlineA: "كل ما تريد أن",
-        headlineB: "تتعلّمه، تصنعه، أو تكتشفه.",
-        body: "مساحة واحدة تفهم هدفك، تختار لك المسار المناسب، وتمنحك الأدوات التي تحتاجها فقط—سواء كنت تتعلم، تبحث، تكتب، تبرمج، تحلل أو تستكشف.",
-        primary: "ابدأ بطريقتك",
-        secondary: "شاهد التجربة",
+        nav: { demo: "جرّبها", services: "الخدمات", adaptive: "كيف تتكيف؟", experience: "التجربة", trust: "الثقة" },
+        open: "ابدأ الآن",
+        eyebrow: "منصة الذكاء الاصطناعي التي تُنسَج حولك",
+        headlineA: "أفكارُك خيوطٌ،",
+        headlineB: "ونحن ننسجها واقعًا.",
+        body: "منسج تأخذ هدفك كأول خيط، تنسج حوله المعرفة والأدوات والمصادر، وتمنحك مخرجًا تستطيع استخدامه — سواء كنت تتعلم، تبحث، تكتب، تبرمج، تحلّل أو تستكشف.",
+        primary: "ابدأ مجانًا",
+        secondary: "شاهد العرض",
         noCard: "ابدأ بلا بطاقة",
         noSetup: "لا إعداد معقد",
         bilingual: "عربي وإنجليزي من الأصل",
@@ -109,6 +155,14 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         sceneTitle: "من سؤال سريع إلى مخرج يمكنك استخدامه.",
         sceneBody: "لا يحبس منسج كل شيء داخل فقاعة محادثة. تتحول الإجابة إلى درس، تقرير، مستند، لوحة بيانات أو مشروع قابل للتطوير.",
         sceneCards: ["خطة تعلّم تتكيف مع مستواك", "بحث موثق بمصادر قابلة للفتح", "مسودة وواجهة وكود في مساحة واحدة"],
+        specs: [
+          ["تكيف لحظي", "المسار يتشكل مع هدفك لا مع قائمة أدوات."],
+          ["مصادر موثقة", "كل استنتاج قابل للفتح إلى مصدره."],
+          ["تحكم كامل", "الأهداف والذاكرة والتخصيص بيدك دائمًا."],
+        ],
+        demoLeadEyebrow: "محاكاة حية",
+        demoLeadTitle: "جرّبها الآن — قبل أن تبدأ",
+        demoLeadBody: "اكتب ما تريد إنجازه، وشاهد كيف يهيّئ منسج المسار الأنسب لهدفك خطوة بخطوة.",
         trustEyebrow: "الوضوح جزء من التجربة",
         trustTitle: "أنت تعرف دائمًا ماذا يحدث ولماذا.",
         trustBody: "المصادر، استخدام الأدوات، التكلفة، والذاكرة تظهر بوضوح. ويمكنك إيقاف التخصيص أو تغيير المسار في أي وقت.",
@@ -119,14 +173,14 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         prototype: "نسخة تجريبية تفاعلية · لا تنفّذ خدمات خارجية بعد",
       }
     : {
-        nav: { services: "Services", adaptive: "How it adapts", experience: "Experience", trust: "Trust" },
-        open: "Open Minsaj",
-        eyebrow: "An AI platform that forms around you",
-        headlineA: "Everything you want to",
-        headlineB: "learn, create, or discover.",
-        body: "One space that understands your goal, finds the right path, and reveals only the tools you need—whether you are learning, researching, writing, coding, analyzing, or exploring.",
-        primary: "Start your way",
-        secondary: "See the experience",
+        nav: { demo: "Try it", services: "Services", adaptive: "How it adapts", experience: "Experience", trust: "Trust" },
+        open: "Get started",
+        eyebrow: "The AI platform woven around you",
+        headlineA: "Your ideas are threads —",
+        headlineB: "we weave them into reality.",
+        body: "Minsaj takes your goal as the first thread, weaves knowledge, tools, and sources around it, and hands you an output you can actually use — whether you are learning, researching, writing, coding, analyzing, or exploring.",
+        primary: "Start free",
+        secondary: "See it work",
         noCard: "Start without a card",
         noSetup: "No complex setup",
         bilingual: "Arabic and English by design",
@@ -157,6 +211,14 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         sceneTitle: "From a quick question to something you can use.",
         sceneBody: "Minsaj does not trap every task in a chat bubble. An answer can become a lesson, report, document, data view, or evolving project.",
         sceneCards: ["A learning path that meets your level", "Research with sources you can open", "Writing, interface, and code in one space"],
+        specs: [
+          ["Instant adaptation", "The path forms around your goal, not a tool list."],
+          ["Verifiable sources", "Every inference opens back to its source."],
+          ["Full control", "Goals, memory, and personalization stay in your hands."],
+        ],
+        demoLeadEyebrow: "Live simulation",
+        demoLeadTitle: "Try it now — before you begin",
+        demoLeadBody: "Type what you want to accomplish and watch Minsaj prepare the right path for your goal, step by step.",
         trustEyebrow: "Clarity is part of the experience",
         trustTitle: "Always know what is happening and why.",
         trustBody: "Sources, tool use, cost, and memory remain visible. Turn personalization off or change direction whenever you want.",
@@ -195,18 +257,18 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
       <header className="universal-nav-wrap">
         <div className="universal-nav">
           <Link className="luma-brand" href={`/${locale}`} aria-label={isArabic ? "منسج الرئيسية" : "Minsaj home"}>
-            <span className="luma-brand__mark"><MinsajMark size={34} /></span>
+            <span className="luma-brand__mark"><MinsajMark size={34} onDark /></span>
             <span className="luma-brand__word">{isArabic ? "منسج" : "Minsaj"}</span>
             <span className="luma-brand__spark"><Sparkles size={12} /></span>
           </Link>
           <nav className="universal-nav__links" aria-label={isArabic ? "التنقل العام" : "Public navigation"}>
-            <a href="#services">{copy.nav.services}</a>
-            <a href="#adaptive">{copy.nav.adaptive}</a>
-            <a href="#experience">{copy.nav.experience}</a>
-            <a href="#trust">{copy.nav.trust}</a>
+            <a href="#demo" aria-current={activeSection === "demo" ? "true" : undefined}>{copy.nav.demo}</a>
+            <a href="#services" aria-current={activeSection === "services" ? "true" : undefined}>{copy.nav.services}</a>
+            <a href="#adaptive" aria-current={activeSection === "adaptive" ? "true" : undefined}>{copy.nav.adaptive}</a>
+            <a href="#experience" aria-current={activeSection === "experience" ? "true" : undefined}>{copy.nav.experience}</a>
+            <a href="#trust" aria-current={activeSection === "trust" ? "true" : undefined}>{copy.nav.trust}</a>
           </nav>
           <div className="universal-nav__actions">
-            <ThemeToggle locale={locale} />
             <Link className="luma-locale" href={`/${otherLocale}`} prefetch={false} aria-label={isArabic ? "English" : "العربية"}>{otherLocale.toUpperCase()}</Link>
             <Link className="luma-button luma-button--ink luma-button--small" href={appHref}>{copy.open}<ArrowLeft size={16} /></Link>
             <button className="universal-menu-button" type="button" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-controls="universal-mobile-menu" aria-label={menuOpen ? (isArabic ? "إغلاق القائمة" : "Close menu") : (isArabic ? "فتح القائمة" : "Open menu")}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
@@ -215,6 +277,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         <div className="universal-mobile-menu-region" data-state={menuOpen ? "open" : "closed"} aria-hidden={!menuOpen}>
           <div>
             <nav id="universal-mobile-menu" className="universal-mobile-menu" aria-label={isArabic ? "قائمة الهاتف" : "Mobile menu"}>
+              <a href="#demo" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.demo}</a>
               <a href="#services" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.services}</a>
               <a href="#adaptive" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.adaptive}</a>
               <a href="#experience" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.experience}</a>
@@ -236,7 +299,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
               <p>{copy.body}</p>
               <div className="universal-hero__actions">
                 <Link className="luma-button luma-button--primary luma-button--large" href={appHref}>{copy.primary}<ArrowLeft size={18} /></Link>
-                <a className="luma-button luma-button--ghost luma-button--large" href="#interactive-demo"><span className="luma-play"><ArrowUp size={14} /></span>{copy.secondary}</a>
+                <a className="luma-button luma-button--ghost luma-button--large" href="#demo"><span className="luma-play"><ArrowUp size={14} /></span>{copy.secondary}</a>
               </div>
               <div className="universal-trust-line">
                 <span><CheckCircle2 size={14} />{copy.noCard}</span>
@@ -245,9 +308,31 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
               </div>
             </div>
 
+            <div className="universal-hero__visual" ref={heroVisualRef} aria-hidden="true">
+              <div className="universal-hero__visual-glow" />
+              <div className="universal-hero__visual-image">
+                <Image src="/brand/backgrounds/crystal-hero.webp" alt="" fill priority sizes="(max-width: 980px) 80vw, 42vw" />
+              </div>
+              <div className="universal-orbit"><i className="universal-orbit__sat" /></div>
+              <div className="universal-orbit universal-orbit--alt"><i className="universal-orbit__sat" /></div>
+              <i className="universal-hero__particle universal-hero__particle--1" />
+              <i className="universal-hero__particle universal-hero__particle--2" />
+              <i className="universal-hero__particle universal-hero__particle--3" />
+              <i className="universal-hero__particle universal-hero__particle--4" />
+            </div>
+          </div>
+        </section>
+
+        <section id="demo" className="universal-demo-section">
+          <div className="universal-demo-section__inner">
+            <div className="universal-demo-section__lead">
+              <span>{copy.demoLeadEyebrow}</span>
+              <h2>{copy.demoLeadTitle}</h2>
+              <p>{copy.demoLeadBody}</p>
+            </div>
             <div id="interactive-demo" className="universal-demo-card" data-service={active.id}>
               <div className="universal-demo-card__art" aria-hidden="true">
-                <Image src="/brand/backgrounds/luminous-world.webp" alt="" fill priority sizes="(max-width: 900px) 100vw, 46vw" />
+                <Image src="/brand/backgrounds/hero-aurora-dark.webp" alt="" fill priority sizes="(max-width: 980px) 100vw, 60vw" />
                 <div className="universal-demo-card__art-fade" />
               </div>
               <div className="universal-demo-card__top">
@@ -336,10 +421,15 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
           <div className="universal-container">
             <div className="universal-scene-heading"><span>{copy.sceneEyebrow}</span><h2>{copy.sceneTitle}</h2><p>{copy.sceneBody}</p></div>
             <div className="universal-scene-frame">
-              <div className="universal-scene-frame__image"><Image src="/brand/backgrounds/digital-loom.webp" alt={isArabic ? "نول رقمي ينسج مسارات منسج" : "A digital loom weaving Minsaj paths"} fill sizes="(max-width: 900px) 100vw, 70vw" /></div>
+              <div className="universal-scene-frame__image"><Image src="/brand/backgrounds/loom-mountain.webp" alt={isArabic ? "جبل أوبسيديان تلتف حوله شرائط منسج المتوهجة" : "An obsidian mountain wrapped in Minsaj's glowing woven ribbons"} fill sizes="(max-width: 980px) 100vw, 70vw" /></div>
               <div className="universal-scene-frame__floating">
                 {copy.sceneCards.map((item, index) => <div className={`universal-float-card universal-float-card--${index + 1}`} key={item}><span>{index === 0 ? <BookOpenCheck size={18} /> : index === 1 ? <SearchCheck size={18} /> : <Code2 size={18} />}</span><strong>{item}</strong><CheckCircle2 size={16} /></div>)}
               </div>
+            </div>
+            <div className="universal-spec-strip">
+              <div className="universal-spec-pill"><span><Sparkles size={18} /></span><div><strong>{copy.specs[0][0]}</strong><small>{copy.specs[0][1]}</small></div></div>
+              <div className="universal-spec-pill"><span><SearchCheck size={18} /></span><div><strong>{copy.specs[1][0]}</strong><small>{copy.specs[1][1]}</small></div></div>
+              <div className="universal-spec-pill"><span><ShieldCheck size={18} /></span><div><strong>{copy.specs[2][0]}</strong><small>{copy.specs[2][1]}</small></div></div>
             </div>
           </div>
         </section>
@@ -357,12 +447,12 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
 
         <section className="universal-final-cta">
           <div className="universal-final-cta__glow" />
-          <div className="universal-container"><span className="universal-final-orb"><MinsajMark size={46} /></span><h2>{copy.finalTitle}</h2><p>{copy.finalBody}</p><Link className="luma-button luma-button--primary luma-button--large" href={appHref}>{copy.finalCta}<ArrowLeft size={18} /></Link></div>
+          <div className="universal-container"><span className="universal-final-orb"><MinsajMark size={46} onDark /></span><h2>{copy.finalTitle}</h2><p>{copy.finalBody}</p><Link className="luma-button luma-button--primary luma-button--large" href={appHref}>{copy.finalCta}<ArrowLeft size={18} /></Link></div>
         </section>
       </main>
 
       <footer className="universal-footer">
-        <div className="universal-container"><div className="universal-footer-brand"><MinsajLogo height={86} /><span className="universal-footer-word">{isArabic ? "منصة منسج للذكاء الاصطناعي" : "The Minsaj AI platform"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
+        <div className="universal-container"><div className="universal-footer-brand"><MinsajLogo height={86} onDark /><span className="universal-footer-word">{isArabic ? "منصة منسج للذكاء الاصطناعي" : "The Minsaj AI platform"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
       </footer>
     </div>
   );
