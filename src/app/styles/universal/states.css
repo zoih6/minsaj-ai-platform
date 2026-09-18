@@ -267,7 +267,7 @@
 
 .u-error-state__title {
   font-size: var(--u-text-lg);
-  font-weight: 650;
+  font-weight: 600;
   color: var(--u-ink);
   margin: 0;
 }

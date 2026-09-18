@@ -77,7 +77,9 @@ dialog_check() {
   ok=1; reason=""
   [ "$fd" != "True" ] && { ok=0; reason="dialog-not-found"; }
   [ "$sh" != "True" ] && { ok=0; reason="$reason not-bottom-sheet"; }
-  [ "$ra" != "24px 24px 0px 0px" ] && { ok=0; reason="$reason radius=$ra"; }
+  # sheet top radius comes from the radius scale (v20: --u-radius-lg = 22px;
+  # was the 24px literal pre-tokenization) — top-only shape is the contract
+  [ "$ra" != "22px 22px 0px 0px" ] && { ok=0; reason="$reason radius=$ra"; }
   [ "$sc" != "True" ] && { ok=0; reason="$reason goals-not-single-col"; }
   [ "$po" != "0" ] && { ok=0; reason="$reason page-overflow=$po"; }
 

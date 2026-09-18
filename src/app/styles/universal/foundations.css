@@ -381,7 +381,7 @@ img, svg { max-width: 100%; height: auto; }
   padding: 10px 16px;
   border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-sm);
   background: var(--u-surface); color: var(--u-primary);
-  font-weight: 650; box-shadow: var(--u-shadow-md);
+  font-weight: 600; box-shadow: var(--u-shadow-md);
   transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-enter);
 }
 .skip-link:focus { transform: none; }
@@ -435,16 +435,16 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 .universal-container { width: min(1240px, calc(100% - (var(--u-page-gutter) * 2))); margin-inline: auto; }
 
 .luma-kicker {
-  width: fit-content; display: inline-flex; align-items: center; gap: 8px;
-  color: var(--u-primary); font-size: 13px; font-weight: 700; letter-spacing: .01em;
+  width: fit-content; display: inline-flex; align-items: center; gap: var(--mj-gap-xs);
+  color: var(--u-primary); font-size: var(--u-text-sm); font-weight: 700; letter-spacing: .01em;
 }
-.luma-kicker svg { padding: 4px; border-radius: 7px; background: var(--u-primary-soft); box-sizing: content-box; }
+.luma-kicker svg { padding: 4px; border-radius: var(--u-radius-xs); background: var(--u-primary-soft); box-sizing: content-box; }
 
 .luma-button {
   min-height: var(--u-touch); padding: 0 19px;
-  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-  border: 1px solid transparent; border-radius: 13px;
-  text-decoration: none; font-weight: 650; cursor: pointer; touch-action: manipulation;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--mj-gap-xs);
+  border: 1px solid transparent; border-radius: var(--u-radius-sm);
+  text-decoration: none; font-weight: 600; cursor: pointer; touch-action: manipulation;
   transition:
     transform var(--u-motion-duration-moderate) var(--u-motion-ease-spring),
     box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard),
@@ -454,8 +454,8 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 }
 @media (hover: hover) { .luma-button:hover { transform: translateY(-2px); } }
 .luma-button:active { transform: translateY(0) scale(.975); }
-.luma-button--small { min-height: var(--u-touch); padding-inline: 16px; border-radius: 11px; font-size: 13px; }
-.luma-button--large { min-height: 54px; padding-inline: 26px; border-radius: 15px; font-size: 15px; }
+.luma-button--small { min-height: var(--u-touch); padding-inline: var(--mj-gap-md); border-radius: var(--u-radius-sm); font-size: var(--u-text-sm); }
+.luma-button--large { min-height: 54px; padding-inline: 26px; border-radius: var(--u-radius); font-size: var(--u-text-md); }
 
 .luma-button--primary {
   color: white;
@@ -489,7 +489,7 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 
 .luma-text-link {
   display: inline-flex; align-items: center; gap: 8px;
-  color: var(--u-primary); text-decoration: none; font-weight: 650;
+  color: var(--u-primary); text-decoration: none; font-weight: 600;
   transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
 .luma-text-link:hover { color: var(--u-primary-strong); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
@@ -499,7 +499,7 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 .universal-theme-toggle {
   min-width: var(--u-touch); height: var(--u-touch);
   display: grid; place-items: center;
-  border: 0; border-radius: 10px;
+  border: 0; border-radius: var(--u-radius-sm);
   color: var(--u-muted); background: transparent; cursor: pointer;
   transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard), transform var(--u-fast) var(--u-motion-ease-spring);
 }

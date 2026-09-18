@@ -5,12 +5,42 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-19 — Phase 19 · **Current version:** v19 · **Branch:** `main` (mobile header collapse contract restored post-v18)
+**Last updated:** 2026-09-19 — Phase 20 · **Current version:** v20 · **Branch:** `main` (design-token system completed: every layer on the closed scales)
 
 ## Current status
 
 - **Live:** <https://minsaj-ai-platform.vercel.app> (auto-deploys on push to `main`)
 - **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (renamed from `nasaq-ai-platform` in v15 — old URL redirects)
+- **Phase 20: the token system is CLOSED — every stylesheet layer now answers to the scales.**
+  The owner's 15-point UI/UX critique (composition, spacing, chips, buttons, typography,
+  colors-as-decoration) was root-caused to one system gap: values hardcoded per-surface,
+  so no rule could hold across pages. v20 pays that debt at the owning layer:
+  * **New tokens** (layout.css): `--mj-gap-2xs` (micro rhythm), `--mj-gap-block`
+    (section rhythm ≥ 2× inner gap), and the Arabic-calibrated leading scale
+    `--mj-leading-hero…caption` (line-height is part of the type token — diacritics
+    clip below 1.4).
+  * **New primitives** (layout.css §14/§15): `mj-section` (a section is SPACING + a
+    header, never chrome) and `mj-surface` (the ONE elevation primitive, levels
+    flat/base/raised, anti-nesting law — a surface never contains a surface of equal
+    or higher level). Markup adoption is the next surface-touch opportunity; audit
+    found zero live card-in-card violations (39 apparent hits were all BEM children).
+  * **~1,120 token replacements** across globals.css + all 11 universal layers:
+    radius → `--u-radius-xs/sm/base/lg/xl/pill` · type → `--u-text-xs…xl` and
+    `--mj-text-*` · gaps → `--mj-gap-2xs…md` · card padding → `--mj-pad-card` ·
+    motion durations/easings · line-heights → `--mj-leading-*` · weights normalized
+    onto 400/500/600/700 (650→600, 750→700, 550→500, 450→400).
+  * **Caption-floor rehabilitation (DEG §5):** 172 real-UI text styles below 11.5px
+    (10/10.5/11px) bumped to `var(--u-text-xs)`. The `.preview-*` marketing demo
+    render keeps its 7–10.5px mono micro-chrome as sanctioned art direction.
+  * **Sheet-radius sentinel updated** (verify-sweep-v12.sh): phone bottom-sheet top
+    radius now asserts the tokenized `22px 22px 0 0` (`--u-radius-lg`) — was the
+    24px literal. Token changes are system changes (DEG §12.6).
+  * **QA:** guards 4/4 green (layout 24/24 · contrast · portal isolation · icon scale
+    94 files) · production build PASS · artifact-verified (tokens present in
+    .next CSS chunks) · sweep **204/206 + dialog 2/2 re-verified = 206/206** ·
+    VLM 9.2/8.5/9.0/8.2 (findings are pre-existing polish: empty-state art,
+    learn-filter rhythm — logged for the next pass, no migration regressions,
+    zero overflow/clipping, RTL clean on all bands).
 - **Phase 19: home-page top bar fixed on phones — the header-collapse contract dropped in the
   v18 rewrite is restored at the owning layer.** Owner report: «البار العلوي في صفحة الهوم في
   وضع الهاتف ملخبط». At 375px the five inline nav links rendered in one nowrap row spilling
