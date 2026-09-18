@@ -281,6 +281,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
               <a href="#services" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.services}</a>
               <a href="#adaptive" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.adaptive}</a>
               <a href="#experience" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.experience}</a>
+              <a href="#trust" tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}>{copy.nav.trust}</a>
               <Link href={appHref} tabIndex={menuOpen ? 0 : -1}>{copy.open}</Link>
             </nav>
           </div>

@@ -16,6 +16,14 @@
 # On the marketing header + app sidebar, at phone AND desktop size:
 #   - every .minsaj-mark renders at the master's intrinsic 534/396 ratio (±2%)
 #   - the mark fits inside its square wrapper (no overflow bleeding into chrome)
+# NEW v12.2 sentinel — the "messed-up mobile header" regression (owner report
+# 2026-09-19: home-page top bar ملخبط on phones — the v18 rewrite dropped the
+# header-collapse rules, so five inline links overflowed off-screen while the
+# hamburger stayed display:none). On the marketing page, per locale and band:
+#   - ≤1180px: inline links hidden, hamburger visible at ≥44px touch size
+#   - ≥1200px: inline links visible, hamburger hidden
+#   - every rendered header control stays on-screen; nav stays one row (≤70px)
+#   - mobile sheet menu carries every inline section link (menu parity)
 # Usage: BASE=http://localhost:PORT bash scripts/verify-sweep-v12.sh
 set -u
 BASE="${BASE:-http://localhost:3000}"
@@ -185,6 +193,91 @@ logo_check() {
   done
 }
 
+# ---- v12.2 sentinel: the marketing header must collapse on narrow ports ----
+marketing_header_check() {
+  local theme="$1"
+  local combo route vw want
+  for combo in "ar 375 collapsed" "en 375 collapsed" "ar 768 collapsed" "en 768 collapsed" "ar 1440 expanded"; do
+    set -- $combo; route="$1"; vw="$2"; want="$3"
+    agent-browser set viewport "$vw" 900 >/dev/null 2>&1
+    agent-browser open "$BASE/$route" >/dev/null 2>&1
+    agent-browser wait --load networkidle >/dev/null 2>&1
+    agent-browser wait 350 >/dev/null 2>&1
+    json=$(agent-browser eval "JSON.stringify({
+      nav: !!document.querySelector('.universal-nav'),
+      linksDisp: (() => { const l = document.querySelector('.universal-nav__links'); return l ? getComputedStyle(l).display : 'missing'; })(),
+      burgerDisp: (() => { const b = document.querySelector('.universal-menu-button'); return b ? getComputedStyle(b).display : 'missing'; })(),
+      burgerW: (() => { const b = document.querySelector('.universal-menu-button'); return b ? Math.round(b.getBoundingClientRect().width) : 0; })(),
+      navH: (() => { const n = document.querySelector('.universal-nav'); return n ? Math.round(n.getBoundingClientRect().height) : 999; })(),
+      chromeOnScreen: (() => {
+        const nav = document.querySelector('.universal-nav');
+        if (!nav) return false;
+        const els = [nav.querySelector('.luma-brand'), nav.querySelector('.luma-locale'), nav.querySelector('.universal-menu-button'), ...nav.querySelectorAll('.universal-nav__links a')];
+        for (const el of els) {
+          if (!el || getComputedStyle(el).display === 'none') continue;
+          const b = el.getBoundingClientRect();
+          if (b.width < 1 && b.height < 1) continue;
+          if (b.x < -1 || b.right > window.innerWidth + 1) return false;
+        }
+        return true;
+      })(),
+      pageOverflow: document.documentElement.scrollWidth - window.innerWidth
+    })" 2>/dev/null | grep '^"' | tail -1)
+
+    nv=$(get_metric "$json" nav); ld=$(get_metric "$json" linksDisp)
+    bd=$(get_metric "$json" burgerDisp); bw=$(get_metric "$json" burgerW)
+    nh=$(get_metric "$json" navH); co=$(get_metric "$json" chromeOnScreen)
+    po=$(get_metric "$json" pageOverflow)
+
+    ok=1; reason=""
+    [ "$nv" != "True" ] && { ok=0; reason="no-marketing-nav"; }
+    if [ "$want" = "collapsed" ]; then
+      [ "$ld" = "flex" ] && { ok=0; reason="$reason links-visible-should-collapse"; }
+      { [ "$bd" != "grid" ] && [ "$bd" != "flex" ]; } && { ok=0; reason="$reason burger-hidden=$bd"; }
+      [ "$bw" -lt 43 ] 2>/dev/null && { ok=0; reason="$reason burger-under-44px=$bw"; }
+    else
+      [ "$ld" != "flex" ] && { ok=0; reason="$reason links-hidden-should-expand=$ld"; }
+      [ "$bd" != "none" ] && { ok=0; reason="$reason burger-visible-should-hide=$bd"; }
+    fi
+    [ "$nh" -gt 70 ] 2>/dev/null && { ok=0; reason="$reason nav-height=$nh"; }
+    [ "$co" != "True" ] && { ok=0; reason="$reason header-chrome-off-screen"; }
+    [ "$po" != "0" ] && { ok=0; reason="$reason page-overflow=$po"; }
+
+    if [ $ok -eq 1 ]; then PASS=$((PASS+1)); else FAIL=$((FAIL+1)); FAILED_LIST="${FAILED_LIST}\n  [$theme/mktheader] $route@${vw}w/$want → $reason"; fi
+  done
+
+  # menu-parity probe: the sheet menu must carry every inline section link
+  agent-browser set viewport 375 812 >/dev/null 2>&1
+  agent-browser open "$BASE/ar" >/dev/null 2>&1
+  agent-browser wait --load networkidle >/dev/null 2>&1
+  agent-browser wait 350 >/dev/null 2>&1
+  agent-browser eval "document.querySelector('.universal-menu-button') && document.querySelector('.universal-menu-button').click(); 'ok'" >/dev/null 2>&1
+  agent-browser wait 450 >/dev/null 2>&1
+  json=$(agent-browser eval "JSON.stringify({
+    parity: (() => {
+      const menu = document.querySelector('.universal-mobile-menu');
+      const inline = document.querySelector('.universal-nav__links');
+      if (!menu || !inline) return false;
+      const m = [...menu.querySelectorAll('a')].map(a => a.getAttribute('href'));
+      return [...inline.querySelectorAll('a')].map(a => a.getAttribute('href')).every(h => m.includes(h));
+    })(),
+    menuInViewport: (() => {
+      const menu = document.querySelector('.universal-mobile-menu');
+      if (!menu) return false;
+      const b = menu.getBoundingClientRect();
+      return b.height > 10 && b.x >= 0 && b.right <= window.innerWidth;
+    })()
+  })" 2>/dev/null | grep '^"' | tail -1)
+
+  pa=$(get_metric "$json" parity); mv=$(get_metric "$json" menuInViewport)
+
+  ok=1; reason=""
+  [ "$pa" != "True" ] && { ok=0; reason="sheet-menu-missing-inline-links"; }
+  [ "$mv" != "True" ] && { ok=0; reason="$reason sheet-menu-not-in-viewport"; }
+
+  if [ $ok -eq 1 ]; then PASS=$((PASS+1)); else FAIL=$((FAIL+1)); FAILED_LIST="${FAILED_LIST}\n  [$theme/mktmenu] parity → $reason"; fi
+}
+
 for THEME in ${THEMES:-light dark}; do
   # Pin the theme BEFORE any route load (next-themes reads localStorage first paint)
   agent-browser open "$BASE/ar" >/dev/null 2>&1
@@ -225,11 +318,15 @@ for THEME in ${THEMES:-light dark}; do
   # v12.1 logo-ratio sentinel (once per theme, phone + desktop, header + sidebar)
   logo_check "$THEME"
   echo "[$THEME/logo] running total: $PASS pass / $FAIL fail"
+  # v12.2 marketing-header collapse sentinel (phone + tablet + desktop, both
+  # directions, plus the sheet-menu parity probe)
+  marketing_header_check "$THEME"
+  echo "[$THEME/mktheader] running total: $PASS pass / $FAIL fail"
 done
 
 TOTAL=$((PASS+FAIL))
 echo "==================== SWEEP v12 RESULT ===================="
-echo "routes: ${#ROUTES[@]} × 3 viewports × 2 themes + 2 dialog + 4 controlbar + 8 logo sentinels = $TOTAL checks"
+echo "routes: ${#ROUTES[@]} × 3 viewports × 2 themes + 2 dialog + 4 controlbar + 8 logo + 12 marketing-header sentinels = $TOTAL checks"
 echo "PASS: $PASS / $TOTAL"
 [ -n "$FAILED_LIST" ] && echo -e "FAILED:$FAILED_LIST"
 [ $FAIL -eq 0 ] && echo "ALL GREEN"

@@ -5,30 +5,36 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-18 — Phase 18 · **Current version:** v18 · **Branch:** `main` (Cinematic Dark marketing redesign per the owner's approved concept)
+**Last updated:** 2026-09-19 — Phase 19 · **Current version:** v19 · **Branch:** `main` (mobile header collapse contract restored post-v18)
 
 ## Current status
 
 - **Live:** <https://minsaj-ai-platform.vercel.app> (auto-deploys on push to `main`)
 - **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (renamed from `nasaq-ai-platform` in v15 — old URL redirects)
+- **Phase 19: home-page top bar fixed on phones — the header-collapse contract dropped in the
+  v18 rewrite is restored at the owning layer.** Owner report: «البار العلوي في صفحة الهوم في
+  وضع الهاتف ملخبط». At 375px the five inline nav links rendered in one nowrap row spilling
+  off-screen (x=-50/-108), «كيف تتكيف؟» wrapped to two lines inflating the pill to 77px, the EN
+  toggle was pushed off-screen (x=-176), and the hamburger stayed `display:none` while its sheet
+  menu worked fine in the markup. Root cause: v18 moved the marketing viewport ladder from
+  responsive.css into marketing.css but silently dropped the three collapse rules
+  (`.universal-nav__links{display:none}` · `.universal-menu-button{display:grid}` ·
+  `grid-template-columns:1fr 1fr`). Fix: rules restored inside the canonical ≤1180px band in
+  marketing.css; the missing `#trust` link was added to the mobile sheet menu (desktop/mobile
+  parity). Guard: sweep v12.2 grows 194 → **206 checks** (`marketing_header_check` — collapse/
+  expand contract at ar+en @375/768 + ar@1440, touch size ≥44px, nav ≤70px, chrome on-screen,
+  and a menu-parity probe), negative-tested against broken production (5/6 fail) and
+  positive-tested locally (6/6 pass).
 - **Phase 18: «Cinematic Dark» — the marketing site redesigned onto the owner's approved
   concept (dark premium, 3D materiality, orbital motion).** The whole marketing page is now
   DARK-LOCKED: the verified dark token set is scoped to `.universal-site` in marketing.css,
   so the page renders cinematic-dark regardless of the theme toggle (which stays in the app
-  shell only). New: hero with the generated 3D crystal render (z-ai + 2 VLM rounds, 80KB webp)
-  framed by two animated orbital rings + 4 floating particles + fine-pointer parallax;
-  headline rewritten in the weaving voice («أفكارُك خيوطٌ، ونحن ننسجها واقعًا»);
-  nav with IntersectionObserver scroll-spy (gradient underline on the active section);
-  the interactive demo card moved to its own `#demo` section with a lead; services as glass
-  cards with glowing icon chips; the experience section stars the obsidian-mountain + violet
-  woven-ribbon render (117KB webp) with 3 spec pills; film-grain noise overlay (SVG
-  turbulence, 2.8% opacity, fixed, pointer-events-none). KEPT BY DESIGN: the official
-  owner logo everywhere (dark variant via `onDark` — the concept's generic M-monogram was
-  rejected), RTL-native header, the owner's identity film, no WebGL dependency (layered
-  renders + CSS/canvas motion instead), honest product copy. Unused assets deleted
-  (digital-loom, hero-aurora-light, luminous-world). og-image recomposed from official
-  assets on the dark backdrop (VLM PASS incl. Arabic shaping). responsive.css thinned to
-  shell chrome + shared a11y contracts (marketing ladder now lives in marketing.css).
+  shell only). Hero with the generated 3D crystal render framed by orbital rings + particles
+  + parallax; weaving-voice headline; scroll-spy nav; demo in its own `#demo` section; glass
+  service cards; obsidian-mountain experience render + spec pills; film-grain overlay. KEPT:
+  official owner logo, RTL-native header, identity film, no WebGL. responsive.css thinned
+  (marketing ladder moved into marketing.css — the migration that dropped the collapse rules
+  fixed in Phase 19).
 - **Phase 17: logo distortion root-caused and fixed — the mark now renders at the master's
   exact intrinsic ratio everywhere.** Owner report: the header symbol looked stretched/squashed
   vs the original artwork. Root cause: v16's `MinsajMark` flipped the aspect constant's meaning
@@ -93,20 +99,20 @@
   measurement — single 46px row, all centers y=302.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 18, 2026-09-18)
+## Quality gates (last verified: Phase 19, 2026-09-19)
 
 | Gate | Status |
 |---|---|
-| `bun run build` (production, Turbopack) | ✅ green (60/60 pages, post-v18) |
-| `bun run lint` (ESLint) | ✅ 0 errors (post-v18) |
-| `npx tsc --noEmit` | ✅ 0 errors (post-v18) |
+| `bun run build` (production, Turbopack) | ✅ green (post-v19) |
+| `bun run lint` (ESLint) | ✅ 0 errors (post-v19) |
+| `npx tsc --noEmit` | ✅ 0 errors (post-v19) |
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
 | Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
-| Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (marketing dark-lock reuses the verified dark token values verbatim) |
-| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ **194/194** (v12.1: logo-ratio sentinels re-verified on the dark page — mark 1.349, wrapper fit, 0 overflow) |
+| Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes |
+| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ **206/206** (v12.2: NEW marketing-header collapse/parity sentinel — negative-tested vs broken prod 5/6 fail, local 6/6 pass) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
-| Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
-| CI (GitHub Actions) | ✅ green on `main` (5741b8f at audit time; v13.1: all 6 CI steps re-verified locally just before push) |
+| Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (94 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
+| CI (GitHub Actions) | ✅ green on `main` |
 
 ## Portal/container isolation (NEW — Phase 11 architecture)
 

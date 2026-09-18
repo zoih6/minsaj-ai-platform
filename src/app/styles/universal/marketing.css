@@ -497,6 +497,13 @@ html[dir="ltr"] .universal-service-card:hover .universal-service-card__top > svg
    ===================================================================== */
 @media (min-width: 1600px) { .universal-hero__grid { gap: 96px; } }
 @media (max-width: 1180px) {
+  /* Header collapse contract (restored from the pre-v18 ladder): the inline
+     links give way to the hamburger + sheet menu; the 3-track pill grid
+     (1fr auto 1fr) reflows to two tracks because the hidden middle item no
+     longer occupies the auto column. */
+  .universal-nav__links { display: none; }
+  .universal-menu-button { display: grid; }
+  .universal-nav { grid-template-columns: 1fr 1fr; }
   .universal-hero__grid { grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 42px; }
   .universal-hero__copy h1 { font-size: 54px; }
   .universal-hero__visual { max-width: 460px; }
