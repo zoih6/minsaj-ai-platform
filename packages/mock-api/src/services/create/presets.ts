@@ -1,5 +1,5 @@
-import type { CreateSessionState, CreateStructure, CreateVariant, CreateBrief, CreateDraft, ServiceArtifact, ServiceArtifactVersion, ServiceSession } from "@nasaq/contracts/services";
-import { createSessionStateSchema } from "@nasaq/contracts/services";
+import type { CreateSessionState, CreateStructure, CreateVariant, CreateBrief, CreateDraft, ServiceArtifact, ServiceArtifactVersion, ServiceSession } from "@minsaj/contracts/services";
+import { createSessionStateSchema } from "@minsaj/contracts/services";
 import { buildServiceScenarioFixture } from "../fixtures";
 import { createServiceIdFactory, type ServiceIdFactory } from "../ids";
 import { buildCreateDocumentStructure, buildCreateDocumentDraft, buildCreateDocumentAlternative, documentReviewSuggestions } from "./documents";

@@ -1,8 +1,8 @@
-# Nasaq AI — Product Brief
+# Minsaj AI — Product Brief
 
 | | |
 |---|---|
-| **Product** | Nasaq AI — نَسَق AI |
+| **Product** | Minsaj AI — منسج AI |
 | **Type** | Unified AI workspace (web application) |
 | **Document** | Product Brief (One-Pager) |
 | **Version** | 1.0 — 2026-09 |
@@ -14,7 +14,7 @@
 
 ## 1. One-Sentence Definition
 
-**Nasaq AI is an Arabic-first unified AI workspace that turns a user's intent into a specialized, stateful workflow — and ends every task with a structured, saveable, resumable output.**
+**Minsaj AI is an Arabic-first unified AI workspace that turns a user's intent into a specialized, stateful workflow — and ends every task with a structured, saveable, resumable output.**
 
 ## 2. Problem
 
@@ -50,7 +50,7 @@ Intent → Workspace → Context → Execution → Structured Output → Save �
 
 - **Arabic-first gap**: No leading AI workspace treats Arabic, RTL, and mixed-direction text as native product foundations rather than afterthoughts.
 - **Workflow-over-chat gap**: The market is saturated with chat wrappers; durable, output-oriented workflows remain rare.
-- **Trust gap**: Nasaq's hard *Truth & Execution* rules (never imply an action that did not happen) directly answer the growing user distrust of AI products.
+- **Trust gap**: Minsaj's hard *Truth & Execution* rules (never imply an action that did not happen) directly answer the growing user distrust of AI products.
 
 ## 6. Target Users (summary)
 
@@ -68,7 +68,7 @@ Intent → Workspace → Context → Execution → Structured Output → Save �
 - Not a bare chat app.
 - Not an autonomous agent with unrestricted device/system access.
 - Not a full enterprise automation platform, IDE replacement, or BI suite.
-- No real backend services in this phase — the frontend foundation ships against a typed mock layer (`@nasaq/mock-api`) designed for later replacement.
+- No real backend services in this phase — the frontend foundation ships against a typed mock layer (`@minsaj/mock-api`) designed for later replacement.
 
 ## 8. Phase Strategy
 

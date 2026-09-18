@@ -3,11 +3,11 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { FlaskConical, Send } from "lucide-react";
-import type { Locale, ServiceId, ServiceScenarioId } from "@nasaq/contracts/services";
-import { genericServiceScenarioIds, serviceIds } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
-import { switchLocaleInPath } from "@nasaq/i18n";
-import { createDeterministicMockServiceClient } from "@nasaq/mock-api/services";
+import type { Locale, ServiceId, ServiceScenarioId } from "@minsaj/contracts/services";
+import { genericServiceScenarioIds, serviceIds } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
+import { switchLocaleInPath } from "@minsaj/i18n";
+import { createDeterministicMockServiceClient } from "@minsaj/mock-api/services";
 import { useServiceWorkbench, ServiceWorkbenchProvider } from "@/features/service-workbench/state/workbench-provider";
 import { ServiceWorkbenchShell } from "@/features/service-workbench/components/service-workbench-shell";
 import {

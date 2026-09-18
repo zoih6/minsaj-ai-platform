@@ -25,8 +25,8 @@ import {
   ShieldCheck,
   Workflow,
 } from "lucide-react";
-import { Badge, NasaqMark } from "@nasaq/ui";
-import type { Locale } from "@nasaq/contracts";
+import { Badge, MinsajMark } from "@minsaj/ui";
+import type { Locale } from "@minsaj/contracts";
 
 type Stage = "chat" | "agent" | "flow";
 type ScenarioId = "market" | "document" | "content";
@@ -178,7 +178,7 @@ const ui = {
     sourceCount: "3 مصادر تجريبية",
     duration: "زمن تقريبي 18ث",
     footerTitle: "واجهة هادئة عندما تكون المهمة معقدة.",
-    footerBody: "نَسَق لا يخفي التشغيل خلف مؤثرات؛ يعرض السياق والقرار والموافقة والتكلفة في المكان نفسه.",
+    footerBody: "منسج لا يخفي التشغيل خلف مؤثرات؛ يعرض السياق والقرار والموافقة والتكلفة في المكان نفسه.",
     enterWorkspace: "ادخل النموذج الكامل",
   },
   en: {
@@ -252,7 +252,7 @@ const ui = {
     sourceCount: "3 demo sources",
     duration: "Approx. duration 18s",
     footerTitle: "A calm interface for complex work.",
-    footerBody: "Nasaq does not hide execution behind effects; it keeps context, decisions, approvals, and cost in one place.",
+    footerBody: "Minsaj does not hide execution behind effects; it keeps context, decisions, approvals, and cost in one place.",
     enterWorkspace: "Enter the full prototype",
   },
 } as const;
@@ -360,8 +360,8 @@ export function ProductPreview({ locale }: { locale: Locale }) {
       <header className="preview-site-header">
         <div className="preview-site-header__inner">
           <Link className="brand-lockup" href={`/${locale}`}>
-            <NasaqMark size={34} />
-            <span>نَسَق</span>
+            <MinsajMark size={34} />
+            <span>منسج</span>
           </Link>
           <div className="preview-breadcrumb"><span>{t.preview}</span><span aria-hidden="true">/</span><strong>Chat → Agent → Flow</strong></div>
           <div className="preview-header-actions">
@@ -395,14 +395,14 @@ export function ProductPreview({ locale }: { locale: Locale }) {
 
         <section id="interactive-preview" className="preview-workspace" aria-label={t.preview}>
           <div className="preview-workspace__bar">
-            <div className="preview-workspace__identity"><NasaqMark size={28} /><span><strong>{t.workspace}</strong><small>{scenario.project}</small></span></div>
+            <div className="preview-workspace__identity"><MinsajMark size={28} /><span><strong>{t.workspace}</strong><small>{scenario.project}</small></span></div>
             <div className="preview-simulation-state"><span className="preview-live-dot" aria-hidden="true" />{t.local}</div>
             <div className="preview-workspace__meta"><LockKeyhole size={14} aria-hidden="true" /><span>{t.noExternal}</span><span className="mono">DEMO-024</span></div>
           </div>
 
           <div className="preview-workspace__body">
             <nav className="preview-rail" aria-label={locale === "ar" ? "أقسام المعاينة" : "Preview sections"}>
-              <NasaqMark size={34} />
+              <MinsajMark size={34} />
               {stageOrder.map((item) => {
                 const Icon = stageIcons[item];
                 return <button key={item} type="button" className={stage === item ? "is-active" : ""} onClick={() => changeStage(item)} aria-label={t.stages[item]} aria-current={stage === item ? "page" : undefined}><Icon size={18} /></button>;
@@ -455,7 +455,7 @@ export function ProductPreview({ locale }: { locale: Locale }) {
                     </div>
                     <div className="preview-message preview-message--user"><span>{t.promptLabel}</span><p>{scenario.prompt}</p></div>
                     <article className="preview-answer">
-                      <div className="preview-answer__mark"><NasaqMark size={28} /></div>
+                      <div className="preview-answer__mark"><MinsajMark size={28} /></div>
                       <div><div className="preview-answer__meta"><strong>{t.answerLabel}</strong><Badge tone="success">{t.done}</Badge></div><p>{scenario.answer}</p></div>
                     </article>
                     <section className="preview-evidence" aria-labelledby="preview-evidence-title">

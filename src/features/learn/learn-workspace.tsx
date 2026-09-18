@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useReducer, useRef, useSyncExternalStore } from "react";
-import type { Locale, ServiceScenarioId, ServiceSession, ServiceStage } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
-import { buildLearnPath, createDeterministicMockServiceClient, createLearnStatePreset, createServiceIdFactory, getLearnTopic, type LearnStatePreset, type LearnTopicId } from "@nasaq/mock-api/services";
+import type { Locale, ServiceScenarioId, ServiceSession, ServiceStage } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
+import { buildLearnPath, createDeterministicMockServiceClient, createLearnStatePreset, createServiceIdFactory, getLearnTopic, type LearnStatePreset, type LearnTopicId } from "@minsaj/mock-api/services";
 import { ServiceWorkbenchProvider, useServiceWorkbench } from "@/features/service-workbench/state/workbench-provider";
 import { ServiceWorkbenchShell } from "@/features/service-workbench/components/service-workbench-shell";
 import type { ServiceDomainBlock, ServiceStoreStatus } from "@/features/service-workbench/storage/store";

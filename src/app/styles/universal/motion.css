@@ -216,13 +216,13 @@
 .service-path-card li.is-complete > span { transform: scale(1.04); }
 
 /* Persistent, dismissible completion feedback.
-   Portaled to document.body, so the offset reads --nq-tabbar-reserve from
+   Portaled to document.body, so the offset reads --mj-tabbar-reserve from
    :root (mobile) to float ABOVE the bottom tab bar instead of on top of it. */
 .u-feedback-toast {
   position: fixed;
   z-index: 140;
   inset-inline-end: max(18px,env(safe-area-inset-right));
-  inset-block-end: calc(max(18px,env(safe-area-inset-bottom)) + var(--nq-tabbar-reserve, 0px));
+  inset-block-end: calc(max(18px,env(safe-area-inset-bottom)) + var(--mj-tabbar-reserve, 0px));
   width: min(390px,calc(100vw - 28px));
   min-height: 58px;
   padding: 7px 7px 7px 13px;
@@ -472,12 +472,12 @@
 
 /* Theme toggle: icon materialises with a spring when the mode flips
    (React swaps the icon component → remount plays the entrance). */
-@keyframes nasaq-theme-icon-in {
+@keyframes minsaj-theme-icon-in {
   from { opacity: 0; transform: rotate(-35deg) scale(.55); }
   to   { opacity: 1; transform: rotate(0deg) scale(1); }
 }
 .universal-theme-toggle > svg {
-  animation: nasaq-theme-icon-in var(--u-motion-duration-moderate) var(--u-motion-ease-spring);
+  animation: minsaj-theme-icon-in var(--u-motion-duration-moderate) var(--u-motion-ease-spring);
 }
 @media (prefers-reduced-motion: reduce) {
   .universal-theme-toggle > svg { animation: none; }

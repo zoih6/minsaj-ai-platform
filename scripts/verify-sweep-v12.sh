@@ -8,9 +8,9 @@
 # NEW v12 sentinel — the "scattered control group" regression (owner report
 # 2026-09-17: goals bar / filter toolbars shattering into stranded rows on
 # phones). At phone size, on the two densest control-bar surfaces:
-#   - every .nq-control-bar__group renders its chips on ONE row (no wrap pile)
-#   - every .nq-control-bar is at most two composed rows (≤ 100px)
-#   - every .nq-chip honors the 44px touch floor
+#   - every .mj-control-bar__group renders its chips on ONE row (no wrap pile)
+#   - every .mj-control-bar is at most two composed rows (≤ 100px)
+#   - every .mj-chip honors the 44px touch floor
 # Usage: BASE=http://localhost:PORT bash scripts/verify-sweep-v12.sh
 set -u
 BASE="${BASE:-http://localhost:3000}"
@@ -75,7 +75,7 @@ dialog_check() {
 
 # ---- v12 sentinel: control bars must not shatter on phones ----
 # Goals bar (label + pills + tail) and the ops toolbar (6 filter chips) are
-# the densest instances of the nq-control-bar primitive.
+# the densest instances of the mj-control-bar primitive.
 controlbar_check() {
   local theme="$1"
   agent-browser set viewport 375 812 >/dev/null 2>&1
@@ -85,10 +85,10 @@ controlbar_check() {
     agent-browser wait --load networkidle >/dev/null 2>&1
     agent-browser wait 350 >/dev/null 2>&1
     json=$(agent-browser eval "JSON.stringify({
-      bars: document.querySelectorAll('.nq-control-bar').length,
-      chips: document.querySelectorAll('.nq-chip').length,
+      bars: document.querySelectorAll('.mj-control-bar').length,
+      chips: document.querySelectorAll('.mj-chip').length,
       groupSingleRow: (() => {
-        for (const g of document.querySelectorAll('.nq-control-bar__group')) {
+        for (const g of document.querySelectorAll('.mj-control-bar__group')) {
           const kids = [...g.children].filter(c => { const r = c.getBoundingClientRect(); return r.width > 0 && r.height > 0; });
           if (!kids.length) continue;
           const first = kids[0].getBoundingClientRect();
@@ -100,13 +100,13 @@ controlbar_check() {
         return true;
       })(),
       barHeightOk: (() => {
-        for (const bar of document.querySelectorAll('.nq-control-bar')) {
+        for (const bar of document.querySelectorAll('.mj-control-bar')) {
           if (bar.getBoundingClientRect().height > 100) return false;
         }
         return true;
       })(),
       chipTouchOk: (() => {
-        for (const c of document.querySelectorAll('.nq-chip')) {
+        for (const c of document.querySelectorAll('.mj-chip')) {
           if (c.getBoundingClientRect().height < 43.5) return false;
         }
         return true;

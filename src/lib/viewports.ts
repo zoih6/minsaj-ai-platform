@@ -1,5 +1,5 @@
 /**
- * Nasaq Responsive Layout Architecture — single source of truth.
+ * Minsaj Responsive Layout Architecture — single source of truth.
  *
  * These values MUST stay in sync with the CSS side:
  *   src/app/styles/universal/layout.css  (@media boundaries + :root tokens)

@@ -1,4 +1,4 @@
-import type { LearnDiagnosticAnswer, LearnLevel, LearnPath, LearnPathModule } from "@nasaq/contracts/services";
+import type { LearnDiagnosticAnswer, LearnLevel, LearnPath, LearnPathModule } from "@minsaj/contracts/services";
 import { getDenseTopicModules, getLearnTopic, type LearnDiagnosticQuestion, type LearnTopicId, type LearnTopicModule } from "./topics";
 
 /**

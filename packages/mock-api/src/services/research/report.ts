@@ -1,7 +1,7 @@
-import type { Locale, ResearchPlan, ResearchReportState, ResearchSessionState } from "@nasaq/contracts/services";
+import type { Locale, ResearchPlan, ResearchReportState, ResearchSessionState } from "@minsaj/contracts/services";
 import { getResearchTopic, type ResearchTopicId } from "./topics";
 import { computeClaimVerdicts, type ResearchClaimVerdict } from "./claims";
-import type { ServiceEvidenceRef } from "@nasaq/contracts/services";
+import type { ServiceEvidenceRef } from "@minsaj/contracts/services";
 
 /**
  * Deterministic report draft builder — U2.2.

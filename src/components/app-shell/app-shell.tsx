@@ -33,9 +33,9 @@ import {
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { NasaqMark } from "@nasaq/ui";
-import { switchLocaleInPath, type Dictionary } from "@nasaq/i18n";
-import type { Locale } from "@nasaq/contracts";
+import { MinsajMark } from "@minsaj/ui";
+import { switchLocaleInPath, type Dictionary } from "@minsaj/i18n";
+import type { Locale } from "@minsaj/contracts";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { useViewportMode } from "@/hooks/use-viewport-mode";
 
@@ -79,7 +79,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         models: "النماذج",
         settings: "الإعدادات",
         start: "ابدأ شيئًا جديدًا",
-        search: "ابحث في نَسَق…",
+        search: "ابحث في منسج…",
         searchHint: "انتقل إلى خدمة، عمل، أو إعداد",
         noResult: "لا توجد نتيجة مطابقة",
         personal: "مساحتي",
@@ -114,7 +114,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         models: "Models",
         settings: "Settings",
         start: "Start something new",
-        search: "Search Nasaq…",
+        search: "Search Minsaj…",
         searchHint: "Go to a service, item, or setting",
         noResult: "No matching result",
         personal: "My space",
@@ -177,7 +177,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
   /* Restore desktop collapse preference (deferred — external system read) */
   useEffect(() => {
-    const stored = window.localStorage.getItem("nasaq.universal.sidebar");
+    const stored = window.localStorage.getItem("minsaj.universal.sidebar");
     if (stored !== "collapsed") return;
     const restoreFrame = window.requestAnimationFrame(() => setCollapsed(true));
     return () => window.cancelAnimationFrame(restoreFrame);
@@ -254,7 +254,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
     if (viewport === "tablet") { setOverlayOpen((value) => !value); return; }
     setCollapsed((value) => {
       const next = !value;
-      window.localStorage.setItem("nasaq.universal.sidebar", next ? "collapsed" : "expanded");
+      window.localStorage.setItem("minsaj.universal.sidebar", next ? "collapsed" : "expanded");
       return next;
     });
   }
@@ -268,7 +268,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
         <aside id="universal-shell-sidebar" className="universal-shell-sidebar" aria-label={isArabic ? "التنقل الرئيسي" : "Primary navigation"}>
           <div className="universal-shell-brand-row">
-            <Link href={`/${locale}/app/home`} className="universal-shell-brand"><span><NasaqMark size={34} /></span><b>{isArabic ? "نَسَق" : "Nasaq"}</b><Sparkles size={12} /></Link>
+            <Link href={`/${locale}/app/home`} className="universal-shell-brand"><span><MinsajMark size={34} /></span><b>{isArabic ? "منسج" : "Minsaj"}</b><Sparkles size={12} /></Link>
             <button type="button" className="universal-shell-collapse" onClick={toggleSidebar} aria-label={railActive ? labels.expand : labels.collapse} title={railActive ? labels.expand : labels.collapse}>{railActive ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button>
             <button type="button" className="universal-shell-close" onClick={() => setMobileOpen(false)} aria-label={labels.close}><X size={18} /></button>
           </div>
@@ -303,7 +303,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
           <aside id="universal-notifications" className="universal-notifications" data-state={notificationsOpen ? "open" : "closed"} role="dialog" aria-label={labels.notifications} aria-hidden={!notificationsOpen}><header><div><span>{labels.notifications}</span><small>2</small></div><button type="button" tabIndex={notificationsOpen ? 0 : -1} onClick={() => setNotificationsOpen(false)} aria-label={labels.close}><X size={18} /></button></header><Link href={`${base}/learn`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><GraduationCap size={18} /></span><div><strong>{labels.noticeTitle}</strong><p>{labels.noticeBody}</p></div></Link><Link href={`${base}/library`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><CheckCircle2 size={18} /></span><div><strong>{labels.savedTitle}</strong><p>{labels.savedBody}</p></div></Link></aside>
 
-          <main id="main-content" className="universal-shell-content"><div className="universal-route-frame nq-flow" key={pathname}>{children}</div></main>
+          <main id="main-content" className="universal-shell-content"><div className="universal-route-frame mj-flow" key={pathname}>{children}</div></main>
         </div>
 
         <nav className="universal-shell-mobile-nav" aria-label={isArabic ? "التنقل على الهاتف" : "Mobile navigation"}>

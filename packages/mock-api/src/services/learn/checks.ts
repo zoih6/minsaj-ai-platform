@@ -4,7 +4,7 @@ import type {
   LearnFeedback,
   LearnPath,
   LearnProgress,
-} from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
 
 import type { LearnTopicModule } from "./topics";
 

@@ -1,4 +1,4 @@
-# Nasaq AI — Design Engineering Governance
+# Minsaj AI — Design Engineering Governance
 
 | | |
 |---|---|
@@ -11,9 +11,9 @@
 
 ## 0. The operating principle (read this twice)
 
-Nasaq's visual history proves one thing: every "small fix" applied at the page level became a patch on a patch (v3: ~200 lines of per-element viewport patches; v10: ~100 un-tokenized colors; v11: dead mobile rules trapped in container queries). The result of patch-thinking is exactly what the owner rejected: **"random, annoying, catastrophic work."**
+Minsaj's visual history proves one thing: every "small fix" applied at the page level became a patch on a patch (v3: ~200 lines of per-element viewport patches; v10: ~100 un-tokenized colors; v11: dead mobile rules trapped in container queries). The result of patch-thinking is exactly what the owner rejected: **"random, annoying, catastrophic work."**
 
-Therefore: Nasaq is treated as an ongoing **engineering and design rehabilitation program**, not a queue of unrelated bugs. When a defect appears anywhere, the response is a system response:
+Therefore: Minsaj is treated as an ongoing **engineering and design rehabilitation program**, not a queue of unrelated bugs. When a defect appears anywhere, the response is a system response:
 
 ```
 one symptom → find the class of defect → fix the shared primitive →
@@ -60,8 +60,8 @@ A surface is "done" when all of these hold — anything less is unfinished, rega
 ```
 page-root (declares container context)
 └── content frame (max-width: --u-content-max; gutter: --u-page-gutter)
-    ├── page header (nq-page-header: title + actions)
-    ├── primary content (nq-split / nq-grid / nq-data-list …)
+    ├── page header (mj-page-header: title + actions)
+    ├── primary content (mj-split / mj-grid / mj-data-list …)
     │   ├── section
     │   │   └── …
     │   └── section
@@ -71,20 +71,20 @@ page-root (declares container context)
 - One content frame per page. **No nested containers "for looks"** — every wrapper must earn its place by a layout role (grouping, scrolling, splitting) stated in its class name.
 - Fixed page-level widths are forbidden; widths flow from the frame and the primitives.
 
-### 3.2 The layout vocabulary is `nq-*` (layout.css) — use it or extend it, never bypass it
+### 3.2 The layout vocabulary is `mj-*` (layout.css) — use it or extend it, never bypass it
 
 | Primitive | Role |
 |---|---|
-| `nq-flow` | vertical flow between siblings |
-| `nq-page-header` | title/description/actions row (auto-stacks actions ≤640) |
-| `nq-control-bar` | **THE options-strip shape** (§3.5): `__label` + `__group` + `__tail` — filter bars, goal bars, chip selectors |
-| `nq-chip` | shared geometry for pill option buttons (44px · pill radius · `--u-text-sm`); surfaces own color/state only |
-| `nq-grid` + `--tight/--roomy/--stats` | auto-fill/minmax card grids (self-reflow) |
-| `nq-stack` (+`--tight`) | vertical stack |
-| `nq-cluster` (+`--between/--end/--stretch`) | inline row with wrap |
-| `nq-split` (+`--aside-start`) | two-column with readable aside |
-| `nq-data-list` | responsive records: table on wide, cards on narrow |
-| `nq-scroll-x` | contained horizontal scroll |
+| `mj-flow` | vertical flow between siblings |
+| `mj-page-header` | title/description/actions row (auto-stacks actions ≤640) |
+| `mj-control-bar` | **THE options-strip shape** (§3.5): `__label` + `__group` + `__tail` — filter bars, goal bars, chip selectors |
+| `mj-chip` | shared geometry for pill option buttons (44px · pill radius · `--u-text-sm`); surfaces own color/state only |
+| `mj-grid` + `--tight/--roomy/--stats` | auto-fill/minmax card grids (self-reflow) |
+| `mj-stack` (+`--tight`) | vertical stack |
+| `mj-cluster` (+`--between/--end/--stretch`) | inline row with wrap |
+| `mj-split` (+`--aside-start`) | two-column with readable aside |
+| `mj-data-list` | responsive records: table on wide, cards on narrow |
+| `mj-scroll-x` | contained horizontal scroll |
 
 **A new layout need means a new/extended primitive — not a bespoke grid on one page.** If two pages need the same novel arrangement, it becomes a primitive the day the second one appears.
 
@@ -96,7 +96,7 @@ Every page root declares one: `ops-page` · `service-space` · `builder-page` ·
 
 - nested wrappers with no layout role · fixed widths on content (`width: 347px`) · `position: absolute` as a responsiveness mechanism · negative margins as alignment patches · magic numbers (any spacing/size value not from the scales in §4–§6) · per-page spacing systems · `height: 100vh` (use `100dvh` with fallback)
 
-### 3.5 Control bars (`nq-control-bar`) — the options-strip contract (born in v14)
+### 3.5 Control bars (`mj-control-bar`) — the options-strip contract (born in v14)
 
 Every "label + option chips + aux action" composition (goal bars, filter toolbars, topic
 chips) uses the primitive in `layout.css` §12 — a new surface hand-rolling its own bar is a
@@ -108,10 +108,10 @@ reject (that exact pattern produced 5 divergent geometries and the owner's site-
 2. **Chips live in `__group`; they share one line.** Homogeneous chip sets may use
    `--wrap` where width allows; under the 640 container band the group is ALWAYS one
    scrollable row (the re-compose ladder, not wrap-and-pray).
-3. **Grouping rhythm (§4.3):** label/tail sit at the bar's column gap (`--nq-gap-md`),
-   ≥2× the chip gap (`--nq-gap-xs`) — inside a group sits closer than groups sit to each
+3. **Grouping rhythm (§4.3):** label/tail sit at the bar's column gap (`--mj-gap-md`),
+   ≥2× the chip gap (`--mj-gap-xs`) — inside a group sits closer than groups sit to each
    other.
-4. **Chips are `nq-chip`** (44px touch floor, `--u-radius-pill`, `--u-text-sm`); the
+4. **Chips are `mj-chip`** (44px touch floor, `--u-radius-pill`, `--u-text-sm`); the
    surface layer owns ONLY color/border/state.
 5. An aux action ("تغيير", "Change") shares the chip geometry family (ghost pill) so
    borders read equal across the strip — hierarchy comes from color, not chrome.
@@ -124,11 +124,11 @@ reject (that exact pattern produced 5 divergent geometries and the owner's site-
 
 | Token | Value (fluid) | Use |
 |---|---|---|
-| `--nq-gap-xs` | clamp(6px → 10px) | inside clusters, icon-to-label, chip gaps |
-| `--nq-gap-sm` | clamp(10px → 16px) | between related items, grid gaps |
-| `--nq-gap-md` | clamp(14px → 24px) | between sibling blocks, stack default |
-| `--nq-gap-lg` | clamp(20px → 36px) | between sections of one surface |
-| `--nq-pad-card` | clamp(14px → 24px) | card/panel padding |
+| `--mj-gap-xs` | clamp(6px → 10px) | inside clusters, icon-to-label, chip gaps |
+| `--mj-gap-sm` | clamp(10px → 16px) | between related items, grid gaps |
+| `--mj-gap-md` | clamp(14px → 24px) | between sibling blocks, stack default |
+| `--mj-gap-lg` | clamp(20px → 36px) | between sections of one surface |
+| `--mj-pad-card` | clamp(14px → 24px) | card/panel padding |
 | `--u-page-gutter` | clamp(14px → 32px) | page-frame inset |
 | `--u-section-space` | clamp(56px → 112px) | marketing section rhythm |
 
@@ -143,7 +143,7 @@ reject (that exact pattern produced 5 divergent geometries and the owner's site-
 
 Two scales, both fluid (clamp), both tokenized — **no raw font-size values in any layer**:
 
-**Content scale (`layout.css`)** — `--nq-text-hero` (32→58) · `h1` (26→40) · `h2` (20→27) · `h3` (16→19) · `body` (13.5→15) · `small` (12→13) · `caption` (11.5)
+**Content scale (`layout.css`)** — `--mj-text-hero` (32→58) · `h1` (26→40) · `h2` (20→27) · `h3` (16→19) · `body` (13.5→15) · `small` (12→13) · `caption` (11.5)
 
 **UI scale (`foundations.css`)** — `--u-text-xs` (11.5→12.5) · `sm` (13→14) · `md` (15→16) · `lg` (17→19) · `xl` (21→24)
 
@@ -152,7 +152,7 @@ Two scales, both fluid (clamp), both tokenized — **no raw font-size values in 
 1. Weights are 400/500/600/700 (IBM Plex via `@fontsource`, `font-display: swap`). No other weights, no synthetic bold on Arabic.
 2. **Nothing below 10px — ever. Captions ≥ 11.5px.** (A previous phase had to bump the entire codebase to enforce this; do not regress it.)
 3. Hierarchy is job of the scale: one `h1`-class element per view; sections step down in order. Skipping steps (body → h1) is a hierarchy bug.
-4. Line-length for reading: `--nq-measure-read` (72ch) / `--u-reading-max` (780px). Long-form Arabic never runs edge-to-edge of the content frame.
+4. Line-length for reading: `--mj-measure-read` (72ch) / `--u-reading-max` (780px). Long-form Arabic never runs edge-to-edge of the content frame.
 5. Line-height: 1.5+ for body Arabic; tighter only for display sizes. Arabic diacritics clip below 1.4 — that's a defect, not a style.
 
 ## 6. Iconography Rules
@@ -177,9 +177,9 @@ Two scales, both fluid (clamp), both tokenized — **no raw font-size values in 
 
 ## 7. Component Architecture
 
-1. **Shared primitive first.** Before creating any component, check `src/components/universal`, `states.tsx`, and the `nq-*` set. If a shared part *can* be fixed to serve the new need, fixing it is the work — a new sibling component is debt.
-2. **Class naming is layer-bound**: `nq-*` = layout primitives · `u-*` = component classes per layer (`u2-*` workbench, etc.). A new prefix needs a reason written down.
-3. **A card is a container with a job** (elevation + grouping of ONE coherent record). Never add a card to "visually collect" things — that's grouping, which is `nq-stack` + spacing, or a section header. The default answer to "this looks empty/unorganized" is spacing and hierarchy, not more chrome.
+1. **Shared primitive first.** Before creating any component, check `src/components/universal`, `states.tsx`, and the `mj-*` set. If a shared part *can* be fixed to serve the new need, fixing it is the work — a new sibling component is debt.
+2. **Class naming is layer-bound**: `mj-*` = layout primitives · `u-*` = component classes per layer (`u2-*` workbench, etc.). A new prefix needs a reason written down.
+3. **A card is a container with a job** (elevation + grouping of ONE coherent record). Never add a card to "visually collect" things — that's grouping, which is `mj-stack` + spacing, or a section header. The default answer to "this looks empty/unorganized" is spacing and hierarchy, not more chrome.
 4. Components own their states: loading (skeleton), empty (CTA), error (5-part contract), success. A component without its four states is a prototype and is flagged as such (scenario flags `?state=`).
 5. Composition over configuration: variant props ≤ 4; past that, split the component.
 6. Portal discipline (AGENTS.md rule 5): everything portaled to `document.body` is styled via `@media`, and the unified bottom-sheet phone pattern applies (§8). The z-index ladder in `shell.css` is the only source of stacking truth — inventing a new z value outside it is a defect (past failures: tab bar painting over dialogs).
@@ -191,10 +191,10 @@ Two scales, both fluid (clamp), both tokenized — **no raw font-size values in 
 1. In-flow content: container queries via the page-root context and the four bands (1040/880/640/430). Per-element viewport media queries for in-flow content are forbidden (AGENTS.md rule 4).
 2. Portaled content: viewport `@media` only (AGENTS.md rule 5, CI-enforced). Phone dialogs are **bottom sheets**: full width, top-only radius, safe-area padding, sticky actions, contained scroll.
 3. Shell adapts by breakpoint (768/1024/1440, source `src/lib/viewports.ts`): `<768` drawer + bottom tab bar · 768–1023 rail (expand = overlay) · ≥1024 expanded. Pages never fight the shell.
-4. Dense data (`nq-data-list`): wide = columns, narrow = stacked cards with `data-label`s. Tables never overflow horizontally; they re-compose.
+4. Dense data (`mj-data-list`): wide = columns, narrow = stacked cards with `data-label`s. Tables never overflow horizontally; they re-compose.
 5. Element adaptation ladder: reflow (grid/flex) → re-group (cluster/stack) → re-prioritize (hide secondary at narrow bands — `data-*` attributes, never `display:none` sprinkled) → re-platform (drawer/bottom sheet for portaled). Resize is the LAST resort, not the first.
 6. **A responsive fix that repairs one viewport and breaks another is a failed fix.** Verification is the sweep: 30 routes × 3 viewports (375/768/1440) × 2 themes — plus a phone-size check at 390 for anything portaled.
-7. Fixed portaled elements (toasts, stop button) respect `--nq-tabbar-reserve` (on `:root`, so portals can reach it) — never park interactive elements on top of the tab bar (v5 lesson).
+7. Fixed portaled elements (toasts, stop button) respect `--mj-tabbar-reserve` (on `:root`, so portals can reach it) — never park interactive elements on top of the tab bar (v5 lesson).
 
 ## 9. Accessibility
 
@@ -237,7 +237,7 @@ Every entry is a real defect class with its fix. **Meeting one of these in code 
 | 4 | **Un-tokenized color** | any literal hex in a component layer | semantic token in `foundations.css`, light+dark blocks in sync |
 | 5 | **Per-element viewport patches** | `@media (max-width: 843px) { .my-card { … } }` | container band on the page context, or primitive |
 | 6 | **Container query on portaled content** | `.dialog { … }` inside `@container` (v11 bug) | viewport `@media` + bottom sheet pattern — CI-blocked |
-| 7 | **Card soup** | wrapping everything in cards to "organize" | spacing + grouping (`nq-stack`, section headers) |
+| 7 | **Card soup** | wrapping everything in cards to "organize" | spacing + grouping (`mj-stack`, section headers) |
 | 8 | **Generic SaaS grid** | dashboard-card-grid as default layout | content-driven hierarchy; asymmetry when it helps |
 | 9 | **Decorative noise** | gradient blobs/borders with no semantic role | remove; let whitespace and typography do the work |
 | 10 | **Z-index invention** | `z-index: 999` | the ladder at the top of `shell.css` |
@@ -249,7 +249,7 @@ Every entry is a real defect class with its fix. **Meeting one of these in code 
 | 16 | **Physical direction properties** | `left`/`right` in CSS | logical properties (RTL-native) |
 | 17 | **Second design system** | re-introducing an old green-era token or a new "temp" palette | `foundations.css` is the only palette; legacy bridge stays bridged |
 | 18 | **Patch on a patch** | third consecutive override on the same selector | stop; refactor the shared primitive (§0) |
-| 19 | **Hand-rolled control bar** | a new "label + chips + action" row with its own gaps/radius/heights (v14: 5 divergent copies produced the site-wide formatting report) | `nq-control-bar` + `nq-chip` (§3.5) — geometry from the primitive, color from the surface |
+| 19 | **Hand-rolled control bar** | a new "label + chips + action" row with its own gaps/radius/heights (v14: 5 divergent copies produced the site-wide formatting report) | `mj-control-bar` + `mj-chip` (§3.5) — geometry from the primitive, color from the surface |
 
 ## 12. Refactoring Rules (design debt paydown)
 
@@ -327,7 +327,7 @@ Every entry is a real defect class with its fix. **Meeting one of these in code 
 
 A visual change is done when ALL hold — the delivery gate in `AGENTS.md` §B plus:
 
-- [ ] Layout expressed in `nq-*` primitives or a justified extension of them
+- [ ] Layout expressed in `mj-*` primitives or a justified extension of them
 - [ ] Every spacing value answers to a §4 token; every radius to `--u-radius-*`; every color to a semantic token (light+dark in sync)
 - [ ] Every icon on the §6 scale; type on the §5 scales; motion on the §10 tokens, reduced-motion safe
 - [ ] In-flow reflow via container bands; portaled elements via `@media` + sheet pattern; zero new z values
@@ -343,10 +343,10 @@ A visual change is done when ALL hold — the delivery gate in `AGENTS.md` §B p
 | Family | Tokens |
 |---|---|
 | **Radius** | `--u-radius-xs` 8 · `sm` 12 · `(base)` 16 · `lg` 22 · `xl` 30 · `pill` 999 (chip lozenge shape) |
-| **Spacing/gaps** | `--nq-gap-xs/sm/md/lg` · `--nq-pad-card` · `--u-page-gutter` · `--u-section-space` |
-| **Measures** | `--u-content-max` 1520 · `--u-reading-max` 780 · `--nq-measure-read` 72ch |
+| **Spacing/gaps** | `--mj-gap-xs/sm/md/lg` · `--mj-pad-card` · `--u-page-gutter` · `--u-section-space` |
+| **Measures** | `--u-content-max` 1520 · `--u-reading-max` 780 · `--mj-measure-read` 72ch |
 | **Type (UI)** | `--u-text-xs/sm/md/lg/xl` |
-| **Type (content)** | `--nq-text-hero/h1/h2/h3/body/small/caption` |
+| **Type (content)** | `--mj-text-hero/h1/h2/h3/body/small/caption` |
 | **Icon scale** | 12 · 14 · 16 · 18 · 20 · 24 (§6) |
 | **Motion** | duration instant 80 / fast 130 / moderate 200 / slow 300 / expressive 480 · stagger 50ms · easings standard/enter/exit/emphasized/spring |
 | **Elevation** | `--u-shadow-xs/sm/md/lg/xl` |

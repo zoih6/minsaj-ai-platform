@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AlertTriangle, ArrowLeft, ArrowRight, Bot, Check, CheckCircle2, ChevronDown, CircleDollarSign, Clock3, Download, FileCheck2, FileText, Mail, Play, RotateCcw, ShieldCheck, Sparkles, X, XCircle } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type Locale, type RunDetail, type RunStatus } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type Locale, type RunDetail, type RunStatus } from "@minsaj/contracts";
 import { CostValue, DemoToast, RunStatusBadge } from "./shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

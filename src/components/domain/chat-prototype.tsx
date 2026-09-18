@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { Bot, ChevronDown, GitCompareArrows, Paperclip, RotateCcw, Send, Square, X } from "lucide-react";
-import { Badge, NasaqMark } from "@nasaq/ui";
-import type { Locale } from "@nasaq/contracts";
+import { Badge, MinsajMark } from "@minsaj/ui";
+import type { Locale } from "@minsaj/contracts";
 
 const copy = {
   ar: {
@@ -109,7 +109,7 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
         <div className="conversation-thread">
           <div className="user-message"><p>{submittedPrompt}</p>{attached ? <span className="attachment-chip"><Paperclip size={12} />{t.fileName}</span> : null}</div>
           <article className="assistant-message">
-            <div className="assistant-mark"><NasaqMark size={28} /></div>
+            <div className="assistant-mark"><MinsajMark size={28} /></div>
             <div className="assistant-copy">
               <div className="assistant-meta"><strong>{t.model}</strong><Badge tone="brand">{status === "streaming" ? (locale === "ar" ? "يكتب" : "Streaming") : (status === "stopped" ? t.stopped : (locale === "ar" ? "مكتمل" : "Completed"))}</Badge></div>
               <p>{words.slice(0, responseLength).join(" ")}{status === "streaming" ? <span className="stream-caret" aria-hidden="true" /> : null}</p>
@@ -125,7 +125,7 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
   return (
     <section className="chat-start">
       <div className="chat-start__inner">
-        <div className="chat-kicker"><NasaqMark size={46} /></div>
+        <div className="chat-kicker"><MinsajMark size={46} /></div>
         <h1>{t.title}</h1>
         <p className="chat-start__intro">{t.intro}</p>
         <div className="demo-note"><span />{t.demoNotice}</div>

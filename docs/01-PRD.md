@@ -1,12 +1,12 @@
-# Nasaq AI — Product Requirements Document (PRD)
+# Minsaj AI — Product Requirements Document (PRD)
 
 | | |
 |---|---|
-| **Product** | Nasaq AI — نَسَق AI |
-| **Document ID** | NASAQ-PRD |
+| **Product** | Minsaj AI — منسج AI |
+| **Document ID** | MINSAJ-PRD |
 | **Version** | 3.0 |
 | **Status** | Active — Baseline for the frontend foundation phase |
-| **Owner** | Product (Nasaq) |
+| **Owner** | Product (Minsaj) |
 | **Contributors** | Product, Design, Engineering |
 | **Language** | English (working) · Product UI: Arabic-first, English second |
 | **Format** | Follows modern PRD practice (Atlassian, Figma, Product School references) — *what* and *why*, not *how* |
@@ -17,11 +17,11 @@
 
 ## 1. Executive Summary
 
-Nasaq AI is an **Arabic-first unified AI workspace** that helps a user turn an idea, question, or task into an organized, usable result — instead of forcing them to jump between separate tools and disconnected conversations.
+Minsaj AI is an **Arabic-first unified AI workspace** that helps a user turn an idea, question, or task into an organized, usable result — instead of forcing them to jump between separate tools and disconnected conversations.
 
-The experience starts from the **user's intent**, not from model or provider selection. The user describes what they want to accomplish; Nasaq helps them reach the right workspace — **Ask & Talk, Learn, Research, Create, Code, Analyze, or Explore** — where the work happens with proper context, steps, state, and a defined output. Outputs are saved, versioned, and resumable inside **Projects** and the **Library**.
+The experience starts from the **user's intent**, not from model or provider selection. The user describes what they want to accomplish; Minsaj helps them reach the right workspace — **Ask & Talk, Learn, Research, Create, Code, Analyze, or Explore** — where the work happens with proper context, steps, state, and a defined output. Outputs are saved, versioned, and resumable inside **Projects** and the **Library**.
 
-Nasaq is not another chat interface. The core product value is converting AI interaction into **workflows that have context, state, a clear output, and the ability to save, resume, and evolve**.
+Minsaj is not another chat interface. The core product value is converting AI interaction into **workflows that have context, state, a clear output, and the ability to save, resume, and evolve**.
 
 **Core product principle:**
 
@@ -76,7 +76,7 @@ Intent → Workflow → Output → Continuation
 
 ### 2.3 Core Hypothesis (testable, not assumed)
 
-> If Nasaq provides a simple entry point that starts from the task, then moves the user into a suitable workspace with clear context, appropriate steps, and a saveable output, then the user will accomplish real value faster and with higher confidence.
+> If Minsaj provides a simple entry point that starts from the task, then moves the user into a suitable workspace with clear context, appropriate steps, and a saveable output, then the user will accomplish real value faster and with higher confidence.
 
 This hypothesis must be validated through usage, not assumed true.
 
@@ -627,7 +627,7 @@ Answers must not be assumed during implementation:
 | DEC-007 | No execution claims without actual execution. |
 | DEC-008 | Agents and advanced automation come after the foundation. |
 | DEC-009 | Enterprise collaboration is not the first-launch priority. |
-| DEC-010 | The frontend ships against a typed mock layer (`@nasaq/mock-api`) with contracts designed for a clean swap to real services (`05-BACKEND-INTEGRATION-READINESS.md`). |
+| DEC-010 | The frontend ships against a typed mock layer (`@minsaj/mock-api`) with contracts designed for a clean swap to real services (`05-BACKEND-INTEGRATION-READINESS.md`). |
 
 ---
 

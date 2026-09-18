@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState, type DragEvent } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Bot, Check, CheckSquare2, ChevronDown, CircleStop, Clock3, GitFork, Grip, Mail, Play, Plus, Save, Settings2, ShieldCheck, Sparkles, TimerReset, Trash2, Workflow } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type FlowDefinition, type LocalizedText, type Locale } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type FlowDefinition, type LocalizedText, type Locale } from "@minsaj/contracts";
 import { DemoToast } from "./shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";
@@ -109,7 +109,7 @@ export function FlowEditorPrototype({ locale, initialDefinition, isNew = false }
       </header>
 
       <div className="flow-editor-shell">
-        <aside className="node-palette"><div className="node-palette__heading"><p>{ar ? "مكتبة العقد" : "Node library"}</p><span>{ar ? "اسحب أو أضف" : "Drag or add"}</span></div><div className="node-palette__list">{(Object.keys(nodeIcons) as EditorNodeType[]).map((type) => { const Icon = nodeIcons[type]; return <button type="button" key={type} onClick={() => addNode(type)}><span><Icon size={16} /></span><span><strong>{localize(nodeNames[type], locale)}</strong><small>{localize(nodeDescriptions[type], locale)}</small></span><Plus size={14} /></button>; })}</div><div className="node-palette__help"><Sparkles size={16} /><p>{ar ? "ضع بوابة موافقة مباشرة قبل أي عقدة ترسل أو تكتب خارج نسق." : "Place an approval gate immediately before any node that sends or writes outside Nasaq."}</p></div></aside>
+        <aside className="node-palette"><div className="node-palette__heading"><p>{ar ? "مكتبة العقد" : "Node library"}</p><span>{ar ? "اسحب أو أضف" : "Drag or add"}</span></div><div className="node-palette__list">{(Object.keys(nodeIcons) as EditorNodeType[]).map((type) => { const Icon = nodeIcons[type]; return <button type="button" key={type} onClick={() => addNode(type)}><span><Icon size={16} /></span><span><strong>{localize(nodeNames[type], locale)}</strong><small>{localize(nodeDescriptions[type], locale)}</small></span><Plus size={14} /></button>; })}</div><div className="node-palette__help"><Sparkles size={16} /><p>{ar ? "ضع بوابة موافقة مباشرة قبل أي عقدة ترسل أو تكتب خارج منسج." : "Place an approval gate immediately before any node that sends or writes outside Minsaj."}</p></div></aside>
 
         <main className="flow-canvas-panel">
           <div className="flow-canvas-toolbar"><div><button type="button" className="is-active">{ar ? "التصميم" : "Design"}</button><button type="button">{ar ? "سجل الإصدارات" : "Versions"}</button></div><div><span>{ar ? `${flow.nodes.length} عقد` : `${flow.nodes.length} nodes`}</span><button className="icon-button" type="button" aria-label={ar ? "إعدادات اللوحة" : "Canvas settings"}><Settings2 size={16} /></button></div></div>

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { getOperationsData, getRunData } from "@/lib/data/operations";
 import { RunDetailPrototype } from "@/components/domain/operations/run-detail-prototype";
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { AlertTriangle, Check, Circle, CircleDot, Info, LoaderCircle, Play, RotateCcw, ShieldAlert, X } from "lucide-react";
-import type { ServiceRunStatus, ServiceStage } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
-import type { Locale } from "@nasaq/contracts/services";
+import type { ServiceRunStatus, ServiceStage } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
+import type { Locale } from "@minsaj/contracts/services";
 
 /**
  * Domain-neutral workbench primitives.

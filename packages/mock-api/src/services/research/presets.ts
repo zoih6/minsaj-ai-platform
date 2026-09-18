@@ -1,5 +1,5 @@
-import type { ResearchSessionState } from "@nasaq/contracts/services";
-import { researchSessionStateSchema } from "@nasaq/contracts/services";
+import type { ResearchSessionState } from "@minsaj/contracts/services";
+import { researchSessionStateSchema } from "@minsaj/contracts/services";
 import { buildResearchEvidenceRefs, getResearchTopic, type ResearchTopicId } from "./topics";
 import { buildResearchPlan } from "./plan";
 import { buildResearchSourceRecords, discoveredEvidenceIds } from "./sources";

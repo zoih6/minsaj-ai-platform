@@ -1,5 +1,5 @@
-import type { ServiceId } from "@nasaq/contracts/services";
-import type { Locale } from "@nasaq/contracts/services";
+import type { ServiceId } from "@minsaj/contracts/services";
+import type { Locale } from "@minsaj/contracts/services";
 import { LearnRoute } from "@/features/learn/learn-route";
 import { ResearchRoute } from "@/features/research/research-route";
 import { CreateRoute } from "@/features/create/create-route";

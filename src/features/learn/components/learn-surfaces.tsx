@@ -1,9 +1,9 @@
 "use client";
 
-import type { LearnLevel, LearnPathModule } from "@nasaq/contracts/services";
-import type { Locale } from "@nasaq/contracts/services";
-import { formatServiceNumber, getServiceDictionary } from "@nasaq/i18n/services";
-import { getLearnTopic, type LearnTopicId } from "@nasaq/mock-api/services";
+import type { LearnLevel, LearnPathModule } from "@minsaj/contracts/services";
+import type { Locale } from "@minsaj/contracts/services";
+import { formatServiceNumber, getServiceDictionary } from "@minsaj/i18n/services";
+import { getLearnTopic, type LearnTopicId } from "@minsaj/mock-api/services";
 import { Check, CircleAlert, Lightbulb, ListOrdered, SkipForward, Sparkles } from "lucide-react";
 import { learnHintKeyFor, type LearnReducerState } from "../state/learn-reducer";
 
@@ -181,12 +181,12 @@ export function LearnBriefSurface({
 
       <fieldset className="u2-learn__field">
         <legend>{ui("briefMinutes")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-learn__chips">
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-learn__chips">
           {minuteOptions.map((minutes) => (
             <button
               key={minutes}
               type="button"
-              className="nq-chip"
+              className="mj-chip"
               aria-pressed={state.ui.draftMinutes === minutes}
               data-testid={`u2-learn-minutes-${minutes}`}
               onClick={() => onMinutes(minutes)}
@@ -199,12 +199,12 @@ export function LearnBriefSurface({
 
       <fieldset className="u2-learn__field">
         <legend>{ui("briefLevel")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-learn__chips">
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-learn__chips">
           {(["beginner", "intermediate", "advanced"] as const).map((level) => (
             <button
               key={level}
               type="button"
-              className="nq-chip"
+              className="mj-chip"
               aria-pressed={state.ui.draftLevel === level}
               data-testid={`u2-learn-level-${level}`}
               onClick={() => onLevel(level)}

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { getAgentData, getOperationsData } from "@/lib/data/operations";
 import { AgentBuilderPrototype } from "@/components/domain/operations/agent-builder-prototype";
 

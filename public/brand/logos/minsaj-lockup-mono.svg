@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 320" role="img" aria-label="Minsaj — منسج">
+  <g transform="translate(8,52) scale(0.565)">
+    <path fill="currentColor" fill-rule="evenodd" d="mg"/>
+  </g>
+  <g font-family="Tajawal, 'IBM Plex Sans Arabic', sans-serif" font-weight="700" text-anchor="start">
+    <text x="348" y="168" font-size="128" fill="currentColor">منسج</text>
+    <text x="352" y="238" font-family="Inter, 'Segoe UI', sans-serif" font-size="56" font-weight="600" letter-spacing="10" fill="currentColor">MINSAJ</text>
+  </g>
+</svg>

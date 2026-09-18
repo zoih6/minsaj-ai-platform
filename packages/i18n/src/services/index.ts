@@ -1,5 +1,5 @@
-import type { Locale, ServiceId, ServiceRunStatus, ServiceScenarioId, ServiceSessionStatus } from "@nasaq/contracts/services";
-import { serviceIds } from "@nasaq/contracts/services";
+import type { Locale, ServiceId, ServiceRunStatus, ServiceScenarioId, ServiceSessionStatus } from "@minsaj/contracts/services";
+import { serviceIds } from "@minsaj/contracts/services";
 
 /**
  * Typed U2 service namespaces.

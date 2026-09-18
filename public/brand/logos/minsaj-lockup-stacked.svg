@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" role="img" aria-label="Minsaj — منسج">
+  <defs>
+    <linearGradient id="mg" x1="80" y1="480" x2="560" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B0F1A"/>
+      <stop offset="0.36" stop-color="#28238C"/>
+      <stop offset="0.65" stop-color="#5143DE"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(64,20) scale(1)">
+    <path fill="url(#mg)" fill-rule="evenodd" d="mg"/>
+  </g>
+  <g font-family="Tajawal, 'IBM Plex Sans Arabic', sans-serif" font-weight="700" text-anchor="middle">
+    <text x="320" y="480" font-size="112" fill="#0B0F1A">منسج</text>
+    <text x="320" y="542" font-family="Inter, 'Segoe UI', sans-serif" font-size="44" font-weight="600" letter-spacing="12" fill="#5143DE">MINSAJ</text>
+  </g>
+</svg>

@@ -1,4 +1,4 @@
-import type { Locale } from "@nasaq/contracts";
+import type { Locale } from "@minsaj/contracts";
 
 export type UniversalServiceId = "ask" | "learn" | "research" | "create" | "code" | "analyze" | "explore";
 
@@ -26,7 +26,7 @@ const arServices: UniversalService[] = [
     prompt: "اسأل، اكتب فكرة، أو صف ما تريد إنجازه…",
     starters: ["بسّط لي مفهومًا معقدًا", "ساعدني في اتخاذ قرار", "رتّب أفكاري المتناثرة"],
     outputTitle: "مساحة تفكير جاهزة",
-    outputBody: "سيفهم نَسَق مقصدك أولًا، ثم يقترح أفضل طريقة للإجابة أو الإنجاز.",
+    outputBody: "سيفهم منسج مقصدك أولًا، ثم يقترح أفضل طريقة للإجابة أو الإنجاز.",
   },
   {
     id: "learn",
@@ -50,7 +50,7 @@ const arServices: UniversalService[] = [
     prompt: "اكتب سؤال البحث، النطاق، ونوع المصادر التي تفضلها…",
     starters: ["ابحث في الدراسات الحديثة", "قارن بين ثلاث وجهات نظر", "حوّل ملفاتي إلى تقرير موثّق"],
     outputTitle: "خطة بحث قابلة للتوجيه",
-    outputBody: "سيعرض نَسَق نطاق البحث ومصادره وتقدمه، ويمكنك تعديل المسار في أي لحظة.",
+    outputBody: "سيعرض منسج نطاق البحث ومصادره وتقدمه، ويمكنك تعديل المسار في أي لحظة.",
   },
   {
     id: "create",
@@ -74,7 +74,7 @@ const arServices: UniversalService[] = [
     prompt: "صف ما تريد بناءه، التقنية، أو ألصق الخطأ الذي تواجهه…",
     starters: ["اشرح لي هذا الخطأ", "ابنِ واجهة من هذه الفكرة", "راجع الكود واقترح تحسينات"],
     outputTitle: "بيئة بناء منظّمة",
-    outputBody: "يحوّل نَسَق الهدف إلى خطة وملفات ومعاينة، ويشرح كل تغيير قبل اعتماده.",
+    outputBody: "يحوّل منسج الهدف إلى خطة وملفات ومعاينة، ويشرح كل تغيير قبل اعتماده.",
   },
   {
     id: "analyze",
@@ -98,7 +98,7 @@ const arServices: UniversalService[] = [
     prompt: "ما المجال الذي يثير فضولك اليوم؟",
     starters: ["خذني في جولة داخل علم الفلك", "أرني فكرة لم أسمع بها", "اقترح تجربة نهاية الأسبوع"],
     outputTitle: "رحلة اكتشاف شخصية",
-    outputBody: "سيربط نَسَق بين أفكار متباعدة ويمنحك مسارات قصيرة أو عميقة حسب وقتك.",
+    outputBody: "سيربط منسج بين أفكار متباعدة ويمنحك مسارات قصيرة أو عميقة حسب وقتك.",
   },
 ];
 
@@ -113,7 +113,7 @@ const enServices: UniversalService[] = [
     prompt: "Ask a question, share an idea, or describe what you want to accomplish…",
     starters: ["Make a complex idea simple", "Help me make a decision", "Organize my scattered thoughts"],
     outputTitle: "A thinking space is ready",
-    outputBody: "Nasaq understands your intent first, then suggests the clearest way to answer or create.",
+    outputBody: "Minsaj understands your intent first, then suggests the clearest way to answer or create.",
   },
   {
     id: "learn",
@@ -137,7 +137,7 @@ const enServices: UniversalService[] = [
     prompt: "Enter your research question, scope, and preferred source types…",
     starters: ["Find the latest studies", "Compare three perspectives", "Turn my files into a cited report"],
     outputTitle: "A steerable research plan",
-    outputBody: "Nasaq makes scope, sources, and progress visible, and lets you redirect the work at any point.",
+    outputBody: "Minsaj makes scope, sources, and progress visible, and lets you redirect the work at any point.",
   },
   {
     id: "create",
@@ -161,7 +161,7 @@ const enServices: UniversalService[] = [
     prompt: "Describe what you want to build, your stack, or paste the error you are facing…",
     starters: ["Explain this error", "Build an interface from this idea", "Review and improve my code"],
     outputTitle: "A structured build space",
-    outputBody: "Nasaq turns your goal into a plan, files, and preview, explaining each proposed change before it lands.",
+    outputBody: "Minsaj turns your goal into a plan, files, and preview, explaining each proposed change before it lands.",
   },
   {
     id: "analyze",
@@ -185,7 +185,7 @@ const enServices: UniversalService[] = [
     prompt: "What sparks your curiosity today?",
     starters: ["Take me on a tour of astronomy", "Show me an idea I have never met", "Suggest a weekend experiment"],
     outputTitle: "A personal discovery trail",
-    outputBody: "Nasaq connects distant ideas and offers a quick trail or a deep dive depending on your time.",
+    outputBody: "Minsaj connects distant ideas and offers a quick trail or a deep dive depending on your time.",
   },
 ];
 
@@ -215,7 +215,7 @@ export const universalLabels: Record<Locale, {
     library: "مكتبتي",
     recent: "الأخيرة",
     advanced: "أدوات متقدمة",
-    personalize: "خصّص نَسَق",
+    personalize: "خصّص منسج",
     newTask: "ابدأ شيئًا جديدًا",
     search: "ابحث في كل شيء…",
     demo: "تجربة تفاعلية",
@@ -225,7 +225,7 @@ export const universalLabels: Record<Locale, {
     library: "My library",
     recent: "Recent",
     advanced: "Advanced tools",
-    personalize: "Personalize Nasaq",
+    personalize: "Personalize Minsaj",
     newTask: "Start something new",
     search: "Search everything…",
     demo: "Interactive preview",

@@ -26,7 +26,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import type { Locale } from "@nasaq/contracts";
+import type { Locale } from "@minsaj/contracts";
 import { ActivityFeedback, FeedbackToast } from "@/components/universal/activity-feedback";
 import { universalServices, type UniversalServiceId } from "@/lib/universal-content";
 
@@ -62,14 +62,14 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
     ? {
         eyebrow: "مساحتك اليوم",
         greeting: "مرحبًا، ماذا تريد أن تنجز؟",
-        intro: "اختر اتجاهًا أو اكتب بطريقتك. نَسَق سيهيئ المساحة والأدوات المناسبة دون أن يربكك بالتفاصيل.",
+        intro: "اختر اتجاهًا أو اكتب بطريقتك. منسج سيهيئ المساحة والأدوات المناسبة دون أن يربكك بالتفاصيل.",
         customize: "خصّص تجربتي",
         focus: "أهدافك الحالية",
         change: "تغيير",
         start: "ابدأ",
         attach: "إرفاق ملف",
         voice: "تحدث",
-        preparing: "نَسَق يحدد أفضل مسار…",
+        preparing: "منسج يحدد أفضل مسار…",
         preparingShort: "جارٍ التهيئة",
         simulation: "محاكاة واضحة",
         progress: "تهيئة مساحة المهمة",
@@ -82,7 +82,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         clear: "ابدأ فكرة أخرى",
         servicesLabel: "كل ما يمكنك فعله",
         servicesTitle: "سبع مساحات، وسياق واحد.",
-        servicesBody: "انتقل بينها دون أن تبدأ من الصفر؛ نَسَق يحتفظ بما تختاره أنت فقط.",
+        servicesBody: "انتقل بينها دون أن تبدأ من الصفر؛ منسج يحتفظ بما تختاره أنت فقط.",
         recommended: "مقترح لك",
         seeAll: "استكشف الكل",
         continueLabel: "تابع من حيث توقفت",
@@ -91,7 +91,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         minutes: "دقائق",
         why: "لماذا أرى هذا؟",
         whyBody: "لأنك اخترت التعلّم والبحث والاستكشاف. يمكنك تغيير ذلك في أي وقت.",
-        onboardingTitle: "ما الذي تريد أن يساعدك فيه نَسَق؟",
+        onboardingTitle: "ما الذي تريد أن يساعدك فيه منسج؟",
         onboardingBody: "اختر أهدافًا لا مهنة. سنقدّم هذه المساحات أولًا، ويمكنك استخدام بقية الخدمات دائمًا.",
         onboardingHint: "يمكنك اختيار أكثر من هدف وتغييره لاحقًا.",
         cancel: "ليس الآن",
@@ -104,14 +104,14 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
     : {
         eyebrow: "Your space today",
         greeting: "Hello, what would you like to accomplish?",
-        intro: "Choose a direction or write naturally. Nasaq prepares the right space and tools without overwhelming you with setup.",
+        intro: "Choose a direction or write naturally. Minsaj prepares the right space and tools without overwhelming you with setup.",
         customize: "Personalize my experience",
         focus: "Your current goals",
         change: "Change",
         start: "Start",
         attach: "Attach a file",
         voice: "Talk",
-        preparing: "Nasaq is finding the best path…",
+        preparing: "Minsaj is finding the best path…",
         preparingShort: "Preparing",
         simulation: "Explicit simulation",
         progress: "Preparing the task space",
@@ -124,7 +124,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         clear: "Start another idea",
         servicesLabel: "Everything you can do",
         servicesTitle: "Seven spaces, one context.",
-        servicesBody: "Move between them without starting over; Nasaq retains only what you choose.",
+        servicesBody: "Move between them without starting over; Minsaj retains only what you choose.",
         recommended: "Recommended for you",
         seeAll: "Explore all",
         continueLabel: "Continue where you left off",
@@ -133,7 +133,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         minutes: "min",
         why: "Why am I seeing this?",
         whyBody: "Because you selected learning, research, and discovery. Change this whenever you want.",
-        onboardingTitle: "What should Nasaq help you with?",
+        onboardingTitle: "What should Minsaj help you with?",
         onboardingBody: "Choose goals, not a profession. We will bring these spaces forward, while every service remains available.",
         onboardingHint: "Choose more than one and change them later.",
         cancel: "Not now",
@@ -145,7 +145,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
       };
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("nasaq.universal.goals");
+    const saved = window.localStorage.getItem("minsaj.universal.goals");
     if (!saved) return;
     try {
       const parsed = JSON.parse(saved) as UniversalServiceId[];
@@ -157,7 +157,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
       }, 0);
       return () => window.clearTimeout(restoreTimer);
     } catch {
-      window.localStorage.removeItem("nasaq.universal.goals");
+      window.localStorage.removeItem("minsaj.universal.goals");
     }
   }, [services]);
 
@@ -200,7 +200,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
   function saveGoals() {
     const next = draftGoals.length ? draftGoals : defaultGoals;
     setGoals(next);
-    window.localStorage.setItem("nasaq.universal.goals", JSON.stringify(next));
+    window.localStorage.setItem("minsaj.universal.goals", JSON.stringify(next));
     setPersonalizeOpen(false);
     setToast(copy.goalsSaved);
   }
@@ -235,15 +235,15 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
             <Dialog.Trigger asChild><button type="button" className="adaptive-personalize"><SlidersHorizontal size={16} />{copy.customize}</button></Dialog.Trigger>
           </header>
 
-          <div className="adaptive-goals-bar nq-control-bar">
-            <span className="nq-control-bar__label">{copy.focus}</span>
-            <div className="nq-control-bar__group adaptive-goals-bar__goals" role="group" aria-label={copy.focus}>
+          <div className="adaptive-goals-bar mj-control-bar">
+            <span className="mj-control-bar__label">{copy.focus}</span>
+            <div className="mj-control-bar__group adaptive-goals-bar__goals" role="group" aria-label={copy.focus}>
               {goalServices.map((service) => {
                 const Icon = serviceIcons[service.id];
                 return (
                   <button
                     type="button"
-                    className={`nq-chip adaptive-goals-bar__goal${activeId === service.id ? " is-active" : ""}`}
+                    className={`mj-chip adaptive-goals-bar__goal${activeId === service.id ? " is-active" : ""}`}
                     aria-pressed={activeId === service.id}
                     onClick={() => chooseService(service.id)}
                     key={service.id}
@@ -254,7 +254,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
               })}
             </div>
             <Dialog.Trigger asChild>
-              <button type="button" className="nq-chip adaptive-goals-bar__change nq-control-bar__tail">
+              <button type="button" className="mj-chip adaptive-goals-bar__change mj-control-bar__tail">
                 <Plus size={14} />{copy.change}
               </button>
             </Dialog.Trigger>

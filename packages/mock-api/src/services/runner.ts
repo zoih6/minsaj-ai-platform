@@ -1,5 +1,5 @@
-import type { Locale, ServiceEvent, ServiceId, ServiceRunStatus, ServiceScenarioId } from "@nasaq/contracts/services";
-import { getServiceStageBlueprints, isTerminalServiceRunStatus } from "@nasaq/contracts/services";
+import type { Locale, ServiceEvent, ServiceId, ServiceRunStatus, ServiceScenarioId } from "@minsaj/contracts/services";
+import { getServiceStageBlueprints, isTerminalServiceRunStatus } from "@minsaj/contracts/services";
 import { createServiceIdFactory, type ServiceIdFactory } from "./ids";
 import { createManualServiceClock, toServiceTimestamp, type ServiceClock } from "./clock";
 import { buildServiceScenarioPlan, type ServiceEventDraft, type ServiceScenarioPlan } from "./plans";

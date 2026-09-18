@@ -1,7 +1,7 @@
 "use client";
 
-import type { Locale } from "@nasaq/contracts/services";
-import { createVisualVariants, getCreateVisualVariant } from "@nasaq/mock-api/services";
+import type { Locale } from "@minsaj/contracts/services";
+import { createVisualVariants, getCreateVisualVariant } from "@minsaj/mock-api/services";
 import { resolveCreateCopy } from "./create-surfaces";
 import type { CreateReducerState } from "../state/create-reducer";
 

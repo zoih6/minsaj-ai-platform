@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { getFlowData } from "@/lib/data/operations";
 import { FlowEditorPrototype } from "@/components/domain/operations/flow-editor-prototype";
 

@@ -4,7 +4,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
 
 /**
- * Nasaq theme engine (next-themes — shadcn/ui standard).
+ * Minsaj theme engine (next-themes — shadcn/ui standard).
  *
  * - attribute="data-theme"  → CSS token layers in foundations.css key off
  *   `:root[data-theme="dark"]`.

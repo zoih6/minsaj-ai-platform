@@ -3,9 +3,9 @@ import type {
   ServiceArtifactContent,
   ServiceArtifactVersion,
   ServiceSession,
-} from "@nasaq/contracts/services";
-import { serviceArtifactSchema, serviceArtifactVersionSchema } from "@nasaq/contracts/services";
-import type { CreateDraft } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { serviceArtifactSchema, serviceArtifactVersionSchema } from "@minsaj/contracts/services";
+import type { CreateDraft } from "@minsaj/contracts/services";
 import type { ServiceIdFactory } from "../ids";
 import { toServiceTimestamp } from "../clock";
 import { buildCreateVisualDraft, createVisualVariants, getCreateVisualVariant } from "./visuals";

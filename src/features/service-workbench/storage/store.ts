@@ -12,7 +12,7 @@ import {
   type ServiceArtifact,
   type HandoffBundle,
   type SimulationReceipt,
-} from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
 
 /**
  * Local demo storage adapter.
@@ -23,7 +23,7 @@ import {
  * instead of silently truncated.
  */
 
-export const demoStoreKey = "nasaq:u2:session:v1";
+export const demoStoreKey = "minsaj:u2:session:v1";
 export const demoStoreVersion = 1 as const;
 export const demoStoreMaxBytes = 256 * 1024;
 

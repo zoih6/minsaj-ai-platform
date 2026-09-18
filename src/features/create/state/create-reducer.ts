@@ -9,8 +9,8 @@ import type {
   CreateTone,
   ServiceArtifact,
   ServiceSession,
-} from "@nasaq/contracts/services";
-import { createSessionStateSchema, serviceUserTextSchema } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { createSessionStateSchema, serviceUserTextSchema } from "@minsaj/contracts/services";
 import {
   buildCreateDocumentAlternative,
   buildCreateDocumentDraft,
@@ -24,8 +24,8 @@ import {
   documentReviewSuggestions,
   getServiceFixtureCopy,
   type ServiceIdFactory,
-} from "@nasaq/mock-api/services";
-import { buildCreateArtifactRecords, draftFromArtifactContent } from "@nasaq/mock-api/services";
+} from "@minsaj/mock-api/services";
+import { buildCreateArtifactRecords, draftFromArtifactContent } from "@minsaj/mock-api/services";
 
 /**
  * Create slice state machine — U2.3.

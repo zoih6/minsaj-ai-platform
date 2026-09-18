@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, Database, FileText, FolderOpen, Globe2, LockKeyhole, Plus, Search, ShieldCheck, Sparkles, Upload, X } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type KnowledgeCollection, type KnowledgeSource, type Locale } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type KnowledgeCollection, type KnowledgeSource, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "@/components/domain/operations/shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

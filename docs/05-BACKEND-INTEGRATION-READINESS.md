@@ -1,8 +1,8 @@
-# Nasaq AI — Backend Integration Readiness
+# Minsaj AI — Backend Integration Readiness
 
 | | |
 |---|---|
-| **Document ID** | NASAQ-BE-READY |
+| **Document ID** | MINSAJ-BE-READY |
 | **Version** | 1.0 — 2026-09 |
 | **Status** | Active — contract-first preparation for the backend phase |
 | **Purpose** | Define everything the backend phase needs from the frontend so the mock layer can be swapped without touching UI code |
@@ -14,13 +14,13 @@
 
 ## 1. Contract-First Principle
 
-The monorepo already follows **contract-first** practice (as recommended by API-first methodology): `@nasaq/contracts` holds zod schemas + inferred TypeScript types for **every** data shape the UI consumes. The mock API is fully typed against these contracts. Consequences:
+The monorepo already follows **contract-first** practice (as recommended by API-first methodology): `@minsaj/contracts` holds zod schemas + inferred TypeScript types for **every** data shape the UI consumes. The mock API is fully typed against these contracts. Consequences:
 
 1. The wire format is decided **before** endpoints exist.
 2. Backend validation and frontend parsing share one schema source.
 3. Breaking changes surface as type errors at build time, not as runtime bugs.
 
-**Backend kickoff rule**: implement `@nasaq/contracts` (or generate OpenAPI from it); the frontend must not change shapes to accommodate the backend — extensions go through the contracts package with a versioned migration.
+**Backend kickoff rule**: implement `@minsaj/contracts` (or generate OpenAPI from it); the frontend must not change shapes to accommodate the backend — extensions go through the contracts package with a versioned migration.
 
 ## 2. Current Contract Surface (`packages/contracts/src`)
 
@@ -39,7 +39,7 @@ runStatus: queued · planning · running · waiting_for_input · waiting_for_app
 
 ## 3. Data Access Boundary (the swap seam)
 
-Today, feature controllers consume `@nasaq/mock-api` (deterministic scenario runner emitting sequenced `ServiceEvent`s on a manual clock). The backend phase replaces the provider, not the consumers:
+Today, feature controllers consume `@minsaj/mock-api` (deterministic scenario runner emitting sequenced `ServiceEvent`s on a manual clock). The backend phase replaces the provider, not the consumers:
 
 ```
                        ┌────────────────────────────┐
@@ -56,7 +56,7 @@ feature controllers →  │ ServiceProvider interface  │
                         (current)         HTTP + SSE/WebSocket
 ```
 
-**Mandatory step (R1)**: extract the `ServiceProvider` interface into `@nasaq/contracts` (or a new `@nasaq/api-client`) and refactor feature controllers to depend on it — currently some controllers import mock services directly. This is the single most important preparation task and is scheduled in the roadmap before any backend work.
+**Mandatory step (R1)**: extract the `ServiceProvider` interface into `@minsaj/contracts` (or a new `@minsaj/api-client`) and refactor feature controllers to depend on it — currently some controllers import mock services directly. This is the single most important preparation task and is scheduled in the roadmap before any backend work.
 
 ## 4. API Surface Sketch (design targets, not commitments)
 
@@ -107,7 +107,7 @@ The mock layer is the **reference implementation of honesty**:
 ## 9. Migration Checklist (backend kickoff order)
 
 1. Extract `ServiceProvider` interface; refactor direct mock imports (frontend task, R1).
-2. Generate OpenAPI 3.1 spec from `@nasaq/contracts` (zod → OpenAPI tooling).
+2. Generate OpenAPI 3.1 spec from `@minsaj/contracts` (zod → OpenAPI tooling).
 3. Implement auth + user isolation.
 4. Implement snapshot endpoints first (read-only, fastest value), then run lifecycle, then event stream.
 5. Ship side-by-side: `NEXT_PUBLIC_API_MODE=mock|http` feature flag during transition.

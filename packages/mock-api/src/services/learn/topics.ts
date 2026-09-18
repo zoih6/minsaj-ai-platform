@@ -1,10 +1,10 @@
-import type { LearnLevel, LearnCheckOutcome } from "@nasaq/contracts/services";
+import type { LearnLevel, LearnCheckOutcome } from "@minsaj/contracts/services";
 
 /**
  * Learn topic fixtures — U2.1.
  *
  * Structure and numeric weights live here; every human-readable string is an
- * i18n key resolved by `@nasaq/i18n/services`. Nothing is fetched, generated, or
+ * i18n key resolved by `@minsaj/i18n/services`. Nothing is fetched, generated, or
  * scored by a model: the weights below are the whole scoring model and they are
  * documented in `docs/04-delivery/U2-1-LEARN-VERIFICATION.md`.
  */

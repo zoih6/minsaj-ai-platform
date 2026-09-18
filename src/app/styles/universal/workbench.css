@@ -10,7 +10,7 @@
 .u2-harness__head p { max-width: 760px; margin: 6px 0 0; color: var(--u-muted); font-size: 14px; line-height: 1.75; }
 .u2-harness__head > a { min-height: var(--u-touch); display: inline-flex; align-items: center; padding-inline: 14px; border: 1px solid var(--u-line-strong); border-radius: 11px; color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: 13px; font-weight: 650; text-decoration: none; }
 .u2-harness__head > a:hover { border-color: rgba(var(--u-primary-rgb, 85 76 230), .35); }
-.u2-harness__controls { display: flex; flex-wrap: wrap; gap: var(--nq-gap-sm); padding: 12px; border: 1px solid var(--u-line); border-radius: 14px; background: var(--u-surface-solid); }
+.u2-harness__controls { display: flex; flex-wrap: wrap; gap: var(--mj-gap-sm); padding: 12px; border: 1px solid var(--u-line); border-radius: 14px; background: var(--u-surface-solid); }
 .u2-harness__controls label { display: grid; gap: 5px; min-width: 160px; }
 .u2-harness__controls span { color: var(--u-muted); font-size: 12px; font-weight: 650; }
 .u2-harness__controls select { min-height: var(--u-touch); padding-inline: 10px; border: 1px solid var(--u-control-line); border-radius: 10px; color: var(--u-ink); background: var(--u-surface-solid); font-size: 13px; }
@@ -26,13 +26,13 @@
 .u2-workbench__head p { max-width: 680px; margin: 6px 0 0; color: var(--u-muted); font-size: 14px; line-height: 1.7; }
 .u2-workbench__session { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; font-size: 12px; }
 .u2-workbench__session code { padding: 2px 6px; border-radius: 7px; background: var(--u-primary-soft); color: var(--u-primary-strong); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
-.u2-workbench__badges { display: flex; flex-wrap: wrap; gap: var(--nq-gap-xs); }
+.u2-workbench__badges { display: flex; flex-wrap: wrap; gap: var(--mj-gap-xs); }
 .u2-badge { min-height: var(--u-touch); padding-inline: 12px; display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(85, 76, 230, .3); border-radius: 11px; color: var(--u-primary-strong); background: var(--u-primary-soft); font-size: 12.5px; font-weight: 650; cursor: pointer; }
 .u2-badge--ghost { border-color: var(--u-line-strong); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-badge:hover { border-color: rgba(85, 76, 230, .5); }
 
 .u2-stages { margin-block-start: 16px; overflow: hidden; }
-.u2-stages ol { display: flex; gap: var(--nq-gap-xs); margin: 0; padding: 0 0 4px; overflow-x: auto; list-style: none; }
+.u2-stages ol { display: flex; gap: var(--mj-gap-xs); margin: 0; padding: 0 0 4px; overflow-x: auto; list-style: none; }
 /* `position: relative` keeps the visually-hidden reason span inside the
    clipped stage list instead of anchoring it to the viewport (which would
    widen the document). */
@@ -93,7 +93,7 @@
 .u2-unavailable button { min-height: var(--u-touch); padding-inline: 12px; border: 1px solid var(--u-line); border-radius: 10px; color: var(--u-faint); background: var(--u-tint-1); font-size: 12.5px; }
 .u2-unavailable small { color: var(--u-muted); font-size: 12px; }
 
-@container nq-flow (max-width: 880px) {
+@container mj-flow (max-width: 880px) {
   .u2-workbench__head { flex-direction: column; }
 }
 /* Portaled overlay: viewport media (not a container descendant) */
@@ -102,7 +102,7 @@
   [dir="rtl"] .u2-overlay__content { transform: none; }
 }
 
-@container nq-flow (max-width: 640px) {
+@container mj-flow (max-width: 640px) {
   .u2-harness__controls { flex-direction: column; }
   .u2-harness__controls label { min-width: 0; }
   .u2-workbench { border-radius: 16px; }
@@ -155,8 +155,8 @@
 .u2-learn__field select, .u2-learn__field input, .u2-learn__field textarea { min-height: var(--u-touch); padding: 8px 10px; border: 1px solid var(--u-control-line); border-radius: 10px; color: var(--u-ink); background: var(--u-surface-solid); font: inherit; font-size: 13px; }
 .u2-learn__field textarea { min-height: 64px; resize: vertical; }
 .u2-learn__summary { margin: 0; color: var(--u-muted); font-size: 12.5px; line-height: 1.7; }
-/* Chips ride the nq-chip primitive (layout.css §13) and the groups ride
-   nq-control-bar__group--wrap — geometry comes from there; color/state only. */
+/* Chips ride the mj-chip primitive (layout.css §13) and the groups ride
+   mj-control-bar__group--wrap — geometry comes from there; color/state only. */
 .u2-learn__chips button { border: 1px solid var(--u-line-strong); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-learn__chips button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); font-weight: 650; }
 .u2-learn__actions { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -189,7 +189,7 @@
 .u2-learn :is(button, select, input, textarea):focus-visible,
 .u2-learn__rationale summary:focus-visible { outline: 2px solid var(--u-primary); outline-offset: 2px; }
 
-@container nq-flow (max-width: 640px) {
+@container mj-flow (max-width: 640px) {
   .u2-learn__modules li { flex-direction: column; align-items: stretch; }
   .u2-learn__module-actions { justify-content: space-between; }
   .u2-learn__skip { flex: 1 1 160px; }
@@ -315,7 +315,7 @@
 .u2-research :is(button, select, input, textarea):focus-visible,
 .u2-research__rationale summary:focus-visible { outline: 2px solid var(--u-primary); outline-offset: 2px; }
 
-@container nq-flow (max-width: 640px) {
+@container mj-flow (max-width: 640px) {
   .u2-research__matrix, .u2-research__matrix tbody, .u2-research__matrix tr, .u2-research__matrix th, .u2-research__matrix td { display: block; width: 100%; box-sizing: border-box; }
   .u2-research__matrix thead { display: none; }
   .u2-research__matrix tr { margin-bottom: 10px; border: 1px solid var(--u-line); border-radius: 14px; overflow: hidden; }
@@ -495,7 +495,7 @@
 .u2-create :is(button, select, input, textarea):focus-visible,
 .u2-create__rationale summary:focus-visible { outline: 2px solid var(--u-primary); outline-offset: 2px; }
 
-@container nq-flow (max-width: 640px) {
+@container mj-flow (max-width: 640px) {
   /* One column: the rail becomes a linear list under the canvas, and the deck
      shows one slide at a time with its rail as the linear slide list. */
   .u2-create__split, .u2-create__split--visual { grid-template-columns: 1fr; }
@@ -530,7 +530,7 @@
 }
 
 /* ============================================================
-   WORKBENCH PREMIUM POLISH — Nasaq Luminous v2
+   WORKBENCH PREMIUM POLISH — Minsaj Luminous v2
    ============================================================ */
 .u2-workbench { border-radius: 24px; border: 1px solid var(--u-line); background: var(--u-surface-solid); box-shadow: var(--u-shadow-sm); }
 .u2-workbench__eyebrow { letter-spacing: .02em; }

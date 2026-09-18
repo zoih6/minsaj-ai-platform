@@ -25,8 +25,8 @@ import {
   WandSparkles,
   X,
 } from "lucide-react";
-import { NasaqMark } from "@nasaq/ui";
-import type { Locale } from "@nasaq/contracts";
+import { MinsajMark } from "@minsaj/ui";
+import type { Locale } from "@minsaj/contracts";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { ActivityFeedback } from "@/components/universal/activity-feedback";
 import { universalServices, type UniversalServiceId } from "@/lib/universal-content";
@@ -71,7 +71,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
   const copy = isArabic
     ? {
         nav: { services: "الخدمات", adaptive: "كيف تتكيف؟", experience: "التجربة", trust: "الثقة" },
-        open: "افتح نَسَق",
+        open: "افتح منسج",
         eyebrow: "منصة ذكاء اصطناعي تتشكل حولك",
         headlineA: "كل ما تريد أن",
         headlineB: "تتعلّمه، تصنعه، أو تكتشفه.",
@@ -84,7 +84,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         demoLabel: "جرّبها الآن",
         demoTitle: "ماذا تريد أن تنجز اليوم؟",
         send: "ابدأ",
-        preparing: "نَسَق يهيئ المسار الأنسب…",
+        preparing: "منسج يهيئ المسار الأنسب…",
         preparingShort: "جارٍ التهيئة",
         simulation: "محاكاة تفاعلية",
         progress: "تهيئة المسار التجريبي",
@@ -95,31 +95,31 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         audience: ["أتعلّم", "أبحث", "أكتب", "أبرمج", "أحلّل", "أصنع", "أستكشف", "أنظّم حياتي"],
         servicesEyebrow: "منصة واحدة · أبواب متعددة",
         servicesTitle: "ابدأ من هدف، لا من قائمة أدوات.",
-        servicesBody: "كل خدمة لها تجربة مصممة لطبيعة المهمة، بينما يحافظ نَسَق على سياقك وملفاتك وتفضيلاتك في الخلفية.",
+        servicesBody: "كل خدمة لها تجربة مصممة لطبيعة المهمة، بينما يحافظ منسج على سياقك وملفاتك وتفضيلاتك في الخلفية.",
         adaptiveEyebrow: "تخصيص بلا قوالب",
         adaptiveTitle: "تتغير المنصة مع ما تريد إنجازه—لا مع مسماك الوظيفي.",
         adaptiveBody: "اختر أهدافك اليوم، عدّلها غدًا، أو ادخل مباشرة. تتقدم الأدوات المناسبة إلى الواجهة وتبقى الإمكانات المتخصصة قريبة دون أن تزدحم الشاشة.",
         steps: [
           ["اختر مقصدك", "تعلّم، بحث، صناعة، برمجة أو مجرد فضول."],
-          ["اضبط المسار", "نَسَق يسأل فقط عما يؤثر فعلًا في النتيجة."],
+          ["اضبط المسار", "منسج يسأل فقط عما يؤثر فعلًا في النتيجة."],
           ["اعمل بطريقتك", "محادثة، لوحة، مستند، كود أو تقرير بمصادر."],
         ],
         sceneEyebrow: "سياق واحد، أشكال عمل متعددة",
         sceneTitle: "من سؤال سريع إلى مخرج يمكنك استخدامه.",
-        sceneBody: "لا يحبس نَسَق كل شيء داخل فقاعة محادثة. تتحول الإجابة إلى درس، تقرير، مستند، لوحة بيانات أو مشروع قابل للتطوير.",
+        sceneBody: "لا يحبس منسج كل شيء داخل فقاعة محادثة. تتحول الإجابة إلى درس، تقرير، مستند، لوحة بيانات أو مشروع قابل للتطوير.",
         sceneCards: ["خطة تعلّم تتكيف مع مستواك", "بحث موثق بمصادر قابلة للفتح", "مسودة وواجهة وكود في مساحة واحدة"],
         trustEyebrow: "الوضوح جزء من التجربة",
         trustTitle: "أنت تعرف دائمًا ماذا يحدث ولماذا.",
         trustBody: "المصادر، استخدام الأدوات، التكلفة، والذاكرة تظهر بوضوح. ويمكنك إيقاف التخصيص أو تغيير المسار في أي وقت.",
         finalTitle: "مكان واحد يتسع لفضولك كله.",
-        finalBody: "ابدأ بسؤال بسيط. دع نَسَق يفتح لك المسار المناسب.",
-        finalCta: "استكشف نَسَق",
+        finalBody: "ابدأ بسؤال بسيط. دع منسج يفتح لك المسار المناسب.",
+        finalCta: "استكشف منسج",
         footer: "ذكاء اصطناعي أقرب للناس، وأوضح في كل خطوة.",
         prototype: "نسخة تجريبية تفاعلية · لا تنفّذ خدمات خارجية بعد",
       }
     : {
         nav: { services: "Services", adaptive: "How it adapts", experience: "Experience", trust: "Trust" },
-        open: "Open Nasaq",
+        open: "Open Minsaj",
         eyebrow: "An AI platform that forms around you",
         headlineA: "Everything you want to",
         headlineB: "learn, create, or discover.",
@@ -132,7 +132,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         demoLabel: "Try it now",
         demoTitle: "What do you want to accomplish today?",
         send: "Start",
-        preparing: "Nasaq is preparing the best path…",
+        preparing: "Minsaj is preparing the best path…",
         preparingShort: "Preparing",
         simulation: "Interactive simulation",
         progress: "Preparing the demo path",
@@ -143,25 +143,25 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
         audience: ["I learn", "I research", "I write", "I code", "I analyze", "I create", "I explore", "I organize life"],
         servicesEyebrow: "One platform · many doors",
         servicesTitle: "Start with a goal, not a tool list.",
-        servicesBody: "Each service is shaped for its kind of work while Nasaq keeps context, files, and preferences connected behind the scenes.",
+        servicesBody: "Each service is shaped for its kind of work while Minsaj keeps context, files, and preferences connected behind the scenes.",
         adaptiveEyebrow: "Personal, never boxed in",
         adaptiveTitle: "The platform changes with your goal—not your job title.",
         adaptiveBody: "Pick today’s goals, change them tomorrow, or jump straight in. Relevant tools move forward while specialist power stays nearby without crowding the screen.",
         steps: [
           ["Choose your intent", "Learn, research, create, code, or simply follow your curiosity."],
-          ["Shape the path", "Nasaq asks only what can meaningfully improve the outcome."],
+          ["Shape the path", "Minsaj asks only what can meaningfully improve the outcome."],
           ["Work your way", "Conversation, canvas, document, code, or a source-backed report."],
         ],
         sceneEyebrow: "One context, many forms",
         sceneTitle: "From a quick question to something you can use.",
-        sceneBody: "Nasaq does not trap every task in a chat bubble. An answer can become a lesson, report, document, data view, or evolving project.",
+        sceneBody: "Minsaj does not trap every task in a chat bubble. An answer can become a lesson, report, document, data view, or evolving project.",
         sceneCards: ["A learning path that meets your level", "Research with sources you can open", "Writing, interface, and code in one space"],
         trustEyebrow: "Clarity is part of the experience",
         trustTitle: "Always know what is happening and why.",
         trustBody: "Sources, tool use, cost, and memory remain visible. Turn personalization off or change direction whenever you want.",
         finalTitle: "One place for all of your curiosity.",
-        finalBody: "Begin with a simple question. Let Nasaq open the right path.",
-        finalCta: "Explore Nasaq",
+        finalBody: "Begin with a simple question. Let Minsaj open the right path.",
+        finalCta: "Explore Minsaj",
         footer: "AI made more human, and clearer at every step.",
         prototype: "Interactive prototype · no external services execute yet",
       };
@@ -193,9 +193,9 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
     <div className="universal-site">
       <header className="universal-nav-wrap">
         <div className="universal-nav">
-          <Link className="luma-brand" href={`/${locale}`} aria-label={isArabic ? "نَسَق الرئيسية" : "Nasaq home"}>
-            <span className="luma-brand__mark"><NasaqMark size={34} /></span>
-            <span className="luma-brand__word">{isArabic ? "نَسَق" : "Nasaq"}</span>
+          <Link className="luma-brand" href={`/${locale}`} aria-label={isArabic ? "منسج الرئيسية" : "Minsaj home"}>
+            <span className="luma-brand__mark"><MinsajMark size={34} /></span>
+            <span className="luma-brand__word">{isArabic ? "منسج" : "Minsaj"}</span>
             <span className="luma-brand__spark"><Sparkles size={12} /></span>
           </Link>
           <nav className="universal-nav__links" aria-label={isArabic ? "التنقل العام" : "Public navigation"}>
@@ -245,12 +245,12 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
 
             <div id="interactive-demo" className="universal-demo-card" data-service={active.id}>
               <div className="universal-demo-card__art" aria-hidden="true">
-                <Image src="/nasaq-luminous-world.jpg" alt="" fill priority sizes="(max-width: 900px) 100vw, 46vw" />
+                <Image src="/minsaj-luminous-world.jpg" alt="" fill priority sizes="(max-width: 900px) 100vw, 46vw" />
                 <div className="universal-demo-card__art-fade" />
               </div>
               <div className="universal-demo-card__top">
                 <span><span className="universal-live-dot" />{copy.demoLabel}</span>
-                <span className="universal-demo-card__status">NASAQ / ADAPTIVE</span>
+                <span className="universal-demo-card__status">MINSAJ / ADAPTIVE</span>
               </div>
               <div className="universal-demo-card__body">
                 <span className="universal-demo-orb"><ActiveIcon size={20} /></span>
@@ -332,7 +332,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
           <div className="universal-container">
             <div className="universal-scene-heading"><span>{copy.sceneEyebrow}</span><h2>{copy.sceneTitle}</h2><p>{copy.sceneBody}</p></div>
             <div className="universal-scene-frame">
-              <div className="universal-scene-frame__image"><Image src="/nasaq-luminous-world.jpg" alt={isArabic ? "عالم بصري مترابط لخدمات نَسَق" : "A connected visual world for Nasaq services"} fill sizes="(max-width: 900px) 100vw, 70vw" /></div>
+              <div className="universal-scene-frame__image"><Image src="/minsaj-luminous-world.jpg" alt={isArabic ? "عالم بصري مترابط لخدمات منسج" : "A connected visual world for Minsaj services"} fill sizes="(max-width: 900px) 100vw, 70vw" /></div>
               <div className="universal-scene-frame__floating">
                 {copy.sceneCards.map((item, index) => <div className={`universal-float-card universal-float-card--${index + 1}`} key={item}><span>{index === 0 ? <BookOpenCheck size={18} /> : index === 1 ? <SearchCheck size={18} /> : <Code2 size={18} />}</span><strong>{item}</strong><CheckCircle2 size={16} /></div>)}
               </div>
@@ -353,12 +353,12 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
 
         <section className="universal-final-cta">
           <div className="universal-final-cta__glow" />
-          <div className="universal-container"><span className="universal-final-orb"><NasaqMark size={46} /></span><h2>{copy.finalTitle}</h2><p>{copy.finalBody}</p><Link className="luma-button luma-button--primary luma-button--large" href={appHref}>{copy.finalCta}<ArrowLeft size={18} /></Link></div>
+          <div className="universal-container"><span className="universal-final-orb"><MinsajMark size={46} /></span><h2>{copy.finalTitle}</h2><p>{copy.finalBody}</p><Link className="luma-button luma-button--primary luma-button--large" href={appHref}>{copy.finalCta}<ArrowLeft size={18} /></Link></div>
         </section>
       </main>
 
       <footer className="universal-footer">
-        <div className="universal-container"><div className="luma-brand"><span className="luma-brand__mark"><NasaqMark size={28} /></span><span className="luma-brand__word">{isArabic ? "نَسَق" : "Nasaq"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
+        <div className="universal-container"><div className="luma-brand"><span className="luma-brand__mark"><MinsajMark size={28} /></span><span className="luma-brand__word">{isArabic ? "منسج" : "Minsaj"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
       </footer>
     </div>
   );

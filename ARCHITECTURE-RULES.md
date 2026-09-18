@@ -1,4 +1,4 @@
-# Nasaq AI — Architecture Rules
+# Minsaj AI — Architecture Rules
 
 | | |
 |---|---|
@@ -11,11 +11,11 @@
 
 ## 0. Why this file exists
 
-Nasaq's real risk is not the framework, and it is not "missing OOP". The delivery record proves it:
+Minsaj's real risk is not the framework, and it is not "missing OOP". The delivery record proves it:
 
 - **v8** — editors broke on phones because page roots lacked container contexts (a boundary between shell and page was violated).
 - **v11** — dialogs were dead on phones because portaled elements escaped every container context (a rendering-context boundary was violated).
-- **today** — 12 files (13 import statements) reach into `@nasaq/mock-api` directly (the data-source boundary is leaking; §4).
+- **today** — 12 files (13 import statements) reach into `@minsaj/mock-api` directly (the data-source boundary is leaking; §4).
 
 Every regression so far came from a **boundary violation**, not a technology choice. This file exists to make boundaries explicit, checkable, and expensive to break.
 
@@ -28,14 +28,14 @@ Every regression so far came from a **boundary violation**, not a technology cho
 
 ## 1. The architecture decision (MADR)
 
-**Context.** Nasaq is TypeScript + React + Next.js 16, a Bun-workspaces monorepo with good existing separation (`src/app → src/features → src/lib → packages/contracts + packages/mock-api`), contract-first data (zod schemas + inferred types), and a planned `ServiceProvider` seam. Adding a mandatory OOP layer on top would add boilerplate and hide the actual risk (responsibility creep) behind ceremony.
+**Context.** Minsaj is TypeScript + React + Next.js 16, a Bun-workspaces monorepo with good existing separation (`src/app → src/features → src/lib → packages/contracts + packages/mock-api`), contract-first data (zod schemas + inferred types), and a planned `ServiceProvider` seam. Adding a mandatory OOP layer on top would add boilerplate and hide the actual risk (responsibility creep) behind ceremony.
 
 **Decision.** Adopt a **hybrid functional-first architecture**: React/functional style as the base; classes admitted only inside Domain and Infrastructure, only with a written justification (§5).
 
 **Consequences.**
 
 - *(positive)* No `class Button {}` / `class Sidebar {}` boilerplate; onboarding stays simple; React idioms stay idiomatic.
-- *(positive)* Business rules remain pure, testable functions and schemas — mirroring how `@nasaq/contracts` already encodes state machines.
+- *(positive)* Business rules remain pure, testable functions and schemas — mirroring how `@minsaj/contracts` already encodes state machines.
 - *(negative)* Discipline must come from **rules, not the type system** — hence this file and its review checklist (§10).
 - *(negative)* The `ServiceProvider` seam must actually be extracted (§4) or the mock/real swap becomes a rewrite.
 
@@ -43,7 +43,7 @@ Every regression so far came from a **boundary violation**, not a technology cho
 
 ## 2. Layer map — concept → where it lives in THIS repo
 
-Nasaq does NOT need new folders. The five conceptual layers map onto the existing structure:
+Minsaj does NOT need new folders. The five conceptual layers map onto the existing structure:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -104,7 +104,7 @@ src/components ◄─────────┘              ▼               
 
 | ❌ Forbidden | Real example in today's code (debt inventory §4) | Do this instead |
 |---|---|---|
-| Feature component → `@nasaq/mock-api` | `src/features/create/components/visual-editor.tsx` imports `createVisualVariants` | move the helper to a domain module (§5) or reach it through the workbench provider |
+| Feature component → `@minsaj/mock-api` | `src/features/create/components/visual-editor.tsx` imports `createVisualVariants` | move the helper to a domain module (§5) or reach it through the workbench provider |
 | Feature → another feature's internals | — (none today; keep it that way) | extract to `src/components/universal` or `src/lib` |
 | Any package → `src/**` | — (none today) | invert: move the shared code into the package |
 | `contracts` → anything app-side | — (none today) | contracts stays a leaf |
@@ -121,14 +121,14 @@ src/components ◄─────────┘              ▼               
 **Scheduling (owner decision, 2026-09-17):** execution is **deferred to backend kickoff** — this
 is a frontend-only refactor, but its value materializes only when a real backend exists. During
 the frontend phase this section is a frozen plan plus one binding rule: **no new direct
-`@nasaq/mock-api` imports**; new data access routes through the existing chokepoints (the
+`@minsaj/mock-api` imports**; new data access routes through the existing chokepoints (the
 `service-workbench` provider, `src/lib/data`). The protocol below (§4.3) executes as step 1 of
 the backend migration checklist (`docs/05` §9).
 
 ### 4.1 The target interface
 
 ```ts
-// packages/contracts (or @nasaq/api-client) — the ONLY thing features may import for data
+// packages/contracts (or @minsaj/api-client) — the ONLY thing features may import for data
 export interface ServiceProvider {
   snapshot(locale: Locale): Promise<Snapshot>;
   startRun(input: StartRunInput): Promise<ServiceRun>;
@@ -180,7 +180,7 @@ The mock implementation (`createDeterministicMockServiceClient` + friends) and t
 4. Migrate consumers **one file per commit**, gates green each time. Order: B (snapshots, easiest) → A (client construction) → C (move domain helpers out).
 5. Update this file's debt table to zero. Then delete this section and celebrate.
 
-**Done-when:** `rg "@nasaq/mock-api" src/` returns **only** `src/lib/provider.ts` (one line, the registration).
+**Done-when:** `rg "@minsaj/mock-api" src/` returns **only** `src/lib/provider.ts` (one line, the registration).
 
 ### 4.4 What features may never know
 
@@ -194,7 +194,7 @@ Transport (fetch/SSE/WebSocket), endpoints, status codes, retry headers, auth he
 
 ### 5.1 Justification checklist (write it in the PR/commit before writing the class)
 
-| Property | Meaning | Example in Nasaq |
+| Property | Meaning | Example in Minsaj |
 |---|---|---|
 | Identity | two instances with same data are still distinct | two concurrent `Run`s |
 | Mutable state | changes over time in-place | run status transitions |
@@ -213,7 +213,7 @@ Transport (fetch/SSE/WebSocket), endpoints, status codes, retry headers, auth he
 | `src/features/*/state` | ⚠️ rarely — only if the reducer isn't enough | long-lived session objects |
 | `src/components`, `src/app` | ❌ never | React owns composition here |
 
-### 5.3 Worked examples (Nasaq-specific)
+### 5.3 Worked examples (Minsaj-specific)
 
 **Class earned** — when `Run` grows real transitions (queued → running → waiting_for_approval → completed, with cancel/retry rules and invariant checks):
 
@@ -288,7 +288,7 @@ snapshotTimestamp()              // pure clock read
 
    Required shape: `ResearchWorkspace (UI) → controller (Application) → ServiceProvider → provider`. The `service-workbench` already models this correctly for learn/research/create — extend it, don't fork it.
 
-2. **Direct data-source reach-ins.** Any new `from "@nasaq/mock-api"` outside `src/lib/provider.ts` after the extraction (§4.3) is a rejected PR. CI guard is planned (`check-provider-seam`); until then, the review checklist catches it (§10).
+2. **Direct data-source reach-ins.** Any new `from "@minsaj/mock-api"` outside `src/lib/provider.ts` after the extraction (§4.3) is a rejected PR. CI guard is planned (`check-provider-seam`); until then, the review checklist catches it (§10).
 
 3. **Premature abstraction.** `ManagerServiceFactory` around two functions; an interface with one implementation and no second planned; a wrapper package re-exporting one module. Functions first; abstract at the third consumer.
 
@@ -316,7 +316,7 @@ snapshotTimestamp()              // pure clock read
 A change is architecturally done when ALL hold:
 
 - [ ] New code sits in the layer that owns its responsibility (§2, §6) — no exceptions granted.
-- [ ] No new direct `@nasaq/mock-api` import outside the provider registration (§4.4).
+- [ ] No new direct `@minsaj/mock-api` import outside the provider registration (§4.4).
 - [ ] Data shapes flow through `packages/contracts` — no local re-declarations of wire entities.
 - [ ] Any new class passes the §5.1 checklist with the justification written in the commit.
 - [ ] Cross-feature reuse resolved through the shared layer, not imports (§3).
@@ -335,7 +335,7 @@ A change is architecturally done when ALL hold:
 | `scripts/check-theme-contrast.mjs` | token contrast, light + dark | ✅ in CI |
 | `bun run lint` / `tsc --noEmit` / `build` | syntax, types, compilability | ✅ in CI |
 | **Review checklist (this file)** | layer placement, import direction, class justification, seam discipline | ⚠️ agent/human review — quote the violated rule ID in the review |
-| `check-provider-seam` (planned) | no `@nasaq/mock-api` imports outside `src/lib/provider.ts` | ⏳ build when §4.3 lands |
+| `check-provider-seam` (planned) | no `@minsaj/mock-api` imports outside `src/lib/provider.ts` | ⏳ build when §4.3 lands |
 
 **Rule IDs for reviews:** cite as `ARCH-§<section>` (e.g. `ARCH-§4.4` for a feature that learned an endpoint). The citation matters — it turns taste arguments into contract arguments.
 

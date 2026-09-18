@@ -1,4 +1,4 @@
-import type { CreateFormat, CreateVariant } from "@nasaq/contracts/services";
+import type { CreateFormat, CreateVariant } from "@minsaj/contracts/services";
 
 /**
  * Variant shortlists per format — U2.3.

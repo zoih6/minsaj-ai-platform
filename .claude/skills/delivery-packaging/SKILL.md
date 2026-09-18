@@ -37,7 +37,7 @@ wiring. Verification must happen **inside the artifact**, not next to it.
 
 - Unzip to a scratch dir; `grep` the actual file for the wiring you depend on
   (e.g. the `@import "./styles/universal/layout.css"` line — check compiled CSS contains the
-  primitives: `nq-grid`, `nq-data-list`, `@container` rules).
+  primitives: `mj-grid`, `mj-data-list`, `@container` rules).
 - Fresh install + build from the extracted copy alone: `bun install && bun run build`
   (then smoke-test routes on a throwaway port).
 - Diff the artifact tree vs the verified source — normalized diff, expecting zero surprises.
@@ -53,7 +53,7 @@ wiring. Verification must happen **inside the artifact**, not next to it.
 ### 5. Record & close
 
 - Update `STATE.md` + `docs/CHANGELOG.md` (per `repo-state-maintenance`).
-- In the sandbox workspace: refresh the browsable delivery copy (`download/nasaq-ai/`) so it is
+- In the sandbox workspace: refresh the browsable delivery copy (`download/minsaj-ai/`) so it is
   byte-identical to the repo (`diff -r` clean), rebuild the versioned zip, update
   `download/README.md`, remove superseded zips.
 

@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { Monitor, Moon, Sun } from "lucide-react";
-import type { Locale } from "@nasaq/contracts";
+import type { Locale } from "@minsaj/contracts";
 
 /**
  * Theme cycle button — light → dark → system → light.

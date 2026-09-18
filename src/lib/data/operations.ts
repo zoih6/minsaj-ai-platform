@@ -4,7 +4,7 @@ import {
   getMockOperationsSnapshot,
   getMockRunDetail,
   getMockWorkspaceAdminSnapshot,
-} from "@nasaq/mock-api";
+} from "@minsaj/mock-api";
 
 export async function getOperationsData() {
   return getMockOperationsSnapshot();

@@ -35,7 +35,7 @@ owner never has to re-explain the project, and no agent ever works from stale as
    do not silently absorb it into your change set.
 
 3. **Confirm live state:**
-   - Production: `https://nasaq-ai-platform.vercel.app` reachable.
+   - Production: `https://minsaj-ai-platform.vercel.app` reachable.
    - `git log --oneline -3` matches the commits recorded in `STATE.md` handoff notes.
 
 4. **Report readiness to the owner (in Arabic):**

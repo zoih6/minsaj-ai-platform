@@ -1,5 +1,5 @@
 {
-  "name": "@nasaq/mock-api",
+  "name": "@minsaj/mock-api",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@nasaq/contracts": "*"
+    "@minsaj/contracts": "*"
   },
   "devDependencies": {
     "typescript": "7.0.2"

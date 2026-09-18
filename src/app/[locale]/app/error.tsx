@@ -18,7 +18,7 @@ export default function AppError({
 }) {
   useEffect(() => {
     // Surface to console for diagnostics while keeping the UI human-language.
-    console.error("[nasaq] route error boundary:", error);
+    console.error("[minsaj] route error boundary:", error);
   }, [error]);
 
   const isArabic = true; // locale segment guarantees ar|en; default copy stays bilingual below

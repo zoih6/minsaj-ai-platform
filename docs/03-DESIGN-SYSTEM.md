@@ -1,8 +1,8 @@
-# Nasaq AI — Design System ("Luminous Premium")
+# Minsaj AI — Design System ("Luminous Premium")
 
 | | |
 |---|---|
-| **Document ID** | NASAQ-DS |
+| **Document ID** | MINSAJ-DS |
 | **Version** | 2.0 — 2026-09 |
 | **Status** | Active — reflects shipped tokens in `src/app/styles/universal/foundations.css` |
 | **Implementation** | CSS custom properties, single global entrypoint `src/app/universal.css` |
@@ -12,7 +12,7 @@
 
 ## 1. Brand & Art Direction
 
-**Name**: Nasaq (نَسَق) — "structure / composition / coherence".
+**Name**: Minsaj (منسج) — "structure / composition / coherence".
 **Direction**: *Luminous Premium* — a calm, bright, violet-led workspace with obsidian chrome (shell) and jewel-tone service accents. The brand reads as trustworthy, editorial, and Arabic-native: generous whitespace, refined shadows, restrained motion.
 
 **Mood keywords**: وضوح · ثقة · رصانة · فخامة هادئة (clarity, trust, poise, calm luxury).
@@ -106,14 +106,14 @@ Shadows carry a violet tint (`rgba(70,64,160,…)`), reinforcing brand temperatu
 
 | Primitive | Purpose |
 |---|---|
-| `.nq-grid` | Intrinsic auto-fill `minmax()` grids; variants `--tight` (200px), default (240px), `--roomy` (300px), `--stats` (150px) |
-| `.nq-stack` | Vertical rhythm (variants `--tight`) |
-| `.nq-cluster` | Wrapping inline row (start/between/end/stretch) |
-| `.nq-split` | Two-pane responsive split (collapses by content min-width) |
-| `.nq-data-list` | Table → stacked-card demotion under intrinsic width |
-| `.nq-scroll-x` | Bounded horizontal scroll with edge fade |
-| `.nq-page-header` | Title + actions cluster with guaranteed copy min-width |
-| `.nq-flow` | Step-flow stacks (workspace stages) |
+| `.mj-grid` | Intrinsic auto-fill `minmax()` grids; variants `--tight` (200px), default (240px), `--roomy` (300px), `--stats` (150px) |
+| `.mj-stack` | Vertical rhythm (variants `--tight`) |
+| `.mj-cluster` | Wrapping inline row (start/between/end/stretch) |
+| `.mj-split` | Two-pane responsive split (collapses by content min-width) |
+| `.mj-data-list` | Table → stacked-card demotion under intrinsic width |
+| `.mj-scroll-x` | Bounded horizontal scroll with edge fade |
+| `.mj-page-header` | Title + actions cluster with guaranteed copy min-width |
+| `.mj-flow` | Step-flow stacks (workspace stages) |
 
 These primitives are the **only sanctioned** layout mechanisms — page-specific fixed-column grids are forbidden (see Architecture §conventions).
 
@@ -141,7 +141,7 @@ Container queries (4 bands: 1040/880/640/430) drive **component-level** reflow b
 - **Fields** — text/select/checkbox/radio; 40 px desktop / 44 px touch; focus ring `--u-primary-glow`.
 - **Dialogs & sheets** — centered desktop / bottom-sheet mobile; `100dvh` bounded.
 - **Toasts** — `u-feedback-toast` + `DemoToast`; portaled; tab-bar-aware.
-- **Data tables** — `nq-data-list` demotion pattern; sticky header on wide.
+- **Data tables** — `mj-data-list` demotion pattern; sticky header on wide.
 - **Progress** — determinate bars (`u-progress-grow`), status spinners, step rails (workbench).
 
 ### 8.2 States Styling
@@ -180,7 +180,7 @@ Every interactive component implements: rest · hover (lift/tint) · focus-visib
 
 ## 11. Voice & Truth Labels
 
-Wording for truth labels, statuses, and error contracts is **dictionary-owned** (`@nasaq/i18n`), not per-page copy. Fixed vocabulary:
+Wording for truth labels, statuses, and error contracts is **dictionary-owned** (`@minsaj/i18n`), not per-page copy. Fixed vocabulary:
 
 | Concept | AR | EN |
 |---|---|---|
@@ -215,5 +215,5 @@ Dual-theme is LIVE: `next-themes` writes `data-theme` on `<html>` (system-follow
 ## 13. Governance
 
 - Tokens are defined **once** in `foundations.css`; per-layer files may consume, never redefine.
-- A new component must reuse primitives (`nq-*`) and existing buttons/badges before anything new is proposed.
+- A new component must reuse primitives (`mj-*`) and existing buttons/badges before anything new is proposed.
 - Visual QA (VLM-assisted) runs on the 6 core pages × 3 viewports before any release; regressions block the release (see `06-TESTING-STRATEGY.md`).

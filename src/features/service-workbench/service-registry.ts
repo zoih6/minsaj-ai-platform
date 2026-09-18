@@ -1,5 +1,5 @@
-import type { ServiceId } from "@nasaq/contracts/services";
-import { serviceIds } from "@nasaq/contracts/services";
+import type { ServiceId } from "@minsaj/contracts/services";
+import { serviceIds } from "@minsaj/contracts/services";
 
 /**
  * Explicit service route registry.

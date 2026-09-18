@@ -1,8 +1,8 @@
-# Nasaq AI — Roadmap & Execution Plan
+# Minsaj AI — Roadmap & Execution Plan
 
 | | |
 |---|---|
-| **Document ID** | NASAQ-ROADMAP |
+| **Document ID** | MINSAJ-ROADMAP |
 | **Version** | 1.0 — 2026-09 |
 | **Status** | Active — step-by-step execution plan ("حبة حبة") |
 | **Related** | `01-PRD.md` (§15 Releases) · all suite docs |

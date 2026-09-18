@@ -1,4 +1,4 @@
-import type { Locale } from "@nasaq/contracts";
+import type { Locale } from "@minsaj/contracts";
 
 export type Dictionary = {
   meta: { title: string; description: string };
@@ -48,11 +48,11 @@ export type Dictionary = {
 
 const ar: Dictionary = {
   meta: {
-    title: "نَسَق — تعلّم، ابحث، اصنع واكتشف",
+    title: "منسج — تعلّم، ابحث، اصنع واكتشف",
     description: "منصة ذكاء اصطناعي عربية متكيفة للجميع: للتعلّم والبحث والكتابة والبرمجة والتحليل والاستكشاف.",
   },
   brand: {
-    name: "نَسَق",
+    name: "منسج",
     promise: "كل ما تريد أن تتعلّمه، تصنعه، أو تكتشفه — في مساحة تتكيف معك.",
     demo: "تجربة تفاعلية",
   },
@@ -109,7 +109,7 @@ const ar: Dictionary = {
   marketing: {
     eyebrow: "مساحة عمل AI عربية أولًا",
     headlineA: "من سؤال واحد",
-    headlineB: "إلى عملٍ له نَسَق.",
+    headlineB: "إلى عملٍ منسوج.",
     body: "تحدث مع أفضل النماذج، فوّض المهام لوكلاء مضبوطين، ثم حوّل العمل المتكرر إلى تدفقات واضحة — مع سياق وتكلفة وموافقات في مكان واحد.",
     primary: "ابدأ مساحة العمل",
     secondary: "استكشف التجربة",
@@ -137,11 +137,11 @@ const ar: Dictionary = {
 
 const en: Dictionary = {
   meta: {
-    title: "Nasaq — Learn, research, create, and discover",
+    title: "Minsaj — Learn, research, create, and discover",
     description: "An adaptive AI platform for everyone: learning, research, writing, coding, analysis, and exploration.",
   },
   brand: {
-    name: "Nasaq",
+    name: "Minsaj",
     promise: "Everything you want to learn, create, or discover — in a space that adapts to you.",
     demo: "Interactive preview",
   },

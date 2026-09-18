@@ -5,12 +5,24 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-17 — Phase 14 · **Current version:** v14 · **Branch:** `main` (v14 ready to push — owner authorized full-access tokens for this session; push after final gate re-verification)
+**Last updated:** 2026-09-18 — Phase 15 · **Current version:** v15 · **Branch:** `main` (THE BIG REBRAND: نسق → منسج / Nasaq → Minsaj, repo renamed to `minsaj-ai-platform`)
 
 ## Current status
 
-- **Live:** <https://nasaq-ai-platform.vercel.app> (auto-deploys on push to `main`)
-- **Repo:** <https://github.com/zoih6/nasaq-ai-platform>
+- **Live:** <https://minsaj-ai-platform.vercel.app> (auto-deploys on push to `main`)
+- **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (renamed from `nasaq-ai-platform` in v15 — old URL redirects)
+- **Phase 15: THE BIG REBRAND — «نسق» is now «منسج / Minsaj»** (owner: the old name is not
+  exclusive). System-layer rename via protected, ordered rules: `@nasaq/*` → `@minsaj/*`,
+  `Nasaq/NASAQ/nasaq` → `Minsaj/MINSAJ/minsaj`, diacritized «نَسَق» then bare «نسق» → «منسج»
+  (guarded: «منسّق» coordinator word untouched — 2 legit occurrences remain), CSS vocabulary
+  `nq-` → `mj-`, keyframes `nasaq-*` → `mj-*`. New brand asset package built as clean traced
+  SVG from the owner's official logo: symbols (5 variants), lockups (3), app icons + favicon
+  (light/dark), patterns (weave/grid/ghost × 2 themes) in `public/brand/` — old `nasaq-*`
+  assets (23 SVG + jpg) and `upload/design-package/` zips (23MB) deleted. Fonts: IBM Plex
+  Sans Arabic → **Tajawal**, IBM Plex Sans → **Inter**. Meta: «منسج — تعلّم، ابحث، اصنع واكتشف» /
+  "Minsaj — Learn, research, create, and discover". Repo + Vercel project renamed to
+  `minsaj-ai-platform`; live links updated in README/AGENTS/STATE/CHANGELOG; archive references
+  to the off-limits old repo `zoih6/nasaq-ai` intentionally preserved.
 - 11 delivery phases complete. Phase 11: **portaled-dialog mobile fix + portal/container
   isolation architecture** — the "خصّص تجربتك" dialog (and 3 more dialog families) had dead
   mobile rules (trapped in `@container` while `<Dialog.Portal>` mounts outside every container);
@@ -19,13 +31,13 @@
 - **Phase 12 (docs-only, no app code touched): governance law pair** — `ARCHITECTURE-RULES.md`
   (layer/import/ServiceProvider/class rules, with the measured 12-file mock-import debt
   inventory + strangler extraction protocol) and `DESIGN-ENGINEERING-GOVERNANCE.md` (16
-  sections: token scales, `nq-*` vocabulary, 18 anti-patterns, visual QA protocol, mandatory
+  sections: token scales, `mj-*` vocabulary, 18 anti-patterns, visual QA protocol, mandatory
   8-step agent workflow, owner's explicit orders). Both are BINDING (AGENTS.md hard rule 15).
   Decision: hybrid functional-first — NO mandatory OOP layer; classes only with 2+ of
   identity/state/lifecycle/invariants/interchangeability.
 - **Phase 14: control-group bars unified on ONE shared primitive — the owner's site-wide
-  "التنسيق والتوزيع" report root-caused and fixed at the system layer.** New `nq-control-bar`
-  (label/group/tail — labels & tails are NEVER wrapping flex-siblings of chips) + `nq-chip`
+  "التنسيق والتوزيع" report root-caused and fixed at the system layer.** New `mj-control-bar`
+  (label/group/tail — labels & tails are NEVER wrapping flex-siblings of chips) + `mj-chip`
   (44px pill, token gaps/type) + `--u-radius-pill` token, in layout.css §12–13. Measured before:
   goals bar 3 stranded rows (126px) on phones, ops toolbars 3 rows of 36/65/18px, filter icon
   floating 18px off-line, gaps 2–9px / radii 0–999px / heights 29–43px off-token, 30/34px touch
@@ -37,17 +49,17 @@
   measurement — single 46px row, all centers y=302.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 14, 2026-09-17)
+## Quality gates (last verified: Phase 15, 2026-09-18)
 
 | Gate | Status |
 |---|---|
-| `bun run build` (production, Turbopack) | ✅ green (59/59 pages) |
-| `bun run lint` (ESLint) | ✅ 0 errors |
-| `npx tsc --noEmit` | ✅ 0 errors |
+| `bun run build` (production, Turbopack) | ✅ green (all pages, post-rename) |
+| `bun run lint` (ESLint) | ✅ 0 errors (post-rename) |
+| `npx tsc --noEmit` | ✅ 0 errors (post-rename) |
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
 | Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
 | Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
-| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ 186/186 (+ controlbar sentinel: single-row chip groups · bars ≤100px · chips ≥44px at phone, on home + runs, non-vacuous) |
+| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ 186/186 (re-verified post-rename; controlbar sentinel intact) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
 | Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
 | CI (GitHub Actions) | ✅ green on `main` (5741b8f at audit time; v13.1: all 6 CI steps re-verified locally just before push) |
@@ -83,6 +95,15 @@
    2026-09-17): plan frozen in `ARCHITECTURE-RULES.md` §4.
 
 ## Recent handoff notes
+
+- **Phase 15 (2026-09-18):** The big rebrand. Rename was executed by an ordered, protected
+  substitution script (`big-rename.py`, kept outside the repo) with assertions — remaining
+  brand tokens outside guarded historical references: ZERO. `node_modules/@nasaq` stale
+  symlinks removed and everything re-verified: guards 4/4, lint 0, tsc 0, build green, sweep
+  v12 186/186. Repo + Vercel project renamed `nasaq-ai-platform` → `minsaj-ai-platform`
+  (GitHub redirects the old URL; Vercel default domain now `minsaj-ai-platform.vercel.app`).
+  Historical archive pointers (`zoih6/nasaq-ai` old repo — strictly off-limits; delivery zip
+  names) intentionally NOT rewritten: they are facts about the past, not live config.
 
 - **Phase 13 (2026-09-17):** Comprehensive visual/design audit (docs/AUDIT.md — owner's
   spec: prioritized حاجز/مهم/تحسين with evidence). Measured: 1150 legacy var uses (89% in

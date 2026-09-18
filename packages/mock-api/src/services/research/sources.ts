@@ -1,5 +1,5 @@
-import type { ResearchPlan, ResearchSourceRecord } from "@nasaq/contracts/services";
-import type { ServiceEvidenceRef } from "@nasaq/contracts/services";
+import type { ResearchPlan, ResearchSourceRecord } from "@minsaj/contracts/services";
+import type { ServiceEvidenceRef } from "@minsaj/contracts/services";
 import { getDenseResearchSources, getResearchTopic, type ResearchTopicId } from "./topics";
 
 /**

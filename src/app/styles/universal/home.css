@@ -12,20 +12,20 @@
 .adaptive-home__welcome p { max-width: 720px; margin: 9px 0 0; color: var(--u-muted); font-size: 15px; line-height: 1.8; }
 .adaptive-personalize { min-height: var(--u-touch); padding-inline: 15px; display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--u-glass-line); border-radius: 11px; color: var(--u-primary); background: var(--u-glass); font-size: 15px; font-weight: 650; cursor: pointer; white-space: nowrap; box-shadow: 0 5px 16px rgba(66,63,130,.05); }
 .adaptive-personalize:hover { background: var(--u-raise); box-shadow: var(--u-shadow-sm); }
-/* Goals bar — layout lives on the nq-control-bar primitive (layout.css §12);
+/* Goals bar — layout lives on the mj-control-bar primitive (layout.css §12);
    this layer owns only the service-tinted chrome. The label is a caption
-   (never a flex sibling that strands), pills are nq-chips, and «تغيير» is
+   (never a flex sibling that strands), pills are mj-chips, and «تغيير» is
    a ghost pill in the tail slot — same geometry family, action hierarchy
    via color, so borders read equal across the whole strip. */
-.adaptive-goals-bar { margin-block-start: var(--nq-gap-md); }
+.adaptive-goals-bar { margin-block-start: var(--mj-gap-md); }
 .adaptive-goals-bar__goal { border: 1px solid rgba(var(--service-rgb),.1); color: var(--u-muted); background: var(--u-glass); }
 .adaptive-goals-bar__goal:hover, .adaptive-goals-bar__goal.is-active { border-color: rgba(var(--service-rgb),.27); color: var(--service); background: var(--u-raise); }
 .adaptive-goals-bar__change { border: 1px solid var(--u-glass-line); color: var(--u-primary); background: transparent; font-weight: 650; }
 .adaptive-goals-bar__change:hover { background: var(--u-raise); }
 .adaptive-task-card { position: relative; max-width: 980px; margin: 16px auto 0; padding: 10px; border: 1px solid var(--u-glass-line); border-radius: 20px; background: var(--u-glass-strong); box-shadow: 0 22px 65px rgba(69,68,119,.12), 0 4px 15px rgba(45,48,77,.04); backdrop-filter: blur(15px); }
-.adaptive-task-modes { display: flex; align-items: center; gap: var(--nq-gap-xs); padding: 2px; margin-block-end: var(--nq-gap-xs); overflow-x: auto; scrollbar-width: none; }
+.adaptive-task-modes { display: flex; align-items: center; gap: var(--mj-gap-xs); padding: 2px; margin-block-end: var(--mj-gap-xs); overflow-x: auto; scrollbar-width: none; }
 .adaptive-task-modes::-webkit-scrollbar { display: none; }
-.adaptive-task-modes button { min-width: max-content; min-height: var(--u-touch); padding-inline: var(--nq-gap-sm); display: flex; align-items: center; gap: var(--nq-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: var(--u-muted); background: transparent; font-size: var(--u-text-sm); cursor: pointer; }
+.adaptive-task-modes button { min-width: max-content; min-height: var(--u-touch); padding-inline: var(--mj-gap-sm); display: flex; align-items: center; gap: var(--mj-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: var(--u-muted); background: transparent; font-size: var(--u-text-sm); cursor: pointer; }
 .adaptive-task-modes button:hover { color: var(--u-ink); background: var(--u-hover-veil); }
 .adaptive-task-modes button.is-active { color: var(--service); background: var(--service-soft); font-weight: 700; }
 .adaptive-task-composer { position: relative; padding: 13px 13px 10px 55px; border: 1px solid var(--u-line); border-radius: 15px; background: var(--u-field); }
@@ -122,7 +122,7 @@
   .adaptive-task-modes button span { display: none; }
   .adaptive-task-modes button.is-active span { display: inline; }
   .adaptive-task-modes button { min-width: var(--u-touch); padding: 0; justify-content: center; }
-  .adaptive-task-modes button.is-active { padding-inline: var(--nq-gap-sm); }
+  .adaptive-task-modes button.is-active { padding-inline: var(--mj-gap-sm); }
   .adaptive-task-composer__actions > div span { display: none; }
   .adaptive-home__welcome h1 { font-size: clamp(30px, 9.5vw, 38px); }
   .adaptive-ready { grid-template-columns: 38px minmax(0, 1fr); }

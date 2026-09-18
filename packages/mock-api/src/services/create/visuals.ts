@@ -1,5 +1,5 @@
-import type { CreateStructure, CreateVisualDraft } from "@nasaq/contracts/services";
-import type { Locale } from "@nasaq/contracts/services";
+import type { CreateStructure, CreateVisualDraft } from "@minsaj/contracts/services";
+import type { Locale } from "@minsaj/contracts/services";
 
 /**
  * Visual concept demo variants — U2.3.

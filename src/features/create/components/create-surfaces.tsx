@@ -2,8 +2,8 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { CircleAlert, Layers, FileText, Presentation, Shapes } from "lucide-react";
-import type { Locale, ServiceArtifactVersion } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
+import type { Locale, ServiceArtifactVersion } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
 import type { CreateReducerState } from "../state/create-reducer";
 
 /**
@@ -178,9 +178,9 @@ export function CreateBriefSurface({
 
       <fieldset className="u2-create__field" data-testid="u2-create-tone-field">
         <legend>{ui(locale, "briefTone")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-create__chips" role="group" aria-label={ui(locale, "briefTone")}>
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-create__chips" role="group" aria-label={ui(locale, "briefTone")}>
           {tones.map((tone) => (
-            <button key={tone} type="button" className="nq-chip" aria-pressed={state.ui.draftTone === tone} data-testid={`u2-create-tone-${tone}`} onClick={() => onTone(tone)}>
+            <button key={tone} type="button" className="mj-chip" aria-pressed={state.ui.draftTone === tone} data-testid={`u2-create-tone-${tone}`} onClick={() => onTone(tone)}>
               {ui(locale, `tone${tone.charAt(0).toUpperCase()}${tone.slice(1)}`)}
             </button>
           ))}
@@ -189,9 +189,9 @@ export function CreateBriefSurface({
 
       <fieldset className="u2-create__field" data-testid="u2-create-length-field">
         <legend>{ui(locale, "briefLength")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-create__chips" role="group" aria-label={ui(locale, "briefLength")}>
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-create__chips" role="group" aria-label={ui(locale, "briefLength")}>
           {lengths.map((length) => (
-            <button key={length} type="button" className="nq-chip" aria-pressed={state.ui.draftLength === length} data-testid={`u2-create-length-${length}`} onClick={() => onLength(length)}>
+            <button key={length} type="button" className="mj-chip" aria-pressed={state.ui.draftLength === length} data-testid={`u2-create-length-${length}`} onClick={() => onLength(length)}>
               {ui(locale, `length${length.charAt(0).toUpperCase()}${length.slice(1)}`)}
             </button>
           ))}

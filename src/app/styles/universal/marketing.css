@@ -175,7 +175,7 @@ html[dir="ltr"] .universal-service-card:hover .universal-service-card__top > svg
 .universal-trust-cards p { margin: 3px 0 0; color: var(--u-muted); font-size: 12px; line-height: 1.6; }
 .universal-final-cta { position: relative; padding: 115px 0; overflow: hidden; text-align: center; background: var(--u-surface-tint); }
 /* Folded-ribbon brand pattern rides above the bloom (B1-f identity layer) */
-.universal-final-cta::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: var(--nq-ribbon-url); background-size: 176px 176px; -webkit-mask-image: radial-gradient(78% 70% at 50% 46%, black 32%, transparent 74%); mask-image: radial-gradient(78% 70% at 50% 46%, black 32%, transparent 74%); }
+.universal-final-cta::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: var(--mj-ribbon-url); background-size: 176px 176px; -webkit-mask-image: radial-gradient(78% 70% at 50% 46%, black 32%, transparent 74%); mask-image: radial-gradient(78% 70% at 50% 46%, black 32%, transparent 74%); }
 .universal-final-cta::before { content: ""; position: absolute; inset: 0; opacity: .7; background: radial-gradient(circle at 20% 10%, rgba(37,197,232,.18), transparent 36%), radial-gradient(circle at 78% 70%, rgba(236,106,170,.16), transparent 38%); }
 .universal-final-cta__glow { position: absolute; width: 500px; height: 500px; inset: 50% auto auto 50%; transform: translate(-50%,-50%); border-radius: 50%; background: radial-gradient(circle, rgba(99,91,255,.2), transparent 68%); }
 .universal-final-cta .universal-container { position: relative; }

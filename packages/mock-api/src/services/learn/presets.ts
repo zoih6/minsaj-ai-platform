@@ -1,5 +1,5 @@
-import type { LearnCheckOutcome, LearnSessionState } from "@nasaq/contracts/services";
-import { learnSessionStateSchema } from "@nasaq/contracts/services";
+import type { LearnCheckOutcome, LearnSessionState } from "@minsaj/contracts/services";
+import { learnSessionStateSchema } from "@minsaj/contracts/services";
 
 import { getLearnTopic, type LearnTopicId } from "./topics";
 import { buildLearnPath, completeLearnModule, isPathComplete, scoreLearnedLevel, type LearnPathRequest } from "./scoring";

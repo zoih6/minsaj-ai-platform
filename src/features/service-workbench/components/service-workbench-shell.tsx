@@ -2,9 +2,9 @@
 
 import type { ReactNode } from "react";
 import { Database, ShieldAlert } from "lucide-react";
-import type { Locale } from "@nasaq/contracts/services";
-import { isTerminalServiceRunStatus } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
+import type { Locale } from "@minsaj/contracts/services";
+import { isTerminalServiceRunStatus } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
 import { useServiceWorkbench } from "../state/workbench-provider";
 import { selectPrimaryArtifact, selectCurrentReceipt, selectPendingHandoff } from "../state/reducer";
 import { ServiceRunStatusBar, ServiceSimulationBadge, ServiceStartButton, ServiceStageNavigation } from "./workbench-primitives";

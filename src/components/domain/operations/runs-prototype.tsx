@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, CircleDollarSign, Clock3, Eye, Play, ShieldAlert } from "lucide-react";
-import { localize, type Locale, type RunSummary } from "@nasaq/contracts";
+import { localize, type Locale, type RunSummary } from "@minsaj/contracts";
 import { CostValue, LibraryToolbar, OperationsStats, RunStatusBadge } from "./shared";
 import { retrySurface, SearchEmpty, SkeletonGrid, UniversalEmpty, type SurfaceStateOverride } from "@/components/universal/states";
 

@@ -1,8 +1,8 @@
-# Nasaq AI — UX Specification
+# Minsaj AI — UX Specification
 
 | | |
 |---|---|
-| **Document ID** | NASAQ-UX-SPEC |
+| **Document ID** | MINSAJ-UX-SPEC |
 | **Version** | 1.0 — 2026-09 |
 | **Status** | Active — reflects the shipped UI Foundation (R0) + R1 direction |
 | **Inputs** | `01-PRD.md` (UX-001…UX-011), `03-DESIGN-SYSTEM.md` (tokens) |
@@ -63,7 +63,7 @@ user toggle     → expanded ↔ rail (persisted) · tablet rail ↔ overlay (no
 ### 2.3 Command & Utility Layer
 
 - **Command palette** (`⌘K` / `Ctrl-K`): searchable across destinations and workspaces; fully bilingual; opens as a centered overlay above the shell.
-- **Notifications**: bell → panel; toasts (`u-feedback-toast`, `DemoToast`) render **portaled to `document.body`**, offset above the mobile tab bar by `--nq-tabbar-reserve`.
+- **Notifications**: bell → panel; toasts (`u-feedback-toast`, `DemoToast`) render **portaled to `document.body`**, offset above the mobile tab bar by `--mj-tabbar-reserve`.
 - **Z-index ladder (documented in `shell.css`)**: backdrop < shell chrome < tab bar (50) < domain dialogs (80/100/101) < command overlay (100) < workbench overlays (120/121). Toasts/stop buttons (95) reserve tab-bar space. Never introduce a z-index outside this ladder.
 
 ## 3. Core User Flows
@@ -115,7 +115,7 @@ Every data surface must implement the following states. Shared components live u
 2. Mixed-direction text (Arabic copy containing English words, numbers, code, links) must not break alignment; numerals follow the active locale's convention.
 3. The sidebar flips sides with direction; collapse-toggle icons mirror (`scale-x` flip or swapped glyphs).
 4. Progress/meter indicators fill from the reading origin.
-5. Every user-visible string comes from `@nasaq/i18n` dictionaries — hardcoded copy is a bug (exceptions: code samples, brand names).
+5. Every user-visible string comes from `@minsaj/i18n` dictionaries — hardcoded copy is a bug (exceptions: code samples, brand names).
 6. Language switcher swaps locale segment and preserves the current route.
 
 ## 6. Accessibility Contract (NFR-009)
@@ -149,8 +149,8 @@ Easings and tokens are defined in `03-DESIGN-SYSTEM.md §Motion`. All motion is 
 ## 9. Responsive Behavior Summary (UX-006/007/008)
 
 - Content reflows by **available container width** (container queries), not viewport width — identical post-sidebar behavior across pages.
-- Tables demote to stacked cards (`nq-data-list`) below their intrinsic comfort width; horizontal scroll (`nq-scroll-x`) only for truly tabular data.
-- Touch targets ≥ 44 px; the mobile tab bar reserves space for portaled toasts/buttons via `--nq-tabbar-reserve`.
+- Tables demote to stacked cards (`mj-data-list`) below their intrinsic comfort width; horizontal scroll (`mj-scroll-x`) only for truly tabular data.
+- Touch targets ≥ 44 px; the mobile tab bar reserves space for portaled toasts/buttons via `--mj-tabbar-reserve`.
 - No horizontal overflow is ever acceptable on any route at any width 320 px → 1920 px (verified by 63-check sweep; enforced in `06-TESTING-STRATEGY.md`).
 
 ## 10. Open UX Questions

@@ -9,7 +9,7 @@ import {
   MinusCircle,
   SearchX,
 } from "lucide-react";
-import type { Locale } from "@nasaq/contracts";
+import type { Locale } from "@minsaj/contracts";
 
 /** Lucide-compatible icon component (accepts size / className / aria-hidden). */
 type IconComponent = ComponentType<{
@@ -19,7 +19,7 @@ type IconComponent = ComponentType<{
 }>;
 
 /* ==========================================================================
-   Nasaq UX State System — shared state components (PRD UX-003 / DoD #2-5).
+   Minsaj UX State System — shared state components (PRD UX-003 / DoD #2-5).
 
    Contract (docs/02-UX-SPECIFICATION.md §4):
    - Loading  → skeletons matching final layout (never bare spinners)
@@ -85,7 +85,7 @@ export function SkeletonCard() {
   );
 }
 
-/** Row skeleton matching nq-data-list rows. */
+/** Row skeleton matching mj-data-list rows. */
 export function SkeletonRow({ withAvatar = true }: { withAvatar?: boolean }) {
   return (
     <div className="u-skeleton-row" aria-hidden="true">
@@ -99,11 +99,11 @@ export function SkeletonRow({ withAvatar = true }: { withAvatar?: boolean }) {
   );
 }
 
-/** Grid of card skeletons — drop-in for nq-grid surfaces. */
+/** Grid of card skeletons — drop-in for mj-grid surfaces. */
 export function SkeletonGrid({ count = 6, kind = "cards" }: { count?: number; kind?: "cards" | "rows" }) {
   return (
     <div
-      className={kind === "rows" ? "nq-stack" : "u-skeleton-grid"}
+      className={kind === "rows" ? "mj-stack" : "u-skeleton-grid"}
       role="status"
       aria-busy="true"
       aria-live="polite"

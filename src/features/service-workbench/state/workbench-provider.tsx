@@ -9,14 +9,14 @@ import type {
   ServiceScenarioId,
   ServiceSession,
   ServiceStage,
-} from "@nasaq/contracts/services";
-import { createServiceRetryRun, isTerminalServiceRunStatus } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { createServiceRetryRun, isTerminalServiceRunStatus } from "@minsaj/contracts/services";
 import {
   createDeterministicMockServiceClient,
   createServiceIdFactory,
   createTimerServiceClock,
   type ServiceSimulationRunner,
-} from "@nasaq/mock-api/services";
+} from "@minsaj/mock-api/services";
 import { createLocalAnalytics } from "../analytics";
 import {
   buildDemoSnapshot,

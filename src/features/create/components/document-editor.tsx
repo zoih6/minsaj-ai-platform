@@ -1,7 +1,7 @@
 "use client";
 
 import { Eye, Pencil, Plus, Trash2 } from "lucide-react";
-import type { Locale } from "@nasaq/contracts/services";
+import type { Locale } from "@minsaj/contracts/services";
 import { resolveCreateCopy, template } from "./create-surfaces";
 import type { CreateReducerState } from "../state/create-reducer";
 

@@ -2,8 +2,8 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { BookOpen, CircleAlert, ExternalLink, FileSearch, Filter, Play, ShieldQuestion, Square } from "lucide-react";
-import type { Locale, ResearchPlan } from "@nasaq/contracts/services";
-import { formatServiceNumber, getServiceDictionary } from "@nasaq/i18n/services";
+import type { Locale, ResearchPlan } from "@minsaj/contracts/services";
+import { formatServiceNumber, getServiceDictionary } from "@minsaj/i18n/services";
 import {
   buildResearchEvidenceRefs,
   computeClaimVerdicts,
@@ -11,7 +11,7 @@ import {
   getResearchTopic,
   summarizeResearchActivity,
   type ResearchTopicId,
-} from "@nasaq/mock-api/services";
+} from "@minsaj/mock-api/services";
 import { exclusionPreviewFor, type ResearchReducerState } from "../state/research-reducer";
 
 /**
@@ -156,12 +156,12 @@ export function ResearchBriefSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("briefAudience")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-research__chips">
           {(["self", "team", "public"] as const).map((audience) => (
             <button
               key={audience}
               type="button"
-              className="nq-chip"
+              className="mj-chip"
               aria-pressed={state.ui.draftAudience === audience}
               data-testid={`u2-research-audience-${audience}`}
               onClick={() => onAudience(audience)}
@@ -174,12 +174,12 @@ export function ResearchBriefSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("briefScope")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-research__chips">
           {(["recent", "broad", "academic"] as const).map((scope) => (
             <button
               key={scope}
               type="button"
-              className="nq-chip"
+              className="mj-chip"
               aria-pressed={state.ui.draftScope === scope}
               data-testid={`u2-research-scope-${scope}`}
               onClick={() => onScope(scope)}
@@ -369,12 +369,12 @@ export function ResearchPlanReviewSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("planSourceTypes")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-research__chips">
           {allTypes.map((type) => (
             <button
               key={type}
               type="button"
-              className="nq-chip"
+              className="mj-chip"
               aria-pressed={plan.sourceTypes.includes(type)}
               data-testid={`u2-research-type-${type}`}
               onClick={() => onToggleType(type)}
@@ -571,12 +571,12 @@ export function ResearchSourceReviewSurface({
 
       <fieldset className="u2-research__field">
         <legend>{ui("sourcesFilter")}</legend>
-        <div className="nq-control-bar__group nq-control-bar__group--wrap u2-research__chips">
+        <div className="mj-control-bar__group mj-control-bar__group--wrap u2-research__chips">
           {(["all", "relevant_only", "unavailable", "with_url"] as const).map((filter) => (
             <button
               key={filter}
               type="button"
-              className="nq-chip"
+              className="mj-chip"
               aria-pressed={state.ui.sourceFilter === filter}
               data-testid={`u2-research-filter-${filter}`}
               onClick={() => onFilter(filter)}

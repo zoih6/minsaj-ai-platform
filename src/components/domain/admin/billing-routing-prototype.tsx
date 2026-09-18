@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ArrowLeft, ArrowRight, Check, CircleDollarSign, Coins, CreditCard, GitCompareArrows, KeyRound, Plus, Save, ShieldCheck, Sparkles, WalletCards, X } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import type { CatalogModel, Locale } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import type { CatalogModel, Locale } from "@minsaj/contracts";
 import { DemoToast } from "@/components/domain/operations/shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

@@ -11,7 +11,7 @@ import {
   type OperationsSnapshot,
   type RunDetail,
   type WorkspaceAdminSnapshot,
-} from "@nasaq/contracts";
+} from "@minsaj/contracts";
 
 const homeFixture = {
   workspace: {
@@ -347,10 +347,10 @@ const workspaceAdminFixture = {
     { id: "use_interview_themes", title: { ar: "موضوعات مقابلات العملاء", en: "Customer interview themes" }, projectName: { ar: "صوت العميل", en: "Voice of customer" }, model: "Depth Reasoner", payer: "byok", estimated: { amountMinor: 74, currency: "USD" }, reserved: { amountMinor: 0, currency: "USD" }, actual: { amountMinor: 0, currency: "USD" }, inputUnits: 18300, outputUnits: 3240, status: "adjusted", occurredAt: "2026-09-09T11:55:00.000Z", runId: "run_interview_themes" },
   ],
   members: [
-    { id: "mem_sarah", name: { ar: "سارة الحربي", en: "Sarah Alharbi" }, email: "sarah@nasaq.demo", initials: "س", role: "owner", status: "active", lastActiveAt: "2026-09-11T08:45:00.000Z" },
-    { id: "mem_yousef", name: { ar: "يوسف خالد", en: "Yousef Khaled" }, email: "yousef@nasaq.demo", initials: "ي", role: "admin", status: "active", lastActiveAt: "2026-09-11T08:21:00.000Z" },
-    { id: "mem_maya", name: { ar: "مايا ناصر", en: "Maya Nasser" }, email: "maya@nasaq.demo", initials: "م", role: "builder", status: "active", lastActiveAt: "2026-09-10T17:20:00.000Z" },
-    { id: "mem_omar", name: { ar: "عمر أمين", en: "Omar Amin" }, email: "omar@nasaq.demo", initials: "ع", role: "reviewer", status: "active", lastActiveAt: "2026-09-10T14:05:00.000Z" },
+    { id: "mem_sarah", name: { ar: "سارة الحربي", en: "Sarah Alharbi" }, email: "sarah@minsaj.demo", initials: "س", role: "owner", status: "active", lastActiveAt: "2026-09-11T08:45:00.000Z" },
+    { id: "mem_yousef", name: { ar: "يوسف خالد", en: "Yousef Khaled" }, email: "yousef@minsaj.demo", initials: "ي", role: "admin", status: "active", lastActiveAt: "2026-09-11T08:21:00.000Z" },
+    { id: "mem_maya", name: { ar: "مايا ناصر", en: "Maya Nasser" }, email: "maya@minsaj.demo", initials: "م", role: "builder", status: "active", lastActiveAt: "2026-09-10T17:20:00.000Z" },
+    { id: "mem_omar", name: { ar: "عمر أمين", en: "Omar Amin" }, email: "omar@minsaj.demo", initials: "ع", role: "reviewer", status: "active", lastActiveAt: "2026-09-10T14:05:00.000Z" },
     { id: "mem_lina", name: { ar: "لينا حسن", en: "Lina Hassan" }, email: "lina@example.com", initials: "ل", role: "viewer", status: "pending", lastActiveAt: null },
   ],
 } satisfies WorkspaceAdminSnapshot;

@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Bot, BrainCircuit, Check, CheckCircle2, ChevronLeft, ChevronRight, CircleDollarSign, FlaskConical, GripVertical, Play, Save, ShieldCheck, Sparkles, Wrench, XCircle } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type AgentDefinition, type Locale, type LocalizedText } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type AgentDefinition, type Locale, type LocalizedText } from "@minsaj/contracts";
 import { CostValue, DemoToast } from "./shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

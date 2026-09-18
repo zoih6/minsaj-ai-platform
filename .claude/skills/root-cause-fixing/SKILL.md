@@ -34,7 +34,7 @@ the same class of bug cannot silently return.
    `AGENTS.md`). The fix belongs there — not at the incident site.
    Real examples from this repo's history:
    - Toast covering the mobile tab bar → NOT a per-toast tweak; the shared shell now exposes
-     `--nq-tabbar-reserve` on `:root` and all fixed elements honor it.
+     `--mj-tabbar-reserve` on `:root` and all fixed elements honor it.
    - Editor pages squeezed on phones → NOT per-component media queries; the page roots lacked a
      container context, one line restored an entire responsive system.
    - Dialog painted under the tab bar → NOT a bump-this-z-index; a documented z-index ladder.

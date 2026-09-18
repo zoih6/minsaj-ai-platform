@@ -1,6 +1,6 @@
-import type { Locale, ServiceEvent, ServiceId, ServiceRunStatus, ServiceScenarioId } from "@nasaq/contracts/services";
-import { getServiceStageBlueprints } from "@nasaq/contracts/services";
-import type { ServiceArtifactKind } from "@nasaq/contracts/services";
+import type { Locale, ServiceEvent, ServiceId, ServiceRunStatus, ServiceScenarioId } from "@minsaj/contracts/services";
+import { getServiceStageBlueprints } from "@minsaj/contracts/services";
+import type { ServiceArtifactKind } from "@minsaj/contracts/services";
 import type { ServiceIdFactory } from "./ids";
 import { toServiceTimestamp } from "./clock";
 

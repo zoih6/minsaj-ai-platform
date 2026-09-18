@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Activity, ArrowLeft, ArrowRight, FolderKanban, Grid2X2, List, MessageSquareText, Plus, X } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type Locale, type ProjectSummary } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type Locale, type ProjectSummary } from "@minsaj/contracts";
 import { DemoToast, LibraryToolbar, OperationsStats } from "./shared";
 import { retrySurface, SearchEmpty, SkeletonGrid, UniversalEmpty, type SurfaceStateOverride } from "@/components/universal/states";
 

@@ -3,8 +3,8 @@ import type {
   LearnLevel,
   LearnSessionState,
   LearnStageKey,
-} from "@nasaq/contracts/services";
-import { learnBriefSchema, learnSessionStateSchema } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { learnBriefSchema, learnSessionStateSchema } from "@minsaj/contracts/services";
 import {
   appendLearnAttempt,
   buildLearnPath,
@@ -25,12 +25,12 @@ import {
   type LearnCheckAnswer,
   type LearnHintLevel,
   type LearnTopicId,
-} from "@nasaq/mock-api/services";
+} from "@minsaj/mock-api/services";
 
 /**
  * Learn slice state machine — U2.1.
  *
- * Stages follow the blueprint in `@nasaq/contracts/services` section 11.3 and
+ * Stages follow the blueprint in `@minsaj/contracts/services` section 11.3 and
  * every transition has a documented guard: a check cannot run before the lesson
  * was engaged, a feedback cannot exist without a recorded attempt, and a module
  * completes only after a correct outcome. Switching modes never deletes

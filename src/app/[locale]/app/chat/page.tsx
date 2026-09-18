@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { ServiceWorkspace } from "@/components/universal/service-workspace";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return { title: locale === "ar" ? "اسأل وتحدّث — نَسَق" : "Ask & talk — Nasaq" };
+  return { title: locale === "ar" ? "اسأل وتحدّث — منسج" : "Ask & talk — Minsaj" };
 }
 
 export default async function ChatPage({ params }: { params: Promise<{ locale: string }> }) {

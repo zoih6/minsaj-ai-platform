@@ -1,8 +1,8 @@
-# Nasaq AI — Testing & Quality Strategy
+# Minsaj AI — Testing & Quality Strategy
 
 | | |
 |---|---|
-| **Document ID** | NASAQ-QA |
+| **Document ID** | MINSAJ-QA |
 | **Version** | 1.0 — 2026-09 |
 | **Status** | Active |
 | **Related** | `01-PRD.md` (DoD §16) · `02-UX-SPECIFICATION.md` · `07-ROADMAP.md` |
@@ -40,7 +40,7 @@ Automated browser-driven checks (the standard that caught and closed the v4/v5 d
 4. **Advanced groups (drawer)**: expanding "advanced tools" scrolls into view; profile footer stays visible (regression test for the v5 overlap fix).
 5. **Command palette**: `⌘K` opens · bilingual search · `Escape` closes · focus returns to trigger.
 6. **Dialog layering**: workspace dialogs sit above tab bar (z-ladder assertions).
-7. **Toasts**: render above the mobile tab bar (`--nq-tabbar-reserve` offset) and never cover tab icons.
+7. **Toasts**: render above the mobile tab bar (`--mj-tabbar-reserve` offset) and never cover tab icons.
 
 ## 4. State Coverage (UX-003 / DoD #2-5)
 
@@ -81,7 +81,7 @@ Measured via browser timings during the verification sweep; regressions > 20% bl
 | Lint | ✅ enforced | ESLint (Next + TS rules) |
 | Browser interaction | ✅ per release | agent-browser scripted journeys |
 | Visual QA | ✅ per release | VLM-assisted screenshot review |
-| Unit (pure logic: plans/ids/clock) | ◻ R1 | bun test on `@nasaq/mock-api` |
+| Unit (pure logic: plans/ids/clock) | ◻ R1 | bun test on `@minsaj/mock-api` |
 | Component tests | ◻ R1 (key components only) | selectively, where logic is non-trivial |
 | E2E golden replays | ◻ backend kickoff | scenario plans as fixtures |
 

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell/app-shell";
-import { getDictionary, isLocale } from "@nasaq/i18n";
+import { getDictionary, isLocale } from "@minsaj/i18n";
 
 export default async function ApplicationLayout({ children, params }: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
   const { locale } = await params;

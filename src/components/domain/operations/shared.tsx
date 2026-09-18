@@ -1,7 +1,7 @@
 import { Search, SlidersHorizontal } from "lucide-react";
 import { createPortal } from "react-dom";
-import { Badge } from "@nasaq/ui";
-import type { Locale, RunStatus } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import type { Locale, RunStatus } from "@minsaj/contracts";
 
 export function formatMoney(amountMinor: number, currency: string, locale: Locale) {
   return new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
@@ -52,12 +52,12 @@ export function LibraryToolbar({ locale, query, onQueryChange, filters, activeFi
   return (
     <div className="library-toolbar">
       <label className="library-search"><Search size={16} aria-hidden="true" /><span className="sr-only">{searchLabel}</span><input value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder={searchLabel} /></label>
-      <div className="nq-control-bar library-toolbar__bar">
-        <div className="nq-control-bar__group library-filters" role="group" aria-label={locale === "ar" ? "تصفية النتائج" : "Filter results"}>
+      <div className="mj-control-bar library-toolbar__bar">
+        <div className="mj-control-bar__group library-filters" role="group" aria-label={locale === "ar" ? "تصفية النتائج" : "Filter results"}>
           <SlidersHorizontal size={14} aria-hidden="true" />
-          {filters.map((filter) => <button key={filter.id} type="button" aria-pressed={activeFilter === filter.id} className={`nq-chip library-filters__chip${activeFilter === filter.id ? " is-active" : ""}`} onClick={() => onFilterChange(filter.id)}>{filter.label}</button>)}
+          {filters.map((filter) => <button key={filter.id} type="button" aria-pressed={activeFilter === filter.id} className={`mj-chip library-filters__chip${activeFilter === filter.id ? " is-active" : ""}`} onClick={() => onFilterChange(filter.id)}>{filter.label}</button>)}
         </div>
-        <span className="nq-control-bar__tail library-count" role="status" aria-live="polite">{locale === "ar" ? `${resultCount} نتيجة` : `${resultCount} results`}</span>
+        <span className="mj-control-bar__tail library-count" role="status" aria-live="polite">{locale === "ar" ? `${resultCount} نتيجة` : `${resultCount} results`}</span>
       </div>
     </div>
   );

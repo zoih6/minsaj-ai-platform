@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Nasaq AI — Comprehensive design-debt audit scan (Phase 13 evidence collector).
+Minsaj AI — Comprehensive design-debt audit scan (Phase 13 evidence collector).
 
 Measures (comment-aware, context-aware):
   1. Color token families: definitions + var() usages (--u-* / --nq-* / legacy)

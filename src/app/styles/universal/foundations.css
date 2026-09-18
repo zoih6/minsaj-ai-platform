@@ -1,43 +1,43 @@
 /* ============================================================
-   NASAQ DESIGN SYSTEM — "Luminous Premium" v3.0 (B1 unified)
+   MINSAJ DESIGN SYSTEM — "Woven Intelligence" v4.0
    Single source of truth for all visual tokens.
-   v3: legacy forest/teal bridge RETIRED — every rule consumes
-   --u-* / --nq-* tokens only. Brand identity package v25
-   (indigo #6366F1 · lavender #E0DFFF · obsidian #0F172A)
-   folded in as gradients, covers, hero surfaces.
+   Identity freeze v1 (design/brand/BRAND-DNA.md):
+   deep navy #0B0F1A · indigo #6366F1 · light violet #8B5CF6
+   cool gray #E5E7EB · off white #F9FAFB
+   Typography: Tajawal (AR) · Inter (EN) · IBM Plex Mono (code)
    ============================================================ */
 
 @import "tailwindcss";
 
 :root {
-  /* ---- Canonical palette (v3: canvas leans violet — identity pkg) ---- */
-  --u-bg: #f7f6fd;
-  --u-bg-deep: #f0eef9;
+  /* ---- Canonical palette (v4: Minsaj identity freeze) ---- */
+  --u-bg: #f9fafb;
+  --u-bg-deep: #f2f3f8;
   --u-surface: #ffffff;
   --u-surface-glass: rgba(255, 255, 255, 0.86);
   --u-surface-solid: #ffffff;
-  --u-surface-subtle: #f0f1f9;
+  --u-surface-subtle: #f3f4f9;
 
-  --u-ink: #0f1225;
-  --u-ink-soft: #2a2d47;
-  --u-muted: #5b5f7e;
-  --u-faint: #666b8c;
+  --u-ink: #0b0f1a;
+  --u-ink-soft: #232842;
+  --u-muted: #565b7e;
+  --u-faint: #6b7090;
 
   /* Inverse emphasis surfaces — pills/marks/avatars carrying white text.
      ROLE: background only. Never for text color (that inversion is the
      v13 audit bug class: --forest mapped to --u-ink flipped in dark). */
-  --u-inverse-surface: #0f1225;
-  --u-inverse-surface-hover: #23264a;
+  --u-inverse-surface: #0b0f1a;
+  --u-inverse-surface-hover: #1d2340;
   --u-on-inverse: #ffffff;
 
-  --u-line: #e8e6f5;
-  --u-line-strong: #d3d1e9;
+  --u-line: #e5e7eb;
+  --u-line-strong: #d1d5db;
 
-  --u-primary: #5548e0;
-  --u-primary-strong: #4539c9;
-  --u-primary-deep: #372da8;
-  --u-primary-soft: #ebe7ff;
-  --u-primary-glow: rgba(85, 72, 224, 0.24);
+  --u-primary: #4f46e5;
+  --u-primary-strong: #4338ca;
+  --u-primary-deep: #3730a3;
+  --u-primary-soft: #eef2ff;
+  --u-primary-glow: rgba(99, 102, 241, 0.25);
 
   --u-cyan: #0b8cab;
   --u-cyan-soft: #e4f6fc;
@@ -57,7 +57,7 @@
   --u-danger-ink: #8d2f2f;
   --u-mint-ink: #235c4b;
   --u-cyan-ink: #0d5c72;
-  --u-primary-soft-line: #d8d5ff;
+  --u-primary-soft-line: #d8ddfb;
   --u-amber-soft-line: #f0d9b4;
   --u-danger-soft-line: #f2c5c3;
   --u-mint-soft-line: #cdeadd;
@@ -66,8 +66,8 @@
 
   /* ---- B1 cover art: 4 hues × ink + gradient (library cards, recent
      cards, workspace covers). Theme-aware in the dark block below. ---- */
-  --u-cover-1-ink: #635bff;
-  --u-cover-1-grad: linear-gradient(145deg, #ece9ff, #f7f6ff);
+  --u-cover-1-ink: #6366f1;
+  --u-cover-1-grad: linear-gradient(145deg, #eaeeff, #f6f8ff);
   --u-cover-2-ink: #078ebd;
   --u-cover-2-grad: linear-gradient(145deg, #e3f7fd, #f5fcff);
   --u-cover-3-ink: #d34f94;
@@ -78,17 +78,17 @@
   /* ---- B1 hero & brand gradients (identity package v25) ----
      Spectrum story violet→cyan (the green tail read as a legacy remnant in
      VLM review — dropped; cyan keeps the multi-service signal). ---- */
-  --u-hero-grad: linear-gradient(90deg, #5548e0 4%, #7d5af0 38%, #3f86d4 72%, #0b8cab);
-  --u-primary-grad: linear-gradient(135deg, #6d5ff2, #5143e2 55%, #4a3cd8);
-  --u-primary-grad-strong: linear-gradient(135deg, #6d5ff2, #5a4ce6 55%, #5242e0);
+  --u-hero-grad: linear-gradient(90deg, #4338ca 4%, #6366f1 38%, #7a8ff0 72%, #52b7de);
+  --u-primary-grad: linear-gradient(135deg, #6e5df6, #5649ec 55%, #4b40e4);
+  --u-primary-grad-strong: linear-gradient(135deg, #7564f8, #5d50f0 55%, #5245e9);
   --u-danger-grad: linear-gradient(135deg, #e14b52, #d7373f);
   --u-danger-grad-strong: linear-gradient(135deg, #e75a60, #dc4048);
   --u-avatar-grad: linear-gradient(135deg, #776dff, #23bfe2);
-  --u-surface-tint: #f2f1ff;
-  --u-hero-surface: linear-gradient(145deg, #f5f3ff, #f6fbff 58%, #ffffff);
-  --u-card-tint: linear-gradient(145deg, #f1efff, #fafaff);
-  --u-lavender: #e0dfff;
-  --u-scrim: rgba(15, 18, 37, 0.54);
+  --u-surface-tint: #eef0fe;
+  --u-hero-surface: linear-gradient(145deg, #f5f6ff, #f6f9ff 58%, #ffffff);
+  --u-card-tint: linear-gradient(145deg, #eff0fe, #fafbff);
+  --u-lavender: #e3e1fe;
+  --u-scrim: rgba(11, 15, 26, 0.55);
 
   /* ---- Elevation (layered, tinted — never flat grey) ---- */
   --u-shadow-xs: 0 1px 2px rgba(16, 18, 40, 0.05);
@@ -109,12 +109,12 @@
 
   /* ---- Layout metrics (aliased to the responsive architecture tokens
         defined in layout.css — one geometry source, no drift) ---- */
-  --u-sidebar: var(--nq-sidebar-expanded, 264px);
-  --u-sidebar-collapsed: var(--nq-sidebar-rail, 76px);
+  --u-sidebar: var(--mj-sidebar-expanded, 264px);
+  --u-sidebar-collapsed: var(--mj-sidebar-rail, 76px);
   --u-topbar: 66px;
-  --u-content-max: var(--nq-content-max, 1520px);
+  --u-content-max: var(--mj-content-max, 1520px);
   --u-reading-max: 780px;
-  --u-page-gutter: var(--nq-gutter, clamp(14px, 1.1vw + 10px, 32px));
+  --u-page-gutter: var(--mj-gutter, clamp(14px, 1.1vw + 10px, 32px));
   --u-section-space: clamp(56px, 7vw, 112px);
   --u-touch: 44px;
 
@@ -150,27 +150,27 @@
   --u-normal: var(--u-motion-duration-moderate);
 
   /* ---- Dark premium shell (sidebar) — permanent identity ---- */
-  --u-shell-bg: #0d1020;
-  --u-shell-bg-2: #141834;
-  --u-shell-line: rgba(148, 152, 200, 0.14);
-  --u-shell-ink: #e9eaf6;
-  --u-shell-ink-soft: #b8bad6;
-  --u-shell-muted: #7e84ab;
-  --u-shell-hover: rgba(120, 120, 210, 0.12);
-  --u-shell-active: linear-gradient(135deg, rgba(96, 84, 240, 0.32), rgba(96, 84, 240, 0.1));
-  --u-shell-active-line: rgba(124, 110, 250, 0.55);
-  --u-shell-accent: #b7adff;
-  --u-shell-icon: #9ca2c6;
-  --u-shell-icon-bright: #c3c8e8;
-  --u-shell-icon-dim: #8e94b8;
+  --u-shell-bg: #0c101f;
+  --u-shell-bg-2: #141833;
+  --u-shell-line: rgba(150, 154, 200, 0.14);
+  --u-shell-ink: #e9ebf6;
+  --u-shell-ink-soft: #b8bcda;
+  --u-shell-muted: #7e85ad;
+  --u-shell-hover: rgba(110, 118, 216, 0.12);
+  --u-shell-active: linear-gradient(135deg, rgba(99, 102, 241, 0.32), rgba(99, 102, 241, 0.1));
+  --u-shell-active-line: rgba(129, 140, 248, 0.55);
+  --u-shell-accent: #b9bdff;
+  --u-shell-icon: #9ca2c8;
+  --u-shell-icon-bright: #c4c9ea;
+  --u-shell-icon-dim: #8e95bb;
   --u-shell-online: #2fd693;
   --u-shell-online-halo: rgba(47, 214, 147, 0.16);
   --u-shell-alert: #e75f9d;
-  --u-shell-grad-new: linear-gradient(135deg, #7a68fa, #5548e0);
-  --u-shell-grad-link: linear-gradient(180deg, #9b8eff, #6d5ff2);
-  --u-shell-grad-avatar: linear-gradient(135deg, #6d5ff2, #4a3cd8);
-  --u-shell-grad-avatar-top: linear-gradient(135deg, #6d5ff2, #4337c6);
-  --u-shell-grad-bg: linear-gradient(180deg, #10132a 0%, #0d1020 60%, #0b0e1c 100%);
+  --u-shell-grad-new: linear-gradient(135deg, #7c6bf8, #5649e9);
+  --u-shell-grad-link: linear-gradient(180deg, #9ba4ff, #6d7bf6);
+  --u-shell-grad-avatar: linear-gradient(135deg, #635beb, #4a41db);
+  --u-shell-grad-avatar-top: linear-gradient(135deg, #635beb, #4338c6);
+  --u-shell-grad-bg: linear-gradient(180deg, #10132a 0%, #0c101f 60%, #0a0e1c 100%);
   --u-ink-grad: linear-gradient(180deg, #232749, #14172e);
   --u-ink-grad-hover: linear-gradient(180deg, #2b2f57, #191d38);
 
@@ -190,11 +190,11 @@
    enforced by scripts/check-theme-contrast.mjs in CI.
    ============================================================ */
 :root[data-theme="dark"] {
-  --u-bg: #0c0e1d;
-  --u-bg-deep: #090b17;
-  --u-surface: #151830;
-  --u-surface-glass: rgba(21, 24, 48, 0.86);
-  --u-surface-solid: #171a33;
+  --u-bg: #0b0e1b;
+  --u-bg-deep: #080a14;
+  --u-surface: #141831;
+  --u-surface-glass: rgba(20, 24, 49, 0.86);
+  --u-surface-solid: #161a34;
 
   --u-ink: #eceef8;
   --u-ink-soft: #cdd0e4;
@@ -205,8 +205,8 @@
      on-inverse (white) text stays readable (13.5:1). Do NOT map this to
      --u-ink: ink flips light in dark mode (audit finding P0-1, the
      white-on-light invisible-text bug class). */
-  --u-inverse-surface: #262b52;
-  --u-inverse-surface-hover: #333a6e;
+  --u-inverse-surface: #262c55;
+  --u-inverse-surface-hover: #353d72;
   --u-on-inverse: #ffffff;
 
   /* B5: dark lines raised one step (#3a3f6e → #424873) — decorative dividers
@@ -216,11 +216,11 @@
   --u-line: #424873;
   --u-line-strong: #5d6298;
 
-  --u-primary: #8d80f8;
-  --u-primary-strong: #9c92fa;
-  --u-primary-deep: #6659ea;
-  --u-primary-soft: rgba(141, 128, 248, 0.12);
-  --u-primary-glow: rgba(141, 128, 248, 0.3);
+  --u-primary: #818cf8;
+  --u-primary-strong: #8e9bfb;
+  --u-primary-deep: #6366f1;
+  --u-primary-soft: rgba(129, 140, 248, 0.13);
+  --u-primary-glow: rgba(129, 140, 248, 0.3);
 
   --u-cyan: #4cc4e0;
   --u-cyan-soft: rgba(76, 196, 224, 0.14);
@@ -239,7 +239,7 @@
   --u-danger-ink: #f0a3a6;
   --u-mint-ink: #8fd8b8;
   --u-cyan-ink: #7fd4ea;
-  --u-primary-soft-line: rgba(141, 128, 248, 0.38);
+  --u-primary-soft-line: rgba(129, 140, 248, 0.38);
   --u-amber-soft-line: rgba(230, 169, 81, 0.38);
   --u-danger-soft-line: rgba(239, 125, 130, 0.38);
   --u-mint-soft-line: rgba(62, 203, 154, 0.38);
@@ -247,8 +247,8 @@
   --u-amber-line-strong: rgba(230, 169, 81, 0.55);
 
   /* ---- B1 cover art — dark ---- */
-  --u-cover-1-ink: #a99bff;
-  --u-cover-1-grad: linear-gradient(145deg, #241f4d, #1a1b3a);
+  --u-cover-1-ink: #a5adff;
+  --u-cover-1-grad: linear-gradient(145deg, #232051, #1a1c3d);
   --u-cover-2-ink: #4cc4e0;
   --u-cover-2-grad: linear-gradient(145deg, #0e3242, #0d2030);
   --u-cover-3-ink: #ef85b6;
@@ -257,24 +257,24 @@
   --u-cover-4-grad: linear-gradient(145deg, #18234d, #141a38);
 
   /* ---- B1 hero & brand gradients — dark ---- */
-  --u-hero-grad: linear-gradient(90deg, #8d80f8 4%, #a78bfa 38%, #6ea8e8 72%, #38b8d9);
-  --u-primary-grad: linear-gradient(135deg, #6659ea, #584ae4 55%, #4f41d9);
-  --u-primary-grad-strong: linear-gradient(135deg, #6d61ef, #6153e8 55%, #584ade);
+  --u-hero-grad: linear-gradient(90deg, #818cf8 4%, #a78bfa 38%, #6ea8e8 72%, #38b8d9);
+  --u-primary-grad: linear-gradient(135deg, #6366f1, #5b4fe9 55%, #5145de);
+  --u-primary-grad-strong: linear-gradient(135deg, #6e63f5, #6254ee 55%, #5749e3);
   --u-danger-grad: linear-gradient(135deg, #ef6b71, #ef7d82);
   --u-danger-grad-strong: linear-gradient(135deg, #f37f85, #f06970);
   --u-avatar-grad: linear-gradient(135deg, #776dff, #23bfe2);
-  --u-surface-tint: #17153a;
+  --u-surface-tint: #171540;
   --u-hero-surface: linear-gradient(145deg, #1b1a38, #141a30 58%, var(--u-surface));
   --u-card-tint: linear-gradient(145deg, #1c1938, #12152c);
-  --u-lavender: #35326b;
+  --u-lavender: #363470;
   --u-scrim: rgba(2, 3, 10, 0.62);
 
   /* Elevation — heavier alpha + violet breath, per MD3 dark guidance */
   --u-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --u-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.36), 0 6px 20px rgba(0, 0, 0, 0.42);
   --u-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.36), 0 16px 44px rgba(0, 0, 0, 0.5);
-  --u-shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.4), 0 28px 80px rgba(0, 0, 0, 0.56), 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 60px rgba(141, 128, 248, 0.07);
-  --u-shadow-xl: 0 8px 18px rgba(0, 0, 0, 0.44), 0 40px 110px rgba(0, 0, 0, 0.6), 0 0 90px rgba(141, 128, 248, 0.09);
+  --u-shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.4), 0 28px 80px rgba(0, 0, 0, 0.56), 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 60px rgba(129, 140, 248, 0.07);
+  --u-shadow-xl: 0 8px 18px rgba(0, 0, 0, 0.44), 0 40px 110px rgba(0, 0, 0, 0.6), 0 0 90px rgba(129, 140, 248, 0.09);
 
   color-scheme: dark;
 
@@ -343,14 +343,14 @@ body {
   min-width: 320px;
   background: var(--u-bg);
   color: var(--u-ink);
-  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, "Segoe UI", Arial, sans-serif;
+  font-family: "Tajawal", "Inter", Tahoma, "Segoe UI", Arial, sans-serif;
   font-size: var(--u-text-md);
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-html[lang="en"] body { font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", "Segoe UI", Arial, sans-serif; }
+html[lang="en"] body { font-family: "Inter", "Tajawal", "Segoe UI", Arial, sans-serif; }
 
 button, input, textarea, select { font: inherit; }
 a { color: inherit; }
@@ -358,8 +358,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 img, svg { max-width: 100%; height: auto; }
 
 :focus-visible { outline: 2.5px solid var(--u-primary); outline-offset: 3px; border-radius: 4px; }
-::selection { background: #d9d5ff; color: #2a1f66; }
-:root[data-theme="dark"] ::selection { background: rgba(141, 128, 248, 0.34); color: #f4f3ff; }
+::selection { background: #dde0fe; color: #1e1b4b; }
+:root[data-theme="dark"] ::selection { background: rgba(129, 140, 248, 0.34); color: #f4f5ff; }
 
 /* Refined scrollbars */
 * { scrollbar-width: thin; scrollbar-color: #c4c7dd transparent; }
@@ -372,7 +372,7 @@ img, svg { max-width: 100%; height: auto; }
 :root[data-theme="dark"] *::-webkit-scrollbar-thumb:hover { background: #4a4f80 padding-box; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.ltr-value { direction: ltr; unicode-bidi: isolate; display: inline-block; font-family: "IBM Plex Sans", sans-serif; }
+.ltr-value { direction: ltr; unicode-bidi: isolate; display: inline-block; font-family: "Inter", sans-serif; }
 .mono { font-family: "IBM Plex Mono", monospace; direction: ltr; unicode-bidi: isolate; }
 
 .skip-link {
@@ -397,13 +397,13 @@ img, svg { max-width: 100%; height: auto; }
   overflow-x: clip;
   color: var(--u-ink);
   background: var(--u-bg);
-  font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, sans-serif;
+  font-family: "Tajawal", "Inter", Tahoma, sans-serif;
   font-size: var(--u-text-md);
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-html[lang="en"] :is(.universal-site, .universal-app-shell) { font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif; }
+html[lang="en"] :is(.universal-site, .universal-app-shell) { font-family: "Inter", "Tajawal", sans-serif; }
 
 :is(.universal-site, .universal-app-shell) :focus-visible { outline: 3px solid var(--u-primary-glow); outline-offset: 3px; }
 :is(.universal-site, .universal-app-shell) :is(h1, h2, h3, [id]) { scroll-margin-block-start: calc(var(--u-topbar) + 20px); }
@@ -420,8 +420,8 @@ html[lang="en"] :is(.universal-site, .universal-app-shell) { font-family: "IBM P
     transform var(--u-motion-duration-fast) var(--u-motion-ease-spring);
 }
 :is(.universal-site, .universal-app-shell) button:active { filter: brightness(.97); }
-:is(.universal-site, .universal-app-shell) ::selection { color: var(--u-ink); background: #dcd9ff; }
-:root[data-theme="dark"] :is(.universal-site, .universal-app-shell) ::selection { background: rgba(141, 128, 248, 0.34); }
+:is(.universal-site, .universal-app-shell) ::selection { color: var(--u-ink); background: #dfe2fe; }
+:root[data-theme="dark"] :is(.universal-site, .universal-app-shell) ::selection { background: rgba(129, 140, 248, 0.34); }
 :is(.universal-site, .universal-app-shell) :is(button, a)[aria-disabled="true"],
 :is(.universal-site, .universal-app-shell) :is(button, input, textarea, select):disabled { cursor: not-allowed; opacity: .55; pointer-events: none; }
 :is(.universal-site, .universal-app-shell) :is(input, textarea)::placeholder { color: #8f93ad; opacity: 1; }
@@ -462,13 +462,13 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
   background: var(--u-primary-grad);
   box-shadow: 0 10px 28px var(--u-primary-glow), inset 0 1px rgba(255, 255, 255, .3);
 }
-.luma-button--primary:hover { box-shadow: 0 16px 40px rgba(85, 72, 224, .34), inset 0 1px rgba(255, 255, 255, .3); filter: saturate(1.06); }
+.luma-button--primary:hover { box-shadow: 0 16px 40px rgba(99, 102, 241, .34), inset 0 1px rgba(255, 255, 255, .3); filter: saturate(1.06); }
 /* Dark stops arrive via the --u-primary-grad token (worst stop ≥ 5:1 on white) */
 :root[data-theme="dark"] .luma-button--primary {
   background: var(--u-primary-grad);
   box-shadow: 0 10px 30px var(--u-primary-glow), inset 0 1px rgba(255, 255, 255, .22);
 }
-:root[data-theme="dark"] .luma-button--primary:hover { box-shadow: 0 16px 44px rgba(141, 128, 248, .4), inset 0 1px rgba(255, 255, 255, .22); }
+:root[data-theme="dark"] .luma-button--primary:hover { box-shadow: 0 16px 44px rgba(129, 140, 248, .4), inset 0 1px rgba(255, 255, 255, .22); }
 
 .luma-button--ink { color: white; background: var(--u-ink-grad); box-shadow: 0 8px 22px rgba(20, 23, 46, .2); }
 .luma-button--ink:hover { background: var(--u-ink-grad-hover); }

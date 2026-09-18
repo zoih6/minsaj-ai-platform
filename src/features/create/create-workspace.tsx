@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useReducer, useRef, useSyncExternalStore } from "react";
-import type { Locale, ServiceScenarioId, ServiceSession, ServiceStage, CreateSessionState } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
+import type { Locale, ServiceScenarioId, ServiceSession, ServiceStage, CreateSessionState } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
 import { ServiceWorkbenchProvider, useServiceWorkbench } from "@/features/service-workbench/state/workbench-provider";
 import { ServiceWorkbenchShell } from "@/features/service-workbench/components/service-workbench-shell";
 import {
@@ -25,7 +25,7 @@ import {
   createReducer,
   type CreateAction,
 } from "./state/create-reducer";
-import { createCreateStatePreset, createScenarioPresets } from "@nasaq/mock-api/services";
+import { createCreateStatePreset, createScenarioPresets } from "@minsaj/mock-api/services";
 import type { ServiceDomainBlock, ServiceStoreStatus } from "@/features/service-workbench/storage/store";
 import type { ServiceWorkbenchSeed } from "@/features/service-workbench/state/reducer";
 

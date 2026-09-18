@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { UniversalLibrary } from "@/components/universal/universal-library";
 import { parseScenarioParam } from "@/lib/surface-states";
-import type { ServiceId } from "@nasaq/contracts/services";
+import type { ServiceId } from "@minsaj/contracts/services";
 import { getUniversalService } from "@/lib/universal-content";
 import { getRegisteredServiceIds, getServiceRegistryEntry } from "@/features/service-workbench/service-registry";
 import { renderServiceRoute } from "./service-route-renderers";
@@ -25,11 +25,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; service: string }> }): Promise<Metadata> {
   const { locale, service: slug } = await params;
   if (!isLocale(locale)) return {};
-  if (slug === "library") return { title: locale === "ar" ? "مكتبتي — نَسَق" : "My library — Nasaq" };
+  if (slug === "library") return { title: locale === "ar" ? "مكتبتي — منسج" : "My library — Minsaj" };
   const serviceId = serviceMap[slug];
   if (!serviceId) return {};
   const service = getUniversalService(locale, serviceId);
-  return { title: `${service.label} — ${locale === "ar" ? "نَسَق" : "Nasaq"}`, description: service.description };
+  return { title: `${service.label} — ${locale === "ar" ? "منسج" : "Minsaj"}`, description: service.description };
 }
 
 export default async function UniversalServicePage({

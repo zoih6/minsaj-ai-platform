@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { FoundationHarness } from "@/features/service-foundation/foundation-harness";
 
 /**
@@ -10,7 +10,7 @@ import { FoundationHarness } from "@/features/service-foundation/foundation-harn
  * service, and it is excluded from indexing.
  */
 export const metadata: Metadata = {
-  title: "U2 foundation verification surface — Nasaq",
+  title: "U2 foundation verification surface — Minsaj",
   description: "Internal verification surface for the U2 service foundation: deterministic simulator, simulation receipt, and shared workbench parts.",
   robots: { index: false, follow: false },
 };

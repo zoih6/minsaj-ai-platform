@@ -483,7 +483,7 @@
      "query": "@media (prefers-reduced-motion: reduce)",
      "values": [],
      "selectors": [
-      ".nq-data-list__row, .nq-split, .nq-grid"
+      ".mj-data-list__row, .mj-split, .mj-grid"
      ],
      "portaled": false
     }
@@ -491,50 +491,50 @@
    "container_blocks": [
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 560px)",
+     "query": "@container mj-flow (max-width: 560px)",
      "values": [
       "560px"
      ],
      "selectors": [
-      ".nq-page-header__actions",
-      ".nq-page-header__actions > *"
+      ".mj-page-header__actions",
+      ".mj-page-header__actions > *"
      ]
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 880px)",
+     "query": "@container mj-flow (max-width: 880px)",
      "values": [
       "880px"
      ],
      "selectors": [
-      ".nq-split"
+      ".mj-split"
      ]
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 640px)",
+     "query": "@container mj-flow (max-width: 640px)",
      "values": [
       "640px"
      ],
      "selectors": [
-      ".nq-data-list__head",
-      ".nq-data-list__row",
-      ".nq-data-list__row > *",
-      ".nq-data-list__row > *::before",
-      ".nq-data-list__row > :first-child",
-      ".nq-data-list__row > :first-child::before",
-      ".nq-data-list__row > :last-child",
-      ".nq-data-list__row > :last-child::before"
+      ".mj-data-list__head",
+      ".mj-data-list__row",
+      ".mj-data-list__row > *",
+      ".mj-data-list__row > *::before",
+      ".mj-data-list__row > :first-child",
+      ".mj-data-list__row > :first-child::before",
+      ".mj-data-list__row > :last-child",
+      ".mj-data-list__row > :last-child::before"
      ]
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 640px)",
+     "query": "@container mj-flow (max-width: 640px)",
      "values": [
       "640px"
      ],
      "selectors": [
-      ".nq-cluster button:not([data-nq-keep-size]), .nq-data-list__row button, .nq-grid button"
+      ".mj-cluster button:not([data-mj-keep-size]), .mj-data-list__row button, .mj-grid button"
      ]
     }
    ]
@@ -1147,7 +1147,7 @@
      "selectors": [
       ".universal-app-shell[data-sidebar=\"expanded\"][data-overlay=\"true\"] .universal-shell-main",
       ".universal-app-shell[data-sidebar=\"expanded\"][data-overlay=\"true\"] .universal-shell-sidebar",
-      ".universal-app-shell[data-sidebar=\"expanded\"][data-overlay=\"true\"] ~ .nq-body-scroll-lock, .universal-app-shell[data-overlay=\"true\"] .universal-shell-backdrop[data-state=\"open\"]",
+      ".universal-app-shell[data-sidebar=\"expanded\"][data-overlay=\"true\"] ~ .mj-body-scroll-lock, .universal-app-shell[data-overlay=\"true\"] .universal-shell-backdrop[data-state=\"open\"]",
       ".universal-app-shell[data-sidebar=\"rail\"] .universal-shell-advanced",
       ".universal-app-shell[data-sidebar=\"rail\"] .universal-shell-advanced-list",
       ".universal-app-shell[data-sidebar=\"rail\"] .universal-shell-brand",
@@ -1227,7 +1227,7 @@
      "selectors": [
       ".universal-command",
       ".universal-command__results",
-      "@keyframes nasaq-command-in-up",
+      "@keyframes minsaj-command-in-up",
       "[dir=\"rtl\"] .universal-command",
       "from"
      ],
@@ -1417,7 +1417,7 @@
    "container_blocks": [
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 900px)",
+     "query": "@container mj-flow (max-width: 900px)",
      "values": [
       "900px"
      ],
@@ -1427,7 +1427,7 @@
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 560px)",
+     "query": "@container mj-flow (max-width: 560px)",
      "values": [
       "560px"
      ],
@@ -1439,7 +1439,7 @@
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 720px)",
+     "query": "@container mj-flow (max-width: 720px)",
      "values": [
       "720px"
      ],
@@ -1452,7 +1452,7 @@
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 720px)",
+     "query": "@container mj-flow (max-width: 720px)",
      "values": [
       "720px"
      ],
@@ -1468,7 +1468,7 @@
     },
     {
      "kind": "container",
-     "query": "@container nq-flow (max-width: 720px)",
+     "query": "@container mj-flow (max-width: 720px)",
      "values": [
       "720px"
      ],

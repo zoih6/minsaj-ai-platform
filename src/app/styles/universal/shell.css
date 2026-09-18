@@ -45,18 +45,18 @@
 }
 
 .universal-shell-brand-row { min-height: 52px; padding-inline: 6px; display: flex; align-items: center; position: relative; z-index: 1; }
-.universal-shell-brand { min-width: 0; min-height: var(--nq-touch); display: flex; align-items: center; gap: 10px; color: var(--u-shell-ink); text-decoration: none; }
+.universal-shell-brand { min-width: 0; min-height: var(--mj-touch); display: flex; align-items: center; gap: 10px; color: var(--u-shell-ink); text-decoration: none; }
 .universal-shell-brand > span { width: 36px; height: 36px; flex: 0 0 auto; display: grid; place-items: center; color: var(--u-shell-accent); filter: drop-shadow(0 6px 14px rgba(96, 84, 240, 0.45)); }
 .universal-shell-brand > span svg { --mark-line-one: #9fdcff; --mark-line-two: #ff9ed2; }
 .universal-shell-brand b { font-size: 20px; font-weight: 700; letter-spacing: -.03em; color: var(--u-shell-ink); white-space: nowrap; }
 .universal-shell-brand > svg { width: 18px; height: 18px; padding: 3px; border-radius: 50%; color: var(--u-shell-accent); background: rgba(122, 108, 250, 0.16); box-sizing: border-box; }
-.universal-shell-close { margin-inline-start: auto; width: var(--nq-touch); height: var(--nq-touch); display: grid; place-items: center; border: 0; border-radius: 12px; color: var(--u-shell-ink-soft); background: rgba(255, 255, 255, 0.06); }
+.universal-shell-close { margin-inline-start: auto; width: var(--mj-touch); height: var(--mj-touch); display: grid; place-items: center; border: 0; border-radius: 12px; color: var(--u-shell-ink-soft); background: rgba(255, 255, 255, 0.06); }
 
 /* ---- Sidebar collapse toggle (top, ≥768 — the discoverable control) ----- */
 .universal-shell-collapse { display: none; }
 @media (min-width: 768px) {
   .universal-shell-collapse {
-    width: var(--nq-touch); height: var(--nq-touch); flex: 0 0 auto;
+    width: var(--mj-touch); height: var(--mj-touch); flex: 0 0 auto;
     margin-inline-start: auto;
     display: grid; place-items: center;
     border: 0; border-radius: 11px;
@@ -98,7 +98,7 @@
 .universal-shell-nav__main { display: grid; gap: 2px; }
 
 .universal-shell-link {
-  position: relative; min-height: var(--nq-touch);
+  position: relative; min-height: var(--mj-touch);
   padding: 6px 10px;
   display: flex; align-items: center; gap: 11px;
   border-radius: 12px;
@@ -128,7 +128,7 @@
 
 .universal-shell-nav__utility { margin-block-start: 14px; padding-block-start: 13px; display: grid; gap: 2px; border-block-start: 1px solid var(--u-shell-line); }
 
-.universal-shell-advanced { min-height: var(--nq-touch); padding: 6px 10px; display: grid; grid-template-columns: 27px minmax(0, 1fr) 14px; align-items: center; gap: 11px; border: 0; border-radius: 12px; color: var(--u-shell-ink-soft); background: transparent; text-align: start; cursor: pointer; touch-action: manipulation; transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard); }
+.universal-shell-advanced { min-height: var(--mj-touch); padding: 6px 10px; display: grid; grid-template-columns: 27px minmax(0, 1fr) 14px; align-items: center; gap: 11px; border: 0; border-radius: 12px; color: var(--u-shell-ink-soft); background: transparent; text-align: start; cursor: pointer; touch-action: manipulation; transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard); }
 .universal-shell-advanced:hover { color: var(--u-shell-ink); background: rgba(126, 132, 171, 0.14); }
 .universal-shell-advanced > span { width: 27px; height: 27px; display: grid; place-items: center; color: var(--u-shell-icon); }
 .universal-shell-advanced b { font-size: 12px; font-weight: 550; white-space: nowrap; }
@@ -140,7 +140,7 @@
 .universal-shell-advanced-region > div { overflow: hidden; min-height: 0; }
 
 .universal-shell-advanced-list { margin-inline-start: 18px; padding: 2px 0 2px 8px; border-inline-start: 1px solid rgba(148, 152, 200, 0.16); }
-.universal-shell-advanced-list .universal-shell-link { min-height: var(--nq-touch); }
+.universal-shell-advanced-list .universal-shell-link { min-height: var(--mj-touch); }
 .universal-shell-advanced-list .universal-shell-link > span { width: 23px; height: 23px; }
 
 /* Profile footer — always fully visible; nav above it scrolls independently */
@@ -152,7 +152,7 @@
 .universal-shell-profile strong { font-size: 12px; color: var(--u-shell-ink); }
 .universal-shell-profile small { color: var(--u-shell-muted); font-size: 10.5px; }
 .universal-shell-profile > a > svg { color: var(--u-shell-muted); }
-.universal-shell-profile > button { width: 100%; min-height: var(--nq-touch); padding: 6px 9px; display: flex; align-items: center; gap: 10px; border: 0; border-radius: 10px; color: var(--u-shell-muted); background: transparent; font-size: 11.5px; cursor: pointer; white-space: nowrap; overflow: hidden; transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard); }
+.universal-shell-profile > button { width: 100%; min-height: var(--mj-touch); padding: 6px 9px; display: flex; align-items: center; gap: 10px; border: 0; border-radius: 10px; color: var(--u-shell-muted); background: transparent; font-size: 11.5px; cursor: pointer; white-space: nowrap; overflow: hidden; transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard); }
 .universal-shell-profile > button:hover { color: var(--u-shell-ink); background: rgba(126, 132, 171, 0.14); }
 .universal-shell-profile > button svg { color: var(--u-shell-icon-dim); }
 
@@ -168,7 +168,7 @@
 .universal-shell-topbar {
   position: sticky; z-index: 45; inset-block-start: 0;
   padding-block: max(6px, env(safe-area-inset-top)) 6px;
-  padding-inline: var(--nq-gutter);
+  padding-inline: var(--mj-gutter);
   display: grid;
   grid-template-areas:
     "context actions"
@@ -182,14 +182,14 @@
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
 }
 .universal-shell-context { grid-area: context; min-width: 0; display: flex; align-items: center; gap: 10px; }
-.universal-shell-context > button { width: var(--nq-touch); height: var(--nq-touch); flex: 0 0 auto; display: grid; place-items: center; border: 0; border-radius: 12px; color: var(--u-ink); background: var(--u-hover-veil); cursor: pointer; }
+.universal-shell-context > button { width: var(--mj-touch); height: var(--mj-touch); flex: 0 0 auto; display: grid; place-items: center; border: 0; border-radius: 12px; color: var(--u-ink); background: var(--u-hover-veil); cursor: pointer; }
 .universal-shell-context > span { overflow: hidden; color: var(--u-ink); text-overflow: ellipsis; white-space: nowrap; font-size: 14.5px; font-weight: 650; }
 .universal-shell-context > small { min-height: 26px; padding-inline: 9px; display: none; align-items: center; gap: 5px; border: 1px solid var(--u-glass-line); border-radius: 99px; color: var(--u-primary); background: var(--u-primary-soft); font-size: 10.5px; font-weight: 650; }
 
 .universal-shell-search {
   grid-area: search;
   width: 100%;
-  min-height: var(--nq-touch); padding: 0 9px 0 13px;
+  min-height: var(--mj-touch); padding: 0 9px 0 13px;
   display: flex; align-items: center; gap: 9px;
   border: 1.5px solid var(--u-line); border-radius: 13px;
   color: var(--u-faint); background: var(--u-glass-strong);
@@ -206,7 +206,7 @@
 .universal-shell-actions { grid-area: actions; display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
 .universal-shell-demo { display: none; }
 .universal-shell-actions > a:not(.universal-top-avatar), .universal-shell-actions > button {
-  min-width: var(--nq-touch); height: var(--nq-touch);
+  min-width: var(--mj-touch); height: var(--mj-touch);
   display: grid; place-items: center;
   border: 0; border-radius: 12px;
   color: var(--u-muted); background: transparent;
@@ -218,7 +218,7 @@
 .universal-shell-actions > a:not(.universal-top-avatar) { display: none; }
 .universal-shell-actions > button { position: relative; }
 .universal-shell-actions > button > i { position: absolute; inset-inline-end: 8px; inset-block-start: 7px; width: 6px; height: 6px; border: 2px solid white; border-radius: 50%; background: var(--u-shell-alert); box-sizing: content-box; }
-.universal-top-avatar { width: var(--nq-touch); height: var(--nq-touch); flex: 0 0 var(--nq-touch); display: grid; place-items: center; border-radius: 12px; color: white !important; background: var(--u-shell-grad-avatar-top) !important; box-shadow: 0 5px 12px rgba(85, 72, 224, 0.35), inset 0 1px rgba(255, 255, 255, 0.25); text-decoration: none; font-size: 12px; font-weight: 700; }
+.universal-top-avatar { width: var(--mj-touch); height: var(--mj-touch); flex: 0 0 var(--mj-touch); display: grid; place-items: center; border-radius: 12px; color: white !important; background: var(--u-shell-grad-avatar-top) !important; box-shadow: 0 5px 12px rgba(85, 72, 224, 0.35), inset 0 1px rgba(255, 255, 255, 0.25); text-decoration: none; font-size: 12px; font-weight: 700; }
 
 /* ---- Content — fluid, guarded, bottom-tab safe -------------------- */
 .universal-shell-content {
@@ -226,12 +226,12 @@
   width: 100%;
   min-width: 0;
   padding-block: clamp(16px, 2vw, 32px) clamp(24px, 3vw, 56px);
-  padding-inline: var(--nq-gutter);
-  padding-block-end: calc(clamp(24px, 3vw, 56px) + var(--nq-tabbar-reserve, 0px));
+  padding-inline: var(--mj-gutter);
+  padding-block-end: calc(clamp(24px, 3vw, 56px) + var(--mj-tabbar-reserve, 0px));
 }
 
-.universal-route-frame { animation: nasaq-route-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter); }
-@keyframes nasaq-route-in { from { opacity: 0; transform: translateY(10px); } }
+.universal-route-frame { animation: minsaj-route-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter); }
+@keyframes minsaj-route-in { from { opacity: 0; transform: translateY(10px); } }
 @media (prefers-reduced-motion: reduce) { .universal-route-frame { animation: none; } }
 
 /* ---- Backdrop (drawer overlay) ---------------------------------------- */
@@ -264,13 +264,13 @@
   .universal-shell-actions > a:not(.universal-top-avatar) { display: grid; }
 
   .universal-app-shell[data-sidebar="rail"] .universal-shell-sidebar {
-    width: var(--nq-sidebar-rail);
+    width: var(--mj-sidebar-rail);
     transform: none; visibility: visible;
     padding-inline: 10px;
     transition: width var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
   }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-main {
-    margin-inline-start: var(--nq-sidebar-rail);
+    margin-inline-start: var(--mj-sidebar-rail);
   }
   /* rail: center icons, hide all textual affordances
      (brand-row stacking handled by the .universal-shell-collapse rules above) */
@@ -285,14 +285,14 @@
 
   /* expanded on tablet = overlay drawer (content keeps rail offset) */
   .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] .universal-shell-sidebar {
-    width: var(--nq-sidebar-expanded);
+    width: var(--mj-sidebar-expanded);
     transform: none; visibility: visible;
     box-shadow: 24px 0 70px rgba(9, 10, 25, 0.45);
   }
   .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] .universal-shell-main {
-    margin-inline-start: var(--nq-sidebar-rail);
+    margin-inline-start: var(--mj-sidebar-rail);
   }
-  .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] ~ .nq-body-scroll-lock,
+  .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] ~ .mj-body-scroll-lock,
   .universal-app-shell[data-overlay="true"] .universal-shell-backdrop[data-state="open"] { opacity: 1; visibility: visible; pointer-events: auto; }
 }
 
@@ -301,22 +301,22 @@
    ========================================================================== */
 @media (min-width: 1024px) {
   .universal-app-shell[data-sidebar="expanded"] .universal-shell-sidebar {
-    width: var(--nq-sidebar-expanded);
+    width: var(--mj-sidebar-expanded);
     transform: none; visibility: visible;
     transition: width var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
   }
   .universal-app-shell[data-sidebar="expanded"] .universal-shell-main {
-    margin-inline-start: var(--nq-sidebar-expanded);
+    margin-inline-start: var(--mj-sidebar-expanded);
     transition: margin-inline-start var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
   }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-main {
-    margin-inline-start: var(--nq-sidebar-rail);
+    margin-inline-start: var(--mj-sidebar-rail);
     transition: margin-inline-start var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
   }
   .universal-shell-sidebar { padding-inline: 12px; }
 
   .universal-shell-content {
-    width: min(100% - var(--nq-gutter) * 2, var(--nq-content-max));
+    width: min(100% - var(--mj-gutter) * 2, var(--mj-content-max));
     margin-inline: auto;
   }
 }
@@ -331,7 +331,7 @@
    document.body (toasts, stop pills, dialogs) can also clear the tab bar.
    ========================================================================== */
 @media (max-width: 767.98px) {
-  :root { --nq-tabbar-reserve: calc(78px + env(safe-area-inset-bottom)); }
+  :root { --mj-tabbar-reserve: calc(78px + env(safe-area-inset-bottom)); }
   .universal-shell-mobile-nav {
     position: fixed; z-index: 50;
     inset-inline: 0; inset-block-end: 0;
@@ -361,7 +361,7 @@
     120/121  workbench u2 dialog        140  feedback toast
     200  skip link
    Rule: any viewport-fixed layer that must clear the tab bar also offsets by
-   var(--nq-tabbar-reserve, 0px) so it never paints over the tab items.
+   var(--mj-tabbar-reserve, 0px) so it never paints over the tab items.
    ========================================================================== */
 
 /* ---- Notifications panel — mobile: full-width sheet ------------------- */
@@ -371,14 +371,14 @@
   width: min(380px, calc(100vw - 28px));
   overflow: hidden; border: 1px solid var(--u-line); border-radius: 18px;
   background: var(--u-surface-solid); box-shadow: var(--u-shadow-xl);
-  animation: nasaq-pop-in var(--u-motion-duration-slow) var(--u-motion-ease-enter);
+  animation: minsaj-pop-in var(--u-motion-duration-slow) var(--u-motion-ease-enter);
 }
-@keyframes nasaq-pop-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
+@keyframes minsaj-pop-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
 .universal-notifications[data-state="closed"] { display: none; }
 .universal-notifications header { min-height: 54px; padding-inline: 15px 9px; display: flex; align-items: center; justify-content: space-between; border-block-end: 1px solid var(--u-line); }
 .universal-notifications header > div { display: flex; align-items: center; gap: 7px; font-weight: 650; font-size: 12.5px; }
 .universal-notifications header small { min-width: 22px; height: 22px; display: grid; place-items: center; border-radius: 99px; color: var(--u-primary); background: var(--u-primary-soft); font-size: 11px; }
-.universal-notifications header button { width: var(--nq-touch); height: var(--nq-touch); display: grid; place-items: center; border: 0; border-radius: 10px; color: var(--u-muted); background: transparent; }
+.universal-notifications header button { width: var(--mj-touch); height: var(--mj-touch); display: grid; place-items: center; border: 0; border-radius: 10px; color: var(--u-muted); background: transparent; }
 .universal-notifications header button:hover { background: var(--u-shell-hover); }
 .universal-notifications > a { min-height: 78px; padding: 14px; display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 11px; border-block-end: 1px solid var(--u-line); color: var(--u-ink); text-decoration: none; transition: background var(--u-fast) var(--u-motion-ease-standard); }
 .universal-notifications > a:last-child { border-block-end: 0; }
@@ -395,7 +395,7 @@
 }
 
 /* ---- Command palette — dialog sheet, bottom sheet on phones ----------- */
-.universal-command-overlay { position: fixed; z-index: 100; inset: 0; background: rgba(10, 12, 26, 0.48); backdrop-filter: blur(7px); animation: nasaq-fade-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter); }
+.universal-command-overlay { position: fixed; z-index: 100; inset: 0; background: rgba(10, 12, 26, 0.48); backdrop-filter: blur(7px); animation: minsaj-fade-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter); }
 .universal-command {
   position: fixed; z-index: 101; inset-block-start: min(12dvh, 110px); inset-inline-start: 50%;
   transform: translateX(-50%);
@@ -403,16 +403,16 @@
   max-height: calc(100dvh - 32px);
   overflow: hidden; border: 1px solid rgba(210, 213, 232, 0.9); border-radius: 22px;
   background: var(--u-surface-solid); box-shadow: var(--u-shadow-xl);
-  animation: nasaq-command-in var(--u-motion-duration-slow) var(--u-motion-ease-enter);
+  animation: minsaj-command-in var(--u-motion-duration-slow) var(--u-motion-ease-enter);
 }
-@keyframes nasaq-command-in { from { opacity: 0; transform: translateX(-50%) translateY(-14px) scale(.98); } }
+@keyframes minsaj-command-in { from { opacity: 0; transform: translateX(-50%) translateY(-14px) scale(.98); } }
 [dir="rtl"] .universal-command { transform: translateX(50%); }
-[dir="rtl"] .universal-command { animation-name: nasaq-command-in-rtl; }
-@keyframes nasaq-command-in-rtl { from { opacity: 0; transform: translateX(50%) translateY(-14px) scale(.98); } }
-.universal-command__input { min-height: 62px; padding: 8px 9px 8px 17px; display: grid; grid-template-columns: 24px minmax(0, 1fr) var(--nq-touch); align-items: center; gap: 10px; border-block-end: 1px solid var(--u-line); color: var(--u-primary); }
+[dir="rtl"] .universal-command { animation-name: minsaj-command-in-rtl; }
+@keyframes minsaj-command-in-rtl { from { opacity: 0; transform: translateX(50%) translateY(-14px) scale(.98); } }
+.universal-command__input { min-height: 62px; padding: 8px 9px 8px 17px; display: grid; grid-template-columns: 24px minmax(0, 1fr) var(--mj-touch); align-items: center; gap: 10px; border-block-end: 1px solid var(--u-line); color: var(--u-primary); }
 [dir="rtl"] .universal-command__input { padding: 8px 17px 8px 9px; }
 .universal-command__input input { height: 46px; border: 0; outline: 0; color: var(--u-ink); background: transparent; font-size: 15px; }
-.universal-command__input button { width: var(--nq-touch); height: var(--nq-touch); display: grid; place-items: center; border: 0; border-radius: 11px; color: var(--u-muted); background: var(--u-hover-veil); }
+.universal-command__input button { width: var(--mj-touch); height: var(--mj-touch); display: grid; place-items: center; border: 0; border-radius: 11px; color: var(--u-muted); background: var(--u-hover-veil); }
 .universal-command__input button:hover { background: var(--u-shell-hover); }
 .universal-command__results { max-height: min(510px, 65vh); padding: 9px; overflow-y: auto; }
 .universal-command__results > span { display: block; padding: 8px 10px; color: var(--u-faint); font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
@@ -424,8 +424,8 @@
 .universal-command__results > p { padding: 32px; color: var(--u-muted); text-align: center; font-size: 12px; }
 @media (max-width: 767.98px) {
   .universal-command { inset: auto 0 0; transform: none; width: 100%; max-height: min(82dvh, 720px); border-radius: 22px 22px 0 0; }
-  [dir="rtl"] .universal-command { transform: none; animation-name: nasaq-command-in-up; }
-  .universal-command { animation-name: nasaq-command-in-up; }
-  @keyframes nasaq-command-in-up { from { opacity: 0; transform: translateY(24px); } }
+  [dir="rtl"] .universal-command { transform: none; animation-name: minsaj-command-in-up; }
+  .universal-command { animation-name: minsaj-command-in-up; }
+  @keyframes minsaj-command-in-up { from { opacity: 0; transform: translateY(24px); } }
   .universal-command__results { max-height: calc(82dvh - 70px); padding-block-end: calc(14px + env(safe-area-inset-bottom)); }
 }

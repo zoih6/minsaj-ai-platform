@@ -9,8 +9,8 @@ import type {
   ServiceSession,
   ServiceStage,
   SimulationReceipt,
-} from "@nasaq/contracts/services";
-import { createServiceStages } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { createServiceStages } from "@minsaj/contracts/services";
 import { createServiceIdFactory, type ServiceIdFactory } from "./ids";
 import { toServiceTimestamp, type ServiceClock } from "./clock";
 import { buildServiceInput, buildServiceScenarioFixture, buildServiceArtifactContent } from "./fixtures";

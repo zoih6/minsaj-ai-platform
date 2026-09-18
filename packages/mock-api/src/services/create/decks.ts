@@ -1,5 +1,5 @@
-import type { CreateBrief, CreateDeckDraft, CreateDeckSlide, CreateStructure } from "@nasaq/contracts/services";
-import type { Locale } from "@nasaq/contracts/services";
+import type { CreateBrief, CreateDeckDraft, CreateDeckSlide, CreateStructure } from "@minsaj/contracts/services";
+import type { Locale } from "@minsaj/contracts/services";
 
 /**
  * Deck structure and draft builders — deterministic and bilingual.
@@ -28,7 +28,7 @@ const deckCopy = {
       "المخاطر قبل القرار حتى يُقرر بعين مفتوحة.",
       "القرار أخيرًا ليختم العرض.",
     ],
-    brandBullet: "لوحات Nasaq Analytics تؤكد أرقام QueueSense لهذا الربع.",
+    brandBullet: "لوحات Minsaj Analytics تؤكد أرقام QueueSense لهذا الربع.",
     longTitle: "شريحة تفصيلية بأثر تحسين تجربة الانتظار على مؤشرات الرضا وسلوك العملاء خلال الربع الثالث",
   },
   en: {
@@ -49,7 +49,7 @@ const deckCopy = {
       "Risks before the decision keep eyes open.",
       "The decision closes the deck.",
     ],
-    brandBullet: "Nasaq Analytics dashboards confirm this quarter's QueueSense figures.",
+    brandBullet: "Minsaj Analytics dashboards confirm this quarter's QueueSense figures.",
     longTitle: "A detailed slide on how waiting-time improvements shaped satisfaction and behaviour across Q3",
   },
 } as const;

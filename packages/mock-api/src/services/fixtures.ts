@@ -11,8 +11,8 @@ import type {
   ServiceSourceId,
   ServiceStage,
   SimulationReceipt,
-} from "@nasaq/contracts/services";
-import { createServiceStages, serviceIds, serviceUserTextSchema } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { createServiceStages, serviceIds, serviceUserTextSchema } from "@minsaj/contracts/services";
 import { createServiceIdFactory, type ServiceIdFactory } from "./ids";
 import { buildServiceScenarioPlan, serviceArtifactKinds } from "./plans";
 import { toServiceTimestamp } from "./clock";

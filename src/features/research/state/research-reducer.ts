@@ -5,8 +5,8 @@ import type {
   ResearchScope,
   ResearchSessionState,
   ResearchStageKey,
-} from "@nasaq/contracts/services";
-import { researchBriefSchema, researchSessionStateSchema } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { researchBriefSchema, researchSessionStateSchema } from "@minsaj/contracts/services";
 import {
   applySourceExclusion,
   buildResearchActivitySteps,
@@ -23,12 +23,12 @@ import {
   restoreResearchSource,
   type ResearchSteerKey,
   type ResearchTopicId,
-} from "@nasaq/mock-api/services";
+} from "@minsaj/mock-api/services";
 
 /**
  * Research slice state machine — U2.2.
  *
- * Stages follow the blueprint in `@nasaq/contracts/services` and every
+ * Stages follow the blueprint in `@minsaj/contracts/services` and every
  * transition has a documented guard: no activity before an approved plan
  * version, no claim matrix without at least one discovered source, no report
  * while an unsupported or conflicted claim is unresolved, and no completion

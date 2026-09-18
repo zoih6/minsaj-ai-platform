@@ -143,7 +143,7 @@ the `repo-state-maintenance` skill — never delete or edit accepted records.
   elements, patchwork breakpoints at 1220/1040/840/680/430) because components could not know the
   width actually available after the sidebar.
 - **Decision:** Components reflow by *available container width* (bands 1040/880/640/430) via
-  `@container ops-page`; intrinsic primitives (`nq-grid` etc.) in `layout.css`; sidebar modes
+  `@container ops-page`; intrinsic primitives (`mj-grid` etc.) in `layout.css`; sidebar modes
   keyed to viewport breakpoints (768/1024) from `src/lib/viewports.ts`.
 - **Consequences:** Per-element media-query patches are forbidden; every page root must declare a
   container context (CI-enforced since phase 8).

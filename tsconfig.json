@@ -27,25 +27,25 @@
       "@/*": [
         "./src/*"
       ],
-      "@nasaq/contracts": [
+      "@minsaj/contracts": [
         "./packages/contracts/src"
       ],
-      "@nasaq/contracts/services": [
+      "@minsaj/contracts/services": [
         "./packages/contracts/src/services"
       ],
-      "@nasaq/i18n": [
+      "@minsaj/i18n": [
         "./packages/i18n/src"
       ],
-      "@nasaq/i18n/services": [
+      "@minsaj/i18n/services": [
         "./packages/i18n/src/services"
       ],
-      "@nasaq/mock-api": [
+      "@minsaj/mock-api": [
         "./packages/mock-api/src"
       ],
-      "@nasaq/mock-api/services": [
+      "@minsaj/mock-api/services": [
         "./packages/mock-api/src/services"
       ],
-      "@nasaq/ui": [
+      "@minsaj/ui": [
         "./packages/ui/src"
       ]
     }

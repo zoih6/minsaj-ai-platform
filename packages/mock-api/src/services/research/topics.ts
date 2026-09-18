@@ -1,11 +1,11 @@
-import type { Locale, ServiceEvidenceRef, ServiceSourceId } from "@nasaq/contracts/services";
-import type { ResearchSourceType } from "@nasaq/contracts/services";
+import type { Locale, ServiceEvidenceRef, ServiceSourceId } from "@minsaj/contracts/services";
+import type { ResearchSourceType } from "@minsaj/contracts/services";
 
 /**
  * Research topic fixtures — U2.2.
  *
  * Structure and deterministic rules live here; stage/UI copy resolves through
- * `@nasaq/i18n/services` (`services.research.*`). Evidence excerpts, source
+ * `@minsaj/i18n/services` (`services.research.*`). Evidence excerpts, source
  * titles shown inside evidence refs, and locator values are locale literals —
  * the same bilingual-fixture pattern the U2.0 foundation uses — because they
  * are artifact data, not interface chrome. Nothing is fetched: every source is

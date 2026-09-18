@@ -1,6 +1,6 @@
-import type { ResearchActivityEntry, ResearchPlan } from "@nasaq/contracts/services";
+import type { ResearchActivityEntry, ResearchPlan } from "@minsaj/contracts/services";
 import { getResearchTopic, type ResearchTopicId } from "./topics";
-import type { ResearchSourceRecord } from "@nasaq/contracts/services";
+import type { ResearchSourceRecord } from "@minsaj/contracts/services";
 
 /**
  * Deterministic source-activity plan — U2.2.

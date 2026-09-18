@@ -2,9 +2,9 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
-import type { HandoffBundle, Locale, SimulationReceipt } from "@nasaq/contracts/services";
-import { describeSimulationReceipt } from "@nasaq/contracts/services";
-import { getServiceDictionary } from "@nasaq/i18n/services";
+import type { HandoffBundle, Locale, SimulationReceipt } from "@minsaj/contracts/services";
+import { describeSimulationReceipt } from "@minsaj/contracts/services";
+import { getServiceDictionary } from "@minsaj/i18n/services";
 import type { ServiceStoreStatus } from "../storage/store";
 
 /**

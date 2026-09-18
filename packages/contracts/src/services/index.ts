@@ -3,7 +3,7 @@
  *
  * This module owns every U2 session/run/stage/event/receipt/handoff type. It is
  * intentionally separate from the prototype Agent/Flow shapes exported by
- * `@nasaq/contracts`: `ServiceRun` is not `AgentRun` or `FlowRun`, and
+ * `@minsaj/contracts`: `ServiceRun` is not `AgentRun` or `FlowRun`, and
  * `SimulationReceipt` is not an `ExecutionReceipt`.
  *
  * Ownership rules (mandatory addendum section 4):

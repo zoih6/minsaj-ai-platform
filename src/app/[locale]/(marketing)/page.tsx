@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { UniversalMarketing } from "@/components/universal/universal-marketing";
 import { ScrollFx } from "@/components/universal/scroll-fx";
 

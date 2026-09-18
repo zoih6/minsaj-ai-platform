@@ -33,7 +33,7 @@ hold across both directions and all container bands.
 
 - Anything `position: fixed` mounts via `createPortal` to `document.body` (never inside
   `contain: layout` containers).
-- Respects `--nq-tabbar-reserve` (declared on `:root`) so it never covers the mobile tab bar.
+- Respects `--mj-tabbar-reserve` (declared on `:root`) so it never covers the mobile tab bar.
 - Respects the z-index ladder (top of `shell.css`): tab bar 50 → dialogs 80–101 →
   workbench overlays 120–121 → toasts 95 + reserve.
 

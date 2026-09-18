@@ -1,5 +1,5 @@
-import type { CreateBrief, CreateDocumentAlternative, CreateDocumentDraft, CreateStructure } from "@nasaq/contracts/services";
-import type { Locale } from "@nasaq/contracts/services";
+import type { CreateBrief, CreateDocumentAlternative, CreateDocumentDraft, CreateStructure } from "@minsaj/contracts/services";
+import type { Locale } from "@minsaj/contracts/services";
 
 /**
  * Document structure and draft builders — deterministic and bilingual.
@@ -29,7 +29,7 @@ const documentCopy = {
     listItems: "خيار أول: إضافة موظف دعم في الذروة · خيار ثانٍ: جدولة موسعة · خيار ثالث: خدمة موعد رقمية",
     alternativeText: "التوصية: إبقاء الجدولة الحالية موضع مراجعة شهرية، مع قياس أثرها على الرضا قبل أي توسع.",
     alternativeIntent: "بديل أكثر حذرًا في الصياغة يربط التوصية بمراجعة شهرية قابلة للقياس.",
-    brandParagraph: "تستخدم قياسات هذا الربع نظام QueueSense الداخلي، وتتوافق نتائجه مع لوحات Nasaq Analytics.",
+    brandParagraph: "تستخدم قياسات هذا الربع نظام QueueSense الداخلي، وتتوافق نتائجه مع لوحات Minsaj Analytics.",
     longHeading: "تقرير تفصيلي شامل حول أثر تحسين تجربة الانتظار على مؤشرات رضا العملاء وسلوكهم خلال الربع الثالث من العام",
   },
   en: {
@@ -50,7 +50,7 @@ const documentCopy = {
     listItems: "Option one: add peak-hour support staff · Option two: extended scheduling · Option three: digital appointment service",
     alternativeText: "Recommendation: keep the current scheduling under monthly review, measuring its satisfaction impact before any expansion.",
     alternativeIntent: "A more cautious phrasing that ties the recommendation to a measurable monthly review.",
-    brandParagraph: "This quarter's measurements use the internal QueueSense system, and its results match the Nasaq Analytics dashboards.",
+    brandParagraph: "This quarter's measurements use the internal QueueSense system, and its results match the Minsaj Analytics dashboards.",
     longHeading: "A detailed report on how waiting-time improvements shaped customer satisfaction and behaviour across the third quarter",
   },
 } as const;

@@ -1,6 +1,6 @@
 ---
 name: theming-and-contrast
-description: Design and maintain the dual-theme (light/dark) system for Nasaq — token architecture in foundations.css, next-themes integration, and WCAG AA contrast discipline. Use when adding or changing ANY color, surface, border, or shadow; when building new components that must work in both themes; when a contrast or readability issue is reported; and when touching theme-provider, theme-toggle, or prefers-color-scheme behavior.
+description: Design and maintain the dual-theme (light/dark) system for Minsaj — token architecture in foundations.css, next-themes integration, and WCAG AA contrast discipline. Use when adding or changing ANY color, surface, border, or shadow; when building new components that must work in both themes; when a contrast or readability issue is reported; and when touching theme-provider, theme-toggle, or prefers-color-scheme behavior.
 ---
 
 # Theming & Contrast

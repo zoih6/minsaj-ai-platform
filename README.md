@@ -1,11 +1,11 @@
 <div dir="rtl">
 
-# نَسَق AI — Nasaq AI Platform
+# منسج AI — Minsaj AI Platform
 
 منصة أعمال الذكاء الاصطناعي: ابحث، تعلّم، أنشئ، وأدِر — بواجهة عربية أولاً (RTL) وتصميم «Luminous Premium» (بنفسجي على قشرة أوبسيديان).
 
-**🔗 الموقع المباشر**: [nasaq-ai-platform.vercel.app](https://nasaq-ai-platform.vercel.app)
-**📦 المستودع**: github.com/zoih6/nasaq-ai-platform · **النشر**: تلقائي عبر Vercel عند كل push إلى `main`
+**🔗 الموقع المباشر**: [minsaj-ai-platform.vercel.app](https://minsaj-ai-platform.vercel.app)
+**📦 المستودع**: github.com/zoih6/minsaj-ai-platform · **النشر**: تلقائي عبر Vercel عند كل push إلى `main`
 
 </div>
 
@@ -25,7 +25,7 @@
 | **التنسيق** | Tailwind CSS v4 (CSS-first) + 11 طبقة CSS معمارية |
 | **البنية** | Monorepo (Bun workspaces): `packages/{contracts, i18n, mock-api, ui}` |
 | **اللغات** | عربي RTL (افتراضي `/ar`) + إنجليزي LTR (`/en`) — next-intl |
-| **البيانات** | Mock API محلي (`@nasaq/mock-api`) — جاهز لاستبدال ServiceProvider بالباك-اند (انظر `docs/05`) |
+| **البيانات** | Mock API محلي (`@minsaj/mock-api`) — جاهز لاستبدال ServiceProvider بالباك-اند (انظر `docs/05`) |
 
 ## التشغيل
 

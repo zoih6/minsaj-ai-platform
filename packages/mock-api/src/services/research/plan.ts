@@ -5,7 +5,7 @@ import type {
   ResearchPlanAxis,
   ResearchScope,
   ResearchSourceType,
-} from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
 import { getResearchTopic, type ResearchTopicId } from "./topics";
 
 /**

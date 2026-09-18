@@ -7,8 +7,8 @@ import type {
   ServiceSession,
   ServiceStage,
   SimulationReceipt,
-} from "@nasaq/contracts/services";
-import { applyServiceEvent, consumeHandoff, type ServiceEventApplication } from "@nasaq/contracts/services";
+} from "@minsaj/contracts/services";
+import { applyServiceEvent, consumeHandoff, type ServiceEventApplication } from "@minsaj/contracts/services";
 import type { ServiceDomainBlock, ServiceStoreStatus } from "../storage/store";
 
 /**

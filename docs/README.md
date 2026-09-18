@@ -1,4 +1,4 @@
-# Nasaq AI — Documentation Suite
+# Minsaj AI — Documentation Suite
 
 > Single source of truth for product, design, and engineering documentation. English is the working language of these documents; the product UI is Arabic-first with full English support.
 
@@ -21,7 +21,7 @@
 | Document | Governs | Read it |
 |---|---|---|
 | [`ARCHITECTURE-RULES.md`](../ARCHITECTURE-RULES.md) | Code boundaries: layer map, import direction, ServiceProvider seam (with the current direct-import debt inventory), the class-justification rule, anti-bloat catalog | Before writing/moving ANY code |
-| [`DESIGN-ENGINEERING-GOVERNANCE.md`](../DESIGN-ENGINEERING-GOVERNANCE.md) | The visual system: tokens (spacing/type/icon/radius/motion scales), layout vocabulary (`nq-*`), responsive rules, anti-pattern catalog, visual QA protocol, the 8-step agent workflow, definition of done | Before touching ANY component, page, CSS, token, or icon |
+| [`DESIGN-ENGINEERING-GOVERNANCE.md`](../DESIGN-ENGINEERING-GOVERNANCE.md) | The visual system: tokens (spacing/type/icon/radius/motion scales), layout vocabulary (`mj-*`), responsive rules, anti-pattern catalog, visual QA protocol, the 8-step agent workflow, definition of done | Before touching ANY component, page, CSS, token, or icon |
 
 ## How to Use This Suite
 
@@ -35,9 +35,9 @@
 
 ## Appendix — Software Documentation Taxonomy
 
-Industry-standard documents (validated against current practice — Atlassian, Productboard/Figma templates, Modern Requirements, ClickHelp) and how Nasaq uses them:
+Industry-standard documents (validated against current practice — Atlassian, Productboard/Figma templates, Modern Requirements, ClickHelp) and how Minsaj uses them:
 
-| Abbr | Full name | Answers | In Nasaq? |
+| Abbr | Full name | Answers | In Minsaj? |
 |---|---|---|---|
 | **Brief / One-pager** | Product Brief | What is this and why does it matter? | ✅ `00` |
 | **MRD** | Market Requirements Document | What does the market need? Competition, positioning, segmentation | ◻ folded into `00`/`01` (market work is light pre-launch) |

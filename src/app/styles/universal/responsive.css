@@ -7,7 +7,7 @@
      · workspaces.css     → service-space container queries
      · library.css        → universal-library container queries
      · globals.css        → ops-page container queries (domain pages)
-     · layout.css         → intrinsic primitives (nq-grid / split / data-list)
+     · layout.css         → intrinsic primitives (mj-grid / split / data-list)
    What remains here is ONLY full-viewport art direction for the marketing
    site (no sidebar → viewport == container) and accessibility contracts.
 
@@ -16,7 +16,7 @@
    · Portaled overlays/sheets: 900 (large overlay collapse) · 640 (phone sheet) · 430 (small phone)
    · Marketing/preview:        1320 · 1180 · 980 · 820 · 640 · 430
    · Container ops-page:       1040 · 880 · 640 · 430
-   · Container nq-flow:        880 · 640
+   · Container mj-flow:        880 · 640
    · Container service-space:  880 · 640
    · Container adaptive-home:  1080 · 640
    · Container universal-library: 640

@@ -1,7 +1,7 @@
 "use client";
 
-import type { Locale, ServiceScenarioId } from "@nasaq/contracts/services";
-import { createDeterministicMockServiceClient } from "@nasaq/mock-api/services";
+import type { Locale, ServiceScenarioId } from "@minsaj/contracts/services";
+import { createDeterministicMockServiceClient } from "@minsaj/mock-api/services";
 import { CreateWorkspace } from "./create-workspace";
 
 /**

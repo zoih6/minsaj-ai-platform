@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
-import type { ProjectSummary } from "@nasaq/contracts";
+import { isLocale } from "@minsaj/i18n";
+import type { ProjectSummary } from "@minsaj/contracts";
 import { getOperationsData } from "@/lib/data/operations";
 import { ProjectDetailPrototype } from "@/components/domain/operations/project-detail-prototype";
 

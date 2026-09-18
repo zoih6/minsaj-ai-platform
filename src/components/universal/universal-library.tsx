@@ -19,7 +19,7 @@ import {
   SearchCheck,
   Sparkles,
 } from "lucide-react";
-import type { Locale } from "@nasaq/contracts";
+import type { Locale } from "@minsaj/contracts";
 import { retrySurface, SearchEmpty, SkeletonPage, UniversalEmpty, type SurfaceStateOverride } from "@/components/universal/states";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";
@@ -83,9 +83,9 @@ export function UniversalLibrary({ locale, scenario = null }: { locale: Locale; 
       <header className="universal-library-header"><div><span><Sparkles size={14} />{copy.eyebrow}</span><h1>{copy.title}</h1><p>{copy.body}</p></div><Link className="universal-library-new" href={`/${locale}/app/home`}><Plus size={16} />{copy.new}</Link></header>
       <div className="universal-library-toolbar">
         <label><Search size={18} /><input value={query} onInput={(event) => setQuery(event.currentTarget.value)} placeholder={copy.search} aria-label={copy.search} /></label>
-        <div className="nq-control-bar universal-library__bar">
-          <div className="nq-control-bar__group universal-library-filters" role="group" aria-label={copy.filterLabel}>{copy.filters.map(([id, label]) => <button type="button" className={`nq-chip${filter === id ? " is-active" : ""}`} aria-pressed={filter === id} onClick={() => setFilter(id!)} key={id}>{label}</button>)}</div>
-          <div className="nq-control-bar__tail universal-library__meta">
+        <div className="mj-control-bar universal-library__bar">
+          <div className="mj-control-bar__group universal-library-filters" role="group" aria-label={copy.filterLabel}>{copy.filters.map(([id, label]) => <button type="button" className={`mj-chip${filter === id ? " is-active" : ""}`} aria-pressed={filter === id} onClick={() => setFilter(id!)} key={id}>{label}</button>)}</div>
+          <div className="mj-control-bar__tail universal-library__meta">
             <span role="status" aria-live="polite" aria-atomic="true">{filtered.length} {copy.results}</span>
             <div className="universal-library-view"><button type="button" className={view === "grid" ? "is-active" : ""} aria-pressed={view === "grid"} onClick={() => setView("grid")} aria-label="Grid"><Grid2X2 size={16} /></button><button type="button" className={view === "list" ? "is-active" : ""} aria-pressed={view === "list"} onClick={() => setView("list")} aria-label="List"><List size={16} /></button></div>
           </div>

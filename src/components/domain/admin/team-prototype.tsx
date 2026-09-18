@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Check, ChevronDown, Crown, KeyRound, Mail, MoreHorizontal, Plus, ShieldCheck, UserCheck, Users, X } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type Locale, type TeamMember } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type Locale, type TeamMember } from "@minsaj/contracts";
 import { DemoToast, LibraryToolbar, OperationsStats } from "@/components/domain/operations/shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

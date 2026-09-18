@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Bot, Boxes, Play, Plus, ShieldCheck, Wrench } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type AgentSummary, type Locale } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type AgentSummary, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "./shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

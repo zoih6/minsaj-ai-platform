@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isLocale } from "@nasaq/i18n";
+import { isLocale } from "@minsaj/i18n";
 import { getOperationsData } from "@/lib/data/operations";
 import { RunsPrototype } from "@/components/domain/operations/runs-prototype";
 import { parseScenarioParam } from "@/lib/surface-states";

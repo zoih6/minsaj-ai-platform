@@ -5,10 +5,10 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   allowedDevOrigins: ["127.0.0.1", "localhost", "*.e2b.app", "*.space-z.ai"],
   transpilePackages: [
-    "@nasaq/contracts",
-    "@nasaq/i18n",
-    "@nasaq/mock-api",
-    "@nasaq/ui",
+    "@minsaj/contracts",
+    "@minsaj/i18n",
+    "@minsaj/mock-api",
+    "@minsaj/ui",
   ],
   async redirects() {
     return [

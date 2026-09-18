@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Bot, CheckCircle2, FileText, FolderKanban, MessageSquareText, Play, Plus, ShieldCheck, Sparkles, Users, Workflow } from "lucide-react";
-import { Badge } from "@nasaq/ui";
-import { localize, type AgentSummary, type FlowSummary, type Locale, type ProjectSummary, type RunSummary } from "@nasaq/contracts";
+import { Badge } from "@minsaj/ui";
+import { localize, type AgentSummary, type FlowSummary, type Locale, type ProjectSummary, type RunSummary } from "@minsaj/contracts";
 import { CostValue, RunStatusBadge } from "./shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";

@@ -1,8 +1,8 @@
-# Nasaq AI — Frontend Architecture
+# Minsaj AI — Frontend Architecture
 
 | | |
 |---|---|
-| **Document ID** | NASAQ-FE-ARCH |
+| **Document ID** | MINSAJ-FE-ARCH |
 | **Version** | 2.0 — 2026-09 |
 | **Status** | Active — reflects the shipped codebase |
 | **Related** | `01-PRD.md` · `03-DESIGN-SYSTEM.md` · `05-BACKEND-INTEGRATION-READINESS.md` |
@@ -15,12 +15,12 @@
 |---|---|---|
 | Framework | **Next.js 16 (App Router, Turbopack)** | Filesystem routing with `[locale]` segment |
 | Language | **TypeScript 5 (strict)** | End-to-end, including workspace packages |
-| UI primitives | **Radix UI** (via shadcn-style wrappers) + `@nasaq/ui` | Accessible behaviors, unstyled core |
+| UI primitives | **Radix UI** (via shadcn-style wrappers) + `@minsaj/ui` | Accessible behaviors, unstyled core |
 | Styling | **Tailwind CSS 4 (CSS-first, no `tailwind.config`)** + custom CSS layers | Single ordered entrypoint, no CSS-in-JS |
 | State | Local `useState`/context now; **Zustand** reserved for cross-route client state; **TanStack Query** reserved for server state (post-mock) | No premature global state |
 | Forms | react-hook-form + zod resolvers | zod schemas shared with contracts |
-| Data (current) | `@nasaq/mock-api` — deterministic, in-memory, contract-typed | Swap path defined in §7 |
-| i18n | `@nasaq/i18n` dictionaries + `next-intl` conventions | AR-first |
+| Data (current) | `@minsaj/mock-api` — deterministic, in-memory, contract-typed | Swap path defined in §7 |
+| i18n | `@minsaj/i18n` dictionaries + `next-intl` conventions | AR-first |
 | Icons | Lucide React | |
 | Motion | CSS keyframes + IntersectionObserver (`ScrollFx`) | framer-motion available but not load-bearing |
 
@@ -29,7 +29,7 @@ Package manager: **bun** (workspaces). Node version: LTS 20+.
 ## 2. Repository Layout (monorepo)
 
 ```
-nasaq-ai/
+minsaj-ai/
 ├─ src/                        # Next.js application
 │  ├─ app/
 │  │  ├─ [locale]/
@@ -70,7 +70,7 @@ nasaq-ai/
 
 ```
 foundations.css   # tokens ONLY (colors, type, radii, shadows, motion durations, shell metrics)
-layout.css        # nq-* intrinsic primitives (grid/stack/cluster/split/data-list) + breakpoint bands
+layout.css        # mj-* intrinsic primitives (grid/stack/cluster/split/data-list) + breakpoint bands
 marketing.css     # landing art direction
 shell.css         # app chrome: sidebar modes, topbar, tab bar, backdrop, z-ladder
 home.css          # home surface
@@ -85,7 +85,7 @@ workbench.css     # workspace stage internals (rails, overlays, comparisons)
 
 1. Tokens are declared once in `foundations.css`; other layers consume.
 2. No physical `left/right` properties — logical properties only (RTL-native).
-3. Layout must use `nq-*` primitives; page-specific fixed grids are forbidden.
+3. Layout must use `mj-*` primitives; page-specific fixed grids are forbidden.
 4. Component reflow uses **container queries** (4 bands: 1040/880/640/430) keyed to available width — not viewport media queries.
 5. Every interactive element satisfies the 44 px touch invariant.
 6. New CSS joins the layer that owns it; no new global entrypoints.
@@ -98,10 +98,10 @@ workbench.css     # workspace stage internals (rails, overlays, comparisons)
 
 ## 6. Data Layer (current — mock)
 
-`@nasaq/mock-api` provides:
+`@minsaj/mock-api` provides:
 
 - **Deterministic scenario playback** (`services/runner.ts`): each workspace run is a pre-authored event plan; the runner emits sequenced events on a manual clock; **success is never derived from elapsed time** (PRD FR-STATE-001 by construction), nothing is random, replays are reproducible.
-- Snapshot fixtures (home, operations, admin) typed by `@nasaq/contracts` zod schemas.
+- Snapshot fixtures (home, operations, admin) typed by `@minsaj/contracts` zod schemas.
 - Service domains: `create` (documents, decks, variants, versions, presets, visuals), `research` (sources, presets), `learn`, and shared `plans/ids/clock/runner`.
 - Retry (`retryOf`), cancellation steps, and artifact kinds are first-class — mirroring the PRD state machines.
 
@@ -109,7 +109,7 @@ Consumption pattern: feature components subscribe to scenario events through the
 
 ## 7. Real-API Swap Path (preview — full plan in `05-BACKEND-INTEGRATION-READINESS.md`)
 
-1. `@nasaq/contracts` remains the wire truth; backend implements it.
+1. `@minsaj/contracts` remains the wire truth; backend implements it.
 2. Introduce a client interface (snapshot/stream) with two implementations: mock (today) and HTTP/SSE (R2+).
 3. Feature controllers switch via provider registration — no component changes.
 4. Server state moves to TanStack Query at that moment (keys per contract schema).
@@ -127,7 +127,7 @@ Consumption pattern: feature components subscribe to scenario events through the
 
 ## 9. Conventions
 
-- **Naming**: components PascalCase files; hooks `use-*`; CSS blocks kebab with `nq-`/`u-` prefixes per layer.
+- **Naming**: components PascalCase files; hooks `use-*`; CSS blocks kebab with `mj-`/`u-` prefixes per layer.
 - **i18n**: no hardcoded strings; dictionary keys namespaced by surface (`home.*`, `research.*`).
 - **IDs**: entity IDs keep contract prefixes (`run_`, `prj_`, `mdl_`, `ws_`); display IDs never surface raw (SR-only).
 - **Errors**: user-facing errors follow the 5-part contract; never raw exceptions.

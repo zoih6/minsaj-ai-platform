@@ -1,4 +1,4 @@
-# AGENTS.md — Nasaq AI Platform
+# AGENTS.md — Minsaj AI Platform
 
 > This file follows the open **[AGENTS.md standard](https://agents.md)** — a "README for agents".
 > It is the **single entry point** for ANY AI coding agent (Codex, Claude Code, Cursor, Gemini CLI,
@@ -48,13 +48,13 @@ New token or color added? **Extend the pair list in `scripts/check-theme-contras
 
 ## Project snapshot
 
-- **What:** Nasaq AI (نَسَق) — Arabic-first (RTL) AI business platform frontend: research, learn,
+- **What:** Minsaj AI (منسج) — Arabic-first (RTL) AI business platform frontend: research, learn,
   create workspaces + operations (projects, runs, agents, flows, knowledge, models, team, billing…).
 - **Stack:** Next.js 16 App Router · React 19 · TypeScript · Tailwind v4 (CSS-first, no
   tailwind.config) · Bun · next-intl (`/ar` default, `/en` secondary).
-- **Live:** <https://nasaq-ai-platform.vercel.app> — **every push to `main` auto-deploys.**
-- **Repo:** <https://github.com/zoih6/nasaq-ai-platform> (private).
-- **Data:** local mock API (`@nasaq/mock-api`); backend integration seam documented in
+- **Live:** <https://minsaj-ai-platform.vercel.app> — **every push to `main` auto-deploys.**
+- **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (private).
+- **Data:** local mock API (`@minsaj/mock-api`); backend integration seam documented in
   `docs/05-BACKEND-INTEGRATION-READINESS.md`, contracts in `packages/contracts`.
 
 ### Repository map
@@ -92,8 +92,8 @@ STATE.md                     # living handoff snapshot — update EVERY task
    container-query rules are dead on that page ⇒ desktop layout on phones. `scripts/check-layout-guards.mjs`
    enforces this in CI — it must stay green.
 4. **Components reflow via container queries, not media queries — EXCEPT portaled content.**
-   Use the primitives in `layout.css` (`nq-grid`, `nq-split`, `nq-cluster`, `nq-data-list`,
-   `nq-scroll-x`) or the four container bands (1040/880/640/430). **Never** add per-element
+   Use the primitives in `layout.css` (`mj-grid`, `mj-split`, `mj-cluster`, `mj-data-list`,
+   `mj-scroll-x`) or the four container bands (1040/880/640/430). **Never** add per-element
    viewport media-query patches for in-flow content.
 5. **Portaled dialogs/overlays style via `@media`, NEVER `@container`.** Anything rendered
    through `<Dialog.Portal>` (or `createPortal`) mounts into `document.body` — **outside every
@@ -115,7 +115,7 @@ STATE.md                     # living handoff snapshot — update EVERY task
 9. **Touch targets ≥ 44×44px** (`--u-touch`).
 10. **No new dependency without proof of use** (this repo deleted 45 dead deps once — never again).
 11. **Portaled fixed elements** (toasts, floating buttons) mount to `document.body` via
-    `createPortal` and respect `--nq-tabbar-reserve` (defined on `:root` so portals can reach it).
+    `createPortal` and respect `--mj-tabbar-reserve` (defined on `:root` so portals can reach it).
     Respect the unified z-index ladder documented at the top of `shell.css`.
 12. **ScrollFx mounts inside page-root components, never in layouts** (hydration race — React
     hydrates lazy boundaries after layout effects).
@@ -130,7 +130,7 @@ STATE.md                     # living handoff snapshot — update EVERY task
     violations by rule ID (`ARCH-§n` / `DEG-§n`). Any visual/layout task follows the 8-step
     workflow in DEG §15 (AUDIT → … → REGRESSION CHECK) — the forbidden workflow "see problem →
     patch CSS on that screen → next" is what this repo exists to prevent. No new direct
-    `@nasaq/mock-api` imports — new data access routes through the existing chokepoints
+    `@minsaj/mock-api` imports — new data access routes through the existing chokepoints
     (service-workbench provider · `src/lib/data`) until the provider registration lands at
     backend kickoff (ARCH §4, owner decision 2026-09-17).
 
@@ -226,7 +226,7 @@ can read them, Claude Code auto-discovers them natively.
 [`ARCHITECTURE-RULES.md`](./ARCHITECTURE-RULES.md) — structure law: layer map, import direction,
 ServiceProvider seam + debt inventory, class-justification policy, anti-bloat catalog.
 [`DESIGN-ENGINEERING-GOVERNANCE.md`](./DESIGN-ENGINEERING-GOVERNANCE.md) — visual system law:
-token scales (spacing/type/icon/radius/motion), `nq-*` layout vocabulary, responsive rules,
+token scales (spacing/type/icon/radius/motion), `mj-*` layout vocabulary, responsive rules,
 anti-pattern catalog, visual QA protocol, 8-step agent workflow, definition of done.
 
 *Classified per the Diátaxis framework.
@@ -246,7 +246,7 @@ Full list with history in `docs/08-AGENT-OPERATING-MODEL.md`. The four that bite
 
 ## Deployment
 
-- **Vercel** project `nasaq-ai-platform` is linked to the repo via GitHub App: push to `main` ⇒
+- **Vercel** project `minsaj-ai-platform` is linked to the repo via GitHub App: push to `main` ⇒
   auto production deploy. No env vars required.
 - **CI** (`.github/workflows/ci.yml`): on every push/PR → `bun install --frozen-lockfile` →
   layout guards → lint → build. All four must be green.
@@ -254,7 +254,7 @@ Full list with history in `docs/08-AGENT-OPERATING-MODEL.md`. The four that bite
 ## Ownership & security constraints
 
 - 🚫 The OLD repo `zoih6/nasaq-ai` is **strictly off-limits** — do not open, modify, delete, or
-  merge it. All work happens on `zoih6/nasaq-ai-platform` only. (Owner's explicit order.)
+  merge it. All work happens on `zoih6/minsaj-ai-platform` only. (Owner's explicit order.)
 - 🔑 No tokens/secrets in the repo, ever.
 - 🔒 The repo stays **private** unless the owner says otherwise.
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NASAQ RESPONSIVE LAYOUT ARCHITECTURE — intrinsic primitives
+   MINSAJ RESPONSIVE LAYOUT ARCHITECTURE — intrinsic primitives
    --------------------------------------------------------------------------
    Principles (no per-element media patches):
    1. Reflow by AVAILABLE SPACE: container queries + auto-fill grids.
@@ -14,124 +14,124 @@
 /* ---- 1. Fluid token scale (mobile-first values, clamped upward) -------- */
 :root {
   /* Horizontal page gutters: 14px phone → 32px desktop (fluid) */
-  --nq-gutter: clamp(14px, 1.1vw + 10px, 32px);
+  --mj-gutter: clamp(14px, 1.1vw + 10px, 32px);
   /* Vertical page rhythm */
-  --nq-gap-xs: clamp(6px, 0.5vw + 4px, 10px);
-  --nq-gap-sm: clamp(10px, 0.8vw + 7px, 16px);
-  --nq-gap-md: clamp(14px, 1.2vw + 10px, 24px);
-  --nq-gap-lg: clamp(20px, 1.8vw + 14px, 36px);
+  --mj-gap-xs: clamp(6px, 0.5vw + 4px, 10px);
+  --mj-gap-sm: clamp(10px, 0.8vw + 7px, 16px);
+  --mj-gap-md: clamp(14px, 1.2vw + 10px, 24px);
+  --mj-gap-lg: clamp(20px, 1.8vw + 14px, 36px);
   /* Card padding: 14px phone → 24px desktop */
-  --nq-pad-card: clamp(14px, 1vw + 10px, 24px);
+  --mj-pad-card: clamp(14px, 1vw + 10px, 24px);
   /* Sidebar geometry (modes driven by shell.css) */
-  --nq-sidebar-expanded: 264px;
-  --nq-sidebar-rail: 76px;
+  --mj-sidebar-expanded: 264px;
+  --mj-sidebar-rail: 76px;
   /* Content measure caps per context */
-  --nq-measure-read: 72ch;
-  --nq-content-max: 1520px;
+  --mj-measure-read: 72ch;
+  --mj-content-max: 1520px;
   /* Touch target floor — accessibility invariant on every interactive el */
-  --nq-touch: 44px;
+  --mj-touch: 44px;
   /* Fluid type ramp (display → caption) */
-  --nq-text-hero: clamp(32px, 5.4vw + 14px, 58px);
-  --nq-text-h1: clamp(26px, 2.6vw + 16px, 40px);
-  --nq-text-h2: clamp(20px, 1.4vw + 15px, 27px);
-  --nq-text-h3: clamp(16px, 0.6vw + 14px, 19px);
-  --nq-text-body: clamp(13.5px, 0.2vw + 13px, 15px);
-  --nq-text-small: clamp(12px, 0.15vw + 11.6px, 13px);
-  --nq-text-caption: 11.5px;
+  --mj-text-hero: clamp(32px, 5.4vw + 14px, 58px);
+  --mj-text-h1: clamp(26px, 2.6vw + 16px, 40px);
+  --mj-text-h2: clamp(20px, 1.4vw + 15px, 27px);
+  --mj-text-h3: clamp(16px, 0.6vw + 14px, 19px);
+  --mj-text-body: clamp(13.5px, 0.2vw + 13px, 15px);
+  --mj-text-small: clamp(12px, 0.15vw + 11.6px, 13px);
+  --mj-text-caption: 11.5px;
 }
 
 /* ---- 2. Flow container: pages declare themselves as containers.
         Components inside reflow against AVAILABLE width (after sidebar),
         not raw viewport width — true adaptive behavior. ------------------ */
-.nq-flow {
+.mj-flow {
   container-type: inline-size;
-  container-name: nq-flow;
+  container-name: mj-flow;
   width: 100%;
   min-width: 0; /* grid/flex overflow guard — never let children stretch it */
   display: flex;
   flex-direction: column;
-  gap: var(--nq-gap-md);
+  gap: var(--mj-gap-md);
 }
 
 /* ---- 3. Page header: title block + actions as a wrapping cluster.
         Wraps naturally; actions never overlap the title on narrow widths. */
-.nq-page-header {
+.mj-page-header {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: var(--nq-gap-sm) var(--nq-gap-md);
+  gap: var(--mj-gap-sm) var(--mj-gap-md);
 }
-.nq-page-header__copy { min-width: min(100%, 340px); flex: 1 1 340px; }
-.nq-page-header__actions {
+.mj-page-header__copy { min-width: min(100%, 340px); flex: 1 1 340px; }
+.mj-page-header__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--nq-gap-xs);
+  gap: var(--mj-gap-xs);
   flex: 0 1 auto;
 }
-@container nq-flow (max-width: 640px) {
-  .nq-page-header__actions { width: 100%; }
-  .nq-page-header__actions > * { flex: 1 1 auto; }
+@container mj-flow (max-width: 640px) {
+  .mj-page-header__actions { width: 100%; }
+  .mj-page-header__actions > * { flex: 1 1 auto; }
 }
 
 /* ---- 4. Card grid: the workhorse. Auto-fill + minmax means cards choose
         their own column count from available width — 1 col on phones,
         2 on tablets, 3–4 on desktops, with ZERO per-page overrides. ------ */
-.nq-grid {
+.mj-grid {
   display: grid;
-  gap: var(--nq-gap-sm);
-  grid-template-columns: repeat(auto-fill, minmax(min(var(--nq-grid-min, 250px), 100%), 1fr));
+  gap: var(--mj-gap-sm);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--mj-grid-min, 250px), 100%), 1fr));
 }
-.nq-grid--tight { --nq-grid-min: 200px; }
-.nq-grid--roomy { --nq-grid-min: 300px; }
-.nq-grid--stats { --nq-grid-min: 150px; }
+.mj-grid--tight { --mj-grid-min: 200px; }
+.mj-grid--roomy { --mj-grid-min: 300px; }
+.mj-grid--stats { --mj-grid-min: 150px; }
 
 /* ---- 5. Stack: vertical rhythm between sections ----------------------- */
-.nq-stack {
+.mj-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--nq-gap-md);
+  gap: var(--mj-gap-md);
   min-width: 0;
 }
-.nq-stack--tight { gap: var(--nq-gap-sm); }
+.mj-stack--tight { gap: var(--mj-gap-sm); }
 
 /* ---- 6. Cluster: wrapping row of chips/actions/filters ---------------- */
-.nq-cluster {
+.mj-cluster {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--nq-gap-xs) var(--nq-gap-sm);
+  gap: var(--mj-gap-xs) var(--mj-gap-sm);
   min-width: 0;
 }
-.nq-cluster--between { justify-content: space-between; }
-.nq-cluster--end { justify-content: flex-end; }
-.nq-cluster--stretch { align-items: stretch; }
-.nq-cluster > * { min-width: 0; margin: 0; }
+.mj-cluster--between { justify-content: space-between; }
+.mj-cluster--end { justify-content: flex-end; }
+.mj-cluster--stretch { align-items: stretch; }
+.mj-cluster > * { min-width: 0; margin: 0; }
 
 /* ---- 7. Split: content + aside. Collapses to a single column when the
         CONTAINER can no longer afford both — not when the viewport says so. */
-.nq-split {
+.mj-split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, var(--nq-split-aside, 300px));
-  gap: var(--nq-gap-md);
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--mj-split-aside, 300px));
+  gap: var(--mj-gap-md);
   align-items: start;
   min-width: 0;
 }
-.nq-split > * { min-width: 0; }
-@container nq-flow (max-width: 880px) {
-  .nq-split { grid-template-columns: minmax(0, 1fr); }
+.mj-split > * { min-width: 0; }
+@container mj-flow (max-width: 880px) {
+  .mj-split { grid-template-columns: minmax(0, 1fr); }
 }
-.nq-split--aside-start {
-  grid-template-columns: minmax(0, var(--nq-split-aside, 280px)) minmax(0, 1fr);
+.mj-split--aside-start {
+  grid-template-columns: minmax(0, var(--mj-split-aside, 280px)) minmax(0, 1fr);
 }
 
 /* ---- 8. Data list: the shared responsive "table".
         Wide space  → header row + grid rows (real table feel).
         Narrow space → each row becomes a labelled card. Content contract:
-          .nq-data-list > [data-label] cells inside rows.
+          .mj-data-list > [data-label] cells inside rows.
         The header can carry data-labels too; on narrow containers we
         simply hide it and inline every cell label. ----------------------- */
-.nq-data-list {
+.mj-data-list {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -140,68 +140,68 @@
   background: var(--u-surface-solid, #fff);
   overflow: hidden;
 }
-.nq-data-list__head,
-.nq-data-list__row {
+.mj-data-list__head,
+.mj-data-list__row {
   display: grid;
-  grid-template-columns: var(--nq-data-cols, minmax(0, 1.6fr) minmax(90px, 0.7fr) minmax(80px, 0.5fr) 96px);
+  grid-template-columns: var(--mj-data-cols, minmax(0, 1.6fr) minmax(90px, 0.7fr) minmax(80px, 0.5fr) 96px);
   align-items: center;
-  gap: var(--nq-gap-xs);
+  gap: var(--mj-gap-xs);
   padding: 10px clamp(12px, 1vw + 8px, 18px);
 }
-.nq-data-list__head {
+.mj-data-list__head {
   border-block-end: 1px solid var(--u-line, #e4e6ef);
   color: var(--u-faint, #6a6e85);
-  font-size: var(--nq-text-caption);
+  font-size: var(--mj-text-caption);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
-.nq-data-list__row {
+.mj-data-list__row {
   border-block-end: 1px solid var(--u-line, #e4e6ef);
   color: inherit;
   text-decoration: none;
   transition: background 0.15s ease;
 }
-.nq-data-list__row:last-child { border-block-end: 0; }
-.nq-data-list__row:hover { background: rgba(96, 84, 240, 0.04); }
-.nq-data-list__row > * { min-width: 0; overflow-wrap: anywhere; }
+.mj-data-list__row:last-child { border-block-end: 0; }
+.mj-data-list__row:hover { background: rgba(96, 84, 240, 0.04); }
+.mj-data-list__row > * { min-width: 0; overflow-wrap: anywhere; }
 
-@container nq-flow (max-width: 640px) {
-  .nq-data-list__head { display: none; }
-  .nq-data-list__row {
+@container mj-flow (max-width: 640px) {
+  .mj-data-list__head { display: none; }
+  .mj-data-list__row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2px var(--nq-gap-sm);
+    gap: 2px var(--mj-gap-sm);
     padding: 14px clamp(12px, 1vw + 8px, 18px);
   }
-  .nq-data-list__row > * {
+  .mj-data-list__row > * {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     min-height: 34px;
   }
-  .nq-data-list__row > *::before {
+  .mj-data-list__row > *::before {
     content: attr(data-label);
     color: var(--u-faint, #6a6e85);
     font-size: 10.5px;
     font-weight: 650;
     white-space: nowrap;
   }
-  .nq-data-list__row > :first-child {
+  .mj-data-list__row > :first-child {
     grid-column: 1 / -1;
     min-height: 0;
     padding-block-end: 6px;
     margin-block-end: 6px;
     border-block-end: 1px solid var(--u-line, #e4e6ef);
   }
-  .nq-data-list__row > :first-child::before { display: none; }
-  .nq-data-list__row > :last-child { justify-content: flex-end; }
-  .nq-data-list__row > :last-child::before { margin-inline-end: auto; }
+  .mj-data-list__row > :first-child::before { display: none; }
+  .mj-data-list__row > :last-child { justify-content: flex-end; }
+  .mj-data-list__row > :last-child::before { margin-inline-end: auto; }
 }
 
 /* ---- 9. Safe horizontal scroller for genuinely wide artifacts
         (flow canvases, comparison tables). Keeps them inside their box
         instead of blowing out the page. ----------------------------------- */
-.nq-scroll-x {
+.mj-scroll-x {
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
@@ -210,17 +210,17 @@
 }
 
 /* ---- 10. Modal / dialog geometry: always inside the viewport --------- */
-.nq-dialog-sheet {
-  width: min(560px, calc(100vw - 2 * var(--nq-gutter)));
+.mj-dialog-sheet {
+  width: min(560px, calc(100vw - 2 * var(--mj-gutter)));
   max-height: min(78dvh, 720px);
 }
-.nq-dialog-wide { width: min(760px, calc(100vw - 2 * var(--nq-gutter))); }
+.mj-dialog-wide { width: min(760px, calc(100vw - 2 * var(--mj-gutter))); }
 
 /* ---- 11. Touch invariants: interactive floors survive every reflow --- */
-@container nq-flow (max-width: 640px) {
-  .nq-cluster button:not([data-nq-keep-size]),
-  .nq-data-list__row button,
-  .nq-grid button { min-height: 40px; }
+@container mj-flow (max-width: 640px) {
+  .mj-cluster button:not([data-mj-keep-size]),
+  .mj-data-list__row button,
+  .mj-grid button { min-height: 40px; }
 }
 
 /* ---- 12. Control bar: label + option chips + tail action.
@@ -236,40 +236,40 @@
             away from the group — col-gap md vs chip gap xs.
         Consumers so far: adaptive goals bar · ops library toolbar ·
         universal library toolbar · u2 topic chips. -------------------- */
-.nq-control-bar {
+.mj-control-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--nq-gap-xs) var(--nq-gap-md);
+  gap: var(--mj-gap-xs) var(--mj-gap-md);
   min-width: 0;
 }
-.nq-control-bar__label {
+.mj-control-bar__label {
   flex: 0 0 auto;
   min-width: 0;
   color: var(--u-faint);
   font-size: var(--u-text-xs);
   font-weight: 650;
 }
-.nq-control-bar__group {
+.mj-control-bar__group {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: var(--nq-gap-xs);
+  gap: var(--mj-gap-xs);
   min-width: 0;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
   padding-block-end: 2px; /* keeps focus rings clear of the clip */
 }
-.nq-control-bar__group::-webkit-scrollbar { display: none; }
-.nq-control-bar__group > * { flex: 0 0 auto; }
+.mj-control-bar__group::-webkit-scrollbar { display: none; }
+.mj-control-bar__group > * { flex: 0 0 auto; }
 /* Homogeneous chips (no mixed heights inside) may wrap where width
    allows; the 640 band below still collapses them to one row. */
-.nq-control-bar__group--wrap {
+.mj-control-bar__group--wrap {
   flex-wrap: wrap;
   overflow-x: visible;
 }
-.nq-control-bar__tail {
+.mj-control-bar__tail {
   flex: 0 0 auto;
   margin-inline-start: auto; /* aux action/meta sits at the far end */
 }
@@ -278,16 +278,16 @@
      line (order pulls the tail up beside the label — flex line packing
      is sequential, so without this the tail would strand on its own
      row after the 100%-basis group), chips get one scrollable row. */
-  .nq-control-bar__label {
+  .mj-control-bar__label {
     order: -2;
     flex: 1 1 auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .nq-control-bar__tail { order: -1; }
-  .nq-control-bar__group,
-  .nq-control-bar__group--wrap {
+  .mj-control-bar__tail { order: -1; }
+  .mj-control-bar__group,
+  .mj-control-bar__group--wrap {
     flex: 1 1 100%;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -297,13 +297,13 @@
 /* ---- 13. Chip: the shared geometry for pill-shaped option buttons.
         Height, radius, type and rhythm come from here; surfaces own
         ONLY color/border/state (service tint, primary-soft, …). ----- */
-.nq-chip {
+.mj-chip {
   min-height: var(--u-touch);
-  padding-inline: var(--nq-gap-sm);
+  padding-inline: var(--mj-gap-sm);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--nq-gap-xs);
+  gap: var(--mj-gap-xs);
   border-radius: var(--u-radius-pill);
   font-size: var(--u-text-sm);
   font-weight: 500;
@@ -313,5 +313,5 @@
 
 /* Reduced motion / forced colors invariants (kept local, system-wide) */
 @media (prefers-reduced-motion: reduce) {
-  .nq-data-list__row, .nq-split, .nq-grid { transition: none; }
+  .mj-data-list__row, .mj-split, .mj-grid { transition: none; }
 }

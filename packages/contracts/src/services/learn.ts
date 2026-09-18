@@ -9,7 +9,7 @@ import { serviceLabelSchema, serviceUserTextSchema } from "./text";
  * reviewable path, lesson interaction, check attempts, feedback, and progress.
  * They are deterministic simulation data, not an adaptive or assessed model:
  * every score here comes from a documented local rule in
- * `@nasaq/mock-api/services` and nothing is sent anywhere.
+ * `@minsaj/mock-api/services` and nothing is sent anywhere.
  *
  * Ownership rules stay identical to the foundation: `Service*` names, no
  * widening of shared enums, and no promotion into a canonical Backend model.

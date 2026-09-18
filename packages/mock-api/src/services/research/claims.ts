@@ -1,6 +1,6 @@
-import type { ResearchClaimState, ResearchSessionState } from "@nasaq/contracts/services";
-import { summarizeClaimCoverage } from "@nasaq/contracts/services";
-import type { ServiceClaim, ServiceEvidenceRef } from "@nasaq/contracts/services";
+import type { ResearchClaimState, ResearchSessionState } from "@minsaj/contracts/services";
+import { summarizeClaimCoverage } from "@minsaj/contracts/services";
+import type { ServiceClaim, ServiceEvidenceRef } from "@minsaj/contracts/services";
 import { buildResearchEvidenceRefs, getResearchTopic, type ResearchTopicId } from "./topics";
 
 /**
