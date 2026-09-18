@@ -11,6 +11,11 @@
 #   - every .mj-control-bar__group renders its chips on ONE row (no wrap pile)
 #   - every .mj-control-bar is at most two composed rows (≤ 100px)
 #   - every .mj-chip honors the 44px touch floor
+# NEW v12.1 sentinel — the "distorted logo" regression (owner report
+# 2026-09-18: header symbol squashed/stretched vs the official artwork).
+# On the marketing header + app sidebar, at phone AND desktop size:
+#   - every .minsaj-mark renders at the master's intrinsic 534/396 ratio (±2%)
+#   - the mark fits inside its square wrapper (no overflow bleeding into chrome)
 # Usage: BASE=http://localhost:PORT bash scripts/verify-sweep-v12.sh
 set -u
 BASE="${BASE:-http://localhost:3000}"
@@ -130,6 +135,56 @@ controlbar_check() {
   done
 }
 
+# ---- v12.1 sentinel: the official logo must never distort ----
+# MinsajMark paints the owner's 534×396 master via background-size 100% 100%,
+# so the BOX ratio IS the rendered artwork ratio. Guard both surfaces where
+# the mark lives (marketing header, app sidebar) at phone + desktop widths.
+logo_check() {
+  local theme="$1"
+  local combo route vw
+  for combo in "ar 375" "ar/app/home 375" "ar 1440" "ar/app/home 1440"; do
+    set -- $combo; route="$1"; vw="$2"
+    agent-browser set viewport "$vw" 900 >/dev/null 2>&1
+    agent-browser open "$BASE/$route" >/dev/null 2>&1
+    agent-browser wait --load networkidle >/dev/null 2>&1
+    agent-browser wait 350 >/dev/null 2>&1
+    json=$(agent-browser eval "JSON.stringify({
+      marks: document.querySelectorAll('.minsaj-mark').length,
+      ratioOk: (() => {
+        for (const m of document.querySelectorAll('.minsaj-mark')) {
+          const r = m.getBoundingClientRect();
+          if (r.width < 1 || r.height < 1) continue;
+          if (Math.abs(r.width / r.height - 534 / 396) / (534 / 396) > 0.02) return false;
+        }
+        return true;
+      })(),
+      wrapperFitOk: (() => {
+        const sel = '.luma-brand__mark > .minsaj-mark, .universal-shell-brand > span > .minsaj-mark';
+        for (const m of document.querySelectorAll(sel)) {
+          const wrap = m.parentElement;
+          const r = m.getBoundingClientRect();
+          const w = wrap.getBoundingClientRect();
+          if (w.width < 1) continue;
+          if (r.left < w.left - 1 || r.right > w.right + 1 || r.top < w.top - 1 || r.bottom > w.bottom + 1) return false;
+        }
+        return true;
+      })(),
+      pageOverflow: document.documentElement.scrollWidth - window.innerWidth
+    })" 2>/dev/null | grep '^"' | tail -1)
+
+    mk=$(get_metric "$json" marks); ro=$(get_metric "$json" ratioOk)
+    wf=$(get_metric "$json" wrapperFitOk); po=$(get_metric "$json" pageOverflow)
+
+    ok=1; reason=""
+    [ "$mk" = "0" ] && { ok=0; reason="no-minsaj-mark-found"; }
+    [ "$ro" != "True" ] && { ok=0; reason="$reason ratio-off-534x396"; }
+    [ "$wf" != "True" ] && { ok=0; reason="$reason mark-overflows-wrapper"; }
+    [ "$po" != "0" ] && { ok=0; reason="$reason page-overflow=$po"; }
+
+    if [ $ok -eq 1 ]; then PASS=$((PASS+1)); else FAIL=$((FAIL+1)); FAILED_LIST="${FAILED_LIST}\n  [$theme/logo] $route@${vw}w → $reason"; fi
+  done
+}
+
 for THEME in ${THEMES:-light dark}; do
   # Pin the theme BEFORE any route load (next-themes reads localStorage first paint)
   agent-browser open "$BASE/ar" >/dev/null 2>&1
@@ -167,11 +222,14 @@ for THEME in ${THEMES:-light dark}; do
   # v12 control-bar sentinel (once per theme, at phone size)
   controlbar_check "$THEME"
   echo "[$THEME/controlbar] running total: $PASS pass / $FAIL fail"
+  # v12.1 logo-ratio sentinel (once per theme, phone + desktop, header + sidebar)
+  logo_check "$THEME"
+  echo "[$THEME/logo] running total: $PASS pass / $FAIL fail"
 done
 
 TOTAL=$((PASS+FAIL))
 echo "==================== SWEEP v12 RESULT ===================="
-echo "routes: ${#ROUTES[@]} × 3 viewports × 2 themes + 2 dialog + 4 controlbar sentinels = $TOTAL checks"
+echo "routes: ${#ROUTES[@]} × 3 viewports × 2 themes + 2 dialog + 4 controlbar + 8 logo sentinels = $TOTAL checks"
 echo "PASS: $PASS / $TOTAL"
 [ -n "$FAILED_LIST" ] && echo -e "FAILED:$FAILED_LIST"
 [ $FAIL -eq 0 ] && echo "ALL GREEN"

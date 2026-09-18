@@ -51,8 +51,11 @@ export function Badge({ className, tone = "neutral", ...props }: BadgeProps) {
    - data-on-dark="" forces the dark variant on always-dark chrome
      (e.g. the obsidian app sidebar, regardless of theme).
    Brand ladder ONLY: 28 / 34 / 46 (enforced by scripts/check-icon-scale.mjs).
+   `size` is the rendered WIDTH; the height always derives from the master's
+   intrinsic h/w ratio so the artwork can never be stretched or squashed
+   (background-size: 100% 100% fills the box exactly 1:1).
    ------------------------------------------------------------------ */
-const MINSaj_SYMBOL_ASPECT = 534 / 396;
+const MINSAJ_SYMBOL_H_PER_W = 396 / 534; /* intrinsic h/w of the 534×396 master */
 
 export function MinsajMark({
   size = 34,
@@ -66,7 +69,7 @@ export function MinsajMark({
   className?: string;
 }) {
   const w = size;
-  const h = Math.round(size * MINSaj_SYMBOL_ASPECT * 100) / 100;
+  const h = Math.round(size * MINSAJ_SYMBOL_H_PER_W * 100) / 100;
   return (
     <span
       className={cn("minsaj-mark", className)}

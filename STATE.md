@@ -5,12 +5,26 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-18 — Phase 16 · **Current version:** v16 · **Branch:** `main` (official owner logo + interactive identity-motion section + generated backgrounds)
+**Last updated:** 2026-09-18 — Phase 17 · **Current version:** v17 · **Branch:** `main` (logo aspect-ratio fix + permanent logo-ratio sweep sentinel)
 
 ## Current status
 
 - **Live:** <https://minsaj-ai-platform.vercel.app> (auto-deploys on push to `main`)
 - **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (renamed from `nasaq-ai-platform` in v15 — old URL redirects)
+- **Phase 17: logo distortion root-caused and fixed — the mark now renders at the master's
+  exact intrinsic ratio everywhere.** Owner report: the header symbol looked stretched/squashed
+  vs the original artwork. Root cause: v16's `MinsajMark` flipped the aspect constant's meaning
+  (`534/396` w/h) while keeping v15's `h = size × constant` formula (v15's constant was h/w
+  `375.9/512`) — the box rendered 34×45.85 (portrait) for a 534×396 landscape master, and
+  `background-size: 100% 100%` stretched the art by ratio² ≈ 1.82×, at every breakpoint/theme/
+  locale; it also overflowed the 36×36 wrapper vertically. Fix (one line): height now derives
+  from the intrinsic h/w (`396/534`) — `size` stays the rendered width (v15 semantics), so the
+  box is 34×25.21 at `size={34}`, pixel-identical to the artwork (measured MAE 3.5–4.3/255 vs
+  the scaled original across desktop/mobile/light/dark; VLM confirms geometric identity + the
+  old rendering was visibly stretched). Header untouched: nav height stable 62px, all controls
+  in place, 0 horizontal overflow, RTL/LTR identical. Sweep grew to **v12.1 (194 checks)** with
+  a logo sentinel: every `.minsaj-mark` on the marketing header + app sidebar, phone + desktop,
+  both themes, must render within ±2% of 534/396 and fit its wrapper.
 - **Phase 16: the owner's OFFICIAL logo + identity motion film + backgrounds.** The hand-traced
   symbol is retired — every brand surface now renders the owner's own artwork from the Drive
   master (background-keyed, never redrawn): MinsajMark v2 (CSS-background, theme-aware,
@@ -61,17 +75,17 @@
   measurement — single 46px row, all centers y=302.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 16, 2026-09-18)
+## Quality gates (last verified: Phase 17, 2026-09-18)
 
 | Gate | Status |
 |---|---|
-| `bun run build` (production, Turbopack) | ✅ green (60/60 pages, post-v16) |
-| `bun run lint` (ESLint) | ✅ 0 errors (post-v16) |
-| `npx tsc --noEmit` | ✅ 0 errors (post-v16) |
+| `bun run build` (production, Turbopack) | ✅ green (60/60 pages, post-v17) |
+| `bun run lint` (ESLint) | ✅ 0 errors (post-v17) |
+| `npx tsc --noEmit` | ✅ 0 errors (post-v17) |
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
 | Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
 | Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
-| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ 186/186 (re-verified post-v16; brand-motion adds no overflow at any viewport) |
+| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ **194/194** (v12.1: +8 logo-ratio sentinels — every `.minsaj-mark` within ±2% of the master's 534/396 ratio, wrapper fit, header + sidebar, phone + desktop, both themes) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
 | Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
 | CI (GitHub Actions) | ✅ green on `main` (5741b8f at audit time; v13.1: all 6 CI steps re-verified locally just before push) |
