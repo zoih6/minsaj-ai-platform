@@ -25,10 +25,11 @@ import {
   WandSparkles,
   X,
 } from "lucide-react";
-import { MinsajMark } from "@minsaj/ui";
+import { MinsajLogo, MinsajMark } from "@minsaj/ui";
 import type { Locale } from "@minsaj/contracts";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { ActivityFeedback } from "@/components/universal/activity-feedback";
+import { BrandMotion } from "@/components/universal/brand-motion";
 import { universalServices, type UniversalServiceId } from "@/lib/universal-content";
 
 const serviceIcons = {
@@ -225,6 +226,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
 
       <main>
         <section className="universal-hero">
+          <div className="universal-hero__bg" aria-hidden="true" />
           <div className="universal-hero__glow universal-hero__glow--one" />
           <div className="universal-hero__glow universal-hero__glow--two" />
           <div className="universal-container universal-hero__grid">
@@ -245,7 +247,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
 
             <div id="interactive-demo" className="universal-demo-card" data-service={active.id}>
               <div className="universal-demo-card__art" aria-hidden="true">
-                <Image src="/minsaj-luminous-world.jpg" alt="" fill priority sizes="(max-width: 900px) 100vw, 46vw" />
+                <Image src="/brand/backgrounds/luminous-world.webp" alt="" fill priority sizes="(max-width: 900px) 100vw, 46vw" />
                 <div className="universal-demo-card__art-fade" />
               </div>
               <div className="universal-demo-card__top">
@@ -279,6 +281,8 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
             </div>
           </div>
         </section>
+
+        <BrandMotion locale={locale} />
 
         <section className="universal-audience" aria-label={copy.forEveryone}>
           <div className="universal-container">
@@ -332,7 +336,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
           <div className="universal-container">
             <div className="universal-scene-heading"><span>{copy.sceneEyebrow}</span><h2>{copy.sceneTitle}</h2><p>{copy.sceneBody}</p></div>
             <div className="universal-scene-frame">
-              <div className="universal-scene-frame__image"><Image src="/minsaj-luminous-world.jpg" alt={isArabic ? "عالم بصري مترابط لخدمات منسج" : "A connected visual world for Minsaj services"} fill sizes="(max-width: 900px) 100vw, 70vw" /></div>
+              <div className="universal-scene-frame__image"><Image src="/brand/backgrounds/digital-loom.webp" alt={isArabic ? "نول رقمي ينسج مسارات منسج" : "A digital loom weaving Minsaj paths"} fill sizes="(max-width: 900px) 100vw, 70vw" /></div>
               <div className="universal-scene-frame__floating">
                 {copy.sceneCards.map((item, index) => <div className={`universal-float-card universal-float-card--${index + 1}`} key={item}><span>{index === 0 ? <BookOpenCheck size={18} /> : index === 1 ? <SearchCheck size={18} /> : <Code2 size={18} />}</span><strong>{item}</strong><CheckCircle2 size={16} /></div>)}
               </div>
@@ -358,7 +362,7 @@ export function UniversalMarketing({ locale }: { locale: Locale }) {
       </main>
 
       <footer className="universal-footer">
-        <div className="universal-container"><div className="luma-brand"><span className="luma-brand__mark"><MinsajMark size={28} /></span><span className="luma-brand__word">{isArabic ? "منسج" : "Minsaj"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
+        <div className="universal-container"><div className="universal-footer-brand"><MinsajLogo height={86} /><span className="universal-footer-word">{isArabic ? "منصة منسج للذكاء الاصطناعي" : "The Minsaj AI platform"}</span></div><p>{copy.footer}</p><span>{copy.prototype}</span></div>
       </footer>
     </div>
   );

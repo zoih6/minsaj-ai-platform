@@ -192,3 +192,123 @@ html[dir="ltr"] .universal-service-card:hover .universal-service-card__top > svg
 :root[data-theme="dark"] .universal-nav-wrap { background: linear-gradient(to bottom, rgba(12,14,29,.96), rgba(12,14,29,.72), transparent); }
 :root[data-theme="dark"] .universal-hero::before { opacity: .55; }
 :root[data-theme="dark"] .universal-nav { box-shadow: 0 7px 30px rgba(0,0,0,.35); }
+
+/* =====================================================================
+   Brand motion — the owner's identity film, scroll-scrubbed (v16).
+   Tall track + sticky stage; video seeks with scroll (Apple pattern);
+   chapters crossfade under the canvas; progress rail; pointer parallax
+   (fine pointers, reduced-motion respected); reduced mode = final
+   still + all chapters readable, no pinning.
+   ===================================================================== */
+.brand-motion {
+  position: relative;
+  background: var(--u-surface);
+  border-block-start: 1px solid var(--u-line);
+}
+.brand-motion__stage {
+  --bm-progress: 0;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(16px, 3dvh, 30px);
+  padding: clamp(18px, 4dvh, 48px) 20px;
+  overflow: clip;
+}
+.brand-motion__frame { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+.brand-motion__card {
+  position: relative;
+  width: min(880px, 92vw, calc(56dvh * 16 / 9));
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(15, 20, 40, 0.1);
+  box-shadow: 0 30px 80px rgba(9, 12, 30, 0.28), 0 4px 18px rgba(9, 12, 30, 0.14);
+  will-change: transform;
+  transition: box-shadow var(--u-motion-duration-slow) var(--u-motion-ease-standard);
+}
+:root[data-theme="dark"] .brand-motion__card { border-color: rgba(255, 255, 255, 0.09); box-shadow: 0 34px 90px rgba(0, 0, 0, 0.5), 0 6px 22px rgba(0, 0, 0, 0.35); }
+.brand-motion__video, .brand-motion__still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.brand-motion__still { opacity: 0; }
+.brand-motion[data-reduced] .brand-motion__video { display: none; }
+.brand-motion[data-reduced] .brand-motion__still { opacity: 1; }
+
+/* progress rail */
+.brand-motion__rail { position: absolute; inset-inline: 0; bottom: 0; height: 3px; background: rgba(15, 20, 40, 0.08); }
+.brand-motion__rail-fill { display: block; height: 100%; background: linear-gradient(90deg, #5143DE, #8B5CF6); transform: scaleX(var(--bm-progress, 0)); transform-origin: left center; }
+[dir="rtl"] .brand-motion__rail-fill { transform-origin: right center; background: linear-gradient(270deg, #5143DE, #8B5CF6); }
+
+/* scroll hint */
+.brand-motion__hint {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 0; color: var(--u-muted); font-size: 13px; font-weight: 550;
+  transition: opacity var(--u-motion-duration-base) var(--u-motion-ease-standard);
+}
+.brand-motion__hint-arrow { display: inline-grid; place-items: center; animation: mj-hint-bounce 1.8s var(--u-motion-ease-standard) infinite; }
+.brand-motion__stage[data-started] .brand-motion__hint { opacity: 0; }
+@keyframes mj-hint-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+/* chapters — crossfading stack (first visible by default for no-JS) */
+.brand-motion__chapters { display: grid; width: min(720px, 100%); min-height: 118px; }
+.brand-motion__chapter {
+  grid-area: 1 / 1;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.55s var(--u-motion-ease-standard), transform 0.55s var(--u-motion-ease-standard);
+  pointer-events: none;
+}
+.brand-motion__chapter:first-child { opacity: 1; transform: none; }
+.brand-motion__chapter[data-active] { opacity: 1; transform: none; pointer-events: auto; }
+.brand-motion__chapters:has(.brand-motion__chapter[data-active]) .brand-motion__chapter:first-child:not([data-active]) { opacity: 0; }
+.brand-motion__chapter-kicker { font-size: 12px; font-weight: 650; letter-spacing: .08em; color: var(--u-primary); }
+.brand-motion__chapter h3 { margin: 0; font-size: clamp(19px, 2.6vw, 26px); font-weight: 750; letter-spacing: -.02em; color: var(--u-ink); }
+.brand-motion__chapter p { margin: 0; max-width: 560px; font-size: 14.5px; line-height: 1.8; color: var(--u-muted); }
+
+/* reduced motion — everything readable, nothing pinned */
+.brand-motion[data-reduced] .brand-motion__stage { position: static; height: auto; overflow: visible; }
+.brand-motion[data-reduced] .brand-motion__chapters { grid-template-columns: repeat(3, 1fr); gap: 22px; min-height: 0; margin-block-start: 26px; }
+.brand-motion[data-reduced] .brand-motion__chapter { grid-area: auto; opacity: 1; transform: none; pointer-events: auto; align-items: flex-start; text-align: start; }
+.brand-motion[data-reduced] .brand-motion__hint { display: none; }
+
+/* runway: taller on pointer devices for a slower, richer scrub */
+.brand-motion { min-height: 250vh; }
+.brand-motion[data-reduced] { min-height: 0; }
+@media (max-width: 760px) {
+  .brand-motion { min-height: 210vh; }
+  .brand-motion__card { width: min(92vw, calc(50dvh * 16 / 9)); border-radius: 18px; }
+  .brand-motion__chapters { min-height: 132px; }
+  .brand-motion[data-reduced] .brand-motion__chapters { grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   Hero ambient background (official generated art, theme-swapped).
+   Sits under the grid + glows, above the base gradient.
+   ===================================================================== */
+.universal-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/brand/backgrounds/hero-aurora-light.webp");
+  background-size: cover;
+  background-position: center;
+  opacity: .5;
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 96%);
+}
+:root[data-theme="dark"] .universal-hero__bg {
+  background-image: url("/brand/backgrounds/hero-aurora-dark.webp");
+  opacity: .75;
+}
+
+/* Footer — full official lockup + platform word */
+.universal-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.universal-footer-word { font-size: 12px; font-weight: 550; color: var(--u-faint); letter-spacing: .02em; }
+@media (max-width: 760px) {
+  .universal-footer .universal-container { grid-template-columns: 1fr; text-align: center; }
+  .universal-footer-brand { align-items: center; }
+}

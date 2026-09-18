@@ -268,7 +268,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
         <aside id="universal-shell-sidebar" className="universal-shell-sidebar" aria-label={isArabic ? "التنقل الرئيسي" : "Primary navigation"}>
           <div className="universal-shell-brand-row">
-            <Link href={`/${locale}/app/home`} className="universal-shell-brand"><span><MinsajMark size={34} /></span><b>{isArabic ? "منسج" : "Minsaj"}</b><Sparkles size={12} /></Link>
+            <Link href={`/${locale}/app/home`} className="universal-shell-brand"><span><MinsajMark size={34} onDark /></span><b>{isArabic ? "منسج" : "Minsaj"}</b><Sparkles size={12} /></Link>
             <button type="button" className="universal-shell-collapse" onClick={toggleSidebar} aria-label={railActive ? labels.expand : labels.collapse} title={railActive ? labels.expand : labels.collapse}>{railActive ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}</button>
             <button type="button" className="universal-shell-close" onClick={() => setMobileOpen(false)} aria-label={labels.close}><X size={18} /></button>
           </div>

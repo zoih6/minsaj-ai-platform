@@ -5,12 +5,24 @@
 > immediately after `AGENTS.md` at session start. Keep it a snapshot — history lives in
 > `docs/CHANGELOG.md`, decisions in `docs/08-AGENT-OPERATING-MODEL.md`.
 
-**Last updated:** 2026-09-18 — Phase 15 · **Current version:** v15 · **Branch:** `main` (THE BIG REBRAND: نسق → منسج / Nasaq → Minsaj, repo renamed to `minsaj-ai-platform`)
+**Last updated:** 2026-09-18 — Phase 16 · **Current version:** v16 · **Branch:** `main` (official owner logo + interactive identity-motion section + generated backgrounds)
 
 ## Current status
 
 - **Live:** <https://minsaj-ai-platform.vercel.app> (auto-deploys on push to `main`)
 - **Repo:** <https://github.com/zoih6/minsaj-ai-platform> (renamed from `nasaq-ai-platform` in v15 — old URL redirects)
+- **Phase 16: the owner's OFFICIAL logo + identity motion film + backgrounds.** The hand-traced
+  symbol is retired — every brand surface now renders the owner's own artwork from the Drive
+  master (background-keyed, never redrawn): MinsajMark v2 (CSS-background, theme-aware,
+  `data-on-dark` for the obsidian sidebar), new MinsajLogo full-lockup component (footer),
+  `src/app/icon.png` + `apple-icon.png` favicons, og-image 1200×630 in metadata. NEW
+  `src/components/universal/brand-motion.tsx`: the owner's 8s identity film scroll-scrubbed
+  Apple-style (250vh track + sticky 100dvh stage + white brand canvas card + rAF-lerped
+  currentTime + every-frame keyframes (-g 1) + iOS play/pause unlock + IO-gated loop +
+  pointer parallax + 3 bilingual chapters + RTL progress rail + reduced-motion still).
+  Four z-ai-generated backgrounds (hero aurora light/dark, luminous world, digital loom)
+  replaced the old jpg; two were regenerated after a first VLM review rejected them.
+  QA: VLM 10 panels PASS, DOM-measured scrub (7.93s/8s), no 375px overflow, sweep 186/186.
 - **Phase 15: THE BIG REBRAND — «نسق» is now «منسج / Minsaj»** (owner: the old name is not
   exclusive). System-layer rename via protected, ordered rules: `@nasaq/*` → `@minsaj/*`,
   `Nasaq/NASAQ/nasaq` → `Minsaj/MINSAJ/minsaj`, diacritized «نَسَق» then bare «نسق» → «منسج»
@@ -49,17 +61,17 @@
   measurement — single 46px row, all centers y=302.
 - Frontend-complete for current scope; backend not yet connected (mock API in place).
 
-## Quality gates (last verified: Phase 15, 2026-09-18)
+## Quality gates (last verified: Phase 16, 2026-09-18)
 
 | Gate | Status |
 |---|---|
-| `bun run build` (production, Turbopack) | ✅ green (all pages, post-rename) |
-| `bun run lint` (ESLint) | ✅ 0 errors (post-rename) |
-| `npx tsc --noEmit` | ✅ 0 errors (post-rename) |
+| `bun run build` (production, Turbopack) | ✅ green (60/60 pages, post-v16) |
+| `bun run lint` (ESLint) | ✅ 0 errors (post-v16) |
+| `npx tsc --noEmit` | ✅ 0 errors (post-v16) |
 | Layout guards (`scripts/check-layout-guards.mjs`) | ✅ 24/24 (CI-enforced) |
 | Portal/container isolation (`scripts/check-portal-container-isolation.py`) | ✅ PASS (CI-enforced) |
 | Theme contrast guard (`scripts/check-theme-contrast.mjs`) | ✅ **46 pairs** AA both themes (now comment-stripping + 4 new inverse-surface pairs) |
-| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ 186/186 (re-verified post-rename; controlbar sentinel intact) |
+| Dialog-aware sweep (`scripts/verify-sweep-v12.sh`) | ✅ 186/186 (re-verified post-v16; brand-motion adds no overflow at any viewport) |
 | Live dark-mode spot checks (P0-1 fix) | ✅ models + projects pills now #262B52 + white (13.5:1) |
 | Icon scale guard (`scripts/check-icon-scale.mjs`) | ✅ PASS (NEW in v13.1; 93 files, ladder 12/14/16/18/20/24 + brand 28/34/46) |
 | CI (GitHub Actions) | ✅ green on `main` (5741b8f at audit time; v13.1: all 6 CI steps re-verified locally just before push) |

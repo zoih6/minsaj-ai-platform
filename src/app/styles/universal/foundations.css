@@ -505,3 +505,36 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 }
 .universal-theme-toggle:hover { color: var(--u-primary); background: var(--u-primary-soft); }
 .universal-theme-toggle:active { transform: scale(.93); }
+
+/* ---- Minsaj official brand marks (identity freeze v2, 2026-09-18) ----
+   Rendered from the owner's master artwork: light surfaces get the
+   as-designed navy→violet symbol; dark surfaces get the luminance-lifted
+   variant. data-on-dark forces the lifted art on always-dark chrome
+   (obsidian app sidebar) regardless of the active theme. */
+.minsaj-mark {
+  display: inline-block;
+  background-image: url("/brand/symbols/minsaj-symbol-color.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 0 0 auto;
+}
+:root[data-theme="dark"] .minsaj-mark,
+.minsaj-mark[data-on-dark] {
+  background-image: url("/brand/symbols/minsaj-symbol-dark.webp");
+}
+.minsaj-mark[data-on-dark="mono"] {
+  background-image: url("/brand/symbols/minsaj-symbol-mono-white.webp");
+}
+
+/* Full official lockup — brand moments only (footer, about surfaces). */
+.minsaj-logo {
+  display: inline-block;
+  background-image: url("/brand/logos/minsaj-lockup-color.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 0 0 auto;
+}
+:root[data-theme="dark"] .minsaj-logo,
+.minsaj-logo[data-on-dark] {
+  background-image: url("/brand/logos/minsaj-lockup-dark.webp");
+}
