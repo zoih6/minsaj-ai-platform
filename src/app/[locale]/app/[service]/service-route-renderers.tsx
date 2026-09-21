@@ -3,6 +3,7 @@ import type { Locale } from "@minsaj/contracts/services";
 import { LearnRoute } from "@/features/learn/learn-route";
 import { ResearchRoute } from "@/features/research/research-route";
 import { CreateRoute } from "@/features/create/create-route";
+import { CodeRoute } from "@/features/code/code-route";
 import type { ServiceRegistryEntry } from "@/features/service-workbench/service-registry";
 import { ServiceWorkspace } from "@/components/universal/service-workspace";
 import { getUniversalService, type UniversalServiceId } from "@/lib/universal-content";
@@ -25,6 +26,9 @@ export function renderDomainWorkspace(serviceId: ServiceId, locale: Locale) {
   }
   if (serviceId === "create") {
     return <CreateRoute locale={locale} />;
+  }
+  if (serviceId === "code") {
+    return <CodeRoute locale={locale} />;
   }
   return null;
 }

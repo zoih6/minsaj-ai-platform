@@ -15,6 +15,8 @@ import type { ResearchCopy } from "./research-content";
 import { researchContentAr, researchContentEn } from "./research-content";
 import type { CreateCopy } from "./create-content";
 import { createContentAr, createContentEn } from "./create-content";
+import type { CodeCopy } from "./code-content";
+import { codeContentAr, codeContentEn } from "./code-content";
 
 export type ServiceEntry = {
   label: string;
@@ -42,6 +44,12 @@ export type ResearchServiceEntry = ServiceEntry & ResearchCopy;
  * variant labels and differences, review suggestions, and stage UI strings.
  */
 export type CreateServiceEntry = ServiceEntry & CreateCopy;
+
+/**
+ * Code owns extra copy in U2.4: sample projects, file roles, plan steps and
+ * rationales, risk notes, static-check names and details, and stage UI strings.
+ */
+export type CodeServiceEntry = ServiceEntry & CodeCopy;
 
 export type ServiceDictionary = {
   workbench: {
@@ -121,7 +129,7 @@ export type ServiceDictionary = {
   runStatus: Record<ServiceRunStatus, string>;
   sessionStatus: Record<ServiceSessionStatus, string>;
   scenarios: Record<ServiceScenarioId, string>;
-  services: Record<ServiceId, ServiceEntry> & { learn: LearnServiceEntry; research: ResearchServiceEntry; create: CreateServiceEntry };
+  services: Record<ServiceId, ServiceEntry> & { learn: LearnServiceEntry; research: ResearchServiceEntry; create: CreateServiceEntry; code: CodeServiceEntry };
 };
 
 const ar: ServiceDictionary = {
@@ -304,6 +312,7 @@ const ar: ServiceDictionary = {
         cod_preview_checks: "المعاينة والفحوص",
         cod_receipt: "إيصال المراجعة",
       },
+      ...codeContentAr,
     },
     analyze: {
       label: "حلّل وافهم",
@@ -518,6 +527,7 @@ const en: ServiceDictionary = {
         cod_preview_checks: "Preview and checks",
         cod_receipt: "Review receipt",
       },
+      ...codeContentEn,
     },
     analyze: {
       label: "Analyze and understand",

@@ -484,7 +484,7 @@
 
 /* Fields inside the panel: legend + inputs, no card chrome. The inputs
    themselves remain the only bordered things in the panel. */
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__field, .u2-research__field, .u2-create__field) {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__field, .u2-research__field, .u2-create__field, .u2-code__field, .u2-analyze__field, .u2-explore__field) {
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -493,7 +493,7 @@
 .u2-learn__field legend { padding-inline: 0; }
 
 /* Field-level single-select buttons: text rows, typographic selection. */
-:is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) .u2-learn__field > button {
   border: 0;
   background: transparent;
   color: var(--u-muted);
@@ -501,14 +501,14 @@
   position: relative;
   padding: 10px 10px 10px 14px;
 }
-:is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button[aria-pressed="true"] {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) .u2-learn__field > button[aria-pressed="true"] {
   border-color: transparent;
   background: transparent;
   color: var(--u-primary-strong);
   font-weight: 700;
 }
-[dir="rtl"] :is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button[aria-pressed="true"] { padding: 10px 14px 10px 10px; }
-:is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button[aria-pressed="true"]::after {
+[dir="rtl"] :is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) .u2-learn__field > button[aria-pressed="true"] { padding: 10px 14px 10px 10px; }
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) .u2-learn__field > button[aria-pressed="true"]::after {
   content: "";
   position: absolute;
   inset-inline-start: 0;
@@ -520,18 +520,18 @@
 
 /* Topic chips (u2): pills WITH a job (filters). Pill shape stays, the
    border leaves, selection = tint + weight. */
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__chips, .u2-research__chips, .u2-create__chips) button {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__chips, .u2-research__chips, .u2-create__chips, .u2-code__chips, .u2-analyze__chips, .u2-explore__chips) button {
   border-color: transparent;
   background: transparent;
 }
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__chips, .u2-research__chips, .u2-create__chips) button[aria-pressed="true"] {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__chips, .u2-research__chips, .u2-create__chips, .u2-code__chips, .u2-analyze__chips, .u2-explore__chips) button[aria-pressed="true"] {
   border-color: transparent;
   background: var(--u-primary-soft);
   color: var(--u-primary-strong);
 }
 
 /* Mode buttons in workbench (guided/fast…): line tabs. */
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes, .u2-code__modes, .u2-analyze__modes, .u2-explore__modes) button {
   border: 0;
   background: transparent;
   position: relative;
@@ -539,22 +539,22 @@
   color: var(--u-muted);
 }
 @media (hover: hover) {
-  :is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button:hover {
+  :is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes, .u2-code__modes, .u2-analyze__modes, .u2-explore__modes) button:hover {
     border-color: transparent;
     background: transparent;
     color: var(--u-ink);
   }
 }
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button[aria-pressed="true"],
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button.is-active {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes, .u2-code__modes, .u2-analyze__modes, .u2-explore__modes) button[aria-pressed="true"],
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes, .u2-code__modes, .u2-analyze__modes, .u2-explore__modes) button.is-active {
   border-color: transparent;
   background: transparent;
   color: var(--u-primary-strong);
   font-weight: 700;
   box-shadow: none;
 }
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button[aria-pressed="true"]::after,
-:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button.is-active::after {
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes, .u2-code__modes, .u2-analyze__modes, .u2-explore__modes) button[aria-pressed="true"]::after,
+:is(.u2-learn, .u2-research, .u2-create, .u2-code, .u2-analyze, .u2-explore) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes, .u2-code__modes, .u2-analyze__modes, .u2-explore__modes) button.is-active::after {
   content: "";
   position: absolute;
   inset-inline: 8px;

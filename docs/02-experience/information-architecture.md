@@ -89,6 +89,9 @@ flowchart TB
 | 32 | `/app/tools` | الأدوات | رابط سياقي: تبويبات الكتالوج من 23 | Ops |
 | 33 | `/preview` | فهرس المعاينة | — | Preview |
 | 34 | `/preview/service-foundation` | أساس الخدمات | — | Preview |
+| 35 | `/preview/service-code` | سطح تحقّق شريحة برمج (W-3) | — | Preview |
+| 36 | `/preview/service-analyze` | سطح تحقّق شريحة حلّل (W-3) | — | Preview |
+| 37 | `/preview/service-explore` | سطح تحقّق شريحة استكشف (W-3) | — | Preview |
 
 ## 4. خريطة الترابط
 
@@ -150,12 +153,14 @@ flowchart TB
 | learn | `R-U2-LRN-001` | domain_workspace | implemented |
 | research | `R-U2-RSH-001` | domain_workspace | implemented |
 | create | `R-U2-CRT-001` | domain_workspace | implemented |
-| code | `R-U2-COD-001` | prototype_service_workspace | foundation |
+| code | `R-U2-COD-001` | domain_workspace | implemented |
 | analyze | `R-U2-ANA-001` | prototype_service_workspace | foundation |
 | explore | `R-U2-EXP-001` | prototype_service_workspace | foundation |
 | ask | — (البوابة المشتركة) | prototype عبر `/app/chat` (الاصطلاح: الهوية ask · المسار /chat) | gateway |
 
 **معرّفات الشاشات** (`U2-XXX-001`) تُستخدم في وثائق المواصفات والتقييم — أي شاشة جديدة تأخذ معرّفًا بنفس النمط من مالك المنتج.
+
+**إيصالات الشرائح (W-3):** الخدمة تُبلّغ `implemented` في السجل فقط عند هبوط شريحتها مع إيصال تحقّق طازج في `sliceReceipt` (أدلة البناء والفحص والبصري) وسطح تحقّق مدلول في `/preview/service-*`.
 
 ## 7. قواعد IA الملزمة
 

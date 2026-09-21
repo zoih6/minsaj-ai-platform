@@ -31,6 +31,7 @@ export * from "./transitions";
 export * from "./learn";
 export * from "./research";
 export * from "./create";
+export * from "./code";
 
 // The locale type is shared with the prototype contracts; U2 does not own or widen it.
 export type { Locale } from "../index";
