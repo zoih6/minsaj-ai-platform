@@ -1,0 +1,36 @@
+# W-DS Gate G guards (VISUAL-QA-CHECKLIST.md §4) — WARN MODE in Phase 0–5:
+# these checks report token-adoption trends and never fail the build.
+# Phase 6 flips G-7 to error mode per the approved implementation order.
+name: visual-qa-guards
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  g7-token-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: ESLint (must stay green)
+        run: npm run lint
+      - name: G-7 stylelint half (warn mode — never red)
+        run: npm run lint:css
+      - name: G-7 custom half vs frozen Phase 0 baseline (warn mode)
+        run: >
+          node scripts/token-lint.mjs
+          --out /tmp/g7-current.json
+          --compare docs/03-design/reconstruction/evidence/baselines/phase0/g7-baseline.json
+      - name: Upload G-7 current report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g7-token-report
+          path: /tmp/g7-current.json
+          retention-days: 30

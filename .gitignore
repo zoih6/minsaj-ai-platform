@@ -36,3 +36,6 @@ next-env.d.ts
 
 # claude local
 .claude/settings.local.json
+
+# W-DS visual QA local captures (baselines are committed under docs/)
+qa-captures/

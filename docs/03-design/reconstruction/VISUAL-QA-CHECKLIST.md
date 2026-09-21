@@ -44,7 +44,8 @@ Each gate cites the rule it enforces and the metric that proves it:
 ## 4. Gate G — Continuous guards (CI, added with W-DS implementation)
 
 - [ ] **G-7 Token lint** (stylelint + custom checks): no raw spacing values, no undeclared radii/shadows, no sub-10px text, letter-spacing without Arabic override, no new component classes outside the primitive layer, `globals.css` selector count trends to zero.
-- [ ] **G-6 Shell probe** (CI, weekly or on shell change): headless run of the 390/430/980-coarse probes asserting B-5/B-6 metrics.
+  - **Live since Phase 0 (2026-09-22), WARN MODE:** `.stylelintrc.json` + `scripts/token-lint.mjs` (`npm run lint:css` / `npm run lint:tokens`); frozen baseline `evidence/baselines/phase0/g7-baseline.json` (155 raw paddings · 15 undeclared radii · 72 raw shadows · 29 raw font sizes · 23 sub-10px declarations · 37 tracking candidates · 1766 globals selectors · 67 frozen component classes). CI: `.github/workflows/visual-qa-guards.yml` reports the delta vs baseline on every push — never red in Phase 0–5; **Phase 6 flips to error mode**.
+- [ ] **G-6 Shell probe** (CI, weekly or on shell change): headless run of the 390/430/980-coarse probes asserting B-5/B-6 metrics. Tooling ready: `scripts/visual-qa/capture.mjs` (audit measurement function, `--compare` mode vs `evidence/baselines/phase0/capture-aggregate.json`).
 - [ ] **G-5 Motion audit**: any new animation declares its token class + reduced-motion path in the same PR.
 
 ## 5. Sign-off

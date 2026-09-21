@@ -188,6 +188,10 @@
   --u-motion-duration-expressive: 480ms;
   --u-motion-duration-progress: 760ms;
   --u-motion-duration-activity-cycle: 900ms;
+  /* W-DS Phase 0 alias layer (DESIGN-TOKENS.md §7, R-MOT-1): route
+     transitions = 240ms — replaces the 480ms expressive default on
+     route changes when Phase 4 adopts it (matrix INT-02). */
+  --u-motion-duration-route: 240ms;
   --u-motion-delay-stagger: 50ms;
   --u-motion-ease-standard: cubic-bezier(.22, 1, .36, 1);
   --u-motion-ease-enter: cubic-bezier(0, 1.2, .32, 1);
@@ -203,6 +207,24 @@
   --u-ease: var(--u-motion-ease-standard);
   --u-fast: var(--u-motion-duration-fast);
   --u-normal: var(--u-motion-duration-moderate);
+
+  /* ---- W-DS Phase 0 · alias layer (docs/03-design/reconstruction/
+          DESIGN-TOKENS.md §1.4, §4, §5) ----------------------------------
+     Positional names for the approved radius-by-level map (aliases of the
+     existing numeric scale — identical values, zero rendered change);
+     the single attention token; the explicit flat-elevation step.
+     Legacy names (--u-radius-xs/sm/(base)/lg) migrate in Phase 1 per §10;
+     --u-radius-xl is deprecated per the spec's rejected list (zero live
+     usage) and dies with the migration wave. */
+  --u-radius-control: var(--u-radius-xs);  /* 8px  — buttons, inputs, chips */
+  --u-radius-field: var(--u-radius-sm);    /* 12px — inputs, flat groups, dock items */
+  --u-radius-card: var(--u-radius);        /* 16px — cards, every L1 surface */
+  --u-radius-overlay: var(--u-radius-lg);  /* 22px — dialogs, palette, sheets */
+  /* --u-radius-pill (999px) already exists above — unchanged. */
+  --u-alert: #ef4444;  /* §1.4: the single notification/attention dot,
+                          both themes; replaces --u-shell-alert on standard
+                          chrome during Phase 1 (matrix INT-03) */
+  --u-shadow-none: none;  /* §5: page canvas, flat groups, chrome (R-SURF-3) */
 
   /* ---- Dark premium shell (sidebar) — permanent identity ---- */
   --u-shell-bg: #0c101f;
