@@ -1,0 +1,444 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 107,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 107
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.78)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(219, 219, 236, 0.88)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 6,
+    "bottom": 50,
+    "left": 166,
+    "right": 374,
+    "width": 208,
+    "height": 44
+   },
+   "title": "الوكلاء"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 56,
+    "bottom": 100,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 44
+   },
+   "display": "flex"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 774,
+    "bottom": 844,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 70
+   },
+   "display": "grid",
+   "position": "fixed",
+   "background": "color(srgb 1 1 1 / 0.96)",
+   "backdropFilter": "none",
+   "boxShadow": "rgba(9, 10, 25, 0.08) 0px -10px 32px 0px",
+   "borderRadius": "0px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 307.2,
+      "right": 382,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 232.4,
+      "right": 307.2,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 157.6,
+      "right": 232.4,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 82.8,
+      "right": 157.6,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 8,
+      "right": 82.8,
+      "width": 74.8,
+      "height": 52
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 844,
+    "left": 402,
+    "right": 702,
+    "width": 300,
+    "height": 844
+   },
+   "transform": "matrix(1, 0, 0, 1, 312, 0)",
+   "visibility": "hidden"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 390,
+   "h": 844
+  },
+  "docHeight": 2031,
+  "firstContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 123,
+    "bottom": 1927.1,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 1804.1
+   },
+   "offsetBelowTopbar": 16
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 107,
+    "bottom": 2031.1,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 1924.1
+   },
+   "paddingTop": "16px",
+   "paddingBottom": "104px",
+   "paddingInline": "16px"
+  },
+  "lastContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 123,
+    "bottom": 1927.1,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 1804.1
+   },
+   "gapToBottomNav": -1153.1
+  },
+  "verticalBudget": {
+   "viewportH": 844,
+   "chromeTop": 107,
+   "chromeBottom": 70,
+   "contentVisible": 667,
+   "chromeRatio": 21
+  },
+  "hOverflow": {
+   "scrollWidth": 390,
+   "clientWidth": 390,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "الوكلاء",
+    "rect": {
+     "top": 148.6,
+     "bottom": 187.8,
+     "left": 16,
+     "right": 374,
+     "width": 358,
+     "height": 39.2
+    },
+    "fontSize": "28px",
+    "fontWeight": "700",
+    "lineHeight": "39.2px",
+    "letterSpacing": "normal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "h2_0": {
+    "text": "باحث السوق",
+    "fontSize": "15.36px",
+    "fontWeight": "600",
+    "lineHeight": "26.4192px"
+   },
+   "h2_1": {
+    "text": "مراجع المستندات",
+    "fontSize": "15.36px",
+    "fontWeight": "600",
+    "lineHeight": "26.4192px"
+   },
+   "h2_2": {
+    "text": "منسق المحتوى",
+    "fontSize": "15.36px",
+    "fontWeight": "600",
+    "lineHeight": "26.4192px"
+   }
+  },
+  "pageSearchControls": 2,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   1804
+  ],
+  "subSectionGaps": {
+   "rootSelector": "div.ops-page",
+   "count": 3,
+   "values": [
+    30.1,
+    30.1,
+    30.1
+   ],
+   "min": 0,
+   "max": 30.1,
+   "median": 30.1
+  },
+  "subSectionCount": 4
+ },
+ "surfaces": {
+  "cardLikeCount": 10,
+  "perViewportArea": 10,
+  "radiusHistogram": {
+   "12px": 5,
+   "16px": 5
+  },
+  "shadowUsage": {
+   "none": 5,
+   "shadow": 5
+  },
+  "nestingDepthHistogram": {
+   "d0": 6,
+   "d1": 4
+  },
+  "nestedPairs": 4,
+  "distinctRadiusValues": 2,
+  "topSelectors": [
+   [
+    "article.agent-card",
+    3
+   ],
+   [
+    "button.button",
+    3
+   ],
+   [
+    "a.button",
+    1
+   ],
+   [
+    "dl.ops-stats",
+    1
+   ],
+   [
+    "div.library-toolbar",
+    1
+   ],
+   [
+    "label.library-search",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "28px",
+    "fontWeight": "700",
+    "lineHeight": "39.2px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main h2": {
+    "fontSize": "15.36px",
+    "fontWeight": "600",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "12px",
+    "fontWeight": "700",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "700",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main [class*=\"badge\"]": {
+    "fontSize": "13.44px",
+    "fontWeight": "600",
+    "lineHeight": "16.8px",
+    "letterSpacing": "0.1344px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(35, 92, 75)"
+   }
+  },
+  "fontSizeHistogram": {
+   "12px": 37,
+   "28px": 1,
+   "13.44px": 7,
+   "15.36px": 11,
+   "17.92px": 4
+  },
+  "distinctFontSizes": 5
+ },
+ "tapTargets": {
+  "count": 11,
+  "under24": 0,
+  "under32": 0,
+  "under44": 1,
+  "minW": 51,
+  "minH": 42,
+  "smallest": [
+   {
+    "sel": "button.mj-chip",
+    "w": 51,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 63,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 68,
+    "h": 44
+   },
+   {
+    "sel": "input",
+    "w": 293,
+    "h": 42
+   },
+   {
+    "sel": "button.button",
+    "w": 324,
+    "h": 44
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgb(255, 255, 255)": 3
+  },
+  "sampledButtons": [
+   {
+    "text": "إنشاء وكيل",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 44
+   },
+   {
+    "text": "الكل",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(79, 70, 229)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "منشور",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "مسودة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "تشغيل تجريبي",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 44
+   },
+   {
+    "text": "تشغيل تجريبي",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 44
+   },
+   {
+    "text": "تشغيل تجريبي",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 44
+   }
+  ]
+ },
+ "service": null,
+ "capturedAt": "2026-09-21T19:20:06.547Z",
+ "route": "agents",
+ "path": "/ar/app/agents",
+ "viewportName": "390"
+}

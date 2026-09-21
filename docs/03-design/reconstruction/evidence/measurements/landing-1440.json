@@ -1,0 +1,254 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".ms-header",
+   "rect": {
+    "top": 0,
+    "bottom": 81,
+    "left": 0,
+    "right": 1440,
+    "width": 1440,
+    "height": 81
+   },
+   "position": "fixed",
+   "zIndex": "50",
+   "background": "rgba(255, 255, 255, 0.055)"
+  },
+  "contextRow": null,
+  "search": null,
+  "bottomNav": null,
+  "sidebar": null
+ },
+ "geom": {
+  "viewport": {
+   "w": 1440,
+   "h": 900
+  },
+  "docHeight": 5893,
+  "firstContent": {
+   "selector": null,
+   "rect": null,
+   "offsetBelowTopbar": null
+  },
+  "verticalBudget": {
+   "viewportH": 900,
+   "chromeTop": 81,
+   "chromeBottom": 0,
+   "contentVisible": 819,
+   "chromeRatio": 9
+  },
+  "hOverflow": {
+   "scrollWidth": 1440,
+   "clientWidth": 1440,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "أفكارك خيوط، ونحن ننسجها واقعًا.",
+    "rect": {
+     "top": 190,
+     "bottom": 413.2,
+     "left": 208,
+     "right": 1232,
+     "width": 1024,
+     "height": 223.2
+    },
+    "fontSize": "72px",
+    "fontWeight": "800",
+    "lineHeight": "111.6px",
+    "letterSpacing": "normal",
+    "color": "lab(7.78673 1.82345 -15.0537)"
+   },
+   "h2_0": {
+    "text": "جرّبها الآن — قبل أن تبدأ",
+    "fontSize": "48px",
+    "fontWeight": "700",
+    "lineHeight": "48px"
+   },
+   "h2_1": {
+    "text": "لا تحتاج أن تكون خبيراً لتستفيد من الذكا",
+    "fontSize": "20px",
+    "fontWeight": "500",
+    "lineHeight": "28px"
+   },
+   "h2_2": {
+    "text": "ابدأ من هدف، لا من قائمة أدوات.",
+    "fontSize": "48px",
+    "fontWeight": "700",
+    "lineHeight": "48px"
+   }
+  },
+  "pageSearchControls": 0
+ },
+ "surfaces": {
+  "cardLikeCount": 38,
+  "perViewportArea": 38,
+  "radiusHistogram": {
+   "3.35544e+07px": 12,
+   "12px": 9,
+   "24px": 11,
+   "32px": 2,
+   "16px": 2,
+   "8px": 2
+  },
+  "shadowUsage": {
+   "none": 17,
+   "shadow": 21
+  },
+  "nestingDepthHistogram": {
+   "d0": 25,
+   "d1": 13
+  },
+  "nestedPairs": 13,
+  "distinctRadiusValues": 6,
+  "topSelectors": [
+   [
+    "span.flex",
+    7
+   ],
+   [
+    "a.reveal-on-scroll",
+    6
+   ],
+   [
+    "div.mt-auto",
+    6
+   ],
+   [
+    "div.glass-panel",
+    5
+   ],
+   [
+    "a.flex",
+    4
+   ],
+   [
+    "div.reveal-on-scroll",
+    2
+   ],
+   [
+    "div.mb-7",
+    1
+   ],
+   [
+    "a.glass-panel",
+    1
+   ],
+   [
+    "div.relative",
+    1
+   ],
+   [
+    "div.mb-6",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "72px",
+    "fontWeight": "800",
+    "lineHeight": "111.6px",
+    "letterSpacing": "normal",
+    "fontFamily": "Alexandria",
+    "color": "lab(7.78673 1.82345 -15.0537)"
+   },
+   "main h2": {
+    "fontSize": "48px",
+    "fontWeight": "700",
+    "lineHeight": "48px",
+    "letterSpacing": "normal",
+    "fontFamily": "Alexandria",
+    "color": "lab(7.78673 1.82345 -15.0537)"
+   },
+   "main h3": {
+    "fontSize": "12px",
+    "fontWeight": "600",
+    "lineHeight": "16px",
+    "letterSpacing": "normal",
+    "fontFamily": "Alexandria",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main p": {
+    "fontSize": "20px",
+    "fontWeight": "400",
+    "lineHeight": "40px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "lab(35.5623 -1.74978 -15.4316)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.88px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(255, 255, 255)"
+   }
+  },
+  "fontSizeHistogram": {
+   "14px": 23,
+   "72px": 2,
+   "20px": 4,
+   "15.36px": 2,
+   "12px": 30,
+   "48px": 4,
+   "16px": 5,
+   "10px": 2,
+   "30px": 1,
+   "24px": 7,
+   "18px": 8,
+   "60px": 1
+  },
+  "distinctFontSizes": 12
+ },
+ "tapTargets": {
+  "count": 20,
+  "under24": 0,
+  "under32": 1,
+  "under44": 10,
+  "minW": 40,
+  "minH": 28,
+  "smallest": [
+   {
+    "sel": "button.flex",
+    "w": 40,
+    "h": 40
+   },
+   {
+    "sel": "a.glass-panel",
+    "w": 48,
+    "h": 38
+   },
+   {
+    "sel": "a.glass-panel",
+    "w": 48,
+    "h": 38
+   },
+   {
+    "sel": "a.glass-panel",
+    "w": 48,
+    "h": 38
+   },
+   {
+    "sel": "a.glass-panel",
+    "w": 48,
+    "h": 38
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgb(99, 102, 241)": 1
+  },
+  "sampledButtons": []
+ },
+ "service": null,
+ "capturedAt": "2026-09-21T19:23:35.606Z",
+ "route": "landing",
+ "path": "/ar",
+ "viewportName": "1440"
+}

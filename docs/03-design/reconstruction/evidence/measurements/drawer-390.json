@@ -1,0 +1,145 @@
+{
+ "groups": [
+  {
+   "label": "الخدمات",
+   "linkCount": 8,
+   "links": [
+    {
+     "label": "لك",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "اسأل",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "تعلّم",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "ابحث",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "أنشئ",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "برمج",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "حلّل",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "استكشف",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    }
+   ]
+  },
+  {
+   "label": "أدوات متقدمة",
+   "linkCount": 5,
+   "links": [
+    {
+     "label": "المشاريع",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "الوكلاء",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "التدفقات",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "مصادر المعرفة",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "النماذج",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    }
+   ]
+  },
+  {
+   "label": "التشغيل",
+   "linkCount": 4,
+   "links": [
+    {
+     "label": "التشغيلات",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "الاستخدام والتكلفة",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "الفوترة",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "الفريق والأدوار",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    }
+   ]
+  },
+  {
+   "label": "(utility: unlabelled)",
+   "linkCount": 2,
+   "links": [
+    {
+     "label": "مكتبتي",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    },
+    {
+     "label": "الإعدادات",
+     "fontSize": "15.36px",
+     "minHeight": "44px",
+     "height": 44
+    }
+   ]
+  }
+ ],
+ "totalLinks": 19,
+ "drawerHeight": 844,
+ "scrollable": true
+}

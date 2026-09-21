@@ -1,0 +1,468 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 107,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 107
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.78)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(219, 219, 236, 0.88)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 6,
+    "bottom": 50,
+    "left": 166,
+    "right": 374,
+    "width": 208,
+    "height": 44
+   },
+   "title": "تعلّم"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 56,
+    "bottom": 100,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 44
+   },
+   "display": "flex"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 774,
+    "bottom": 844,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 70
+   },
+   "display": "grid",
+   "position": "fixed",
+   "background": "color(srgb 1 1 1 / 0.96)",
+   "backdropFilter": "none",
+   "boxShadow": "rgba(9, 10, 25, 0.08) 0px -10px 32px 0px",
+   "borderRadius": "0px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 307.2,
+      "right": 382,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 232.4,
+      "right": 307.2,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 157.6,
+      "right": 232.4,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 82.8,
+      "right": 157.6,
+      "width": 74.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 783,
+      "bottom": 835,
+      "left": 8,
+      "right": 82.8,
+      "width": 74.8,
+      "height": 52
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 844,
+    "left": 402,
+    "right": 702,
+    "width": 300,
+    "height": 844
+   },
+   "transform": "matrix(1, 0, 0, 1, 312, 0)",
+   "visibility": "hidden"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 390,
+   "h": 844
+  },
+  "docHeight": 1418,
+  "firstContent": {
+   "selector": "section.u2-workbench",
+   "rect": {
+    "top": 141,
+    "bottom": 1313.5,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 1172.5
+   },
+   "offsetBelowTopbar": 34
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 107,
+    "bottom": 1417.5,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 1310.5
+   },
+   "paddingTop": "16px",
+   "paddingBottom": "104px",
+   "paddingInline": "16px"
+  },
+  "lastContent": {
+   "selector": "section.u2-workbench",
+   "rect": {
+    "top": 141,
+    "bottom": 1313.5,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 1172.5
+   },
+   "gapToBottomNav": -539.5
+  },
+  "verticalBudget": {
+   "viewportH": 844,
+   "chromeTop": 107,
+   "chromeBottom": 70,
+   "contentVisible": 667,
+   "chromeRatio": 21
+  },
+  "hOverflow": {
+   "scrollWidth": 390,
+   "clientWidth": 390,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "تعلّم بعمق",
+    "rect": {
+     "top": 186.4,
+     "bottom": 226,
+     "left": 31,
+     "right": 359,
+     "width": 328,
+     "height": 39.5
+    },
+    "fontSize": "23px",
+    "fontWeight": "700",
+    "lineHeight": "39.56px",
+    "letterSpacing": "-0.575px",
+    "color": "rgb(11, 15, 26)"
+   },
+   "h2_0": {
+    "text": "الهدف والوقت",
+    "fontSize": "19px",
+    "fontWeight": "400",
+    "lineHeight": "32.68px"
+   },
+   "h2_1": {
+    "text": "لا يوجد مخرج بعد",
+    "fontSize": "13.44px",
+    "fontWeight": "400",
+    "lineHeight": "23.1168px"
+   }
+  },
+  "pageSearchControls": 2,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   1173
+  ],
+  "subSectionGaps": {
+   "rootSelector": "section.u2-workbench",
+   "count": 4,
+   "values": [
+    18,
+    14,
+    14,
+    12
+   ],
+   "min": 0,
+   "max": 18,
+   "median": 14
+  },
+  "subSectionCount": 5
+ },
+ "surfaces": {
+  "cardLikeCount": 15,
+  "perViewportArea": 15,
+  "radiusHistogram": {
+   "22px": 1,
+   "12px": 8,
+   "999px": 6
+  },
+  "shadowUsage": {
+   "none": 13,
+   "shadow": 2
+  },
+  "nestingDepthHistogram": {
+   "d0": 1,
+   "d1": 14
+  },
+  "nestedPairs": 14,
+  "distinctRadiusValues": 3,
+  "topSelectors": [
+   [
+    "button.mj-chip",
+    6
+   ],
+   [
+    "button.u2-badge",
+    2
+   ],
+   [
+    "button",
+    2
+   ],
+   [
+    "section.u2-workbench",
+    1
+   ],
+   [
+    "button.u2-start__button",
+    1
+   ],
+   [
+    "div.u2-run",
+    1
+   ],
+   [
+    "select",
+    1
+   ],
+   [
+    "textarea",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "23px",
+    "fontWeight": "700",
+    "lineHeight": "39.56px",
+    "letterSpacing": "-0.575px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main h2": {
+    "fontSize": "19px",
+    "fontWeight": "400",
+    "lineHeight": "32.68px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "13.44px",
+    "fontWeight": "400",
+    "lineHeight": "22.848px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(86, 91, 126)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(67, 56, 202)"
+   },
+   "main small": {
+    "fontSize": "11.5px",
+    "fontWeight": "400",
+    "lineHeight": "19.78px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(93, 98, 128)"
+   },
+   "main [class*=\"badge\"]": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   }
+  },
+  "fontSizeHistogram": {
+   "13.44px": 15,
+   "23px": 1,
+   "12px": 15,
+   "15.36px": 18,
+   "11.5px": 10,
+   "19px": 1
+  },
+  "distinctFontSizes": 6
+ },
+ "tapTargets": {
+  "count": 23,
+  "under24": 0,
+  "under32": 0,
+  "under44": 0,
+  "minW": 62,
+  "minH": 44,
+  "smallest": [
+   {
+    "sel": "button.mj-chip",
+    "w": 62,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 63,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 68,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 73,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 75,
+    "h": 44
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgb(238, 242, 255)": 3,
+   "rgb(255, 255, 255)": 3
+  },
+  "sampledButtons": [
+   {
+    "text": "محاكاة معلنة",
+    "bg": "rgb(238, 242, 255)",
+    "color": "rgb(67, 56, 202)",
+    "radius": "12px",
+    "h": 44
+   },
+   {
+    "text": "تخزين تجريبي محلي",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 44
+   },
+   {
+    "text": "الهدف والوقتجارية",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(67, 56, 202)",
+    "radius": "0px",
+    "h": 57
+   },
+   {
+    "text": "التشخيصلم تبدأ",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 57
+   },
+   {
+    "text": "مراجعة المسارلم تبدأنقطة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 80
+   },
+   {
+    "text": "الدرسلم تبدأ",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 57
+   },
+   {
+    "text": "التحققلم تبدأ",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 57
+   },
+   {
+    "text": "التغذية الراجعةلم تبدأ",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 57
+   }
+  ]
+ },
+ "service": {
+  "attr": "learn",
+  "color": "#7a55d8"
+ },
+ "capturedAt": "2026-09-21T19:19:17.532Z",
+ "route": "learn",
+ "path": "/ar/app/learn",
+ "viewportName": "390"
+}

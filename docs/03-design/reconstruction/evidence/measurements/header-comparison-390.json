@@ -1,0 +1,30 @@
+{
+ "home": {
+  "topbarH": 107,
+  "bottomNavH": 70,
+  "bottomNavPos": "0px",
+  "searchDisplay": "flex",
+  "focusCanvas": "false"
+ },
+ "chat": {
+  "topbarH": 65,
+  "bottomNavH": 66,
+  "bottomNavPos": "16px",
+  "searchDisplay": "none",
+  "focusCanvas": "true"
+ },
+ "code": {
+  "topbarH": 65,
+  "bottomNavH": 66,
+  "bottomNavPos": "16px",
+  "searchDisplay": "none",
+  "focusCanvas": "true"
+ },
+ "explore": {
+  "topbarH": 65,
+  "bottomNavH": 66,
+  "bottomNavPos": "16px",
+  "searchDisplay": "none",
+  "focusCanvas": "true"
+ }
+}

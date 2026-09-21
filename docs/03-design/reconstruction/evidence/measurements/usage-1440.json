@@ -1,0 +1,465 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 61,
+    "left": 0,
+    "right": 1176,
+    "width": 1176,
+    "height": 61
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.78)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(219, 219, 236, 0.88)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 692.1,
+    "right": 1150.2,
+    "width": 458,
+    "height": 44
+   },
+   "title": "الاستخدام والتكلفة"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 252,
+    "right": 672,
+    "width": 420,
+    "height": 44
+   },
+   "display": "flex"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "width": 0,
+    "height": 0
+   },
+   "display": "none",
+   "position": "static",
+   "background": "rgba(0, 0, 0, 0)",
+   "backdropFilter": "none",
+   "boxShadow": "none",
+   "borderRadius": "0px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 900,
+    "left": 1186.2,
+    "right": 1440,
+    "width": 253.8,
+    "height": 900
+   },
+   "transform": "none",
+   "visibility": "visible"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 1440,
+   "h": 900
+  },
+  "docHeight": 1512,
+  "firstContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1482.8,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 1393
+   },
+   "offsetBelowTopbar": 28.8
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 61,
+    "bottom": 1511.6,
+    "left": 25.8,
+    "right": 1150.2,
+    "width": 1124.3,
+    "height": 1450.6
+   },
+   "paddingTop": "28.8px",
+   "paddingBottom": "28.8px",
+   "paddingInline": "25.84px"
+  },
+  "lastContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1482.8,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 1393
+   },
+   "gapToBottomNav": -1482.8
+  },
+  "verticalBudget": {
+   "viewportH": 900,
+   "chromeTop": 61,
+   "chromeBottom": 0,
+   "contentVisible": 839,
+   "chromeRatio": 6.8
+  },
+  "hOverflow": {
+   "scrollWidth": 1440,
+   "clientWidth": 1440,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "الاستخدام والتكلفة",
+    "rect": {
+     "top": 115.4,
+     "bottom": 168.6,
+     "left": 326.3,
+     "right": 1124.3,
+     "width": 798,
+     "height": 53.2
+    },
+    "fontSize": "38px",
+    "fontWeight": "700",
+    "lineHeight": "53.2px",
+    "letterSpacing": "normal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "h2_0": {
+    "text": "التكلفة الفعلية يوميًا",
+    "fontSize": "17.92px",
+    "fontWeight": "700",
+    "lineHeight": "30.8224px"
+   },
+   "h2_1": {
+    "text": "أين يُستهلك العمل؟",
+    "fontSize": "17.92px",
+    "fontWeight": "400",
+    "lineHeight": "30.8224px"
+   },
+   "h2_2": {
+    "text": "أحداث الاستخدام",
+    "fontSize": "17.92px",
+    "fontWeight": "700",
+    "lineHeight": "30.8224px"
+   }
+  },
+  "pageSearchControls": 0,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   1393
+  ],
+  "subSectionGaps": {
+   "rootSelector": "div.ops-page",
+   "count": 4,
+   "values": [
+    48,
+    48,
+    59,
+    59
+   ],
+   "min": 0,
+   "max": 59,
+   "median": 59
+  },
+  "subSectionCount": 5
+ },
+ "surfaces": {
+  "cardLikeCount": 7,
+  "perViewportArea": 7,
+  "radiusHistogram": {
+   "12px": 3,
+   "16px": 4
+  },
+  "shadowUsage": {
+   "none": 3,
+   "shadow": 4
+  },
+  "nestingDepthHistogram": {
+   "d0": 5,
+   "d1": 2
+  },
+  "nestedPairs": 2,
+  "distinctRadiusValues": 2,
+  "topSelectors": [
+   [
+    "button.button",
+    2
+   ],
+   [
+    "dl.ops-stats",
+    1
+   ],
+   [
+    "aside.credit-balance-card",
+    1
+   ],
+   [
+    "a.button",
+    1
+   ],
+   [
+    "section.usage-breakdown-card",
+    1
+   ],
+   [
+    "section.usage-ledger-card",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "38px",
+    "fontWeight": "700",
+    "lineHeight": "53.2px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main h2": {
+    "fontSize": "17.92px",
+    "fontWeight": "700",
+    "lineHeight": "30.8224px",
+    "letterSpacing": "-0.1792px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "12px",
+    "fontWeight": "700",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "0.1536px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(35, 40, 66)"
+   },
+   "main small": {
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(93, 98, 128)"
+   },
+   "main [class*=\"badge\"]": {
+    "fontSize": "13.44px",
+    "fontWeight": "600",
+    "lineHeight": "16.8px",
+    "letterSpacing": "0.1344px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(35, 92, 75)"
+   }
+  },
+  "fontSizeHistogram": {
+   "12px": 40,
+   "38px": 1,
+   "13.44px": 7,
+   "15.36px": 21,
+   "22.4px": 4,
+   "17.92px": 3,
+   "7px": 3,
+   "29px": 1,
+   "8px": 8
+  },
+  "distinctFontSizes": 9
+ },
+ "tapTargets": {
+  "count": 10,
+  "under24": 0,
+  "under32": 3,
+  "under44": 6,
+  "minW": 66,
+  "minH": 27,
+  "smallest": [
+   {
+    "sel": "button",
+    "w": 66,
+    "h": 27
+   },
+   {
+    "sel": "button.is-active",
+    "w": 75,
+    "h": 27
+   },
+   {
+    "sel": "button",
+    "w": 105,
+    "h": 27
+   },
+   {
+    "sel": "button.button",
+    "w": 100,
+    "h": 32
+   },
+   {
+    "sel": "button.button",
+    "w": 141,
+    "h": 38
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgb(255, 255, 255)": 6,
+   "rgb(11, 15, 26)": 1
+  },
+  "sampledButtons": [
+   {
+    "text": "تصدير CSV",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 38
+   },
+   {
+    "text": "إدارة الرصيد والميزانيات",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 38
+   },
+   {
+    "text": "المشروع",
+    "bg": "rgb(11, 15, 26)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "0px",
+    "h": 27
+   },
+   {
+    "text": "النموذج",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 27
+   },
+   {
+    "text": "الجهة الدافعة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 27
+   },
+   {
+    "text": "تصفية",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "12px",
+    "h": 32
+   },
+   {
+    "text": "رصد المنافسين الأسبوعيإط",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 60
+   },
+   {
+    "text": "تحليل إشارات السوقإطلاق ",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 60
+   }
+  ]
+ },
+ "service": null,
+ "capturedAt": "2026-09-21T19:24:38.908Z",
+ "route": "usage",
+ "path": "/ar/app/usage",
+ "viewportName": "1440"
+}

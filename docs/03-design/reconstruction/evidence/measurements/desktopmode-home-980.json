@@ -1,0 +1,12 @@
+{
+ "vw": 980,
+ "sidebarMode": "rail",
+ "fontPx": {
+  "h1": "58px",
+  "navLink": "15.36px"
+ },
+ "navLinkH": 44,
+ "scaleFactorOnPhone": 0.422,
+ "effectiveH1mm": 24.5,
+ "effectiveNavMm": 6.5
+}

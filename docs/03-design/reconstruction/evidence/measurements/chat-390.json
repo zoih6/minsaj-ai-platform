@@ -1,0 +1,488 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 65,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 65
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.72)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(11, 15, 26, 0.08)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 10,
+    "bottom": 54,
+    "left": 166,
+    "right": 374,
+    "width": 208,
+    "height": 44
+   },
+   "title": "اسأل"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "width": 0,
+    "height": 0
+   },
+   "display": "none"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 66
+   },
+   "display": "grid",
+   "position": "fixed",
+   "background": "rgba(255, 255, 255, 0.72)",
+   "backdropFilter": "none",
+   "boxShadow": "rgba(35, 40, 90, 0.16) 0px 4px 30px 0px",
+   "borderRadius": "16px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 769,
+      "bottom": 821,
+      "left": 298.2,
+      "right": 367,
+      "width": 68.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 769,
+      "bottom": 821,
+      "left": 229.4,
+      "right": 298.2,
+      "width": 68.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 769,
+      "bottom": 821,
+      "left": 160.6,
+      "right": 229.4,
+      "width": 68.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 769,
+      "bottom": 821,
+      "left": 91.8,
+      "right": 160.6,
+      "width": 68.8,
+      "height": 52
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 769,
+      "bottom": 821,
+      "left": 23,
+      "right": 91.8,
+      "width": 68.8,
+      "height": 52
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 844,
+    "left": 402,
+    "right": 702,
+    "width": 300,
+    "height": 844
+   },
+   "transform": "matrix(1, 0, 0, 1, 312, 0)",
+   "visibility": "hidden"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 390,
+   "h": 844
+  },
+  "docHeight": 2223,
+  "firstContent": {
+   "selector": "div.service-space",
+   "rect": {
+    "top": 81,
+    "bottom": 2087.3,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 2006.3
+   },
+   "offsetBelowTopbar": 16
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 65,
+    "bottom": 2223.3,
+    "left": 0,
+    "right": 390,
+    "width": 390,
+    "height": 2158.3
+   },
+   "paddingTop": "16px",
+   "paddingBottom": "136px",
+   "paddingInline": "16px"
+  },
+  "lastContent": {
+   "selector": "div.service-space",
+   "rect": {
+    "top": 81,
+    "bottom": 2087.3,
+    "left": 16,
+    "right": 374,
+    "width": 358,
+    "height": 2006.3
+   },
+   "gapToBottomNav": -1325.3
+  },
+  "verticalBudget": {
+   "viewportH": 844,
+   "chromeTop": 65,
+   "chromeBottom": 66,
+   "contentVisible": 713,
+   "chromeRatio": 15.5
+  },
+  "hOverflow": {
+   "scrollWidth": 390,
+   "clientWidth": 390,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "اسأل وتحدّث",
+    "rect": {
+     "top": 257.5,
+     "bottom": 305.6,
+     "left": 95,
+     "right": 295,
+     "width": 200,
+     "height": 48.1
+    },
+    "fontSize": "33.15px",
+    "fontWeight": "700",
+    "lineHeight": "43.095px",
+    "letterSpacing": "normal",
+    "color": "rgba(0, 0, 0, 0)"
+   },
+   "h2_0": {
+    "text": "اختيار نمط العمل",
+    "fontSize": "13.44px",
+    "fontWeight": "700",
+    "lineHeight": "18.816px"
+   },
+   "h2_1": {
+    "text": "اختيار أسلوب التنفيذ",
+    "fontSize": "13.44px",
+    "fontWeight": "700",
+    "lineHeight": "18.816px"
+   },
+   "h2_2": {
+    "text": "ابدأ من مقصدك",
+    "fontSize": "12px",
+    "fontWeight": "700",
+    "lineHeight": "16.8px"
+   }
+  },
+  "pageSearchControls": 0,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   2006
+  ],
+  "subSectionGaps": {
+   "rootSelector": "div.service-space",
+   "count": 8,
+   "values": [
+    30,
+    40,
+    40,
+    40,
+    40,
+    24,
+    40,
+    -1359.3
+   ],
+   "min": -1359.3,
+   "max": 40,
+   "median": 40
+  },
+  "subSectionCount": 9
+ },
+ "surfaces": {
+  "cardLikeCount": 18,
+  "perViewportArea": 18,
+  "radiusHistogram": {
+   "999px": 5,
+   "16px": 9,
+   "12px": 2,
+   "24px": 2
+  },
+  "shadowUsage": {
+   "none": 13,
+   "shadow": 5
+  },
+  "nestingDepthHistogram": {
+   "d0": 14,
+   "d1": 4
+  },
+  "nestedPairs": 4,
+  "distinctRadiusValues": 4,
+  "topSelectors": [
+   [
+    "button",
+    4
+   ],
+   [
+    "button.service-tool",
+    3
+   ],
+   [
+    "a",
+    2
+   ],
+   [
+    "span.service-welcome__badge",
+    1
+   ],
+   [
+    "button.service-welcome__new",
+    1
+   ],
+   [
+    "div.service-mode-switch",
+    1
+   ],
+   [
+    "button.is-active",
+    1
+   ],
+   [
+    "div.service-prompt-shell",
+    1
+   ],
+   [
+    "button.service-afford",
+    1
+   ],
+   [
+    "button.service-start-button",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "33.15px",
+    "fontWeight": "700",
+    "lineHeight": "43.095px",
+    "letterSpacing": "normal",
+    "fontFamily": "Alexandria",
+    "color": "rgba(0, 0, 0, 0)"
+   },
+   "main h2": {
+    "fontSize": "13.44px",
+    "fontWeight": "700",
+    "lineHeight": "18.816px",
+    "letterSpacing": "normal",
+    "fontFamily": "Alexandria",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "13.44px",
+    "fontWeight": "400",
+    "lineHeight": "22.848px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(86, 91, 126)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main small": {
+    "fontSize": "11px",
+    "fontWeight": "400",
+    "lineHeight": "17.6px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(86, 91, 126)"
+   },
+   "main [class*=\"badge\"]": {
+    "fontSize": "12px",
+    "fontWeight": "500",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(91, 79, 228)"
+   }
+  },
+  "fontSizeHistogram": {
+   "12px": 5,
+   "11px": 14,
+   "33.15px": 1,
+   "13.44px": 20,
+   "15.36px": 3,
+   "10px": 1
+  },
+  "distinctFontSizes": 6
+ },
+ "tapTargets": {
+  "count": 17,
+  "under24": 1,
+  "under32": 1,
+  "under44": 1,
+  "minW": 1,
+  "minH": 1,
+  "smallest": [
+   {
+    "sel": "input.service-file-input",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "sel": "a.service-nav__link",
+    "w": 74,
+    "h": 44
+   },
+   {
+    "sel": "a.service-nav__link",
+    "w": 86,
+    "h": 44
+   },
+   {
+    "sel": "button.service-start-button",
+    "w": 111,
+    "h": 44
+   },
+   {
+    "sel": "button.service-welcome__new",
+    "w": 141,
+    "h": 44
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgba(255, 255, 255, 0.92)": 5,
+   "rgb(255, 255, 255)": 2,
+   "rgba(91, 79, 228, 0.06)": 1
+  },
+  "sampledButtons": [
+   {
+    "text": "جلسة جديدة",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(11, 15, 26)",
+    "radius": "999px",
+    "h": 44
+   },
+   {
+    "text": "ملفات",
+    "bg": "rgba(91, 79, 228, 0.06)",
+    "color": "rgb(11, 15, 26)",
+    "radius": "16px",
+    "h": 64
+   },
+   {
+    "text": "صوت",
+    "bg": "rgba(255, 255, 255, 0.92)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "16px",
+    "h": 64
+   },
+   {
+    "text": "سياق ذكي",
+    "bg": "rgba(255, 255, 255, 0.92)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "16px",
+    "h": 64
+   },
+   {
+    "text": "موجّهيسألك منسج أسئلة قص",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(11, 15, 26)",
+    "radius": "12px",
+    "h": 94
+   },
+   {
+    "text": "سريعابدأ فورًا بأقل عدد ",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "12px",
+    "h": 94
+   },
+   {
+    "text": "أضف ملفًا أو صورة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "999px",
+    "h": 44
+   },
+   {
+    "text": "ابدأ الآن",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "999px",
+    "h": 44
+   }
+  ]
+ },
+ "service": {
+  "attr": "ask",
+  "color": "#5b4fe4"
+ },
+ "capturedAt": "2026-09-21T19:19:12.250Z",
+ "route": "chat",
+ "path": "/ar/app/chat",
+ "viewportName": "390"
+}

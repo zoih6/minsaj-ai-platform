@@ -1,0 +1,416 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 61,
+    "left": 0,
+    "right": 1176,
+    "width": 1176,
+    "height": 61
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.78)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(219, 219, 236, 0.88)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 692.1,
+    "right": 1150.2,
+    "width": 458,
+    "height": 44
+   },
+   "title": "مكتبتي"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 252,
+    "right": 672,
+    "width": 420,
+    "height": 44
+   },
+   "display": "flex"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "width": 0,
+    "height": 0
+   },
+   "display": "none",
+   "position": "static",
+   "background": "rgba(0, 0, 0, 0)",
+   "backdropFilter": "none",
+   "boxShadow": "none",
+   "borderRadius": "0px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 900,
+    "left": 1211,
+    "right": 1440,
+    "width": 229,
+    "height": 900
+   },
+   "transform": "none",
+   "visibility": "visible"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 1440,
+   "h": 900
+  },
+  "docHeight": 1116,
+  "firstContent": {
+   "selector": "div.universal-library-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1087.3,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 997.5
+   },
+   "offsetBelowTopbar": 28.8
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 61,
+    "bottom": 1116.1,
+    "left": 25.8,
+    "right": 1150.2,
+    "width": 1124.3,
+    "height": 1055.1
+   },
+   "paddingTop": "28.8px",
+   "paddingBottom": "28.8px",
+   "paddingInline": "25.84px"
+  },
+  "lastContent": {
+   "selector": "div.universal-library-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1087.3,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 997.5
+   },
+   "gapToBottomNav": -1087.3
+  },
+  "verticalBudget": {
+   "viewportH": 900,
+   "chromeTop": 61,
+   "chromeBottom": 0,
+   "contentVisible": 839,
+   "chromeRatio": 6.8
+  },
+  "hOverflow": {
+   "scrollWidth": 1440,
+   "clientWidth": 1440,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "مكتبتي",
+    "rect": {
+     "top": 123.9,
+     "bottom": 192.7,
+     "left": 474.3,
+     "right": 1122.3,
+     "width": 648,
+     "height": 68.8
+    },
+    "fontSize": "40px",
+    "fontWeight": "400",
+    "lineHeight": "68.8px",
+    "letterSpacing": "-1.4px",
+    "color": "rgb(11, 15, 26)"
+   },
+   "h2_0": {
+    "text": "أساسيات علم البيانات",
+    "fontSize": "17.92px",
+    "fontWeight": "400",
+    "lineHeight": "30.8224px"
+   },
+   "h2_1": {
+    "text": "مستقبل الطاقة المتجددة",
+    "fontSize": "17.92px",
+    "fontWeight": "400",
+    "lineHeight": "30.8224px"
+   },
+   "h2_2": {
+    "text": "تطبيق نادي القراءة",
+    "fontSize": "17.92px",
+    "fontWeight": "400",
+    "lineHeight": "30.8224px"
+   }
+  },
+  "pageSearchControls": 2,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   997
+  ],
+  "subSectionGaps": {
+   "rootSelector": "div.universal-library-page",
+   "count": 2,
+   "values": [
+    0,
+    24
+   ],
+   "min": 0,
+   "max": 24,
+   "median": 24
+  },
+  "subSectionCount": 3
+ },
+ "surfaces": {
+  "cardLikeCount": 13,
+  "perViewportArea": 13,
+  "radiusHistogram": {
+   "12px": 1,
+   "16px": 6,
+   "22px": 6
+  },
+  "shadowUsage": {
+   "none": 7,
+   "shadow": 6
+  },
+  "nestingDepthHistogram": {
+   "d0": 7,
+   "d1": 6
+  },
+  "nestedPairs": 6,
+  "distinctRadiusValues": 3,
+  "topSelectors": [
+   [
+    "a.universal-library-item",
+    6
+   ],
+   [
+    "svg",
+    6
+   ],
+   [
+    "label",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "40px",
+    "fontWeight": "400",
+    "lineHeight": "68.8px",
+    "letterSpacing": "-1.4px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main h2": {
+    "fontSize": "17.92px",
+    "fontWeight": "400",
+    "lineHeight": "30.8224px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.88px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(86, 91, 126)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "700",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main small": {
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(93, 98, 128)"
+   }
+  },
+  "fontSizeHistogram": {
+   "13.44px": 2,
+   "40px": 1,
+   "15.36px": 6,
+   "12px": 25,
+   "17.92px": 6
+  },
+  "distinctFontSizes": 5
+ },
+ "tapTargets": {
+  "count": 15,
+  "under24": 1,
+  "under32": 1,
+  "under44": 1,
+  "minW": 44,
+  "minH": 23,
+  "smallest": [
+   {
+    "sel": "button.is-active",
+    "w": 44,
+    "h": 44
+   },
+   {
+    "sel": "button",
+    "w": 44,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 60,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 62,
+    "h": 44
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 63,
+    "h": 44
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {},
+  "sampledButtons": [
+   {
+    "text": "الكل",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(79, 70, 229)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "تعلّم",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "بحث",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "صناعة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "برمجة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   }
+  ]
+ },
+ "service": null,
+ "capturedAt": "2026-09-21T19:24:10.816Z",
+ "route": "library",
+ "path": "/ar/app/library",
+ "viewportName": "1440"
+}

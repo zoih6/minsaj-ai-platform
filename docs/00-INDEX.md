@@ -16,6 +16,7 @@
 | | [02-experience/user-flows.md](./02-experience/user-flows.md) | رحلات المستخدم الكاملة بنقاط الفشل والتعافي | قبل أي ميزة تعبر صفحات |
 | | [02-experience/page-specs.md](./02-experience/page-specs.md) | مواصفة كل شاشة: الأقسام والحالات والتنقل | قبل/بعد أي تعديل شاشة |
 | **التصميم** | [03-design/design-system.md](./03-design/design-system.md) | التوكنز والخطوط والقوانين والممنوعات | قبل أي تغيير بصري |
+| | [03-design/reconstruction/DESIGN-SYSTEM-RECONSTRUCTION.md](./03-design/reconstruction/DESIGN-SYSTEM-RECONSTRUCTION.md) | **W-DS:** إعادة بناء نظام التصميم — التشخيص الجنائي، المبادئ، التوكنز، البنية التنقلية/الاستجابية، الأنماط، QA + المصفوفة والأدلة (بالإنجليزية بقرار المالك — لاستهلاك وكلاء AI؛ المدخل USAGE.md) | قبل أي قرار بصري جديد وبعد اعتماد المالك: قبل كل عمل W-DS تنفيذي |
 | **الهندسة** | [04-engineering/architecture.md](./04-engineering/architecture.md) | الطبقات واتجاهات الاعتماد وقوانين الكود والنشر | قبل أي كود |
 | | [04-engineering/data-model.md](./04-engineering/data-model.md) | الكيانات والعقود وآلة حالات التشغيل | قبل أي بيانات |
 | **العملية** | [05-process/known-issues.md](./05-process/known-issues.md) | العيوب المشخّصة وبروتوكول العيب الجديد | قبل أي عمل — إلزامي |
@@ -30,7 +31,7 @@
 
 - **جلسة جديدة (أي عمل):** ONBOARDING → AGENT → known-issues → مهمتك من roadmap.
 - **عمل منتجي:** PRD → user-flows → interaction-logic.
-- **عمل شاشة:** page-specs → design-system → information-architecture.
+- **عمل شاشة:** page-specs → design-system → (بعد اعتماد W-DS: reconstruction/USAGE.md) → information-architecture.
 - **عمل بيانات:** data-model → architecture.
 - **قبل الدفع دائمًا:** AGENT-GUIDE (القواعد الحمراء) → بوابة الجودة في AGENT §8.
 

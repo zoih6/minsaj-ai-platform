@@ -1,0 +1,438 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 61,
+    "left": 0,
+    "right": 1176,
+    "width": 1176,
+    "height": 61
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.78)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(219, 219, 236, 0.88)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 692.1,
+    "right": 1150.2,
+    "width": 458,
+    "height": 44
+   },
+   "title": "الفوترة"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 252,
+    "right": 672,
+    "width": 420,
+    "height": 44
+   },
+   "display": "flex"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "width": 0,
+    "height": 0
+   },
+   "display": "none",
+   "position": "static",
+   "background": "rgba(0, 0, 0, 0)",
+   "backdropFilter": "none",
+   "boxShadow": "none",
+   "borderRadius": "0px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 900,
+    "left": 1195.3,
+    "right": 1440,
+    "width": 244.7,
+    "height": 900
+   },
+   "transform": "none",
+   "visibility": "visible"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 1440,
+   "h": 900
+  },
+  "docHeight": 1126,
+  "firstContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1097.2,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 1007.4
+   },
+   "offsetBelowTopbar": 28.8
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 61,
+    "bottom": 1126,
+    "left": 25.8,
+    "right": 1150.2,
+    "width": 1124.3,
+    "height": 1065
+   },
+   "paddingTop": "28.8px",
+   "paddingBottom": "28.8px",
+   "paddingInline": "25.84px"
+  },
+  "lastContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1097.2,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 1007.4
+   },
+   "gapToBottomNav": -1097.2
+  },
+  "verticalBudget": {
+   "viewportH": 900,
+   "chromeTop": 61,
+   "chromeBottom": 0,
+   "contentVisible": 839,
+   "chromeRatio": 6.8
+  },
+  "hOverflow": {
+   "scrollWidth": 1440,
+   "clientWidth": 1440,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "الفوترة",
+    "rect": {
+     "top": 186.5,
+     "bottom": 239.7,
+     "left": 228.8,
+     "right": 1124.3,
+     "width": 895.5,
+     "height": 53.2
+    },
+    "fontSize": "38px",
+    "fontWeight": "700",
+    "lineHeight": "53.2px",
+    "letterSpacing": "normal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "h2_0": {
+    "text": "فريق محترف",
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px"
+   },
+   "h2_1": {
+    "text": "ميزانيات توقف التنفيذ بدل مفاجأة الفاتور",
+    "fontSize": "17.92px",
+    "fontWeight": "700",
+    "lineHeight": "30.8224px"
+   },
+   "h2_2": {
+    "text": "طريقة الدفع",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "lineHeight": "20.64px"
+   }
+  },
+  "pageSearchControls": 0,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   1007
+  ],
+  "subSectionGaps": {
+   "rootSelector": "div.ops-page",
+   "count": 4,
+   "values": [
+    48,
+    48,
+    59,
+    59
+   ],
+   "min": 0,
+   "max": 59,
+   "median": 59
+  },
+  "subSectionCount": 5
+ },
+ "surfaces": {
+  "cardLikeCount": 11,
+  "perViewportArea": 11,
+  "radiusHistogram": {
+   "12px": 7,
+   "16px": 4
+  },
+  "shadowUsage": {
+   "none": 5,
+   "shadow": 6
+  },
+  "nestingDepthHistogram": {
+   "d0": 5,
+   "d1": 6
+  },
+  "nestedPairs": 6,
+  "distinctRadiusValues": 2,
+  "topSelectors": [
+   [
+    "button.button",
+    4
+   ],
+   [
+    "input",
+    2
+   ],
+   [
+    "section.billing-balance-card",
+    1
+   ],
+   [
+    "section.billing-plan-card",
+    1
+   ],
+   [
+    "section.budget-policy-card",
+    1
+   ],
+   [
+    "select",
+    1
+   ],
+   [
+    "section.payment-method-card",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "38px",
+    "fontWeight": "700",
+    "lineHeight": "53.2px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main h2": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "12px",
+    "fontWeight": "700",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "0.1536px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(255, 255, 255)"
+   },
+   "main small": {
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(93, 98, 128)"
+   },
+   "main [class*=\"badge\"]": {
+    "fontSize": "13.44px",
+    "fontWeight": "600",
+    "lineHeight": "16.8px",
+    "letterSpacing": "0.1344px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   }
+  },
+  "fontSizeHistogram": {
+   "13.44px": 6,
+   "12px": 19,
+   "38px": 1,
+   "15.36px": 5,
+   "33px": 1,
+   "8px": 2,
+   "17.92px": 1
+  },
+  "distinctFontSizes": 7
+ },
+ "tapTargets": {
+  "count": 7,
+  "under24": 1,
+  "under32": 1,
+  "under44": 5,
+  "minW": 64,
+  "minH": 23,
+  "smallest": [
+   {
+    "sel": "button.button",
+    "w": 64,
+    "h": 32
+   },
+   {
+    "sel": "a.back-link",
+    "w": 131,
+    "h": 23
+   },
+   {
+    "sel": "button.button",
+    "w": 122,
+    "h": 38
+   },
+   {
+    "sel": "button.button",
+    "w": 151,
+    "h": 38
+   },
+   {
+    "sel": "button.button",
+    "w": 153,
+    "h": 38
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgb(255, 255, 255)": 1
+  },
+  "sampledButtons": [
+   {
+    "text": "تعبئة تجريبية",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 38
+   },
+   {
+    "text": "إدارة الخطة",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 38
+   },
+   {
+    "text": "حفظ الحدود",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 38
+   },
+   {
+    "text": "تغيير",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "12px",
+    "h": 32
+   }
+  ]
+ },
+ "service": null,
+ "capturedAt": "2026-09-21T19:24:42.659Z",
+ "route": "billing",
+ "path": "/ar/app/billing",
+ "viewportName": "1440"
+}

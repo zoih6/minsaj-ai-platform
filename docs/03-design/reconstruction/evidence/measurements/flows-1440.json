@@ -1,0 +1,459 @@
+{
+ "chrome": {
+  "topbar": {
+   "selector": ".universal-shell-topbar",
+   "rect": {
+    "top": 0,
+    "bottom": 61,
+    "left": 0,
+    "right": 1176,
+    "width": 1176,
+    "height": 61
+   },
+   "position": "sticky",
+   "zIndex": "45",
+   "background": "rgba(255, 255, 255, 0.78)",
+   "backdropFilter": "none",
+   "borderBottom": "rgba(219, 219, 236, 0.88)"
+  },
+  "contextRow": {
+   "selector": ".universal-shell-context",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 692.1,
+    "right": 1150.2,
+    "width": 458,
+    "height": 44
+   },
+   "title": "التدفقات"
+  },
+  "search": {
+   "selector": ".universal-shell-search",
+   "rect": {
+    "top": 8,
+    "bottom": 52,
+    "left": 252,
+    "right": 672,
+    "width": 420,
+    "height": 44
+   },
+   "display": "flex"
+  },
+  "bottomNav": {
+   "selector": ".universal-shell-mobile-nav",
+   "rect": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "width": 0,
+    "height": 0
+   },
+   "display": "none",
+   "position": "static",
+   "background": "rgba(0, 0, 0, 0)",
+   "backdropFilter": "none",
+   "boxShadow": "none",
+   "borderRadius": "0px",
+   "itemCount": 5,
+   "itemRects": [
+    {
+     "label": "لك",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "اسأل",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "أنشئ",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "استكشف",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    },
+    {
+     "label": "مكتبتي",
+     "rect": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "width": 0,
+      "height": 0
+     }
+    }
+   ]
+  },
+  "sidebar": {
+   "selector": ".universal-shell-sidebar",
+   "rect": {
+    "top": 0,
+    "bottom": 900,
+    "left": 1176.8,
+    "right": 1440,
+    "width": 263.2,
+    "height": 900
+   },
+   "transform": "none",
+   "visibility": "visible"
+  }
+ },
+ "geom": {
+  "viewport": {
+   "w": 1440,
+   "h": 900
+  },
+  "docHeight": 1451,
+  "firstContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1421.9,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 1332.1
+   },
+   "offsetBelowTopbar": 28.8
+  },
+  "content": {
+   "selector": "#main-content",
+   "rect": {
+    "top": 61,
+    "bottom": 1450.7,
+    "left": 25.8,
+    "right": 1150.2,
+    "width": 1124.3,
+    "height": 1389.7
+   },
+   "paddingTop": "28.8px",
+   "paddingBottom": "28.8px",
+   "paddingInline": "25.84px"
+  },
+  "lastContent": {
+   "selector": "div.ops-page",
+   "rect": {
+    "top": 89.8,
+    "bottom": 1421.9,
+    "left": 51.7,
+    "right": 1124.3,
+    "width": 1072.7,
+    "height": 1332.1
+   },
+   "gapToBottomNav": -1421.9
+  },
+  "verticalBudget": {
+   "viewportH": 900,
+   "chromeTop": 61,
+   "chromeBottom": 0,
+   "contentVisible": 839,
+   "chromeRatio": 6.8
+  },
+  "hOverflow": {
+   "scrollWidth": 1440,
+   "clientWidth": 1440,
+   "overflowing": false,
+   "offenders": []
+  },
+  "titles": {
+   "h1": {
+    "selector": "main h1",
+    "text": "التدفقات",
+    "rect": {
+     "top": 115.4,
+     "bottom": 168.6,
+     "left": 219.8,
+     "right": 1124.3,
+     "width": 904.5,
+     "height": 53.2
+    },
+    "fontSize": "38px",
+    "fontWeight": "700",
+    "lineHeight": "53.2px",
+    "letterSpacing": "normal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "h2_0": {
+    "text": "رصد المنافسين الأسبوعي",
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px"
+   },
+   "h2_1": {
+    "text": "مراجعة تقويم المحتوى",
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px"
+   },
+   "h2_2": {
+    "text": "تلخيص مقابلات العملاء",
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px"
+   }
+  },
+  "pageSearchControls": 2,
+  "sectionGaps": {
+   "count": 0,
+   "values": [],
+   "min": 0,
+   "max": 0,
+   "median": 0
+  },
+  "sectionCount": 1,
+  "sectionHeights": [
+   1332
+  ],
+  "subSectionGaps": {
+   "rootSelector": "div.ops-page",
+   "count": 3,
+   "values": [
+    48,
+    48,
+    48
+   ],
+   "min": 0,
+   "max": 48,
+   "median": 48
+  },
+  "subSectionCount": 4
+ },
+ "surfaces": {
+  "cardLikeCount": 10,
+  "perViewportArea": 10,
+  "radiusHistogram": {
+   "12px": 5,
+   "16px": 5
+  },
+  "shadowUsage": {
+   "none": 5,
+   "shadow": 5
+  },
+  "nestingDepthHistogram": {
+   "d0": 6,
+   "d1": 4
+  },
+  "nestedPairs": 4,
+  "distinctRadiusValues": 2,
+  "topSelectors": [
+   [
+    "article.flow-card",
+    3
+   ],
+   [
+    "button.button",
+    3
+   ],
+   [
+    "a.button",
+    1
+   ],
+   [
+    "dl.ops-stats",
+    1
+   ],
+   [
+    "div.library-toolbar",
+    1
+   ],
+   [
+    "label.library-search",
+    1
+   ]
+  ]
+ },
+ "typography": {
+  "samples": {
+   "main h1": {
+    "fontSize": "38px",
+    "fontWeight": "700",
+    "lineHeight": "53.2px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main h2": {
+    "fontSize": "15.36px",
+    "fontWeight": "400",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(11, 15, 26)"
+   },
+   "main p": {
+    "fontSize": "12px",
+    "fontWeight": "700",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main button": {
+    "fontSize": "15.36px",
+    "fontWeight": "700",
+    "lineHeight": "26.4192px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(79, 70, 229)"
+   },
+   "main small": {
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "lineHeight": "20.64px",
+    "letterSpacing": "normal",
+    "fontFamily": "Tajawal",
+    "color": "rgb(93, 98, 128)"
+   },
+   "main [class*=\"badge\"]": {
+    "fontSize": "13.44px",
+    "fontWeight": "600",
+    "lineHeight": "16.8px",
+    "letterSpacing": "0.1344px",
+    "fontFamily": "Tajawal",
+    "color": "rgb(35, 92, 75)"
+   }
+  },
+  "fontSizeHistogram": {
+   "12px": 46,
+   "38px": 1,
+   "13.44px": 4,
+   "15.36px": 12,
+   "22.4px": 4
+  },
+  "distinctFontSizes": 5
+ },
+ "tapTargets": {
+  "count": 12,
+  "under24": 3,
+  "under32": 3,
+  "under44": 8,
+  "minW": 63,
+  "minH": 21,
+  "smallest": [
+   {
+    "sel": "a",
+    "w": 77,
+    "h": 21
+   },
+   {
+    "sel": "a",
+    "w": 77,
+    "h": 21
+   },
+   {
+    "sel": "a",
+    "w": 77,
+    "h": 21
+   },
+   {
+    "sel": "button.mj-chip",
+    "w": 63,
+    "h": 44
+   },
+   {
+    "sel": "button.button",
+    "w": 90,
+    "h": 32
+   }
+  ]
+ },
+ "accents": {
+  "buttonBgHistogram": {
+   "rgb(255, 255, 255)": 3
+  },
+  "sampledButtons": [
+   {
+    "text": "تدفق جديد",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(255, 255, 255)",
+    "radius": "12px",
+    "h": 38
+   },
+   {
+    "text": "الكل",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(79, 70, 229)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "منشور",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "مسودة",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "مؤرشف",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(86, 91, 126)",
+    "radius": "0px",
+    "h": 44
+   },
+   {
+    "text": "اختبار",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 32
+   },
+   {
+    "text": "اختبار",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 32
+   },
+   {
+    "text": "اختبار",
+    "bg": "rgb(255, 255, 255)",
+    "color": "rgb(35, 40, 66)",
+    "radius": "12px",
+    "h": 32
+   }
+  ]
+ },
+ "service": null,
+ "capturedAt": "2026-09-21T19:24:24.355Z",
+ "route": "flows",
+ "path": "/ar/app/flows",
+ "viewportName": "1440"
+}
