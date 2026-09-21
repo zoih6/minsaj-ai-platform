@@ -1,0 +1,114 @@
+/* Minsaj Universal Experience — ordered global entrypoint */
+@import "./styles/universal/foundations.css";
+@import "./styles/universal/brand.css";
+@import "./styles/universal/layout.css";
+@import "./styles/universal/states.css";
+@import "./styles/universal/marketing.css";
+@import "./styles/universal/shell.css";
+@import "./styles/universal/home.css";
+@import "./styles/universal/workspaces.css";
+@import "./styles/universal/library.css";
+@import "./styles/universal/responsive.css";
+@import "./styles/universal/motion.css";
+@import "./styles/universal/workbench.css";
+@import "./styles/universal/interaction.css";
+@import "./styles/universal/radiance.css";
+
+/* ===== v21 layer inlined (Turbopack @import crash workaround) ===== */
+/* ================================================================
+   v21 · PHASE 1 — Container & Surface Normalization Layer
+   ----------------------------------------------------------------
+   Owner order (2026-09-19): fix the SYSTEM, let every page inherit.
+
+   What this layer does (and nothing else):
+   §1  Page rhythm   — every ops page breathes on ONE gap scale
+                       (--mj-gap-block, DEG §4.3 rhythm law).
+   §2  Surface law   — every legacy app card becomes the mj-surface
+                       base contract (layout.css §15): one padding,
+                       one radius, one border, one elevation. Kills the
+                       15/16/17px + sharp-corner drift (46 classes,
+                       9 paddings measured 2026-09-19).
+   §3  Head rhythm   — section heads align to the gap scale.
+   §4  Arabic first  — letter-spacing never touches connected script
+                       (tracking tears Arabic letterforms apart).
+
+   Cascade strategy: imported LAST in universal.css — wins same-
+   specificity ties against the scattered legacy rules, always loses
+   to state modifiers (0,2,0: .is-selected, .is-connected, …) and to
+   the !important accent stripes re-declared below on purpose.
+   ================================================================ */
+
+/* ---- §1 Page rhythm ------------------------------------------------
+   ops-page becomes a column with ONE breath between top-level
+   sections. Legacy per-element block margins (28/18/16/12px) that
+   would stack with the gap are zeroed — only inside this context. */
+.ops-page { display: flex; flex-direction: column; gap: var(--mj-gap-block); }
+.ops-page > .page-header,
+.ops-page > .back-link,
+.ops-page > .u2-stages,
+.ops-page > .u2-workbench,
+.ops-page > .knowledge-sources-panel { margin-block: 0; }
+.ops-page > .compare-dock { margin-block-start: 0; }
+
+/* Non-ops contexts (system pages) keep a token margin, not raw 28px. */
+.page-header { margin-block-end: var(--mj-gap-block); gap: var(--mj-gap-sm) var(--mj-gap-md); }
+
+/* ---- §2 Surface law --------------------------------------------------
+   The app register's legacy cards adopt the mj-surface BASE level:
+   padding --mj-pad-card · radius --u-radius · 1px line · xs shadow.
+   Excluded on purpose: mj-surface* (already the contract), marketing
+   register (universal-service/floating/demo/trust — display scale),
+   adaptive-task-card (glass hero), preview-* demo render art,
+   flow-canvas-panel (canvas chrome), u-surface-loading (skeleton). */
+.agent-card,
+.flow-card,
+.project-library-card,
+.agent-preview-card,
+.catalog-model-card,
+.tool-catalog-card,
+.knowledge-collection-card,
+.knowledge-sources-panel,
+.model-evaluation-card,
+.model-limits-card,
+.model-spec-card,
+.approval-decision-card,
+.budget-policy-card,
+.processing-policy-card,
+.retrieval-test-card,
+.billing-balance-card,
+.billing-plan-card,
+.credit-balance-card,
+.payment-method-card,
+.usage-breakdown-card,
+.usage-ledger-card,
+.team-table-card,
+.provider-safety-card,
+.preview-safety-card,
+.u-skeleton-card {
+  padding: var(--mj-pad-card);
+  border: 1px solid var(--u-line);
+  border-radius: var(--u-radius);
+  background: var(--u-surface);
+  box-shadow: var(--u-shadow-xs);
+}
+
+/* Intentional identity stripes — preserved ABOVE the normalization
+   (same file, later rules; the approval card also carries its own
+   !important). These are the only borders allowed to differ. */
+.billing-balance-card,
+.credit-balance-card { border-block-start: 3px solid var(--u-primary); }
+.approval-decision-card { border-color: var(--u-amber-line-strong); border-block-start: 3px solid var(--u-amber); }
+
+/* ---- §3 Head rhythm --------------------------------------------------- */
+.section-heading { margin-block-end: var(--mj-gap-sm); gap: var(--mj-gap-sm) var(--mj-gap-md); }
+
+/* ---- §4 Arabic script discipline --------------------------------------
+   Tracking (letter-spacing) is a Latin-display device. On connected
+   Arabic script it tears word shapes apart — the glyphs are joined
+   by design. Zero it for every tracked display/label class. */
+[dir="rtl"] .page-title,
+[dir="rtl"] .page-eyebrow,
+[dir="rtl"] .section-kicker,
+[dir="rtl"] .section-heading__eyebrow,
+[dir="rtl"] .mj-section__label { letter-spacing: 0; }
+

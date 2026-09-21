@@ -1,0 +1,576 @@
+/* ==========================================================================
+   INTERACTION v3 — "Editorial Spatial UI" language layer
+   --------------------------------------------------------------------------
+   Owner order (2026-09-21): GLOBAL rework of the interaction & container
+   language. Loaded LAST in universal.css — wins same-specificity ties.
+
+   THE PRINCIPLE (this file is its enforcement):
+     CONTENT FIRST → SPACING → TYPOGRAPHY → ICONOGRAPHY →
+     SUBTLE STATE → CONTAINER ONLY WHEN NECESSARY
+
+   Replaces the legacy instinct:
+     CONTAINER → BORDER → RADIUS → BACKGROUND → CONTENT
+
+   §1  Tabs / option strips  → LINE TABS: color + weight + underline
+   §2  Navigation            → indicator bar + typography, no box fill
+   §3  Container diet        → toolbars & option strips go flat
+   §4  Buttons               → primary stays filled (function); ghost
+                               becomes a real text/ghost button
+   §5  Icon-in-box removal   → interactive icons drop their soft squares
+   §6  Touch feedback        → press = tint + weight; hover NEVER sticks
+   §7  Pills with a job      → filters / status / truth badges keep the
+                               pill SHAPE, active state stays typographic
+   Dark-theme fill/ring overrides are explicitly neutralized so the
+   language holds in both themes.
+   ========================================================================== */
+
+/* ==========================================================================
+   §1 TABS & OPTION STRIPS → line tabs (underline indicator)
+   Active = color + weight + a 2px underline. No chip, no fill, no ring.
+   ========================================================================== */
+
+/* ---- 1a. Workbench stage tabs (u2) ------------------------------------ */
+.u2-stages ol { gap: var(--mj-gap-xs); padding-block-end: 6px; }
+.u2-stages button {
+  position: relative;
+  border: 0;
+  background: transparent;
+  color: var(--u-muted);
+  border-radius: 0;
+}
+.u2-stages button span { color: inherit; }
+.u2-stages li[data-status="active"] button {
+  border: 0;
+  background: transparent;
+  color: var(--u-primary-strong);
+  box-shadow: none;
+}
+.u2-stages li[data-status="active"] button span { color: var(--u-primary-strong); font-weight: 700; }
+.u2-stages li[data-status="active"] button::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8px;
+  inset-block-end: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+.u2-stages li[data-status="completed"] button { border-color: transparent; }
+.u2-stages li[data-status="completed"] button span { color: var(--u-mint); }
+:root[data-theme="dark"] .u2-stages li[data-status="active"] button,
+:root[data-theme="dark"] .u2-stages li[data-status="active"] button span { color: var(--u-primary-strong); }
+
+/* ---- 1b. Adaptive home task modes (the main "استكشف ⌁ </> 🎨 ⌕" strip) -- */
+.adaptive-task-modes { gap: var(--mj-gap-sm); }
+.adaptive-task-modes button { border-radius: 0; }
+.adaptive-task-modes button.is-active {
+  color: var(--service);
+  background: transparent;
+  box-shadow: none;
+  font-weight: 700;
+}
+.adaptive-task-modes button.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 2px;
+  inset-block-end: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--service);
+}
+.adaptive-task-modes button { position: relative; }
+
+/* ---- 1d. Universal library filters → text row + underline -------------- */
+.universal-library-filters button { border-radius: 0; }
+.universal-library-filters button.is-active {
+  color: var(--u-primary);
+  background: transparent;
+  box-shadow: none;
+  font-weight: 700;
+  position: relative;
+}
+.universal-library-filters button.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 6px;
+  inset-block-end: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+:root[data-theme="dark"] :is(.universal-library-filters button).is-active {
+  background: transparent;
+  color: var(--u-primary-strong);
+  box-shadow: none;
+}
+
+/* ---- 1e. Ops library filter chips (globals) → underline, no fill ------- */
+.library-filters__chip { border-radius: 0; }
+.library-filters__chip.is-active {
+  background: transparent;
+  color: var(--u-primary);
+  box-shadow: none;
+  font-weight: 700;
+  position: relative;
+}
+.library-filters__chip.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 6px;
+  inset-block-end: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+:root[data-theme="dark"] :is(.library-filters__chip).is-active {
+  background: transparent;
+  color: var(--u-primary-strong);
+  box-shadow: none;
+}
+
+/* ---- 1f. Catalog tabs → flat strip + underline -------------------------- */
+.catalog-tabs { border: 0; background: transparent; padding: 0 0 4px; gap: var(--mj-gap-sm); }
+.catalog-tabs a { border-radius: 0; }
+.catalog-tabs a.is-active {
+  background: transparent;
+  color: var(--u-primary);
+  box-shadow: none;
+  font-weight: 700;
+  position: relative;
+}
+.catalog-tabs a.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8px;
+  inset-block-end: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+:root[data-theme="dark"] .catalog-tabs a.is-active {
+  background: transparent;
+  color: var(--u-primary-strong);
+  box-shadow: none;
+}
+
+/* ---- 1g. Source-type tabs → flat + underline ---------------------------- */
+.source-type-tabs button { border: 0; background: transparent; position: relative; }
+.source-type-tabs button.is-active {
+  border: 0;
+  background: transparent;
+  color: var(--u-primary);
+  font-weight: 700;
+}
+.source-type-tabs button.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8px;
+  inset-block-end: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+
+/* ---- 1h. Preview stage tabs → transparent + existing underline ---------- */
+.preview-stage-tabs { background: transparent; }
+.preview-stage-tabs > button { border-inline-end: 0; position: relative; }
+.preview-stage-tabs > button.is-active { background: transparent; color: var(--u-primary-strong); }
+.preview-stage-tabs .is-active em { color: var(--u-primary); }
+
+/* ---- 1i. Service mode switch — retired: the line-tab pattern (single
+   hairline under the tablist + 2px service underline on the active tab)
+   now lives at the source in workspaces.css. Compensating overrides
+   here would fight the component file for the same selectors. ---- */
+
+/* ---- 1j. Output canvas rail — retired with 1i: selection is color +
+   weight + service tint, owned by workspaces.css. The preview-rail
+   equivalent below stays (different surface, dark canvas). ---- */
+
+/* ---- 1k. Preview rail (dark) → color + weight + bar -------------------- */
+.preview-rail button { position: relative; }
+.preview-rail button.is-active {
+  color: white;
+  background: transparent;
+  font-weight: 700;
+  box-shadow: none;
+}
+.preview-rail button.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: white;
+}
+
+/* ==========================================================================
+   §2 NAVIGATION → indicator + typography, no box fill
+   ========================================================================== */
+
+/* ---- 2a. Sidebar links: white ink + accent bar, NO gradient box -------- */
+.universal-shell-link.is-active {
+  background: transparent;
+  box-shadow: none;
+  color: var(--u-shell-ink);
+  font-weight: 650;
+}
+.universal-shell-link.is-active::before {
+  inset-block: 22%;
+  width: 2.5px;
+  box-shadow: none;
+  background: var(--u-shell-accent);
+}
+.universal-shell-link.is-active > span {
+  color: var(--u-shell-accent);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ---- 2b. Mobile bottom tab bar: tint + typography + top hairline ------- */
+@media (max-width: 767.98px) {
+  .universal-shell-mobile-nav a.is-active {
+    background: transparent;
+    box-shadow: none;
+    color: var(--u-primary);
+    font-weight: 700;
+    position: relative;
+  }
+  .universal-shell-mobile-nav a.is-active::before {
+    content: "";
+    position: absolute;
+    inset-inline: 22%;
+    inset-block-start: -8px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--u-primary);
+  }
+  .universal-shell-mobile-nav a:active {
+    background: var(--u-hover-veil);
+  }
+}
+
+/* ---- 2c. Vertical settings nav / menus → inline-start bar + weight ----- */
+.settings-nav { border: 0; background: transparent; padding: 6px 0; }
+.settings-nav button { position: relative; border-radius: 0; }
+.settings-nav button.is-active {
+  border-color: transparent;
+  background: transparent;
+  color: var(--u-ink);
+}
+.settings-nav button.is-active strong { color: var(--u-primary); }
+.settings-nav button.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 12px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+.model-menu { border-color: var(--u-line); }
+.model-menu button { position: relative; }
+.model-menu button.is-selected {
+  background: transparent;
+  color: var(--u-ink);
+  font-weight: 600;
+}
+.model-menu button.is-selected::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+
+/* ==========================================================================
+   §3 CONTAINER DIET — toolbars & option strips go flat
+   The only bordered containers left: real input fields, true cards that
+   group coherent records, and overlay surfaces (dialogs/menus/popovers).
+   ========================================================================== */
+
+/* ---- 3a. Workbench controls bar → flat --------------------------------- */
+.u2-harness__controls {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+/* ---- 3b. Universal library toolbar → flat (search field stays a field) - */
+.universal-library-toolbar {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin-block-end: var(--mj-gap-md);
+}
+
+/* ---- 3c. Service tool row — retired: the de-boxed capability meta row
+   (icon + muted text, no shell, no chips) now lives at the source in
+   workspaces.css. ---- */
+
+/* ---- 3d. Starters → text rows, no chip backgrounds ---------------------- */
+.adaptive-starters { gap: 2px; }
+.adaptive-starters button {
+  border: 0;
+  background: transparent;
+  color: var(--u-muted);
+  border-radius: 0;
+}
+.adaptive-starters button:hover {
+  border-color: transparent;
+  color: var(--service);
+  background: transparent;
+}
+/* ==========================================================================
+   §4 BUTTONS — primary keeps its filled container (real action);
+   secondary / ghost become text buttons; borders leave the quiet tier.
+   ========================================================================== */
+
+.u2-harness__head > a {
+  border: 0;
+  background: transparent;
+  color: var(--u-primary);
+  font-weight: 600;
+  border-radius: 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+@media (hover: hover) {
+  .u2-harness__head > a:hover { color: var(--u-primary-strong); text-decoration: underline; text-underline-offset: 4px; }
+}
+
+/* ==========================================================================
+   §5 ICON-IN-BOX REMOVAL — interactive contexts drop the soft square.
+   The icon color itself carries the state. Static marketing identity
+   tiles keep theirs (they anchor hierarchy, not interaction).
+   ========================================================================== */
+
+.adaptive-task-composer__icon {
+  background: transparent;
+  color: var(--service);
+  width: 28px;
+  height: 28px;
+}
+.universal-command__results > a > span { background: transparent; color: var(--u-muted); }
+.universal-command__results > a:hover > span,
+.universal-command__results > a[aria-selected="true"] > span { color: var(--u-primary); }
+.universal-notifications > a > span { background: transparent; color: var(--u-primary); }
+.universal-notifications > a:nth-child(3) > span { background: transparent; color: var(--u-mint); }
+/* service-* icon-chip flattening retired — the chips no longer exist in
+   workspaces.css; icons are plain service-colored glyphs at the source. */
+.adaptive-ready__icon { background: transparent; box-shadow: none; color: var(--service); }
+.preview-stage-tabs__icon { border: 0; background: transparent; }
+.preview-stage-tabs .is-complete .preview-stage-tabs__icon { background: transparent; }
+
+/* ==========================================================================
+   §6 TOUCH FEEDBACK — press states that read as touch, not sticky hover.
+   (All :hover rules are now gated behind @media (hover: hover) by the
+   codemod pass; this section owns the (hover: none) press language.)
+   ========================================================================== */
+
+@media (hover: none) {
+  /* Option rows light up ONLY while the finger is down */
+  :is(
+    .adaptive-task-modes button,
+    .u2-stages button,
+    .universal-library-filters button,
+    .library-filters__chip,
+    .catalog-tabs a,
+    .source-type-tabs button,
+    .adaptive-starters button,
+  ):active {
+    background: var(--u-hover-veil);
+    color: var(--u-ink);
+  }
+  /* Menu rows keep a visible selection moment */
+  :is(.model-menu button, .settings-nav button):active {
+    background: var(--u-hover-veil);
+  }
+  /* Legacy neutralizers kept meaningful: nothing transforms on touch-hover */
+  .universal-shell-link:active { transform: scale(.99); }
+}
+
+/* ==========================================================================
+   §7 PILLS WITH A JOB — filters / status keep the pill SHAPE.
+   Active state becomes a tint fill + typographic weight (never an
+   added border or ring).
+   ========================================================================== */
+
+.adaptive-goals-bar__goal { border-color: transparent; }
+.adaptive-goals-bar__goal.is-active {
+  border-color: transparent;
+  background: var(--service-soft);
+  color: var(--service);
+  font-weight: 700;
+}
+@media (hover: hover) {
+  .adaptive-goals-bar__goal:hover {
+    border-color: transparent;
+    background: var(--u-hover-veil);
+    color: var(--service);
+  }
+}
+.adaptive-goals-bar__change { border-color: transparent; }
+
+/* View-switch icon toggles: color + weight, no fill/ring */
+.universal-library-view button.is-active,
+.view-switch button.is-active {
+  background: transparent;
+  box-shadow: none;
+  color: var(--u-primary);
+}
+:root[data-theme="dark"] :is(.universal-library-view button, .view-switch button).is-active {
+  background: transparent;
+  color: var(--u-primary-strong);
+  box-shadow: none;
+}
+
+/* Scenario switcher (marketing preview): color + weight only */
+.preview-scenario-switcher button.is-selected {
+  background: transparent;
+  color: var(--u-ink);
+  box-shadow: none;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   §8 CARD NESTING DIET — one less box inside boxes.
+   Glass hero card keeps its single frame; inner rows read as rows.
+   ========================================================================== */
+
+.adaptive-task-card {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 0;
+}
+.adaptive-task-composer {
+  border: 1px solid var(--u-line);
+  background: var(--u-surface-solid);
+  box-shadow: none;
+}
+.adaptive-ready {
+  border: 0;
+  background: transparent;
+  border-block-start: 1px solid var(--u-line);
+  border-radius: 0;
+}
+.adaptive-ready__icon { width: 28px; height: 28px; }
+/* §8 service-* overrides retired: the service workspace's de-boxing now
+   lives at the source in workspaces.css (Editorial Spatial v2 rewrite).
+   Keeping compensating overrides here would double-maintain the same
+   intent and drift — the component file owns its own nesting diet. */
+
+/* Empty/error states: keep the frame (they replace content regions) but
+   drop the dashed "ghost card" look in favour of quiet division. */
+.u-empty { border: 0; border-block-start: 1px solid var(--u-line); border-radius: 0; background: transparent; }
+.u-empty__icon { background: transparent; }
+
+/* ==========================================================================
+   §9 WORKBENCH NESTING DIET — the tint panel is THE group; fields inside
+   it stop re-boxing. Tint panel > fields > chips becomes ONE panel with
+   rows of labelled inputs and border-less pills.
+   (body ancestors=0 panel → field ancestors=1 card → chip ancestors=2
+   was the measured box-in-box-in-box defect on /ar/app/learn.)
+   ========================================================================== */
+
+/* The body panel keeps its tint grouping but drops the extra border —
+   a tint alone says "this is one group". */
+.u2-workbench__body { border: 0; background: var(--u-tint-1); padding: 16px 14px; }
+
+/* Fields inside the panel: legend + inputs, no card chrome. The inputs
+   themselves remain the only bordered things in the panel. */
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__field, .u2-research__field, .u2-create__field) {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+.u2-learn__field legend { padding-inline: 0; }
+
+/* Field-level single-select buttons: text rows, typographic selection. */
+:is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button {
+  border: 0;
+  background: transparent;
+  color: var(--u-muted);
+  border-radius: 0;
+  position: relative;
+  padding: 10px 10px 10px 14px;
+}
+:is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button[aria-pressed="true"] {
+  border-color: transparent;
+  background: transparent;
+  color: var(--u-primary-strong);
+  font-weight: 700;
+}
+[dir="rtl"] :is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button[aria-pressed="true"] { padding: 10px 14px 10px 10px; }
+:is(.u2-learn, .u2-research, .u2-create) .u2-learn__field > button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+
+/* Topic chips (u2): pills WITH a job (filters). Pill shape stays, the
+   border leaves, selection = tint + weight. */
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__chips, .u2-research__chips, .u2-create__chips) button {
+  border-color: transparent;
+  background: transparent;
+}
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__chips, .u2-research__chips, .u2-create__chips) button[aria-pressed="true"] {
+  border-color: transparent;
+  background: var(--u-primary-soft);
+  color: var(--u-primary-strong);
+}
+
+/* Mode buttons in workbench (guided/fast…): line tabs. */
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button {
+  border: 0;
+  background: transparent;
+  position: relative;
+  border-radius: 0;
+  color: var(--u-muted);
+}
+@media (hover: hover) {
+  :is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button:hover {
+    border-color: transparent;
+    background: transparent;
+    color: var(--u-ink);
+  }
+}
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button[aria-pressed="true"],
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button.is-active {
+  border-color: transparent;
+  background: transparent;
+  color: var(--u-primary-strong);
+  font-weight: 700;
+  box-shadow: none;
+}
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button[aria-pressed="true"]::after,
+:is(.u2-learn, .u2-research, .u2-create) :is(.u2-learn__modes, .u2-research__modes, .u2-create__modes) button.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8px;
+  inset-block-end: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--u-primary);
+}
+
+/* Artifacts inside the panel: quiet tint only, no border. */
+.u2-workbench__artifact { border: 0; background: var(--u-surface-subtle); }
+
+/* ==========================================================================
+   §10 SETTINGS & PROFILE DIET — the section card is the ONE box; the
+   photo block and save row inside it become flat content.
+   ========================================================================== */
+
+.profile-photo { border: 0; background: transparent; }
+.settings-save-row { border-block-start: 1px solid var(--u-line); }

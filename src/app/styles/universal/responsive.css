@@ -1,0 +1,51 @@
+/* ==========================================================================
+   RESPONSIVE ART DIRECTION — thin layer (B2 unified)
+   --------------------------------------------------------------------------
+   Component reflow now lives AT THE SOURCE:
+     · shell.css          → sidebar modes / topbar / content frame
+     · home.css           → adaptive-home container queries
+     · workspaces.css     → service-space container queries
+     · library.css        → universal-library container queries
+     · globals.css        → ops-page container queries (domain pages)
+     · layout.css         → intrinsic primitives (mj-grid / split / data-list)
+     · marketing.css      → the marketing site's full viewport ladder (v18:
+                            the page is dark-locked cinematic; its hero/demo/
+                            section breakpoints live with its components)
+   What remains here is shell chrome and the shared accessibility contracts.
+
+   CANONICAL LADDERS (B2 — do not add new widths without amending this table):
+   · Shell (protected):        768 · 1024 · 1440 · 1600
+   · Portaled overlays/sheets: 900 (large overlay collapse) · 640 (phone sheet) · 430 (small phone)
+   · Marketing/preview:        1320 · 1180 · 980 · 820 · 640 · 430
+   · Container ops-page:       1040 · 880 · 640 · 430
+   · Container mj-flow:        880 · 640
+   · Container service-space:  900 (studio stage) · 560 (artifact split)
+   · Container adaptive-home:  1080 · 640
+   · Container universal-library: 640
+   ========================================================================== */
+
+@media (max-width: 1320px) {
+  .universal-shell-demo { display: none; }
+}
+
+/* ---- Device capability contracts --------------------------------------- */
+@media (hover: none) {
+  :is(.adaptive-service-tile, .universal-library-item):hover { transform: none; }
+}
+
+@media (prefers-contrast: more) {
+  /* v18.2: line overrides must stay ABOVE the v18.2 default floors
+     (--u-line-strong base is now #8290b0 / 3.2:1 — the old #b9bccf
+     override would have LOWERED boundary contrast). */
+  :root { --u-line: #aab3cc; --u-line-strong: #5d6298; --u-muted: #4e5269; --u-faint: #555970; }
+  :is(.universal-site, .universal-app-shell) :focus-visible { outline-width: 4px; outline-color: var(--u-primary); }
+}
+
+@media (forced-colors: active) {
+  :is(.universal-site, .universal-app-shell) * { box-shadow: none !important; }
+  :is(.universal-site, .universal-app-shell) :focus-visible { outline: 3px solid Highlight; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.universal-site, .universal-app-shell) *, :is(.universal-site, .universal-app-shell) *::before, :is(.universal-site, .universal-app-shell) *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

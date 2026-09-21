@@ -1,0 +1,378 @@
+/* ==========================================================================
+   MINSAJ RESPONSIVE LAYOUT ARCHITECTURE — intrinsic primitives
+   --------------------------------------------------------------------------
+   Principles (no per-element media patches):
+   1. Reflow by AVAILABLE SPACE: container queries + auto-fill grids.
+   2. One fluid token scale: clamp() spacing/type — no fixed magic numbers.
+   3. Logical properties only (inline-start/end, block-start/end) → RTL-safe.
+   4. Shared components adapt once here → every page inherits the fix.
+
+   Breakpoint contract (sync with src/lib/viewports.ts):
+     mobile  < 768   | tablet  768–1023 | desktop 1024–1439 | wide ≥1440
+   ========================================================================== */
+
+/* ---- 1. Fluid token scale (mobile-first values, clamped upward) -------- */
+:root {
+  /* Horizontal page gutters: 16px phone → 32px desktop (fluid).
+     v18.1 mobile QA: floor raised 14→16px — inputs and full-bleed CTAs no
+     longer kiss the screen edge on 390–430px phones. */
+  --mj-gutter: clamp(16px, 1.1vw + 10px, 32px);
+  /* Vertical page rhythm */
+  --mj-gap-2xs: 3px;  /* micro rhythm inside dense data cells ONLY */
+  --mj-gap-xs: clamp(6px, 0.5vw + 4px, 10px);
+  --mj-gap-sm: clamp(10px, 0.8vw + 7px, 16px);
+  --mj-gap-md: clamp(14px, 1.2vw + 10px, 24px);
+  --mj-gap-lg: clamp(20px, 1.8vw + 14px, 36px);
+  /* Major page-section rhythm (≥ 2× gap-lg keeps sections unmistakable) */
+  --mj-gap-block: clamp(28px, 2.6vw + 20px, 48px);
+  /* Card padding: 16px phone → 24px desktop (v18.1: floor 14→16px so
+     dense card content keeps breathing room on small screens) */
+  --mj-pad-card: clamp(16px, 1vw + 10px, 24px);
+  /* Sidebar geometry (modes driven by shell.css) */
+  --mj-sidebar-expanded: 264px;
+  --mj-sidebar-rail: 76px;
+  /* Content measure caps per context */
+  --mj-measure-read: 72ch;
+  --mj-content-max: 1520px;
+  /* Touch target floor — accessibility invariant on every interactive el */
+  --mj-touch: 44px;
+  /* Fluid type ramp (display → caption) + Arabic-calibrated leading.
+     Line-height is part of the token (DEG §5): diacritics clip below 1.4. */
+  --mj-text-hero: clamp(32px, 5.4vw + 14px, 58px);
+  --mj-leading-hero: 1.18;
+  --mj-text-h1: clamp(26px, 2.6vw + 16px, 40px);
+  --mj-leading-h1: 1.28;
+  --mj-text-h2: clamp(20px, 1.4vw + 15px, 27px);
+  --mj-leading-h2: 1.34;
+  --mj-text-h3: clamp(16px, 0.6vw + 14px, 19px);
+  --mj-leading-h3: 1.42;
+  --mj-text-body: clamp(13.5px, 0.2vw + 13px, 15px);
+  --mj-leading-body: 1.65;
+  --mj-text-small: clamp(12px, 0.15vw + 11.6px, 13px);
+  --mj-leading-small: 1.55;
+  --mj-text-caption: 11.5px;
+  --mj-leading-caption: 1.45;
+}
+
+/* ---- 2. Flow container: pages declare themselves as containers.
+        Components inside reflow against AVAILABLE width (after sidebar),
+        not raw viewport width — true adaptive behavior. ------------------ */
+.mj-flow {
+  container-type: inline-size;
+  container-name: mj-flow;
+  width: 100%;
+  min-width: 0; /* grid/flex overflow guard — never let children stretch it */
+  display: flex;
+  flex-direction: column;
+  gap: var(--mj-gap-md);
+}
+
+/* ---- 3. Page header: title block + actions as a wrapping cluster.
+        Wraps naturally; actions never overlap the title on narrow widths. */
+.mj-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--mj-gap-sm) var(--mj-gap-md);
+}
+.mj-page-header__copy { min-width: min(100%, 340px); flex: 1 1 340px; }
+.mj-page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mj-gap-xs);
+  flex: 0 1 auto;
+}
+@container mj-flow (max-width: 640px) {
+  .mj-page-header__actions { width: 100%; }
+  .mj-page-header__actions > * { flex: 1 1 auto; }}
+
+/* ---- 4. Card grid: the workhorse. Auto-fill + minmax means cards choose
+        their own column count from available width — 1 col on phones,
+        2 on tablets, 3–4 on desktops, with ZERO per-page overrides. ------ */
+.mj-grid {
+  display: grid;
+  gap: var(--mj-gap-sm);
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--mj-grid-min, 250px), 100%), 1fr));
+}
+.mj-grid--tight { --mj-grid-min: 200px; }
+.mj-grid--roomy { --mj-grid-min: 300px; }
+.mj-grid--stats { --mj-grid-min: 150px; }
+
+/* ---- 5. Stack: vertical rhythm between sections ----------------------- */
+.mj-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mj-gap-md);
+  min-width: 0;
+}
+.mj-stack--tight { gap: var(--mj-gap-sm); }
+
+/* ---- 6. Cluster: wrapping row of chips/actions/filters ---------------- */
+.mj-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mj-gap-xs) var(--mj-gap-sm);
+  min-width: 0;
+}
+.mj-cluster--between { justify-content: space-between; }
+.mj-cluster--end { justify-content: flex-end; }
+.mj-cluster--stretch { align-items: stretch; }
+.mj-cluster > * { min-width: 0; margin: 0; }
+
+/* ---- 7. Split: content + aside. Collapses to a single column when the
+        CONTAINER can no longer afford both — not when the viewport says so. */
+.mj-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--mj-split-aside, 300px));
+  gap: var(--mj-gap-md);
+  align-items: start;
+  min-width: 0;
+}
+.mj-split > * { min-width: 0; }
+@container mj-flow (max-width: 880px) {
+  .mj-split { grid-template-columns: minmax(0, 1fr); }}
+.mj-split--aside-start {
+  grid-template-columns: minmax(0, var(--mj-split-aside, 280px)) minmax(0, 1fr);
+}
+
+/* ---- 8. Data list: the shared responsive "table".
+        Wide space  → header row + grid rows (real table feel).
+        Narrow space → each row becomes a labelled card. Content contract:
+          .mj-data-list > [data-label] cells inside rows.
+        The header can carry data-labels too; on narrow containers we
+        simply hide it and inline every cell label. ----------------------- */
+.mj-data-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--u-line, #e4e6ef);
+  border-radius: var(--u-radius);
+  background: var(--u-surface-solid, #fff);
+  overflow: hidden;
+}
+.mj-data-list__head,
+.mj-data-list__row {
+  display: grid;
+  grid-template-columns: var(--mj-data-cols, minmax(0, 1.6fr) minmax(90px, 0.7fr) minmax(80px, 0.5fr) 96px);
+  align-items: center;
+  gap: var(--mj-gap-xs);
+  padding: 10px clamp(12px, 1vw + 8px, 18px);
+}
+.mj-data-list__head {
+  border-block-end: 1px solid var(--u-line, #e4e6ef);
+  color: var(--u-faint, #6a6e85);
+  font-size: var(--mj-text-caption);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.mj-data-list__row {
+  border-block-end: 1px solid var(--u-line, #e4e6ef);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--u-motion-duration-instant) var(--u-motion-ease-standard);
+}
+.mj-data-list__row:last-child { border-block-end: 0; }@media (hover: hover) {
+  .mj-data-list__row:hover { background: rgba(96, 84, 240, 0.04); }
+}
+
+.mj-data-list__row > * { min-width: 0; overflow-wrap: anywhere; }
+
+@container mj-flow (max-width: 640px) {
+  .mj-data-list__head { display: none; }
+  .mj-data-list__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--mj-gap-2xs) var(--mj-gap-sm);
+    padding: var(--mj-gap-sm) clamp(12px, 1vw + 8px, 18px);
+  }
+  .mj-data-list__row > * {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--mj-gap-xs);
+    min-height: 34px;
+  }
+  .mj-data-list__row > *::before {
+    content: attr(data-label);
+    color: var(--u-faint, #6a6e85);
+    font-size: var(--mj-text-caption);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .mj-data-list__row > :first-child {
+    grid-column: 1 / -1;
+    min-height: 0;
+    padding-block-end: var(--mj-gap-2xs);
+    margin-block-end: var(--mj-gap-2xs);
+    border-block-end: 1px solid var(--u-line, #e4e6ef);
+  }
+  .mj-data-list__row > :first-child::before { display: none; }
+  .mj-data-list__row > :last-child { justify-content: flex-end; }
+  .mj-data-list__row > :last-child::before { margin-inline-end: auto; }}
+
+/* ---- 9. Safe horizontal scroller for genuinely wide artifacts
+        (flow canvases, comparison tables). Keeps them inside their box
+        instead of blowing out the page. ----------------------------------- */
+.mj-scroll-x {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---- 10. Modal / dialog geometry: always inside the viewport --------- */
+.mj-dialog-sheet {
+  width: min(560px, calc(100vw - 2 * var(--mj-gutter)));
+  max-height: min(78dvh, 720px);
+}
+.mj-dialog-wide { width: min(760px, calc(100vw - 2 * var(--mj-gutter))); }
+
+/* ---- 11. Touch invariants: interactive floors survive every reflow --- */
+@container mj-flow (max-width: 640px) {
+  .mj-cluster button:not([data-mj-keep-size]),
+  .mj-data-list__row button,
+  .mj-grid button { min-height: 40px; }}
+
+/* ---- 12. Control bar: label + option chips + tail action.
+        THE shared shape for every "options strip" (goal bars, filter
+        toolbars, topic chips). Contract:
+          · __label / __tail are NEVER wrapping flex-siblings of the
+            chips — a stranded label or count is the "scattered group"
+            defect this primitive exists to kill.
+          · __group holds the chips only; it may wrap (--wrap) when
+            chips are homogeneous, and ALWAYS collapses to one clean
+            scrollable row under the 640 container band.
+          · Grouping rhythm (§4.3): label/tail sit ≥2× the chip gap
+            away from the group — col-gap md vs chip gap xs.
+        Consumers so far: adaptive goals bar · ops library toolbar ·
+        universal library toolbar · u2 topic chips. -------------------- */
+.mj-control-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mj-gap-xs) var(--mj-gap-md);
+  min-width: 0;
+}
+.mj-control-bar__label {
+  flex: 0 0 auto;
+  min-width: 0;
+  color: var(--u-faint);
+  font-size: var(--u-text-xs);
+  font-weight: 600;
+}
+.mj-control-bar__group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--mj-gap-xs);
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  padding-block-end: 2px; /* keeps focus rings clear of the clip */
+}
+.mj-control-bar__group::-webkit-scrollbar { display: none; }
+.mj-control-bar__group > * { flex: 0 0 auto; }
+/* Homogeneous chips (no mixed heights inside) may wrap where width
+   allows; the 640 band below still collapses them to one row. */
+.mj-control-bar__group--wrap {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+.mj-control-bar__tail {
+  flex: 0 0 auto;
+  margin-inline-start: auto; /* aux action/meta sits at the far end */
+}
+@container (max-width: 640px) {
+  /* Re-compose, don't wrap-mid-group: default (filter) groups stay one
+     scrollable row; --wrap groups (owner order v20: real flex-wrap with a
+     fixed gap — goal chips wrap to 2 clean rows instead of a cramped
+     scroll strip) keep wrapping at every band. */
+  .mj-control-bar__label {
+    order: -2;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mj-control-bar__tail { order: -1; }
+  .mj-control-bar__group {
+    flex: 1 1 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .mj-control-bar__group--wrap {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    row-gap: var(--mj-gap-xs);
+  }}
+
+/* ---- 13. Chip: the shared geometry for pill-shaped option buttons.
+        Height, radius, type and rhythm come from here; surfaces own
+        ONLY color/border/state (service tint, primary-soft, …). ----- */
+.mj-chip {
+  min-height: var(--u-touch);
+  padding-inline: var(--mj-gap-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mj-gap-xs);
+  border-radius: var(--u-radius-pill);
+  font-size: var(--u-text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* ---- 14. Section: the page-level rhythm block (owner order v20).
+        Page anatomy is a closed contract — DEG §3.1:
+          page-root → content frame → mj-section → mj-surface → components
+        A section is SPACING + a header, never chrome. Sections separate
+        with --mj-gap-block (≥ 2× any inner gap — the rhythm law §4.3). */
+.mj-section { display: flex; flex-direction: column; gap: var(--mj-gap-md); min-width: 0; }
+.mj-section__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--mj-gap-xs) var(--mj-gap-md); }
+.mj-section__head-copy { min-width: min(100%, 300px); flex: 1 1 300px; display: flex; flex-direction: column; gap: var(--mj-gap-2xs); }
+.mj-section__label { color: var(--u-faint); font-size: var(--u-text-xs); font-weight: 600; letter-spacing: 0.02em; }
+.mj-section__title { margin: 0; font-size: var(--mj-text-h2); line-height: var(--mj-leading-h2); font-weight: 700; color: var(--u-ink); }
+.mj-section__desc { margin: 0; max-width: var(--u-reading-max); color: var(--u-muted); font-size: var(--u-text-sm); line-height: var(--mj-leading-small); }
+.mj-section__aside { flex: 0 0 auto; }
+@container mj-flow (max-width: 640px) {
+  .mj-section__head { align-items: flex-start; flex-direction: column; }
+  .mj-section__aside { width: 100%; }}
+
+/* ---- 15. Surface: the ONE elevation primitive (owner order v20).
+        A surface is a container with a job: elevation + grouping of ONE
+        coherent record (DEG §7.3). Levels are a closed set:
+          --flat   : inline group inside a surface (no border, subtle bg)
+          (base)   : the standard card — border + xs shadow
+          --raised : overlay-grade (dialogs, popovers) — md shadow
+        ANTI-NESTING LAW: a surface NEVER contains another surface of the
+        same or higher level. Grouping inside a surface = mj-stack + spacing.
+        This kills the "Card inside Card inside Card" defect class. ------- */
+.mj-surface {
+  padding: var(--mj-pad-card);
+  border: 1px solid var(--u-line);
+  border-radius: var(--u-radius);
+  background: var(--u-surface);
+  box-shadow: var(--u-shadow-xs);
+  min-width: 0;
+}
+.mj-surface--flat { border: 0; border-radius: var(--u-radius-sm); background: var(--u-surface-subtle); box-shadow: none; }
+.mj-surface--raised { border-radius: var(--u-radius-lg); background: var(--u-surface-solid); box-shadow: var(--u-shadow-md); }
+/* Interactive surfaces (selectable cards, list rows-as-links): hover lift
+   rides the motion tokens — never a raw transition. */
+.mj-surface--action {
+  cursor: pointer;
+  transition:
+    border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-standard),
+    transform var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) { .mj-surface--action:hover { border-color: var(--u-line-strong); box-shadow: var(--u-shadow-sm); }}
+
+/* Reduced motion / forced colors invariants (kept local, system-wide) */
+@media (prefers-reduced-motion: reduce) {
+  .mj-data-list__row, .mj-split, .mj-grid, .mj-surface--action { transition: none; }}

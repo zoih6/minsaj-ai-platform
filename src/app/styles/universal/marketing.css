@@ -1,0 +1,192 @@
+/* ==========================================================================
+   MARKETING SITE — the Master Template surface ("Minsaj" reference)
+   --------------------------------------------------------------------------
+   Ported from the approved master template (2026-09-21) and adapted to
+   the platform's theme engine. This file owns ONLY what utilities cannot
+   express: the template's custom classes (glass-panel, text-gradient,
+   reveal-on-scroll, the menu sheet), the theme-aware re-bind of the
+   emerald token, the Arabic tracking law, and the marketing selection
+   colors. All color/spacing/type utilities live in the Tailwind theme
+   layer (foundations.css @theme, v22) and in the components' classes.
+
+   Theme contract: dark = the template's exact dark palette (slate + darkbg
+   + glass); light = the template's own light palette (slate-50 canvas,
+   white glass). The `dark:` variant follows [data-theme="dark"].
+   ========================================================================== */
+
+/* ---- Surface root ------------------------------------------------------ */
+.ms-site {
+  min-height: 100dvh;
+  overflow-x: clip;
+  transition: background-color var(--u-motion-duration-slow) var(--u-motion-ease-standard),
+    color var(--u-motion-duration-slow) var(--u-motion-ease-standard);
+}
+/* Template body selection colors, scoped */
+.ms-site ::selection { background: rgba(99, 102, 241, 0.3); color: #4f46e5; }
+[data-theme="dark"] .ms-site ::selection { background: rgba(99, 102, 241, 0.3); color: #ffffff; }
+
+/* Theme-aware re-bind: emerald readable as text in both themes
+   (light #047857 = 4.7:1 on white · dark #10b981 = 6.4:1 on #090D14). */
+[data-theme="dark"] .ms-site { --color-brand-emerald: #10b981; }
+
+/* ---- Container (template's `container` semantics, explicit) ------------- */
+.ms-container { width: 100%; max-width: 1536px; margin-inline: auto; }
+
+/* ---- Glass panel (template, dual theme) --------------------------------- */
+.ms-site .glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] .ms-site .glass-panel {
+  background: rgba(17, 23, 36, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Gradient text (hero signature; mirrored for LTR) -------------------
+   Dark = the template's exact stops. Light = the same hue ladder one
+   step deeper so every stop clears 3:1 (large display text) on the
+   slate-50 canvas: #818CF8→2.9:1 and #06B6D4→2.6:1 fail in light. */
+.ms-site .text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  background-image: linear-gradient(to left, #4f46e5, #9333ea, #0e7490);
+}
+[dir="ltr"] .ms-site .text-gradient { background-image: linear-gradient(to right, #4f46e5, #9333ea, #0e7490); }
+[data-theme="dark"] .ms-site .text-gradient {
+  background-image: linear-gradient(to left, #818cf8, #a855f7, #06b6d4);
+}
+[data-theme="dark"][dir="ltr"] .ms-site .text-gradient,
+[dir="ltr"] [data-theme="dark"] .ms-site .text-gradient {
+  background-image: linear-gradient(to right, #818cf8, #a855f7, #06b6d4);
+}
+
+/* ---- Scroll reveal (template, on the house motion tokens) ----------------
+   JS (RevealFx) toggles .is-visible; duration/easing from the six-token
+   scale (expressive entrance); properties pinned to opacity+transform. */
+.ms-site .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--u-motion-duration-expressive) var(--u-motion-ease-enter),
+    transform var(--u-motion-duration-expressive) var(--u-motion-ease-enter);
+}
+.ms-site .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ms-site .reveal-on-scroll { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- Arabic script law: tracking is a Latin-display device ---------------
+   Template kickers carry tracking-wide/wider/widest; on connected Arabic
+   script letter-spacing tears word shapes apart — zero it in RTL. Latin
+   islands keep their tracking via .ms-latin-track (dir="ltr"). */
+[dir="rtl"] .ms-site :is(.tracking-wide, .tracking-wider, .tracking-widest) { letter-spacing: 0; }
+.ms-site .ms-latin-track { letter-spacing: 0.1em; }
+[dir="rtl"] .ms-site .ms-latin-track { letter-spacing: 0.1em; }
+
+/* ---- Header scroll glass (template JS, expressed as state) --------------- */
+.ms-header { border-block-end: 1px solid transparent; }
+.ms-header[data-scrolled] {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-block-end: 1px solid rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] .ms-header[data-scrolled] {
+  background: rgba(17, 23, 36, 0.65);
+  border-block-end: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Menu sheet (the template's bars button opens this) ------------------ */
+.ms-menu-sheet {
+  position: absolute;
+  inset-inline: 0;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height var(--u-motion-duration-slow) var(--u-motion-ease-standard),
+    opacity var(--u-motion-duration-moderate) var(--u-motion-ease-standard),
+    visibility 0s linear var(--u-motion-duration-slow);
+}
+.ms-menu-sheet[data-open] {
+  max-height: min(480px, 80dvh);
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.ms-menu-sheet__panel {
+  margin: 6px auto 0;
+  width: min(600px, calc(100% - 32px));
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 50px rgba(9, 13, 20, 0.16);
+}
+[data-theme="dark"] .ms-menu-sheet__panel {
+  background: rgba(17, 23, 36, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+.ms-menu-sheet__panel a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding-inline: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1e293b;            /* slate-800 */
+  text-decoration: none;
+}
+[data-theme="dark"] .ms-menu-sheet__panel a { color: #e2e8f0; } /* slate-200 */
+@media (hover: hover) {
+  .ms-menu-sheet__panel a:hover { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
+  [data-theme="dark"] .ms-menu-sheet__panel a:hover { color: #818cf8; }
+}
+.ms-menu-sheet__panel a.ms-menu-cta { color: #4f46e5; font-weight: 700; }
+[data-theme="dark"] .ms-menu-sheet__panel a.ms-menu-cta { color: #818cf8; }
+
+/* ---- Hero video frame ----------------------------------------------------
+   Ambient loop film (the owner's identity motion). Respects reduced
+   motion via JS pause; the poster carries the still. */
+.ms-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- Brand watermark (replaces the template's giant icon placeholder) ----
+   [AGENT_REPLACE: BACKGROUND_PATTERN] → the official ghost symbol
+   (public/brand/patterns), theme-aware, same 5%/10% veil as the
+   template's watermark. */
+.ms-ghost-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("/brand/patterns/minsaj-ghost-light.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: min(60rem, 90vw) auto;
+}
+[data-theme="dark"] .ms-ghost-bg {
+  opacity: 0.1;
+  background-image: url("/brand/patterns/minsaj-ghost-dark.svg");
+}
+
+/* ---- Focus contract -------------------------------------------------------
+   The global :focus-visible ring (globals.css) covers everything; keep
+   utility-styled controls from dropping it. */
+.ms-site :is(a, button, input):focus-visible { outline-offset: 2px; }

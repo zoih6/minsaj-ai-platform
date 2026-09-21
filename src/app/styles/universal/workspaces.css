@@ -1,0 +1,743 @@
+/* ==========================================================================
+   SERVICE WORKSPACE — «Interactive Canvas» (reference-faithful rebuild)
+   --------------------------------------------------------------------------
+   Design source: the approved ask-screen reference — an indigo glass canvas:
+   glass panels, one glowing composer, animated gradient title, connected
+   stepper, quiet rows, floating dock. Rebuilt in the platform's token
+   architecture.
+
+   Theme law: the canvas is THEME-AWARE. Every --sp-* token has a light value
+   (glass-white surfaces, dark ink, contrast-verified accents) and a dark
+   value set under :root[data-theme="dark"] (the exact reference palette),
+   so the platform theme switch fully re-skins this surface while the visual
+   language (glass · glow · gradient title · quiet rows) holds in both.
+
+   Responsive law: one composition, three widths. Mobile/tablet = the exact
+   reference single column. ≥1152px viewport = a studio stage: main column
+   (mode + composer + states) beside a quiet sticky rail (path + starts +
+   library) — the same sections, re-flowed, never redesigned.
+
+   Discipline preserved: hover gated to (hover: hover); touch gets pressed
+   feedback; 44px touch floor; logical properties only; focus rides the
+   global ring; the composer shows focus on its container.
+   ========================================================================== */
+
+/* ---- Per-service accent — LIGHT (text-grade, platform-verified) --------- */
+.service-space[data-service="ask"] { --sp-accent: #5B4FE4; --sp-accent-strong: #6366F1; --sp-accent-deep: #4F46E5; --sp-accent-rgb: 91, 79, 228; }
+.service-space[data-service="code"] { --sp-accent: #4566D2; --sp-accent-strong: #5A6FC4; --sp-accent-deep: #3E54B8; --sp-accent-rgb: 69, 102, 210; }
+.service-space[data-service="analyze"] { --sp-accent: #A16207; --sp-accent-strong: #E0A24A; --sp-accent-deep: #B57E2E; --sp-accent-rgb: 161, 98, 7; }
+.service-space[data-service="explore"] { --sp-accent: #0F8A66; --sp-accent-strong: #37BD93; --sp-accent-deep: #1E8A6A; --sp-accent-rgb: 15, 138, 102; }
+
+/* ---- Per-service accent — DARK (the reference ramp, bright for dark) ----- */
+:root[data-theme="dark"] .service-space[data-service="ask"] { --sp-accent: #818CF8; --sp-accent-strong: #6366F1; --sp-accent-deep: #4F46E5; --sp-accent-rgb: 129, 140, 248; }
+:root[data-theme="dark"] .service-space[data-service="code"] { --sp-accent: #97ABEE; --sp-accent-strong: #7A92E8; --sp-accent-deep: #5A6FC4; --sp-accent-rgb: 151, 171, 238; }
+:root[data-theme="dark"] .service-space[data-service="analyze"] { --sp-accent: #EAB471; --sp-accent-strong: #E0A24A; --sp-accent-deep: #B57E2E; --sp-accent-rgb: 234, 180, 113; }
+:root[data-theme="dark"] .service-space[data-service="explore"] { --sp-accent: #58CEAA; --sp-accent-strong: #37BD93; --sp-accent-deep: #1E8A6A; --sp-accent-rgb: 88, 206, 170; }
+
+/* ---- Canvas tokens — LIGHT (glass-white, dark ink) ---------------------- */
+.service-space {
+  --sp-bg: #F4F5FC;
+  --sp-surface: #ECF0F8;
+  --sp-card: #FFFFFF;
+  --sp-line: #E2E6F2;
+  --sp-ink: #0B0F1A;
+  --sp-ink-soft: #232842;
+  --sp-muted: #565B7E;
+  --sp-amber: #C07317;
+  --sp-mint: #0D9F70;
+  --sp-red: #D7373F;
+  --sp-blue: #2563EB;
+  --sp-glass: rgba(255, 255, 255, 0.72);
+  --sp-panel: rgba(255, 255, 255, 0.66);
+  --sp-row: rgba(255, 255, 255, 0.92);
+  --sp-glass-line: rgba(11, 15, 26, 0.07);
+  --sp-hairline: rgba(11, 15, 26, 0.11);
+  --sp-hover-line: rgba(11, 15, 26, 0.18);
+  --sp-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  --sp-void: rgba(255, 255, 255, 0);
+  --sp-glow: 0 0 20px rgba(var(--sp-accent-rgb), 0.16);
+  --sp-glass-shadow: 0 4px 30px rgba(35, 40, 90, 0.14);
+  --sp-raise-shadow: 0 1px 3px rgba(35, 40, 90, 0.14);
+  --sp-composer-shadow: 0 8px 30px rgba(58, 56, 128, 0.15);
+  --sp-composer-shadow-focus: 0 8px 34px rgba(58, 56, 128, 0.2), 0 0 24px rgba(var(--sp-accent-rgb), 0.2);
+  --sp-ambient: 0.09;
+  --sp-title-mid: #8B95F8;
+  --sp-font-display: "Alexandria", "Tajawal", "Inter", sans-serif;
+
+  position: relative;
+  isolation: isolate;
+  width: min(680px, 100%);
+  margin-inline: auto;
+  padding-block: 6px 24px;
+  color: var(--sp-ink-soft);
+  container-type: inline-size;
+  container-name: service-space;
+}
+
+/* ---- Canvas tokens — DARK (the exact reference palette) ----------------- */
+:root[data-theme="dark"] .service-space {
+  --sp-bg: #030712;
+  --sp-surface: #0B1120;
+  --sp-card: #111827;
+  --sp-line: #1F2937;
+  --sp-ink: #F9FAFB;
+  --sp-ink-soft: #D1D5DB;
+  --sp-muted: #9CA3AF;
+  --sp-amber: #FBBF24;
+  --sp-mint: #34D399;
+  --sp-red: #F87171;
+  --sp-blue: #60A5FA;
+  --sp-glass: rgba(11, 17, 32, 0.6);
+  --sp-panel: rgba(11, 17, 32, 0.5);
+  --sp-row: rgba(11, 17, 32, 0.8);
+  --sp-glass-line: rgba(255, 255, 255, 0.05);
+  --sp-hairline: rgba(255, 255, 255, 0.1);
+  --sp-hover-line: rgba(255, 255, 255, 0.2);
+  --sp-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  --sp-void: rgba(11, 17, 32, 0);
+  --sp-glow: 0 0 20px rgba(var(--sp-accent-rgb), 0.2);
+  --sp-glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --sp-raise-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --sp-composer-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --sp-composer-shadow-focus: 0 8px 34px rgba(0, 0, 0, 0.4), 0 0 24px rgba(var(--sp-accent-rgb), 0.22);
+  --sp-ambient: 0.13;
+  --sp-title-mid: #C7D2FE;
+}
+
+/* Ambient indigo breath at the top of the canvas (reference glow) */
+.service-space::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline: -60px;
+  inset-block-start: -30px;
+  height: 260px;
+  background: radial-gradient(50% 100% at 50% 0%, rgba(var(--sp-accent-rgb), var(--sp-ambient)), transparent 72%);
+  filter: blur(56px);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   QUICK SEARCH — a quiet field that opens the command palette
+   ========================================================================== */
+.service-search {
+  width: 100%;
+  min-height: 48px;
+  margin-block-end: 32px;
+  padding-inline: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--sp-hairline);
+  border-radius: 16px;
+  background: var(--sp-row);
+  color: var(--sp-muted);
+  font-size: var(--u-text-sm);
+  text-align: start;
+  cursor: pointer;
+  box-shadow: var(--sp-inset);
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-search:hover { border-color: rgba(var(--sp-accent-rgb), 0.5); background: var(--sp-card); color: var(--sp-ink-soft); }
+}
+.service-search:active { background: var(--sp-card); }
+.service-search span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ==========================================================================
+   WELCOME — badge · animated gradient title · lede · new session
+   ========================================================================== */
+.service-welcome { margin-block-end: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.service-welcome__badge {
+  margin-block-end: 20px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(var(--sp-accent-rgb), 0.2);
+  border-radius: var(--u-radius-pill);
+  background: rgba(var(--sp-accent-rgb), 0.1);
+  color: var(--sp-accent);
+  font-size: var(--u-text-xs);
+  font-weight: 500;
+  box-shadow: var(--sp-glow);
+}
+.service-dot { position: relative; width: 8px; height: 8px; flex: 0 0 auto; display: inline-block; }
+.service-dot i { position: absolute; inset: 0; border-radius: 50%; background: var(--sp-accent); opacity: 0.75; animation: sp-ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.service-dot b { position: relative; display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--sp-accent); }
+@keyframes sp-ping { 75%, 100% { transform: scale(2.2); opacity: 0; } }
+
+.service-welcome__title {
+  margin: 0;
+  padding-block-end: 5px;
+  font: 700 clamp(30px, 8.5vw, 36px) / 1.3 var(--sp-font-display);
+  background: linear-gradient(90deg, var(--sp-accent), var(--sp-title-mid), var(--sp-accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: sp-gradient-x 4s linear infinite;
+}
+@keyframes sp-gradient-x { to { background-position: 200% center; } }
+
+.service-welcome__lede { margin: 0 0 24px; max-width: 290px; color: var(--sp-muted); font-size: var(--u-text-sm); line-height: 1.7; }
+.service-welcome__new {
+  min-height: var(--u-touch);
+  padding-inline: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--sp-hairline);
+  border-radius: var(--u-radius-pill);
+  background: var(--sp-card);
+  color: var(--sp-ink);
+  font-size: var(--u-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--sp-glass-shadow);
+  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.service-welcome__new svg { color: var(--sp-accent); }
+@media (hover: hover) {
+  .service-welcome__new:hover { background: var(--sp-line); border-color: var(--sp-hover-line); }
+}
+.service-welcome__new:active { background: var(--sp-line); }
+
+/* ==========================================================================
+   MODE SWITCH — segmented control, active = raised pill
+   ========================================================================== */
+.service-mode-switch {
+  margin-block-end: 24px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 16px;
+  background: var(--sp-surface);
+}
+.service-mode-switch button {
+  min-height: 56px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--sp-muted);
+  font-size: var(--u-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-mode-switch button:not(.is-active):hover { color: var(--sp-ink-soft); }
+}
+.service-mode-switch button:active:not(.is-active) { color: var(--sp-ink-soft); }
+.service-mode-switch button.is-active {
+  border-color: var(--sp-glass-line);
+  background: var(--sp-card);
+  color: var(--sp-ink);
+  font-weight: 700;
+  box-shadow: var(--sp-raise-shadow);
+}
+.service-mode-switch__label { display: inline-flex; align-items: center; gap: 8px; }
+.service-mode-switch__label strong { font-family: var(--sp-font-display); font-weight: 700; }
+.service-mode-switch button:not(.is-active) .service-mode-switch__label strong { font-weight: 500; }
+.service-mode-switch button:first-child .service-mode-switch__label svg { color: var(--sp-accent); }
+.service-mode-switch button:last-child .service-mode-switch__label svg { color: var(--sp-amber); }
+.service-mode-switch small { color: var(--sp-muted); font-size: 10px; font-weight: 400; line-height: 1.4; }
+
+/* ==========================================================================
+   THE COMPOSER — the one glowing container on the stage
+   ========================================================================== */
+.service-composer-zone { margin-block-end: 40px; }
+.service-prompt-shell {
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background:
+    linear-gradient(var(--sp-card), var(--sp-card)) padding-box,
+    linear-gradient(135deg, rgba(var(--sp-accent-rgb), 0.45), var(--sp-void) 62%) border-box;
+  box-shadow: var(--sp-composer-shadow);
+  transition: box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+}
+.service-prompt-shell:focus-within { box-shadow: var(--sp-composer-shadow-focus); }
+.service-prompt-shell:has(textarea[aria-invalid="true"]) {
+  background:
+    linear-gradient(var(--sp-card), var(--sp-card)) padding-box,
+    linear-gradient(135deg, rgba(var(--sp-red-rgb, 215, 55, 63), 0.55), var(--sp-void) 62%) border-box;
+}
+
+.service-prompt-area { padding: 16px; border-radius: 20px; background: var(--sp-card); }
+.service-prompt-area__head { margin-block-end: 12px; padding-inline: 4px; display: flex; align-items: center; gap: 8px; }
+.service-prompt-area__orb {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(var(--sp-accent-rgb), 0.2);
+  color: var(--sp-accent);
+}
+.service-prompt-area__head h2 { margin: 0; color: var(--sp-ink-soft); font: 700 var(--u-text-xs) / 1.4 var(--sp-font-display); }
+
+.service-prompt-area textarea {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  max-height: 150px;
+  margin-block: 8px;
+  padding: 0;
+  resize: none;
+  overflow-y: auto;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--sp-ink);
+  caret-color: var(--sp-accent);
+  font-size: var(--u-text-md);
+  line-height: 1.6;
+}
+.service-prompt-area textarea::placeholder { color: var(--sp-muted); }
+.service-prompt-area textarea:focus-visible { outline: none; }
+@supports (field-sizing: content) { .service-prompt-area textarea { field-sizing: content; max-height: 150px; } }
+
+.service-prompt-area__bottom {
+  margin-block-start: 4px;
+  padding-block-start: 12px;
+  border-block-start: 1px solid var(--sp-glass-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.service-prompt-area__tools { display: flex; align-items: center; gap: 6px; }
+.service-prompt-area__tools button {
+  width: var(--u-touch);
+  height: var(--u-touch);
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sp-muted);
+  cursor: pointer;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-prompt-area__tools button:hover { color: var(--sp-ink); background: var(--sp-surface); }
+}
+.service-prompt-area__tools button:active { background: var(--sp-surface); }
+.service-prompt-area__tools button.is-smart { color: rgba(var(--sp-accent-rgb), 0.75); }
+@media (hover: hover) {
+  .service-prompt-area__tools button.is-smart:hover { color: var(--sp-accent); }
+}
+
+/* Primary action — filled indigo, soft glow, arrow lifts on hover */
+.service-start-button {
+  min-height: var(--u-touch);
+  padding-inline: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: var(--u-radius-pill);
+  background: linear-gradient(135deg, var(--sp-accent-strong), var(--sp-accent-deep));
+  color: #fff;
+  font-size: var(--u-text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--sp-glow);
+}
+/* (0,3,0) specificity on purpose: the global motion layer owns the common
+   transition-property list on buttons (color/background/border/shadow/
+   opacity/transform); this rule adds `filter` for the brightness response
+   and must win the cascade. Press feedback rides the global compress. */
+.service-space .service-prompt-area .service-start-button {
+  transition: filter var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-fast) var(--u-motion-ease-standard), box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+}
+.service-space .service-prompt-area .service-start-button svg { transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+@media (hover: hover) {
+  .service-start-button:not(:disabled):hover { filter: brightness(1.12); box-shadow: 0 0 26px rgba(var(--sp-accent-rgb), 0.35); }
+  .service-start-button:not(:disabled):hover svg { transform: translateY(-2px); }
+}
+.service-start-button:disabled { cursor: wait; opacity: 0.85; }
+
+/* ==========================================================================
+   STATE REGION — working / error / ready on the same canvas
+   (shared .u-feedback primitive, restyled to the reference card language)
+   ========================================================================== */
+.service-space .u-feedback {
+  --u-feedback-accent: var(--sp-accent);
+  --u-feedback-soft: rgba(var(--sp-accent-rgb), 0.1);
+  margin-block-start: 16px;
+  min-height: 0;
+  padding: 16px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 24px;
+  background: var(--sp-panel);
+  color: var(--sp-ink);
+}
+.service-space .u-feedback[data-feedback-state="error"] { --u-feedback-accent: var(--sp-red); --u-feedback-soft: rgba(var(--sp-red-rgb, 215, 55, 63), 0.1); }
+.service-space .u-feedback__icon {
+  border: 1px solid rgba(var(--sp-accent-rgb), 0.25);
+  border-radius: 50%;
+  background: rgba(var(--sp-accent-rgb), 0.12);
+  color: var(--sp-accent);
+  box-shadow: none;
+}
+.service-space .u-feedback[data-feedback-state="error"] .u-feedback__icon { border-color: rgba(var(--sp-red-rgb, 215, 55, 63), 0.3); background: rgba(var(--sp-red-rgb, 215, 55, 63), 0.12); }
+.service-space .u-feedback__body > strong { color: var(--sp-ink); }
+.service-space .u-feedback__body > p { color: var(--sp-muted); }
+.service-space .u-feedback__progress { background: rgba(var(--sp-accent-rgb), 0.15); }
+.service-space .u-feedback__action :is(a, button) { border-color: var(--sp-hairline); background: var(--sp-card); color: var(--sp-ink-soft); }
+.service-space .u-feedback__action :is(a, button):first-child:not(:only-child) { border-color: transparent; }
+
+/* ---- Ready: the output is a real artifact ------------------------------- */
+.service-output {
+  margin-block-start: 16px;
+  overflow: hidden;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 24px;
+  background: var(--sp-panel);
+}
+.service-output > header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-block-end: 1px solid var(--sp-glass-line);
+}
+.service-output > header > span {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(var(--sp-mint-rgb, 13, 159, 112), 0.12);
+  color: var(--sp-mint);
+}
+.service-output > header > div { flex: 1; min-width: 0; }
+.service-output > header small { display: block; color: var(--sp-mint); font-size: var(--u-text-xs); font-weight: 700; }
+.service-output > header h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-md) / 1.4 var(--sp-font-display); }
+.service-output > header button {
+  min-height: var(--u-touch);
+  padding-inline: 12px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--sp-hairline);
+  border-radius: var(--u-radius-pill);
+  background: transparent;
+  color: var(--sp-ink-soft);
+  font-size: var(--u-text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-output > header button:hover { background: var(--sp-card); border-color: var(--sp-hover-line); }
+}
+.service-output__canvas { display: grid; grid-template-columns: minmax(0, 1fr); }
+.service-output__canvas > aside {
+  display: flex;
+  gap: 4px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border-block-end: 1px solid var(--sp-glass-line);
+  scrollbar-width: none;
+}
+.service-output__canvas > aside::-webkit-scrollbar { display: none; }
+.service-output__canvas > aside button {
+  flex: 0 0 auto;
+  min-height: var(--u-touch);
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: var(--u-radius-pill);
+  background: transparent;
+  color: var(--sp-muted);
+  font-size: var(--u-text-xs);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-output__canvas > aside button:hover { color: var(--sp-ink-soft); }
+}
+.service-output__canvas > aside button.is-active {
+  border-color: rgba(var(--sp-accent-rgb), 0.35);
+  background: rgba(var(--sp-accent-rgb), 0.12);
+  color: var(--sp-accent);
+  font-weight: 700;
+}
+.service-output__canvas > aside button span { color: var(--sp-muted); font-size: var(--u-text-xs); }
+.service-output__canvas > aside button.is-active span { color: var(--sp-accent); }
+.service-output__canvas > div { padding: 18px; }
+.service-output__eyebrow { color: var(--sp-accent); font-size: var(--u-text-xs); font-weight: 700; }
+.service-output__canvas h3 { margin: 4px 0 0; color: var(--sp-ink); font: 700 var(--u-text-lg) / 1.4 var(--sp-font-display); }
+.service-output__request { margin: 10px 0 0; color: var(--sp-ink-soft); font-size: var(--u-text-sm); line-height: 1.7; }
+.service-output__block {
+  margin-block: 14px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border: 1px solid rgba(var(--sp-accent-rgb), 0.18);
+  border-radius: 16px;
+  background: rgba(var(--sp-accent-rgb), 0.08);
+}
+.service-output__block svg { color: var(--sp-accent); margin-block-start: 2px; }
+.service-output__block p { margin: 0; color: var(--sp-muted); font-size: var(--u-text-xs); line-height: 1.7; }
+.service-output__open {
+  min-height: var(--u-touch);
+  margin-block-start: 6px;
+  padding-inline: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: var(--u-radius-pill);
+  background: linear-gradient(135deg, var(--sp-accent-strong), var(--sp-accent-deep));
+  color: #fff;
+  font-size: var(--u-text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--sp-glow);
+  transition: box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-output__open:hover { box-shadow: 0 0 26px rgba(var(--sp-accent-rgb), 0.35); }
+}
+
+/* ==========================================================================
+   PATH — connected stepper + privacy note
+   ========================================================================== */
+.service-path-card {
+  margin-block-end: 40px;
+  padding: 20px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 24px;
+  background: var(--sp-panel);
+}
+.service-path-card__head { margin-block-end: 24px; display: flex; align-items: center; gap: 8px; }
+.service-path-card__head svg { flex: 0 0 auto; color: var(--sp-accent); }
+.service-path-card__head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
+.service-path-card__steps { position: relative; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 20px; }
+.service-path-card__steps::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 13px;
+  inset-block: 16px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--sp-accent-strong), var(--sp-line));
+  opacity: 0.5;
+}
+.service-path-card li { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+.service-path-card li > span {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--sp-line);
+  border-radius: 50%;
+  background: var(--sp-bg);
+  color: var(--sp-muted);
+  font: 700 12px / 1 var(--sp-font-display);
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.service-path-card li.is-current > span { border-color: var(--sp-accent-strong); color: var(--sp-accent); box-shadow: 0 0 10px rgba(var(--sp-accent-rgb), 0.3); }
+.service-path-card li.is-complete > span { border-color: var(--sp-accent-strong); background: var(--sp-accent-strong); color: #fff; }
+.service-path-card li p { margin: 0; color: var(--sp-muted); font-size: var(--u-text-sm); transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
+.service-path-card li.is-current > p,
+.service-path-card li.is-complete > p { color: var(--sp-ink-soft); }
+@media (hover: hover) {
+  .service-path-card li:hover > span { border-color: var(--sp-accent); color: var(--sp-accent); }
+  .service-path-card li:hover > p { color: var(--sp-ink-soft); }
+}
+.service-path-card__note {
+  margin-block-start: 24px;
+  padding-block-start: 16px;
+  border-block-start: 1px solid var(--sp-glass-line);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.service-path-card__note svg { flex: 0 0 auto; margin-block-start: 2px; color: var(--sp-mint); }
+.service-path-card__note p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.7; }
+
+/* ==========================================================================
+   LOWER — quick starts + library, quiet rows
+   ========================================================================== */
+.service-lower { display: flex; flex-direction: column; gap: 32px; }
+.service-lower__head { margin-block-end: 12px; padding-inline: 4px; display: flex; align-items: center; justify-content: space-between; }
+.service-lower__head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
+
+.service-starters { display: flex; flex-direction: column; gap: 8px; }
+.service-starters button {
+  width: 100%;
+  min-height: 58px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: var(--sp-row);
+  color: var(--sp-ink);
+  text-align: start;
+  cursor: pointer;
+  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-starters button:hover { background: var(--sp-card); border-color: var(--sp-hairline); }
+}
+.service-starters button:active { background: var(--sp-card); }
+.service-starters__lead { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.service-starters__icon {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sp-card);
+  color: var(--sp-ink-soft);
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-starters button:hover .service-starters__icon { color: var(--sp-accent); background: rgba(var(--sp-accent-rgb), 0.1); }
+}
+.service-starters strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--u-text-sm); font-weight: 500; }
+.service-starters button > svg { flex: 0 0 auto; color: var(--sp-muted); transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+@media (hover: hover) {
+  [dir="rtl"] .service-starters button:hover > svg { color: var(--sp-accent); transform: translateX(-6px); }
+  [dir="ltr"] .service-starters button:hover > svg { color: var(--sp-accent); transform: translateX(6px); }
+}
+
+.service-mini-library { display: flex; flex-direction: column; gap: 8px; }
+.service-mini-library a {
+  width: 100%;
+  min-height: 62px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: var(--sp-row);
+  color: var(--sp-ink);
+  text-decoration: none;
+  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-mini-library a:hover { background: var(--sp-card); border-color: var(--sp-hairline); }
+}
+.service-mini-library__icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--sp-blue);
+}
+.service-mini-library__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.service-mini-library__body strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--u-text-sm); font-weight: 600; }
+.service-mini-library__body small { display: inline-flex; align-items: center; gap: 5px; color: var(--sp-muted); font-size: 11px; }
+.service-mini-library__body small svg { flex: 0 0 auto; }
+.service-mini-library a > svg { flex: 0 0 auto; color: var(--sp-muted); transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+@media (hover: hover) {
+  [dir="rtl"] .service-mini-library a:hover > svg { color: var(--sp-accent); transform: translateX(-6px); }
+  [dir="ltr"] .service-mini-library a:hover > svg { color: var(--sp-accent); transform: translateX(6px); }
+}
+
+/* ==========================================================================
+   VEIL — content fades under the floating dock (mobile only)
+   ========================================================================== */
+.service-space__veil {
+  position: fixed;
+  z-index: 5;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 140px;
+  display: none;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--sp-bg) 30%, var(--sp-void));
+}
+@media (max-width: 767.98px) {
+  .service-space__veil { display: block; }
+}
+
+/* ==========================================================================
+   STAGE — mobile: fully transparent wrappers (margins flow exactly as the
+   reference single column). Wide canvas: a studio grid — main column beside
+   a quiet sticky rail. Same sections, same order, re-flowed not redesigned.
+
+   The stage is CONTAINER-driven (≥900px of canvas): with the sidebar
+   expanded the split lands ≈1280px viewport, with the rail collapsed it
+   lands earlier — the layout responds to real available width, not the
+   viewport number. Width growth rides the protected shell ladder (1024).
+   ========================================================================== */
+.service-stage,
+.service-stage__main,
+.service-stage__rail { display: contents; }
+
+@media (min-width: 1024px) {
+  .service-space {
+    width: min(1200px, 100%);
+    padding-block: 12px 48px;
+  }
+}
+
+@container service-space (min-width: 900px) {
+  .service-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(300px, 30%, 360px);
+    column-gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+  .service-stage__main { display: block; }
+  .service-stage__rail {
+    display: block;
+    position: sticky;
+    inset-block-start: calc(var(--u-topbar, 66px) + 24px);
+  }
+  /* The welcome hero breathes on the wide canvas */
+  .service-welcome { margin-block-end: 56px; }
+  .service-welcome__title { font-size: clamp(36px, 3vw, 44px); }
+  .service-welcome__lede { max-width: 480px; }
+  /* Rail sections go quiet-tight; the stage gap carries the rhythm */
+  .service-path-card { margin-block-end: 24px; }
+  .service-lower { gap: 24px; }
+}
+
+/* ==========================================================================
+   RESPONSIVE REFLOW — the artifact splits when the canvas is wide enough
+   ========================================================================== */
+@container service-space (min-width: 560px) {
+  .service-output__canvas { grid-template-columns: 190px minmax(0, 1fr); }
+  .service-output__canvas > aside { flex-direction: column; gap: 4px; overflow-x: visible; border-block-end: 0; border-inline-end: 1px solid var(--sp-glass-line); }
+  .service-output__canvas > aside button { flex: 0 0 auto; width: 100%; justify-content: flex-start; white-space: normal; }
+}
+
+/* ---- Motion respect ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .service-welcome__title { animation: none; }
+  .service-dot i { animation: none; }
+}
