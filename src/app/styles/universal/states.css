@@ -66,7 +66,7 @@
 .u-skeleton--chip {
   height: 26px;
   width: 84px;
-  border-radius: 999px;
+  border-radius: var(--u-radius-pill);
   display: inline-block;
 }
 
@@ -74,7 +74,7 @@
 .u-skeleton-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--mj-space-150);
   padding: 18px;
   border: 1px solid var(--u-line);
   border-radius: var(--u-radius);
@@ -115,7 +115,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--mj-space-100);
   min-width: 0;
 }
 
@@ -123,7 +123,7 @@
 .u-skeleton-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
-  gap: 16px;
+  gap: var(--mj-space-200);
 }
 
 /* Full surface state — page-level skeleton wrapper */
@@ -131,7 +131,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-block-start: 8px;
+  padding-block-start: var(--mj-space-100);
 }
 
 /* App-route fallback skeleton (loading.tsx) — mirrors the shell geometry */
@@ -155,7 +155,7 @@
 .route-skeleton__body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
-  gap: 16px;
+  gap: var(--mj-space-200);
 }
 
 /* Screen-reader announcement for skeleton regions */
@@ -195,7 +195,7 @@
   border-radius: 50%;
   color: var(--u-primary);
   background: var(--u-primary-soft);
-  margin-block-end: 8px;
+  margin-block-end: var(--mj-space-100);
 }
 
 .u-empty__title {
@@ -251,7 +251,7 @@
 .u-error-state__head {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--mj-space-150);
 }
 
 .u-error-state__icon {
@@ -278,7 +278,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--mj-space-100);
 }
 
 .u-error-state__parts li {
@@ -299,7 +299,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-block-start: 4px;
+  margin-block-start: var(--mj-space-50);
 }
 
 /* Route-level error boundary surface */
@@ -307,7 +307,7 @@
   min-block-size: 60vh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: var(--mj-space-300);
   background: var(--u-bg);
 }
 
@@ -320,10 +320,9 @@
   align-items: center;
   gap: 6px;
   padding: 3px 10px;
-  border-radius: 999px;
+  border-radius: var(--u-radius-pill);
   font-size: var(--u-text-xs);
   font-weight: 600;
-  letter-spacing: 0.01em;
   line-height: 1.5;
   border: 1px solid transparent;
   white-space: nowrap;

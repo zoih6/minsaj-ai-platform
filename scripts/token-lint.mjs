@@ -84,7 +84,10 @@ const allFiles = [
 // --------------------------------------------------------------------------
 // Parsing helpers (same method as the W-DS forensic audit)
 // --------------------------------------------------------------------------
-const stripComments = (t) => t.replace(/\/\*[\s\S]*?\*\//g, '');
+/** Blank comments WITHOUT collapsing lines so reported line numbers match
+ *  the real files (Phase 1 fix: multi-line comment blocks used to shift
+ *  every following line number). */
+const stripComments = (t) => t.replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
 
 function lineOfIndex(text, idx) {
   let line = 1;
@@ -161,17 +164,78 @@ for (const rel of allFiles) {
           records.sub10Text.push({ ...d, prop: 'font(size)', value: `${size.num}${size.unit}` });
       }
     }
-    if (d.prop === 'letter-spacing' && d.value !== '0' && d.value !== 'normal')
-      records.tracking.push({
-        ...d,
-        arOverrideInFile: /\[lang\s*=\s*["']?ar["']?\]|:lang\(\s*ar\s*\)/.test(text),
-      });
   }
 }
 
-// globals.css selector count (same intent as the audit census: rule blocks
-// whose prelude is a selector — at-rule preludes (@media/@keyframes/…) and
-// empty preludes are excluded)
+// --------------------------------------------------------------------------
+// Arabic-tracking legality (Phase 1 · R-RTL-1 / matrix TYP-03)
+// --------------------------------------------------------------------------
+// A letter-spacing ≠ 0 declaration is LEGAL only if one of:
+//   1. its rule is Latin-scoped: selector carries [lang="en"] / :lang(en);
+//   2. its rule targets an explicit Latin-only class (name contains "latin");
+//   3. a companion zero-override exists (any scanned file): a rule whose
+//      selector carries [dir="rtl"]/[lang="ar"]/:dir/:lang(ar) AND the same
+//      anchor token (class/id), declaring letter-spacing: 0.
+// Anything else is UNPAIRED — the metric Gate G tracks to zero.
+const RTL_AR = /\[dir\s*=\s*["']?rtl["']?\]|\[lang\s*=\s*["']?ar["']?\]|:dir\(\s*rtl\s*\)|:lang\(\s*ar\s*\)/;
+const EN_SCOPE = /\[lang\s*=\s*["']?en["']?\]|:lang\(\s*en\s*\)/;
+const LATIN_CLASS = /\.[a-zA-Z][\w-]*latin[\w-]*/i;
+const anchorTokens = (sel) => {
+  const out = new Set();
+  for (const m of sel.matchAll(/[.#][a-zA-Z][\w-]*/g)) out.add(m[0].slice(1));
+  return out;
+};
+
+// Pass 0 — prelude-aware tracking census: every candidate carries the
+// selector of the rule that declares it (needed for per-rule pairing).
+records.tracking = [];
+for (const rel of allFiles) {
+  const text = fileTexts[rel];
+  for (const m of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const prelude = m[1].replace(/\s+/g, ' ').trim();
+    if (!prelude || prelude.startsWith('@')) continue;
+    const body = m[2];
+    const lsRegex = /letter-spacing\s*:\s*([^;{}]+?)\s*;/g;
+    let ls;
+    while ((ls = lsRegex.exec(body))) {
+      const value = ls[1].trim();
+      if (value === '0' || value === 'normal') continue;
+      records.tracking.push({
+        file: rel,
+        line: lineOfIndex(text, m.index + ls.index),
+        prop: 'letter-spacing',
+        value,
+        selector: prelude,
+        arOverrideInFile: /\[lang\s*=\s*["']?ar["']?\]|:lang\(\s*ar\s*\)/.test(text),
+      });
+    }
+  }
+}
+
+// Pass 1 — companion zero-overrides (rtl/ar-scoped rules that zero tracking)
+const companionAnchors = new Set();
+for (const rel of allFiles) {
+  const text = fileTexts[rel];
+  for (const m of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const prelude = m[1];
+    const body = m[2];
+    if (!RTL_AR.test(prelude)) continue;
+    if (!/letter-spacing\s*:\s*0\s*[;!}]/.test(body)) continue;
+    for (const a of anchorTokens(prelude)) companionAnchors.add(a);
+  }
+}
+
+// Pass 2 — classify every tracking candidate
+const legalTracking = (sel) =>
+  EN_SCOPE.test(sel) || LATIN_CLASS.test(sel) ||
+  [...anchorTokens(sel)].some((a) => companionAnchors.has(a));
+const unpairedTracking = records.tracking.filter(
+  (t) => !legalTracking(t.selector || '')
+);
+for (const t of records.tracking) {
+  t.paired = !unpairedTracking.includes(t);
+  t.selector = t.selector || '';
+}
 const globalsText = fileTexts['src/app/globals.css'] || '';
 let globalsSelectors = 0;
 for (const m of globalsText.matchAll(/([^{};]+)\{/g)) {
@@ -206,6 +270,21 @@ for (const rel of allFiles) {
 }
 const paddingAllDistinctPerFileSum = padValsUniversal.size + padValsGlobals.size;
 
+// Phase 1 §10 — legacy-name var() reference census (repo-wide, CSS only).
+// Matches var(--name) and var(--name, fallback); canonical names that merely
+// start with a legacy prefix (e.g. --mj-text-body-m) are excluded by the
+// closing ,|) boundary.
+const LEGACY_TOKEN_RE = /var\(--(u-text-(?:xs|sm|md|lg|xl)|mj-gap-[a-z0-9]+|u-radius(?:-(?:xs|sm|lg|xl))?|mj-text-(?:hero|small|body)|u-shell-alert|mj-leading-hero)\s*(?:,|\))/g;
+const legacyRefs = {};
+for (const rel of allFiles) {
+  const text = fileTexts[rel];
+  let m;
+  while ((m = LEGACY_TOKEN_RE.exec(text))) {
+    legacyRefs[m[1]] = (legacyRefs[m[1]] || 0) + 1;
+  }
+}
+const legacyRefTotal = Object.values(legacyRefs).reduce((a, b) => a + b, 0);
+
 // audit-scope headline metrics (comparable with the W-DS audit numbers)
 const inScope = (d) => AUDIT_FILES.includes(d.file);
 const distinct = (arr) => new Set(arr.map((d) => d.value)).size;
@@ -226,8 +305,14 @@ const headline = {
   rawFontSize: { occurrences: scopeFontSize.length, distinct: distinct(scopeFontSize) },
   sub10Text: records.sub10Text.filter(inScope).length,
   trackingCandidates: records.tracking.filter(inScope).length,
+  // Phase 1 (R-RTL-1): candidates NOT covered by an [lang=en] scope, a
+  // latin-only class, or an rtl/ar zero-override companion — goal 0.
+  unpairedTracking: unpairedTracking.filter(inScope).length,
   globalsSelectors,
   componentClasses: [...compClasses].sort(),
+  // Phase 1 (§10): deprecated-name var() references across the repo —
+  // the migration wave deletes these; trend must never rise.
+  legacyTokenReferences: { total: legacyRefTotal, byName: legacyRefs },
 };
 
 // --------------------------------------------------------------------------
@@ -255,6 +340,8 @@ const report = {
     sub10Text: records.sub10Text.length,
     rawFontSize: records.rawFontSize.length,
     trackingCandidates: records.tracking.length,
+    unpairedTracking: unpairedTracking.length,
+    legacyTokenReferences: legacyRefTotal,
     componentClasses: compClasses.size,
   },
   perFile,
@@ -277,6 +364,8 @@ function compare(prev) {
   row('raw font-size (distinct)', h.rawFontSize?.distinct, p.rawFontSize?.distinct);
   row('sub-10px text', h.sub10Text, p.sub10Text);
   row('tracking candidates', h.trackingCandidates, p.trackingCandidates);
+  row('UNPAIRED tracking (R-RTL-1)', h.unpairedTracking, p.unpairedTracking);
+  row('legacy token refs (§10)', h.legacyTokenReferences?.total, p.legacyTokenReferences?.total);
   row('globals.css selectors', h.globalsSelectors, p.globalsSelectors);
   const prevClasses = new Set(p.componentClasses || []);
   const newClasses = (h.componentClasses || []).filter((c) => !prevClasses.has(c));
@@ -295,7 +384,7 @@ if (!QUIET) {
   const b = report._meta.auditBaseline;
   const h = report.headline;
   console.log(`
-G-7 token lint — WARN MODE (Phase 0 baseline)
+G-7 token lint — WARN MODE (Phases 0–5; error mode at Phase 6)
 scope: ${report._meta.filesScanned} CSS files (audit scope = ${AUDIT_FILES.length})
 
   audit-scope census                     now      audit baseline      goal
@@ -306,11 +395,13 @@ scope: ${report._meta.filesScanned} CSS files (audit scope = ${AUDIT_FILES.lengt
   raw shadow (distinct)           ${String(h.rawShadow.distinct).padStart(6)}   /  ${String(b.distinctShadows).padStart(6)}           5 tokens
   raw font-size (distinct)        ${String(h.rawFontSize.distinct).padStart(6)}   /  ${String(b.distinctFontSizes).padStart(6)}          11 levels
   sub-10px text declarations      ${String(h.sub10Text).padStart(6)}                        0
-  letter-spacing candidates      ${String(h.trackingCandidates).padStart(6)}                        0 unpaired
+  letter-spacing candidates      ${String(h.trackingCandidates).padStart(6)}                        (legal only)
+  UNPAIRED letter-spacing        ${String(h.unpairedTracking).padStart(6)}                        0
+  legacy token refs (§10 wave)   ${String(h.legacyTokenReferences.total).padStart(6)}                        0 at wave end
   globals.css selectors          ${String(h.globalsSelectors).padStart(6)}   /  ${String(b.globalsSelectors).padStart(6)}          0
   component classes (non-mj)     ${String(h.componentClasses.length).padStart(6)}                        frozen
 
-  full-repo occurrences: spacing=${report.totals.rawSpacing} radius=${report.totals.undeclaredRadius} shadow=${report.totals.rawShadow} sub10=${report.totals.sub10Text}
+  full-repo occurrences: spacing=${report.totals.rawSpacing} radius=${report.totals.undeclaredRadius} shadow=${report.totals.rawShadow} sub10=${report.totals.sub10Text} unpairedTracking=${report.totals.unpairedTracking} legacyRefs=${report.totals.legacyTokenReferences}
 
 report → ${path.relative(ROOT, OUT)}
 `);

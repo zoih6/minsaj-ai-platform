@@ -1,6 +1,6 @@
 # DESIGN-SYSTEM-RECONSTRUCTION.md — Master Document
 ## W-DS · Rebuilding Minsaj as one designed product
-### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`: guardrails live, baseline frozen, zero-drift proven on 100 cells). **Phase 1 (Foundations) authorized 2026-09-22 (§7.2) — in execution.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
+### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. Awaiting owner approval of the Phase 1 exit gate before Phase 2.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
 
 > **Note on naming.** The owner's review refers to the product as **"Nasaq"**; this repository and its brand assets name it **Minsaj (منسج)**. Both names refer to the same product. This document set uses the repository name.
 >
@@ -112,10 +112,10 @@ Engineering gates hold (ACC-01: 44px targets, zero overflow ×100, skip link, ar
 ## 6. Implementation order (after approval — never before)
 
 ```
-Phase 0  Guardrails      G-7 token lint (warn mode), baseline captures, alias layer
-Phase 1  Foundations     DESIGN-TOKENS wave 1: space scale + type ramp aliases,
-                         alert token, radius/elevation maps, Arabic tracking fixes,
-                         7/8px text fixes                              [fixes TYP-02/03, SPC-01 begins]
+Phase 0  Guardrails      G-7 token lint (warn mode), baseline captures, alias layer   [DONE 3508d48]
+Phase 1  Foundations     DESIGN-TOKENS wave 1: space scale + type ramp aliases,    [IMPLEMENTED + MEASURED
+                         alert token, radius/elevation maps, Arabic tracking fixes,   2026-09-22 — awaiting
+                         7/8px text fixes                              [fixes TYP-02/03, SPC-01 begins] owner exit-gate approval]
 Phase 2  Surfaces        settings + ops pages rebuilt on mj-surface;
                          anti-nesting refactor (workbench + gateway);
                          DataList for record collections               [fixes HIE-02/03, SUR-01]

@@ -152,15 +152,22 @@
   --u-shadow-lg: 0 4px 10px rgba(16, 18, 40, 0.05), 0 28px 80px rgba(70, 64, 160, 0.16), 0 8px 24px rgba(38, 40, 80, 0.06);
   --u-shadow-xl: 0 8px 18px rgba(16, 18, 40, 0.07), 0 40px 110px rgba(70, 64, 160, 0.22);
 
-  /* ---- Radii scale (consistent geometry) ---- */
-  --u-radius-xs: 8px;
-  --u-radius-sm: 12px;
-  --u-radius: 16px;
-  --u-radius-lg: 22px;
-  --u-radius-xl: 30px;
-  /* Fully-round lozenge for chip/pill controls (selection filters, goal
-     pills). A shape, not a degree of roundness — lives beside the scale. */
+  /* ---- Radius map (W-DS Phase 1 · DESIGN-TOKENS §4, A2) — by surface level.
+     Canonical names hold the values; the legacy numeric names below are
+     §10 deprecated aliases (delete at wave end). --u-radius-xl (30px) is
+     deleted per the spec's rejected list (§13: zero live usage). ------ */
+  --u-radius-control: 8px;   /* buttons, inputs, chips' inner elements */
+  --u-radius-field: 12px;    /* inputs, flat inline groups, dock items */
+  --u-radius-card: 16px;     /* cards and every L1 surface */
+  --u-radius-overlay: 22px;  /* dialogs, command palette, sheets */
+  /* Fully-round lozenge for chip/pill controls. A shape, not a degree
+     of roundness — lives beside the map. */
   --u-radius-pill: 999px;
+  /* §10 deprecated aliases — one migration wave, then deletion */
+  --u-radius-xs: var(--u-radius-control);
+  --u-radius-sm: var(--u-radius-field);
+  --u-radius: var(--u-radius-card);
+  --u-radius-lg: var(--u-radius-overlay);
 
   /* ---- Layout metrics (aliased to the responsive architecture tokens
         defined in layout.css — one geometry source, no drift) ---- */
@@ -173,12 +180,17 @@
   --u-section-space: clamp(56px, 7vw, 112px);
   --u-touch: 44px;
 
-  /* ---- Typography scale (fluid) ---- */
-  --u-text-xs: clamp(11.5px, 0.75rem, 12.5px);
-  --u-text-sm: clamp(13px, 0.84rem, 14px);
-  --u-text-md: clamp(15px, 0.96rem, 16px);
-  --u-text-lg: clamp(17px, 1.12rem, 19px);
-  --u-text-xl: clamp(21px, 1.4rem, 24px);
+  /* ---- Typography (W-DS Phase 1 · DESIGN-TOKENS §2/§10) ----
+     The closed 11-level ramp is defined in layout.css (--mj-text-*).
+     These legacy names are §10 deprecated aliases — one migration wave,
+     then deletion. Value shifts are the approved consolidation:
+     xs 11.5–12.5→11.5 · sm 13–14→13.5–14 · md ≈same · lg 17–19→17 ·
+     xl 21–24→h3 16–19 (panel-head role). */
+  --u-text-xs: var(--mj-text-caption);
+  --u-text-sm: var(--mj-text-body-s);
+  --u-text-md: var(--mj-text-body-m);
+  --u-text-lg: var(--mj-text-body-l);
+  --u-text-xl: var(--mj-text-h3);
 
   /* ---- Motion contract: productive by default, expressive for milestones ---- */
   --u-motion-duration-instant: 80ms;
@@ -208,22 +220,13 @@
   --u-fast: var(--u-motion-duration-fast);
   --u-normal: var(--u-motion-duration-moderate);
 
-  /* ---- W-DS Phase 0 · alias layer (docs/03-design/reconstruction/
-          DESIGN-TOKENS.md §1.4, §4, §5) ----------------------------------
-     Positional names for the approved radius-by-level map (aliases of the
-     existing numeric scale — identical values, zero rendered change);
-     the single attention token; the explicit flat-elevation step.
-     Legacy names (--u-radius-xs/sm/(base)/lg) migrate in Phase 1 per §10;
-     --u-radius-xl is deprecated per the spec's rejected list (zero live
-     usage) and dies with the migration wave. */
-  --u-radius-control: var(--u-radius-xs);  /* 8px  — buttons, inputs, chips */
-  --u-radius-field: var(--u-radius-sm);    /* 12px — inputs, flat groups, dock items */
-  --u-radius-card: var(--u-radius);        /* 16px — cards, every L1 surface */
-  --u-radius-overlay: var(--u-radius-lg);  /* 22px — dialogs, palette, sheets */
-  /* --u-radius-pill (999px) already exists above — unchanged. */
+  /* ---- W-DS tokens adopted in Phase 1 (docs/03-design/reconstruction/
+          DESIGN-TOKENS.md §1.4, §5) --------------------------------------
+     The radius map moved to the shape block above (canonical values).
+     The single attention token replaced --u-shell-alert (matrix INT-03);
+     the explicit flat-elevation step completes the 5-step scale. */
   --u-alert: #ef4444;  /* §1.4: the single notification/attention dot,
-                          both themes; replaces --u-shell-alert on standard
-                          chrome during Phase 1 (matrix INT-03) */
+                          both themes (was --u-shell-alert pink #e75f9d) */
   --u-shadow-none: none;  /* §5: page canvas, flat groups, chrome (R-SURF-3) */
 
   /* ---- Dark premium shell (sidebar) — permanent identity ---- */
@@ -242,7 +245,8 @@
   --u-shell-icon-dim: #8e95bb;
   --u-shell-online: #2fd693;
   --u-shell-online-halo: rgba(47, 214, 147, 0.16);
-  --u-shell-alert: #e75f9d;
+  /* --u-shell-alert deleted in Phase 1 (DESIGN-TOKENS §1.6): the single
+     attention token is --u-alert (#ef4444, both themes). */
   --u-shell-grad-new: linear-gradient(135deg, #7c6bf8, #5649e9);
   --u-shell-grad-link: linear-gradient(180deg, #9ba4ff, #6d7bf6);
   --u-shell-grad-avatar: linear-gradient(135deg, #635beb, #4a41db);

@@ -129,7 +129,7 @@
 }
 
 /* ---- 1f. Catalog tabs → flat strip + underline -------------------------- */
-.catalog-tabs { border: 0; background: transparent; padding: 0 0 4px; gap: var(--mj-gap-sm); }
+.catalog-tabs { border: 0; background: transparent; padding: 0 0 var(--mj-space-50); gap: var(--mj-gap-sm); }
 .catalog-tabs a { border-radius: 0; }
 .catalog-tabs a.is-active {
   background: transparent;
@@ -311,7 +311,7 @@
    workspaces.css. ---- */
 
 /* ---- 3d. Starters → text rows, no chip backgrounds ---------------------- */
-.adaptive-starters { gap: 2px; }
+.adaptive-starters { gap: var(--mj-space-25); }
 .adaptive-starters button {
   border: 0;
   background: transparent;

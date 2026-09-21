@@ -232,6 +232,15 @@ Marketing keeps Tailwind utilities but consumes the same values:
 
 ## 10. Migration aliases (one wave, then deletion)
 
+> **Phase 1 adoption record (2026-09-22).** The full §10 alias set was
+> rebound in code this phase (commit chain `1370981`→Phase 1): canonical
+> names hold the spec values; every legacy name above is a deprecated alias
+> rendering its canonical value. `--u-radius-xl` and `--u-shell-alert` are
+> deleted (zero consumers after migration). The remaining legacy var()
+> references (1223 at Phase 1 close, tracked by G-7 `legacyTokenReferences`)
+> are deleted as consumers are rebuilt in Phases 2–5; aliases die at wave end.
+> Value-shift register + drift ledger: `evidence/baselines/phase1/README.md`.
+
 | Legacy | Maps to |
 |---|---|
 | `--u-text-xs/sm/md/lg/xl` | `caption / body-s / body-m / body-l / h3` |

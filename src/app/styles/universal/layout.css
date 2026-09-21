@@ -11,59 +11,66 @@
      mobile  < 768   | tablet  768–1023 | desktop 1024–1439 | wide ≥1440
    ========================================================================== */
 
-/* ---- 1. Fluid token scale (mobile-first values, clamped upward) -------- */
+/* ---- 1. Token scale — W-DS Phase 1 (DESIGN-TOKENS.md §2/§3/§10) -------
+   Values adopted per the approved spec. Legacy semantic names are now
+   §10 deprecated aliases of the canonical scale; consumers migrate over
+   the wave and the aliases are deleted at wave end. ------------------- */
 :root {
   /* Horizontal page gutters: 16px phone → 32px desktop (fluid).
      v18.1 mobile QA: floor raised 14→16px — inputs and full-bleed CTAs no
      longer kiss the screen edge on 390–430px phones. */
   --mj-gutter: clamp(16px, 1.1vw + 10px, 32px);
-  /* Vertical page rhythm */
-  --mj-gap-2xs: 3px;  /* micro rhythm inside dense data cells ONLY */
-  --mj-gap-xs: clamp(6px, 0.5vw + 4px, 10px);
-  --mj-gap-sm: clamp(10px, 0.8vw + 7px, 16px);
-  --mj-gap-md: clamp(14px, 1.2vw + 10px, 24px);
-  --mj-gap-lg: clamp(20px, 1.8vw + 14px, 36px);
-  /* Major page-section rhythm (≥ 2× gap-lg keeps sections unmistakable) */
-  --mj-gap-block: clamp(28px, 2.6vw + 20px, 48px);
-  /* Card padding: 16px phone → 24px desktop (v18.1: floor 14→16px so
-     dense card content keeps breathing room on small screens) */
+  /* Card padding: 16px phone → 24px desktop — one token per surface
+     (DESIGN-TOKENS §3: --mj-pad-card). */
   --mj-pad-card: clamp(16px, 1vw + 10px, 24px);
   /* Sidebar geometry (modes driven by shell.css) */
   --mj-sidebar-expanded: 264px;
   --mj-sidebar-rail: 76px;
   /* Content measure caps per context */
   --mj-measure-read: 72ch;
-  --mj-content-max: 1520px;
+  --mj-content-max: 1520px; /* legacy — collapses in the Phase 5 container ladder (R-GRD-1) */
   /* Touch target floor — accessibility invariant on every interactive el */
   --mj-touch: 44px;
-  /* Fluid type ramp (display → caption) + Arabic-calibrated leading.
-     Line-height is part of the token (DEG §5): diacritics clip below 1.4. */
-  --mj-text-hero: clamp(32px, 5.4vw + 14px, 58px);
-  --mj-leading-hero: 1.18;
-  --mj-text-h1: clamp(26px, 2.6vw + 16px, 40px);
-  --mj-leading-h1: 1.28;
-  --mj-text-h2: clamp(20px, 1.4vw + 15px, 27px);
-  --mj-leading-h2: 1.34;
-  --mj-text-h3: clamp(16px, 0.6vw + 14px, 19px);
+
+  /* Type ramp — the closed 11-level ramp (A1-structure). h1/h2/h3/caption
+     re-valued to spec in Phase 1 (R-TYPE-1; matrix TYP-01/HIE-01): the
+     40px/27px legacy ceilings die. Line-heights are Arabic-calibrated
+     floors (R-RTL-2). Tracking is Latin-only and lives under
+     html[lang="en"] scope (R-RTL-1) — never on the tokens. */
+  --mj-text-h1: clamp(26px, 1.6vw + 20px, 34px); /* one per route: page title */
+  --mj-leading-h1: 1.35;
+  --mj-text-h2: clamp(19px, 0.8vw + 16px, 24px); /* section titles */
+  --mj-leading-h2: 1.35;
+  --mj-text-h3: clamp(16px, 0.4vw + 14px, 19px); /* card titles, panel heads */
   --mj-leading-h3: 1.42;
-  --mj-text-body: clamp(13.5px, 0.2vw + 13px, 15px);
-  --mj-leading-body: 1.65;
-  --mj-text-small: clamp(12px, 0.15vw + 11.6px, 13px);
-  --mj-leading-small: 1.55;
-  --mj-text-caption: 11.5px;
+  --mj-text-caption: 11.5px; /* timestamps, helper text, metadata */
   --mj-leading-caption: 1.45;
+  --mj-leading-body: 1.7;
+  --mj-leading-small: 1.6;
+
+  /* §10 deprecated aliases — one migration wave, then deletion.
+     Rendered values now come from the canonical ramp/scale. */
+  --mj-text-hero: var(--mj-text-display);
+  --mj-leading-hero: 1.25;
+  --mj-text-body: var(--mj-text-body-m);
+  --mj-text-small: var(--mj-text-body-s);
+  --mj-gap-2xs: var(--mj-space-50);
+  --mj-gap-xs: var(--mj-space-100);
+  --mj-gap-sm: var(--mj-space-150);
+  --mj-gap-md: var(--mj-space-200);
+  --mj-gap-lg: var(--mj-space-300);
+  --mj-gap-block: var(--mj-space-600);
 }
 
-/* ---- 1b. W-DS Phase 0 · alias layer (docs/03-design/reconstruction/
+/* ---- 1b. W-DS canonical scale (docs/03-design/reconstruction/
         DESIGN-TOKENS.md) -------------------------------------------------
-   New namespace declared per the approved spec; NO consumer switched yet,
-   NO legacy value changed — zero rendered-pixel change by construction.
-   Phase 1 adopts these values and migrates consumers per §10/§11. */
+   Adopted in Phase 1: the space scale is the single source for every
+   gap/padding/offset (R-SPACE-1..3); the type ramp's fluid levels,
+   container ladder and control-height ladder live here. The layout
+   primitives below consume the canonical names directly. ------------- */
 
 :root {
-  /* Space scale (§3, A1-structure) — the 9-step numeric scale.
-     Legacy --mj-gap-* keep their current values until Phase 1 repoints
-     them here (R-SPACE-1..3; matrix SPC-01..03). */
+  /* Space scale (§3, A1-structure) — the 9-step numeric scale. */
   --mj-space-25: 2px;    /* hairline nudges, icon optical alignment */
   --mj-space-50: 4px;    /* inside dense data cells only */
   --mj-space-100: 8px;   /* inside controls; icon↔label */
@@ -74,11 +81,10 @@
   --mj-space-600: clamp(24px, 2.6vw + 16px, 48px); /* section rhythm (R-SPACE-2) */
   --mj-space-800: 64px;  /* marketing section breathing */
 
-  /* Type ramp — new levels of the closed 11-level ramp (§2, A1-structure).
-     h1/h2/h3/caption keep their current values until Phase 1 re-values
-     them to spec (R-TYPE-1; matrix TYP-01/HIE-01). Arabic: zero tracking
+  /* Type ramp — fluid levels of the closed 11-level ramp (§2).
+     Fixed levels (h1/h2/h3/caption) sit in §1; Arabic: zero tracking
      at every level (R-RTL-1) — enforced by G-7, not by these tokens. */
-  --mj-text-display: clamp(34px, 5vw + 14px, 58px); /* marketing hero only */
+  --mj-text-display: clamp(34px, 5vw + 14px, 58px); /* marketing hero only — never in /app */
   --mj-text-body-l: 17px;                               /* lede paragraphs */
   --mj-text-body-m: clamp(15px, 0.2vw + 14.4px, 16px); /* default body */
   --mj-text-body-s: clamp(13.5px, 0.15vw + 12.9px, 14px); /* supporting */
@@ -111,7 +117,7 @@
   min-width: 0; /* grid/flex overflow guard — never let children stretch it */
   display: flex;
   flex-direction: column;
-  gap: var(--mj-gap-md);
+  gap: var(--mj-space-200);
 }
 
 /* ---- 3. Page header: title block + actions as a wrapping cluster.
@@ -121,13 +127,13 @@
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: var(--mj-gap-sm) var(--mj-gap-md);
+  gap: var(--mj-space-150) var(--mj-space-200);
 }
 .mj-page-header__copy { min-width: min(100%, 340px); flex: 1 1 340px; }
 .mj-page-header__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--mj-gap-xs);
+  gap: var(--mj-space-100);
   flex: 0 1 auto;
 }
 @container mj-flow (max-width: 640px) {
@@ -139,7 +145,7 @@
         2 on tablets, 3–4 on desktops, with ZERO per-page overrides. ------ */
 .mj-grid {
   display: grid;
-  gap: var(--mj-gap-sm);
+  gap: var(--mj-space-150);
   grid-template-columns: repeat(auto-fill, minmax(min(var(--mj-grid-min, 250px), 100%), 1fr));
 }
 .mj-grid--tight { --mj-grid-min: 200px; }
@@ -150,17 +156,17 @@
 .mj-stack {
   display: flex;
   flex-direction: column;
-  gap: var(--mj-gap-md);
+  gap: var(--mj-space-200);
   min-width: 0;
 }
-.mj-stack--tight { gap: var(--mj-gap-sm); }
+.mj-stack--tight { gap: var(--mj-space-150); }
 
 /* ---- 6. Cluster: wrapping row of chips/actions/filters ---------------- */
 .mj-cluster {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--mj-gap-xs) var(--mj-gap-sm);
+  gap: var(--mj-space-100) var(--mj-space-150);
   min-width: 0;
 }
 .mj-cluster--between { justify-content: space-between; }
@@ -173,7 +179,7 @@
 .mj-split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, var(--mj-split-aside, 300px));
-  gap: var(--mj-gap-md);
+  gap: var(--mj-space-200);
   align-items: start;
   min-width: 0;
 }
@@ -195,7 +201,7 @@
   flex-direction: column;
   min-width: 0;
   border: 1px solid var(--u-line, #e4e6ef);
-  border-radius: var(--u-radius);
+  border-radius: var(--u-radius-card);
   background: var(--u-surface-solid, #fff);
   overflow: hidden;
 }
@@ -204,15 +210,14 @@
   display: grid;
   grid-template-columns: var(--mj-data-cols, minmax(0, 1.6fr) minmax(90px, 0.7fr) minmax(80px, 0.5fr) 96px);
   align-items: center;
-  gap: var(--mj-gap-xs);
+  gap: var(--mj-space-100);
   padding: 10px clamp(12px, 1vw + 8px, 18px);
 }
 .mj-data-list__head {
   border-block-end: 1px solid var(--u-line, #e4e6ef);
   color: var(--u-faint, #6a6e85);
-  font-size: var(--mj-text-caption);
+  font-size: var(--mj-text-label-s);
   font-weight: 700;
-  letter-spacing: 0.02em;
 }
 .mj-data-list__row {
   border-block-end: 1px solid var(--u-line, #e4e6ef);
@@ -230,28 +235,28 @@
   .mj-data-list__head { display: none; }
   .mj-data-list__row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--mj-gap-2xs) var(--mj-gap-sm);
-    padding: var(--mj-gap-sm) clamp(12px, 1vw + 8px, 18px);
+    gap: var(--mj-space-50) var(--mj-space-150);
+    padding: var(--mj-space-150) clamp(12px, 1vw + 8px, 18px);
   }
   .mj-data-list__row > * {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--mj-gap-xs);
+    gap: var(--mj-space-100);
     min-height: 34px;
   }
   .mj-data-list__row > *::before {
     content: attr(data-label);
     color: var(--u-faint, #6a6e85);
-    font-size: var(--mj-text-caption);
+    font-size: var(--mj-text-label-s);
     font-weight: 600;
     white-space: nowrap;
   }
   .mj-data-list__row > :first-child {
     grid-column: 1 / -1;
     min-height: 0;
-    padding-block-end: var(--mj-gap-2xs);
-    margin-block-end: var(--mj-gap-2xs);
+    padding-block-end: var(--mj-space-50);
+    margin-block-end: var(--mj-space-50);
     border-block-end: 1px solid var(--u-line, #e4e6ef);
   }
   .mj-data-list__row > :first-child::before { display: none; }
@@ -299,26 +304,26 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--mj-gap-xs) var(--mj-gap-md);
+  gap: var(--mj-space-100) var(--mj-space-200);
   min-width: 0;
 }
 .mj-control-bar__label {
   flex: 0 0 auto;
   min-width: 0;
   color: var(--u-faint);
-  font-size: var(--u-text-xs);
+  font-size: var(--mj-text-label-s);
   font-weight: 600;
 }
 .mj-control-bar__group {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  gap: var(--mj-gap-xs);
+  gap: var(--mj-space-100);
   min-width: 0;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
-  padding-block-end: 2px; /* keeps focus rings clear of the clip */
+  padding-block-end: var(--mj-space-25); /* keeps focus rings clear of the clip */
 }
 .mj-control-bar__group::-webkit-scrollbar { display: none; }
 .mj-control-bar__group > * { flex: 0 0 auto; }
@@ -354,7 +359,7 @@
     flex: 1 1 100%;
     flex-wrap: wrap;
     overflow-x: visible;
-    row-gap: var(--mj-gap-xs);
+    row-gap: var(--mj-space-100);
   }}
 
 /* ---- 13. Chip: the shared geometry for pill-shaped option buttons.
@@ -362,13 +367,13 @@
         ONLY color/border/state (service tint, primary-soft, …). ----- */
 .mj-chip {
   min-height: var(--u-touch);
-  padding-inline: var(--mj-gap-sm);
+  padding-inline: var(--mj-space-150);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--mj-gap-xs);
+  gap: var(--mj-space-100);
   border-radius: var(--u-radius-pill);
-  font-size: var(--u-text-sm);
+  font-size: var(--mj-text-body-s);
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
@@ -379,12 +384,12 @@
           page-root → content frame → mj-section → mj-surface → components
         A section is SPACING + a header, never chrome. Sections separate
         with --mj-gap-block (≥ 2× any inner gap — the rhythm law §4.3). */
-.mj-section { display: flex; flex-direction: column; gap: var(--mj-gap-md); min-width: 0; }
-.mj-section__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--mj-gap-xs) var(--mj-gap-md); }
-.mj-section__head-copy { min-width: min(100%, 300px); flex: 1 1 300px; display: flex; flex-direction: column; gap: var(--mj-gap-2xs); }
-.mj-section__label { color: var(--u-faint); font-size: var(--u-text-xs); font-weight: 600; letter-spacing: 0.02em; }
+.mj-section { display: flex; flex-direction: column; gap: var(--mj-space-200); min-width: 0; }
+.mj-section__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--mj-space-100) var(--mj-space-200); }
+.mj-section__head-copy { min-width: min(100%, 300px); flex: 1 1 300px; display: flex; flex-direction: column; gap: var(--mj-space-50); }
+.mj-section__label { color: var(--u-faint); font-size: var(--mj-text-label-s); font-weight: 600; }
 .mj-section__title { margin: 0; font-size: var(--mj-text-h2); line-height: var(--mj-leading-h2); font-weight: 700; color: var(--u-ink); }
-.mj-section__desc { margin: 0; max-width: var(--u-reading-max); color: var(--u-muted); font-size: var(--u-text-sm); line-height: var(--mj-leading-small); }
+.mj-section__desc { margin: 0; max-width: var(--u-reading-max); color: var(--u-muted); font-size: var(--mj-text-body-s); line-height: var(--mj-leading-small); }
 .mj-section__aside { flex: 0 0 auto; }
 @container mj-flow (max-width: 640px) {
   .mj-section__head { align-items: flex-start; flex-direction: column; }
@@ -402,13 +407,13 @@
 .mj-surface {
   padding: var(--mj-pad-card);
   border: 1px solid var(--u-line);
-  border-radius: var(--u-radius);
+  border-radius: var(--u-radius-card);
   background: var(--u-surface);
   box-shadow: var(--u-shadow-xs);
   min-width: 0;
 }
-.mj-surface--flat { border: 0; border-radius: var(--u-radius-sm); background: var(--u-surface-subtle); box-shadow: none; }
-.mj-surface--raised { border-radius: var(--u-radius-lg); background: var(--u-surface-solid); box-shadow: var(--u-shadow-md); }
+.mj-surface--flat { border: 0; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); box-shadow: var(--u-shadow-none); }
+.mj-surface--raised { border-radius: var(--u-radius-overlay); background: var(--u-surface-solid); box-shadow: var(--u-shadow-md); }
 /* Interactive surfaces (selectable cards, list rows-as-links): hover lift
    rides the motion tokens — never a raw transition. */
 .mj-surface--action {

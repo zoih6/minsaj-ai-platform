@@ -127,9 +127,9 @@
   margin: 6px auto 0;
   width: min(600px, calc(100% - 32px));
   display: grid;
-  gap: 4px;
+  gap: var(--mj-space-50);
   padding: 10px;
-  border-radius: 16px;
+  border-radius: var(--u-radius-card);
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
