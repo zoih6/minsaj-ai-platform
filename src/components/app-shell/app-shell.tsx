@@ -15,19 +15,23 @@ import {
   Command,
   Compass,
   FolderKanban,
+  Gauge,
   GraduationCap,
   House,
   Library,
+  ListChecks,
   Menu,
   MessageCircle,
   Palette,
   PanelLeftClose,
   PanelLeftOpen,
   Plus,
+  Receipt,
   Search,
   SearchCheck,
   Settings,
   Sparkles,
+  Users,
   Workflow,
   X,
 } from "lucide-react";
@@ -70,6 +74,11 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         library: "مكتبتي",
         services: "الخدمات",
         advanced: "أدوات متقدمة",
+        operations: "التشغيل",
+        runs: "التشغيلات",
+        usage: "الاستخدام والتكلفة",
+        billing: "الفوترة",
+        team: "الفريق والأدوار",
         projects: "المشاريع",
         agents: "الوكلاء",
         flows: "التدفقات",
@@ -106,6 +115,11 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         library: "My library",
         services: "Services",
         advanced: "Advanced tools",
+        operations: "Operations",
+        runs: "Runs",
+        usage: "Usage & cost",
+        billing: "Billing",
+        team: "Team & roles",
         projects: "Projects",
         agents: "Agents",
         flows: "Flows",
@@ -148,11 +162,23 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
     { id: "knowledge", label: labels.knowledge, href: `${base}/knowledge`, icon: BookOpen },
     { id: "models", label: labels.models, href: `${base}/models`, icon: Boxes },
   ] as const;
+  /* KI-1 (2026-09-21): the operations layer joins the navigation as a
+     labelled fourth group — runs / usage / billing / team were fully working
+     routes with zero navigation entries (orphan pages). Skills & tools stay
+     reachable through the catalog tabs on the Models page (documented in
+     information-architecture.md §3). Command palette picks these up through
+     allItems below. */
+  const operationsItems = [
+    { id: "runs", label: labels.runs, href: `${base}/runs`, icon: ListChecks },
+    { id: "usage", label: labels.usage, href: `${base}/usage`, icon: Gauge },
+    { id: "billing", label: labels.billing, href: `${base}/billing`, icon: Receipt },
+    { id: "team", label: labels.team, href: `${base}/team`, icon: Users },
+  ] as const;
   const utilityItems = [
     { id: "library", label: labels.library, href: `${base}/library`, icon: Library },
     { id: "settings", label: labels.settings, href: `${base}/settings`, icon: Settings },
   ] as const;
-  const allItems = [...primaryItems, ...utilityItems, ...advancedItems];
+  const allItems = [...primaryItems, ...utilityItems, ...advancedItems, ...operationsItems];
   const normalized = query.trim().toLocaleLowerCase(locale);
   const filtered = normalized ? allItems.filter((item) => item.label.toLocaleLowerCase(locale).includes(normalized)) : allItems;
   const activeItem = allItems.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`));
@@ -289,6 +315,13 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
             <div className="universal-shell-nav__group">
               <div className="universal-shell-nav__label" aria-hidden="true">{labels.advanced}</div>
               <div className="universal-shell-nav__advanced-list">{advancedItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+            </div>
+            {/* Fourth group — the operations layer (KI-1 fix): same visual
+                register as advanced tools; nav scrolls independently when the
+                rail grows past the viewport (shell.css overflow rule). */}
+            <div className="universal-shell-nav__group">
+              <div className="universal-shell-nav__label" aria-hidden="true">{labels.operations}</div>
+              <div className="universal-shell-nav__advanced-list">{operationsItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
             </div>
             <div className="universal-shell-nav__utility">{utilityItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
           </nav>
