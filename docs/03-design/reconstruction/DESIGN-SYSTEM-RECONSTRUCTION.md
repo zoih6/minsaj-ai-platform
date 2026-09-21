@@ -1,6 +1,6 @@
 # DESIGN-SYSTEM-RECONSTRUCTION.md — Master Document
 ## W-DS · Rebuilding Minsaj as one designed product
-### Status: DRAFT — awaiting owner approval. No implementation before approval. No W-4 before W-DS completes.
+### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). Phase 0 (guardrails) in execution. No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
 
 > **Note on naming.** The owner's review refers to the product as **"Nasaq"**; this repository and its brand assets name it **Minsaj (منسج)**. Both names refer to the same product. This document set uses the repository name.
 >
@@ -133,3 +133,27 @@ Each phase exits through the two-gate protocol on its touched routes; phases do 
 1. Owner reviews this set (suggested order: this file → matrix CSV → DESIGN-TOKENS → NAVIGATION-ARCHITECTURE → the rest).
 2. Owner decisions required (recorded here on approval): **D-1** header glass level (NAV-07 default: 0.95 near-solid); **D-2** tablet default nav (RES-02 default: labeled expanded sidebar); **D-3** UNC-01 knowledge stats reproduction context; **D-4** dock weight preference (UNC-03); **D-5** confirmation of the implementation order.
 3. On approval: roadmap W-DS marked approved → phases scheduled → this header changes from DRAFT to APPROVED with date; any later amendment follows the token-admission protocol (six questions + owner sign-off).
+
+### 7.1 Approval record — 2026-09-22
+
+Owner approval received and recorded verbatim in the session log; substance:
+
+- The package correctly describes the current product state and diagnoses the visual-coherence and UX problems.
+- The audit results are accepted as measurement-, screenshot-, and evidence-backed, with a clear separation between objective measurement and visual impression.
+- The proposed system is **the approved specification**; all subsequent implementation must conform to it.
+- Implementation is approved to begin under the phases, constraints, and acceptance criteria of this document set.
+- Approval ≠ problems solved: no finding may be considered resolved before passing **Gate A and Gate B** and recording the new measurements.
+- **W-4 stays blocked** until the W-DS exit criteria defined here are met.
+- **Phase 0 is authorized to start immediately after this record is committed.**
+
+Owner decisions D-1..D-5, as left by this approval (defaults stand where the owner did not override):
+
+| Decision | Disposition after approval |
+|---|---|
+| **D-1** header glass level | **Default accepted** — NAV-07: near-solid 0.95 opacity on standard chrome (no override stated). |
+| **D-2** tablet default nav | **Default accepted** — RES-02: labeled expanded sidebar at 768–1023 fine-pointer. |
+| **D-3** UNC-01 knowledge-stats context | **Still open** — owner supplied no reproduction context; finding remains `unconfirmed-pending-owner` and is never deleted. |
+| **D-4** dock weight (UNC-03) | **Still open as a preference** — working rule until overridden: NAVIGATION-ARCHITECTURE §5 weight cap (exactly one shadow token + one hairline; dock never reads as a card). |
+| **D-5** implementation order | **Confirmed** — the §6 order (Phase 0 → 6) stands as approved. |
+
+Amendments after this record follow the token-admission protocol (six questions + owner sign-off).
