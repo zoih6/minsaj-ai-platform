@@ -1,6 +1,6 @@
 # DESIGN-SYSTEM-RECONSTRUCTION.md — Master Document
 ## W-DS · Rebuilding Minsaj as one designed product
-### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). Phase 0 (guardrails) in execution. No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
+### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`: guardrails live, baseline frozen, zero-drift proven on 100 cells). **Phase 1 (Foundations) authorized 2026-09-22 (§7.2) — in execution.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
 
 > **Note on naming.** The owner's review refers to the product as **"Nasaq"**; this repository and its brand assets name it **Minsaj (منسج)**. Both names refer to the same product. This document set uses the repository name.
 >
@@ -152,8 +152,20 @@ Owner decisions D-1..D-5, as left by this approval (defaults stand where the own
 |---|---|
 | **D-1** header glass level | **Default accepted** — NAV-07: near-solid 0.95 opacity on standard chrome (no override stated). |
 | **D-2** tablet default nav | **Default accepted** — RES-02: labeled expanded sidebar at 768–1023 fine-pointer. |
-| **D-3** UNC-01 knowledge-stats context | **Still open** — owner supplied no reproduction context; finding remains `unconfirmed-pending-owner` and is never deleted. |
-| **D-4** dock weight (UNC-03) | **Still open as a preference** — working rule until overridden: NAVIGATION-ARCHITECTURE §5 weight cap (exactly one shadow token + one hairline; dock never reads as a card). |
+| **D-3** UNC-01 knowledge-stats context | **Still open** — owner supplied no reproduction context; finding remains `unconfirmed-pending-owner` and is never deleted. Owner reconfirmed 2026-09-22 (§7.2): open until a reproducible context is provided; does not block Phase 1. |
+| **D-4** dock weight (UNC-03) | **Still open as a preference** — working rule until overridden: NAVIGATION-ARCHITECTURE §5 weight cap (exactly one shadow token + one hairline; dock never reads as a card). Owner reconfirmed 2026-09-22 (§7.2): floating dock, one shadow, light border, no per-route variations; does not block Phase 1. |
 | **D-5** implementation order | **Confirmed** — the §6 order (Phase 0 → 6) stands as approved. |
 
 Amendments after this record follow the token-admission protocol (six questions + owner sign-off).
+
+### 7.2 Phase 1 authorization record — 2026-09-22
+
+Owner message received after the Phase 0 completion report (original in Arabic, session log); substance:
+
+- **D-3 (UNC-01 knowledge-stats context)** — remains open until the owner supplies a reproducible context for the Knowledge-Sources stats-card observation. The finding stays `unconfirmed-pending-owner` and is never deleted. **Does not block Phase 1.**
+- **D-4 (dock weight, UNC-03)** — remains open as a visual preference. Working rule until overridden: **floating dock with exactly one shadow and a light border, and no per-route dock variations** (NAVIGATION-ARCHITECTURE §5 weight cap). **Does not block Phase 1.**
+- **Phase 1 — Foundations is approved to start now.** Phase 0 is complete (commit `3508d48`: G-7 token lint live in warn mode, baseline frozen, zero-drift proven on 100 cells), so Phase 1 proceeds under these binding constraints, restated from the owner's message:
+  1. The **Phase 0 baseline is maintained** as the comparison reference — never overwritten; new measurements are recorded as new baselines.
+  2. **No problem is declared solved** before passing Gate A and Gate B and recording new measurements.
+  3. **Phase 2 may not start before the Phase 1 exit gate is approved.**
+  4. **W-4 remains blocked** until the W-DS exit criteria are met.
