@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  analyzeSessionStateSchema,
   codeSessionStateSchema,
   createSessionStateSchema,
   handoffBundleSchema,
@@ -57,6 +58,11 @@ export const demoStoreDomainBlockSchema = z.discriminatedUnion("serviceId", [
     serviceId: z.literal("code"),
     stateVersion: z.literal(1),
     payload: codeSessionStateSchema,
+  }),
+  z.object({
+    serviceId: z.literal("analyze"),
+    stateVersion: z.literal(1),
+    payload: analyzeSessionStateSchema,
   }),
 ]);
 export type ServiceDomainBlock = z.infer<typeof demoStoreDomainBlockSchema>;

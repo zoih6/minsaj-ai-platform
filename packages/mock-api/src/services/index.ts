@@ -17,3 +17,4 @@ export * from "./learn";
 export * from "./research";
 export * from "./create";
 export * from "./code";
+export * from "./analyze";

@@ -9,6 +9,7 @@ import { getServiceDictionary } from "@minsaj/i18n/services";
 import { switchLocaleInPath } from "@minsaj/i18n";
 import type { ServiceId } from "@minsaj/contracts/services";
 import { CodeRoute } from "@/features/code/code-route";
+import { AnalyzeRoute } from "@/features/analyze/analyze-route";
 
 /**
  * Domain slice verification surface — shared by the W-3 slice preview pages.
@@ -25,6 +26,7 @@ import { CodeRoute } from "@/features/code/code-route";
 
 const implementedSliceRoutes: Partial<Record<ServiceId, (locale: Locale, scenarioId: ServiceScenarioId) => React.ReactNode>> = {
   code: (locale, scenarioId) => <CodeRoute locale={locale} scenarioId={scenarioId} />,
+  analyze: (locale, scenarioId) => <AnalyzeRoute locale={locale} scenarioId={scenarioId} />,
 };
 
 const sliceHarnessCopy = {

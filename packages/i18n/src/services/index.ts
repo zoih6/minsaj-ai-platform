@@ -17,6 +17,8 @@ import type { CreateCopy } from "./create-content";
 import { createContentAr, createContentEn } from "./create-content";
 import type { CodeCopy } from "./code-content";
 import { codeContentAr, codeContentEn } from "./code-content";
+import type { AnalyzeCopy } from "./analyze-content";
+import { analyzeContentAr, analyzeContentEn } from "./analyze-content";
 
 export type ServiceEntry = {
   label: string;
@@ -50,6 +52,12 @@ export type CreateServiceEntry = ServiceEntry & CreateCopy;
  * rationales, risk notes, static-check names and details, and stage UI strings.
  */
 export type CodeServiceEntry = ServiceEntry & CodeCopy;
+
+/**
+ * Analyze owns extra copy in U2.5: datasets, columns, compute steps and
+ * rationales, quality warnings, reconciliation checks, and stage UI strings.
+ */
+export type AnalyzeServiceEntry = ServiceEntry & AnalyzeCopy;
 
 export type ServiceDictionary = {
   workbench: {
@@ -129,7 +137,7 @@ export type ServiceDictionary = {
   runStatus: Record<ServiceRunStatus, string>;
   sessionStatus: Record<ServiceSessionStatus, string>;
   scenarios: Record<ServiceScenarioId, string>;
-  services: Record<ServiceId, ServiceEntry> & { learn: LearnServiceEntry; research: ResearchServiceEntry; create: CreateServiceEntry; code: CodeServiceEntry };
+  services: Record<ServiceId, ServiceEntry> & { learn: LearnServiceEntry; research: ResearchServiceEntry; create: CreateServiceEntry; code: CodeServiceEntry; analyze: AnalyzeServiceEntry };
 };
 
 const ar: ServiceDictionary = {
@@ -329,6 +337,7 @@ const ar: ServiceDictionary = {
         ana_verify: "التحقق",
         ana_complete: "الحفظ والإيصال",
       },
+      ...analyzeContentAr,
     },
     explore: {
       label: "استكشف واكتشف",
@@ -544,6 +553,7 @@ const en: ServiceDictionary = {
         ana_verify: "Verify",
         ana_complete: "Save and hand off",
       },
+      ...analyzeContentEn,
     },
     explore: {
       label: "Explore and discover",

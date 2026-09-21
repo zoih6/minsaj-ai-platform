@@ -154,7 +154,7 @@ flowchart TB
 | research | `R-U2-RSH-001` | domain_workspace | implemented |
 | create | `R-U2-CRT-001` | domain_workspace | implemented |
 | code | `R-U2-COD-001` | domain_workspace | implemented |
-| analyze | `R-U2-ANA-001` | prototype_service_workspace | foundation |
+| analyze | `R-U2-ANA-001` | domain_workspace | implemented |
 | explore | `R-U2-EXP-001` | prototype_service_workspace | foundation |
 | ask | — (البوابة المشتركة) | prototype عبر `/app/chat` (الاصطلاح: الهوية ask · المسار /chat) | gateway |
 

@@ -47,7 +47,21 @@ export const serviceRegistry = {
       "Gates: build clean, lint clean, tsc no new errors, 390px no horizontal scroll (ar/en × light/dark)",
     ],
   },
-  analyze: { serviceId: "analyze", route: "/app/analyze", screenId: "U2-ANA-001", routeId: "R-U2-ANA-001", renderer: "prototype_service_workspace", status: "foundation", foundationSurface: "/preview/service-foundation" },
+  analyze: {
+    serviceId: "analyze",
+    route: "/app/analyze",
+    screenId: "U2-ANA-001",
+    routeId: "R-U2-ANA-001",
+    renderer: "domain_workspace",
+    status: "implemented",
+    foundationSurface: "/preview/service-foundation",
+    sliceVerificationSurface: "/preview/service-analyze",
+    sliceReceipt: [
+      "W-3 2026-09-21: contracts/services/analyze.ts + i18n analyze-content (ar/en parity) + mock-api analyze rules",
+      "Verified: guided path source→profile→question→plan→compute→result→verify→complete, fast path, verify guard (no confirm with unacknowledged checks), warn on cleaned rows and empty assumptions",
+      "Gates: build clean, lint clean, tsc no new errors, 390px no horizontal scroll (ar/en × light/dark)",
+    ],
+  },
   explore: { serviceId: "explore", route: "/app/explore", screenId: "U2-EXP-001", routeId: "R-U2-EXP-001", renderer: "prototype_service_workspace", status: "foundation", foundationSurface: "/preview/service-foundation" },
 } as const satisfies Record<ServiceId, ServiceRegistryEntry>;
 
