@@ -1,253 +1,94 @@
-# Minsaj AI Platform
+# منسج · Minsaj AI Platform
 
-هذا المستودع يحتوي على **السورس الأساسي الحالي لمنصة Minsaj AI**، مع الأصول العامة اللازمة لواجهات الموقع. تم تبسيط المستودع والإبقاء على السورس والأصول وملفات التشغيل الأساسية فقط في الجذر:
+**منصة عمل موحّدة للذكاء الاصطناعي، عربية أولًا.** أفكارك خيوط ونحن ننسجها واقعًا — من النية إلى نتيجة منظمة يمكن فهمها وتعديلها وحفظها والعودة إليها.
 
 ```text
-README.md
-PRD.md
-package.json
-package-lock.json
-next.config.ts
-tsconfig.json
-postcss.config.mjs
-eslint.config.mjs
-components.json
-packages/
-public/
-src/
-.claude/
+النية → مساحة العمل → السياق → التنفيذ → مخرج منظم → الحفظ → الاستئناف
 ```
 
-## محتويات المستودع
+## نظرة عامة
 
-| المسار | الوصف |
+المنصة تعمل حاليًا كأساس واجهة وتجربة كامل على طبقة بيانات تجريبية (typed mock) — جاهزة للربط الخلفي دون تغيير الواجهة.
+
+| الطبقة | المحتوى |
 |---|---|
-| `src/` | تطبيق الموقع وواجهاته ومساراته ومكوّناته وميزاته وأنماط CSS. |
-| `packages/` | الحزم الداخلية المشتركة: العقود، الترجمة، بيانات المحاكاة، ومكوّنات UI. |
-| `public/` | الصور والشعارات والأنماط والأصول العامة المستخدمة في الموقع. |
-| `README.md` | وثيقة تعريفية بالحالة الحالية وبنية المشروع. |
-| `PRD.md` | تعريف المنتج ونطاقه وخريطة صفحاته. |
-| `.claude/skills/design-visual-frontend/` | مهارة الوكيل لتصميم وبناء ومراجعة الواجهات بصريًا. |
+| **الخدمات (7+1)** | اسأل · تعلّم · ابحث · أنشئ · برمج · حلّل · استكشف + مكتبتي |
+| **المساحات النطاقية** | تعلّم / ابحث / أنشئ — مساحات عمل متخصصة منجزة |
+| **بوابات الخدمات** | اسأل / برمج / حلّل / استكشف — بوابة موحدة بتسعة أقسام (أدوات عمل، أسلوب تنفيذ، ملقّن، مسار رباعي، بدايات سريعة…) |
+| **الأدوات المتقدمة** | المشاريع · الوكلاء · التدفقات · مصادر المعرفة · النماذج |
+| **طبقة التشغيل** | سجل التشغيلات · الاستخدام والتكلفة · الفوترة · الفريق والأدوار |
+| **الغلاف** | قائمة جانبية ثلاثية المجموعات · لوحة أوامر ⌘K · ثيم فاتح/داكن · عربي RTL / إنجليزي LTR |
 
-> مهارة `design-visual-frontend` مثبتة على مستوى المشروع داخل `.claude/skills/`، وتحافظ على ملف `SKILL.md` ومراجعها وملف تعريف OpenAI اللازم لاكتشافها.
+## الوثائق — يبدأ العمل من هنا
 
-## التقنية والبنية
+المشروع **يُدار بالوثائق**: كل ميزة وتفاعل وشاشة له مواصفة تُحدَّث مع الكود.
 
-المشروع مبني حول تطبيق React/Next.js داخل `src/`، مع طبقة حزم داخلية تحت `packages/`:
+| اقرأ | الملف |
+|---|---|
+| 🚪 دليل الجلسة الجديدة | [ONBOARDING.md](./ONBOARDING.md) |
+| 📜 مصدر الحقيقة الكامل | [AGENT.md](./AGENT.md) |
+| 🛡️ القواعد الحمراء | [AGENT-GUIDE.md](./AGENT-GUIDE.md) |
+| 📚 فهرس الوثائق الكامل | [docs/00-INDEX.md](./docs/00-INDEX.md) |
+| 🧭 المرحلة الحالية | [docs/05-process/roadmap.md](./docs/05-process/roadmap.md) |
+| ⚠️ العيوب المعروفة | [docs/05-process/known-issues.md](./docs/05-process/known-issues.md) |
+| 📝 سجل التغييرات | [CHANGELOG.md](./CHANGELOG.md) |
+| 🗒️ سجل العمل الحي | [worklog.md](./worklog.md) |
+
+## الحزمة التقنية
+
+Next.js 16 (App Router) · React 19 · TypeScript 5 · Radix UI · lucide-react · next-themes · cmdk · framer-motion · Zod 4 · Tailwind CSS 4 (متاح) مع هوية CSS معمارية مخصصة (14 طبقة تحت `src/app/styles/universal/`).
+
+**بنية monorepo:** `packages/contracts` (عقود Zod) · `packages/i18n` · `packages/mock-api` · `packages/ui`.
+
+## بنية المشروع
 
 ```text
 src/
-├── app/
-│   └── [locale]/
-│       ├── (marketing)/
-│       ├── app/
-│       └── preview/
-├── components/
-│   ├── app-shell/
-│   ├── domain/
-│   ├── marketing/
-│   ├── theme/
-│   └── universal/
-├── features/
-│   ├── create/
-│   ├── learn/
-│   ├── research/
-│   ├── service-foundation/
-│   └── service-workbench/
-├── hooks/
-├── lib/
-└── proxy.ts
-
-packages/
-├── contracts/
-├── i18n/
-├── mock-api/
-└── ui/
-
-public/
-└── brand/
-    ├── backgrounds/
-    ├── icons/
-    ├── logos/
-    ├── motion/
-    ├── patterns/
-    └── symbols/
+├── app/[locale]/          # كل المسارات تحت ar/en
+│   ├── (marketing)/       # صفحة الهبوط
+│   ├── app/               # التطبيق: home · chat · [service] · learn|research|create
+│   │                      #        · agents · flows · knowledge · models · runs · usage …
+│   └── preview/           # أسطح تحقق معزولة
+├── components/            # app-shell · universal (البوابات) · domain · marketing
+├── features/service-workbench/service-registry.ts   # سجل الخدمة الحاكم
+└── lib/universal-content.ts                          # بيانات الخدمات
+packages/                  # contracts · i18n · mock-api · ui
+docs/                      # منظومة الوثائق (منتج · تجربة · تصميم · هندسة · عملية)
 ```
 
-## هيكل صفحات الموقع
+خريطة المسارات الكاملة (34 مسارًا): [docs/02-experience/information-architecture.md](./docs/02-experience/information-architecture.md).
 
-تستخدم الصفحات متغير اللغة `[locale]`، مثل `ar` أو `en`:
+## التشغيل المحلي
 
-```text
-src/app/[locale]/
-├── (marketing)/page.tsx
-├── layout.tsx
-├── loading.tsx
-├── not-found.tsx
-│
-├── app/
-│   ├── page.tsx
-│   ├── layout.tsx
-│   ├── loading.tsx
-│   ├── error.tsx
-│   ├── home/page.tsx
-│   ├── chat/page.tsx
-│   ├── [service]/page.tsx
-│   ├── agents/
-│   │   ├── page.tsx
-│   │   ├── new/page.tsx
-│   │   └── [agentId]/edit/page.tsx
-│   ├── flows/
-│   │   ├── page.tsx
-│   │   ├── new/page.tsx
-│   │   └── [flowId]/edit/page.tsx
-│   ├── projects/
-│   │   ├── page.tsx
-│   │   └── [projectId]/page.tsx
-│   ├── runs/
-│   │   ├── page.tsx
-│   │   └── [runId]/page.tsx
-│   ├── knowledge/
-│   │   ├── page.tsx
-│   │   └── [collectionId]/page.tsx
-│   ├── models/
-│   │   ├── page.tsx
-│   │   ├── routing/page.tsx
-│   │   └── [modelId]/page.tsx
-│   ├── billing/page.tsx
-│   ├── usage/page.tsx
-│   ├── team/page.tsx
-│   ├── settings/page.tsx
-│   ├── skills/page.tsx
-│   └── tools/page.tsx
-│
-└── preview/
-    ├── page.tsx
-    └── service-foundation/page.tsx
+```bash
+git clone https://github.com/zoih6/minsaj-ai-platform.git
+cd minsaj-ai-platform
+npm ci                # لا متغيرات بيئة مطلوبة — طبقة mock مغلقة
+npm run dev           # → http://localhost:3000
 ```
 
-## صفحات القائمة الجانبية
-
-يتم تعريف القائمة الجانبية في:
-
-```text
-src/components/app-shell/app-shell.tsx
+```bash
+npm run build         # إنتاجي — يجب أن ينجح بكل المسارات
+npm run lint          # ESLint
+npx tsc --noEmit      # الأنواع (الأخطاء المعروفة الموثقةة وحدها مقبولة)
 ```
 
-وتحتوي على الأقسام والصفحات التالية:
+## النشر
 
-```text
-/{locale}/app/home       # لك — For you
-/{locale}/app/chat       # اسأل — Ask
-/{locale}/app/learn      # تعلّم — Learn
-/{locale}/app/research   # ابحث — Research
-/{locale}/app/create     # أنشئ — Create
-/{locale}/app/code       # برمج — Code
-/{locale}/app/analyze    # حلّل — Analyze
-/{locale}/app/explore    # استكشف — Explore
-/{locale}/app/library    # مكتبتي — My library
-```
+النشر **تلقائي على Vercel** عند كل دفعة إلى `main` (مشروع `minsaj-ai-platform`). لا متغيرات بيئة ولا قاعدة بيانات — التطبيق مستقل بالكامل على طبقته التجريبية.
 
-وتحت قسم الأدوات المتقدمة:
+**قبل كل دفعة (إلزامي):** build ناجح → lint نظيف → فحص بصري (ثيمان × اتجاهان + 390px) → تحديث الوثائق المتأثرة. التفصيل في [AGENT-GUIDE.md](./AGENT-GUIDE.md).
 
-```text
-/{locale}/app/projects   # المشاريع
-/{locale}/app/agents     # الوكلاء
-/{locale}/app/flows      # التدفقات
-/{locale}/app/knowledge  # مصادر المعرفة
-/{locale}/app/models     # النماذج
-```
+## قواعد المستودع
 
-أما إعدادات مساحة المستخدم والصفحات الإدارية فهي:
-
-```text
-/{locale}/app/settings
-/{locale}/app/billing
-/{locale}/app/usage
-/{locale}/app/team
-```
-
-## الخدمات الديناميكية
-
-الخدمات الأساسية مثل `learn` و`research` و`create` و`code` و`analyze` و`explore` تمر عبر المسار الديناميكي:
-
-```text
-src/app/[locale]/app/[service]/page.tsx
-```
-
-وتتوزع واجهاتها الفعلية على الميزات التالية:
-
-```text
-src/features/learn/
-src/features/research/
-src/features/create/
-src/features/service-workbench/
-```
-
-## المكوّنات والبيانات
-
-المكوّنات الخاصة بمجالات التطبيق موجودة في:
-
-```text
-src/components/domain/
-```
-
-وتشمل واجهات المشاريع والوكلاء والتدفقات والتشغيلات والإدارة والمحادثة. أما المكوّنات المشتركة والغلاف العام للموقع فتوجد في:
-
-```text
-src/components/app-shell/
-src/components/universal/
-src/components/theme/
-```
-
-وتوجد طبقة البيانات التجريبية والعقود والترجمة في:
-
-```text
-packages/contracts/
-packages/i18n/
-packages/mock-api/
-packages/ui/
-```
-
-## وثيقة المنتج
-
-للاطلاع على تعريف المنتج ونطاقه وخريطة صفحاته، راجع [PRD.md](./PRD.md).
-
-## مهارة تصميم الواجهات
-
-المسار المثبت للوكيل:
-
-```text
-.claude/skills/design-visual-frontend/
-├── SKILL.md
-├── agents/openai.yaml
-└── references/
-    ├── core-design.md
-    ├── surface-archetypes.md
-    ├── review-gates.md
-    ├── components-content.md
-    ├── domain-guidance.md
-    └── frontend-implementation.md
-```
-
-تُستخدم المهارة عند تصميم أو بناء أو إعادة تصميم أو مراجعة واجهات الموقع. وهي توجه الوكيل إلى تحليل المهمة أولًا، وبناء ورقة قرار تصميمية مختصرة، واستخدام المكوّنات القابلة لإعادة الاستخدام، والتحقق من السلوك responsive والحالات والتفاعل والنتيجة المرئية عبر المقاسات المطلوبة.
-
-بعد استنساخ المستودع، يبدأ الوكيل جلسة جديدة ليكتشف المهارة تلقائيًا، أو يمكن طلبها صراحةً:
-
-```text
-Use the design-visual-frontend skill to redesign or review this interface.
-```
+- 🔴 **لا أسرار:** المستودع عام — يمنع وضع أي توكن أو مفتاح في أي ملف.
+- الفرع الإنتاجي `main` فقط — لا force push.
+- أي مسار جديد يبدأ بصف في جدول IA قبل الكود.
+- أي تفاعل جديد يسجل في جدول التفاعلات بأثره الملموس — «كل زر له أثر».
 
 ## الحالة الحالية
 
-الفرع الحالي هو `main`، وتوجد مهارة تصميم الواجهات على مستوى المشروع لتكون متاحة للوكيل مباشرة بعد استنساخ المستودع.
-
-للحصول على تفاصيل التنفيذ، ابدأ من:
-
-```text
-src/app/[locale]/
-src/components/app-shell/app-shell.tsx
-src/features/
-packages/
-public/
-```
+- ✅ البناء الإنتاجي نظيف بكل المسارات والنشر الإنتاجي يعمل.
+- ✅ أساس الواجهة والتدويل والثيمات والوصولية مكتمل.
+- 🎯 **مرحلة العمل الحالية:** ربط منطق الاختيار (أداة العمل × أسلوب التنفيذ يعيد هيكلة الشاشة) — المواصفة جاهزة في [docs/02-experience/interaction-logic.md](./docs/02-experience/interaction-logic.md).
+- ⚠️ عيوب معروفة موثقةة تنتظر جدولتها: [known-issues.md](./docs/05-process/known-issues.md).
