@@ -68,10 +68,13 @@
    JS (RevealFx) toggles .is-visible; duration/easing from the six-token
    scale (expressive entrance); properties pinned to opacity+transform. */
 .ms-site .reveal-on-scroll {
+  /* P-1 (W-3.5): 14px travel + 320ms — a whisper, not a parade. The
+     template's 30px/480ms made sections feel like they were chasing the
+     scroll; smaller + faster reads as instant and intentional. */
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity var(--u-motion-duration-expressive) var(--u-motion-ease-enter),
-    transform var(--u-motion-duration-expressive) var(--u-motion-ease-enter);
+  transform: translateY(14px);
+  transition: opacity 320ms var(--u-motion-ease-enter),
+    transform 320ms var(--u-motion-ease-enter);
 }
 .ms-site .reveal-on-scroll.is-visible {
   opacity: 1;

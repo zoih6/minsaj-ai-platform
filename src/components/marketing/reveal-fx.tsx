@@ -48,8 +48,11 @@ export function RevealFx() {
             }
           }
         },
-        /* Template fidelity: visible when 15% enters the viewport. */
-        { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+        /* P-1 (W-3.5): reveal BEFORE the element fully enters the viewport
+           (+15% bottom margin, any-pixel threshold) — the template's -8%
+           margin made content pop in visibly late ("content chasing the
+           scroll"), which reads as a laggy, broken page. */
+        { threshold: 0, rootMargin: "0px 0px 15% 0px" },
       );
 
       tagged = targets;
