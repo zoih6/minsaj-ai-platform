@@ -458,7 +458,10 @@ img, svg { max-width: 100%; height: auto; }
   background: var(--u-bg);
   font-family: "Tajawal", "Inter", Tahoma, sans-serif;
   font-size: var(--u-text-md);
-  line-height: 1.55;
+  /* v23 Arabic-first rhythm (redesign QA): Arabic diacritics and ascenders
+     collide at 1.55 — the connected script needs a taller measure than
+     Latin UI. 1.7 holds both scripts; headings keep their own tighter roles. */
+  line-height: 1.7;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }

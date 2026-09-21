@@ -1,10 +1,15 @@
 /* ==========================================================================
-   SERVICE WORKSPACE — «Interactive Canvas» (reference-faithful rebuild)
+   SERVICE WORKSPACE — «Structured Gateway» (v24 structure restore)
    --------------------------------------------------------------------------
+   The full ten-section page architecture, restored: contextual nav →
+   welcome (eyebrow · badge · gradient title · lede · new session) →
+   work-mode toolbelt → execution style → glowing composer → four-step
+   path → trust note → quick starts → from your library.
+
    Design source: the approved ask-screen reference — an indigo glass canvas:
    glass panels, one glowing composer, animated gradient title, connected
-   stepper, quiet rows, floating dock. Rebuilt in the platform's token
-   architecture.
+   stepper, quiet rows — rebuilt as a linear narrative in the platform's
+   token architecture.
 
    Theme law: the canvas is THEME-AWARE. Every --sp-* token has a light value
    (glass-white surfaces, dark ink, contrast-verified accents) and a dark
@@ -13,9 +18,10 @@
    language (glass · glow · gradient title · quiet rows) holds in both.
 
    Responsive law: one composition, three widths. Mobile/tablet = the exact
-   reference single column. ≥1152px viewport = a studio stage: main column
-   (mode + composer + states) beside a quiet sticky rail (path + starts +
-   library) — the same sections, re-flowed, never redesigned.
+   reference single column. Wide canvas = the same sections at a wider
+   measure: toolbelt and starters flow into card grids, the path stepper
+   turns into a connected horizontal strip, the library pairs its rows.
+   Same sections, same order, re-flowed never redesigned.
 
    Discipline preserved: hover gated to (hover: hover); touch gets pressed
    feedback; 44px touch floor; logical properties only; focus rides the
@@ -66,7 +72,7 @@
 
   position: relative;
   isolation: isolate;
-  width: min(680px, 100%);
+  width: min(720px, 100%);
   margin-inline: auto;
   padding-block: 6px 24px;
   color: var(--sp-ink-soft);
@@ -118,38 +124,53 @@
 }
 
 /* ==========================================================================
-   QUICK SEARCH — a quiet field that opens the command palette
+   SERVICE NAV — contextual wayfinding between sibling spaces
    ========================================================================== */
-.service-search {
-  width: 100%;
-  min-height: 48px;
-  margin-block-end: 32px;
-  padding-inline: 16px;
+.service-nav {
+  margin-block-end: 30px;
+  padding-block-end: 14px;
+  border-block-end: 1px solid var(--sp-glass-line);
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid var(--sp-hairline);
-  border-radius: 16px;
-  background: var(--sp-row);
+  gap: 4px;
+}
+.service-nav__link {
+  min-height: var(--u-touch);
+  padding-inline: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: var(--u-radius-pill);
   color: var(--sp-muted);
-  font-size: var(--u-text-sm);
-  text-align: start;
+  font-size: var(--u-text-xs);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
-  box-shadow: var(--sp-inset);
-  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
+.service-nav__link svg { flex: 0 0 auto; }
 @media (hover: hover) {
-  .service-search:hover { border-color: rgba(var(--sp-accent-rgb), 0.5); background: var(--sp-card); color: var(--sp-ink-soft); }
+  .service-nav__link:hover { color: var(--sp-ink); background: var(--sp-row); }
 }
-.service-search:active { background: var(--sp-card); }
-.service-search span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.service-nav__link--back { color: var(--sp-accent); font-weight: 600; }
+@media (hover: hover) {
+  .service-nav__link--back:hover { color: var(--sp-accent); background: rgba(var(--sp-accent-rgb), 0.1); }
+}
+.service-nav__spacer { flex: 1; }
 
 /* ==========================================================================
    WELCOME — badge · animated gradient title · lede · new session
    ========================================================================== */
 .service-welcome { margin-block-end: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.service-welcome__eyebrow {
+  margin-block-end: 14px;
+  color: var(--sp-accent);
+  font-size: 11px;
+  font-weight: 700;
+}
 .service-welcome__badge {
-  margin-block-end: 20px;
+  margin-block-end: 14px;
   padding: 6px 12px;
   display: inline-flex;
   align-items: center;
@@ -205,10 +226,69 @@
 .service-welcome__new:active { background: var(--sp-line); }
 
 /* ==========================================================================
-   MODE SWITCH — segmented control, active = raised pill
+   SHARED SECTION HEAD — quiet label + optional hint
    ========================================================================== */
+.service-section-head { margin-block-end: 14px; padding-inline: 4px; display: flex; flex-direction: column; gap: 3px; }
+.service-section-head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
+.service-section-head p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.6; }
+
+/* ==========================================================================
+   TOOLBELT — work-mode selection: the service toolkit as toggles
+   ========================================================================== */
+.service-toolbelt { margin-block-end: 40px; }
+.service-toolbelt__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.service-tool {
+  position: relative;
+  min-height: 60px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 16px;
+  background: var(--sp-row);
+  color: var(--sp-ink-soft);
+  text-align: start;
+  cursor: pointer;
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-tool:not(.is-on):hover { border-color: var(--sp-hover-line); background: var(--sp-card); }
+}
+.service-tool__icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--sp-card);
+  color: var(--sp-muted);
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.service-tool strong { flex: 1; min-width: 0; font-size: var(--u-text-sm); font-weight: 600; }
+.service-tool__check {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--sp-line);
+  border-radius: 50%;
+  background: var(--sp-bg);
+  color: transparent;
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.service-tool.is-on { border-color: rgba(var(--sp-accent-rgb), 0.45); background: rgba(var(--sp-accent-rgb), 0.06); color: var(--sp-ink); }
+.service-tool.is-on .service-tool__icon { color: var(--sp-accent); border-color: rgba(var(--sp-accent-rgb), 0.3); background: rgba(var(--sp-accent-rgb), 0.12); }
+.service-tool.is-on .service-tool__check { border-color: var(--sp-accent-strong); background: var(--sp-accent-strong); color: #fff; }
+
+/* ==========================================================================
+   MODE SWITCH — execution style: two rich cards, active = raised panel
+   ========================================================================== */
+.service-mode { margin-block-end: 40px; }
 .service-mode-switch {
-  margin-block-end: 24px;
   padding: 4px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -217,19 +297,20 @@
   background: var(--sp-surface);
 }
 .service-mode-switch button {
-  min-height: 56px;
-  padding: 8px 10px;
+  min-height: 92px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   border: 1px solid transparent;
   border-radius: 12px;
   background: transparent;
   color: var(--sp-muted);
   font-size: var(--u-text-sm);
   font-weight: 500;
+  text-align: start;
   cursor: pointer;
   transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
@@ -249,12 +330,12 @@
 .service-mode-switch button:not(.is-active) .service-mode-switch__label strong { font-weight: 500; }
 .service-mode-switch button:first-child .service-mode-switch__label svg { color: var(--sp-accent); }
 .service-mode-switch button:last-child .service-mode-switch__label svg { color: var(--sp-amber); }
-.service-mode-switch small { color: var(--sp-muted); font-size: 10px; font-weight: 400; line-height: 1.4; }
+.service-mode-switch small { color: var(--sp-muted); font-size: 11px; font-weight: 400; line-height: 1.6; }
 
 /* ==========================================================================
    THE COMPOSER — the one glowing container on the stage
+   (width law + spacing live in the WIDTH LADDER block at the foot of this file)
    ========================================================================== */
-.service-composer-zone { margin-block-end: 40px; }
 .service-prompt-shell {
   padding: 4px;
   border: 1px solid transparent;
@@ -263,17 +344,27 @@
     linear-gradient(var(--sp-card), var(--sp-card)) padding-box,
     linear-gradient(135deg, rgba(var(--sp-accent-rgb), 0.45), var(--sp-void) 62%) border-box;
   box-shadow: var(--sp-composer-shadow);
-  transition: box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+  transition: box-shadow var(--u-motion-duration-moderate) var(--u-motion-ease-standard), background var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
 }
-.service-prompt-shell:focus-within { box-shadow: var(--sp-composer-shadow-focus); }
+.service-prompt-shell:focus-within {
+  box-shadow: var(--sp-composer-shadow-focus);
+  /* v23 interactive affordance (redesign QA): the resting gradient border at
+     0.45 read as a static card — focus re-ignites the border gradient so the
+     composer visibly answers the user before any keystroke. */
+  background:
+    linear-gradient(var(--sp-card), var(--sp-card)) padding-box,
+    linear-gradient(135deg, rgba(var(--sp-accent-rgb), 0.85), rgba(var(--sp-accent-rgb), 0.3) 62%) border-box;
+}
 .service-prompt-shell:has(textarea[aria-invalid="true"]) {
   background:
     linear-gradient(var(--sp-card), var(--sp-card)) padding-box,
     linear-gradient(135deg, rgba(var(--sp-red-rgb, 215, 55, 63), 0.55), var(--sp-void) 62%) border-box;
 }
 
-.service-prompt-area { padding: 16px; border-radius: 20px; background: var(--sp-card); }
-.service-prompt-area__head { margin-block-end: 12px; padding-inline: 4px; display: flex; align-items: center; gap: 8px; }
+.service-prompt-area { padding: 18px; border-radius: 20px; background: var(--sp-card); }
+.service-prompt-area__head { margin-block-end: 12px; padding-inline: 4px; display: flex; align-items: center; gap: 10px; }
+.service-prompt-area__heading { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.service-prompt-area__eyebrow { color: var(--sp-accent); font-size: 10px; font-weight: 700; line-height: 1.4; }
 .service-prompt-area__orb {
   width: 24px;
   height: 24px;
@@ -317,27 +408,28 @@
   justify-content: space-between;
   gap: 8px;
 }
-.service-prompt-area__tools { display: flex; align-items: center; gap: 6px; }
-.service-prompt-area__tools button {
-  width: var(--u-touch);
-  height: var(--u-touch);
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
+.service-prompt-area__tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.service-afford {
+  min-height: var(--u-touch);
+  padding-inline: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: var(--u-radius-pill);
   background: transparent;
   color: var(--sp-muted);
+  font-size: var(--u-text-xs);
+  font-weight: 500;
   cursor: pointer;
-  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+  white-space: nowrap;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
+.service-afford svg { flex: 0 0 auto; }
 @media (hover: hover) {
-  .service-prompt-area__tools button:hover { color: var(--sp-ink); background: var(--sp-surface); }
+  .service-afford:hover { color: var(--sp-ink); background: var(--sp-surface); border-color: var(--sp-hairline); }
 }
-.service-prompt-area__tools button:active { background: var(--sp-surface); }
-.service-prompt-area__tools button.is-smart { color: rgba(var(--sp-accent-rgb), 0.75); }
-@media (hover: hover) {
-  .service-prompt-area__tools button.is-smart:hover { color: var(--sp-accent); }
-}
+.service-afford:active { background: var(--sp-surface); }
 
 /* Primary action — filled indigo, soft glow, arrow lifts on hover */
 .service-start-button {
@@ -521,29 +613,20 @@
 }
 
 /* ==========================================================================
-   PATH — connected stepper + privacy note
+   PATH — the four-step contract; a connected strip on a wide canvas
    ========================================================================== */
 .service-path-card {
-  margin-block-end: 40px;
+  margin-block-end: 24px;
   padding: 20px;
   border: 1px solid var(--sp-glass-line);
   border-radius: 24px;
   background: var(--sp-panel);
 }
-.service-path-card__head { margin-block-end: 24px; display: flex; align-items: center; gap: 8px; }
+.service-path-card__head { margin-block-end: 18px; display: flex; align-items: center; gap: 8px; }
 .service-path-card__head svg { flex: 0 0 auto; color: var(--sp-accent); }
 .service-path-card__head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
-.service-path-card__steps { position: relative; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 20px; }
-.service-path-card__steps::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 13px;
-  inset-block: 16px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--sp-accent-strong), var(--sp-line));
-  opacity: 0.5;
-}
-.service-path-card li { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+.service-path-card__steps { position: relative; margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+.service-path-card li { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; }
 .service-path-card li > span {
   width: 28px;
   height: 28px;
@@ -552,39 +635,48 @@
   place-items: center;
   border: 1px solid var(--sp-line);
   border-radius: 50%;
-  background: var(--sp-bg);
+  background: var(--sp-card);
   color: var(--sp-muted);
-  font: 700 12px / 1 var(--sp-font-display);
+  font: 700 11px / 1 var(--sp-font-display);
   transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
 .service-path-card li.is-current > span { border-color: var(--sp-accent-strong); color: var(--sp-accent); box-shadow: 0 0 10px rgba(var(--sp-accent-rgb), 0.3); }
 .service-path-card li.is-complete > span { border-color: var(--sp-accent-strong); background: var(--sp-accent-strong); color: #fff; }
-.service-path-card li p { margin: 0; color: var(--sp-muted); font-size: var(--u-text-sm); transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
+.service-path-card li p { margin: 0; color: var(--sp-muted); font-size: var(--u-text-sm); line-height: 1.6; transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
 .service-path-card li.is-current > p,
 .service-path-card li.is-complete > p { color: var(--sp-ink-soft); }
 @media (hover: hover) {
   .service-path-card li:hover > span { border-color: var(--sp-accent); color: var(--sp-accent); }
   .service-path-card li:hover > p { color: var(--sp-ink-soft); }
 }
-.service-path-card__note {
-  margin-block-start: 24px;
-  padding-block-start: 16px;
-  border-block-start: 1px solid var(--sp-glass-line);
+
+/* ==========================================================================
+   TRUST — the transparency note under the path
+   ========================================================================== */
+.service-trust {
+  margin-block-end: 40px;
+  padding: 12px 18px;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px dashed rgba(var(--sp-accent-rgb), 0.32);
+  border-radius: var(--u-radius-pill);
+  background: rgba(var(--sp-accent-rgb), 0.04);
+  color: var(--sp-muted);
 }
-.service-path-card__note svg { flex: 0 0 auto; margin-block-start: 2px; color: var(--sp-mint); }
-.service-path-card__note p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.7; }
+.service-trust svg { flex: 0 0 auto; color: var(--sp-mint); }
+.service-trust p { margin: 0; font-size: 11px; line-height: 1.7; text-align: center; }
 
 /* ==========================================================================
    LOWER — quick starts + library, quiet rows
    ========================================================================== */
-.service-lower { display: flex; flex-direction: column; gap: 32px; }
-.service-lower__head { margin-block-end: 12px; padding-inline: 4px; display: flex; align-items: center; justify-content: space-between; }
+.service-lower { display: flex; flex-direction: column; gap: 40px; }
+.service-lower__head { margin-block-end: 14px; padding-inline: 4px; display: flex; flex-direction: column; gap: 3px; }
 .service-lower__head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
+.service-lower__head p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.6; }
 
-.service-starters { display: flex; flex-direction: column; gap: 8px; }
+.service-starters { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .service-starters button {
   width: 100%;
   min-height: 58px;
@@ -627,7 +719,7 @@
   [dir="ltr"] .service-starters button:hover > svg { color: var(--sp-accent); transform: translateX(6px); }
 }
 
-.service-mini-library { display: flex; flex-direction: column; gap: 8px; }
+.service-mini-library { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
 .service-mini-library a {
   width: 100%;
   min-height: 62px;
@@ -685,46 +777,52 @@
 }
 
 /* ==========================================================================
-   STAGE — mobile: fully transparent wrappers (margins flow exactly as the
-   reference single column). Wide canvas: a studio grid — main column beside
-   a quiet sticky rail. Same sections, same order, re-flowed not redesigned.
-
-   The stage is CONTAINER-driven (≥900px of canvas): with the sidebar
-   expanded the split lands ≈1280px viewport, with the rail collapsed it
-   lands earlier — the layout responds to real available width, not the
-   viewport number. Width growth rides the protected shell ladder (1024).
+   WIDTH LADDER + RESPONSIVE REFLOW — one composition, three widths.
+   The container drives the reflow: toolbelt and starters flow into card
+   grids, the path stepper becomes a connected strip, the library pairs.
    ========================================================================== */
-.service-stage,
-.service-stage__main,
-.service-stage__rail { display: contents; }
+
+.service-composer-zone {
+  margin-block-end: 40px;
+  width: 100%;
+  max-width: 840px;
+  margin-inline: auto;
+}
 
 @media (min-width: 1024px) {
   .service-space {
-    width: min(1200px, 100%);
+    width: min(1040px, 100%);
     padding-block: 12px 48px;
   }
 }
 
+@container service-space (min-width: 480px) {
+  .service-toolbelt__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@container service-space (min-width: 560px) {
+  .service-starters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .service-path-card__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @container service-space (min-width: 900px) {
-  .service-stage {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(300px, 30%, 360px);
-    column-gap: clamp(28px, 4vw, 56px);
-    align-items: start;
-  }
-  .service-stage__main { display: block; }
-  .service-stage__rail {
-    display: block;
-    position: sticky;
-    inset-block-start: calc(var(--u-topbar, 66px) + 24px);
-  }
   /* The welcome hero breathes on the wide canvas */
   .service-welcome { margin-block-end: 56px; }
   .service-welcome__title { font-size: clamp(36px, 3vw, 44px); }
   .service-welcome__lede { max-width: 480px; }
-  /* Rail sections go quiet-tight; the stage gap carries the rhythm */
-  .service-path-card { margin-block-end: 24px; }
-  .service-lower { gap: 24px; }
+  /* The path turns into a connected horizontal strip */
+  .service-path-card__steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .service-path-card li { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .service-path-card__steps::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 14px;
+    inset-inline: 14px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--sp-accent-strong), var(--sp-line));
+    opacity: 0.5;
+  }
+  .service-mini-library { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ==========================================================================

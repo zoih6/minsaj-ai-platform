@@ -49,6 +49,24 @@
 .ops-page > .u2-workbench,
 .ops-page > .knowledge-sources-panel { margin-block: 0; }
 .ops-page > .compare-dock { margin-block-start: 0; }
+/* §1.1 BUGFIX (ghost void, 2026-09-21 redesign QA): .library-toolbar was
+   authored for the horizontal .library-toolbar-row context (flex: 1 1 340px
+   = horizontal growth). Under the columnar .ops-page the SAME rule became
+   flex-basis 340px of HEIGHT + vertical grow — stretching toolbars into a
+   ~340px void on agents/flows/runs/knowledge/team/catalog. Scope the growth
+   to the row context; inside ops-page the toolbar is content-sized. */
+.ops-page > .library-toolbar { flex: 0 1 auto; }
+/* §1.2 Rhythm law completion: zero the stacked sibling margins so every
+   top-level breath is exactly --mj-gap-block (48px at 1440) — measured
+   drift was 48/64/68px between sections before this rule. */
+.ops-page > .ops-stats,
+.ops-page > .library-toolbar,
+.ops-page > .view-switch,
+.ops-page > .library-toolbar-row,
+.ops-page > .agent-library,
+.ops-page > .flow-library,
+.ops-page > .runs-table-card,
+.ops-page > section { margin-block-end: 0; }
 
 /* Non-ops contexts (system pages) keep a token margin, not raw 28px. */
 .page-header { margin-block-end: var(--mj-gap-block); gap: var(--mj-gap-sm) var(--mj-gap-md); }

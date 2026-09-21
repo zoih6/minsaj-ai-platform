@@ -46,24 +46,24 @@ export function SiteHero({ locale, copy, appHref }: { locale: Locale; copy: Mark
       {/* Backdrop bloom — the template's dark-only glow */}
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/4 hidden h-[400px] w-full max-w-3xl -translate-x-1/2 rounded-full bg-brand-dark/20 blur-[120px] dark:block dark:bg-brand-dark/30" />
 
-      <div className="reveal-on-scroll mb-8 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-4 py-2 text-xs font-medium text-brand-dark dark:text-brand-light sm:text-sm font-display">
+      <div className="reveal-on-scroll mb-7 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-4 py-1.5 text-xs font-medium text-brand-dark dark:text-brand-light sm:text-sm font-display">
         <Sparkles size={14} aria-hidden="true" />
         {copy.eyebrow}
       </div>
 
       <h1
-        className={`reveal-on-scroll mb-6 mx-auto max-w-5xl font-display text-4xl font-extrabold text-slate-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl ${isArabic ? "leading-[1.4]" : "leading-[1.3]"}`}
+        className={`reveal-on-scroll mb-7 mx-auto max-w-5xl font-display text-4xl font-extrabold text-slate-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl ${isArabic ? "leading-[1.55]" : "leading-[1.25]"}`}
       >
         {copy.headlineA}
         <br className="block sm:hidden" />{" "}
         <span className="text-gradient">{copy.headlineB}</span>
       </h1>
 
-      <p className="reveal-on-scroll mb-10 mx-auto max-w-3xl font-body text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg lg:text-xl">
+      <p className="reveal-on-scroll mb-8 mx-auto max-w-3xl font-body text-sm leading-loose text-slate-600 dark:text-slate-400 sm:text-lg lg:text-xl">
         {copy.body}
       </p>
 
-      <div className="reveal-on-scroll mb-12 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
+      <div className="reveal-on-scroll mb-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
         <Link
           href={appHref}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-dark px-8 py-3.5 font-display font-semibold text-white shadow-glow transition-all hoverable:hover:-translate-y-1 hoverable:hover:bg-brand-deep sm:w-auto active:scale-[.98]"
@@ -95,8 +95,11 @@ export function SiteHero({ locale, copy, appHref }: { locale: Locale; copy: Mark
         </div>
       </div>
 
-      {/* Visual stage — the template frame, now carrying the identity film */}
-      <div className="reveal-on-scroll group relative mx-auto mt-16 flex aspect-video w-full max-w-4xl items-center justify-center overflow-hidden rounded-3xl sm:aspect-auto sm:h-[400px]">
+      {/* Visual stage — the template frame, now carrying the identity film.
+          v23 grounding (redesign QA): the raw stage read as a floating asset
+          cut off by the fold — a hairline ring + authored shadow tie the film
+          to the page canvas while the template fade still breathes below. */}
+      <div className="reveal-on-scroll group relative mx-auto mt-14 flex aspect-video w-full max-w-4xl items-center justify-center overflow-hidden rounded-3xl shadow-2xl shadow-slate-900/10 ring-1 ring-slate-900/10 dark:shadow-black/40 dark:ring-white/10 sm:aspect-auto sm:h-[400px]">
         <video
           ref={videoRef}
           className="ms-hero-video transition-transform duration-500 hoverable:group-hover:scale-105"

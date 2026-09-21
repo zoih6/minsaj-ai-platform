@@ -98,6 +98,27 @@
 .universal-shell-nav { position: relative; z-index: 1; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 2px 2px 12px; scrollbar-width: thin; scrollbar-color: rgba(148, 152, 200, 0.25) transparent; }
 .universal-shell-nav::-webkit-scrollbar { width: 5px; }
 .universal-shell-nav::-webkit-scrollbar-thumb { background: rgba(148, 152, 200, 0.25); border: 0; border-radius: var(--u-radius-pill); }
+
+/* ---- Nav groups (2026-09-21 redesign): three named clusters give the
+   15-destination rail a scan hierarchy — services, advanced tools, and
+   personal utilities are labelled instead of carrying identical weight. */
+.universal-shell-nav__group { display: grid; gap: 5px; }
+.universal-shell-nav__group + .universal-shell-nav__group,
+.universal-shell-nav__group + .universal-shell-nav__utility { margin-block-start: 16px; }
+
+.universal-shell-nav__label {
+  padding: 0 12px 1px;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 650;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--u-shell-muted);
+  user-select: none; pointer-events: none;
+  white-space: nowrap;
+}
+/* Arabic script discipline (universal.css §4): tracking tears connected
+   glyph joins — RTL labels carry zero letter-spacing, uppercase is a no-op. */
+[dir="rtl"] .universal-shell-nav__label { letter-spacing: 0; }
+
 .universal-shell-nav__main { display: grid; gap: var(--mj-gap-2xs); }
 
 .universal-shell-link {
@@ -135,21 +156,11 @@
 
 .universal-shell-nav__utility { margin-block-start: 14px; padding-block-start: 13px; display: grid; gap: var(--mj-gap-2xs); border-block-start: 1px solid var(--u-shell-line); }
 
-.universal-shell-advanced { min-height: var(--mj-touch); padding: 6px 10px; display: grid; grid-template-columns: 27px minmax(0, 1fr) 14px; align-items: center; gap: var(--mj-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: var(--u-shell-ink-soft); background: transparent; text-align: start; cursor: pointer; touch-action: manipulation; transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard); }@media (hover: hover) {
-  .universal-shell-advanced:hover { color: var(--u-shell-ink); background: rgba(126, 132, 171, 0.14); }
-}
-
-.universal-shell-advanced > span { width: 27px; height: 27px; display: grid; place-items: center; color: var(--u-shell-icon); }
-.universal-shell-advanced b { font-size: var(--u-text-xs); font-weight: 550; white-space: nowrap; }
-.universal-shell-advanced > svg { color: var(--u-shell-icon-dim); transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-spring); }
-.universal-shell-advanced.is-open > svg { transform: rotate(180deg); }
-
-.universal-shell-advanced-region { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
-.universal-shell-advanced-region[data-state="open"] { grid-template-rows: 1fr; }
-.universal-shell-advanced-region > div { overflow: hidden; min-height: 0; }
-
-.universal-shell-advanced-list { margin-inline-start: 18px; padding: 2px 0 2px 8px; border-inline-start: 1px solid rgba(148, 152, 200, 0.16); }
-.universal-shell-advanced-list .universal-shell-link { min-height: var(--mj-touch); }
+/* Advanced tools cluster — full citizens beside services (accordion retired
+   in the 2026-09-21 redesign): slightly smaller icons keep the secondary
+   register while the group label carries the hierarchy. */
+.universal-shell-advanced-list { display: grid; gap: 2px; }
+.universal-shell-advanced-list .universal-shell-link { min-height: 40px; padding-block: 4px; }
 .universal-shell-advanced-list .universal-shell-link > span { width: 23px; height: 23px; }
 
 /* Profile footer — always fully visible; nav above it scrolls independently */
@@ -295,10 +306,10 @@
   .universal-app-shell[data-sidebar="rail"] .universal-shell-brand { justify-content: center; gap: 0; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-new,
   .universal-app-shell[data-sidebar="rail"] .universal-shell-link { padding-inline: 0; justify-content: center; }
-  .universal-app-shell[data-sidebar="rail"] .universal-shell-advanced { grid-template-columns: 27px; justify-content: center; }
-  .universal-app-shell[data-sidebar="rail"] .universal-shell-advanced-list { margin: 0; padding: 0; border: 0; }
+  .universal-app-shell[data-sidebar="rail"] .universal-shell-nav__group + .universal-shell-nav__group,
+  .universal-app-shell[data-sidebar="rail"] .universal-shell-nav__group + .universal-shell-nav__utility { margin-block-start: 10px; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-profile > a { grid-template-columns: 36px; justify-content: center; }
-  .universal-app-shell[data-sidebar="rail"] .universal-shell-sidebar :is(.universal-shell-brand b, .universal-shell-brand > svg, .universal-shell-new b, .universal-shell-link b, .universal-shell-link > i, .universal-shell-advanced b, .universal-shell-advanced > svg, .universal-shell-profile > a > span:nth-child(2), .universal-shell-profile > a > svg) { display: none; }
+  .universal-app-shell[data-sidebar="rail"] .universal-shell-sidebar :is(.universal-shell-brand b, .universal-shell-brand > svg, .universal-shell-new b, .universal-shell-link b, .universal-shell-link > i, .universal-shell-nav__label, .universal-shell-profile > a > span:nth-child(2), .universal-shell-profile > a > svg) { display: none; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-link > span { margin-inline: auto; }
 
   /* expanded on tablet = overlay drawer (content keeps rail offset) */

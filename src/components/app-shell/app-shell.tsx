@@ -3,7 +3,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Bell,
   BookOpen,
@@ -11,7 +11,6 @@ import {
   Boxes,
   ChartNoAxesCombined,
   CheckCircle2,
-  ChevronDown,
   Code2,
   Command,
   Compass,
@@ -56,9 +55,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   const [overlayOpen, setOverlayOpen] = useState(false);      // tablet expand-over-content
   const [commandOpen, setCommandOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [advancedOpen, setAdvancedOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const advancedRegionRef = useRef<HTMLDivElement | null>(null);
 
   const labels = isArabic
     ? {
@@ -71,6 +68,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         analyze: "حلّل",
         explore: "استكشف",
         library: "مكتبتي",
+        services: "الخدمات",
         advanced: "أدوات متقدمة",
         projects: "المشاريع",
         agents: "الوكلاء",
@@ -106,6 +104,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         analyze: "Analyze",
         explore: "Explore",
         library: "My library",
+        services: "Services",
         advanced: "Advanced tools",
         projects: "Projects",
         agents: "Agents",
@@ -240,20 +239,6 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
     return () => window.removeEventListener("minsaj:command-open", openCommand);
   }, []);
 
-  function toggleAdvanced() {
-    setAdvancedOpen((value) => !value);
-  }
-
-  /* Keep newly revealed advanced items in view — the nav scrolls internally,
-     so expansion could otherwise land below the fold on short viewports. */
-  useEffect(() => {
-    if (!advancedOpen) return;
-    const frame = window.requestAnimationFrame(() => {
-      advancedRegionRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [advancedOpen]);
-
   function isActive(href: string) {
     return pathname === href || pathname.startsWith(`${href}/`);
   }
@@ -292,13 +277,20 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
           <Link href={`${base}/home`} className="universal-shell-new" onClick={closeTransient} title={labels.start}><span><Plus size={18} /></span><b>{labels.start}</b></Link>
 
           <nav className="universal-shell-nav">
-            <div className="universal-shell-nav__main">{primaryItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
-            <div className="universal-shell-nav__utility"><ShellNavLink item={utilityItems[0]} active={isActive(utilityItems[0].href)} onNavigate={closeTransient} />
-              <button type="button" className={`universal-shell-advanced${advancedOpen ? " is-open" : ""}`} onClick={toggleAdvanced} aria-expanded={advancedOpen} aria-controls="universal-advanced-nav" title={labels.advanced}><span><Sparkles size={18} /></span><b>{labels.advanced}</b><ChevronDown size={14} /></button>
-              <div id="universal-advanced-nav" ref={advancedRegionRef} className="universal-shell-advanced-region" data-state={advancedOpen ? "open" : "closed"} aria-hidden={!advancedOpen}>
-                <div className="universal-shell-advanced-list">{advancedItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} tabIndex={advancedOpen ? 0 : -1} key={item.id} />)}</div>
-              </div>
+            {/* Redesign QA (2026-09-21): flat 15-item list had no scan
+                hierarchy — services, advanced tools, and personal utilities
+                carried identical weight. Three labelled groups (the Linear /
+                Notion nav grammar) replace the hidden advanced accordion:
+                every destination is one glance away, groups are named. */}
+            <div className="universal-shell-nav__group">
+              <div className="universal-shell-nav__label" aria-hidden="true">{labels.services}</div>
+              <div className="universal-shell-nav__main">{primaryItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
             </div>
+            <div className="universal-shell-nav__group">
+              <div className="universal-shell-nav__label" aria-hidden="true">{labels.advanced}</div>
+              <div className="universal-shell-nav__advanced-list">{advancedItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+            </div>
+            <div className="universal-shell-nav__utility">{utilityItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
           </nav>
 
           <div className="universal-shell-profile">
