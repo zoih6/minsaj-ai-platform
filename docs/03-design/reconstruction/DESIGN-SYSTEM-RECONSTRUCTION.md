@@ -1,6 +1,6 @@
 # DESIGN-SYSTEM-RECONSTRUCTION.md — Master Document
 ## W-DS · Rebuilding Minsaj as one designed product
-### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. Awaiting owner approval of the Phase 1 exit gate before Phase 2.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
+### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. **Phase 1 exit gate approved by the owner 2026-09-22; Phase 2 (Surfaces) authorized to start (§7.3).** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
 
 > **Note on naming.** The owner's review refers to the product as **"Nasaq"**; this repository and its brand assets name it **Minsaj (منسج)**. Both names refer to the same product. This document set uses the repository name.
 >
@@ -169,3 +169,12 @@ Owner message received after the Phase 0 completion report (original in Arabic, 
   2. **No problem is declared solved** before passing Gate A and Gate B and recording new measurements.
   3. **Phase 2 may not start before the Phase 1 exit gate is approved.**
   4. **W-4 remains blocked** until the W-DS exit criteria are met.
+
+### 7.3 Phase 1 exit gate approval + Phase 2 authorization record — 2026-09-22
+
+Owner message received after the Phase 1 completion report (original in Arabic — «نعم ابدأ phase 2»; session log); substance:
+
+- **The Phase 1 exit gate is approved.** The Phase 1 evidence package (frozen baseline `evidence/baselines/phase1/`, 238 field diffs all classified into approved categories, Gate A clean, Gate B within Phase-1 scope, TYP-02/TYP-03 resolved by measurement) is accepted as satisfying the Phase 1 exit criteria.
+- **Phase 2 — Surfaces is authorized to start now**: settings + ops pages rebuilt on `mj-surface`; anti-nesting refactor (workbench + gateway); DataList for record collections. Target findings: **HIE-02 (P1), SUR-01 (P0), HIE-03 (P2)**.
+- The standing constraints carry over unchanged: Phase 0/Phase 1 baselines are maintained (never overwritten); **no finding is declared resolved before Gate A + Gate B pass with new measurements**; Phase 3 does not start before the Phase 2 exit gate is approved; **W-4 remains blocked**.
+- D-3 and D-4 remain open (§7.1/§7.2 dispositions stand) and do not block Phase 2.
