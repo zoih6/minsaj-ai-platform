@@ -62,7 +62,21 @@ export const serviceRegistry = {
       "Gates: build clean, lint clean, tsc no new errors, 390px no horizontal scroll (ar/en × light/dark)",
     ],
   },
-  explore: { serviceId: "explore", route: "/app/explore", screenId: "U2-EXP-001", routeId: "R-U2-EXP-001", renderer: "prototype_service_workspace", status: "foundation", foundationSurface: "/preview/service-foundation" },
+  explore: {
+    serviceId: "explore",
+    route: "/app/explore",
+    screenId: "U2-EXP-001",
+    routeId: "R-U2-EXP-001",
+    renderer: "domain_workspace",
+    status: "implemented",
+    foundationSurface: "/preview/service-foundation",
+    sliceVerificationSurface: "/preview/service-explore",
+    sliceReceipt: [
+      "W-3 2026-09-21: contracts/services/explore.ts + i18n explore-content (ar/en parity) + mock-api explore graph",
+      "Verified: guided path seed→map→node→trail→checkpoint→complete, fast path (whole-map visits), trail guard (empty trail blocks checkpoint), prune is reversible",
+      "Gates: build clean, lint clean, tsc no new errors, 390px no horizontal scroll (ar/en × light/dark)",
+    ],
+  },
 } as const satisfies Record<ServiceId, ServiceRegistryEntry>;
 
 export function getServiceRegistryEntry(serviceId: ServiceId): ServiceRegistryEntry {

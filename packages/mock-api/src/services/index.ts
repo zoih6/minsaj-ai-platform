@@ -18,3 +18,4 @@ export * from "./research";
 export * from "./create";
 export * from "./code";
 export * from "./analyze";
+export * from "./explore";

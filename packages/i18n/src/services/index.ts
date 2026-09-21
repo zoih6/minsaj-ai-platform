@@ -19,6 +19,8 @@ import type { CodeCopy } from "./code-content";
 import { codeContentAr, codeContentEn } from "./code-content";
 import type { AnalyzeCopy } from "./analyze-content";
 import { analyzeContentAr, analyzeContentEn } from "./analyze-content";
+import type { ExploreCopy } from "./explore-content";
+import { exploreContentAr, exploreContentEn } from "./explore-content";
 
 export type ServiceEntry = {
   label: string;
@@ -58,6 +60,12 @@ export type CodeServiceEntry = ServiceEntry & CodeCopy;
  * rationales, quality warnings, reconciliation checks, and stage UI strings.
  */
 export type AnalyzeServiceEntry = ServiceEntry & AnalyzeCopy;
+
+/**
+ * Explore owns extra copy in U2.6: seed topics, knowledge nodes and
+ * relations, trail and checkpoint UI strings, and fast-mode copy.
+ */
+export type ExploreServiceEntry = ServiceEntry & ExploreCopy;
 
 export type ServiceDictionary = {
   workbench: {
@@ -137,7 +145,7 @@ export type ServiceDictionary = {
   runStatus: Record<ServiceRunStatus, string>;
   sessionStatus: Record<ServiceSessionStatus, string>;
   scenarios: Record<ServiceScenarioId, string>;
-  services: Record<ServiceId, ServiceEntry> & { learn: LearnServiceEntry; research: ResearchServiceEntry; create: CreateServiceEntry; code: CodeServiceEntry; analyze: AnalyzeServiceEntry };
+  services: Record<ServiceId, ServiceEntry> & { learn: LearnServiceEntry; research: ResearchServiceEntry; create: CreateServiceEntry; code: CodeServiceEntry; analyze: AnalyzeServiceEntry; explore: ExploreServiceEntry };
 };
 
 const ar: ServiceDictionary = {
@@ -352,6 +360,7 @@ const ar: ServiceDictionary = {
         exp_checkpoint: "نقطة توقف",
         exp_complete: "الحفظ والتحويل",
       },
+      ...exploreContentAr,
     },
   },
 };
@@ -568,6 +577,7 @@ const en: ServiceDictionary = {
         exp_checkpoint: "Checkpoint",
         exp_complete: "Save and convert",
       },
+      ...exploreContentEn,
     },
   },
 };

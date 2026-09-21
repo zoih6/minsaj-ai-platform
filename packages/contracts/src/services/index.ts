@@ -33,6 +33,7 @@ export * from "./research";
 export * from "./create";
 export * from "./code";
 export * from "./analyze";
+export * from "./explore";
 
 // The locale type is shared with the prototype contracts; U2 does not own or widen it.
 export type { Locale } from "../index";

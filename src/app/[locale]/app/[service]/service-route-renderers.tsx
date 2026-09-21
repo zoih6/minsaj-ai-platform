@@ -5,6 +5,7 @@ import { ResearchRoute } from "@/features/research/research-route";
 import { CreateRoute } from "@/features/create/create-route";
 import { CodeRoute } from "@/features/code/code-route";
 import { AnalyzeRoute } from "@/features/analyze/analyze-route";
+import { ExploreRoute } from "@/features/explore/explore-route";
 import type { ServiceRegistryEntry } from "@/features/service-workbench/service-registry";
 import { ServiceWorkspace } from "@/components/universal/service-workspace";
 import { getUniversalService, type UniversalServiceId } from "@/lib/universal-content";
@@ -33,6 +34,9 @@ export function renderDomainWorkspace(serviceId: ServiceId, locale: Locale) {
   }
   if (serviceId === "analyze") {
     return <AnalyzeRoute locale={locale} />;
+  }
+  if (serviceId === "explore") {
+    return <ExploreRoute locale={locale} />;
   }
   return null;
 }
