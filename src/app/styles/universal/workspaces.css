@@ -237,6 +237,14 @@
    ========================================================================== */
 .service-toolbelt { margin-block-end: 40px; }
 .service-toolbelt__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+/* KI-3: live confirmation that the four commitments followed the selection
+   (interaction-logic §2) — a quiet caption, announced politely. */
+.service-toolbelt__lead {
+  margin: 10px 4px 0;
+  color: var(--sp-muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
 .service-tool {
   position: relative;
   min-height: 60px;
@@ -431,6 +439,104 @@
 }
 .service-afford:active { background: var(--sp-surface); }
 
+/* ---- I-9: the voice pill becomes an honest recorder (mock) ----------------
+   data-recording drives a live red dot + timer; aria-pressed mirrors it. */
+.service-afford[data-recording="true"] {
+  border-color: rgba(var(--sp-red-rgb, 215, 55, 63), 0.45);
+  background: rgba(var(--sp-red-rgb, 215, 55, 63), 0.08);
+  color: var(--sp-red);
+}
+.service-afford__rec {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+}
+.service-afford__rec::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: sp-rec-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.service-afford { position: relative; }
+@keyframes sp-rec-ping { 75%, 100% { transform: scale(1.9); opacity: 0; } }
+
+/* ---- I-9: the quality standard opens as a labelled select pill ------------ */
+.service-afford--select { padding-inline: 14px; gap: 7px; }
+.service-afford--select svg { color: inherit; }
+.service-afford--select select {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--u-text-xs);
+  font-weight: 500;
+  cursor: pointer;
+}
+.service-afford--select select:focus-visible { outline: none; }
+.service-afford--select:focus-within { color: var(--sp-ink); border-color: rgba(var(--sp-accent-rgb), 0.45); }
+
+/* ---- I-9: hidden native file input (keyboard-inert, click-driven) --------- */
+.service-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Attachments: real chips with real removal ---------------------------- */
+.service-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: 10px;
+}
+.service-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 8px 5px 12px;
+  border: 1px solid rgba(var(--sp-accent-rgb), 0.28);
+  border-radius: var(--u-radius-pill);
+  background: rgba(var(--sp-accent-rgb), 0.07);
+  color: var(--sp-ink-soft);
+  font-size: 11px;
+}
+.service-attachment svg:first-child { color: var(--sp-accent); }
+.service-attachment b {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.service-attachment button {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--sp-muted);
+  cursor: pointer;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-attachment button:hover { color: var(--sp-red); background: rgba(var(--sp-red-rgb, 215, 55, 63), 0.1); }
+}
+
 /* Primary action — filled indigo, soft glow, arrow lifts on hover */
 .service-start-button {
   min-height: var(--u-touch);
@@ -491,6 +597,123 @@
 .service-space .u-feedback__action :is(a, button) { border-color: var(--sp-hairline); background: var(--sp-card); color: var(--sp-ink-soft); }
 .service-space .u-feedback__action :is(a, button):first-child:not(:only-child) { border-color: transparent; }
 
+/* ==========================================================================
+   GUIDED CLARIFY (FR-3.2) — three short questions, then a plan preview.
+   The fast style never mounts this card (FR-3.3). Same panel language as
+   the state region: glass panel, one accent, 44px touch floor everywhere.
+   ========================================================================== */
+.service-clarify {
+  margin-block-start: 16px;
+  padding: 18px;
+  border: 1px solid rgba(var(--sp-accent-rgb), 0.22);
+  border-radius: 24px;
+  background: var(--sp-panel);
+}
+.service-clarify__head { margin-block-end: 14px; display: flex; flex-direction: column; gap: 6px; }
+.service-clarify__step {
+  width: fit-content;
+  padding: 4px 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(var(--sp-accent-rgb), 0.25);
+  border-radius: var(--u-radius-pill);
+  background: rgba(var(--sp-accent-rgb), 0.08);
+  color: var(--sp-accent);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.service-clarify__head h3 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-md) / 1.4 var(--sp-font-display); }
+.service-clarify__head p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.7; }
+.service-clarify__chips { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+@container service-space (min-width: 480px) {
+  .service-clarify__chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.service-clarify__chips button {
+  min-height: var(--u-touch);
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 16px;
+  background: var(--sp-row);
+  color: var(--sp-ink-soft);
+  font-size: var(--u-text-sm);
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-clarify__chips button:not(.is-on):hover { border-color: var(--sp-hover-line); background: var(--sp-card); color: var(--sp-ink); }
+}
+.service-clarify__chips button.is-on {
+  border-color: rgba(var(--sp-accent-rgb), 0.55);
+  background: rgba(var(--sp-accent-rgb), 0.1);
+  color: var(--sp-ink);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px rgba(var(--sp-accent-rgb), 0.2);
+}
+.service-clarify__foot { margin-block-start: 14px; padding-block-start: 12px; border-block-start: 1px solid var(--sp-glass-line); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.service-clarify__next {
+  min-height: var(--u-touch);
+  padding-inline: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: var(--u-radius-pill);
+  background: linear-gradient(135deg, var(--sp-accent-strong), var(--sp-accent-deep));
+  color: #fff;
+  font-size: var(--u-text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--sp-glow);
+}
+@media (hover: hover) {
+  .service-clarify__next:not(:disabled):hover { filter: brightness(1.1); box-shadow: 0 0 26px rgba(var(--sp-accent-rgb), 0.35); }
+}
+.service-clarify__cancel {
+  min-height: var(--u-touch);
+  padding-inline: 14px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--sp-hairline);
+  border-radius: var(--u-radius-pill);
+  background: transparent;
+  color: var(--sp-muted);
+  font-size: var(--u-text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .service-clarify__cancel:hover { color: var(--sp-ink); background: var(--sp-row); }
+}
+
+/* Plan preview — the composition as quiet definition rows */
+.service-plan {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+.service-plan li {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: 12px;
+  background: var(--sp-row);
+}
+.service-plan b { color: var(--sp-muted); font-size: 11px; font-weight: 600; }
+.service-plan span { color: var(--sp-ink); font-size: var(--u-text-sm); font-weight: 600; line-height: 1.6; }
+
 /* ---- Ready: the output is a real artifact ------------------------------- */
 .service-output {
   margin-block-start: 16px;
@@ -519,6 +742,9 @@
 .service-output > header > div { flex: 1; min-width: 0; }
 .service-output > header small { display: block; color: var(--sp-mint); font-size: var(--u-text-xs); font-weight: 700; }
 .service-output > header h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-md) / 1.4 var(--sp-font-display); }
+/* KI-3: save + restart as the output's action pair (I-6 — a saved element
+   is a real session action, not decoration). */
+.service-output__actions { display: flex; align-items: center; gap: 8px; }
 .service-output > header button {
   min-height: var(--u-touch);
   padding-inline: 12px;
@@ -532,11 +758,43 @@
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
 @media (hover: hover) {
-  .service-output > header button:hover { background: var(--sp-card); border-color: var(--sp-hover-line); }
+  .service-output > header button:hover:not(:disabled) { background: var(--sp-card); border-color: var(--sp-hover-line); }
 }
+.service-output > header .service-output__actions > button:first-child:not(:disabled) {
+  border-color: rgba(var(--sp-mint-rgb, 13, 159, 112), 0.4);
+  background: rgba(var(--sp-mint-rgb, 13, 159, 112), 0.08);
+  color: var(--sp-mint);
+}
+@media (hover: hover) {
+  .service-output > header .service-output__actions > button:first-child:hover:not(:disabled) { background: rgba(var(--sp-mint-rgb, 13, 159, 112), 0.14); border-color: rgba(var(--sp-mint-rgb, 13, 159, 112), 0.6); }
+}
+.service-output > header button:disabled { cursor: default; opacity: 0.75; }
+
+/* Composition line (FR-3.4, visible share): the selection is echoed on the
+   artifact itself — tool, style, inputs. */
+.service-output__config {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.service-output__config li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: var(--u-radius-pill);
+  background: var(--sp-row);
+  font-size: 11px;
+}
+.service-output__config b { color: var(--sp-muted); font-weight: 600; }
+.service-output__config span { color: var(--sp-ink-soft); font-weight: 600; }
 .service-output__canvas { display: grid; grid-template-columns: minmax(0, 1fr); }
 .service-output__canvas > aside {
   display: flex;
@@ -838,4 +1096,5 @@
 @media (prefers-reduced-motion: reduce) {
   .service-welcome__title { animation: none; }
   .service-dot i { animation: none; }
+  .service-afford__rec::after { animation: none; opacity: 0.4; }
 }

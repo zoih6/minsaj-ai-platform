@@ -37,12 +37,13 @@ import {
   Telescope,
   Terminal,
   WandSparkles,
+  X,
   Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Locale } from "@minsaj/contracts";
-import { ActivityFeedback } from "@/components/universal/activity-feedback";
-import { getUniversalService, type UniversalServiceId } from "@/lib/universal-content";
+import { ActivityFeedback, FeedbackToast } from "@/components/universal/activity-feedback";
+import { getUniversalService, type ServiceToolIconKey, type UniversalServiceId } from "@/lib/universal-content";
 
 const serviceIcons = {
   ask: Brain,
@@ -54,37 +55,27 @@ const serviceIcons = {
   explore: Compass,
 } satisfies Record<UniversalServiceId, typeof Brain>;
 
-/* Work-mode toolkit — each tool gets its own affordance icon (the old
-   prototype squashed these into three anonymous composer dots; the
-   structured page restores them as first-class, selectable work modes). */
-const toolIcons: Record<UniversalServiceId, readonly LucideIcon[]> = {
-  ask: [FileText, Mic, Brain],
-  learn: [Lightbulb, ListTree, Route],
-  research: [Network, FileText, Check],
-  create: [FileCode, Eye, Sparkles],
-  code: [Terminal, Eye, Bug],
-  analyze: [Table, ChartNoAxesCombined, ShieldCheck],
-  explore: [Compass, Network, Route],
-};
-
-const serviceTools: Record<UniversalServiceId, readonly string[]> = {
-  ask: ["ملفات", "صوت", "سياق ذكي"],
-  learn: ["شرح تفاعلي", "اختبار فهم", "خطة تقدّم"],
-  research: ["بحث الويب", "مصادر أكاديمية", "توثيق"],
-  create: ["مستند", "صور", "لوحة إبداع"],
-  code: ["محرر كود", "معاينة", "فحص أخطاء"],
-  analyze: ["جداول", "رسوم", "تحقق بيانات"],
-  explore: ["مواضيع منتقاة", "خريطة أفكار", "رحلات معرفية"],
-};
-
-const serviceToolsEn: Record<UniversalServiceId, readonly string[]> = {
-  ask: ["Files", "Voice", "Smart context"],
-  learn: ["Interactive explanation", "Knowledge checks", "Progress path"],
-  research: ["Web research", "Academic sources", "Citations"],
-  create: ["Document", "Images", "Creative canvas"],
-  code: ["Code editor", "Preview", "Error checks"],
-  analyze: ["Tables", "Charts", "Data checks"],
-  explore: ["Curated topics", "Idea map", "Knowledge trails"],
+/* Icon keys are data (universal-content.ts); this map is the single place
+   that resolves them to lucide components — architecture A-5: the gateway
+   consumes data, not hard-coded arrays. */
+const toolIconMap: Record<ServiceToolIconKey, LucideIcon> = {
+  text: FileText,
+  mic: Mic,
+  brain: Brain,
+  lightbulb: Lightbulb,
+  list: ListTree,
+  route: Route,
+  network: Network,
+  check: Check,
+  code: FileCode,
+  eye: Eye,
+  sparkles: Sparkles,
+  terminal: Terminal,
+  bug: Bug,
+  table: Table,
+  chart: ChartNoAxesCombined,
+  shield: ShieldCheck,
+  compass: Compass,
 };
 
 const starterIcons: Record<UniversalServiceId, readonly LucideIcon[]> = {
@@ -97,21 +88,58 @@ const starterIcons: Record<UniversalServiceId, readonly LucideIcon[]> = {
   explore: [Telescope, Sparkles, FlaskConical],
 };
 
+/* Session state machine (interaction-logic §4, extended 2026-09-21 with the
+   guided clarify phase): idle → composing (typing) → error (empty send) →
+   clarifying (guided: 3 questions + plan preview) → working → ready → saved.
+   Fast mode sends composing → working directly. Every transition keeps the
+   composer's draft intact; only reset() clears it. */
+type GatewayStatus = "idle" | "error" | "working" | "clarifying" | "ready" | "saved";
+
+function formatClip(seconds: number) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
 export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; serviceId: UniversalServiceId }) {
   const service = getUniversalService(locale, serviceId);
   const Icon = serviceIcons[serviceId];
   const isArabic = locale === "ar";
+
   const [prompt, setPrompt] = useState("");
   const [mode, setMode] = useState<"guided" | "fast">("guided");
-  const [activeTools, setActiveTools] = useState<readonly string[]>([serviceTools[serviceId][0]]);
-  const [status, setStatus] = useState<"idle" | "working" | "ready" | "error">("idle");
-  const timerRef = useRef<number | null>(null);
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [activeTools, setActiveTools] = useState<readonly string[]>([service.tools[0].id]);
+  const [status, setStatus] = useState<GatewayStatus>("idle");
+  const [clarifyStep, setClarifyStep] = useState(0);
+  const [clarifyAnswers, setClarifyAnswers] = useState<(string | null)[]>([null, null, null]);
+  const [attachedFile, setAttachedFile] = useState<{ name: string; size: number } | null>(null);
+  const [voiceClip, setVoiceClip] = useState<number | null>(null);
+  const [recording, setRecording] = useState(false);
+  const [recordSeconds, setRecordSeconds] = useState(0);
+  const [qualityStandard, setQualityStandard] = useState<string | null>(null);
+  const [outputSection, setOutputSection] = useState(0);
+  const [savedItems, setSavedItems] = useState<{ id: number; title: string; when: string }[]>([]);
+  const [toast, setToast] = useState<string | null>(null);
 
-  const tools = (isArabic ? serviceTools[serviceId] : serviceToolsEn[serviceId]).map((label, index) => ({
-    label,
-    icon: toolIcons[serviceId][index] ?? Sparkles,
-  }));
+  const timerRef = useRef<number | null>(null);
+  const toastRef = useRef<number | null>(null);
+  const voiceTickRef = useRef<number | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  /* Lead tool (interaction-logic §2): with multi-select active (FR-2.2), the
+     most recently selected tool drives the four commitments — hint, output
+     shape, quick starts, affordances. Deselecting the lead falls back to the
+     remaining tail. Deterministic and explainable in the UI. */
+  const leadTool = service.tools.find((tool) => tool.id === activeTools[activeTools.length - 1]) ?? service.tools[0];
+  const tools = service.tools.map((tool) => ({ ...tool, icon: toolIconMap[tool.iconKey] }));
+  const activeToolLabels = activeTools
+    .map((id) => service.tools.find((tool) => tool.id === id)?.label)
+    .filter((label): label is string => typeof label === "string");
+
+  const showFileAffordance = leadTool.affordances.includes("file");
+  const showVoiceAffordance = leadTool.affordances.includes("voice");
+  const showQualityAffordance = leadTool.affordances.includes("quality");
 
   const copy = isArabic
     ? {
@@ -126,11 +154,20 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         fastHint: "ابدأ فورًا بأقل عدد من الخطوات.",
         newSession: "جلسة جديدة",
         toolsTitle: "اختيار نمط العمل",
-        toolsHint: "تتغير الأدوات حسب طلبك",
+        toolsHint: "كل أداة تضبط التلميح والمخرج والبدايات والإتاحات",
         modeTitle: "اختيار أسلوب التنفيذ",
         title: "ابدأ من مقصدك",
         attach: "أضف ملفًا أو صورة",
+        attachAria: "أضف ملفًا أو صورة إلى الطلب",
         voice: "إدخال صوتي",
+        voiceStart: "بدء التسجيل الصوتي",
+        voiceStop: "إيقاف التسجيل الصوتي",
+        voiceClip: "مقطع صوتي",
+        quality: "معيار الجودة",
+        qualityPlaceholder: "اختر المعيار…",
+        qualityOptions: ["اتساق البيانات", "اكتمال الحقول", "دقة المصادر"],
+        removeAttachment: "إزالة المرفق",
+        closeLabel: "إغلاق التنبيه",
         start: "ابدأ الآن",
         working: "منسج يجهّز المساحة المناسبة…",
         workingShort: "جارٍ التهيئة",
@@ -141,20 +178,54 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         validationBody: "اكتب طلبًا قصيرًا أو اختر بداية سريعة أدناه، ثم أعد المحاولة.",
         returnToPrompt: "العودة إلى الطلب",
         ready: "المساحة جاهزة",
-        openOutput: "افتح المخرج",
         restart: "ابدأ من جديد",
+        save: "حفظ في المكتبة",
+        saved: "محفوظ في المكتبتك",
+        savedToast: "أُضيف إلى مكتبتك",
+        savedNow: "حفظ الآن",
         pathTitle: "كيف سيعمل منسج؟",
         path: ["يفهم الهدف والسياق", "يقترح الشكل والأدوات", "ينجز مع نقاط مراجعة", "يقدّم مخرجًا قابلًا للتحرير"],
         trust: "لا خدمة خارجية تعمل في هذا النموذج. كل الحالات المعروضة محاكاة واضحة.",
         templates: "بدايات سريعة",
-        templatesHint: "قوالب خفيفة يمكنك تعديلها قبل البدء.",
+        templatesHint: "خاصة بالأداة المختارة — نقرة واحدة تعبّئ الطلب.",
         recent: "من مكتبتك",
         recentHint: "أعمال مرتبطة بهذه المساحة.",
         recentEdited: "آخر تعديل هذا الأسبوع",
         recentSaved: "محفوظ في مكتبتي",
         sampleTitle: "مسودة تفاعلية",
         sampleSections: ["ما فهمته من طلبك", "المسار المقترح", "الخطوة التالية"],
-        sampleBody: "هذا مخرج تجريبي يوضح كيف تتحول المهمة إلى مساحة عمل مناسبة بدل بقائها داخل رسالة واحدة.",
+        sampleBodies: [
+          "طلبك مفهوم بهذه التركيبة: الأداة والأسلوب والإتاحات أعلاه — وسيلتزم بها منسج قبل أي تنفيذ.",
+          "المسار: جمع السياق، ثم المعالجة بأدواتك المختارة، ثم مراجعة قابلة للتعديل قبل الاعتماد.",
+          "راجع المخرج وعدّله، أو احفظه في مكتبتك لتستأنفه لاحقًا من حيث توقفت.",
+        ],
+        outputConfigTool: "الأداة",
+        outputConfigMode: "الأسلوب",
+        clarifyLabel: "أسئلة توضيحية قبل التنفيذ",
+        clarifyProgress: "خطوة",
+        clarifyNextHint: "اختر الأنسب — أو اضغط «التالي» للتخطي",
+        next: "التالي",
+        execute: "نفّذ",
+        executeNow: "نفّذ الآن",
+        cancelClarify: "إلغاء والعودة للطلب",
+        planTitle: "معاينة الخطة",
+        planHint: "هكذا سيعمل منسج على طلبك — عدّل إجاباتك بالعودة للخلف أو نفّذ.",
+        planTool: "الأدوات",
+        planMode: "الأسلوب",
+        planScope: "النطاق",
+        planAudience: "الجمهور",
+        planShape: "شكل المخرج",
+        planAttachments: "الإتاحات",
+        planDefault: "حسب اقتراح منسج",
+        questions: [
+          { q: "ما نطاق المهمة؟", hint: "يحدد عمق المعالجة وعدد الخطوات." },
+          { q: "لمن ستُصاغ النتيجة؟", hint: "يضبط الأسلوب ومستوى التفصيل." },
+          { q: "ما الشكل المفضل للمخرج؟", hint: "يحدد هيكل النتيجة النهائية." },
+        ],
+        scopeOptions: ["ضيّق ومحدد", "متوازن", "شامل وعميق"],
+        audienceOptions: ["لي شخصيًا", "لفريقي", "لجمهور خارجي"],
+        shapeOptions: ["نص موجز", "تفصيل بالخطوات"],
+        toolHintTemplate: (tool: string) => `التلميح والمخرج والبدايات أدناه صارت خاصة بأداة «${tool}»`,
       }
     : {
         navLearn: "Learn",
@@ -168,11 +239,20 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         fastHint: "Start immediately with the fewest steps.",
         newSession: "New session",
         toolsTitle: "Choose how you'll work",
-        toolsHint: "Tools adapt to your request",
+        toolsHint: "Each tool sets the hint, output, quick starts, and inputs",
         modeTitle: "Choose the execution style",
         title: "Start with your intent",
         attach: "Add a file or image",
+        attachAria: "Attach a file or image to the request",
         voice: "Voice input",
+        voiceStart: "Start voice recording",
+        voiceStop: "Stop voice recording",
+        voiceClip: "Voice clip",
+        quality: "Quality standard",
+        qualityPlaceholder: "Pick a standard…",
+        qualityOptions: ["Data consistency", "Field completeness", "Source accuracy"],
+        removeAttachment: "Remove attachment",
+        closeLabel: "Dismiss notification",
         start: "Start now",
         working: "Minsaj is preparing the right space…",
         workingShort: "Preparing",
@@ -183,24 +263,68 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         validationBody: "Write a short request or choose a quick start below, then try again.",
         returnToPrompt: "Return to my request",
         ready: "Your space is ready",
-        openOutput: "Open output",
         restart: "Start again",
+        save: "Save to library",
+        saved: "Saved in your library",
+        savedToast: "Added to your library",
+        savedNow: "Saved just now",
         pathTitle: "How will Minsaj work?",
         path: ["Understands the goal and context", "Proposes the format and tools", "Executes with review checkpoints", "Delivers an editable output"],
         trust: "No external service runs in this prototype. Every state shown is a clear simulation.",
         templates: "Quick starts",
-        templatesHint: "Light templates you can adjust before starting.",
+        templatesHint: "Tied to the selected tool — one click fills the request.",
         recent: "From your library",
         recentHint: "Work tied to this space.",
         recentEdited: "Edited this week",
         recentSaved: "Saved in my library",
         sampleTitle: "Interactive draft",
         sampleSections: ["What I understood", "Suggested path", "Next step"],
-        sampleBody: "This simulated output shows how a task becomes an appropriate workspace instead of staying trapped in a single message.",
+        sampleBodies: [
+          "Your request is understood with this composition: the tool, style, and inputs above — Minsaj commits to them before executing.",
+          "The path: gather context, process with your selected tools, then an editable review before anything is adopted.",
+          "Review and edit the output, or save it to your library to resume later exactly where you stopped.",
+        ],
+        outputConfigTool: "Tool",
+        outputConfigMode: "Style",
+        clarifyLabel: "Clarifying questions before execution",
+        clarifyProgress: "Step",
+        clarifyNextHint: "Pick what fits — or press “Next” to skip",
+        next: "Next",
+        execute: "Execute",
+        executeNow: "Execute now",
+        cancelClarify: "Cancel and return to the request",
+        planTitle: "Plan preview",
+        planHint: "This is how Minsaj will work on your request — go back to adjust, or execute.",
+        planTool: "Tools",
+        planMode: "Style",
+        planScope: "Scope",
+        planAudience: "Audience",
+        planShape: "Output shape",
+        planAttachments: "Inputs",
+        planDefault: "As Minsaj suggests",
+        questions: [
+          { q: "What is the scope of the task?", hint: "Sets the depth and number of steps." },
+          { q: "Who is the result for?", hint: "Sets tone and level of detail." },
+          { q: "What output shape do you prefer?", hint: "Sets the structure of the final result." },
+        ],
+        scopeOptions: ["Narrow and specific", "Balanced", "Broad and deep"],
+        audienceOptions: ["Just me", "My team", "An outside audience"],
+        shapeOptions: ["Concise text", "Step-by-step detail"],
+        toolHintTemplate: (tool: string) => `The hint, output, and quick starts below now follow the “${tool}” tool`,
       };
+
+  /* Guided questions — the third question's first option is the lead tool's
+     own output shape (interaction-logic §3: معاينة الخطة tied to the tool). */
+  const clarifyQuestions = [
+    { ...copy.questions[0], options: copy.scopeOptions },
+    { ...copy.questions[1], options: copy.audienceOptions },
+    { ...copy.questions[2], options: [leadTool.outputTitle, ...copy.shapeOptions] },
+  ];
 
   useEffect(() => () => {
     if (timerRef.current !== null) window.clearTimeout(timerRef.current);
+    if (toastRef.current !== null) window.clearTimeout(toastRef.current);
+    if (voiceTickRef.current !== null) window.clearInterval(voiceTickRef.current);
   }, []);
 
   /* Auto-grow field (reference behavior): the composer grows with its
@@ -213,6 +337,31 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
     field.style.height = `${Math.min(field.scrollHeight, 150)}px`;
   }, [prompt]);
 
+  /* Voice mock (I-9): a visible recording state with a live timer. Stopping
+     keeps the clip as an attachment chip; the simulation never pretends to
+     transcribe — the trust note covers it. */
+  useEffect(() => {
+    if (!recording) return;
+    const startedAt = Date.now();
+    voiceTickRef.current = window.setInterval(() => {
+      setRecordSeconds(Math.floor((Date.now() - startedAt) / 1000));
+    }, 250);
+    return () => {
+      if (voiceTickRef.current !== null) window.clearInterval(voiceTickRef.current);
+      voiceTickRef.current = null;
+    };
+  }, [recording]);
+
+  useEffect(() => {
+    if (toast === null) return;
+    if (toastRef.current !== null) window.clearTimeout(toastRef.current);
+    toastRef.current = window.setTimeout(() => setToast(null), 3200);
+    return () => {
+      if (toastRef.current !== null) window.clearTimeout(toastRef.current);
+      toastRef.current = null;
+    };
+  }, [toast]);
+
   function cancelPendingRun() {
     if (timerRef.current !== null) {
       window.clearTimeout(timerRef.current);
@@ -220,8 +369,34 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
     }
   }
 
-  function toggleTool(label: string) {
-    setActiveTools((current) => (current.includes(label) ? current.filter((item) => item !== label) : [...current, label]));
+  /* FR-2.2: multi-select stays, but at least one tool is always active —
+     deselecting the last remaining tool is a no-op. */
+  function toggleTool(id: string) {
+    setActiveTools((current) => {
+      if (current.includes(id)) {
+        if (current.length === 1) return current;
+        return current.filter((item) => item !== id);
+      }
+      return [...current, id];
+    });
+  }
+
+  /* Switching the execution style mid-clarify returns to composing with the
+     draft intact — a visible, explainable behavior (documented §3). */
+  function selectMode(next: "guided" | "fast") {
+    if (mode === next) return;
+    setMode(next);
+    if (status === "clarifying") setStatus("idle");
+  }
+
+  function run() {
+    cancelPendingRun();
+    setStatus("working");
+    timerRef.current = window.setTimeout(() => {
+      timerRef.current = null;
+      setOutputSection(0);
+      setStatus("ready");
+    }, 820);
   }
 
   function start() {
@@ -231,17 +406,53 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
       window.requestAnimationFrame(() => textareaRef.current?.focus());
       return;
     }
-    setStatus("working");
-    timerRef.current = window.setTimeout(() => {
-      timerRef.current = null;
-      setStatus("ready");
-    }, 820);
+    if (mode === "guided") {
+      setClarifyStep(0);
+      setClarifyAnswers([null, null, null]);
+      setStatus("clarifying");
+      return;
+    }
+    run();
+  }
+
+  /* Composer button doubles as the guided stepper (§3: «التالي» ثم «نفّذ»). */
+  function onComposerButton() {
+    if (status === "clarifying") {
+      if (clarifyStep < 3) advanceClarify(null);
+      else run();
+      return;
+    }
+    start();
+  }
+
+  function advanceClarify(answer: string | null) {
+    if (answer !== null) {
+      setClarifyAnswers((current) => {
+        const next = [...current];
+        next[clarifyStep] = answer;
+        return next;
+      });
+    }
+    setClarifyStep((step) => Math.min(step + 1, 3));
+  }
+
+  function cancelClarify() {
+    setStatus("idle");
+    window.requestAnimationFrame(() => textareaRef.current?.focus());
   }
 
   function reset() {
     cancelPendingRun();
     setPrompt("");
     setStatus("idle");
+    setClarifyStep(0);
+    setClarifyAnswers([null, null, null]);
+    setAttachedFile(null);
+    setVoiceClip(null);
+    setRecording(false);
+    setRecordSeconds(0);
+    setQualityStandard(null);
+    setOutputSection(0);
   }
 
   function quickFill(title: string) {
@@ -251,9 +462,51 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
     textareaRef.current?.focus();
   }
 
+  /* I-6 / FR-4.2: saving is a real, observable session-local action — the
+     item enters the strip below and the state machine lands on `saved`.
+     Cross-route persistence stays out of scope (KI-5, by design). */
+  function saveToLibrary() {
+    const formatter = new Intl.DateTimeFormat(isArabic ? "ar" : "en", { hour: "2-digit", minute: "2-digit" });
+    setSavedItems((current) => [
+      { id: Date.now(), title: prompt.trim() || service.starters[0], when: formatter.format(new Date()) },
+      ...current,
+    ].slice(0, 4));
+    setStatus("saved");
+    setToast(copy.savedToast);
+  }
+
+  function onFilePicked(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) setAttachedFile({ name: file.name, size: file.size });
+    event.target.value = "";
+  }
+
+  function toggleRecording() {
+    if (!recording) {
+      setRecordSeconds(0);
+      setRecording(true);
+      return;
+    }
+    setRecording(false);
+    if (recordSeconds > 0) setVoiceClip(recordSeconds);
+    setRecordSeconds(0);
+  }
+
   const base = `/${locale}/app`;
   const libraryHref = `${base}/library`;
-  const templates = service.starters.map((title, index) => ({ title, icon: starterIcons[serviceId][index] ?? Sparkles }));
+  /* Quick starts follow the lead tool (commitment 3). */
+  const starters = leadTool.starters.map((title, index) => ({ title, icon: starterIcons[serviceId][index] ?? Sparkles }));
+
+  const attachmentSummary = [
+    attachedFile ? attachedFile.name : null,
+    voiceClip !== null ? `${copy.voiceClip} ${formatClip(voiceClip)}` : null,
+    qualityStandard,
+  ].filter((item): item is string => item !== null);
+
+  const composerButtonLabel =
+    status === "working" ? copy.workingShort
+    : status === "clarifying" ? (clarifyStep < 3 ? copy.next : copy.execute)
+    : copy.start;
 
   return (
     <div className="service-space" data-service={serviceId}>
@@ -289,43 +542,49 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         </button>
       </section>
 
-      {/* 3 — Work mode: the service toolkit as selectable modes */}
+      {/* 3 — Work mode: the service toolkit as selectable modes. Selecting a
+          tool re-binds the composer hint, the expected output, the quick
+          starts, and the affordance pills (interaction-logic §2). */}
       <section className="service-toolbelt" aria-labelledby="service-tools-title">
         <header className="service-section-head">
           <h2 id="service-tools-title">{copy.toolsTitle}</h2>
           <p>{copy.toolsHint}</p>
         </header>
         <div className="service-toolbelt__grid" role="group" aria-label={copy.toolsTitle}>
-          {tools.map(({ label, icon: ToolIcon }) => {
-            const active = activeTools.includes(label);
+          {tools.map(({ id, label, icon: ToolIcon }) => {
+            const active = activeTools.includes(id);
+            const isLead = leadTool.id === id;
             return (
               <button
                 type="button"
-                key={label}
+                key={id}
                 className={active ? "service-tool is-on" : "service-tool"}
                 aria-pressed={active}
-                onClick={() => toggleTool(label)}
+                onClick={() => toggleTool(id)}
               >
                 <span className="service-tool__icon"><ToolIcon size={17} aria-hidden="true" /></span>
                 <strong>{label}</strong>
-                <span className="service-tool__check" aria-hidden="true"><Check size={11} /></span>
+                <span className="service-tool__check" aria-hidden="true">{isLead ? <Check size={11} /> : null}</span>
               </button>
             );
           })}
         </div>
+        <p className="service-toolbelt__lead" aria-live="polite">{copy.toolHintTemplate(leadTool.label)}</p>
       </section>
 
-      {/* 4 — Execution style: guided vs fast */}
+      {/* 4 — Execution style: guided vs fast. Plain toggle buttons with
+          aria-pressed (the tab role without tabpanels was an ARIA
+          anti-pattern) — FR-2.3 radio behavior, one active at a time. */}
       <section className="service-mode" aria-labelledby="service-mode-title">
         <header className="service-section-head">
           <h2 id="service-mode-title">{copy.modeTitle}</h2>
         </header>
-        <div className="service-mode-switch" role="tablist" aria-label={copy.modeTitle}>
-          <button type="button" role="tab" aria-selected={mode === "guided"} className={mode === "guided" ? "is-active" : ""} onClick={() => setMode("guided")}>
+        <div className="service-mode-switch" role="group" aria-label={copy.modeTitle}>
+          <button type="button" aria-pressed={mode === "guided"} className={mode === "guided" ? "is-active" : ""} onClick={() => selectMode("guided")}>
             <span className="service-mode-switch__label"><WandSparkles size={16} aria-hidden="true" /><strong>{copy.guided}</strong></span>
             <small>{copy.guidedHint}</small>
           </button>
-          <button type="button" role="tab" aria-selected={mode === "fast"} className={mode === "fast" ? "is-active" : ""} onClick={() => setMode("fast")}>
+          <button type="button" aria-pressed={mode === "fast"} className={mode === "fast" ? "is-active" : ""} onClick={() => selectMode("fast")}>
             <span className="service-mode-switch__label"><Zap size={16} aria-hidden="true" /><strong>{copy.fast}</strong></span>
             <small>{copy.fastHint}</small>
           </button>
@@ -348,55 +607,167 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
               id="service-request"
               rows={2}
               value={prompt}
-              onChange={(event) => { cancelPendingRun(); setPrompt(event.target.value); setStatus("idle"); }}
-              placeholder={service.prompt}
-              aria-label={service.prompt}
+              onChange={(event) => { cancelPendingRun(); setPrompt(event.target.value); if (status === "error" || status === "clarifying") setStatus("idle"); }}
+              placeholder={leadTool.hint}
+              aria-label={leadTool.hint}
               aria-invalid={status === "error"}
               aria-describedby={status === "error" ? "service-request-error" : undefined}
             />
+            {attachedFile || voiceClip !== null || qualityStandard ? (
+              <div className="service-attachments">
+                {attachedFile ? (
+                  <span className="service-attachment">
+                    <Paperclip size={13} aria-hidden="true" />
+                    <b>{attachedFile.name}</b>
+                    <button type="button" onClick={() => setAttachedFile(null)} aria-label={copy.removeAttachment}><X size={13} /></button>
+                  </span>
+                ) : null}
+                {voiceClip !== null ? (
+                  <span className="service-attachment">
+                    <Mic size={13} aria-hidden="true" />
+                    <b>{copy.voiceClip} {formatClip(voiceClip)}</b>
+                    <button type="button" onClick={() => setVoiceClip(null)} aria-label={copy.removeAttachment}><X size={13} /></button>
+                  </span>
+                ) : null}
+                {qualityStandard ? (
+                  <span className="service-attachment">
+                    <ShieldCheck size={13} aria-hidden="true" />
+                    <b>{qualityStandard}</b>
+                    <button type="button" onClick={() => setQualityStandard(null)} aria-label={copy.removeAttachment}><X size={13} /></button>
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
             <div className="service-prompt-area__bottom">
               <div className="service-prompt-area__tools">
-                <button type="button" className="service-afford" title={copy.attach} aria-label={copy.attach}>
-                  <Paperclip size={15} aria-hidden="true" />
-                  <span>{copy.attach}</span>
-                </button>
-                <button type="button" className="service-afford" title={copy.voice} aria-label={copy.voice}>
-                  <Mic size={15} aria-hidden="true" />
-                  <span>{copy.voice}</span>
-                </button>
+                {showFileAffordance ? (
+                  <>
+                    <input ref={fileInputRef} type="file" className="service-file-input" onChange={onFilePicked} accept=".csv,.txt,.md,.json,.pdf,.docx,.png,.jpg,.jpeg,.webp" tabIndex={-1} aria-hidden="true" />
+                    <button type="button" className="service-afford" title={copy.attach} aria-label={copy.attachAria} onClick={() => fileInputRef.current?.click()}>
+                      <Paperclip size={15} aria-hidden="true" />
+                      <span>{copy.attach}</span>
+                    </button>
+                  </>
+                ) : null}
+                {showVoiceAffordance ? (
+                  <button type="button" className="service-afford" data-recording={recording ? "true" : "false"} title={recording ? copy.voiceStop : copy.voiceStart} aria-label={recording ? copy.voiceStop : copy.voiceStart} aria-pressed={recording} onClick={toggleRecording}>
+                    <span className="service-afford__rec" aria-hidden="true" />
+                    <span>{recording ? formatClip(recordSeconds) : copy.voice}</span>
+                  </button>
+                ) : null}
+                {showQualityAffordance ? (
+                  <label className="service-afford service-afford--select" title={copy.quality}>
+                    <ShieldCheck size={15} aria-hidden="true" />
+                    <select value={qualityStandard ?? ""} onChange={(event) => setQualityStandard(event.target.value || null)} aria-label={copy.quality}>
+                      <option value="">{copy.qualityPlaceholder}</option>
+                      {copy.qualityOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                    </select>
+                  </label>
+                ) : null}
               </div>
-              <button type="button" className="service-start-button" onClick={start} disabled={status === "working"} data-loading={status === "working"}>
-                <span>{status === "working" ? copy.workingShort : copy.start}</span>
+              <button type="button" className="service-start-button" onClick={onComposerButton} disabled={status === "working"} data-loading={status === "working"}>
+                <span>{composerButtonLabel}</span>
                 {status === "working" ? <LoaderCircle size={16} aria-hidden="true" /> : <ArrowUp size={16} aria-hidden="true" />}
               </button>
             </div>
           </div>
         </div>
 
-        {status === "working" ? <ActivityFeedback state="working" className="service-working" label={copy.simulation} title={copy.working} description={activeTools.length > 0 ? activeTools.join(" · ") : tools.map((tool) => tool.label).join(" · ")} progressLabel={copy.progress} /> : null}
+        {status === "working" ? <ActivityFeedback state="working" className="service-working" label={copy.simulation} title={copy.working} description={[activeToolLabels.join(" · "), ...attachmentSummary].filter(Boolean).join(" · ")} progressLabel={copy.progress} /> : null}
         {status === "error" ? <ActivityFeedback id="service-request-error" state="error" label={copy.validationLabel} title={copy.validationTitle} description={copy.validationBody} action={<button type="button" onClick={() => textareaRef.current?.focus()}>{copy.returnToPrompt}</button>} /> : null}
-        {status === "ready" ? (
-          <article className="service-output" role="status" aria-live="polite" aria-atomic="true" data-feedback-state="success">
+
+        {/* Guided clarify phase (FR-3.2): three short questions, then a plan
+            preview — fast mode never sees this card (FR-3.3). */}
+        {status === "clarifying" ? (
+          <section className="service-clarify" role="group" aria-label={copy.clarifyLabel} aria-live="polite">
+            {clarifyStep < 3 ? (
+              <>
+                <header className="service-clarify__head">
+                  <span className="service-clarify__step">{copy.clarifyProgress} {clarifyStep + 1}/3</span>
+                  <h3>{clarifyQuestions[clarifyStep].q}</h3>
+                  <p>{clarifyQuestions[clarifyStep].hint} — {copy.clarifyNextHint}</p>
+                </header>
+                <div className="service-clarify__chips" role="group" aria-label={clarifyQuestions[clarifyStep].q}>
+                  {clarifyQuestions[clarifyStep].options.map((option) => (
+                    <button type="button" key={option} className={clarifyAnswers[clarifyStep] === option ? "is-on" : ""} aria-pressed={clarifyAnswers[clarifyStep] === option} onClick={() => advanceClarify(option)}>
+                      {option}
+                    </button>
+                  ))}
+                </div>
+                <footer className="service-clarify__foot">
+                  <button type="button" className="service-clarify__next" onClick={() => advanceClarify(null)}>
+                    {copy.next}
+                    {isArabic ? <ArrowLeft size={14} aria-hidden="true" /> : <ArrowRight size={14} aria-hidden="true" />}
+                  </button>
+                  <button type="button" className="service-clarify__cancel" onClick={cancelClarify}>{copy.cancelClarify}</button>
+                </footer>
+              </>
+            ) : (
+              <>
+                <header className="service-clarify__head">
+                  <span className="service-clarify__step">{copy.planTitle}</span>
+                  <h3>{copy.planTitle}</h3>
+                  <p>{copy.planHint}</p>
+                </header>
+                <ul className="service-plan">
+                  <li><b>{copy.planTool}</b><span>{activeToolLabels.join(" · ")}</span></li>
+                  <li><b>{copy.planMode}</b><span>{mode === "guided" ? copy.guided : copy.fast}</span></li>
+                  <li><b>{copy.planScope}</b><span>{clarifyAnswers[0] ?? copy.planDefault}</span></li>
+                  <li><b>{copy.planAudience}</b><span>{clarifyAnswers[1] ?? copy.planDefault}</span></li>
+                  <li><b>{copy.planShape}</b><span>{clarifyAnswers[2] ?? leadTool.outputTitle}</span></li>
+                  {attachmentSummary.length ? <li><b>{copy.planAttachments}</b><span>{attachmentSummary.join(" · ")}</span></li> : null}
+                </ul>
+                <footer className="service-clarify__foot">
+                  <button type="button" className="service-clarify__next" onClick={run}>
+                    {copy.executeNow}
+                    {isArabic ? <ArrowLeft size={14} aria-hidden="true" /> : <ArrowRight size={14} aria-hidden="true" />}
+                  </button>
+                  <button type="button" className="service-clarify__cancel" onClick={cancelClarify}>{copy.cancelClarify}</button>
+                </footer>
+              </>
+            )}
+          </section>
+        ) : null}
+
+        {status === "ready" || status === "saved" ? (
+          <article className="service-output" role="status" aria-live="polite" aria-atomic="true" data-feedback-state="success" data-saved={status === "saved" ? "true" : "false"}>
             <header>
               <span><Check size={18} aria-hidden="true" /></span>
-              <div><small>{copy.ready}</small><h2>{service.outputTitle}</h2></div>
-              <button type="button" onClick={reset}>{copy.restart}</button>
+              <div>
+                <small>{status === "saved" ? copy.saved : copy.ready}</small>
+                <h2>{leadTool.outputTitle}</h2>
+              </div>
+              <div className="service-output__actions">
+                <button type="button" onClick={saveToLibrary} disabled={status === "saved"}>{status === "saved" ? copy.saved : copy.save}</button>
+                <button type="button" onClick={reset}>{copy.restart}</button>
+              </div>
             </header>
             <div className="service-output__canvas">
-              <aside>{copy.sampleSections.map((item, index) => <button type="button" className={index === 0 ? "is-active" : ""} key={item}><span>{index + 1}</span>{item}</button>)}</aside>
+              <aside aria-label={copy.sampleTitle}>
+                {copy.sampleSections.map((item, index) => (
+                  <button type="button" className={outputSection === index ? "is-active" : ""} aria-pressed={outputSection === index} onClick={() => setOutputSection(index)} key={item}>
+                    <span>{index + 1}</span>{item}
+                  </button>
+                ))}
+              </aside>
               <div>
                 <span className="service-output__eyebrow">{service.eyebrow}</span>
                 <h3>{copy.sampleTitle}</h3>
                 <p className="service-output__request">{prompt || service.starters[0]}</p>
-                <div className="service-output__block"><WandSparkles size={16} aria-hidden="true" /><p>{copy.sampleBody}</p></div>
-                <button type="button" className="service-output__open">{copy.openOutput}<ArrowLeft size={14} aria-hidden="true" /></button>
+                <ul className="service-output__config">
+                  <li><b>{copy.outputConfigTool}</b><span>{activeToolLabels.join(" · ")}</span></li>
+                  <li><b>{copy.outputConfigMode}</b><span>{mode === "guided" ? copy.guided : copy.fast}</span></li>
+                  {attachmentSummary.length ? <li><b>{copy.planAttachments}</b><span>{attachmentSummary.join(" · ")}</span></li> : null}
+                </ul>
+                <div className="service-output__block"><WandSparkles size={16} aria-hidden="true" /><p>{copy.sampleBodies[outputSection] ?? copy.sampleBodies[0]}</p></div>
               </div>
             </div>
           </article>
         ) : null}
       </section>
 
-      {/* 6 — How it works: four connected steps */}
+      {/* 6 — How it works: four connected steps. During the guided clarify
+          phase step 01 is live; working highlights 02; ready completes all. */}
       <section className="service-path-card">
         <header className="service-path-card__head">
           <Info size={14} aria-hidden="true" />
@@ -404,7 +775,7 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         </header>
         <ol className="service-path-card__steps">
           {copy.path.map((step, index) => {
-            const complete = status === "ready" || (status === "working" && index < 1);
+            const complete = status === "ready" || status === "saved" || (status === "working" && index < 1);
             const current = !complete && index === (status === "working" ? 1 : 0);
             return (
               <li key={step} className={complete ? "is-complete" : current ? "is-current" : undefined}>
@@ -422,7 +793,9 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         <p>{copy.trust}</p>
       </div>
 
-      {/* 8 + 9 — Quick starts + from your library */}
+      {/* 8 + 9 — Quick starts (lead-tool driven) + from your library.
+          Saved items surface first (I-6): a saved element actually enters
+          the strip — session-local by design (KI-5). */}
       <section className="service-lower">
         <div className="service-lower__group">
           <header className="service-lower__head">
@@ -430,7 +803,7 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
             <p>{copy.templatesHint}</p>
           </header>
           <div className="service-starters">
-            {templates.map(({ title, icon: StarterIcon }) => (
+            {starters.map(({ title, icon: StarterIcon }) => (
               <button type="button" key={title} onClick={() => quickFill(title)}>
                 <span className="service-starters__lead">
                   <span className="service-starters__icon"><StarterIcon size={16} aria-hidden="true" /></span>
@@ -447,14 +820,26 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
             <p>{copy.recentHint}</p>
           </header>
           <div className="service-mini-library">
-            <Link href={libraryHref}>
-              <span className="service-mini-library__icon"><FileText size={18} aria-hidden="true" /></span>
-              <span className="service-mini-library__body">
-                <strong>{service.starters[0]}</strong>
-                <small><Clock size={12} aria-hidden="true" />{copy.recentEdited}</small>
-              </span>
-              <ArrowLeft size={12} aria-hidden="true" />
-            </Link>
+            {savedItems.slice(0, 2).map((item) => (
+              <Link href={libraryHref} key={item.id}>
+                <span className="service-mini-library__icon"><FileText size={18} aria-hidden="true" /></span>
+                <span className="service-mini-library__body">
+                  <strong>{item.title}</strong>
+                  <small><Clock size={12} aria-hidden="true" />{copy.savedNow} · {item.when}</small>
+                </span>
+                <ArrowLeft size={12} aria-hidden="true" />
+              </Link>
+            ))}
+            {savedItems.length === 0 ? (
+              <Link href={libraryHref}>
+                <span className="service-mini-library__icon"><FileText size={18} aria-hidden="true" /></span>
+                <span className="service-mini-library__body">
+                  <strong>{service.starters[0]}</strong>
+                  <small><Clock size={12} aria-hidden="true" />{copy.recentEdited}</small>
+                </span>
+                <ArrowLeft size={12} aria-hidden="true" />
+              </Link>
+            ) : null}
             <Link href={libraryHref}>
               <span className="service-mini-library__icon">{serviceId === "code" ? <Code2 size={18} aria-hidden="true" /> : serviceId === "analyze" ? <ChartNoAxesCombined size={18} aria-hidden="true" /> : serviceId === "explore" ? <Compass size={18} aria-hidden="true" /> : <FileText size={18} aria-hidden="true" />}</span>
               <span className="service-mini-library__body">
@@ -469,6 +854,8 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
 
       {/* Fade under the floating dock (mobile only) */}
       <div className="service-space__veil" aria-hidden="true" />
+
+      {toast !== null ? <FeedbackToast message={toast} closeLabel={copy.closeLabel} onDismiss={() => setToast(null)} tone="success" /> : null}
     </div>
   );
 }
