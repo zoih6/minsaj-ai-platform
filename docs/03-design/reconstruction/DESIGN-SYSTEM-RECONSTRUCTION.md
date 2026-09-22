@@ -1,6 +1,6 @@
 # DESIGN-SYSTEM-RECONSTRUCTION.md — Master Document
 ## W-DS · Rebuilding Minsaj as one designed product
-### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. Phase 1 exit gate approved 2026-09-22; Phase 2 (Surfaces) authorized (§7.3) and implemented + measured the same day: HIE-02, SUR-01 and HIE-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase2/). Awaiting owner approval of the Phase 2 exit gate before Phase 3.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
+### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. Phase 1 exit gate approved 2026-09-22; Phase 2 (Surfaces) authorized (§7.3) and implemented + measured the same day: HIE-02, SUR-01 and HIE-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase2/). Phase 2 exit gate approved 2026-09-22 (§7.4); **Phase 3 (Chrome) authorized to start now.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
 
 > **Note on naming.** The owner's review refers to the product as **"Nasaq"**; this repository and its brand assets name it **Minsaj (منسج)**. Both names refer to the same product. This document set uses the repository name.
 >
@@ -178,3 +178,12 @@ Owner message received after the Phase 1 completion report (original in Arabic �
 - **Phase 2 — Surfaces is authorized to start now**: settings + ops pages rebuilt on `mj-surface`; anti-nesting refactor (workbench + gateway); DataList for record collections. Target findings: **HIE-02 (P1), SUR-01 (P0), HIE-03 (P2)**.
 - The standing constraints carry over unchanged: Phase 0/Phase 1 baselines are maintained (never overwritten); **no finding is declared resolved before Gate A + Gate B pass with new measurements**; Phase 3 does not start before the Phase 2 exit gate is approved; **W-4 remains blocked**.
 - D-3 and D-4 remain open (§7.1/§7.2 dispositions stand) and do not block Phase 2.
+
+### 7.4 Phase 2 exit gate approval + Phase 3 authorization record — 2026-09-22
+
+Owner message received after the Phase 2 completion report (original in Arabic — «اعتمد Phase 2 وابدأ Phase 3»; session log); substance:
+
+- **The Phase 2 exit gate is approved.** The Phase 2 evidence package (frozen baseline `evidence/baselines/phase2/`: 100-cell capture with 198 field diffs all classified, G-7 census, SUR-01 before/after probes at card-grade 10→0 per viewport, Gate A clean, Gate B within Phase-2 scope with B-4 fully measured) is accepted as satisfying the Phase 2 exit criteria.
+- **Phase 3 — Chrome is authorized to start now:** single-row 56px header on every `/app/*` route (near-solid ≥ 0.92 per the D-1 default) · one floating dock grammar (16px inline inset, one shadow token + one hairline per the D-4 working rule) · drawer tiering T1–T4 (Core/Workspace/Operations/Personal, utility group labelled «مساحتي») · vertical-budget enforcement `chromeRatio ≤ 15.5% @390 / ≤ 14.5% @430`. Target findings: **NAV-01 (P1), NAV-02 (P1), NAV-03 (P2), NAV-04 (P2), NAV-05 (P2)**.
+- The standing constraints carry over unchanged: Phase 0/1/2 baselines are maintained (never overwritten); **no finding is declared resolved before Gate A + Gate B pass with new measurements**; Phase 4 does not start before the Phase 3 exit gate is approved; **W-4 remains blocked**.
+- D-3 and D-4 remain open (§7.1/§7.2 dispositions stand) and do not block Phase 3. Route-transition retiming (240ms, 4px enter offset) stays in Phase 4's bracket per §6 — Phase 3 claims nothing outside NAV-01..05.
