@@ -1,6 +1,6 @@
 # DESIGN-SYSTEM-RECONSTRUCTION.md — Master Document
 ## W-DS · Rebuilding Minsaj as one designed product
-### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. **Phase 1 exit gate approved by the owner 2026-09-22; Phase 2 (Surfaces) authorized to start (§7.3).** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
+### Status: **APPROVED** — owner approval recorded 2026-09-22 (§7.1). **Phase 0 complete** (commit `3508d48`). **Phase 1 (Foundations) implemented + measured 2026-09-22 (§7.2): TYP-02 and TYP-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase1/); SPC-01 begun. Phase 1 exit gate approved 2026-09-22; Phase 2 (Surfaces) authorized (§7.3) and implemented + measured the same day: HIE-02, SUR-01 and HIE-03 resolved through Gate A + Gate B with new measurements (evidence/baselines/phase2/). Awaiting owner approval of the Phase 2 exit gate before Phase 3.** No finding may be marked resolved before Gate A + Gate B pass with new measurements. W-4 remains blocked until W-DS exit criteria are met.
 
 > **Note on naming.** The owner's review refers to the product as **"Nasaq"**; this repository and its brand assets name it **Minsaj (منسج)**. Both names refer to the same product. This document set uses the repository name.
 >
@@ -113,12 +113,12 @@ Engineering gates hold (ACC-01: 44px targets, zero overflow ×100, skip link, ar
 
 ```
 Phase 0  Guardrails      G-7 token lint (warn mode), baseline captures, alias layer   [DONE 3508d48]
-Phase 1  Foundations     DESIGN-TOKENS wave 1: space scale + type ramp aliases,    [IMPLEMENTED + MEASURED
-                         alert token, radius/elevation maps, Arabic tracking fixes,   2026-09-22 — awaiting
-                         7/8px text fixes                              [fixes TYP-02/03, SPC-01 begins] owner exit-gate approval]
-Phase 2  Surfaces        settings + ops pages rebuilt on mj-surface;
-                         anti-nesting refactor (workbench + gateway);
-                         DataList for record collections               [fixes HIE-02/03, SUR-01]
+Phase 1  Foundations     DESIGN-TOKENS wave 1: space scale + type ramp aliases,    [DONE 147f752 —
+                         alert token, radius/elevation maps, Arabic tracking fixes,   exit gate approved
+                         7/8px text fixes                              [fixes TYP-02/03, SPC-01 begins]  §7.3]
+Phase 2  Surfaces        settings + ops pages rebuilt on mj-surface;               [IMPLEMENTED + MEASURED
+                         anti-nesting refactor (workbench + gateway);                2026-09-22 — awaiting
+                         DataList for record collections               [fixes HIE-02/03, SUR-01] owner exit-gate approval]
 Phase 3  Chrome          single-row header + single dock; drawer tiering;
                          vertical budget enforcement                    [fixes NAV-01..05]
 Phase 4  Patterns        composer-first gateway; state coverage; motion retiming [fixes INT-01/02, UNC-01]

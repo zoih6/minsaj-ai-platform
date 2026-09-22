@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Bot, Boxes, Play, Plus, ShieldCheck, Wrench } from "lucide-react";
+import { ArrowLeft, ArrowRight, Bot, Play, Plus } from "lucide-react";
 import { Badge } from "@minsaj/ui";
 import { localize, type AgentSummary, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "./shared";
@@ -49,15 +49,15 @@ export function AgentsPrototype({ locale, agents }: { locale: Locale; agents: Ag
         { id: "draft", label: ar ? "مسودة" : "Draft" },
       ]} />
 
-      {visibleAgents.length ? <section className="agent-library" aria-label={ar ? "مكتبة الوكلاء" : "Agent library"}>{visibleAgents.map((agent) => (
-        <article className="agent-card" key={agent.id}>
-          <div className="agent-card__head"><span className="agent-avatar"><Bot size={18} /></span><Badge tone={agent.status === "published" ? "success" : "warning"}>{agent.status === "published" ? (ar ? "منشور" : "Published") : (ar ? "مسودة" : "Draft")}</Badge></div>
-          <div className="agent-card__copy"><span className="mono">V{agent.version}</span><h2>{localize(agent.name, locale)}</h2><p>{localize(agent.description, locale)}</p></div>
-          <dl className="agent-card__facts"><div><dt><Boxes size={14} />{ar ? "النموذج" : "Model"}</dt><dd>{agent.model}</dd></div><div><dt><Wrench size={14} />{ar ? "الأدوات" : "Tools"}</dt><dd>{agent.toolCount}</dd></div><div><dt><Play size={14} />{ar ? "التشغيلات" : "Runs"}</dt><dd>{agent.runCount}</dd></div></dl>
-          <div className="agent-card__policy"><ShieldCheck size={14} /><span>{ar ? "أي أثر خارجي ينتظر موافقة" : "External effects always await approval"}</span></div>
-          <div className="agent-card__actions"><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `جُهز تشغيل تجريبي للوكيل «${localize(agent.name, locale)}».` : `Demo run prepared for “${localize(agent.name, locale)}”.`)}><Play size={14} />{ar ? "تشغيل تجريبي" : "Demo run"}</button><Link href={`/${locale}/app/agents/${agent.id}/edit`}>{ar ? "فتح المنشئ" : "Open builder"}<DirectionArrow size={14} /></Link></div>
-        </article>
-      ))}</section> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
+      {visibleAgents.length ? <div className="mj-data-list agents-data-list ops-data-list" role="table" aria-label={ar ? "مكتبة الوكلاء" : "Agent library"}><div className="mj-data-list__head" role="row"><span>{ar ? "الوكيل" : "Agent"}</span><span>{ar ? "النموذج" : "Model"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "إجراءات" : "Actions"}</span></div>{visibleAgents.map((agent) => (
+        <div className="mj-data-list__row" role="row" key={agent.id}>
+          <span className="ops-cell-id" data-label={ar ? "الوكيل" : "Agent"}><i><Bot size={16} /></i><span><strong>{localize(agent.name, locale)}</strong><small>{localize(agent.description, locale)}</small></span></span>
+          <span className="mono" data-label={ar ? "النموذج" : "Model"}>{agent.model}</span>
+          <span className="mono" data-label={ar ? "التشغيلات" : "Runs"}>{agent.runCount}</span>
+          <span data-label={ar ? "الحالة" : "Status"}><Badge tone={agent.status === "published" ? "success" : "warning"}>{agent.status === "published" ? (ar ? "منشور" : "Published") : (ar ? "مسودة" : "Draft")}</Badge></span>
+          <span className="ops-cell-actions" data-label={ar ? "إجراءات" : "Actions"}><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `جُهز تشغيل تجريبي للوكيل «${localize(agent.name, locale)}».` : `Demo run prepared for “${localize(agent.name, locale)}”.`)}><Play size={14} />{ar ? "تشغيل" : "Run"}</button><Link className="ops-row-link" href={`/${locale}/app/agents/${agent.id}/edit`}>{ar ? "المنشئ" : "Builder"}<DirectionArrow size={14} /></Link></span>
+        </div>
+      ))}</div> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
       {notice ? <DemoToast message={notice} /> : null}
     </div>
   );

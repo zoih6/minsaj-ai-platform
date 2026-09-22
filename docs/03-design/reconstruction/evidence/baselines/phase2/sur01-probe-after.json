@@ -1,0 +1,182 @@
+{
+ "home@390": {
+  "containerCards": 3,
+  "containersAtDepth0": 2,
+  "containerInContainer": 1,
+  "containerInContainerSelectors": [
+   "div.adaptive-task-composer:d1"
+  ],
+  "controlsInsideSurfaces": 5
+ },
+ "chat@390": {
+  "containerCards": 5,
+  "containersAtDepth0": 5,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 4
+ },
+ "learn@390": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 13
+ },
+ "research@390": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 14
+ },
+ "create@390": {
+  "containerCards": 2,
+  "containersAtDepth0": 1,
+  "containerInContainer": 1,
+  "containerInContainerSelectors": [
+   "p.u2-create__note:d1"
+  ],
+  "controlsInsideSurfaces": 8
+ },
+ "code@390": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 10
+ },
+ "analyze@390": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 7
+ },
+ "explore@390": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 8
+ },
+ "home@768": {
+  "containerCards": 3,
+  "containersAtDepth0": 2,
+  "containerInContainer": 1,
+  "containerInContainerSelectors": [
+   "div.adaptive-task-composer:d1"
+  ],
+  "controlsInsideSurfaces": 5
+ },
+ "chat@768": {
+  "containerCards": 5,
+  "containersAtDepth0": 5,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 4
+ },
+ "learn@768": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 13
+ },
+ "research@768": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 14
+ },
+ "create@768": {
+  "containerCards": 2,
+  "containersAtDepth0": 1,
+  "containerInContainer": 1,
+  "containerInContainerSelectors": [
+   "p.u2-create__note:d1"
+  ],
+  "controlsInsideSurfaces": 8
+ },
+ "code@768": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 10
+ },
+ "analyze@768": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 7
+ },
+ "explore@768": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 9
+ },
+ "home@1440": {
+  "containerCards": 3,
+  "containersAtDepth0": 2,
+  "containerInContainer": 1,
+  "containerInContainerSelectors": [
+   "div.adaptive-task-composer:d1"
+  ],
+  "controlsInsideSurfaces": 5
+ },
+ "chat@1440": {
+  "containerCards": 5,
+  "containersAtDepth0": 5,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 4
+ },
+ "learn@1440": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 13
+ },
+ "research@1440": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 14
+ },
+ "create@1440": {
+  "containerCards": 2,
+  "containersAtDepth0": 1,
+  "containerInContainer": 1,
+  "containerInContainerSelectors": [
+   "p.u2-create__note:d1"
+  ],
+  "controlsInsideSurfaces": 8
+ },
+ "code@1440": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 10
+ },
+ "analyze@1440": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 7
+ },
+ "explore@1440": {
+  "containerCards": 1,
+  "containersAtDepth0": 1,
+  "containerInContainer": 0,
+  "containerInContainerSelectors": [],
+  "controlsInsideSurfaces": 9
+ }
+}

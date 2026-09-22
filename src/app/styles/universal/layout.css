@@ -281,11 +281,15 @@
 }
 .mj-dialog-wide { width: min(760px, calc(100vw - 2 * var(--mj-gutter))); }
 
-/* ---- 11. Touch invariants: interactive floors survive every reflow --- */
+/* ---- 11. Touch invariants: interactive floors survive every reflow ---
+   Row controls sit at --mj-control-dense on wide containers; on the phone
+   band the 44px touch floor wins (ACC-01 — the audit's invariant). ------ */
 @container mj-flow (max-width: 640px) {
   .mj-cluster button:not([data-mj-keep-size]),
   .mj-data-list__row button,
-  .mj-grid button { min-height: 40px; }}
+  .mj-data-list__row select,
+  .mj-data-list__row a,
+  .mj-grid button { min-height: var(--u-touch); }}
 
 /* ---- 12. Control bar: label + option chips + tail action.
         THE shared shape for every "options strip" (goal bars, filter

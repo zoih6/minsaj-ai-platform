@@ -15,7 +15,7 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
   const [projects, setProjects] = useState(initialProjects);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
-  const [view, setView] = useState<"grid" | "list">("grid");
+  const [view, setView] = useState<"grid" | "list">("list");
   const [createOpen, setCreateOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -126,7 +126,15 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
           body={ar ? "حدث خطأ مؤقت أثناء قراءة قائمة المشاريع. لم يفقد أي عمل محفوظ، ويمكنك إعادة المحاولة." : "A temporary error occurred while reading the project list. No saved work was lost — you can retry."}
           action={<button type="button" className="button button--primary button--compact" onClick={retrySurface}>{ar ? "إعادة المحاولة" : "Try again"}</button>}
         />
-      ) : visibleProjects.length ? <section className={`project-library is-${view}`} aria-label={ar ? "قائمة المشاريع" : "Project list"}>{visibleProjects.map((project) => (
+      ) : visibleProjects.length ? (view === "list" ? <div className="mj-data-list projects-data-list ops-data-list" role="table" aria-label={ar ? "قائمة المشاريع" : "Project list"}><div className="mj-data-list__head" role="row"><span>{ar ? "المشروع" : "Project"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "المحادثات" : "Chats"}</span><span>{ar ? "الحالة" : "Status"}</span><span /></div>{visibleProjects.map((project) => (
+        <Link className="mj-data-list__row" role="row" key={project.id} href={`/${locale}/app/projects/${project.id}`}>
+          <span className="ops-cell-id" data-label={ar ? "المشروع" : "Project"}><i><FolderKanban size={16} /></i><span><strong>{localize(project.name, locale)}</strong><small>{localize(project.description, locale)}</small></span></span>
+          <span className="mono" data-label={ar ? "التشغيلات" : "Runs"}>{project.activeRuns}</span>
+          <span className="mono" data-label={ar ? "المحادثات" : "Chats"}>{project.conversations}</span>
+          <span data-label={ar ? "الحالة" : "Status"}>{project.activeRuns ? <Badge tone="brand">{ar ? `${project.activeRuns} نشط` : `${project.activeRuns} active`}</Badge> : <Badge>{ar ? "هادئ" : "Idle"}</Badge>}</span>
+          <span aria-hidden="true"><DirectionArrow size={16} /></span>
+        </Link>
+      ))}</div> : <section className="project-library" aria-label={ar ? "قائمة المشاريع" : "Project list"}>{visibleProjects.map((project) => (
         <article className="project-library-card" key={project.id}>
           <div className="project-library-card__top"><span className="project-library-card__icon"><FolderKanban size={18} /></span>{project.activeRuns ? <Badge tone="brand">{ar ? `${project.activeRuns} تشغيل نشط` : `${project.activeRuns} active runs`}</Badge> : <Badge>{ar ? "هادئ" : "Idle"}</Badge>}</div>
           <div className="project-library-card__copy"><h2>{localize(project.name, locale)}</h2><p>{localize(project.description, locale)}</p></div>
@@ -134,7 +142,7 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
           <div className="context-coverage"><div><span>{ar ? "اكتمال السياق" : "Context coverage"}</span><b>{project.conversations ? "78%" : "12%"}</b></div><div role="progressbar" aria-label={ar ? "اكتمال سياق المشروع" : "Project context coverage"} aria-valuenow={project.conversations ? 78 : 12} aria-valuemin={0} aria-valuemax={100}><span style={{ width: project.conversations ? "78%" : "12%" }} /></div></div>
           <Link className="project-library-card__link" href={`/${locale}/app/projects/${project.id}`}><span>{ar ? "فتح المشروع" : "Open project"}</span><DirectionArrow size={16} /></Link>
         </article>
-      ))}</section> : normalized || filter !== "all" ? (
+      ))}</section>) : normalized || filter !== "all" ? (
         <SearchEmpty locale={locale} onReset={resetFilters} />
       ) : (
         <UniversalEmpty

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, CircleDollarSign, Clock3, Eye, Play, ShieldAlert } from "lucide-react";
+import { ArrowLeft, ArrowRight, Play, ShieldAlert } from "lucide-react";
 import { localize, type Locale, type RunSummary } from "@minsaj/contracts";
 import { CostValue, LibraryToolbar, OperationsStats, RunStatusBadge } from "./shared";
 import { retrySurface, SearchEmpty, SkeletonGrid, UniversalEmpty, type SurfaceStateOverride } from "@/components/universal/states";
@@ -61,16 +61,16 @@ export function RunsPrototype({ locale, runs, scenario = null }: { locale: Local
           body={ar ? "حدث خطأ مؤقت أثناء قراءة السجل. الحفاظ على حالتك الحالية مضمون، ويمكنك إعادة المحاولة." : "A temporary error occurred while reading the history. Your current state is preserved — you can retry."}
           action={<button type="button" className="button button--primary button--compact" onClick={retrySurface}>{ar ? "إعادة المحاولة" : "Try again"}</button>}
         />
-      ) : visibleRuns.length ? <div className="runs-table-wrap"><table className="runs-table"><caption className="sr-only">{ar ? "سجل التشغيلات" : "Run history"}</caption><thead><tr><th>{ar ? "التشغيل" : "Run"}</th><th>{ar ? "الحالة" : "Status"}</th><th>{ar ? "النوع" : "Kind"}</th><th>{ar ? "آخر تحديث" : "Updated"}</th><th>{ar ? "التكلفة" : "Cost"}</th><th><span className="sr-only">{ar ? "إجراء" : "Action"}</span></th></tr></thead><tbody>{visibleRuns.map((run) => (
-        <tr key={run.id}>
-          <td data-label={ar ? "التشغيل" : "Run"}><Link className="run-name-cell" href={`/${locale}/app/runs/${run.id}`}><span className="run-name-cell__icon">{run.status === "waiting_for_approval" ? <ShieldAlert size={16} /> : <Play size={16} />}</span><span><strong>{localize(run.title, locale)}</strong><small className="mono">{run.id}</small></span></Link></td>
-          <td data-label={ar ? "الحالة" : "Status"}><RunStatusBadge locale={locale} status={run.status} /></td>
-          <td data-label={ar ? "النوع" : "Kind"}><span className="table-project">{run.kind === "flow" ? (ar ? "تدفق" : "Flow") : (ar ? "وكيل" : "Agent")}</span></td>
-          <td data-label={ar ? "آخر تحديث" : "Updated"}><span className="table-muted"><Clock3 size={14} />{ar ? "منذ دقائق" : "Minutes ago"}</span></td>
-          <td data-label={ar ? "التكلفة" : "Cost"}><span className="table-cost"><CircleDollarSign size={14} /><CostValue value={run.cost.amountMinor / 100} locale={locale} /></span></td>
-          <td><Link className="table-open" href={`/${locale}/app/runs/${run.id}`} aria-label={ar ? `فتح ${localize(run.title, locale)}` : `Open ${localize(run.title, locale)}`}><Eye size={16} /><DirectionArrow size={14} /></Link></td>
-        </tr>
-      ))}</tbody></table></div> : normalized || filter !== "all" ? (
+      ) : visibleRuns.length ? <div className="mj-data-list runs-data-list ops-data-list" role="table" aria-label={ar ? "سجل التشغيلات" : "Run history"}><div className="mj-data-list__head" role="row"><span>{ar ? "التشغيل" : "Run"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "النوع" : "Kind"}</span><span>{ar ? "آخر تحديث" : "Updated"}</span><span>{ar ? "التكلفة" : "Cost"}</span><span /></div>{visibleRuns.map((run) => (
+        <Link className="mj-data-list__row" role="row" key={run.id} href={`/${locale}/app/runs/${run.id}`}>
+          <span className="ops-cell-id" data-label={ar ? "التشغيل" : "Run"}><i>{run.status === "waiting_for_approval" ? <ShieldAlert size={16} /> : <Play size={16} />}</i><span><strong>{localize(run.title, locale)}</strong><small className="mono">{run.id}</small></span></span>
+          <span data-label={ar ? "الحالة" : "Status"}><RunStatusBadge locale={locale} status={run.status} /></span>
+          <span data-label={ar ? "النوع" : "Kind"}>{run.kind === "flow" ? (ar ? "تدفق" : "Flow") : (ar ? "وكيل" : "Agent")}</span>
+          <span data-label={ar ? "آخر تحديث" : "Updated"}>{ar ? "منذ دقائق" : "Minutes ago"}</span>
+          <span className="mono" data-label={ar ? "التكلفة" : "Cost"}><CostValue value={run.cost.amountMinor / 100} locale={locale} /></span>
+          <span aria-hidden="true"><DirectionArrow size={16} /></span>
+        </Link>
+      ))}</div> : normalized || filter !== "all" ? (
         <SearchEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />
       ) : (
         <UniversalEmpty

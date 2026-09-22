@@ -89,21 +89,14 @@ html[lang="ar"] .universal-shell-brand b { letter-spacing: 0; }
 }
 .adaptive-task-submit {
   background: linear-gradient(140deg, var(--service), var(--service-deep));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .26), 0 2px 6px rgba(11, 15, 26, .28), 0 8px 22px rgba(var(--service-rgb), .3);
 }
 @media (hover: hover) {
   .adaptive-task-submit:hover {
-    filter: brightness(1.06);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 3px 8px rgba(11, 15, 26, .3), 0 10px 28px rgba(var(--service-rgb), .4);
+    filter: brightness(1.08);
   }
 }
-/* Composer card itself: the glass panel gets a light seam on top */
-.adaptive-task-card {
-  box-shadow: 0 22px 65px rgba(69, 68, 119, .12), 0 4px 15px rgba(45, 48, 77, .04), inset 0 1px 0 rgba(255, 255, 255, .55);
-}
-:root[data-theme="dark"] .adaptive-task-card {
-  box-shadow: 0 22px 65px rgba(4, 5, 14, .55), inset 0 1px 0 rgba(236, 238, 248, .05);
-}
+/* Composer wrapper is flat per R-SURF-1 — the hero is the surface; the
+   composer field carries its own border. Depth caps at surface > field. */
 
 /* ----------------------------------------------------------------
    §8 AFFORDANCE — quiet things that are still clearly clickable

@@ -13,7 +13,7 @@
    the display level's Latin tracking (−0.02em) applies under [lang="en"] only. */
 html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
 .adaptive-home__welcome p { max-width: 720px; margin: 9px 0 0; color: var(--u-muted); font-size: var(--u-text-md); line-height: 1.8; }
-.adaptive-personalize { min-height: var(--u-touch); padding-inline: 15px; display: inline-flex; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-sm); color: var(--u-primary); background: var(--u-glass); font-size: var(--u-text-md); font-weight: 600; cursor: pointer; white-space: nowrap; box-shadow: 0 5px 16px rgba(66,63,130,.05); }@media (hover: hover) {
+.adaptive-personalize { min-height: var(--u-touch); padding-inline: 15px; display: inline-flex; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-sm); color: var(--u-primary); background: var(--u-glass); font-size: var(--u-text-md); font-weight: 600; cursor: pointer; white-space: nowrap; }@media (hover: hover) {
   .adaptive-personalize:hover { background: var(--u-raise); box-shadow: var(--u-shadow-sm); }
 }
 
@@ -32,7 +32,7 @@ html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
   .adaptive-goals-bar__change:hover { background: var(--u-raise); }
 }
 
-.adaptive-task-card { position: relative; max-width: 980px; margin: var(--mj-space-200) auto 0; padding: 10px; border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-lg); background: var(--u-glass-strong); box-shadow: 0 22px 65px rgba(69,68,119,.12), 0 4px 15px rgba(45,48,77,.04); backdrop-filter: blur(15px); }
+.adaptive-task-card { position: relative; max-width: 980px; margin: var(--mj-space-200) auto 0; padding: 0; border: 0; background: transparent; box-shadow: none; }
 .adaptive-task-modes { display: flex; align-items: center; gap: var(--mj-gap-xs); padding: var(--mj-space-25); margin-block-end: var(--mj-gap-xs); overflow-x: auto; scrollbar-width: none; }
 .adaptive-task-modes::-webkit-scrollbar { display: none; }
 .adaptive-task-modes button { min-width: max-content; min-height: var(--u-touch); padding-inline: var(--mj-gap-sm); display: flex; align-items: center; gap: var(--mj-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: var(--u-muted); background: transparent; font-size: var(--u-text-sm); cursor: pointer; }@media (hover: hover) {
@@ -40,7 +40,7 @@ html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
 }
 
 .adaptive-task-modes button.is-active { color: var(--service); background: var(--service-soft); box-shadow: inset 0 0 0 1px rgba(var(--service-rgb),.32); font-weight: 700; }
-.adaptive-task-composer { position: relative; padding: 13px 13px 10px 55px; border: 1px solid var(--u-line); border-radius: var(--u-radius); background: var(--u-field); }
+.adaptive-task-composer { position: relative; padding: 13px 13px 10px 55px; border: 1px solid var(--u-line); border-radius: var(--u-radius-field); background: var(--u-field); }
 [dir="rtl"] .adaptive-task-composer { padding: 13px 55px 10px 13px; }
 .adaptive-task-composer:focus-within { border-color: rgba(var(--service-rgb),.42); box-shadow: 0 0 0 4px rgba(var(--service-rgb),.06); }
 .adaptive-task-composer__icon { position: absolute; inset-inline-start: 14px; inset-block-start: 15px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: var(--u-radius-sm); color: var(--service); background: var(--service-soft); }
@@ -54,9 +54,9 @@ html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
 }
 
 .adaptive-task-composer__actions > div span { margin-inline-start: 5px; color: var(--service); font-size: var(--u-text-sm); font-weight: 700; }
-.adaptive-task-submit { min-height: var(--u-touch); padding-inline: 16px 13px; display: inline-flex; align-items: center; gap: var(--mj-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: white; background: var(--service); box-shadow: 0 7px 16px rgba(var(--service-rgb),.22); font-size: var(--u-text-md); font-weight: 700; cursor: pointer; }
+.adaptive-task-submit { min-height: var(--u-touch); padding-inline: 16px 13px; display: inline-flex; align-items: center; gap: var(--mj-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: white; background: var(--service); font-size: var(--u-text-md); font-weight: 700; cursor: pointer; }
 [dir="rtl"] .adaptive-task-submit { padding-inline: 10px 13px; }@media (hover: hover) {
-  .adaptive-task-submit:hover { box-shadow: 0 9px 22px rgba(var(--service-rgb),.28); }
+  .adaptive-task-submit:hover { filter: brightness(1.05); }
 }
 
 .adaptive-starters { padding: 8px 3px 2px; display: grid; grid-template-columns: repeat(3,1fr); gap: var(--mj-gap-xs); }

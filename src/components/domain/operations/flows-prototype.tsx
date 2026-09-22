@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Bot, CheckSquare2, GitFork, Play, Plus, TimerReset, Workflow } from "lucide-react";
+import { ArrowLeft, ArrowRight, Play, Plus, Workflow } from "lucide-react";
 import { Badge } from "@minsaj/ui";
 import { localize, type FlowSummary, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "./shared";
@@ -49,19 +49,15 @@ export function FlowsPrototype({ locale, flows }: { locale: Locale; flows: FlowS
         { id: "archived", label: ar ? "مؤرشف" : "Archived" },
       ]} />
 
-      {visibleFlows.length ? <section className="flow-library" aria-label={ar ? "مكتبة التدفقات" : "Flow library"}>{visibleFlows.map((flow) => (
-        <article className="flow-card" key={flow.id}>
-          <div className="flow-card__header"><div className="flow-card__identity"><span><Workflow size={18} /></span><div><h2>{localize(flow.name, locale)}</h2><p>{localize(flow.description, locale)}</p></div></div><Badge tone={flow.status === "published" ? "success" : flow.status === "draft" ? "warning" : "neutral"}>{flow.status === "published" ? (ar ? "نشط" : "Active") : flow.status === "draft" ? (ar ? "مسودة" : "Draft") : (ar ? "مؤرشف" : "Archived")}</Badge></div>
-          <div className="flow-mini-map" aria-label={ar ? "معاينة عقد التدفق" : "Flow node preview"}>
-            <div><span><TimerReset size={16} /></span><small>{ar ? "محفّز" : "Trigger"}</small></div><i />
-            <div><span><Bot size={16} /></span><small>{ar ? "وكيل" : "Agent"}</small></div><i />
-            <div><span><GitFork size={16} /></span><small>{ar ? "شرط" : "Condition"}</small></div><i />
-            <div className="is-approval"><span><CheckSquare2 size={16} /></span><small>{ar ? "موافقة" : "Approval"}</small></div>
-          </div>
-          <dl className="flow-card__facts"><div><dt>{ar ? "العقد" : "Nodes"}</dt><dd>{flow.nodeCount}</dd></div><div><dt>{ar ? "التشغيلات" : "Runs"}</dt><dd>{flow.runCount}</dd></div><div><dt>{ar ? "آخر تشغيل" : "Last run"}</dt><dd>{flow.runCount ? (ar ? "منذ ساعتين" : "2h ago") : (ar ? "لم يبدأ" : "Never")}</dd></div></dl>
-          <div className="flow-card__footer"><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `بدأ اختبار آمن للتدفق «${localize(flow.name, locale)}» دون آثار خارجية.` : `Safe test started for “${localize(flow.name, locale)}” with no external effects.`)}><Play size={14} />{ar ? "اختبار" : "Test"}</button><Link href={`/${locale}/app/flows/${flow.id}/edit`}>{ar ? "فتح المحرر" : "Open editor"}<DirectionArrow size={14} /></Link></div>
-        </article>
-      ))}</section> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
+      {visibleFlows.length ? <div className="mj-data-list flows-data-list ops-data-list" role="table" aria-label={ar ? "مكتبة التدفقات" : "Flow library"}><div className="mj-data-list__head" role="row"><span>{ar ? "التدفق" : "Flow"}</span><span>{ar ? "العقد" : "Nodes"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "إجراءات" : "Actions"}</span></div>{visibleFlows.map((flow) => (
+        <div className="mj-data-list__row" role="row" key={flow.id}>
+          <span className="ops-cell-id" data-label={ar ? "التدفق" : "Flow"}><i><Workflow size={16} /></i><span><strong>{localize(flow.name, locale)}</strong><small>{localize(flow.description, locale)}</small></span></span>
+          <span className="mono" data-label={ar ? "العقد" : "Nodes"}>{flow.nodeCount}</span>
+          <span className="mono" data-label={ar ? "التشغيلات" : "Runs"}>{flow.runCount}</span>
+          <span data-label={ar ? "الحالة" : "Status"}><Badge tone={flow.status === "published" ? "success" : flow.status === "draft" ? "warning" : "neutral"}>{flow.status === "published" ? (ar ? "نشط" : "Active") : flow.status === "draft" ? (ar ? "مسودة" : "Draft") : (ar ? "مؤرشف" : "Archived")}</Badge></span>
+          <span className="ops-cell-actions" data-label={ar ? "إجراءات" : "Actions"}><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `بدأ اختبار آمن للتدفق «${localize(flow.name, locale)}» دون آثار خارجية.` : `Safe test started for “${localize(flow.name, locale)}” with no external effects.`)}><Play size={14} />{ar ? "اختبار" : "Test"}</button><Link className="ops-row-link" href={`/${locale}/app/flows/${flow.id}/edit`}>{ar ? "المحرر" : "Editor"}<DirectionArrow size={14} /></Link></span>
+        </div>
+      ))}</div> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
       {notice ? <DemoToast message={notice} /> : null}
     </div>
   );
