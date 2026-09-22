@@ -99,12 +99,15 @@
 .universal-shell-nav::-webkit-scrollbar { width: 5px; }
 .universal-shell-nav::-webkit-scrollbar-thumb { background: rgba(148, 152, 200, 0.25); border: 0; border-radius: var(--u-radius-pill); }
 
-/* ---- Nav groups (2026-09-21 redesign): three named clusters give the
-   15-destination rail a scan hierarchy — services, advanced tools, and
-   personal utilities are labelled instead of carrying identical weight. */
-.universal-shell-nav__group { display: grid; gap: 5px; }
-.universal-shell-nav__group + .universal-shell-nav__group,
-.universal-shell-nav__group + .universal-shell-nav__utility { margin-block-start: var(--mj-space-200); }
+/* ---- Nav groups & TIERS (Phase 3 / NAV-05): the drawer's information
+   architecture finally renders as hierarchy. Four tiers, token-bound
+   registers (NAVIGATION-ARCHITECTURE §4):
+     T1 core        label-m 13/600 ink   · icon 18 in a 28px chip · row 48
+                    active = primary pill + 3px inline indicator
+     T2/T3/T4       body-s 13.5/500 soft · icon 16 bare · row 44
+                    active = soft tint (no pill, no indicator) ------------ */
+.universal-shell-nav__group { display: grid; gap: var(--mj-space-50); }
+.universal-shell-nav__group + .universal-shell-nav__group { margin-block-start: var(--mj-space-200); }
 
 .universal-shell-nav__label {
   padding: 0 12px 1px;
@@ -119,7 +122,23 @@
    glyph joins — RTL labels carry zero letter-spacing, uppercase is a no-op. */
 [dir="rtl"] .universal-shell-nav__label { letter-spacing: 0; }
 
-.universal-shell-nav__main { display: grid; gap: var(--mj-gap-2xs); }
+.universal-shell-nav__main,
+.universal-shell-nav__secondary { display: grid; gap: var(--mj-space-50); }
+
+/* T3 — Operations: hairline group separation + the sanctioned fold (the
+   19-destination drawer exceeds 80vh on phones). The summary reuses the
+   group-label register but must stay interactive in the drawer. */
+.universal-shell-nav__fold { border-block-start: 1px solid var(--u-shell-line); padding-block-start: var(--mj-space-150); }
+.universal-shell-nav__fold > summary.universal-shell-nav__label {
+  pointer-events: auto; cursor: pointer; touch-action: manipulation;
+  min-height: var(--mj-touch); padding-block: var(--mj-space-100);
+  list-style: none;
+}
+.universal-shell-nav__fold > summary::-webkit-details-marker { display: none; }
+.universal-shell-nav__fold > summary > svg { margin-inline-start: auto; color: var(--u-shell-muted); transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+.universal-shell-nav__fold[open] > summary > svg { transform: rotate(180deg); }
+[dir="rtl"] .universal-shell-nav__fold > summary > svg { transform: scaleX(-1); }
+[dir="rtl"] .universal-shell-nav__fold[open] > summary > svg { transform: scaleX(-1) rotate(180deg); }
 
 .universal-shell-link {
   position: relative; min-height: var(--mj-touch);
@@ -134,37 +153,54 @@
   .universal-shell-link:hover { color: var(--u-shell-ink); background: rgba(126, 132, 171, 0.14); }
 }
 
+/* T1 — Core services: the primary register. */
+.universal-shell-link[data-tier="core"] { min-height: 48px; }
+.universal-shell-link[data-tier="core"] > b { font-size: var(--mj-text-label-m); font-weight: 600; color: var(--u-shell-ink); }
+.universal-shell-link[data-tier="core"] > span { width: 28px; height: 28px; }
+
+/* T2/T3/T4 — Workspace, Operations, Personal: the secondary register. */
+.universal-shell-link[data-tier="secondary"] > b,
+.universal-shell-link[data-tier="pinned"] > b { font-size: var(--mj-text-body-s); font-weight: 500; color: var(--u-shell-ink-soft); }
+.universal-shell-link[data-tier="secondary"] > span,
+.universal-shell-link[data-tier="pinned"] > span { width: 28px; height: 28px; color: var(--u-shell-icon-dim); background: transparent; box-shadow: none; }
+
+/* Active registers. T1: primary pill + 3px inline indicator (the base
+   .is-active). T2/T3/T4: soft tint only — weight comes from ink, never
+   from a full pill competing with the core tier. */
 .universal-shell-link.is-active {
   color: #ffffff;
-  background: linear-gradient(135deg, rgba(96, 84, 240, 0.4), rgba(96, 84, 240, 0.14));
-  box-shadow: inset 0 0 0 1px rgba(124, 110, 250, 0.4), 0 6px 18px rgba(18, 20, 45, 0.35);
+  background: var(--u-shell-active);
+  box-shadow: inset 0 0 0 1px var(--u-shell-active-line);
   font-weight: 600;
 }
 .universal-shell-link.is-active::before {
   content: ""; position: absolute; inset-inline-start: 0; inset-block: 25%;
   width: 3px; border-radius: var(--u-radius-pill);
   background: var(--u-shell-grad-link);
-  box-shadow: 0 0 12px rgba(124, 110, 250, 0.8);
 }
-.universal-shell-link > span { width: 27px; height: 27px; flex: 0 0 auto; display: grid; place-items: center; border-radius: var(--u-radius-xs); color: var(--u-shell-icon); transition: color var(--u-fast) var(--u-motion-ease-standard); }@media (hover: hover) {
+.universal-shell-link[data-tier="secondary"].is-active,
+.universal-shell-link[data-tier="pinned"].is-active {
+  color: var(--u-shell-ink);
+  background: var(--u-shell-hover);
+  box-shadow: none;
+}
+.universal-shell-link[data-tier="secondary"].is-active::before,
+.universal-shell-link[data-tier="pinned"].is-active::before { content: none; }
+
+.universal-shell-link > span { width: 28px; height: 28px; flex: 0 0 auto; display: grid; place-items: center; border-radius: var(--u-radius-xs); color: var(--u-shell-icon); transition: color var(--u-fast) var(--u-motion-ease-standard); }@media (hover: hover) {
   .universal-shell-link:hover > span { color: var(--u-shell-icon-bright); }
 }
 
 .universal-shell-link.is-active > span { color: var(--u-shell-accent); background: rgba(255, 255, 255, 0.08); box-shadow: inset 0 0 0 1px rgba(124, 110, 250, 0.3); }
-.universal-shell-link b { font-size: var(--u-text-sm); font-weight: 550; white-space: nowrap; }
+.universal-shell-link b { white-space: nowrap; }
 .universal-shell-link > i { width: 6px; height: 6px; margin-inline-start: auto; border-radius: 50%; background: var(--u-shell-online); box-shadow: 0 0 0 4px var(--u-shell-online-halo); }
 
-.universal-shell-nav__utility { margin-block-start: 14px; padding-block-start: 13px; display: grid; gap: var(--mj-gap-2xs); border-block-start: 1px solid var(--u-shell-line); }
-
-/* Advanced tools cluster — full citizens beside services (accordion retired
-   in the 2026-09-21 redesign): slightly smaller icons keep the secondary
-   register while the group label carries the hierarchy. */
-.universal-shell-advanced-list { display: grid; gap: var(--mj-space-25); }
-.universal-shell-advanced-list .universal-shell-link { min-height: 40px; padding-block: var(--mj-space-50); }
-.universal-shell-advanced-list .universal-shell-link > span { width: 23px; height: 23px; }
+/* T4 — Personal: pinned footer block above the profile row, never in the
+   scroll (NAV-05). The utility group finally carries its label «مساحتي». */
+.universal-shell-pinned { flex: 0 0 auto; display: grid; gap: var(--mj-space-50); padding-block: var(--mj-space-150) var(--mj-space-100); border-block-start: 1px solid var(--u-shell-line); }
 
 /* Profile footer — always fully visible; nav above it scrolls independently */
-.universal-shell-profile { position: relative; z-index: 1; flex: 0 0 auto; padding-block-start: 10px; border-block-start: 1px solid var(--u-shell-line); }
+.universal-shell-profile { position: relative; z-index: 1; flex: 0 0 auto; }
 .universal-shell-profile > a { min-height: 52px; padding: 6px; display: grid; grid-template-columns: 36px minmax(0, 1fr) 20px; align-items: center; gap: var(--mj-gap-xs); border-radius: var(--u-radius-sm); color: var(--u-shell-ink); text-decoration: none; overflow: hidden; transition: background var(--u-fast) var(--u-motion-ease-standard); }@media (hover: hover) {
   .universal-shell-profile > a:hover { background: rgba(126, 132, 171, 0.14); }
 }
@@ -188,49 +224,68 @@
   flex-direction: column;
 }
 
-/* ---- Topbar — MOBILE-FIRST two-row, expands to one row at tablet ----- */
+/* ---- Topbar — ONE grammar (Phase 3 / NAV-01): a single 56px row on every
+   /app/* route at every viewport. The header announces the workspace mark;
+   page identity belongs to the route's own title block (R-NAV-3 / NAV-03).
+   Background is near-solid chrome (opacity >= 0.92 — the D-1 default 0.95):
+   structure, not glass (NAV-07 / UNC-02); blur is retained only as the
+   fallback for the 5% transparency. ------------------------------- */
 .universal-shell-topbar {
   position: sticky; z-index: 45; inset-block-start: 0;
-  padding-block: max(6px, env(safe-area-inset-top)) 6px;
+  min-height: 56px;
+  padding-block: max(var(--mj-space-50), env(safe-area-inset-top)) var(--mj-space-50);
   padding-inline: var(--mj-gutter);
-  display: grid;
-  grid-template-areas:
-    "context actions"
-    "search search";
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--mj-gap-xs);
+  display: flex; align-items: center; gap: var(--mj-space-100);
   border-block-end: 1px solid var(--u-glass-line);
-  background: var(--u-glass);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: color-mix(in srgb, var(--u-surface-solid) 95%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.universal-shell-context { grid-area: context; min-width: 0; display: flex; align-items: center; gap: var(--mj-gap-xs); }
+.universal-shell-context { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--mj-space-100); }
 .universal-shell-context > button { width: var(--mj-touch); height: var(--mj-touch); flex: 0 0 auto; display: grid; place-items: center; border: 0; border-radius: var(--u-radius-sm); color: var(--u-ink); background: var(--u-hover-veil); cursor: pointer; }
-.universal-shell-context > span { overflow: hidden; color: var(--u-ink); text-overflow: ellipsis; white-space: nowrap; font-size: var(--mj-text-body); font-weight: 600; }
-.universal-shell-context > small { min-height: 26px; padding-inline: 9px; display: none; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-pill); color: var(--u-primary); background: var(--u-primary-soft); font-size: var(--mj-text-caption); font-weight: 600; }
 
+/* Workspace mark (L1): logomark always; the wordmark joins at >= 768 where
+   the row has room (390px math: menu 44 + mark 26 + 5 triggers 44 = 362). */
+.universal-shell-mark {
+  min-width: var(--mj-touch); min-height: var(--mj-touch);
+  padding-inline: var(--mj-space-50);
+  margin-inline-start: calc(var(--mj-space-50) * -1);
+  display: inline-flex; align-items: center; gap: var(--mj-space-50);
+  border-radius: var(--u-radius-control);
+  color: var(--u-ink); text-decoration: none;
+}
+.universal-shell-mark b { font-size: var(--mj-text-body-m); font-weight: 700; white-space: nowrap; }
+@media (max-width: 767.98px) { .universal-shell-mark b { display: none; } }
+
+/* Global search/⌘K trigger (L1, R-NAV-6): an icon button under 768 — the
+   two-row search tray dies with the single-row header (NAV-01/NAV-06); it
+   expands into an inline field (width >= 220px) from 768 up. */
 .universal-shell-search {
-  grid-area: search;
-  width: 100%;
-  min-height: var(--mj-touch); padding: 0 9px 0 13px;
-  display: flex; align-items: center; gap: var(--mj-gap-xs);
-  border: 1.5px solid var(--u-line); border-radius: var(--u-radius-sm);
-  color: var(--u-faint); background: var(--u-glass-strong);
-  box-shadow: 0 2px 8px rgba(42, 45, 75, 0.03);
-  cursor: pointer; text-align: start;
-  transition: border-color var(--u-fast) var(--u-motion-ease-standard), box-shadow var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard);
-}@media (hover: hover) {
-  .universal-shell-search:hover { border-color: var(--u-glass-line); box-shadow: 0 4px 14px rgba(42, 45, 75, 0.06); background: var(--u-raise); }
+  flex: 0 0 auto;
+  width: var(--mj-touch); height: var(--mj-touch);
+  display: grid; place-items: center;
+  border: 0; border-radius: var(--u-radius-sm);
+  color: var(--u-muted); background: transparent;
+  cursor: pointer;
+  transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard);
+}
+@media (hover: hover) {
+  .universal-shell-search:hover { color: var(--u-primary); background: var(--u-primary-soft); }
+}
+.universal-shell-search span, .universal-shell-search kbd { display: none; }
+@media (min-width: 768px) {
+  .universal-shell-search {
+    width: clamp(220px, 26vw, 400px); height: var(--mj-control-compact);
+    display: flex; align-items: center; gap: var(--mj-space-100);
+    padding: 0 var(--mj-space-100) 0 var(--mj-space-150);
+    border: 1px solid var(--u-line); border-radius: var(--u-radius-field);
+    color: var(--u-faint); background: var(--u-surface-subtle);
+  }
+  .universal-shell-search span { display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--mj-text-body-s); text-align: start; }
+  .universal-shell-search kbd { display: block; min-width: 36px; padding: 5px 8px; border: 1px solid var(--u-line); border-radius: var(--u-radius-xs); color: var(--u-faint); background: var(--u-surface-solid); font: 500 11px/1 "IBM Plex Mono", monospace; }
 }
 
-.universal-shell-search:active { background: var(--u-raise); }
-[dir="rtl"] .universal-shell-search { padding: 0 13px 0 9px; }
-.universal-shell-search span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--u-text-sm); }
-.universal-shell-search kbd { display: none; min-width: 36px; padding: 5px 8px; border: 1px solid var(--u-line); border-radius: var(--u-radius-xs); color: var(--u-faint); background: var(--u-tint-1); font: 500 11px/1 "IBM Plex Mono", monospace; }
-
-.universal-shell-actions { grid-area: actions; display: flex; align-items: center; justify-content: flex-end; gap: var(--mj-gap-xs); }
-.universal-shell-demo { display: none; }
+.universal-shell-actions { display: flex; align-items: center; justify-content: flex-end; gap: var(--mj-gap-xs); }
 .universal-shell-actions > a:not(.universal-top-avatar), .universal-shell-actions > button {
   min-width: var(--mj-touch); height: var(--mj-touch);
   display: grid; place-items: center;
@@ -244,7 +299,10 @@
 }
 
 .universal-shell-actions > a:active, .universal-shell-actions > button:active { transform: scale(.93); }
-.universal-shell-actions > a:not(.universal-top-avatar) { display: none; }
+/* Sub-370px guard: the row's fixed 44px furniture (menu + mark + five
+   triggers) exceeds 362px of content width below this point — the locale
+   link folds first (it remains reachable at >= 370px and in Settings). */
+@media (max-width: 369.98px) { .universal-shell-actions > a:not(.universal-top-avatar) { display: none; } }
 .universal-shell-actions > button { position: relative; }
 .universal-shell-actions > button > i { position: absolute; inset-inline-end: 8px; inset-block-start: 7px; width: 6px; height: 6px; border: 2px solid white; border-radius: 50%; background: var(--u-alert); box-sizing: content-box; }
 .universal-top-avatar { width: var(--mj-touch); height: var(--mj-touch); flex: 0 0 var(--mj-touch); display: grid; place-items: center; border-radius: var(--u-radius-sm); color: white !important; background: var(--u-shell-grad-avatar-top) !important; box-shadow: 0 5px 12px rgba(85, 72, 224, 0.35), inset 0 1px rgba(255, 255, 255, 0.25); text-decoration: none; font-size: var(--u-text-xs); font-weight: 700; }
@@ -272,7 +330,7 @@
 }
 .universal-shell-backdrop[data-state="open"] { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
 
-/* ---- Bottom tab bar (mobile only) -------------------------------------- */
+/* ---- Mobile dock (L4) — hidden above the phone band; geometry below ---- */
 .universal-shell-mobile-nav { display: none; }
 
 /* ==========================================================================
@@ -280,17 +338,6 @@
    ========================================================================== */
 @media (min-width: 768px) {
   .universal-shell-close { display: none; }
-  .universal-shell-context > small { display: inline-flex; }
-
-  .universal-shell-topbar {
-    grid-template-areas: "context search actions";
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 420px) auto;
-    gap: clamp(10px, 1.4vw, 22px);
-    padding-block: var(--mj-space-100);
-  }
-  .universal-shell-search kbd { display: block; }
-  .universal-shell-search { width: 100%; }
-  .universal-shell-actions > a:not(.universal-top-avatar) { display: grid; }
 
   .universal-app-shell[data-sidebar="rail"] .universal-shell-sidebar {
     width: var(--mj-sidebar-rail);
@@ -302,15 +349,21 @@
     margin-inline-start: var(--mj-sidebar-rail);
   }
   /* rail: center icons, hide all textual affordances
-     (brand-row stacking handled by the .universal-shell-collapse rules above) */
+     (brand-row stacking handled by the .universal-shell-collapse rules above).
+     Tier registers survive the rail: T1 icons keep their 28px chips, the
+     secondary/pinned tiers stay bare (NAVIGATION-ARCHITECTURE §4). */
   .universal-app-shell[data-sidebar="rail"] .universal-shell-brand { justify-content: center; gap: 0; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-new,
   .universal-app-shell[data-sidebar="rail"] .universal-shell-link { padding-inline: 0; justify-content: center; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-nav__group + .universal-shell-nav__group,
-  .universal-app-shell[data-sidebar="rail"] .universal-shell-nav__group + .universal-shell-nav__utility { margin-block-start: 10px; }
+  .universal-app-shell[data-sidebar="rail"] .universal-shell-pinned { margin-block-start: 10px; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-profile > a { grid-template-columns: 36px; justify-content: center; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-sidebar :is(.universal-shell-brand b, .universal-shell-brand > svg, .universal-shell-new b, .universal-shell-link b, .universal-shell-link > i, .universal-shell-nav__label, .universal-shell-profile > a > span:nth-child(2), .universal-shell-profile > a > svg) { display: none; }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-link > span { margin-inline: auto; }
+  /* The T3 fold is inert on sidebar bands (open + unlabelled like every
+     other group — the disclosure affordance exists only in the drawer). */
+  .universal-shell-nav__fold > summary { pointer-events: none; cursor: default; }
+  .universal-shell-nav__fold > summary > svg { display: none; }
 
   /* expanded on tablet = overlay drawer (content keeps rail offset) */
   .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] .universal-shell-sidebar {
@@ -352,34 +405,54 @@
   .universal-shell-content { padding-block: clamp(24px, 2vw, 40px); }}
 
 /* ==========================================================================
-   MOBILE BOTTOM TAB BAR — activates only in drawer mode
+   MOBILE DOCK (L4) — ONE grammar on every route (Phase 3 / NAV-04)
+   The floating dock replaces both dialects (full-width bar on standard
+   routes, glass dock on focus-canvas routes). Geometry: 16px inline inset,
+   64px total height (8px padding + 48px items), card radius 16, items at
+   field radius 12, active = primary ink + soft pill + 3px indicator bar.
+   Weight cap (D-4 working rule): exactly ONE shadow token and ONE hairline
+   — the dock reads as an object, never as a card competing with content.
    The reserve is declared on :root so viewport-fixed elements portaled to
-   document.body (toasts, stop pills, dialogs) can also clear the tab bar.
-   v18.1 mobile QA: near-opaque glass + heavy blur so page content scrolling
-   beneath reads as "behind glass" instead of overlapping clutter; inactive
-   items lifted from --u-faint to --u-muted (readable), active item gets an
-   integrated soft pill (not a detached broken button). */
+   document.body (toasts, stop pills, dialogs) can also clear the dock:
+   64px dock + 16px breathing = 80px + safe-area.
+   ========================================================================== */
 @media (max-width: 767.98px) {
   :root { --mj-tabbar-reserve: calc(80px + env(safe-area-inset-bottom)); }
   .universal-shell-mobile-nav {
     position: fixed; z-index: 50;
-    inset-inline: 0; inset-block-end: 0;
-    padding: 8px 8px max(9px, env(safe-area-inset-bottom));
+    inset-inline: var(--mj-space-200);
+    inset-block-end: max(var(--mj-space-200), env(safe-area-inset-bottom));
+    padding: var(--mj-space-100);
     display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
-    border-block-start: 1px solid var(--u-line);
-    background: color-mix(in srgb, var(--u-surface-solid) 96%, transparent);
-    backdrop-filter: blur(26px) saturate(1.25);
-    -webkit-backdrop-filter: blur(26px) saturate(1.25);
-    box-shadow: 0 -10px 32px rgba(9, 10, 25, 0.08);
+    border: 1px solid var(--u-glass-line);
+    border-radius: var(--u-radius-card);
+    background: color-mix(in srgb, var(--u-surface-solid) 92%, transparent);
+    backdrop-filter: blur(18px) saturate(1.25);
+    -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    box-shadow: var(--u-shadow-md);
   }
   .universal-shell-mobile-nav a {
-    min-width: 0; min-height: 52px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--mj-gap-2xs);
-    border-radius: var(--u-radius-sm); color: var(--u-muted); text-decoration: none; font-size: var(--mj-text-caption);
+    position: relative; min-width: 0; min-height: 48px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--mj-space-25);
+    border-radius: var(--u-radius-field); color: var(--u-muted); text-decoration: none; font-size: var(--mj-text-caption); font-weight: 500;
     transition: color var(--u-fast) var(--u-motion-ease-standard), background var(--u-fast) var(--u-motion-ease-standard);
   }
   .universal-shell-mobile-nav a:active { background: var(--u-primary-soft); }
-  .universal-shell-mobile-nav a.is-active { color: var(--u-primary); font-weight: 700; background: var(--u-primary-soft); box-shadow: inset 0 0 0 1px var(--u-primary-soft-line); }}
+  .universal-shell-mobile-nav a.is-active {
+    color: var(--u-primary); font-weight: 700;
+    background: var(--u-primary-soft);
+    box-shadow: none;
+  }
+  /* 3px indicator bar riding the active item's soft pill. Direction-safe
+     centering: half-width offset from the inline start + auto end. */
+  .universal-shell-mobile-nav a.is-active::before {
+    content: ""; position: absolute;
+    inset-block-start: 0; inset-inline-start: calc(50% - 16px); inset-inline-end: auto;
+    width: 32px; height: 3px;
+    border-radius: 0 0 var(--u-radius-pill) var(--u-radius-pill);
+    background: var(--u-primary);
+  }
+}
 
 /* ==========================================================================
    Z-INDEX SCALE (one documented ladder for the whole app)
@@ -397,7 +470,7 @@
 /* ---- Notifications panel — mobile: full-width sheet ------------------- */
 .universal-notifications {
   position: fixed; z-index: 70;
-  inset-block-start: 62px; inset-inline-end: 24px;
+  inset-block-start: calc(56px + var(--mj-space-100)); inset-inline-end: 24px;
   width: min(380px, calc(100vw - 28px));
   overflow: hidden; border: 1px solid var(--u-line); border-radius: var(--u-radius-lg);
   background: var(--u-surface-solid); box-shadow: var(--u-shadow-xl);
@@ -469,22 +542,22 @@
 /* ==========================================================================
    FOCUS CANVAS — service-workspace routes (ask · code · analyze · explore)
    --------------------------------------------------------------------------
-   The workspace gateway renders on the reference canvas (indigo glass,
-   floating dock). While these routes are active the shell chrome joins
-   that canvas:
+   Phase 3 (NAV-01/NAV-04): the chrome dialects are GONE — one header and
+   one dock grammar serve every /app/* route, focus-canvas included. What
+   remains here is the CANVAS, not chrome:
 
-     · main column    → themed canvas (--fc-canvas)
-     · topbar         → themed glass, single row on mobile (reference header)
-     · mobile nav     → floating glass dock with a glowing active indicator
+     · main column → themed canvas (--fc-canvas) for the workbench surface
+     · content reserve → the workbench composer keeps its deeper bottom
+       breathing on these routes (content-side spacing, not dock weight)
 
-   Theme law: --fc-* tokens carry a light set (glass-white chrome, dark ink)
-   and a dark set under :root[data-theme="dark"] (the exact reference
-   palette). The platform theme switch re-skins the whole canvas; every
-   other route keeps owning the theme tokens. Layer order unchanged.
+   Theme law: --fc-* tokens carry a light set and a dark set under
+   :root[data-theme="dark"]. The platform theme switch re-skins the canvas;
+   every other route keeps owning the theme tokens. The focus-canvas fold
+   (retiring the second canvas entirely) is Phase 5 scope (VIS-01/03).
    ========================================================================== */
 
 .universal-app-shell[data-focus-canvas="true"] {
-  /* --fc-* — LIGHT (glass-white chrome) */
+  /* --fc-* — LIGHT (canvas) */
   --fc-canvas: #F4F5FC;
   --fc-glass: rgba(255, 255, 255, 0.72);
   --fc-glass-deep: rgba(255, 255, 255, 0.88);
@@ -503,7 +576,7 @@
   --fc-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
 }
 :root[data-theme="dark"] .universal-app-shell[data-focus-canvas="true"] {
-  /* --fc-* — DARK (the exact reference chrome) */
+  /* --fc-* — DARK (canvas) */
   --fc-canvas: #030712;
   --fc-glass: rgba(11, 17, 32, 0.6);
   --fc-glass-deep: rgba(11, 17, 32, 0.8);
@@ -527,121 +600,12 @@
   background: var(--fc-canvas);
 }
 
-/* Floating dock geometry — mobile only (dock viewport) */
+/* Content-side reserve only: the workbench composer keeps extra breathing
+   above the (now unified) floating dock on these routes — 112px vs the
+   standard 80px. This is page padding, not chrome geometry; the dock itself
+   is identical on every route (nearest ancestor wins for the reserve). */
 @media (max-width: 767.98px) {
   .universal-app-shell[data-focus-canvas="true"] {
-    /* 64px dock + 16px offset + breathing room (overrides the tab-bar reserve
-       declared on :root for these routes — nearest ancestor wins) */
     --mj-tabbar-reserve: calc(112px + env(safe-area-inset-bottom, 0px));
   }
-}
-
-/* ---- Topbar joins the canvas (themed glass, reference header) ---------- */
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-topbar {
-  background: var(--fc-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-block-end: 1px solid var(--fc-line);
-}
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-context > button {
-  color: var(--fc-ink-soft);
-  background: var(--fc-raise);
-}
-@media (hover: hover) {
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-context > button:hover { color: var(--fc-ink); background: var(--fc-raise-strong); }
-}
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-context > span { color: var(--fc-ink); font-weight: 700; }
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-actions > :is(a, button, span) { color: var(--fc-muted); }
-@media (hover: hover) {
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-actions > :is(a, button):hover { color: var(--fc-ink); background: var(--fc-raise); }
-}
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-search {
-  border-color: var(--fc-hairline);
-  background: var(--fc-glass-deep);
-  color: var(--fc-muted);
-  box-shadow: var(--fc-inset);
-}
-@media (hover: hover) {
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-search:hover { border-color: rgba(var(--fc-accent-rgb), 0.5); background: var(--fc-glass-deep); box-shadow: none; }
-}
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-search span { color: var(--fc-muted); }
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-search kbd {
-  border-color: var(--fc-hairline);
-  background: var(--fc-raise);
-  color: var(--fc-muted);
-}
-
-/* Notification dot — reference red with a soft ping (both themes) */
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-actions > button > i { background: #EF4444; }
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-actions > button > i::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  border: 2px solid rgba(239, 68, 68, 0.65);
-  animation: shell-focus-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-@keyframes shell-focus-ping { 75%, 100% { transform: scale(1.9); opacity: 0; } }
-
-/* ---- Mobile: the reference header is a single compact glass row --------- */
-@media (max-width: 767.98px) {
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-topbar {
-    grid-template-areas: "context actions";
-    grid-template-columns: minmax(0, 1fr) auto;
-    padding-block: max(10px, env(safe-area-inset-top)) 10px;
-  }
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-search { display: none; }
-
-  /* ---- Floating dock (reference, themed glass) --------------------------- */
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav {
-    inset-inline: 16px;
-    inset-block-end: max(16px, env(safe-area-inset-bottom));
-    padding: 6px;
-    border: 1px solid var(--fc-hairline);
-    border-radius: var(--u-radius-card);
-    background: var(--fc-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: var(--fc-shadow);
-  }
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a {
-    position: relative;
-    min-height: 52px;
-    border-radius: var(--u-radius-field);
-    color: var(--fc-muted);
-    font-weight: 500;
-  }
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a svg { transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a:active { background: var(--fc-raise); }
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a.is-active {
-    color: var(--fc-accent);
-    font-weight: 700;
-    background: var(--fc-accent-soft);
-    box-shadow: none;
-  }
-  /* Glowing indicator bar on the active dock item (reference).
-     Direction-safe centering: half-width offset from the inline start and an
-     explicit auto end — beats the legacy interaction.css indicator on
-     specificity AND cancels its over-constrained insets in both directions. */
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a.is-active::before {
-    content: "";
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: calc(50% - 16px);
-    inset-inline-end: auto;
-    width: 32px;
-    height: 3px;
-    border-radius: 0 0 var(--u-radius-pill) var(--u-radius-pill);
-    background: var(--fc-accent);
-    box-shadow: var(--fc-indicator-glow);
-  }
-}
-@media (hover: hover) and (max-width: 767.98px) {
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a:not(.is-active):hover { color: var(--fc-ink-soft); background: transparent; }
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-mobile-nav a:not(.is-active):hover svg { transform: translateY(-2px); }
-}
-
-/* Reduced motion: the ping ring settles */
-@media (prefers-reduced-motion: reduce) {
-  .universal-app-shell[data-focus-canvas="true"] .universal-shell-actions > button > i::after { animation: none; }
 }

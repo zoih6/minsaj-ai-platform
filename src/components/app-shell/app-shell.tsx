@@ -11,6 +11,7 @@ import {
   Boxes,
   ChartNoAxesCombined,
   CheckCircle2,
+  ChevronDown,
   Code2,
   Command,
   Compass,
@@ -44,9 +45,11 @@ import { useViewportMode } from "@/hooks/use-viewport-mode";
 
 type ShellNavItem = { id: string; label: string; href: string; icon: LucideIcon };
 
-function ShellNavLink({ item, active, onNavigate, tabIndex }: { item: ShellNavItem; active: boolean; onNavigate: () => void; tabIndex?: number }) {
+type ShellTier = "core" | "secondary" | "pinned";
+
+function ShellNavLink({ item, tier, active, onNavigate, tabIndex }: { item: ShellNavItem; tier: ShellTier; active: boolean; onNavigate: () => void; tabIndex?: number }) {
   const Icon = item.icon;
-  return <Link href={item.href} className={`universal-shell-link${active ? " is-active" : ""}`} title={item.label} aria-current={active ? "page" : undefined} onClick={onNavigate} tabIndex={tabIndex}><span><Icon size={18} strokeWidth={1.8} /></span><b>{item.label}</b>{item.id === "learn" ? <i /> : null}</Link>;
+  return <Link href={item.href} data-tier={tier} className={`universal-shell-link${active ? " is-active" : ""}`} title={item.label} aria-current={active ? "page" : undefined} onClick={onNavigate} tabIndex={tabIndex}><span><Icon size={tier === "core" ? 18 : 16} strokeWidth={1.8} /></span><b>{item.label}</b>{item.id === "learn" ? <i /> : null}</Link>;
 }
 
 export function AppShell({ children, locale }: { children: ReactNode; locale: Locale; dictionary: Dictionary; workspaceName?: string }) {
@@ -181,7 +184,6 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   const allItems = [...primaryItems, ...utilityItems, ...advancedItems, ...operationsItems];
   const normalized = query.trim().toLocaleLowerCase(locale);
   const filtered = normalized ? allItems.filter((item) => item.label.toLocaleLowerCase(locale).includes(normalized)) : allItems;
-  const activeItem = allItems.find((item) => pathname === item.href || pathname.startsWith(`${item.href}/`));
   const alternateLocale: Locale = isArabic ? "en" : "ar";
 
   /* ------------------------------------------------------------------
@@ -213,6 +215,12 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
     const restoreFrame = window.requestAnimationFrame(() => setCollapsed(true));
     return () => window.cancelAnimationFrame(restoreFrame);
   }, []);
+
+  /* T3 operations fold (NAV-05): the tier folds behind its «التشغيل»
+     disclosure only where the drawer exceeds 80vh — the phone band. Sidebar
+     bands (tablet/desktop) keep it open and inert. The key remount resets the
+     disclosure to its band default when the viewport crosses 768. */
+  const foldOpen = viewport === null ? false : viewport !== "mobile";
 
   /* Reset transient states when the viewport band or route changes.
      Official React "reset state on change" pattern — comparing against the
@@ -303,28 +311,40 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
           <Link href={`${base}/home`} className="universal-shell-new" onClick={closeTransient} title={labels.start}><span><Plus size={18} /></span><b>{labels.start}</b></Link>
 
           <nav className="universal-shell-nav">
-            {/* Redesign QA (2026-09-21): flat 15-item list had no scan
-                hierarchy — services, advanced tools, and personal utilities
-                carried identical weight. Three labelled groups (the Linear /
-                Notion nav grammar) replace the hidden advanced accordion:
-                every destination is one glance away, groups are named. */}
-            <div className="universal-shell-nav__group">
+            {/* Phase 3 / NAV-05 — the drawer's IA renders as hierarchy: four
+                weighted tiers (NAVIGATION-ARCHITECTURE §4). T1 Core keeps the
+                primary register (label-m/600, 28px icon chips, 48px rows,
+                active = primary pill + 3px indicator); T2 Workspace and
+                T3 Operations share the secondary register (body-s/500, bare
+                16px icons, 44px rows, active = soft tint); T4 Personal is the
+                pinned footer below (never in the scroll). */}
+            <div className="universal-shell-nav__group" data-tier="core">
               <div className="universal-shell-nav__label" aria-hidden="true">{labels.services}</div>
-              <div className="universal-shell-nav__main">{primaryItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+              <div className="universal-shell-nav__main">{primaryItems.map((item) => <ShellNavLink item={item} tier="core" active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
             </div>
-            <div className="universal-shell-nav__group">
+            <div className="universal-shell-nav__group" data-tier="workspace">
               <div className="universal-shell-nav__label" aria-hidden="true">{labels.advanced}</div>
-              <div className="universal-shell-nav__advanced-list">{advancedItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+              <div className="universal-shell-nav__secondary">{advancedItems.map((item) => <ShellNavLink item={item} tier="secondary" active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
             </div>
-            {/* Fourth group — the operations layer (KI-1 fix): same visual
-                register as advanced tools; nav scrolls independently when the
-                rail grows past the viewport (shell.css overflow rule). */}
-            <div className="universal-shell-nav__group">
-              <div className="universal-shell-nav__label" aria-hidden="true">{labels.operations}</div>
-              <div className="universal-shell-nav__advanced-list">{operationsItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
-            </div>
-            <div className="universal-shell-nav__utility">{utilityItems.map((item) => <ShellNavLink item={item} active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+            {/* T3 Operations — hairline separation + the sanctioned fold:
+                below 768 the drawer's 19 destinations exceed 80vh, so the
+                tier collapses behind its own disclosure (open state is
+                DOM-native; key resets it per viewport band). */}
+            <details className="universal-shell-nav__group universal-shell-nav__fold" data-tier="operations" open={foldOpen} key={viewport ?? "ssr"}>
+              <summary className="universal-shell-nav__label" tabIndex={viewport === "mobile" ? 0 : -1}>
+                <span>{labels.operations}</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </summary>
+              <div className="universal-shell-nav__secondary">{operationsItems.map((item) => <ShellNavLink item={item} tier="secondary" active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+            </details>
           </nav>
+
+          {/* T4 — Personal: pinned footer above the profile row, outside the
+              scroll; the utility group finally carries its label «مساحتي». */}
+          <div className="universal-shell-nav__group universal-shell-pinned" data-tier="personal">
+            <div className="universal-shell-nav__label" aria-hidden="true">{labels.personal}</div>
+            <div className="universal-shell-nav__secondary">{utilityItems.map((item) => <ShellNavLink item={item} tier="pinned" active={isActive(item.href)} onNavigate={closeTransient} key={item.id} />)}</div>
+          </div>
 
           <div className="universal-shell-profile">
             <Link href={`${base}/settings`} onClick={closeTransient} title={labels.settings}><span className="universal-shell-avatar">ن</span><span><strong>{labels.personal}</strong><small>{labels.adaptive}</small></span><Settings size={16} /></Link>
@@ -332,14 +352,18 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
         </aside>
 
         <div className="universal-shell-main">
+          {/* Phase 3 / NAV-01 + NAV-03 — one header grammar on every /app/*
+              route: a single 56px row announcing the workspace mark only.
+              Page identity belongs to the page's own title block (L2); the
+              global ⌘K trigger is an icon under 768 and an inline field
+              above it (R-NAV-6 — the two-row search tray is gone). */}
           <header className="universal-shell-topbar">
             <div className="universal-shell-context">
               <button type="button" onClick={toggleSidebar} aria-label={isDrawer ? labels.more : (railActive ? labels.expand : labels.collapse)} aria-expanded={sidebarOpen} aria-controls="universal-shell-sidebar"><Menu size={20} /></button>
-              <span>{activeItem?.label ?? labels.forYou}</span>
-              {activeItem?.id === "home" ? <small><Sparkles size={12} />{labels.adaptive}</small> : null}
+              <Link href={`/${locale}/app/home`} className="universal-shell-mark" aria-label={isArabic ? "منسج" : "Minsaj"}><MinsajMark size={28} /><b>{isArabic ? "منسج" : "Minsaj"}</b></Link>
             </div>
-            <Dialog.Trigger asChild><button type="button" className="universal-shell-search"><Search size={16} /><span>{labels.search}</span><kbd>⌘K</kbd></button></Dialog.Trigger>
-            <div className="universal-shell-actions"><span className="universal-shell-demo"><i />{labels.demo}</span><ThemeToggle locale={locale} /><Link href={switchLocaleInPath(pathname, alternateLocale)} prefetch={false} aria-label={labels.languageLabel}>{alternateLocale.toUpperCase()}</Link><button type="button" onClick={() => setNotificationsOpen((value) => !value)} aria-expanded={notificationsOpen} aria-controls="universal-notifications" aria-label={labels.notifications}><Bell size={18} /><i /></button><Link href={`${base}/settings`} className="universal-top-avatar">ن</Link></div>
+            <Dialog.Trigger asChild><button type="button" className="universal-shell-search" aria-label={labels.search} title={labels.search}><Search size={18} /><span>{labels.search}</span><kbd>⌘K</kbd></button></Dialog.Trigger>
+            <div className="universal-shell-actions"><ThemeToggle locale={locale} /><Link href={switchLocaleInPath(pathname, alternateLocale)} prefetch={false} aria-label={labels.languageLabel}>{alternateLocale.toUpperCase()}</Link><button type="button" onClick={() => setNotificationsOpen((value) => !value)} aria-expanded={notificationsOpen} aria-controls="universal-notifications" aria-label={labels.notifications}><Bell size={18} /><i /></button><Link href={`${base}/settings`} className="universal-top-avatar">ن</Link></div>
           </header>
 
           <aside id="universal-notifications" className="universal-notifications" data-state={notificationsOpen ? "open" : "closed"} role="dialog" aria-label={labels.notifications} aria-hidden={!notificationsOpen}><header><div><span>{labels.notifications}</span><small>2</small></div><button type="button" tabIndex={notificationsOpen ? 0 : -1} onClick={() => setNotificationsOpen(false)} aria-label={labels.close}><X size={18} /></button></header><Link href={`${base}/learn`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><GraduationCap size={18} /></span><div><strong>{labels.noticeTitle}</strong><p>{labels.noticeBody}</p></div></Link><Link href={`${base}/library`} tabIndex={notificationsOpen ? 0 : -1} onClick={closeTransient}><span><CheckCircle2 size={18} /></span><div><strong>{labels.savedTitle}</strong><p>{labels.savedBody}</p></div></Link></aside>

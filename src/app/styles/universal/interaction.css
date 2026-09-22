@@ -208,47 +208,17 @@
    §2 NAVIGATION → indicator + typography, no box fill
    ========================================================================== */
 
-/* ---- 2a. Sidebar links: white ink + accent bar, NO gradient box -------- */
-.universal-shell-link.is-active {
-  background: transparent;
-  box-shadow: none;
-  color: var(--u-shell-ink);
-  font-weight: 650;
-}
-.universal-shell-link.is-active::before {
-  inset-block: 22%;
-  width: 2.5px;
-  box-shadow: none;
-  background: var(--u-shell-accent);
-}
-.universal-shell-link.is-active > span {
-  color: var(--u-shell-accent);
-  background: transparent;
-  box-shadow: none;
-}
+/* ---- 2a. Sidebar links — RETIRED with W-DS Phase 3 (2026-09-22): the
+   tier system (shell.css "Nav groups & TIERS") now owns every nav active
+   register — T1 primary pill + 3px indicator, T2/T3/T4 soft tint. The
+   compensating overrides here would fight the chrome owner for the same
+   selectors (same lesson as 1i/1j: one owner per surface). ---------------- */
 
-/* ---- 2b. Mobile bottom tab bar: tint + typography + top hairline ------- */
-@media (max-width: 767.98px) {
-  .universal-shell-mobile-nav a.is-active {
-    background: transparent;
-    box-shadow: none;
-    color: var(--u-primary);
-    font-weight: 700;
-    position: relative;
-  }
-  .universal-shell-mobile-nav a.is-active::before {
-    content: "";
-    position: absolute;
-    inset-inline: 22%;
-    inset-block-start: -8px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--u-primary);
-  }
-  .universal-shell-mobile-nav a:active {
-    background: var(--u-hover-veil);
-  }
-}
+/* ---- 2b. Mobile bottom tab bar — RETIRED with W-DS Phase 3 (2026-09-22):
+   the unified floating dock (shell.css "MOBILE DOCK (L4)") owns the active
+   language on every route. This block's top-hairline indicator was authored
+   for the old full-width bar (its -8px offset poked outside the floating
+   dock's rounded corner). ------------------------------------------------- */
 
 /* ---- 2c. Vertical settings nav / menus → inline-start bar + weight ----- */
 .settings-nav { border: 0; background: transparent; padding: 6px 0; }

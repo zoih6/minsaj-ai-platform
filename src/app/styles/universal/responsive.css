@@ -25,10 +25,6 @@
    · Container universal-library: 640
    ========================================================================== */
 
-@media (max-width: 1320px) {
-  .universal-shell-demo { display: none; }
-}
-
 /* ---- Device capability contracts --------------------------------------- */
 @media (hover: none) {
   :is(.adaptive-service-tile, .universal-library-item):hover { transform: none; }

@@ -1,0 +1,431 @@
+{
+ "base": "http://localhost:3101",
+ "cells": {
+  "home@390": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "لك",
+   "pageH1": "مرحبًا، ماذا تريد أن تنجز؟",
+   "identityDuplicated": false,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 21.2,
+   "itemCount": 5
+  },
+  "settings@390": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "الإعدادات",
+   "pageH1": "الإعدادات",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 21.2,
+   "itemCount": 5
+  },
+  "agents@390": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "الوكلاء",
+   "pageH1": "الوكلاء",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 21.2,
+   "itemCount": 5
+  },
+  "knowledge@390": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "مصادر المعرفة",
+   "pageH1": "المعرفة",
+   "identityDuplicated": false,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 21.2,
+   "itemCount": 5
+  },
+  "runs@390": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "التشغيلات",
+   "pageH1": "التشغيلات",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 21.2,
+   "itemCount": 5
+  },
+  "usage@390": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "الاستخدام والتكلفة",
+   "pageH1": "الاستخدام والتكلفة",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 21.2,
+   "itemCount": 5
+  },
+  "chat@390": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "اسأل",
+   "pageH1": "اسأل وتحدّث",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 15.5,
+   "itemCount": 5
+  },
+  "code@390": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "برمج",
+   "pageH1": "برمج وابنِ",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 15.5,
+   "itemCount": 5
+  },
+  "analyze@390": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "حلّل",
+   "pageH1": "حلّل وافهم",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 15.5,
+   "itemCount": 5
+  },
+  "explore@390": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "استكشف",
+   "pageH1": "استكشف واكتشف",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 15.5,
+   "itemCount": 5
+  },
+  "home@430": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "لك",
+   "pageH1": "مرحبًا، ماذا تريد أن تنجز؟",
+   "identityDuplicated": false,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 19.2,
+   "itemCount": 5
+  },
+  "settings@430": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "الإعدادات",
+   "pageH1": "الإعدادات",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 19.2,
+   "itemCount": 5
+  },
+  "agents@430": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "الوكلاء",
+   "pageH1": "الوكلاء",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 19.2,
+   "itemCount": 5
+  },
+  "knowledge@430": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "مصادر المعرفة",
+   "pageH1": "المعرفة",
+   "identityDuplicated": false,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 19.2,
+   "itemCount": 5
+  },
+  "runs@430": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "التشغيلات",
+   "pageH1": "التشغيلات",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 19.2,
+   "itemCount": 5
+  },
+  "usage@430": {
+   "topbarH": 109,
+   "topbarBg": "rgba(255, 255, 255, 0.78)",
+   "searchDisplay": "flex",
+   "searchOnSecondRow": true,
+   "headerTitle": "الاستخدام والتكلفة",
+   "pageH1": "الاستخدام والتكلفة",
+   "identityDuplicated": true,
+   "bottomNavH": 70,
+   "dockGrammar": "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "chromePx": 179,
+   "chromeRatio": 19.2,
+   "itemCount": 5
+  },
+  "chat@430": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "اسأل",
+   "pageH1": "اسأل وتحدّث",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 14.1,
+   "itemCount": 5
+  },
+  "code@430": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "برمج",
+   "pageH1": "برمج وابنِ",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 14.1,
+   "itemCount": 5
+  },
+  "analyze@430": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "حلّل",
+   "pageH1": "حلّل وافهم",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 14.1,
+   "itemCount": 5
+  },
+  "explore@430": {
+   "topbarH": 65,
+   "topbarBg": "rgba(255, 255, 255, 0.72)",
+   "searchDisplay": "none",
+   "searchOnSecondRow": false,
+   "headerTitle": "استكشف",
+   "pageH1": "استكشف واكتشف",
+   "identityDuplicated": false,
+   "bottomNavH": 66,
+   "dockGrammar": "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px",
+   "chromePx": 131,
+   "chromeRatio": 14.1,
+   "itemCount": 5
+  }
+ },
+ "drawer": {
+  "groups": [
+   {
+    "label": "الخدمات",
+    "linkCount": 8,
+    "registers": [
+     "13.5px/550/44px"
+    ],
+    "links": [
+     {
+      "label": "لك",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(233, 235, 246)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "label": "اسأل",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "label": "أدوات متقدمة",
+    "linkCount": 5,
+    "registers": [
+     "13.5px/550/44px"
+    ],
+    "links": [
+     {
+      "label": "المشاريع",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "label": "الوكلاء",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "label": "التشغيل",
+    "linkCount": 4,
+    "registers": [
+     "13.5px/550/44px"
+    ],
+    "links": [
+     {
+      "label": "التشغيلات",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "label": "الاستخدام والتكلفة",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   {
+    "label": "(utility: unlabelled)",
+    "linkCount": 2,
+    "registers": [
+     "13.5px/550/44px"
+    ],
+    "links": [
+     {
+      "label": "مكتبتي",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "label": "الإعدادات",
+      "rowMinHeight": "44px",
+      "rowHeight": 44,
+      "labelFontSize": "13.5px",
+      "labelFontWeight": "550",
+      "labelColor": "rgb(184, 188, 218)",
+      "iconChipW": "27px",
+      "iconChipBg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   }
+  ],
+  "totalLinks": 19,
+  "distinctRegisters": [
+   "13.5px/550/44px"
+  ],
+  "drawerHeight": 844,
+  "navScrollable": true,
+  "operationsFolded": null
+ },
+ "verdict": {
+  "headerHeights390": [
+   109,
+   65
+  ],
+  "dualHeaderArchitecture": true,
+  "secondRowCells": 6,
+  "identityDuplicatedCells": 4,
+  "dockGrammars390": [
+   "insetL=0 insetR=0 radius=0px shadow=shadow bottomAnchor=0px",
+   "insetL=16 insetR=16 radius=16px shadow=shadow bottomAnchor=16px"
+  ],
+  "dockDialects": 2,
+  "chromeRatio390": {
+   "min": 15.5,
+   "max": 21.2
+  },
+  "budget155": false
+ }
+}
