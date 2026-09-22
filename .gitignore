@@ -39,3 +39,4 @@ next-env.d.ts
 
 # W-DS visual QA local captures (baselines are committed under docs/)
 qa-captures/
+.env*
