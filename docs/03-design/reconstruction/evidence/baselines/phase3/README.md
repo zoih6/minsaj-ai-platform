@@ -1,8 +1,33 @@
 # Phase 3 Baseline — Chrome
 
-**Date:** 2026-09-22 · **Commits:** authorization record `d7b8c47` (§7.4) + Phase 3 implementation (this commit)
-**Reference baseline:** `../phase2/` (frozen, never overwritten — owner constraint §7.2/§7.3/§7.4)
+**Date:** 2026-09-22 · **Commits:** authorization record `d7b8c47` (§7.4) + Phase 3 implementation
+**Exit-gate record:** conditional approval `§7.5` — the closure condition (dock non-occlusion) is executed and recorded below (`dock-occlusion-probe.json`, same session).
+**Reference baseline:** `../phase2/` (frozen, never overwritten — owner constraint §7.2/§7.3/§7.4/§7.5)
 **Scope executed:** single-row 56px header on every `/app/*` route (NAV-01/NAV-03) · one floating dock grammar (NAV-04) · drawer tiering T1–T4 (NAV-05) · vertical-budget enforcement (NAV-02).
+
+## Closure condition (§7.5) — Mobile-Dock non-occlusion scroll test — EXECUTED 2026-09-22
+
+The owner's condition: *"it must be verified that the Mobile Dock does not occlude the last interactive content — especially on Settings and the other phone pages — with the scroll test result recorded."*
+
+**Method** (`scripts/visual-qa/dock-occlusion-probe.mjs`): every `/app/*` route (19) loads in a phone context, scrolls to the **absolute document bottom in stages** (25/50/75/100% — fires every scroll-reveal observer), then measures the dock rect against every interactive element inside `#main-content` (`a[href]`, `button`, `input`, `select`, `textarea`, `[tabindex]`). An element counts as occluded only if its rect **intersects** the dock **and** the center hit-test of the intersection zone (`document.elementFromPoint`) does not return the element's own subtree. The bottom-most interactive element and its clearance gap to the dock's top edge are recorded per cell.
+
+| Pass | Cells | Result |
+|---|---|---|
+| All routes × 390/375/360 (light, ar RTL) | 18 × 3 = 54 | 54 PASS — 0 occluded, all at absolute bottom |
+| **Settings — every one of the 7 sections** × 390/375/360 | 21 | 21 PASS — last interactive per section («حفظ التغييرات» / «حفظ التفضيلات» / «حفظ السياسة» / provider row actions / «مراجعة وتوصيل» / «مراجعة الأثر» / «عرض الحدث») clears the dock by 35–241px |
+| Dark theme (colorScheme: dark) — settings 7 sections + settings/chat/home/library/models @390 | 12 | 12 PASS |
+| en LTR — settings 7 sections + chat/home/library/models @390 | 11 | 11 PASS |
+| **Total** | **98** | **98 PASS · 0 errors · 0 occluded elements · min clearance gap 21.9px (library@375)** |
+
+**Evidence:** `dock-occlusion-probe.json` (full per-cell census: dock rect, scroll proof `scrollY === maxScroll`, interactive counts, occlusion checks, last-interactive identity + gap) + `screenshots/dock-occlusion/` (the 7 settings sections + home + chat parked at full bottom @390).
+
+Two honest observations recorded (NOT occlusion failures — the dock never covers interactive content anywhere):
+
+- `knowledge@{390,375,360}`: the last interactive element sits ~1215px above the document bottom (a long non-interactive tail below the collections list). Flagged for the owner under the still-open **D-3/UNC-01** context — no claim made here.
+- `team@{390,375,360}`: same shape, ~472px non-interactive tail. Noted for Phase 4+ pattern work.
+
+**Verdict: CONDITION MET — Phase 3 closed. Phase 4 (Patterns) authorized per §7.5.**
+
 
 ## What this folder holds
 
@@ -13,6 +38,8 @@
 | `nav-probe-before.json` | the Phase 3 defect-class probe against the Phase 2 build (worktree @ `edc4c01`, port 3101) |
 | `nav-probe-after.json` | the same probe against the Phase 3 build |
 | `drawer-390.json` | the standard capture's drawer probe (frozen method) |
+| `dock-occlusion-probe.json` | **§7.5 closure condition**: 98-cell dock non-occlusion scroll test (all routes × 390/375/360 + settings 7 sections × 3 viewports + dark + en LTR) — 98 PASS, 0 occluded, min gap 21.9px |
+| `screenshots/dock-occlusion/` | full-bottom scroll shots: the 7 settings sections + home + chat @390 |
 | `screenshots/` | after-shots of the unified chrome (home/chat/settings/agents @390 + drawer + home/settings @1440) |
 
 Probe script: `scripts/visual-qa/nav-probe.mjs` (header architecture + budget + identity + dock dialect per route family) + `scripts/visual-qa/nav-edge-probe.mjs` (dark / LTR / 360 / 375 / fc-dark edge cases).
