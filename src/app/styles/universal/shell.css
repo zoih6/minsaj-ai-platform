@@ -317,8 +317,11 @@
   padding-block-end: calc(clamp(24px, 3vw, 56px) + var(--mj-tabbar-reserve, 0px));
 }
 
-.universal-route-frame { animation: minsaj-route-in var(--u-motion-duration-expressive) var(--u-motion-ease-enter); }
-@keyframes minsaj-route-in { from { opacity: 0; transform: translateY(10px); }}
+/* Phase 4 / INT-02: the route-frame enter animation lives in motion.css
+   (the motion layer, imported after this file — it owns the cascade and the
+   spec values: 240ms Route class + 4px offset, R-MOT-1). The rule that used
+   to sit here (minsaj-route-in, 480ms expressive) was cascade-dead and is
+   deleted — one owner per surface. */
 @media (prefers-reduced-motion: reduce) { .universal-route-frame { animation: none; }}
 
 /* ---- Backdrop (drawer overlay) ---------------------------------------- */

@@ -11,6 +11,7 @@ import {
   Bug,
   ChartNoAxesCombined,
   Check,
+  ChevronDown,
   Clock,
   Code2,
   Compass,
@@ -19,19 +20,17 @@ import {
   FileText,
   FlaskConical,
   GraduationCap,
-  Info,
   LayoutGrid,
-  Library,
   Lightbulb,
   ListTree,
   LoaderCircle,
   Mic,
   Network,
   Paperclip,
-  Plus,
   Route,
   Scale,
   ShieldCheck,
+  SlidersHorizontal,
   Sparkles,
   Table,
   Telescope,
@@ -44,16 +43,6 @@ import type { LucideIcon } from "lucide-react";
 import type { Locale } from "@minsaj/contracts";
 import { ActivityFeedback, FeedbackToast } from "@/components/universal/activity-feedback";
 import { getUniversalService, type ServiceToolIconKey, type UniversalServiceId } from "@/lib/universal-content";
-
-const serviceIcons = {
-  ask: Brain,
-  learn: GraduationCap,
-  research: Compass,
-  create: FileText,
-  code: Code2,
-  analyze: ChartNoAxesCombined,
-  explore: Compass,
-} satisfies Record<UniversalServiceId, typeof Brain>;
 
 /* Icon keys are data (universal-content.ts); this map is the single place
    that resolves them to lucide components — architecture A-5: the gateway
@@ -95,6 +84,11 @@ const starterIcons: Record<UniversalServiceId, readonly LucideIcon[]> = {
    composer's draft intact; only reset() clears it. */
 type GatewayStatus = "idle" | "error" | "working" | "clarifying" | "ready" | "saved";
 
+/* Phase 4 / INT-01 (R-PAT-2): the gateway is composer-first — the card opens
+   with input + ONE primary action; configuration (mode → tool → advanced)
+   is progressive disclosure, one concern visible at a time (§3). */
+type ConfigPanel = "none" | "mode" | "tools" | "advanced";
+
 function formatClip(seconds: number) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -103,11 +97,13 @@ function formatClip(seconds: number) {
 
 export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; serviceId: UniversalServiceId }) {
   const service = getUniversalService(locale, serviceId);
-  const Icon = serviceIcons[serviceId];
   const isArabic = locale === "ar";
 
   const [prompt, setPrompt] = useState("");
-  const [mode, setMode] = useState<"guided" | "fast">("guided");
+  /* Phase 4 (§2.3): the default style is سريع — guided stays one disclosure
+     away. The audit's INT-01 found configuration stacked before the first
+     action; opinionated defaults now ride one visible summary line. */
+  const [mode, setMode] = useState<"guided" | "fast">("fast");
   const [activeTools, setActiveTools] = useState<readonly string[]>([service.tools[0].id]);
   const [status, setStatus] = useState<GatewayStatus>("idle");
   const [clarifyStep, setClarifyStep] = useState(0);
@@ -120,6 +116,10 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
   const [outputSection, setOutputSection] = useState(0);
   const [savedItems, setSavedItems] = useState<{ id: number; title: string; when: string }[]>([]);
   const [toast, setToast] = useState<string | null>(null);
+  /* Progressive disclosure state (§3): one panel open at a time; toolsSeen
+     latches so the first-keystroke reveal happens exactly once. */
+  const [panel, setPanel] = useState<ConfigPanel>("none");
+  const [toolsSeen, setToolsSeen] = useState(false);
 
   const timerRef = useRef<number | null>(null);
   const toastRef = useRef<number | null>(null);
@@ -143,20 +143,18 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
 
   const copy = isArabic
     ? {
-        navLearn: "تعلّم",
-        navLibrary: "المكتبة",
-        navBack: "العودة إلى مساحتي",
-        navLabel: "تنقل المساحة",
-        interactive: "مساحة تفاعلية",
         guided: "موجّه",
         fast: "سريع",
         guidedHint: "يسألك منسج أسئلة قصيرة لتحسين النتيجة.",
         fastHint: "ابدأ فورًا بأقل عدد من الخطوات.",
-        newSession: "جلسة جديدة",
         toolsTitle: "اختيار نمط العمل",
         toolsHint: "كل أداة تضبط التلميح والمخرج والبدايات والإتاحات",
         modeTitle: "اختيار أسلوب التنفيذ",
-        title: "ابدأ من مقصدك",
+        styleLabel: "الأسلوب",
+        toolLabel: "الأداة",
+        toolsExtra: (n: number) => `+${n}`,
+        advanced: "خيارات متقدمة",
+        advancedHint: "المعيار الذي ستُحاسب عليه النتيجة — يبقى اختياريًا.",
         attach: "أضف ملفًا أو صورة",
         attachAria: "أضف ملفًا أو صورة إلى الطلب",
         voice: "إدخال صوتي",
@@ -180,7 +178,7 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         ready: "المساحة جاهزة",
         restart: "ابدأ من جديد",
         save: "حفظ في المكتبة",
-        saved: "محفوظ في المكتبتك",
+        saved: "محفوظ في مكتبتك",
         savedToast: "أُضيف إلى مكتبتك",
         savedNow: "حفظ الآن",
         pathTitle: "كيف سيعمل منسج؟",
@@ -225,23 +223,21 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         scopeOptions: ["ضيّق ومحدد", "متوازن", "شامل وعميق"],
         audienceOptions: ["لي شخصيًا", "لفريقي", "لجمهور خارجي"],
         shapeOptions: ["نص موجز", "تفصيل بالخطوات"],
-        toolHintTemplate: (tool: string) => `التلميح والمخرج والبدايات أدناه صارت خاصة بأداة «${tool}»`,
+        toolHintTemplate: (tool: string) => `التلميح والمخرج والبدايات صارت خاصة بأداة «${tool}»`,
       }
     : {
-        navLearn: "Learn",
-        navLibrary: "Library",
-        navBack: "Back to my space",
-        navLabel: "Space navigation",
-        interactive: "Interactive space",
         guided: "Guided",
         fast: "Fast",
         guidedHint: "Minsaj asks you a few short questions to sharpen the result.",
         fastHint: "Start immediately with the fewest steps.",
-        newSession: "New session",
         toolsTitle: "Choose how you'll work",
         toolsHint: "Each tool sets the hint, output, quick starts, and inputs",
         modeTitle: "Choose the execution style",
-        title: "Start with your intent",
+        styleLabel: "Style",
+        toolLabel: "Tool",
+        toolsExtra: (n: number) => `+${n}`,
+        advanced: "Advanced options",
+        advancedHint: "The standard the result is held to — always optional.",
         attach: "Add a file or image",
         attachAria: "Attach a file or image to the request",
         voice: "Voice input",
@@ -310,7 +306,7 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         scopeOptions: ["Narrow and specific", "Balanced", "Broad and deep"],
         audienceOptions: ["Just me", "My team", "An outside audience"],
         shapeOptions: ["Concise text", "Step-by-step detail"],
-        toolHintTemplate: (tool: string) => `The hint, output, and quick starts below now follow the “${tool}” tool`,
+        toolHintTemplate: (tool: string) => `The hint, output, and quick starts now follow the “${tool}” tool`,
       };
 
   /* Guided questions — the third question's first option is the lead tool's
@@ -379,6 +375,12 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
       }
       return [...current, id];
     });
+  }
+
+  /* Progressive disclosure (§3.2): one concern visible at a time — opening a
+     panel closes the others; the same chip closes its own panel. */
+  function togglePanel(next: Exclude<ConfigPanel, "none">) {
+    setPanel((current) => (current === next ? "none" : next));
   }
 
   /* Switching the execution style mid-clarify returns to composing with the
@@ -453,6 +455,20 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
     setRecordSeconds(0);
     setQualityStandard(null);
     setOutputSection(0);
+    setPanel("none");
+  }
+
+  function onPromptChange(value: string) {
+    cancelPendingRun();
+    setPrompt(value);
+    if (status === "error" || status === "clarifying") setStatus("idle");
+    /* §2.3: the leading tool "opens after the first keystroke" — exactly
+       once (the latch keeps later keystrokes from re-opening a panel the
+       user deliberately closed). */
+    if (value.trim() && !toolsSeen) {
+      setToolsSeen(true);
+      setPanel("tools");
+    }
   }
 
   function quickFill(title: string) {
@@ -508,106 +524,32 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
     : status === "clarifying" ? (clarifyStep < 3 ? copy.next : copy.execute)
     : copy.start;
 
+  /* The four-step contract as a thin progress strip inside the composer card
+     (§2.3): step 01 live during clarify, 02 during working, all complete at
+     ready — never a separate pre-execution section again. */
+  const executing = status === "clarifying" || status === "working" || status === "ready" || status === "saved";
+
   return (
     <div className="service-space" data-service={serviceId}>
-      {/* 1 — Contextual navigation: sibling spaces + way back to home */}
-      <nav className="service-nav" aria-label={copy.navLabel}>
-        <Link href={`${base}/learn`} className="service-nav__link">
-          <GraduationCap size={15} aria-hidden="true" />
-          <span>{copy.navLearn}</span>
-        </Link>
-        <Link href={libraryHref} className="service-nav__link">
-          <Library size={15} aria-hidden="true" />
-          <span>{copy.navLibrary}</span>
-        </Link>
-        <span className="service-nav__spacer" aria-hidden="true" />
-        <Link href={`${base}/home`} className="service-nav__link service-nav__link--back">
-          {isArabic ? <ArrowRight size={15} aria-hidden="true" /> : <ArrowLeft size={15} aria-hidden="true" />}
-          <span>{copy.navBack}</span>
-        </Link>
-      </nav>
-
-      {/* 2 — Welcome: eyebrow · badge · gradient title · lede · new session */}
+      {/* L2 title block (§2.3): service eyebrow + h1 + one-line lede — no
+          badge, no chrome; identity is announced exactly once. */}
       <section className="service-welcome">
         <span className="service-welcome__eyebrow">{service.eyebrow}</span>
-        <span className="service-welcome__badge">
-          <span className="service-dot" aria-hidden="true"><i /><b /></span>
-          {copy.interactive}
-        </span>
         <h1 className="service-welcome__title">{service.label}</h1>
         <p className="service-welcome__lede">{service.description}</p>
-        <button type="button" className="service-welcome__new" onClick={reset}>
-          <Plus size={12} aria-hidden="true" />
-          <span>{copy.newSession}</span>
-        </button>
       </section>
 
-      {/* 3 — Work mode: the service toolkit as selectable modes. Selecting a
-          tool re-binds the composer hint, the expected output, the quick
-          starts, and the affordance pills (interaction-logic §2). */}
-      <section className="service-toolbelt" aria-labelledby="service-tools-title">
-        <header className="service-section-head">
-          <h2 id="service-tools-title">{copy.toolsTitle}</h2>
-          <p>{copy.toolsHint}</p>
-        </header>
-        <div className="service-toolbelt__grid" role="group" aria-label={copy.toolsTitle}>
-          {tools.map(({ id, label, icon: ToolIcon }) => {
-            const active = activeTools.includes(id);
-            const isLead = leadTool.id === id;
-            return (
-              <button
-                type="button"
-                key={id}
-                className={active ? "service-tool is-on" : "service-tool"}
-                aria-pressed={active}
-                onClick={() => toggleTool(id)}
-              >
-                <span className="service-tool__icon"><ToolIcon size={17} aria-hidden="true" /></span>
-                <strong>{label}</strong>
-                <span className="service-tool__check" aria-hidden="true">{isLead ? <Check size={11} /> : null}</span>
-              </button>
-            );
-          })}
-        </div>
-        <p className="service-toolbelt__lead" aria-live="polite">{copy.toolHintTemplate(leadTool.label)}</p>
-      </section>
-
-      {/* 4 — Execution style: guided vs fast. Plain toggle buttons with
-          aria-pressed (the tab role without tabpanels was an ARIA
-          anti-pattern) — FR-2.3 radio behavior, one active at a time. */}
-      <section className="service-mode" aria-labelledby="service-mode-title">
-        <header className="service-section-head">
-          <h2 id="service-mode-title">{copy.modeTitle}</h2>
-        </header>
-        <div className="service-mode-switch" role="group" aria-label={copy.modeTitle}>
-          <button type="button" aria-pressed={mode === "guided"} className={mode === "guided" ? "is-active" : ""} onClick={() => selectMode("guided")}>
-            <span className="service-mode-switch__label"><WandSparkles size={16} aria-hidden="true" /><strong>{copy.guided}</strong></span>
-            <small>{copy.guidedHint}</small>
-          </button>
-          <button type="button" aria-pressed={mode === "fast"} className={mode === "fast" ? "is-active" : ""} onClick={() => selectMode("fast")}>
-            <span className="service-mode-switch__label"><Zap size={16} aria-hidden="true" /><strong>{copy.fast}</strong></span>
-            <small>{copy.fastHint}</small>
-          </button>
-        </div>
-      </section>
-
-      {/* 5 — The composer: the one glowing container on the stage */}
+      {/* Composer first (R-PAT-2): input + ONE primary action above the fold;
+          configuration reveals progressively inside the card. */}
       <section className="service-composer-zone">
         <div className="service-prompt-shell">
           <div className="service-prompt-area">
-            <div className="service-prompt-area__head">
-              <span className="service-prompt-area__orb"><Icon size={12} aria-hidden="true" /></span>
-              <div className="service-prompt-area__heading">
-                <span className="service-prompt-area__eyebrow">{service.eyebrow}</span>
-                <h2>{copy.title}</h2>
-              </div>
-            </div>
             <textarea
               ref={textareaRef}
               id="service-request"
               rows={2}
               value={prompt}
-              onChange={(event) => { cancelPendingRun(); setPrompt(event.target.value); if (status === "error" || status === "clarifying") setStatus("idle"); }}
+              onChange={(event) => onPromptChange(event.target.value)}
               placeholder={leadTool.hint}
               aria-label={leadTool.hint}
               aria-invalid={status === "error"}
@@ -638,6 +580,108 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
                 ) : null}
               </div>
             ) : null}
+
+            {/* Config strip (§3.3): opinionated defaults visible as one
+                summary line; each concern opens its own disclosure, one at
+                a time. The tools chip carries the lead tool + extra count. */}
+            <div className="service-config">
+              <div className="service-config__chips">
+                <button type="button" className={panel === "mode" ? "service-config__chip is-open" : "service-config__chip"} aria-expanded={panel === "mode"} aria-controls="service-config-mode" onClick={() => togglePanel("mode")}>
+                  <b>{copy.styleLabel}</b>
+                  <span>{mode === "guided" ? copy.guided : copy.fast}</span>
+                  <ChevronDown size={14} aria-hidden="true" />
+                </button>
+                <button type="button" className={panel === "tools" ? "service-config__chip is-open" : "service-config__chip"} aria-expanded={panel === "tools"} aria-controls="service-config-tools" onClick={() => togglePanel("tools")}>
+                  <b>{copy.toolLabel}</b>
+                  <span>{leadTool.label}{activeTools.length > 1 ? ` ${copy.toolsExtra(activeTools.length - 1)}` : ""}</span>
+                  <ChevronDown size={14} aria-hidden="true" />
+                </button>
+                {showQualityAffordance ? (
+                  <button type="button" className={panel === "advanced" ? "service-config__chip is-open" : "service-config__chip"} aria-expanded={panel === "advanced"} aria-controls="service-config-advanced" onClick={() => togglePanel("advanced")}>
+                    <SlidersHorizontal size={14} aria-hidden="true" />
+                    <span>{copy.advanced}</span>
+                    <ChevronDown size={14} aria-hidden="true" />
+                  </button>
+                ) : null}
+              </div>
+
+              {panel === "mode" ? (
+                <div className="service-config__body" data-panel="mode" role="group" aria-label={copy.modeTitle}>
+                  <div className="service-mode-switch" role="group" aria-label={copy.modeTitle}>
+                    <button type="button" aria-pressed={mode === "guided"} className={mode === "guided" ? "is-active" : ""} onClick={() => selectMode("guided")}>
+                      <span className="service-mode-switch__label"><WandSparkles size={16} aria-hidden="true" /><strong>{copy.guided}</strong></span>
+                      <small>{copy.guidedHint}</small>
+                    </button>
+                    <button type="button" aria-pressed={mode === "fast"} className={mode === "fast" ? "is-active" : ""} onClick={() => selectMode("fast")}>
+                      <span className="service-mode-switch__label"><Zap size={16} aria-hidden="true" /><strong>{copy.fast}</strong></span>
+                      <small>{copy.fastHint}</small>
+                    </button>
+                  </div>
+                </div>
+              ) : null}
+
+              {panel === "tools" ? (
+                <div className="service-config__body" data-panel="tools" role="group" aria-label={copy.toolsTitle}>
+                  <header className="service-section-head">
+                    <h2>{copy.toolsTitle}</h2>
+                    <p>{copy.toolsHint}</p>
+                  </header>
+                  <div className="service-toolbelt__grid" role="group" aria-label={copy.toolsTitle}>
+                    {tools.map(({ id, label, icon: ToolIcon }) => {
+                      const active = activeTools.includes(id);
+                      const isLead = leadTool.id === id;
+                      return (
+                        <button
+                          type="button"
+                          key={id}
+                          className={active ? "service-tool is-on" : "service-tool"}
+                          aria-pressed={active}
+                          onClick={() => toggleTool(id)}
+                        >
+                          <span className="service-tool__icon"><ToolIcon size={17} aria-hidden="true" /></span>
+                          <strong>{label}</strong>
+                          <span className="service-tool__check" aria-hidden="true">{isLead ? <Check size={11} /> : null}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <p className="service-toolbelt__lead" aria-live="polite">{copy.toolHintTemplate(leadTool.label)}</p>
+                </div>
+              ) : null}
+
+              {panel === "advanced" ? (
+                <div className="service-config__body" data-panel="advanced" role="group" aria-label={copy.advanced}>
+                  <p className="service-config__hint">{copy.advancedHint}</p>
+                  {showQualityAffordance ? (
+                    <label className="service-afford service-afford--select" title={copy.quality}>
+                      <ShieldCheck size={15} aria-hidden="true" />
+                      <select value={qualityStandard ?? ""} onChange={(event) => setQualityStandard(event.target.value || null)} aria-label={copy.quality}>
+                        <option value="">{copy.qualityPlaceholder}</option>
+                        {copy.qualityOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                      </select>
+                    </label>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+
+            {/* Thin progress strip (§2.3): the four steps live INSIDE the
+                composer card during execution — not a pre-execution section. */}
+            {executing ? (
+              <ol className="service-progress" aria-label={copy.pathTitle}>
+                {copy.path.map((step, index) => {
+                  const complete = status === "ready" || status === "saved" || (status === "working" && index < 1);
+                  const current = !complete && index === (status === "working" ? 1 : 0);
+                  return (
+                    <li key={step} className={complete ? "is-complete" : current ? "is-current" : undefined}>
+                      <span aria-hidden="true">{complete ? <Check size={11} /> : `0${index + 1}`}</span>
+                      <p>{step}</p>
+                    </li>
+                  );
+                })}
+              </ol>
+            ) : null}
+
             <div className="service-prompt-area__bottom">
               <div className="service-prompt-area__tools">
                 {showFileAffordance ? (
@@ -655,15 +699,6 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
                     <span>{recording ? formatClip(recordSeconds) : copy.voice}</span>
                   </button>
                 ) : null}
-                {showQualityAffordance ? (
-                  <label className="service-afford service-afford--select" title={copy.quality}>
-                    <ShieldCheck size={15} aria-hidden="true" />
-                    <select value={qualityStandard ?? ""} onChange={(event) => setQualityStandard(event.target.value || null)} aria-label={copy.quality}>
-                      <option value="">{copy.qualityPlaceholder}</option>
-                      {copy.qualityOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                    </select>
-                  </label>
-                ) : null}
               </div>
               <button type="button" className="service-start-button" onClick={onComposerButton} disabled={status === "working"} data-loading={status === "working"}>
                 <span>{composerButtonLabel}</span>
@@ -671,6 +706,12 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
               </button>
             </div>
           </div>
+
+          {/* Trust caption (§2.3): one line in the composer card's footer. */}
+          <footer className="service-trust" role="note">
+            <ShieldCheck size={13} aria-hidden="true" />
+            <p>{copy.trust}</p>
+          </footer>
         </div>
 
         {status === "working" ? <ActivityFeedback state="working" className="service-working" label={copy.simulation} title={copy.working} description={[activeToolLabels.join(" · "), ...attachmentSummary].filter(Boolean).join(" · ")} progressLabel={copy.progress} /> : null}
@@ -766,54 +807,9 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
         ) : null}
       </section>
 
-      {/* 6 — How it works: four connected steps. During the guided clarify
-          phase step 01 is live; working highlights 02; ready completes all. */}
-      <section className="service-path-card">
-        <header className="service-path-card__head">
-          <Info size={14} aria-hidden="true" />
-          <h2>{copy.pathTitle}</h2>
-        </header>
-        <ol className="service-path-card__steps">
-          {copy.path.map((step, index) => {
-            const complete = status === "ready" || status === "saved" || (status === "working" && index < 1);
-            const current = !complete && index === (status === "working" ? 1 : 0);
-            return (
-              <li key={step} className={complete ? "is-complete" : current ? "is-current" : undefined}>
-                <span>{complete ? <Check size={12} aria-hidden="true" /> : `0${index + 1}`}</span>
-                <p>{step}</p>
-              </li>
-            );
-          })}
-        </ol>
-      </section>
-
-      {/* 7 — Transparency note */}
-      <div className="service-trust" role="note">
-        <ShieldCheck size={14} aria-hidden="true" />
-        <p>{copy.trust}</p>
-      </div>
-
-      {/* 8 + 9 — Quick starts (lead-tool driven) + from your library.
-          Saved items surface first (I-6): a saved element actually enters
-          the strip — session-local by design (KI-5). */}
+      {/* Recent (§2.3): «من مكتبتك» strip first, then starters as plain
+          links — no more card-like pre-execution stacks. */}
       <section className="service-lower">
-        <div className="service-lower__group">
-          <header className="service-lower__head">
-            <h2>{copy.templates}</h2>
-            <p>{copy.templatesHint}</p>
-          </header>
-          <div className="service-starters">
-            {starters.map(({ title, icon: StarterIcon }) => (
-              <button type="button" key={title} onClick={() => quickFill(title)}>
-                <span className="service-starters__lead">
-                  <span className="service-starters__icon"><StarterIcon size={16} aria-hidden="true" /></span>
-                  <strong>{title}</strong>
-                </span>
-                <ArrowLeft size={12} aria-hidden="true" />
-              </button>
-            ))}
-          </div>
-        </div>
         <div className="service-lower__group">
           <header className="service-lower__head">
             <h2>{copy.recent}</h2>
@@ -848,6 +844,23 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
               </span>
               <ArrowLeft size={12} aria-hidden="true" />
             </Link>
+          </div>
+        </div>
+        <div className="service-lower__group">
+          <header className="service-lower__head">
+            <h2>{copy.templates}</h2>
+            <p>{copy.templatesHint}</p>
+          </header>
+          <div className="service-starters">
+            {starters.map(({ title, icon: StarterIcon }) => (
+              <button type="button" key={title} onClick={() => quickFill(title)}>
+                <span className="service-starters__lead">
+                  <span className="service-starters__icon"><StarterIcon size={16} aria-hidden="true" /></span>
+                  <strong>{title}</strong>
+                </span>
+                <ArrowLeft size={12} aria-hidden="true" />
+              </button>
+            ))}
           </div>
         </div>
       </section>

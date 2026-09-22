@@ -32,15 +32,22 @@
   }
 }
 
-/* Finite page hierarchy and top-level continuity */
-.universal-route-frame { animation: u-route-in var(--u-motion-duration-moderate) var(--u-motion-ease-enter) both; }
+/* Finite page hierarchy and top-level continuity.
+   W-DS Phase 4 / INT-02 (R-MOT-1): THIS is the single owner of the
+   route-frame enter — 240ms (Route class, DESIGN-TOKENS §7) with the 4px
+   enter offset (PAGE-PATTERNS §4.2, --u-motion-distance-sm). The duplicate
+   rule that used to live in shell.css (480ms expressive) was a
+   cascade-dead leftover; the audit measured it instead of this winner —
+   corrected and recorded in baselines/phase4. Reduced motion: the global
+   block below clamps every animation to .01ms and strips transforms. */
+.universal-route-frame { animation: u-route-in var(--u-motion-duration-route) var(--u-motion-ease-enter) both; }
 @keyframes u-enter-soft {
   from { opacity: 0; transform: translateY(var(--u-motion-distance-lg)); }
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes u-route-in {
-  from { opacity: .35; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(var(--u-motion-distance-sm)); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Marketing ambience settles instead of looping forever. */
@@ -199,8 +206,8 @@
 /* .service-prompt-area error state moved to the container itself
    (workspaces.css :has() rule) — the field is borderless now. */
 .service-output { animation: u-feedback-in var(--u-motion-duration-slow) var(--u-motion-ease-enter) both; }
-.service-path-card li > span,.service-path-card li::after { transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
-.service-path-card li.is-complete > span { transform: scale(1.04); }
+/* Phase 4: the standalone path-card died with INT-01 — the four-step strip
+   (.service-progress, workspaces.css) now carries the transitions itself. */
 
 /* Persistent, dismissible completion feedback.
    Portaled to document.body, so the offset reads --mj-tabbar-reserve from

@@ -1,15 +1,18 @@
 /* ==========================================================================
-   SERVICE WORKSPACE — «Structured Gateway» (v24 structure restore)
+   SERVICE WORKSPACE — «Composer-First Gateway» (W-DS Phase 4 · INT-01)
    --------------------------------------------------------------------------
-   The full ten-section page architecture, restored: contextual nav →
-   welcome (eyebrow · badge · gradient title · lede · new session) →
-   work-mode toolbelt → execution style → glowing composer → four-step
-   path → trust note → quick starts → from your library.
+   PAGE-PATTERNS-AND-MOTION §2.3 (R-PAT-2): creation flows are composer-first.
+   The page is L2 title (eyebrow · gradient h1 · lede) → the composer card
+   (prompt + ONE primary CTA + config strip + thin progress strip + trust
+   caption) → recent («من مكتبتك» strip + starters as plain links).
+   Configuration is progressive disclosure INSIDE the card, one concern at
+   a time (§3): mode (segmented, default سريع) → leading tool (opens after
+   the first keystroke) → advanced (quality bar, opt-in). The nine-section
+   pre-execution stack (INT-01) is gone; the four-step path lives inside
+   the composer card during execution — never a standalone section.
 
    Design source: the approved ask-screen reference — an indigo glass canvas:
-   glass panels, one glowing composer, animated gradient title, connected
-   stepper, quiet rows — rebuilt as a linear narrative in the platform's
-   token architecture.
+   glass panels, one glowing composer, animated gradient title, quiet rows.
 
    Theme law: the canvas is THEME-AWARE. Every --sp-* token has a light value
    (glass-white surfaces, dark ink, contrast-verified accents) and a dark
@@ -19,9 +22,7 @@
 
    Responsive law: one composition, three widths. Mobile/tablet = the exact
    reference single column. Wide canvas = the same sections at a wider
-   measure: toolbelt and starters flow into card grids, the path stepper
-   turns into a connected horizontal strip, the library pairs its rows.
-   Same sections, same order, re-flowed never redesigned.
+   measure: the tools grid flows into columns, the library pairs its rows.
 
    Discipline preserved: hover gated to (hover: hover); touch gets pressed
    feedback; 44px touch floor; logical properties only; focus rides the
@@ -124,69 +125,16 @@
 }
 
 /* ==========================================================================
-   SERVICE NAV — contextual wayfinding between sibling spaces
-   ========================================================================== */
-.service-nav {
-  margin-block-end: 30px;
-  padding-block-end: 14px;
-  border-block-end: 1px solid var(--sp-glass-line);
-  display: flex;
-  align-items: center;
-  gap: var(--mj-space-50);
-}
-.service-nav__link {
-  min-height: var(--u-touch);
-  padding-inline: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border-radius: var(--u-radius-pill);
-  color: var(--sp-muted);
-  font-size: var(--u-text-xs);
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
-}
-.service-nav__link svg { flex: 0 0 auto; }
-@media (hover: hover) {
-  .service-nav__link:hover { color: var(--sp-ink); background: var(--sp-row); }
-}
-.service-nav__link--back { color: var(--sp-accent); font-weight: 600; }
-@media (hover: hover) {
-  .service-nav__link--back:hover { color: var(--sp-accent); background: rgba(var(--sp-accent-rgb), 0.1); }
-}
-.service-nav__spacer { flex: 1; }
-
-/* ==========================================================================
-   WELCOME — badge · animated gradient title · lede · new session
+   WELCOME — the L2 title block: eyebrow · animated gradient h1 · lede
+   (§2.3: identity announced exactly once — no badge, no chrome)
    ========================================================================== */
 .service-welcome { margin-block-end: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .service-welcome__eyebrow {
   margin-block-end: 14px;
   color: var(--sp-accent);
-  font-size: 11px;
+  font-size: var(--mj-text-caption);
   font-weight: 700;
 }
-.service-welcome__badge {
-  margin-block-end: 14px;
-  padding: 6px 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--mj-space-100);
-  border: 1px solid rgba(var(--sp-accent-rgb), 0.2);
-  border-radius: var(--u-radius-pill);
-  background: rgba(var(--sp-accent-rgb), 0.1);
-  color: var(--sp-accent);
-  font-size: var(--u-text-xs);
-  font-weight: 500;
-  box-shadow: var(--sp-glow);
-}
-.service-dot { position: relative; width: 8px; height: 8px; flex: 0 0 auto; display: inline-block; }
-.service-dot i { position: absolute; inset: 0; border-radius: 50%; background: var(--sp-accent); opacity: 0.75; animation: sp-ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite; }
-.service-dot b { position: relative; display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--sp-accent); }
-@keyframes sp-ping { 75%, 100% { transform: scale(2.2); opacity: 0; } }
 
 .service-welcome__title {
   margin: 0;
@@ -203,27 +151,6 @@
 @keyframes sp-gradient-x { to { background-position: 200% center; } }
 
 .service-welcome__lede { margin: 0 0 var(--mj-space-300); max-width: 290px; color: var(--sp-muted); font-size: var(--u-text-sm); line-height: 1.7; }
-.service-welcome__new {
-  min-height: var(--u-touch);
-  padding-inline: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--mj-space-100);
-  border: 1px solid var(--sp-hairline);
-  border-radius: var(--u-radius-pill);
-  background: var(--sp-card);
-  color: var(--sp-ink);
-  font-size: var(--u-text-sm);
-  font-weight: 500;
-  cursor: pointer;
-  box-shadow: var(--sp-glass-shadow);
-  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-fast) var(--u-motion-ease-standard);
-}
-.service-welcome__new svg { color: var(--sp-accent); }
-@media (hover: hover) {
-  .service-welcome__new:hover { background: var(--sp-line); border-color: var(--sp-hover-line); }
-}
-.service-welcome__new:active { background: var(--sp-line); }
 
 /* ==========================================================================
    SHARED SECTION HEAD — quiet label + optional hint
@@ -233,9 +160,8 @@
 .service-section-head p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.6; }
 
 /* ==========================================================================
-   TOOLBELT — work-mode selection: the service toolkit as toggles
+   TOOLBELT — work-mode selection (progressive: inside the tools disclosure)
    ========================================================================== */
-.service-toolbelt { margin-block-end: 40px; }
 .service-toolbelt__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 /* KI-3: live confirmation that the four commitments followed the selection
    (interaction-logic §2) — a quiet caption, announced politely. */
@@ -293,9 +219,9 @@
 .service-tool.is-on .service-tool__check { border-color: var(--sp-accent-strong); background: var(--sp-accent-strong); color: #fff; }
 
 /* ==========================================================================
-   MODE SWITCH — execution style: two rich cards, active = raised panel
+   MODE SWITCH — execution style (progressive: inside the mode disclosure).
+   Two rich segments, active = raised card.
    ========================================================================== */
-.service-mode { margin-block-end: 40px; }
 .service-mode-switch {
   padding: var(--mj-space-50);
   display: grid;
@@ -370,21 +296,9 @@
 }
 
 .service-prompt-area { padding: 18px; border-radius: 20px; background: var(--sp-card); }
-.service-prompt-area__head { margin-block-end: var(--mj-space-150); padding-inline: var(--mj-space-50); display: flex; align-items: center; gap: 10px; }
-.service-prompt-area__heading { display: flex; flex-direction: column; gap: var(--mj-space-25); min-width: 0; }
-.service-prompt-area__eyebrow { color: var(--sp-accent); font-size: 10px; font-weight: 700; line-height: 1.4; }
-.service-prompt-area__orb {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(var(--sp-accent-rgb), 0.2);
-  color: var(--sp-accent);
-}
-.service-prompt-area__head h2 { margin: 0; color: var(--sp-ink-soft); font: 700 var(--u-text-xs) / 1.4 var(--sp-font-display); }
-
+/* §2.3: the composer card opens directly with the input — the old orb +
+   eyebrow + h2 head died with the pre-execution stack (identity is the L2
+   title above; the card itself is input + action). */
 .service-prompt-area textarea {
   display: block;
   width: 100%;
@@ -566,6 +480,96 @@
   .service-start-button:not(:disabled):hover svg { transform: translateY(-2px); }
 }
 .service-start-button:disabled { cursor: wait; opacity: 0.85; }
+
+/* ==========================================================================
+   CONFIG STRIP (Phase 4 / INT-01 · §3 progressive-disclosure law)
+   --------------------------------------------------------------------------
+   Opinionated defaults, visible as one summary line: «الأسلوب: سريع ·
+   الأداة: مساحة نص». Each chip opens its own disclosure — one concern at
+   a time; the advanced chip never pre-expands (§3.3). Touch floor holds:
+   chips ride the 44px floor like every affordance on this surface.
+   ========================================================================== */
+.service-config { margin-block-start: var(--mj-space-100); display: flex; flex-direction: column; gap: var(--mj-space-100); }
+.service-config__chips { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mj-space-100); }
+.service-config__chip {
+  min-height: var(--u-touch);
+  padding-inline: var(--mj-space-150);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--sp-glass-line);
+  border-radius: var(--u-radius-pill);
+  background: var(--sp-row);
+  color: var(--sp-muted);
+  font-size: var(--u-text-xs);
+  cursor: pointer;
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.service-config__chip b { color: var(--sp-faint, var(--sp-muted)); font-weight: 600; }
+.service-config__chip span { color: var(--sp-ink-soft); font-weight: 600; }
+.service-config__chip svg { flex: 0 0 auto; color: var(--sp-muted); transition: transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
+@media (hover: hover) {
+  .service-config__chip:hover { color: var(--sp-ink); border-color: var(--sp-hover-line); background: var(--sp-card); }
+}
+.service-config__chip.is-open {
+  border-color: rgba(var(--sp-accent-rgb), 0.45);
+  background: rgba(var(--sp-accent-rgb), 0.07);
+  color: var(--sp-ink);
+}
+.service-config__chip.is-open svg { transform: rotate(180deg); color: var(--sp-accent); }
+
+/* The progressive area — one panel at a time, entered with the disclosure
+   offset (§4.2: 8px, never more). */
+.service-config__body {
+  padding: var(--mj-space-150);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mj-space-100);
+  border: 1px solid var(--sp-glass-line);
+  border-radius: var(--u-radius-card);
+  background: var(--sp-surface);
+  animation: service-config-in var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+}
+@keyframes service-config-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .service-config__body { animation: none; } }
+.service-config__hint { margin: 0; color: var(--sp-muted); font-size: var(--mj-text-caption); line-height: 1.7; }
+/* Mode segments run compact inside the disclosure (44px floor holds). */
+.service-config__body[data-panel="mode"] .service-mode-switch button { min-height: 64px; padding: var(--mj-space-100) var(--mj-space-150); }
+.service-config__body .service-section-head { margin-block-end: var(--mj-space-100); }
+.service-config__body .service-toolbelt__lead { margin: 0 var(--mj-space-50); }
+
+/* ==========================================================================
+   PROGRESS STRIP (§2.3) — the four-step contract, thin, INSIDE the composer
+   card during execution (clarify → working → ready); never a standalone
+   pre-execution section again.
+   ========================================================================== */
+.service-progress {
+  margin: var(--mj-space-150) 0 0;
+  padding: var(--mj-space-150) 0 0;
+  border-block-start: 1px solid var(--sp-glass-line);
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--mj-space-100);
+}
+.service-progress li { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mj-space-50); }
+.service-progress li > span {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--sp-line);
+  border-radius: 50%;
+  background: var(--sp-card);
+  color: var(--sp-muted);
+  font: 700 var(--mj-text-caption) / 1 var(--sp-font-display);
+  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
+}
+.service-progress li.is-current > span { border-color: var(--sp-accent-strong); color: var(--sp-accent); box-shadow: 0 0 10px rgba(var(--sp-accent-rgb), 0.3); }
+.service-progress li.is-complete > span { border-color: var(--sp-accent-strong); background: var(--sp-accent-strong); color: #fff; }
+.service-progress li p { margin: 0; color: var(--sp-faint, var(--sp-muted)); font-size: var(--mj-text-caption); line-height: 1.5; transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
+.service-progress li.is-current > p,
+.service-progress li.is-complete > p { color: var(--sp-ink-soft); }
 
 /* ==========================================================================
    STATE REGION — working / error / ready on the same canvas
@@ -871,104 +875,61 @@
 }
 
 /* ==========================================================================
-   PATH — the four-step contract; a connected strip on a wide canvas
-   ========================================================================== */
-.service-path-card {
-  margin-block-end: var(--mj-space-300);
-  padding: 20px;
-  border: 1px solid var(--sp-glass-line);
-  border-radius: 24px;
-  background: var(--sp-panel);
-}
-.service-path-card__head { margin-block-end: 18px; display: flex; align-items: center; gap: var(--mj-space-100); }
-.service-path-card__head svg { flex: 0 0 auto; color: var(--sp-accent); }
-.service-path-card__head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
-.service-path-card__steps { position: relative; margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
-.service-path-card li { position: relative; z-index: 1; display: flex; align-items: center; gap: var(--mj-space-150); }
-.service-path-card li > span {
-  width: 28px;
-  height: 28px;
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--sp-line);
-  border-radius: 50%;
-  background: var(--sp-card);
-  color: var(--sp-muted);
-  font: 700 11px / 1 var(--sp-font-display);
-  transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
-}
-.service-path-card li.is-current > span { border-color: var(--sp-accent-strong); color: var(--sp-accent); box-shadow: 0 0 10px rgba(var(--sp-accent-rgb), 0.3); }
-.service-path-card li.is-complete > span { border-color: var(--sp-accent-strong); background: var(--sp-accent-strong); color: #fff; }
-.service-path-card li p { margin: 0; color: var(--sp-muted); font-size: var(--u-text-sm); line-height: 1.6; transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
-.service-path-card li.is-current > p,
-.service-path-card li.is-complete > p { color: var(--sp-ink-soft); }
-@media (hover: hover) {
-  .service-path-card li:hover > span { border-color: var(--sp-accent); color: var(--sp-accent); }
-  .service-path-card li:hover > p { color: var(--sp-ink-soft); }
-}
-
-/* ==========================================================================
-   TRUST — the transparency note under the path
+   TRUST (§2.3) — one caption line in the composer card's footer. The old
+   standalone pre-execution note is gone; the promise travels with the card.
    ========================================================================== */
 .service-trust {
-  margin-block-end: 40px;
-  padding: 12px 18px;
+  margin: 0 var(--mj-space-150) var(--mj-space-100);
+  padding: var(--mj-space-100) var(--mj-space-100) var(--mj-space-50);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  border: 1px dashed rgba(var(--sp-accent-rgb), 0.32);
-  border-radius: var(--u-radius-pill);
-  background: rgba(var(--sp-accent-rgb), 0.04);
+  gap: 7px;
+  border-block-start: 1px solid var(--sp-glass-line);
   color: var(--sp-muted);
 }
 .service-trust svg { flex: 0 0 auto; color: var(--sp-mint); }
-.service-trust p { margin: 0; font-size: 11px; line-height: 1.7; text-align: center; }
+.service-trust p { margin: 0; font-size: var(--mj-text-caption); line-height: 1.7; text-align: center; }
 
 /* ==========================================================================
-   LOWER — quick starts + library, quiet rows
+   LOWER — «من مكتبتك» strip + starters as PLAIN LINKS (§2.3: no more
+   card-like pre-execution stacks below the composer)
    ========================================================================== */
 .service-lower { display: flex; flex-direction: column; gap: 40px; }
 .service-lower__head { margin-block-end: 14px; padding-inline: var(--mj-space-50); display: flex; flex-direction: column; gap: 3px; }
 .service-lower__head h2 { margin: 0; color: var(--sp-ink); font: 700 var(--u-text-sm) / 1.4 var(--sp-font-display); }
-.service-lower__head p { margin: 0; color: var(--sp-muted); font-size: 11px; line-height: 1.6; }
+.service-lower__head p { margin: 0; color: var(--sp-muted); font-size: var(--mj-text-caption); line-height: 1.6; }
 
-.service-starters { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.service-starters { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--mj-space-50); }
 .service-starters button {
   width: 100%;
-  min-height: 58px;
-  padding: 12px 14px;
+  min-height: var(--u-touch);
+  padding: var(--mj-space-50) var(--mj-space-50) var(--mj-space-50) var(--mj-space-100);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--mj-space-150);
-  border: 1px solid transparent;
-  border-radius: var(--u-radius-card);
-  background: var(--sp-row);
+  border: 0;
+  border-radius: var(--u-radius-field);
+  background: transparent;
   color: var(--sp-ink);
   text-align: start;
   cursor: pointer;
-  transition: background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
-}
-@media (hover: hover) {
-  .service-starters button:hover { background: var(--sp-card); border-color: var(--sp-hairline); }
-}
-.service-starters button:active { background: var(--sp-card); }
-.service-starters__lead { display: flex; align-items: center; gap: 14px; min-width: 0; }
-.service-starters__icon {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--sp-card);
-  color: var(--sp-ink-soft);
   transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
 @media (hover: hover) {
-  .service-starters button:hover .service-starters__icon { color: var(--sp-accent); background: rgba(var(--sp-accent-rgb), 0.1); }
+  .service-starters button:hover { background: var(--sp-row); }
+}
+.service-starters button:active { background: var(--sp-row); }
+.service-starters__lead { display: flex; align-items: center; gap: var(--mj-space-100); min-width: 0; }
+.service-starters__icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--sp-accent);
+  transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard);
 }
 .service-starters strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--u-text-sm); font-weight: 500; }
 .service-starters button > svg { flex: 0 0 auto; color: var(--sp-muted); transition: color var(--u-motion-duration-fast) var(--u-motion-ease-standard), transform var(--u-motion-duration-moderate) var(--u-motion-ease-standard); }
@@ -1060,7 +1021,6 @@
 
 @container service-space (min-width: 560px) {
   .service-starters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .service-path-card__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @container service-space (min-width: 900px) {
@@ -1068,18 +1028,6 @@
   .service-welcome { margin-block-end: 56px; }
   .service-welcome__title { font-size: clamp(36px, 3vw, 44px); }
   .service-welcome__lede { max-width: 480px; }
-  /* The path turns into a connected horizontal strip */
-  .service-path-card__steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--mj-space-150); }
-  .service-path-card li { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .service-path-card__steps::before {
-    content: "";
-    position: absolute;
-    inset-block-start: 14px;
-    inset-inline: 14px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--sp-accent-strong), var(--sp-line));
-    opacity: 0.5;
-  }
   .service-mini-library { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -1095,6 +1043,6 @@
 /* ---- Motion respect ------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   .service-welcome__title { animation: none; }
-  .service-dot i { animation: none; }
   .service-afford__rec::after { animation: none; opacity: 0.4; }
+  .service-config__body { animation: none; }
 }

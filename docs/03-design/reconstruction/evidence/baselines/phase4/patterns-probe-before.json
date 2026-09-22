@@ -1,0 +1,205 @@
+{
+ "base": "http://localhost:3101",
+ "mode": "before (Phase 3 build)",
+ "int02Motion": {
+  "frameFound": true,
+  "animationName": "u-route-in",
+  "durationMs": 200,
+  "enterOffsetPx": null,
+  "reducedMotion": false,
+  "rule240": false,
+  "offset4": false,
+  "underForbidden300": true
+ },
+ "int01Gateway": {
+  "initial": {
+   "sections": [
+    "service-nav",
+    "service-welcome",
+    "service-toolbelt",
+    "service-mode",
+    "service-composer-zone",
+    "service-path-card",
+    "service-trust",
+    "service-lower"
+   ],
+   "sectionCount": 8,
+   "cardLike": 15,
+   "composerTop": 961.1,
+   "ctaBottom": 1145.2,
+   "dockTop": 762,
+   "ctaAboveFold": false,
+   "configChips": [],
+   "openPanels": 0,
+   "trustInsideCard": false,
+   "standaloneTrust": true,
+   "standalonePath": true,
+   "startersPlain": [
+    {
+     "bg": "rgba(255, 255, 255, 0.92)",
+     "border": "1px",
+     "h": 58
+    },
+    {
+     "bg": "rgba(255, 255, 255, 0.92)",
+     "border": "1px",
+     "h": 58
+    },
+    {
+     "bg": "rgba(255, 255, 255, 0.92)",
+     "border": "1px",
+     "h": 58
+    }
+   ],
+   "welcomeChildren": [
+    "service-welcome__eyebrow",
+    "service-welcome__badge",
+    "service-welcome__title",
+    "service-welcome__lede",
+    "service-welcome__new"
+   ]
+  }
+ },
+ "int01GatewayEn": {
+  "initial": {
+   "sections": [
+    "service-nav",
+    "service-welcome",
+    "service-toolbelt",
+    "service-mode",
+    "service-composer-zone",
+    "service-path-card",
+    "service-trust",
+    "service-lower"
+   ],
+   "sectionCount": 8,
+   "cardLike": 15,
+   "composerTop": 996.7,
+   "ctaBottom": 1232.8,
+   "dockTop": 762,
+   "ctaAboveFold": false,
+   "configChips": [],
+   "openPanels": 0,
+   "trustInsideCard": false,
+   "standaloneTrust": true,
+   "standalonePath": true,
+   "startersPlain": [
+    {
+     "bg": "rgba(255, 255, 255, 0.92)",
+     "border": "1px",
+     "h": 58
+    },
+    {
+     "bg": "rgba(255, 255, 255, 0.92)",
+     "border": "1px",
+     "h": 58
+    },
+    {
+     "bg": "rgba(255, 255, 255, 0.92)",
+     "border": "1px",
+     "h": 58
+    }
+   ],
+   "welcomeChildren": [
+    "service-welcome__eyebrow",
+    "service-welcome__badge",
+    "service-welcome__title",
+    "service-welcome__lede",
+    "service-welcome__new"
+   ]
+  }
+ },
+ "int01Wide1440": {
+  "sections": [
+   "service-nav",
+   "service-welcome",
+   "service-toolbelt",
+   "service-mode",
+   "service-composer-zone",
+   "service-path-card",
+   "service-trust",
+   "service-lower"
+  ],
+  "sectionCount": 8,
+  "cardLike": 15,
+  "composerTop": 837.9,
+  "ctaBottom": 1022,
+  "dockTop": 0,
+  "ctaAboveFold": false,
+  "configChips": [],
+  "openPanels": 0,
+  "trustInsideCard": false,
+  "standaloneTrust": true,
+  "standalonePath": true,
+  "startersPlain": [
+   {
+    "bg": "rgba(255, 255, 255, 0.92)",
+    "border": "1px",
+    "h": 58
+   },
+   {
+    "bg": "rgba(255, 255, 255, 0.92)",
+    "border": "1px",
+    "h": 58
+   },
+   {
+    "bg": "rgba(255, 255, 255, 0.92)",
+    "border": "1px",
+    "h": 58
+   }
+  ],
+  "welcomeChildren": [
+   "service-welcome__eyebrow",
+   "service-welcome__badge",
+   "service-welcome__title",
+   "service-welcome__lede",
+   "service-welcome__new"
+  ]
+ },
+ "verdict": {
+  "int01": {
+   "sectionStack": {
+    "before": 9,
+    "after": 8,
+    "pass": false
+   },
+   "cards390": {
+    "before": 18,
+    "after": 15,
+    "pass": false
+   },
+   "ctaAboveFold": {
+    "after": false,
+    "pass": null
+   },
+   "panelsClosedInitially": {
+    "after": true,
+    "pass": null
+   },
+   "toolsOpenAfterFirstKeystroke": null,
+   "latchHolds": null,
+   "trustInsideCard": {
+    "after": false,
+    "pass": null
+   },
+   "stripInsideCardDuringExecution": null,
+   "startersPlain": {
+    "after": false,
+    "pass": null
+   }
+  },
+  "int02": {
+   "duration": {
+    "before": 480,
+    "after": 200,
+    "pass": false
+   },
+   "offset": {
+    "before": 10,
+    "after": null,
+    "pass": false
+   },
+   "underForbidden300": true
+  }
+ }
+}

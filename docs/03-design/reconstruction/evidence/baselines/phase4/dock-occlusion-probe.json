@@ -1,0 +1,2859 @@
+{
+ "base": "http://localhost:3100",
+ "method": "staged scroll to absolute bottom → dock∩interactive rect intersection + center hit test on the intersection; last interactive = max bottom",
+ "cells": {
+  "home@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 2672,
+    "maxScroll": 2672,
+    "docHeight": 3516,
+    "atBottom": true
+   },
+   "interactiveCount": 32,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تعلّمخطة تعلّم أساسيات علم البياناتآ",
+    "bottom": 735.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 26.2,
+   "blocked": [],
+   "pass": true
+  },
+  "chat@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 338,
+    "maxScroll": 338,
+    "docHeight": 1182,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "قارن بين هذين الملفين",
+    "bottom": 683.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 78.4,
+   "blocked": [],
+   "pass": true
+  },
+  "learn@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 543,
+    "maxScroll": 543,
+    "docHeight": 1387,
+    "atBottom": true
+   },
+   "interactiveCount": 16,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابدأ التشخيص",
+    "bottom": 649.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112.5,
+   "blocked": [],
+   "pass": true
+  },
+  "research@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 682,
+    "maxScroll": 682,
+    "docHeight": 1526,
+    "atBottom": true
+   },
+   "interactiveCount": 17,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "التالي: توضيح",
+    "bottom": 649.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112.5,
+   "blocked": [],
+   "pass": true
+  },
+  "create@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 592,
+    "maxScroll": 592,
+    "docHeight": 1436,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "تصور بصريأربعة بدائل تجريبية مع تسمي",
+    "bottom": 649.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112.6,
+   "blocked": [],
+   "pass": true
+  },
+  "code@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 574,
+    "maxScroll": 574,
+    "docHeight": 1418,
+    "atBottom": true
+   },
+   "interactiveCount": 14,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابنِ خطة التغيير",
+    "bottom": 617.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 144.5,
+   "blocked": [],
+   "pass": true
+  },
+  "analyze@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 452,
+    "maxScroll": 452,
+    "docHeight": 1296,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "اعرض الملف التعريفي",
+    "bottom": 618.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 143.7,
+   "blocked": [],
+   "pass": true
+  },
+  "explore@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 554,
+    "maxScroll": 554,
+    "docHeight": 1398,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابنِ خريطة المعرفة",
+    "bottom": 617.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 144.1,
+   "blocked": [],
+   "pass": true
+  },
+  "library@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1695,
+    "maxScroll": 1695,
+    "docHeight": 2539,
+    "atBottom": true
+   },
+   "interactiveCount": 13,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استكشافرحلة إلى فيزياء الزمنخريطة أف",
+    "bottom": 739.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 22.5,
+   "blocked": [],
+   "pass": true
+  },
+  "projects@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 498,
+    "maxScroll": 498,
+    "docHeight": 1342,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "صوت العميلتحليل المقابلات والمواضيع ",
+    "bottom": 722.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.5,
+   "blocked": [],
+   "pass": true
+  },
+  "agents@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 587,
+    "maxScroll": 587,
+    "docHeight": 1431,
+    "atBottom": true
+   },
+   "interactiveCount": 11,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "المنشئ",
+    "bottom": 710.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 51.5,
+   "blocked": [],
+   "pass": true
+  },
+  "flows@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 578,
+    "maxScroll": 578,
+    "docHeight": 1422,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "المحرر",
+    "bottom": 710.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 51.5,
+   "blocked": [],
+   "pass": true
+  },
+  "knowledge@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1902,
+    "maxScroll": 1902,
+    "docHeight": 2746,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "فتح",
+    "bottom": -453.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 1215.6,
+   "blocked": [],
+   "pass": true
+  },
+  "models@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1666,
+    "maxScroll": 1666,
+    "docHeight": 2510,
+    "atBottom": true
+   },
+   "interactiveCount": 18,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تفاصيل النموذج",
+    "bottom": 737.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 24.4,
+   "blocked": [],
+   "pass": true
+  },
+  "runs@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 894,
+    "maxScroll": 894,
+    "docHeight": 1738,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استخراج موضوعات مقابلات العملاءrun_i",
+    "bottom": 722.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.4,
+   "blocked": [],
+   "pass": true
+  },
+  "usage@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1694,
+    "maxScroll": 1694,
+    "docHeight": 2538,
+    "atBottom": true
+   },
+   "interactiveCount": 11,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "موضوعات مقابلات العملاءصوت العميل · ",
+    "bottom": 722.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.7,
+   "blocked": [],
+   "pass": true
+  },
+  "billing@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 826,
+    "maxScroll": 826,
+    "docHeight": 1670,
+    "atBottom": true
+   },
+   "interactiveCount": 8,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "تغيير",
+    "bottom": 723.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.7,
+   "blocked": [],
+   "pass": true
+  },
+  "team@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1385,
+    "maxScroll": 1385,
+    "docHeight": 2229,
+    "atBottom": true
+   },
+   "interactiveCount": 17,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض المصفوفة",
+    "bottom": 289.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 472.4,
+   "blocked": [],
+   "pass": true
+  },
+  "home@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 2699,
+    "maxScroll": 2699,
+    "docHeight": 3511,
+    "atBottom": true
+   },
+   "interactiveCount": 32,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تعلّمخطة تعلّم أساسيات علم البياناتآ",
+    "bottom": 704.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 25.7,
+   "blocked": [],
+   "pass": true
+  },
+  "chat@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 368,
+    "maxScroll": 368,
+    "docHeight": 1180,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "قارن بين هذين الملفين",
+    "bottom": 652,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 78,
+   "blocked": [],
+   "pass": true
+  },
+  "learn@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 575,
+    "maxScroll": 575,
+    "docHeight": 1387,
+    "atBottom": true
+   },
+   "interactiveCount": 16,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابدأ التشخيص",
+    "bottom": 617.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112.5,
+   "blocked": [],
+   "pass": true
+  },
+  "research@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 714,
+    "maxScroll": 714,
+    "docHeight": 1526,
+    "atBottom": true
+   },
+   "interactiveCount": 17,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "التالي: توضيح",
+    "bottom": 617.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112.5,
+   "blocked": [],
+   "pass": true
+  },
+  "create@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 623,
+    "maxScroll": 623,
+    "docHeight": 1435,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "تصور بصريأربعة بدائل تجريبية مع تسمي",
+    "bottom": 618.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 111.8,
+   "blocked": [],
+   "pass": true
+  },
+  "code@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 658,
+    "maxScroll": 658,
+    "docHeight": 1470,
+    "atBottom": true
+   },
+   "interactiveCount": 14,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابنِ خطة التغيير",
+    "bottom": 585.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 144.6,
+   "blocked": [],
+   "pass": true
+  },
+  "analyze@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 484,
+    "maxScroll": 484,
+    "docHeight": 1296,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "اعرض الملف التعريفي",
+    "bottom": 586.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 143.8,
+   "blocked": [],
+   "pass": true
+  },
+  "explore@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 586,
+    "maxScroll": 586,
+    "docHeight": 1398,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابنِ خريطة المعرفة",
+    "bottom": 585.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 144.1,
+   "blocked": [],
+   "pass": true
+  },
+  "library@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1726,
+    "maxScroll": 1726,
+    "docHeight": 2538,
+    "atBottom": true
+   },
+   "interactiveCount": 13,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استكشافرحلة إلى فيزياء الزمنخريطة أف",
+    "bottom": 708.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 21.9,
+   "blocked": [],
+   "pass": true
+  },
+  "projects@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 528,
+    "maxScroll": 528,
+    "docHeight": 1340,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "صوت العميلتحليل المقابلات والمواضيع ",
+    "bottom": 691.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.6,
+   "blocked": [],
+   "pass": true
+  },
+  "agents@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 617,
+    "maxScroll": 617,
+    "docHeight": 1429,
+    "atBottom": true
+   },
+   "interactiveCount": 11,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "المنشئ",
+    "bottom": 679.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 50.6,
+   "blocked": [],
+   "pass": true
+  },
+  "flows@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 608,
+    "maxScroll": 608,
+    "docHeight": 1420,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "المحرر",
+    "bottom": 679.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 50.6,
+   "blocked": [],
+   "pass": true
+  },
+  "knowledge@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1932,
+    "maxScroll": 1932,
+    "docHeight": 2744,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "فتح",
+    "bottom": -484.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 1214.7,
+   "blocked": [],
+   "pass": true
+  },
+  "models@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1696,
+    "maxScroll": 1696,
+    "docHeight": 2508,
+    "atBottom": true
+   },
+   "interactiveCount": 18,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تفاصيل النموذج",
+    "bottom": 706,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 24,
+   "blocked": [],
+   "pass": true
+  },
+  "runs@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 924,
+    "maxScroll": 924,
+    "docHeight": 1736,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استخراج موضوعات مقابلات العملاءrun_i",
+    "bottom": 691.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.5,
+   "blocked": [],
+   "pass": true
+  },
+  "usage@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1744,
+    "maxScroll": 1744,
+    "docHeight": 2556,
+    "atBottom": true
+   },
+   "interactiveCount": 11,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "موضوعات مقابلات العملاءصوت العميل · ",
+    "bottom": 690.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.8,
+   "blocked": [],
+   "pass": true
+  },
+  "billing@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 857,
+    "maxScroll": 857,
+    "docHeight": 1669,
+    "atBottom": true
+   },
+   "interactiveCount": 8,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "تغيير",
+    "bottom": 690.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.3,
+   "blocked": [],
+   "pass": true
+  },
+  "team@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1416,
+    "maxScroll": 1416,
+    "docHeight": 2228,
+    "atBottom": true
+   },
+   "interactiveCount": 17,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض المصفوفة",
+    "bottom": 257.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 472.9,
+   "blocked": [],
+   "pass": true
+  },
+  "home@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 2707,
+    "maxScroll": 2707,
+    "docHeight": 3507,
+    "atBottom": true
+   },
+   "interactiveCount": 32,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تعلّمخطة تعلّم أساسيات علم البياناتآ",
+    "bottom": 692.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 25.8,
+   "blocked": [],
+   "pass": true
+  },
+  "chat@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 482,
+    "maxScroll": 482,
+    "docHeight": 1282,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "قارن بين هذين الملفين",
+    "bottom": 640.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 77.7,
+   "blocked": [],
+   "pass": true
+  },
+  "learn@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 658,
+    "maxScroll": 658,
+    "docHeight": 1458,
+    "atBottom": true
+   },
+   "interactiveCount": 16,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابدأ التشخيص",
+    "bottom": 606,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112,
+   "blocked": [],
+   "pass": true
+  },
+  "research@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 778,
+    "maxScroll": 778,
+    "docHeight": 1578,
+    "atBottom": true
+   },
+   "interactiveCount": 17,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "التالي: توضيح",
+    "bottom": 605.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 112.6,
+   "blocked": [],
+   "pass": true
+  },
+  "create@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 711,
+    "maxScroll": 711,
+    "docHeight": 1511,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "تصور بصريأربعة بدائل تجريبية مع تسمي",
+    "bottom": 606.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 111.7,
+   "blocked": [],
+   "pass": true
+  },
+  "code@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 722,
+    "maxScroll": 722,
+    "docHeight": 1522,
+    "atBottom": true
+   },
+   "interactiveCount": 14,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابنِ خطة التغيير",
+    "bottom": 573.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 144.6,
+   "blocked": [],
+   "pass": true
+  },
+  "analyze@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 548,
+    "maxScroll": 548,
+    "docHeight": 1348,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "اعرض الملف التعريفي",
+    "bottom": 574.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 143.8,
+   "blocked": [],
+   "pass": true
+  },
+  "explore@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 650,
+    "maxScroll": 650,
+    "docHeight": 1450,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "ابنِ خريطة المعرفة",
+    "bottom": 573.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 144.2,
+   "blocked": [],
+   "pass": true
+  },
+  "library@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1764,
+    "maxScroll": 1764,
+    "docHeight": 2564,
+    "atBottom": true
+   },
+   "interactiveCount": 13,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استكشافرحلة إلى فيزياء الزمنخريطة أف",
+    "bottom": 696.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 21.9,
+   "blocked": [],
+   "pass": true
+  },
+  "projects@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 539,
+    "maxScroll": 539,
+    "docHeight": 1339,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "صوت العميلتحليل المقابلات والمواضيع ",
+    "bottom": 679.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.7,
+   "blocked": [],
+   "pass": true
+  },
+  "agents@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 646,
+    "maxScroll": 646,
+    "docHeight": 1446,
+    "atBottom": true
+   },
+   "interactiveCount": 11,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "المنشئ",
+    "bottom": 667.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 50.7,
+   "blocked": [],
+   "pass": true
+  },
+  "flows@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 619,
+    "maxScroll": 619,
+    "docHeight": 1419,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "المحرر",
+    "bottom": 667.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 50.7,
+   "blocked": [],
+   "pass": true
+  },
+  "knowledge@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1943,
+    "maxScroll": 1943,
+    "docHeight": 2743,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "فتح",
+    "bottom": -496.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 1214.9,
+   "blocked": [],
+   "pass": true
+  },
+  "models@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1706,
+    "maxScroll": 1706,
+    "docHeight": 2506,
+    "atBottom": true
+   },
+   "interactiveCount": 18,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تفاصيل النموذج",
+    "bottom": 694.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 23.9,
+   "blocked": [],
+   "pass": true
+  },
+  "runs@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 935,
+    "maxScroll": 935,
+    "docHeight": 1735,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استخراج موضوعات مقابلات العملاءrun_i",
+    "bottom": 679.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.7,
+   "blocked": [],
+   "pass": true
+  },
+  "usage@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1774,
+    "maxScroll": 1774,
+    "docHeight": 2574,
+    "atBottom": true
+   },
+   "interactiveCount": 11,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "موضوعات مقابلات العملاءصوت العميل · ",
+    "bottom": 677.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 40.1,
+   "blocked": [],
+   "pass": true
+  },
+  "billing@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 887,
+    "maxScroll": 887,
+    "docHeight": 1687,
+    "atBottom": true
+   },
+   "interactiveCount": 8,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "تغيير",
+    "bottom": 678.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.2,
+   "blocked": [],
+   "pass": true
+  },
+  "team@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1426,
+    "maxScroll": 1426,
+    "docHeight": 2226,
+    "atBottom": true
+   },
+   "interactiveCount": 17,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض المصفوفة",
+    "bottom": 245.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 472.5,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-profile@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 434,
+    "maxScroll": 434,
+    "docHeight": 1278,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التغييرات",
+    "bottom": 722.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.3,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-preferences@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 410,
+    "maxScroll": 410,
+    "docHeight": 1254,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التفضيلات",
+    "bottom": 723,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-workspace@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 550,
+    "maxScroll": 550,
+    "docHeight": 1394,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ السياسة",
+    "bottom": 722.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.4,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-providers@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 296,
+    "maxScroll": 296,
+    "docHeight": 1140,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "إجراءات Northstar",
+    "bottom": 564,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 198,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-integrations@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 795,
+    "maxScroll": 795,
+    "docHeight": 1639,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة وتوصيل",
+    "bottom": 583.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 178.3,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-data@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 402,
+    "maxScroll": 402,
+    "docHeight": 1246,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة الأثر",
+    "bottom": 710.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 51.4,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-audit@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 983,
+    "maxScroll": 983,
+    "docHeight": 1827,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض الحدث",
+    "bottom": 727,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 35,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-profile@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 465,
+    "maxScroll": 465,
+    "docHeight": 1277,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التغييرات",
+    "bottom": 691.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.7,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-preferences@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 442,
+    "maxScroll": 442,
+    "docHeight": 1254,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التفضيلات",
+    "bottom": 690.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.4,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-workspace@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 581,
+    "maxScroll": 581,
+    "docHeight": 1393,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ السياسة",
+    "bottom": 691.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.9,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-providers@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 328,
+    "maxScroll": 328,
+    "docHeight": 1140,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "إجراءات Northstar",
+    "bottom": 531.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 198.4,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-integrations@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 826,
+    "maxScroll": 826,
+    "docHeight": 1638,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة وتوصيل",
+    "bottom": 552.3,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 177.7,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-data@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 433,
+    "maxScroll": 433,
+    "docHeight": 1245,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة الأثر",
+    "bottom": 679.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 50.9,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-audit@375": {
+   "viewport": "375x812",
+   "dock": {
+    "top": 730,
+    "bottom": 796,
+    "left": 16,
+    "right": 359,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1013,
+    "maxScroll": 1013,
+    "docHeight": 1825,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض الحدث",
+    "bottom": 695.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 34.6,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-profile@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 477,
+    "maxScroll": 477,
+    "docHeight": 1277,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التغييرات",
+    "bottom": 678.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.1,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-preferences@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 453,
+    "maxScroll": 453,
+    "docHeight": 1253,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التفضيلات",
+    "bottom": 679.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.8,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-workspace@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 593,
+    "maxScroll": 593,
+    "docHeight": 1393,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ السياسة",
+    "bottom": 678.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.5,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-providers@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 339,
+    "maxScroll": 339,
+    "docHeight": 1139,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "إجراءات Northstar",
+    "bottom": 520.2,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 197.8,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-integrations@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 838,
+    "maxScroll": 838,
+    "docHeight": 1638,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة وتوصيل",
+    "bottom": 539.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 178.1,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-data@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 445,
+    "maxScroll": 445,
+    "docHeight": 1245,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة الأثر",
+    "bottom": 666.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 51.5,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-audit@360": {
+   "viewport": "360x800",
+   "dock": {
+    "top": 718,
+    "bottom": 784,
+    "left": 16,
+    "right": 344,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1049,
+    "maxScroll": 1049,
+    "docHeight": 1849,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض الحدث",
+    "bottom": 683.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 34.6,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-profile@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 434,
+    "maxScroll": 434,
+    "docHeight": 1278,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التغييرات",
+    "bottom": 722.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.3,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-preferences@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 410,
+    "maxScroll": 410,
+    "docHeight": 1254,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التفضيلات",
+    "bottom": 723,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-workspace@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 550,
+    "maxScroll": 550,
+    "docHeight": 1394,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ السياسة",
+    "bottom": 722.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.4,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-providers@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 296,
+    "maxScroll": 296,
+    "docHeight": 1140,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "إجراءات Northstar",
+    "bottom": 564,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 198,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-integrations@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 795,
+    "maxScroll": 795,
+    "docHeight": 1639,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة وتوصيل",
+    "bottom": 583.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 178.3,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-data@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 402,
+    "maxScroll": 402,
+    "docHeight": 1246,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "مراجعة الأثر",
+    "bottom": 710.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 51.4,
+   "blocked": [],
+   "pass": true
+  },
+  "settings-audit@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 983,
+    "maxScroll": 983,
+    "docHeight": 1827,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "عرض الحدث",
+    "bottom": 727,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 35,
+   "blocked": [],
+   "pass": true
+  },
+  "settings@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 434,
+    "maxScroll": 434,
+    "docHeight": 1278,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "حفظ التغييرات",
+    "bottom": 722.7,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.3,
+   "blocked": [],
+   "pass": true
+  },
+  "chat@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 338,
+    "maxScroll": 338,
+    "docHeight": 1182,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "قارن بين هذين الملفين",
+    "bottom": 683.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 78.4,
+   "blocked": [],
+   "pass": true
+  },
+  "home@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 2672,
+    "maxScroll": 2672,
+    "docHeight": 3516,
+    "atBottom": true
+   },
+   "interactiveCount": 32,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تعلّمخطة تعلّم أساسيات علم البياناتآ",
+    "bottom": 735.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 26.2,
+   "blocked": [],
+   "pass": true
+  },
+  "library@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1695,
+    "maxScroll": 1695,
+    "docHeight": 2539,
+    "atBottom": true
+   },
+   "interactiveCount": 13,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "استكشافرحلة إلى فيزياء الزمنخريطة أف",
+    "bottom": 739.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 22.5,
+   "blocked": [],
+   "pass": true
+  },
+  "models@390-dark": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1666,
+    "maxScroll": 1666,
+    "docHeight": 2510,
+    "atBottom": true
+   },
+   "interactiveCount": 18,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "تفاصيل النموذج",
+    "bottom": 737.6,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 24.4,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-profile@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 427,
+    "maxScroll": 427,
+    "docHeight": 1271,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Save changes",
+    "bottom": 722.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 39.2,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-preferences@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 442,
+    "maxScroll": 442,
+    "docHeight": 1286,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Save preferences",
+    "bottom": 723.1,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.9,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-workspace@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 563,
+    "maxScroll": 563,
+    "docHeight": 1407,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Save policy",
+    "bottom": 723.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 38.6,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-providers@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 324,
+    "maxScroll": 324,
+    "docHeight": 1168,
+    "atBottom": true
+   },
+   "interactiveCount": 9,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Northstar actions",
+    "bottom": 520.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 241.2,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-integrations@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 787,
+    "maxScroll": 787,
+    "docHeight": 1631,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Review and connect",
+    "bottom": 585,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 177,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-data@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 416,
+    "maxScroll": 416,
+    "docHeight": 1260,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Review impact",
+    "bottom": 710.5,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 51.5,
+   "blocked": [],
+   "pass": true
+  },
+  "en-settings-audit@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1073,
+    "maxScroll": 1073,
+    "docHeight": 1917,
+    "atBottom": true
+   },
+   "interactiveCount": 12,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "View event",
+    "bottom": 726.8,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 35.2,
+   "blocked": [],
+   "pass": true
+  },
+  "en-chat@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 388,
+    "maxScroll": 388,
+    "docHeight": 1232,
+    "atBottom": true
+   },
+   "interactiveCount": 10,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "button",
+    "label": "Compare these two files",
+    "bottom": 684.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 77.6,
+   "blocked": [],
+   "pass": true
+  },
+  "en-home@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 2771,
+    "maxScroll": 2771,
+    "docHeight": 3615,
+    "atBottom": true
+   },
+   "interactiveCount": 32,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "LearningLearn the foundations of dat",
+    "bottom": 736.4,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 25.6,
+   "blocked": [],
+   "pass": true
+  },
+  "en-library@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1715,
+    "maxScroll": 1715,
+    "docHeight": 2559,
+    "atBottom": true
+   },
+   "interactiveCount": 13,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "ExploreA journey into the physics of",
+    "bottom": 740,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 22,
+   "blocked": [],
+   "pass": true
+  },
+  "en-models@390": {
+   "viewport": "390x844",
+   "dock": {
+    "top": 762,
+    "bottom": 828,
+    "left": 16,
+    "right": 374,
+    "height": 66
+   },
+   "scroll": {
+    "scrollY": 1655,
+    "maxScroll": 1655,
+    "docHeight": 2499,
+    "atBottom": true
+   },
+   "interactiveCount": 18,
+   "interactiveInDockBand": 0,
+   "occludedByDock": 0,
+   "lastInteractive": {
+    "tag": "a",
+    "label": "Model details",
+    "bottom": 737.9,
+    "intersectsDock": false,
+    "hit": "clear"
+   },
+   "gapToDockTop": 24.1,
+   "blocked": [],
+   "pass": true
+  }
+ },
+ "verdict": {
+  "cells": 98,
+  "errors": 0,
+  "cellsAtBottom": 98,
+  "cellsWithOcclusion": 0,
+  "totalOccludedElements": 0,
+  "minGapToDockTop": 21.9,
+  "passCells": 98,
+  "failCells": [],
+  "allPass": true
+ }
+}

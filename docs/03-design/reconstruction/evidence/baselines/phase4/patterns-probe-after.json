@@ -1,0 +1,246 @@
+{
+ "base": "http://localhost:3100",
+ "mode": "after (Phase 4 build)",
+ "int02Motion": {
+  "frameFound": true,
+  "animationName": "u-route-in",
+  "durationMs": 240,
+  "enterOffsetPx": 4,
+  "reducedMotion": false,
+  "rule240": true,
+  "offset4": true,
+  "underForbidden300": true
+ },
+ "int01Gateway": {
+  "initial": {
+   "sections": [
+    "service-welcome",
+    "service-composer-zone",
+    "service-lower"
+   ],
+   "sectionCount": 3,
+   "cardLike": 6,
+   "composerTop": 269.7,
+   "ctaBottom": 465.7,
+   "dockTop": 762,
+   "ctaAboveFold": true,
+   "configChips": [
+    "الأسلوبسريع",
+    "الأداةملفات"
+   ],
+   "openPanels": 0,
+   "trustInsideCard": true,
+   "standaloneTrust": false,
+   "standalonePath": false,
+   "startersPlain": [
+    {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px",
+     "h": 44
+    },
+    {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px",
+     "h": 44
+    },
+    {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px",
+     "h": 44
+    }
+   ],
+   "welcomeChildren": [
+    "service-welcome__eyebrow",
+    "service-welcome__title",
+    "service-welcome__lede"
+   ]
+  },
+  "afterKeystroke": {
+   "openPanels": 1,
+   "openPanelKind": "tools",
+   "openChips": 1
+  },
+  "latch": {
+   "openPanels": 0
+  },
+  "execution": {
+   "output": true,
+   "stripInsideCard": true,
+   "stripSteps": [
+    "is-complete",
+    "is-complete",
+    "is-complete",
+    "is-complete"
+   ]
+  },
+  "dockClearAtReady": {
+   "ctaBottom": 551.2,
+   "dockTop": 762
+  }
+ },
+ "int01GatewayEn": {
+  "initial": {
+   "sections": [
+    "service-welcome",
+    "service-composer-zone",
+    "service-lower"
+   ],
+   "sectionCount": 3,
+   "cardLike": 6,
+   "composerTop": 269.5,
+   "ctaBottom": 517.5,
+   "dockTop": 762,
+   "ctaAboveFold": true,
+   "configChips": [
+    "StyleFast",
+    "ToolFiles"
+   ],
+   "openPanels": 0,
+   "trustInsideCard": true,
+   "standaloneTrust": false,
+   "standalonePath": false,
+   "startersPlain": [
+    {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px",
+     "h": 44
+    },
+    {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px",
+     "h": 44
+    },
+    {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "0px",
+     "h": 44
+    }
+   ],
+   "welcomeChildren": [
+    "service-welcome__eyebrow",
+    "service-welcome__title",
+    "service-welcome__lede"
+   ]
+  },
+  "afterKeystroke": {
+   "openPanels": 1,
+   "openPanelKind": "tools",
+   "openChips": 1
+  },
+  "latch": {
+   "openPanels": 0
+  },
+  "execution": {
+   "output": true,
+   "stripInsideCard": true,
+   "stripSteps": [
+    "is-complete",
+    "is-complete",
+    "is-complete",
+    "is-complete"
+   ]
+  },
+  "dockClearAtReady": {
+   "ctaBottom": 620.3,
+   "dockTop": 762
+  }
+ },
+ "int01Wide1440": {
+  "sections": [
+   "service-welcome",
+   "service-composer-zone",
+   "service-lower"
+  ],
+  "sectionCount": 3,
+  "cardLike": 6,
+  "composerTop": 295.5,
+  "ctaBottom": 491.5,
+  "dockTop": 0,
+  "ctaAboveFold": false,
+  "configChips": [
+   "الأسلوبسريع",
+   "الأداةملفات"
+  ],
+  "openPanels": 0,
+  "trustInsideCard": true,
+  "standaloneTrust": false,
+  "standalonePath": false,
+  "startersPlain": [
+   {
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px",
+    "h": 44
+   },
+   {
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px",
+    "h": 44
+   },
+   {
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px",
+    "h": 44
+   }
+  ],
+  "welcomeChildren": [
+   "service-welcome__eyebrow",
+   "service-welcome__title",
+   "service-welcome__lede"
+  ]
+ },
+ "verdict": {
+  "int01": {
+   "sectionStack": {
+    "before": 9,
+    "after": 3,
+    "pass": true
+   },
+   "cards390": {
+    "before": 18,
+    "after": 6,
+    "pass": true
+   },
+   "ctaAboveFold": {
+    "after": true,
+    "pass": true
+   },
+   "panelsClosedInitially": {
+    "after": true,
+    "pass": true
+   },
+   "toolsOpenAfterFirstKeystroke": {
+    "after": true,
+    "pass": true
+   },
+   "latchHolds": {
+    "after": true,
+    "pass": true
+   },
+   "trustInsideCard": {
+    "after": true,
+    "pass": true
+   },
+   "stripInsideCardDuringExecution": {
+    "after": true,
+    "pass": true
+   },
+   "startersPlain": {
+    "after": true,
+    "pass": true
+   }
+  },
+  "int02": {
+   "duration": {
+    "before": 480,
+    "after": 240,
+    "pass": true
+   },
+   "offset": {
+    "before": 10,
+    "after": 4,
+    "pass": true
+   },
+   "underForbidden300": true
+  }
+ }
+}
