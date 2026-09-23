@@ -69,7 +69,7 @@ export function SiteHero({ locale, copy, appHref }: { locale: Locale; copy: Mark
       <div className="mb-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
         <Link
           href={appHref}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-dark px-8 py-3.5 font-display font-semibold text-white shadow-glow transition-all hoverable:hover:-translate-y-1 hoverable:hover:bg-brand-deep sm:w-auto active:scale-[.98]"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-dark px-8 py-3.5 font-display font-semibold text-white shadow-glow transition-all hoverable:hover:-translate-y-1 hoverable:hover:brightness-110 sm:w-auto active:scale-[.98]"
         >
           <Forward size={16} aria-hidden="true" />
           {copy.primary}

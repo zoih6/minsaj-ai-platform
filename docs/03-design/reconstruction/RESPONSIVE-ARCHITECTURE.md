@@ -28,6 +28,20 @@ Implementation: extend `useViewportMode` with `matchMedia('(pointer: coarse)')`;
 
 **Container rules [R-GRD-1].** Four measures only — `narrow 560 / prose 780 / wide 1040 / full 1440` (§6.1 DESIGN-TOKENS.md). Every section declares its measure; the 11-width ladder (480/560/640/720/840/880/900/1040/1080/1240/1520) collapses to these four.
 
+> **Phase 5 implementation record (2026-09-23).** The collapse is LIVE and
+> measured (`evidence/baselines/phase5/` — CSSOM declared-measure census,
+> var()-resolved): every page container rides `--mj-container-full` (was
+> 1240/1320/1520/1536 mixed), every reading measure rides
+> `--mj-container-prose` (was 600–830 per family), the composer rides
+> `--mj-container-narrow` (was 840), work surfaces ride
+> `--mj-container-wide` (was 920/980). The legacy `--mj-content-max`,
+> `--u-content-max` and `--u-reading-max` tokens are deleted. **Boundary:**
+> CQ reflow ladders (ops-page 1040/880/640/430 · service-space 900/560/480 ·
+> mj-flow · adaptive-home · library · marketing) are composition triggers,
+> not measures — they keep their own canonical table in responsive.css;
+> overlay/sheet widths (580/600/660/720/760) are the portaled-overlay
+> ladder, out of the measure system's scope.
+
 **Grid rules.** `Grid` tracks never shrink below 250px (auto-fill decides column count — retained from `layout.css`). Horizontal scroll (`mj-scroll-x`) is reserved for genuinely wide artifacts (flow canvases, comparison tables) — never for card grids or text.
 
 ## 3. Band-crossing invariants (true at every width)

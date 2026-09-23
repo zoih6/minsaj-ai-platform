@@ -21,8 +21,9 @@ export function FinalCta({ locale, copy, appHref }: { locale: Locale; copy: Mark
       <div aria-hidden="true" className="ms-ghost-bg" />
 
       <div className="reveal-on-scroll relative z-10 mx-auto max-w-3xl px-4 text-center">
-        {/* Gradient badge — the template's white glyph mark on brand */}
-        <div className="mx-auto mb-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-brand to-brand-purple shadow-glow-lg transition-transform duration-500 hoverable:hover:rotate-12">
+        {/* Gradient badge — the glyph mark on the platform spectrum
+            (Phase 5: the purple tail rides --u-cyan; one palette) */}
+        <div className="mx-auto mb-10 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-brand to-brand-cyan shadow-glow-lg transition-transform duration-500 hoverable:hover:rotate-12">
           <Layers3 size={46} className="text-white" aria-hidden="true" strokeWidth={1.6} />
         </div>
 
@@ -35,7 +36,7 @@ export function FinalCta({ locale, copy, appHref }: { locale: Locale; copy: Mark
 
         <Link
           href={appHref}
-          className="group mx-auto flex items-center justify-center gap-4 rounded-2xl bg-brand-dark px-10 py-5 font-display text-lg font-bold text-white shadow-glow transition-all hoverable:hover:-translate-y-1 hoverable:hover:bg-brand-deep sm:text-xl active:scale-[.98]"
+          className="group mx-auto flex items-center justify-center gap-4 rounded-2xl bg-brand-dark px-10 py-5 font-display text-lg font-bold text-white shadow-glow transition-all hoverable:hover:-translate-y-1 hoverable:hover:brightness-110 sm:text-xl active:scale-[.98]"
         >
           <Forward size={20} aria-hidden="true" className={`transition-transform ${slide}`} />
           {copy.finalCta}

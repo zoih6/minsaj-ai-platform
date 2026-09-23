@@ -202,9 +202,11 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   const sidebarOpen = mobileOpen || isOverlay;
   const railActive = sidebarMode === "rail";
 
-  /* Routes that render the service-workspace gateway run on the dedicated
-     dark canvas (reference design). The shell chrome joins that canvas via
-     [data-focus-canvas] — see shell.css "Focus canvas" section. */
+  /* The deep-work routes (ask · code · analyze · explore) sit on the second
+     DECLARED canvas (R-SURF-4, VIS-03 fold): the shell announces it via
+     [data-canvas="focus"] — the canvas value itself is the single token
+     --u-canvas-focus (foundations.css). Every other route is the standard
+     canvas. See shell.css "Focus canvas" section. */
   const focusCanvasRoutes = [`${base}/chat`, `${base}/code`, `${base}/analyze`, `${base}/explore`];
   const focusCanvas = focusCanvasRoutes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
@@ -296,7 +298,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
   return (
     <Dialog.Root open={commandOpen} onOpenChange={setCommandOpen}>
-      <div className="universal-app-shell" data-sidebar={sidebarMode} data-overlay={isOverlay ? "true" : "false"} data-mobile-open={mobileOpen} data-focus-canvas={focusCanvas ? "true" : "false"}>
+      <div className="universal-app-shell" data-sidebar={sidebarMode} data-overlay={isOverlay ? "true" : "false"} data-mobile-open={mobileOpen} data-canvas={focusCanvas ? "focus" : "standard"}>
         <a className="skip-link" href="#main-content">{isArabic ? "انتقل إلى المحتوى" : "Skip to content"}</a>
 
         <button type="button" className="universal-shell-backdrop" data-state={sidebarOpen ? "open" : "closed"} onClick={() => { setMobileOpen(false); setOverlayOpen(false); }} aria-label={labels.close} aria-hidden={!sidebarOpen} tabIndex={sidebarOpen ? 0 : -1} />

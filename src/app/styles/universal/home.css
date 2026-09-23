@@ -1,5 +1,7 @@
 /* Adaptive home */
-.adaptive-home { width: min(1320px,100%); margin: 0 auto; container-type: inline-size; container-name: adaptive-home; }
+/* W-DS Phase 5 (GRD-01): page container → ladder `full`; welcome lede →
+   `prose`; the hero task card → `wide`. Was 1320/720/980 off-ladder. */
+.adaptive-home { width: min(var(--mj-container-full),100%); margin: 0 auto; container-type: inline-size; container-name: adaptive-home; }
 .adaptive-home__hero { position: relative; padding: clamp(22px,2.4vw,36px) clamp(18px,2.7vw,40px) clamp(26px,3vw,44px); overflow: hidden; border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-card); background: var(--u-hero-surface); }
 .adaptive-home__hero::before { content: ""; position: absolute; inset: 0; opacity: .26; pointer-events: none; background-image: linear-gradient(rgba(var(--service-rgb),.08) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--service-rgb),.08) 1px,transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom,black,transparent 60%); }
 .adaptive-home__ambient { position: absolute; pointer-events: none; border-radius: 50%; }
@@ -12,7 +14,7 @@
 /* R-RTL-1 (DESIGN-TOKENS §2): Arabic renders zero tracking at every level;
    the display level's Latin tracking (−0.02em) applies under [lang="en"] only. */
 html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
-.adaptive-home__welcome p { max-width: 720px; margin: 9px 0 0; color: var(--u-muted); font-size: var(--u-text-md); line-height: 1.8; }
+.adaptive-home__welcome p { max-width: var(--mj-container-prose); margin: 9px 0 0; color: var(--u-muted); font-size: var(--u-text-md); line-height: 1.8; }
 .adaptive-personalize { min-height: var(--u-touch); padding-inline: 15px; display: inline-flex; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-sm); color: var(--u-primary); background: var(--u-glass); font-size: var(--u-text-md); font-weight: 600; cursor: pointer; white-space: nowrap; }@media (hover: hover) {
   .adaptive-personalize:hover { background: var(--u-raise); box-shadow: var(--u-shadow-sm); }
 }
@@ -32,7 +34,7 @@ html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
   .adaptive-goals-bar__change:hover { background: var(--u-raise); }
 }
 
-.adaptive-task-card { position: relative; max-width: 980px; margin: var(--mj-space-200) auto 0; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.adaptive-task-card { position: relative; max-width: var(--mj-container-wide); margin: var(--mj-space-200) auto 0; padding: 0; border: 0; background: transparent; box-shadow: none; }
 .adaptive-task-modes { display: flex; align-items: center; gap: var(--mj-gap-xs); padding: var(--mj-space-25); margin-block-end: var(--mj-gap-xs); overflow-x: auto; scrollbar-width: none; }
 .adaptive-task-modes::-webkit-scrollbar { display: none; }
 .adaptive-task-modes button { min-width: max-content; min-height: var(--u-touch); padding-inline: var(--mj-gap-sm); display: flex; align-items: center; gap: var(--mj-gap-xs); border: 0; border-radius: var(--u-radius-sm); color: var(--u-muted); background: transparent; font-size: var(--u-text-sm); cursor: pointer; }@media (hover: hover) {

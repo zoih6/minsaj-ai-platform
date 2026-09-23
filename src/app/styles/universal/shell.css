@@ -400,7 +400,9 @@
   .universal-shell-sidebar { padding-inline: var(--mj-space-150); }
 
   .universal-shell-content {
-    width: min(100% - var(--mj-gutter) * 2, var(--mj-content-max));
+    /* W-DS Phase 5 (GRD-01): the shell content max rides the ladder's
+       `full` step — was the legacy --mj-content-max (1520). */
+    width: min(100% - var(--mj-gutter) * 2, var(--mj-container-full));
     margin-inline: auto;
   }}
 
@@ -543,72 +545,32 @@
   .universal-command__results { max-height: calc(82dvh - 70px); padding-block-end: calc(14px + env(safe-area-inset-bottom)); }}
 
 /* ==========================================================================
-   FOCUS CANVAS — service-workspace routes (ask · code · analyze · explore)
+   FOCUS CANVAS — the second declared canvas (W-DS Phase 5 · VIS-03 fold)
    --------------------------------------------------------------------------
-   Phase 3 (NAV-01/NAV-04): the chrome dialects are GONE — one header and
-   one dock grammar serve every /app/* route, focus-canvas included. What
-   remains here is the CANVAS, not chrome:
+   Phase 3 killed the chrome dialects (one header + one dock serve every
+   /app/* route). Phase 5 folds the CANVAS: the 15-name --fc-* parallel
+   token set (28 declarations across two themes) is DELETED — the second
+   canvas is now a single declared token, --u-canvas-focus (light/dark in
+   foundations.css), bound by [data-canvas="focus"] on the shell:
 
-     · main column → themed canvas (--fc-canvas) for the workbench surface
-     · content reserve → the workbench composer keeps its deeper bottom
-       breathing on these routes (content-side spacing, not dock weight)
+     · main column → var(--u-canvas-focus) for the deep-work routes
+       (ask · code · analyze · explore — set in app-shell.tsx)
+     · the gateway's own canvas binding (--sp-bg in workspaces.css)
+       references the SAME token — one owner for the value
 
-   Theme law: --fc-* tokens carry a light set and a dark set under
-   :root[data-theme="dark"]. The platform theme switch re-skins the canvas;
-   every other route keeps owning the theme tokens. The focus-canvas fold
-   (retiring the second canvas entirely) is Phase 5 scope (VIS-01/03).
+   Content-side reserve only: the workbench composer keeps extra breathing
+   above the (unified) floating dock on these routes — 112px vs the
+   standard 80px. This is page padding, not chrome geometry; the dock
+   itself is identical on every route.
    ========================================================================== */
 
-.universal-app-shell[data-focus-canvas="true"] {
-  /* --fc-* — LIGHT (canvas) */
-  --fc-canvas: #F4F5FC;
-  --fc-glass: rgba(255, 255, 255, 0.72);
-  --fc-glass-deep: rgba(255, 255, 255, 0.88);
-  --fc-line: rgba(11, 15, 26, 0.08);
-  --fc-hairline: rgba(11, 15, 26, 0.12);
-  --fc-raise: rgba(11, 15, 26, 0.05);
-  --fc-raise-strong: rgba(11, 15, 26, 0.08);
-  --fc-ink: #0B0F1A;
-  --fc-ink-soft: #232842;
-  --fc-muted: #565B7E;
-  --fc-accent: #4F46E5;
-  --fc-accent-rgb: 99, 102, 241;
-  --fc-accent-soft: rgba(99, 102, 241, 0.1);
-  --fc-shadow: 0 4px 30px rgba(35, 40, 90, 0.16);
-  --fc-indicator-glow: 0 0 8px rgba(99, 102, 241, 0.45);
-  --fc-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
-}
-:root[data-theme="dark"] .universal-app-shell[data-focus-canvas="true"] {
-  /* --fc-* — DARK (canvas) */
-  --fc-canvas: #030712;
-  --fc-glass: rgba(11, 17, 32, 0.6);
-  --fc-glass-deep: rgba(11, 17, 32, 0.8);
-  --fc-line: rgba(255, 255, 255, 0.05);
-  --fc-hairline: rgba(255, 255, 255, 0.1);
-  --fc-raise: rgba(255, 255, 255, 0.05);
-  --fc-raise-strong: rgba(255, 255, 255, 0.09);
-  --fc-ink: #F9FAFB;
-  --fc-ink-soft: #D1D5DB;
-  --fc-muted: #9CA3AF;
-  --fc-accent: #818CF8;
-  --fc-accent-rgb: 129, 140, 248;
-  --fc-accent-soft: rgba(255, 255, 255, 0.05);
-  --fc-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  --fc-indicator-glow: 0 0 8px rgba(129, 140, 248, 0.8);
-  --fc-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
-}
-
-.universal-app-shell[data-focus-canvas="true"] .universal-shell-main {
+.universal-app-shell[data-canvas="focus"] .universal-shell-main {
   min-height: 100dvh;
-  background: var(--fc-canvas);
+  background: var(--u-canvas-focus);
 }
 
-/* Content-side reserve only: the workbench composer keeps extra breathing
-   above the (now unified) floating dock on these routes — 112px vs the
-   standard 80px. This is page padding, not chrome geometry; the dock itself
-   is identical on every route (nearest ancestor wins for the reserve). */
 @media (max-width: 767.98px) {
-  .universal-app-shell[data-focus-canvas="true"] {
+  .universal-app-shell[data-canvas="focus"] {
     --mj-tabbar-reserve: calc(112px + env(safe-area-inset-bottom, 0px));
   }
 }

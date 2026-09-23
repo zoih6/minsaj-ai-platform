@@ -41,9 +41,16 @@
 :root[data-theme="dark"] .service-space[data-service="analyze"] { --sp-accent: #EAB471; --sp-accent-strong: #E0A24A; --sp-accent-deep: #B57E2E; --sp-accent-rgb: 234, 180, 113; }
 :root[data-theme="dark"] .service-space[data-service="explore"] { --sp-accent: #58CEAA; --sp-accent-strong: #37BD93; --sp-accent-deep: #1E8A6A; --sp-accent-rgb: 88, 206, 170; }
 
-/* ---- Canvas tokens — LIGHT (glass-white, dark ink) ---------------------- */
+/* ---- Canvas tokens — LIGHT (glass-white, dark ink) ----------------------
+   W-DS Phase 5 (VIS-03): --sp-bg no longer declares its own hex — it
+   references the platform's declared second canvas --u-canvas-focus, so
+   the gateway canvas and the shell canvas are ONE value with one owner.
+   The remaining --sp-* surface names are the gateway family's scoped
+   interior tokens (C-extension; their consolidation is not Phase 5's
+   claim). The dark block below no longer re-declares --sp-bg — the token
+   reference re-skins automatically. */
 .service-space {
-  --sp-bg: #F4F5FC;
+  --sp-bg: var(--u-canvas-focus);
   --sp-surface: #ECF0F8;
   --sp-card: #FFFFFF;
   --sp-line: #E2E6F2;
@@ -73,7 +80,9 @@
 
   position: relative;
   isolation: isolate;
-  width: min(720px, 100%);
+  /* W-DS Phase 5 (GRD-01): the gateway's linear canvas = the ladder's
+     `prose` step (was 720) — narrative sections never exceed prose. */
+  width: min(var(--mj-container-prose), 100%);
   margin-inline: auto;
   padding-block: 6px 24px;
   color: var(--sp-ink-soft);
@@ -81,9 +90,11 @@
   container-name: service-space;
 }
 
-/* ---- Canvas tokens — DARK (the exact reference palette) ----------------- */
+/* ---- Canvas tokens — DARK (the exact reference palette) -----------------
+   --sp-bg deleted here (VIS-03): the light block's var(--u-canvas-focus)
+   resolves against the live cascade, so the dark theme picks the dark set
+   automatically — one declaration, two themes, one owner. */
 :root[data-theme="dark"] .service-space {
-  --sp-bg: #030712;
   --sp-surface: #0B1120;
   --sp-card: #111827;
   --sp-line: #1F2937;
@@ -1001,16 +1012,21 @@
    grids, the path stepper becomes a connected strip, the library pairs.
    ========================================================================== */
 
+/* W-DS Phase 5 (GRD-01): the composer zone = the ladder's `narrow` step
+   (DESIGN-TOKENS §6.1 assigns the composer to 560 — was 840). Writing
+   focus over a single readable column. */
 .service-composer-zone {
   margin-block-end: 40px;
   width: 100%;
-  max-width: 840px;
+  max-width: var(--mj-container-narrow);
   margin-inline: auto;
 }
 
 @media (min-width: 1024px) {
   .service-space {
-    width: min(1040px, 100%);
+    /* GRD-01: the wide canvas = the ladder's `wide` step (was a raw 1040 —
+       same value, now the token). */
+    width: min(var(--mj-container-wide), 100%);
     padding-block: var(--mj-space-150) var(--mj-space-600);
   }
 }
@@ -1027,7 +1043,7 @@
   /* The welcome hero breathes on the wide canvas */
   .service-welcome { margin-block-end: 56px; }
   .service-welcome__title { font-size: clamp(36px, 3vw, 44px); }
-  .service-welcome__lede { max-width: 480px; }
+  .service-welcome__lede { max-width: var(--mj-container-narrow); }
   .service-mini-library { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

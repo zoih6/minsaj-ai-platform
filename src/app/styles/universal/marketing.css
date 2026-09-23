@@ -21,16 +21,16 @@
   transition: background-color var(--u-motion-duration-slow) var(--u-motion-ease-standard),
     color var(--u-motion-duration-slow) var(--u-motion-ease-standard);
 }
-/* Template body selection colors, scoped */
-.ms-site ::selection { background: rgba(99, 102, 241, 0.3); color: #4f46e5; }
-[data-theme="dark"] .ms-site ::selection { background: rgba(99, 102, 241, 0.3); color: #ffffff; }
+/* Template selection colors, scoped — Phase 5 (VIS-01): the veil and ink
+   ride the platform accent (was raw #6366f1-rgb + #4f46e5 hex), so the
+   selection re-skins with the theme token instead of a second brand. */
+.ms-site ::selection { background: color-mix(in srgb, var(--u-primary) 30%, transparent); color: var(--u-primary); }
+[data-theme="dark"] .ms-site ::selection { background: color-mix(in srgb, var(--u-primary) 30%, transparent); color: #ffffff; }
 
-/* Theme-aware re-bind: emerald readable as text in both themes
-   (light #047857 = 4.7:1 on white · dark #10b981 = 6.4:1 on #090D14). */
-[data-theme="dark"] .ms-site { --color-brand-emerald: #10b981; }
-
-/* ---- Container (template's `container` semantics, explicit) ------------- */
-.ms-container { width: 100%; max-width: 1536px; margin-inline: auto; }
+/* ---- Container (template's `container` semantics, explicit) -------------
+   Phase 5 (GRD-01): the landing page max rides the platform ladder's
+   `full` step — was 1536, an off-ladder page max. */
+.ms-container { width: 100%; max-width: var(--mj-container-full); margin-inline: auto; }
 
 /* ---- Glass panel (template, dual theme) --------------------------------- */
 .ms-site .glass-panel {
@@ -45,23 +45,25 @@
 }
 
 /* ---- Gradient text (hero signature; mirrored for LTR) -------------------
-   Dark = the template's exact stops. Light = the same hue ladder one
-   step deeper so every stop clears 3:1 (large display text) on the
-   slate-50 canvas: #818CF8→2.9:1 and #06B6D4→2.6:1 fail in light. */
+   Phase 5 (VIS-01): the spectrum signature rides the platform accents —
+   primary → primary×pink (the signature violet stop) → cyan. Zero
+   independent hexes; both themes resolve through the token cascade
+   (dark picks the bright set automatically). The light set keeps every
+   stop ≥ 3:1 on the slate-50 canvas (large display text). */
 .ms-site .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  background-image: linear-gradient(to left, #4f46e5, #9333ea, #0e7490);
+  background-image: linear-gradient(to left, var(--u-primary), color-mix(in oklab, var(--u-primary) 55%, var(--u-pink)) 50%, var(--u-cyan));
 }
-[dir="ltr"] .ms-site .text-gradient { background-image: linear-gradient(to right, #4f46e5, #9333ea, #0e7490); }
+[dir="ltr"] .ms-site .text-gradient { background-image: linear-gradient(to right, var(--u-primary), color-mix(in oklab, var(--u-primary) 55%, var(--u-pink)) 50%, var(--u-cyan)); }
 [data-theme="dark"] .ms-site .text-gradient {
-  background-image: linear-gradient(to left, #818cf8, #a855f7, #06b6d4);
+  background-image: linear-gradient(to left, var(--u-primary), color-mix(in oklab, var(--u-primary) 35%, var(--u-pink)) 50%, var(--u-cyan));
 }
 [data-theme="dark"][dir="ltr"] .ms-site .text-gradient,
 [dir="ltr"] [data-theme="dark"] .ms-site .text-gradient {
-  background-image: linear-gradient(to right, #818cf8, #a855f7, #06b6d4);
+  background-image: linear-gradient(to right, var(--u-primary), color-mix(in oklab, var(--u-primary) 35%, var(--u-pink)) 50%, var(--u-cyan));
 }
 
 /* ---- Scroll reveal (template, on the house motion tokens) ----------------
@@ -154,11 +156,11 @@
 }
 [data-theme="dark"] .ms-menu-sheet__panel a { color: #e2e8f0; } /* slate-200 */
 @media (hover: hover) {
-  .ms-menu-sheet__panel a:hover { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
-  [data-theme="dark"] .ms-menu-sheet__panel a:hover { color: #818cf8; }
+  .ms-menu-sheet__panel a:hover { background: color-mix(in srgb, var(--u-primary) 10%, transparent); color: var(--u-primary); }
+  [data-theme="dark"] .ms-menu-sheet__panel a:hover { color: var(--u-primary); }
 }
-.ms-menu-sheet__panel a.ms-menu-cta { color: #4f46e5; font-weight: 700; }
-[data-theme="dark"] .ms-menu-sheet__panel a.ms-menu-cta { color: #818cf8; }
+.ms-menu-sheet__panel a.ms-menu-cta { color: var(--u-primary); font-weight: 700; }
+[data-theme="dark"] .ms-menu-sheet__panel a.ms-menu-cta { color: var(--u-primary); }
 
 /* ---- Hero video frame ----------------------------------------------------
    Ambient loop film (the owner's identity motion). Respects reduced

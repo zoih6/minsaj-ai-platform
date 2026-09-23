@@ -26,9 +26,11 @@
   /* Sidebar geometry (modes driven by shell.css) */
   --mj-sidebar-expanded: 264px;
   --mj-sidebar-rail: 76px;
-  /* Content measure caps per context */
+  /* Content measure caps per context — W-DS Phase 5 (GRD-01): the legacy
+     --mj-content-max (1520) is deleted; the four-step container ladder
+     below is the only measure source (narrow 560 / prose 780 / wide 1040 /
+     full 1440 — R-GRD-1). */
   --mj-measure-read: 72ch;
-  --mj-content-max: 1520px; /* legacy — collapses in the Phase 5 container ladder (R-GRD-1) */
   /* Touch target floor — accessibility invariant on every interactive el */
   --mj-touch: 44px;
 
@@ -93,8 +95,12 @@
   --mj-text-code: 12.5px;      /* mono: run IDs, costs, file names */
 
   /* Container ladder (§6.1, A1-structure) — four measures replace the
-     11 active widths (R-GRD-1). Legacy --mj-content-max stays until the
-     Phase 5 container collapse. */
+     11 active widths (R-GRD-1). W-DS Phase 5: the collapse is LIVE —
+     every content measure in the app resolves to one of these steps
+     (page containers → full · reading → prose · composer/briefs →
+     narrow · work surfaces/strips → wide). Reflow breakpoints (CQ
+     ladders) are composition triggers, not measures — see the canonical
+     ladders table in responsive.css. */
   --mj-container-narrow: 560px; /* composer, single-column forms */
   --mj-container-prose: 780px;  /* reading text, gateway narrative */
   --mj-container-wide: 1040px;  /* workbench surfaces, data lists, grids */
@@ -393,7 +399,7 @@
 .mj-section__head-copy { min-width: min(100%, 300px); flex: 1 1 300px; display: flex; flex-direction: column; gap: var(--mj-space-50); }
 .mj-section__label { color: var(--u-faint); font-size: var(--mj-text-label-s); font-weight: 600; }
 .mj-section__title { margin: 0; font-size: var(--mj-text-h2); line-height: var(--mj-leading-h2); font-weight: 700; color: var(--u-ink); }
-.mj-section__desc { margin: 0; max-width: var(--u-reading-max); color: var(--u-muted); font-size: var(--mj-text-body-s); line-height: var(--mj-leading-small); }
+.mj-section__desc { margin: 0; max-width: var(--mj-container-prose); color: var(--u-muted); font-size: var(--mj-text-body-s); line-height: var(--mj-leading-small); }
 .mj-section__aside { flex: 0 0 auto; }
 @container mj-flow (max-width: 640px) {
   .mj-section__head { align-items: flex-start; flex-direction: column; }

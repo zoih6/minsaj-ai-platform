@@ -221,12 +221,44 @@ Marketing keeps Tailwind utilities but consumes the same values:
   --color-brand-light: var(--u-primary-strong);
   --color-brand-dark: var(--u-primary-deep);
   --color-brand-cyan: var(--u-cyan);          /* was #06b6d4 vs app #0b8cab */
-  --color-brand-emerald: var(--u-success);
+  --color-brand-emerald: var(--u-mint);       /* the --u-success family base */
   --color-brand-pink: var(--u-pink);
 }
 ```
 
 **Rule [R-COL-1].** `@theme` color values must be `var(--u-*)` references. Independent marketing hexes are deleted. The marketing surface may keep its cinematic dark canvas (`--darkbg-*` neutrals) — those are canvas tokens, not accents.
+
+> **Phase 5 implementation record (2026-09-23).** The bridge is LIVE and
+> measured (`evidence/baselines/phase5/`): the six spec tokens above plus a
+> seventh text-grade step `--color-brand-emerald-ink: var(--u-mint-ink)`
+> (12px marketing notes need the ink, not the tone — contrast-verified).
+> `--color-brand-deep` and `--color-brand-purple` had no app equivalents and
+> are deleted: primary fills hover through the platform's own brightness
+> step (`hoverable:hover:brightness-110` — the gateway CTA's mechanism), and
+> the final-cta gradient tail rides `--u-cyan`. The hero text-gradient is
+> the declared marketing signature, expressed on platform accents:
+> `--u-primary → color-mix(in oklab, primary 55%, pink) → --u-cyan` (35% in
+> dark), theme-adaptive through the token cascade. Selection veils and the
+> two glow shadows are `color-mix()` on `--u-primary`. The old dark-emerald
+> re-bind rule is deleted — the bridge themes itself.
+
+### 9.5 The second canvas — focus (A2, resolves VIS-03)
+
+R-SURF-4 allows exactly two declared canvases app-wide. The **focus canvas**
+— the stage the deep-work routes (ask · code · analyze · explore) sit on —
+is declared as a single token pair, bound by `[data-canvas="focus"]` on the
+app shell (every other route is the standard canvas):
+
+| Token | Light | Dark | Bound by |
+|---|---|---|---|
+| `--u-canvas-focus` | `#f4f5fc` | `#030712` | `.universal-app-shell[data-canvas="focus"] .universal-shell-main` |
+
+The retired 15-name `--fc-*` parallel dialect (glass/line/raise/ink/accent
+sets — 28 declarations across two themes) is **deleted**; the gateway's own
+binding (`--sp-bg`) references the same token, so the canvas value has one
+owner. Phase 3 had already killed the dialect's chrome overrides; Phase 5
+folded what remained (the canvas + the 112px mobile content reserve, which
+stays as a `--mj-tabbar-reserve` override).
 
 ---
 
@@ -248,7 +280,8 @@ Marketing keeps Tailwind utilities but consumes the same values:
 | `--mj-gap-2xs/xs/sm/md/lg/block` | `space-50/100/150/200/300/600` |
 | `--u-radius-xs/sm/(base)/lg` | `control / field / card / overlay` |
 | `--u-shell-alert` | `--u-alert` |
-| `--fc-*` (15 tokens) | folded: chrome tokens rebind under `[data-canvas="focus"]`; the `--fc-` namespace is deleted (declares the second canvas — resolves `VIS-03`) |
+| `--fc-*` (15 tokens) | folded **in Phase 5 (2026-09-23)**: chrome tokens rebind under `[data-canvas="focus"]`; the `--fc-` namespace is deleted (declares the second canvas — resolves `VIS-03`, see §9.5) |
+| `--mj-content-max` / `--u-content-max` / `--u-reading-max` | deleted **in Phase 5** — the container ladder's `full`/`prose` steps own those jobs (resolves `GRD-01`) |
 
 ## 11. Adoption order (per foundation)
 

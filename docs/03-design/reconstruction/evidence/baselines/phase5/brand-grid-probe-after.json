@@ -1,0 +1,1086 @@
+{
+ "base": "http://localhost:3100",
+ "ts": "2026-09-23T00:44:53.953Z",
+ "vis01ThemeCensus": {
+  "theme": {
+   "--color-brand": "var(--u-primary)",
+   "--color-brand-light": "var(--u-primary-strong)",
+   "--color-brand-dark": "var(--u-primary-deep)",
+   "--color-brand-deep": null,
+   "--color-brand-purple": null,
+   "--color-brand-cyan": "var(--u-cyan)",
+   "--color-brand-emerald": "var(--u-mint)",
+   "--color-brand-emerald-ink": "var(--u-mint-ink)",
+   "--color-brand-pink": "var(--u-pink)",
+   "--color-darkbg-main": "#090d14",
+   "--color-darkbg-card": "#111724",
+   "--color-darkbg-border": "#1e293b",
+   "--shadow-glow": "0 0 20px var(--u-primary)",
+   "--shadow-glow-lg": "0 0 40px var(--u-primary)"
+  },
+  "rawBrandHex": [],
+  "bridgedCount": 7
+ },
+ "vis01LandingLight": {
+  "theme": "light",
+  "cells": {
+   "heroGradient": "linear-gradient(to left, rgb(79, 70, 229), oklab(0.576405 0.0979729 -0.135046) 50%, rgb(11, 140, 171))",
+   "ctaFill": "#3730A3",
+   "accentChips": [
+    {
+     "cls": "bg-brand-emerald",
+     "color": "#0D9F70"
+    },
+    {
+     "cls": "bg-brand-emerald",
+     "color": "#0D9F70"
+    },
+    {
+     "cls": "bg-brand-cyan",
+     "color": "#0B8CAB"
+    }
+   ],
+   "brandText": {
+    "cls": "text-brand-dark",
+    "color": "#3730A3"
+   }
+  }
+ },
+ "vis01LandingDark": {
+  "theme": "dark",
+  "cells": {
+   "heroGradient": "linear-gradient(to left, rgb(129, 140, 248), oklab(0.722799 0.0971892 -0.0678243) 50%, rgb(76, 196, 224))",
+   "ctaFill": "#6366F1",
+   "accentChips": [
+    {
+     "cls": "bg-brand-emerald",
+     "color": "#3ECB9A"
+    },
+    {
+     "cls": "bg-brand-emerald",
+     "color": "#3ECB9A"
+    },
+    {
+     "cls": "bg-brand-cyan",
+     "color": "#4CC4E0"
+    }
+   ],
+   "brandText": {
+    "cls": "text-brand-dark",
+    "color": "#8E9BFB"
+   }
+  }
+ },
+ "vis03FocusCanvas": {
+  "fcDeclarations": 0,
+  "routes": {
+   "light": {
+    "canvasAttr": "focus",
+    "attrName": "data-canvas",
+    "mainCanvas": "#F4F5FC",
+    "serviceSpaceBg": "transparent",
+    "spBgDeclared": "var(--u-canvas-focus)",
+    "canvasFocusToken": "#f4f5fc",
+    "fcDecls": 0,
+    "fcNames": []
+   },
+   "dark": {
+    "canvasAttr": "focus",
+    "attrName": "data-canvas",
+    "mainCanvas": "#030712",
+    "serviceSpaceBg": "transparent",
+    "spBgDeclared": "var(--u-canvas-focus)",
+    "canvasFocusToken": "#030712",
+    "fcDecls": 0,
+    "fcNames": []
+   }
+  },
+  "routeAttrs": {
+   "chat": "focus",
+   "code": "focus",
+   "analyze": "focus",
+   "explore": "focus"
+  }
+ },
+ "grd01Measures": {
+  "w1440": {
+   "chat": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": {
+     "sel": ".service-space",
+     "maxWidth": "none",
+     "rect": 1040
+    },
+    "composerZone": {
+     "sel": ".service-composer-zone",
+     "maxWidth": "560px",
+     "rect": 560
+    },
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "home": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": {
+     "sel": ".adaptive-task-card",
+     "maxWidth": "1040px",
+     "rect": 993
+    },
+    "homeWelcomeP": {
+     "sel": ".adaptive-home__welcome p",
+     "maxWidth": "780px",
+     "rect": 632
+    },
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "agents": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 1073
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "knowledge": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 1073
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "library": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": {
+     "sel": ".universal-library-header p",
+     "maxWidth": "780px",
+     "rect": 684
+    },
+    "workbenchHeadP": null
+   },
+   "settings": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 1073
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "flows": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 1073
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "code": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": {
+     "sel": ".u2-workbench__head p",
+     "maxWidth": "780px",
+     "rect": 413
+    }
+   },
+   "usage": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 1073
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 1176
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "landing": {
+    "sel": ".ms-container",
+    "maxWidth": "1440px",
+    "rect": 1440
+   }
+  },
+  "w1024": {
+   "chat": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": {
+     "sel": ".service-space",
+     "maxWidth": "none",
+     "rect": 675
+    },
+    "composerZone": {
+     "sel": ".service-composer-zone",
+     "maxWidth": "560px",
+     "rect": 560
+    },
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "home": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": {
+     "sel": ".adaptive-task-card",
+     "maxWidth": "1040px",
+     "rect": 618
+    },
+    "homeWelcomeP": {
+     "sel": ".adaptive-home__welcome p",
+     "maxWidth": "780px",
+     "rect": 618
+    },
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "agents": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 675
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "knowledge": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 675
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "library": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": {
+     "sel": ".universal-library-header p",
+     "maxWidth": "780px",
+     "rect": 671
+    },
+    "workbenchHeadP": null
+   },
+   "settings": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 680
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 765
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "flows": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 675
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "code": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": {
+     "sel": ".u2-workbench__head p",
+     "maxWidth": "780px",
+     "rect": 413
+    }
+   },
+   "usage": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 675
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 760
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "landing": {
+    "sel": ".ms-container",
+    "maxWidth": "1440px",
+    "rect": 1024
+   }
+  },
+  "w768": {
+   "chat": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": {
+     "sel": ".service-space",
+     "maxWidth": "none",
+     "rect": 655
+    },
+    "composerZone": {
+     "sel": ".service-composer-zone",
+     "maxWidth": "560px",
+     "rect": 560
+    },
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "home": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": {
+     "sel": ".adaptive-task-card",
+     "maxWidth": "1040px",
+     "rect": 612
+    },
+    "homeWelcomeP": {
+     "sel": ".adaptive-home__welcome p",
+     "maxWidth": "780px",
+     "rect": 612
+    },
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "agents": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 655
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "knowledge": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 655
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "library": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": {
+     "sel": ".universal-library-header p",
+     "maxWidth": "780px",
+     "rect": 651
+    },
+    "workbenchHeadP": null
+   },
+   "settings": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 655
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "flows": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 655
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "code": {
+    "pageContainer": null,
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": {
+     "sel": ".u2-workbench__head p",
+     "maxWidth": "780px",
+     "rect": 413
+    }
+   },
+   "usage": {
+    "pageContainer": {
+     "sel": ".ops-page",
+     "maxWidth": "1440px",
+     "rect": 655
+    },
+    "shellMain": {
+     "sel": ".universal-shell-main",
+     "maxWidth": "none",
+     "rect": 692
+    },
+    "serviceSpace": null,
+    "composerZone": null,
+    "taskCard": null,
+    "homeWelcomeP": null,
+    "libraryHeaderP": null,
+    "workbenchHeadP": null
+   },
+   "landing": {
+    "sel": ".ms-container",
+    "maxWidth": "1440px",
+    "rect": 768
+   }
+  },
+  "declared": {
+   "total": 48,
+   "keyDecls": [
+    {
+     "sel": ".ops-page",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-full)",
+     "px": 1440
+    },
+    {
+     "sel": ".compare-dock",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-wide)",
+     "px": 1040
+    },
+    {
+     "sel": ".universal-container",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), calc(100% - (var(--u-page-gutter) * 2)))",
+     "px": 1440
+    },
+    {
+     "sel": ".ms-container",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-full)",
+     "px": 1440
+    },
+    {
+     "sel": ".adaptive-task-card",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-wide)",
+     "px": 1040
+    },
+    {
+     "sel": ".service-space",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-prose), 100%)",
+     "px": 780
+    },
+    {
+     "sel": ".service-composer-zone",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-narrow)",
+     "px": 560
+    },
+    {
+     "sel": ".service-space",
+     "cond": "@(min-width: 1024px)",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-wide), 100%)",
+     "px": 1040
+    }
+   ],
+   "distinct": [
+    560,
+    580,
+    600,
+    660,
+    720,
+    760,
+    780,
+    1040,
+    1440
+   ],
+   "decls": [
+    {
+     "sel": ".system-page",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".page-description",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".chat-start__inner",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-prose),100%)",
+     "px": 780
+    },
+    {
+     "sel": ".chat-start__intro",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".conversation-demo",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-wide),100%)",
+     "px": 1040
+    },
+    {
+     "sel": ".assistant-copy > p",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".response-receipt",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".workbench",
+     "cond": "@(max-width: 1180px)",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-site-header__inner",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), 100%)",
+     "px": 1440
+    },
+    {
+     "sel": ".preview-hero",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), calc(100% - 48px))",
+     "px": 1440
+    },
+    {
+     "sel": ".preview-hero__copy",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-hero h1",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-hero__copy > p:not(.preview-eyebrow)",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-workspace",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), calc(100% - 40px))",
+     "px": 1440
+    },
+    {
+     "sel": ".preview-panel-heading p",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-answer",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-evidence",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-outro",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), calc(100% - 48px))",
+     "px": 1440
+    },
+    {
+     "sel": ".preview-outro > div",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".preview-brief",
+     "cond": "@(max-width: 820px)",
+     "prop": "max-width",
+     "raw": "var(--mj-container-narrow)",
+     "px": 560
+    },
+    {
+     "sel": ".ops-page",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-full)",
+     "px": 1440
+    },
+    {
+     "sel": ".form-dialog, .approval-dialog",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(580px, -30px + 100vw)",
+     "px": 580
+    },
+    {
+     "sel": ".builder-section",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".builder-navigation",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".compare-dock",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-wide)",
+     "px": 1040
+    },
+    {
+     "sel": ".compare-dialog, .usage-event-dialog",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(760px, -30px + 100vw)",
+     "px": 760
+    },
+    {
+     "sel": ".universal-container",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), calc(100% - (var(--u-page-gutter) * 2)))",
+     "px": 1440
+    },
+    {
+     "sel": ".mj-dialog-sheet",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(560px, calc(100vw - 2 * var(--mj-gutter)))",
+     "px": 560
+    },
+    {
+     "sel": ".mj-dialog-wide",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(760px, calc(100vw - 2 * var(--mj-gutter)))",
+     "px": 760
+    },
+    {
+     "sel": ".mj-section__desc",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".ms-container",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-full)",
+     "px": 1440
+    },
+    {
+     "sel": ".ms-menu-sheet__panel",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(600px, 100% - 32px)",
+     "px": 600
+    },
+    {
+     "sel": ".universal-command",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(660px, 100% - 30px)",
+     "px": 660
+    },
+    {
+     "sel": ".adaptive-home",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full),100%)",
+     "px": 1440
+    },
+    {
+     "sel": ".adaptive-home__welcome p",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".adaptive-task-card",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-wide)",
+     "px": 1040
+    },
+    {
+     "sel": ".adaptive-dialog",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(720px, -30px + 100vw)",
+     "px": 720
+    },
+    {
+     "sel": ".service-space",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-prose), 100%)",
+     "px": 780
+    },
+    {
+     "sel": ".service-composer-zone",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-narrow)",
+     "px": 560
+    },
+    {
+     "sel": ".service-space",
+     "cond": "@(min-width: 1024px)",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-wide), 100%)",
+     "px": 1040
+    },
+    {
+     "sel": ".universal-library-page",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full),100%)",
+     "px": 1440
+    },
+    {
+     "sel": ".universal-library-header p",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".u2-harness",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(var(--mj-container-full), 100%)",
+     "px": 1440
+    },
+    {
+     "sel": ".u2-harness__head p",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".u2-workbench__head p",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-prose)",
+     "px": 780
+    },
+    {
+     "sel": ".u2-overlay__content",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(560px, -32px + 100vw)",
+     "px": 560
+    },
+    {
+     "sel": ".u2-overlay__content--wide",
+     "cond": "top",
+     "prop": "width:min",
+     "raw": "min(720px, -32px + 100vw)",
+     "px": 720
+    },
+    {
+     "sel": ".u2-create__deck-title",
+     "cond": "top",
+     "prop": "max-width",
+     "raw": "var(--mj-container-narrow)",
+     "px": 560
+    }
+   ]
+  }
+ },
+ "verdict": {
+  "vis01": {
+   "bridgedBrandTokens": "7/7",
+   "rawBrandHexRemaining": [],
+   "pass": true
+  },
+  "vis03": {
+   "fcDeclarations": 0,
+   "attrName": "data-canvas",
+   "canvasOwner": "--u-canvas-focus",
+   "spBgBindsToken": true,
+   "canvasComputedBothThemes": "#030712",
+   "pass": true
+  },
+  "grd01": {
+   "distinctDeclaredMeasures": [
+    560,
+    580,
+    600,
+    660,
+    720,
+    760,
+    780,
+    1040,
+    1440
+   ],
+   "keySelectorDecls": 30,
+   "keyOffLadder": [],
+   "contextOffLadder": [
+    ".form-dialog, .approval-dialog width:min=min(580px, -30px + 100vw) (580px)",
+    ".compare-dialog, .usage-event-dialog width:min=min(760px, -30px + 100vw) (760px)",
+    ".mj-dialog-wide width:min=min(760px, calc(100vw - 2 * var(--mj-gutter))) (760px)",
+    ".ms-menu-sheet__panel width:min=min(600px, 100% - 32px) (600px)",
+    ".adaptive-dialog width:min=min(720px, -30px + 100vw) (720px)"
+   ],
+   "pass": true
+  }
+ }
+}

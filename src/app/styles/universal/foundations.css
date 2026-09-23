@@ -34,33 +34,50 @@
   --font-display: "Alexandria", "Tajawal", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Tajawal", "Alexandria", ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand: #6366f1;
-  --color-brand-light: #818cf8;
-  --color-brand-dark: #4f46e5;
-  /* Button-fill floor: white label on brand-dark = 6.29:1 (AA).
-     brand #6366F1 with white = 4.47:1 — 0.03 short; primary fills
-     therefore use brand-dark and hover to brand-deep (the platform's
-     --u-primary ladder: #4f46e5 → #4338ca). */
-  --color-brand-deep: #4338ca;
-  --color-brand-purple: #a855f7;
-  --color-brand-cyan: #06b6d4;
-  /* Light-safe emerald (4.7:1 on white for text). The marketing
-     layer re-binds it to #10b981 inside [data-theme="dark"]. */
-  --color-brand-emerald: #047857;
-  --color-brand-pink: #ec4899;
+  /* W-DS Phase 5 · VIS-01 brand bridge (R-COL-1 / DESIGN-TOKENS §9):
+     every marketing color is a var(--u-*) reference — ONE palette platform-
+     wide. The values auto-theme with the platform switch (--u-* flip under
+     [data-theme="dark"]), so the landing re-skins with the app instead of
+     carrying a second brand. The independent hexes this replaces (#6366f1 ·
+     #818cf8 · #4f46e5 · #4338ca · #a855f7 · #06b6d4 · #047857 · #ec4899)
+     are deleted. --color-brand-deep and --color-brand-purple have no app
+     equivalents and die with this bridge: primary fills hover through the
+     platform's own brightness step (see the gateway CTA rule), and the
+     spectrum tail rides --u-cyan. */
+  --color-brand: var(--u-primary);
+  --color-brand-light: var(--u-primary-strong);
+  --color-brand-dark: var(--u-primary-deep);
+  --color-brand-cyan: var(--u-cyan);
+  /* the spec's --u-success family; --u-mint is its code name */
+  --color-brand-emerald: var(--u-mint);
+  /* text-grade emerald: the app's status-ink step (light #235c4b / dark
+     #8fd8b8) — 12px marketing notes on tinted surfaces ride the ink,
+     exactly like the app's status text (contrast-safe after the bridge) */
+  --color-brand-emerald-ink: var(--u-mint-ink);
+  --color-brand-pink: var(--u-pink);
 
+  /* The marketing cinematic canvas — R-COL-1: canvas neutrals, not accents.
+     The marketing surface may keep its dark stage. */
   --color-darkbg-main: #090d14;
   --color-darkbg-card: #111724;
   --color-darkbg-border: #1e293b;
 
-  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
-  --shadow-glow-lg: 0 0 40px rgba(168, 85, 247, 0.2);
+  /* Brand glows ride the same indigo (was raw #6366f1/#a855f7 rgb) */
+  --shadow-glow: 0 0 20px color-mix(in srgb, var(--u-primary) 30%, transparent);
+  --shadow-glow-lg: 0 0 40px color-mix(in srgb, var(--u-primary) 20%, transparent);
 }
 
 :root {
   /* ---- Canonical palette (v4: Minsaj identity freeze) ---- */
   --u-bg: #f9fafb;
   --u-bg-deep: #f2f3f8;
+  /* W-DS Phase 5 · VIS-03 — the SECOND DECLARED CANVAS (R-SURF-4 /
+     DESIGN-TOKENS §9.5): the focus canvas the deep-work routes (ask · code ·
+     analyze · explore) sit on, bound by [data-canvas="focus"] on the app
+     shell. This single token replaces the retired 15-name --fc-* dialect
+     (folded — evidence/baselines/phase5/); it is the ONLY canvas value
+     those routes may paint, and it carries its own light/dark pair. */
+  --u-canvas-focus: #f4f5fc;
   --u-surface: #ffffff;
   --u-surface-glass: rgba(255, 255, 255, 0.86);
   --u-surface-solid: #ffffff;
@@ -170,12 +187,12 @@
   --u-radius-lg: var(--u-radius-overlay);
 
   /* ---- Layout metrics (aliased to the responsive architecture tokens
-        defined in layout.css — one geometry source, no drift) ---- */
+        defined in layout.css — one geometry source, no drift) ----
+     W-DS Phase 5 (GRD-01): --u-content-max and --u-reading-max are
+     deleted — the container ladder's full/prose steps own those jobs. */
   --u-sidebar: var(--mj-sidebar-expanded, 264px);
   --u-sidebar-collapsed: var(--mj-sidebar-rail, 76px);
   --u-topbar: 66px;
-  --u-content-max: var(--mj-content-max, 1520px);
-  --u-reading-max: 780px;
   --u-page-gutter: var(--mj-gutter, clamp(16px, 1.1vw + 10px, 32px));
   --u-section-space: clamp(56px, 7vw, 112px);
   --u-touch: 44px;
@@ -273,6 +290,8 @@
 :root[data-theme="dark"] {
   --u-bg: #0b0e1b;
   --u-bg-deep: #080a14;
+  /* Second declared canvas — dark set (VIS-03 fold) */
+  --u-canvas-focus: #030712;
   --u-surface: #141831;
   --u-surface-glass: rgba(20, 24, 49, 0.86);
   --u-surface-solid: #161a34;
@@ -523,7 +542,9 @@ html[dir="ltr"] :is(.universal-site, .universal-app-shell) .lucide-arrow-left { 
 /* ============================================================
    SHARED PRIMITIVES
    ============================================================ */
-.universal-container { width: min(1240px, calc(100% - (var(--u-page-gutter) * 2))); margin-inline: auto; }
+/* W-DS Phase 5 (GRD-01): the page-content max is the ladder's `full` step
+   — was a raw 1240 alongside --mj-content-max's 1520 (two page maxes). */
+.universal-container { width: min(var(--mj-container-full), calc(100% - (var(--u-page-gutter) * 2))); margin-inline: auto; }
 
 /* Theme toggle — shared icon button (marketing nav; app topbar styles its
    own > button children generically). */

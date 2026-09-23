@@ -55,7 +55,7 @@ export function WorkflowSection({ locale, copy, appHref }: { locale: Locale; cop
               {/* Top info */}
               <div className="mb-10 flex items-center justify-between border-b border-slate-200 pb-6 dark:border-darkbg-border">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand font-display text-lg font-bold text-white shadow-glow">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark font-display text-lg font-bold text-white shadow-glow">
                     {isArabic ? "ن" : "M"}
                   </div>
                   <div>
@@ -95,7 +95,7 @@ export function WorkflowSection({ locale, copy, appHref }: { locale: Locale; cop
                 ))}
               </div>
 
-              <div className="mt-10 flex items-center gap-3 rounded-xl border-t border-slate-200 bg-brand-emerald/5 p-4 pt-6 text-xs font-medium text-brand-emerald font-display dark:border-darkbg-border">
+              <div className="mt-10 flex items-center gap-3 rounded-xl border-t border-slate-200 bg-brand-emerald/5 p-4 pt-6 text-xs font-medium text-brand-emerald-ink font-display dark:border-darkbg-border">
                 <ShieldCheck size={18} aria-hidden="true" />
                 {copy.controlNote}
               </div>
