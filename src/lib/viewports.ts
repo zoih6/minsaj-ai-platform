@@ -9,6 +9,11 @@
  *   tablet  : 768px …   < 1024px → icon rail (auto), expandable overlay
  *   desktop : 1024px …  < 1440px → full sidebar
  *   wide    : 1440px+            → full sidebar, wider content max
+ *
+ * W-DS Phase 6 · R-RES-1b (matrix RES-01): the composition choice is
+ * (width, pointer) — a COARSE pointer serves the mobile touch composition
+ * regardless of width (desktop-site-on-phone never gets a shrunken desktop
+ * UI). The bands above apply to fine pointers only.
  */
 
 export const BREAKPOINTS = {
@@ -47,4 +52,6 @@ export const MEDIA = {
   tabletUp: `(min-width: ${BREAKPOINTS.tablet}px)`,
   desktopUp: `(min-width: ${BREAKPOINTS.desktop}px)`,
   wideUp: `(min-width: ${BREAKPOINTS.wide}px)`,
+  /** R-RES-1b: coarse pointer → touch composition regardless of width */
+  coarsePointer: "(pointer: coarse)",
 } as const;

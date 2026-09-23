@@ -46,3 +46,81 @@
 @media (prefers-reduced-motion: reduce) {
   :is(.universal-site, .universal-app-shell) *, :is(.universal-site, .universal-app-shell) *::before, :is(.universal-site, .universal-app-shell) *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ==========================================================================
+   PHASE 6 · COARSE-WIDE TOKEN ZOOM — the never-scale engine (R-RES-1a)
+   --------------------------------------------------------------------------
+   RESPONSIVE-ARCHITECTURE §1: no breakpoint band may render a composition
+   whose EFFECTIVE text size (CSS px × physical scale) falls below 14px
+   body / 11px mono. On a coarse-pointer canvas ≥768 (a phone requesting
+   the desktop site: ~980 CSS px on a 414px physical screen → scale
+   414/980 ≈ 0.422), every size ladder multiplies by --mj-coarse-zoom so
+   the touch composition keeps its phone PHYSICAL sizes: body ≥ 14px
+   effective, mono ≥ 11px, touch targets ≥ 44px physical (matrix RES-01;
+   the audit measured 6.5px effective nav text on the pre-fix build).
+
+   Deliberately NOT zoomed (documented boundary):
+     · container MEASURES (narrow 560 / prose 780 / wide 1040 / full 1440)
+       — the wide canvas serves multi-column reflow within the touch
+       shell (R-RES-1b), so measures stay width-based;
+     · shape tokens (radius/elevation) — shape is style, not readability;
+     · content CQ ladders — composition triggers, not sizes.
+   Fine-pointer bands never enter this block (regression-controlled by
+   the G-6 probe's 1024/1440 fine-pointer cells).
+   ========================================================================== */
+@media (pointer: coarse) and (min-width: 768px) {
+  :root {
+    /* 414/980 ≈ 1/0.422 — the RES-01 phone reference scale */
+    --mj-coarse-zoom: 2.37;
+
+    /* Space scale ×zoom (R-SPACE-1 ladder unchanged — values zoom) */
+    --mj-space-25: calc(2px * var(--mj-coarse-zoom));
+    --mj-space-50: calc(4px * var(--mj-coarse-zoom));
+    --mj-space-100: calc(8px * var(--mj-coarse-zoom));
+    --mj-space-150: calc(12px * var(--mj-coarse-zoom));
+    --mj-space-200: calc(16px * var(--mj-coarse-zoom));
+    --mj-space-300: calc(24px * var(--mj-coarse-zoom));
+    --mj-space-400: calc(32px * var(--mj-coarse-zoom));
+    --mj-space-600: calc(clamp(24px, 2.6vw + 16px, 48px) * var(--mj-coarse-zoom));
+    --mj-space-800: calc(64px * var(--mj-coarse-zoom));
+
+    /* Type ramp ×zoom — the closed 11-level ramp keeps its shape */
+    --mj-text-h1: calc(clamp(26px, 1.6vw + 20px, 34px) * var(--mj-coarse-zoom));
+    --mj-text-h2: calc(clamp(19px, 0.8vw + 16px, 24px) * var(--mj-coarse-zoom));
+    --mj-text-h3: calc(clamp(16px, 0.4vw + 14px, 19px) * var(--mj-coarse-zoom));
+    --mj-text-caption: calc(11.5px * var(--mj-coarse-zoom));
+    --mj-text-display: calc(clamp(34px, 5vw + 14px, 58px) * var(--mj-coarse-zoom));
+    --mj-text-body-l: calc(17px * var(--mj-coarse-zoom));
+    --mj-text-body-m: calc(clamp(15px, 0.2vw + 14.4px, 16px) * var(--mj-coarse-zoom));
+    --mj-text-body-s: calc(clamp(13.5px, 0.15vw + 12.9px, 14px) * var(--mj-coarse-zoom));
+    --mj-text-label-m: calc(13px * var(--mj-coarse-zoom));
+    --mj-text-label-s: calc(12px * var(--mj-coarse-zoom));
+    --mj-text-code: calc(12.5px * var(--mj-coarse-zoom));
+
+    /* Control-height ladder ×zoom (A2) — targets stay physically tappable */
+    --mj-touch: calc(44px * var(--mj-coarse-zoom));
+    --mj-control-dense: calc(32px * var(--mj-coarse-zoom));
+    --mj-control-compact: calc(40px * var(--mj-coarse-zoom));
+    --mj-control-prominent: calc(52px * var(--mj-coarse-zoom));
+
+    /* Fluid chrome paddings ×zoom */
+    --mj-gutter: calc(clamp(16px, 1.1vw + 10px, 32px) * var(--mj-coarse-zoom));
+    --mj-pad-card: calc(clamp(16px, 1vw + 10px, 24px) * var(--mj-coarse-zoom));
+
+    /* Dock clearance ×zoom (root standard 80px) — wins over the shell's
+       coarse media block (responsive.css imports after shell.css). */
+    --mj-tabbar-reserve: calc(80px * var(--mj-coarse-zoom) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Focus-canvas routes keep their deeper reserve (112px), zoomed. */
+  .universal-app-shell[data-canvas="focus"] {
+    --mj-tabbar-reserve: calc(112px * var(--mj-coarse-zoom) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Legacy parallel system (IMP-02 debt): the ops family's .page-title
+     rides a raw clamp (globals.css) the token zoom cannot see — on this
+     band it would render BELOW the zoomed body text. Bind it to the ramp
+     token inside this band only; fine pointers keep the legacy value
+     (zero drift — the debt's retirement stays IMP-02's own wave). */
+  .page-title { font-size: var(--mj-text-h1); }
+}

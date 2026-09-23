@@ -1,15 +1,19 @@
 {
   "comment": [
     "W-DS G-7 token lint — stylelint half (VISUAL-QA-CHECKLIST.md §4).",
-    "WARN MODE by design (Phase 0): every rule reports as a warning so the lint measures",
-    "token-adoption progress (SPC-01 / SUR-02 / SUR-03 / TYP-01 census) without blocking builds.",
-    "Phase 6 flips severity to error per the approved spec. What is checked here:",
+    "ERROR MODE since Phase 6 (ratchet): the rules below stay severity:warning",
+    "so the census of grandfathered debt stays visible, but `npm run lint:css`",
+    "runs with --max-warnings 929 (the Phase 6 frozen count) — any INCREASE",
+    "fails the build (exit 1). Paying debt down ratchets the number lower;",
+    "it may never rise. What is checked here:",
     "R-SPACE-1 no raw length literals in spacing properties;",
     "R-SURF-2 border-radius only via the radius token map / 50% / 0 / 999px;",
     "R-SURF-3 box-shadow only via --u-shadow-* tokens / none;",
     "R-TYPE-1 font-size only via the type ramp tokens (raw sizes warn — census).",
     "The context-aware G-7 checks (Arabic tracking pairing, globals.css selector trend,",
-    "primitive-class census) live in scripts/token-lint.mjs — run both: npm run lint:css && npm run lint:tokens."
+    "primitive-class census, per-file ratchets) live in scripts/token-lint.mjs —",
+    "run both: npm run lint:css && npm run lint:tokens -- --enforce \\",
+    "--compare docs/03-design/reconstruction/evidence/baselines/phase5/g7-baseline.json."
   ],
   "rules": {
     "at-rule-no-unknown": [true, {

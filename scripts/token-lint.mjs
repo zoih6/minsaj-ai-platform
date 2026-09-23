@@ -24,9 +24,19 @@
 //
 // Usage:
 //   node scripts/token-lint.mjs [--out <file.json>] [--compare <file.json>]
-//                               [--quiet]
+//                               [--quiet] [--enforce]
 //
-// Exit code is always 0 in warn mode (Phase 0–5). Phase 6 flips to error mode.
+// ERROR MODE since Phase 6 (--enforce): exit code 1 when the census
+// REGRESSES vs the --compare baseline (the frozen ratchet reference).
+// Enforced invariants — the goals already at zero must STAY at zero, and
+// every census metric may only move DOWN (debt ratchet):
+//   • absolute zeros: sub-10px text, unpaired Arabic tracking,
+//     NEW component classes outside the mj-* primitive layer;
+//   • census ratchets (distinct + occurrences, audit scope AND full repo):
+//     raw spacing / undeclared radius / raw shadow / raw font-size;
+//   • trend ratchets: legacy token refs, globals.css selectors;
+//   • per-file occurrence ratchets for the four census families (debt may
+//     not migrate between files — it only leaves).
 // Headline "audit-scope" metrics are computed over the same 15 files as the
 // W-DS forensic audit (src/app/styles/universal/*.css + src/app/globals.css)
 // so the numbers are directly comparable with the audit baseline
@@ -52,6 +62,7 @@ const flag = (name) => {
 const OUT = flag('--out') || OUT_DEFAULT;
 const COMPARE = flag('--compare');
 const QUIET = args.includes('--quiet');
+const ENFORCE = args.includes('--enforce');
 
 // --------------------------------------------------------------------------
 // File scope
@@ -320,7 +331,7 @@ const headline = {
 // --------------------------------------------------------------------------
 const report = {
   _meta: {
-    tool: 'scripts/token-lint.mjs (G-7 custom checks · WARN MODE)',
+    tool: 'scripts/token-lint.mjs (G-7 custom checks · ERROR MODE since Phase 6 with --enforce)',
     spec: 'docs/03-design/reconstruction/VISUAL-QA-CHECKLIST.md §4 · DESIGN-TOKENS.md',
     generatedAt: new Date().toISOString(),
     filesScanned: allFiles.length,
@@ -375,6 +386,69 @@ function compare(prev) {
 }
 
 // --------------------------------------------------------------------------
+// Error mode (Phase 6) — the ratchet vs the compared baseline
+// --------------------------------------------------------------------------
+function perFileCounts(findings) {
+  const out = {};
+  for (const d of findings) out[d.file] = (out[d.file] || 0) + 1;
+  return out;
+}
+
+function enforce(prev) {
+  const failures = [];
+  const h = report.headline;
+  const p = prev.headline || {};
+  const t = report.totals;
+  const pt = prev.totals || {};
+
+  const fail = (id, detail) => failures.push({ check: id, detail });
+
+  // 1 — absolute zeros (goals already met; any regression is a defect)
+  if (h.sub10Text > 0) fail('sub10-text', `${h.sub10Text} declaration(s) below 10px (goal 0)`);
+  if (h.unpairedTracking > 0) fail('unpaired-tracking', `${h.unpairedTracking} unpaired letter-spacing declaration(s) (R-RTL-1, goal 0)`);
+
+  // 2 — frozen component-class set (no NEW names outside the primitive layer)
+  const prevClasses = new Set(p.componentClasses || []);
+  const newClasses = (h.componentClasses || []).filter((c) => !prevClasses.has(c));
+  if (newClasses.length) fail('new-component-classes', `new non-mj component class(es): ${newClasses.join(', ')}`);
+
+  // 3 — census ratchets (may only move down)
+  const ratchet = (id, label, now, before) => {
+    if (before != null && now != null && now > before)
+      fail(id, `${label}: ${before} → ${now} (ratchet — may only decrease)`);
+  };
+  ratchet('raw-spacing-distinct', 'raw spacing distinct (audit scope)', h.rawSpacing?.distinct, p.rawSpacing?.distinct);
+  ratchet('raw-spacing-occurrences', 'raw spacing occurrences (full repo)', t.rawSpacing, pt.rawSpacing);
+  ratchet('undeclared-radius-distinct', 'undeclared radius distinct (audit scope)', h.undeclaredRadius?.distinct, p.undeclaredRadius?.distinct);
+  ratchet('undeclared-radius-occurrences', 'undeclared radius occurrences (full repo)', t.undeclaredRadius, pt.undeclaredRadius);
+  ratchet('raw-shadow-distinct', 'raw shadow distinct (audit scope)', h.rawShadow?.distinct, p.rawShadow?.distinct);
+  ratchet('raw-shadow-occurrences', 'raw shadow occurrences (full repo)', t.rawShadow, pt.rawShadow);
+  ratchet('raw-font-size-distinct', 'raw font-size distinct (audit scope)', h.rawFontSize?.distinct, p.rawFontSize?.distinct);
+  ratchet('raw-font-size-occurrences', 'raw font-size occurrences (full repo)', t.rawFontSize, pt.rawFontSize);
+  ratchet('legacy-token-refs', 'legacy token references (§10 wave)', h.legacyTokenReferences?.total, p.legacyTokenReferences?.total);
+  ratchet('globals-selectors', 'globals.css selector count', h.globalsSelectors, p.globalsSelectors);
+  ratchet('component-class-count', 'non-mj component class count', (h.componentClasses || []).length, (p.componentClasses || []).length);
+
+  // 4 — per-file occurrence ratchets (debt may not migrate between files)
+  const prevFindings = prev.findings || {};
+  for (const [key, label] of [
+    ['rawSpacing', 'raw spacing'],
+    ['undeclaredRadius', 'undeclared radius'],
+    ['rawShadow', 'raw shadow'],
+    ['rawFontSize', 'raw font-size'],
+  ]) {
+    const nowCounts = perFileCounts(records[key] || []);
+    const beforeCounts = perFileCounts(prevFindings[key] || []);
+    for (const [file, n] of Object.entries(nowCounts)) {
+      const b = beforeCounts[file] || 0;
+      if (n > b) fail(`per-file:${key}`, `${label} in ${file}: ${b} → ${n} (new file budget is 0)`);
+    }
+  }
+
+  return failures;
+}
+
+// --------------------------------------------------------------------------
 // Output
 // --------------------------------------------------------------------------
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
@@ -384,7 +458,7 @@ if (!QUIET) {
   const b = report._meta.auditBaseline;
   const h = report.headline;
   console.log(`
-G-7 token lint — WARN MODE (Phases 0–5; error mode at Phase 6)
+G-7 token lint — ${ENFORCE ? 'ERROR MODE (Phase 6 ratchet)' : 'warn mode (use --enforce for the Phase 6 ratchet)'}
 scope: ${report._meta.filesScanned} CSS files (audit scope = ${AUDIT_FILES.length})
 
   audit-scope census                     now      audit baseline      goal
@@ -408,5 +482,17 @@ report → ${path.relative(ROOT, OUT)}
   if (COMPARE) {
     const prev = JSON.parse(fs.readFileSync(COMPARE, 'utf8'));
     console.log(compare(prev));
+    if (ENFORCE) {
+      const failures = enforce(prev);
+      console.log('\nG-7 error mode — enforced invariants vs the compared baseline:');
+      if (!failures.length) {
+        console.log('  ALL PASS — absolute zeros hold; every census metric within the ratchet (no new debt).');
+      } else {
+        console.log(`  ${failures.length} REGRESSION(S):`);
+        failures.forEach((f) => console.log(`  ✗ ${f.check}: ${f.detail}`));
+      }
+      console.log(`\nG-7 verdict: ${failures.length ? 'FAIL' : 'PASS'}`);
+      process.exitCode = failures.length ? 1 : 0;
+    }
   }
 }

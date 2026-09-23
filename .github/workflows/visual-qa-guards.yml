@@ -1,6 +1,12 @@
-# W-DS Gate G guards (VISUAL-QA-CHECKLIST.md §4) — WARN MODE in Phase 0–5:
-# these checks report token-adoption trends and never fail the build.
-# Phase 6 flips G-7 to error mode per the approved implementation order.
+# W-DS Gate G guards (VISUAL-QA-CHECKLIST.md §4) — ERROR MODE since Phase 6:
+#   G-7  token lint ratchets — any census regression vs the frozen Phase 5
+#        baseline fails the build (stylelint half: --max-warnings 929;
+#        custom half: --enforce with per-file ratchets).
+#   G-6  shell probe on a live production build — the 390/430 touch budgets
+#        and the 980-coarse desktop-site-on-phone invariants (B-5/B-6,
+#        R-RES-1a/1b), plus 1024/1440 fine-pointer regression controls.
+#   §5   the sign-off matrix runs LIVE: every push is classified and
+#        Owner-approval classes must carry their SIGN-OFF-LOG entry.
 name: visual-qa-guards
 
 on:
@@ -20,13 +26,14 @@ jobs:
       - run: npm ci
       - name: ESLint (must stay green)
         run: npm run lint
-      - name: G-7 stylelint half (warn mode — never red)
+      - name: G-7 stylelint half (error mode — 929-warning ratchet)
         run: npm run lint:css
-      - name: G-7 custom half vs frozen Phase 0 baseline (warn mode)
+      - name: G-7 custom half vs frozen Phase 5 baseline (error mode)
         run: >
           node scripts/token-lint.mjs
           --out /tmp/g7-current.json
-          --compare docs/03-design/reconstruction/evidence/baselines/phase0/g7-baseline.json
+          --compare docs/03-design/reconstruction/evidence/baselines/phase5/g7-baseline.json
+          --enforce
       - name: Upload G-7 current report
         if: always()
         uses: actions/upload-artifact@v4
@@ -34,3 +41,52 @@ jobs:
           name: g7-token-report
           path: /tmp/g7-current.json
           retention-days: 30
+
+  g6-shell-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install chromium --with-deps
+      - run: npm run build
+      - name: Start production server and wait for readiness
+        run: |
+          npx next start -p 3100 &
+          for i in $(seq 1 60); do
+            curl -sf http://localhost:3100/ar/app/home > /dev/null && break
+            sleep 2
+          done
+          curl -sf http://localhost:3100/ar/app/home > /dev/null
+      - name: G-6 shell probe (390/430 + 980-coarse + fine-pointer controls)
+        run: node scripts/visual-qa/shell-probe.mjs --base http://localhost:3100 --out /tmp/g6-shell-probe.json
+      - name: Upload G-6 report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: g6-shell-probe
+          path: /tmp/g6-shell-probe.json
+          retention-days: 30
+
+  signoff-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Classify the change and enforce owner-approval evidence (§5)
+        run: |
+          BEFORE="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BEFORE="${{ github.event.pull_request.base.sha }}"
+          fi
+          if ! git rev-parse --verify "$BEFORE" > /dev/null 2>&1; then
+            BEFORE="HEAD~1"
+          fi
+          node scripts/visual-qa/signoff.mjs --base "$BEFORE" --check

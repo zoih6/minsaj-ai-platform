@@ -1,0 +1,767 @@
+{
+ "_meta": {
+  "tool": "scripts/visual-qa/shell-probe.mjs (W-DS Phase 6 · Gate G-6, error mode)",
+  "spec": "VISUAL-QA-CHECKLIST.md §3 B-5/B-6 · RESPONSIVE-ARCHITECTURE.md §1 R-RES-1a/1b",
+  "generatedAt": "2026-09-23T21:39:39.029Z",
+  "base": "http://localhost:3100",
+  "phoneReference": {
+   "physicalWidth": 414,
+   "layoutWidth": 980,
+   "scale": 0.4224
+  },
+  "routes": [
+   "home",
+   "chat",
+   "settings"
+  ]
+ },
+ "summary": {
+  "cells": 11,
+  "passed": 11,
+  "failed": 0
+ },
+ "cells": [
+  {
+   "name": "390",
+   "route": "home",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome390",
+     "pass": true,
+     "value": 14.5,
+     "expected": "≤ 15.5"
+    },
+    {
+     "id": "topbar.single-row",
+     "pass": true,
+     "value": 56,
+     "expected": "≤ 60px"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 0,
+     "expected": "≤ 0 (frozen cap)"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 56,
+    "dockVisible": true,
+    "dockH": 66,
+    "chromeRatio": 14.5,
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 312, 0)",
+    "navLinkPx": "13px",
+    "dockLabelPx": "11.5px",
+    "h1Px": "37.05px",
+    "bodyMaxPx": 15.2,
+    "codePx": "13.5px",
+    "tapCount": 31,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  },
+  {
+   "name": "390",
+   "route": "chat",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome390",
+     "pass": true,
+     "value": 14.5,
+     "expected": "≤ 15.5"
+    },
+    {
+     "id": "topbar.single-row",
+     "pass": true,
+     "value": 56,
+     "expected": "≤ 60px"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 1,
+     "expected": "≤ 1 (frozen cap)"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 56,
+    "dockVisible": true,
+    "dockH": 66,
+    "chromeRatio": 14.5,
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 312, 0)",
+    "navLinkPx": "13px",
+    "dockLabelPx": "11.5px",
+    "h1Px": "33.15px",
+    "bodyMaxPx": 13.5,
+    "codePx": null,
+    "tapCount": 10,
+    "tapUnder44": 1,
+    "tapMinH": 1
+   }
+  },
+  {
+   "name": "390",
+   "route": "settings",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome390",
+     "pass": true,
+     "value": 14.5,
+     "expected": "≤ 15.5"
+    },
+    {
+     "id": "topbar.single-row",
+     "pass": true,
+     "value": 56,
+     "expected": "≤ 60px"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 0,
+     "expected": "≤ 0 (frozen cap)"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 56,
+    "dockVisible": true,
+    "dockH": 66,
+    "chromeRatio": 14.5,
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 312, 0)",
+    "navLinkPx": "13px",
+    "dockLabelPx": "11.5px",
+    "h1Px": "28px",
+    "bodyMaxPx": 13.5,
+    "codePx": null,
+    "tapCount": 12,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  },
+  {
+   "name": "430",
+   "route": "home",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome430",
+     "pass": true,
+     "value": 13.1,
+     "expected": "≤ 14.5"
+    },
+    {
+     "id": "topbar.single-row",
+     "pass": true,
+     "value": 56,
+     "expected": "≤ 60px"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 0,
+     "expected": "≤ 0 (frozen cap)"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 56,
+    "dockVisible": true,
+    "dockH": 66,
+    "chromeRatio": 13.1,
+    "viewport": {
+     "w": 430,
+     "h": 932
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 312, 0)",
+    "navLinkPx": "13px",
+    "dockLabelPx": "11.5px",
+    "h1Px": "38px",
+    "bodyMaxPx": 15.3,
+    "codePx": "13.545px",
+    "tapCount": 31,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  },
+  {
+   "name": "430",
+   "route": "chat",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome430",
+     "pass": true,
+     "value": 13.1,
+     "expected": "≤ 14.5"
+    },
+    {
+     "id": "topbar.single-row",
+     "pass": true,
+     "value": 56,
+     "expected": "≤ 60px"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 1,
+     "expected": "≤ 1 (frozen cap)"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 56,
+    "dockVisible": true,
+    "dockH": 66,
+    "chromeRatio": 13.1,
+    "viewport": {
+     "w": 430,
+     "h": 932
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 312, 0)",
+    "navLinkPx": "13px",
+    "dockLabelPx": "11.5px",
+    "h1Px": "36px",
+    "bodyMaxPx": 13.5,
+    "codePx": null,
+    "tapCount": 10,
+    "tapUnder44": 1,
+    "tapMinH": 1
+   }
+  },
+  {
+   "name": "430",
+   "route": "settings",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome430",
+     "pass": true,
+     "value": 13.1,
+     "expected": "≤ 14.5"
+    },
+    {
+     "id": "topbar.single-row",
+     "pass": true,
+     "value": 56,
+     "expected": "≤ 60px"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 0,
+     "expected": "≤ 0 (frozen cap)"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 56,
+    "dockVisible": true,
+    "dockH": 66,
+    "chromeRatio": 13.1,
+    "viewport": {
+     "w": 430,
+     "h": 932
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 312, 0)",
+    "navLinkPx": "13px",
+    "dockLabelPx": "11.5px",
+    "h1Px": "28px",
+    "bodyMaxPx": 13.5,
+    "codePx": null,
+    "tapCount": 12,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  },
+  {
+   "name": "980-coarse",
+   "route": "home",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome980",
+     "pass": true,
+     "value": 14.3,
+     "expected": "≤ 15.5"
+    },
+    {
+     "id": "topbar.scaled-row",
+     "pass": true,
+     "value": 132.7,
+     "expected": "100–175px (56 × zoom)"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 0,
+     "expected": "≤ 0 (frozen cap)"
+    },
+    {
+     "id": "neverscale.body",
+     "pass": true,
+     "value": 16.01,
+     "expected": "≥ 14px effective"
+    },
+    {
+     "id": "neverscale.nav",
+     "pass": true,
+     "value": 13.02,
+     "expected": "≥ 12px effective (phone label parity)"
+    },
+    {
+     "id": "neverscale.dock",
+     "pass": true,
+     "value": 11.51,
+     "expected": "≥ 10px effective (phone caption parity)"
+    },
+    {
+     "id": "neverscale.h1",
+     "pass": true,
+     "value": 58.07,
+     "expected": "≥ 14px effective"
+    },
+    {
+     "id": "neverscale.mono",
+     "pass": true,
+     "value": 14.02,
+     "expected": "≥ 11px effective"
+    },
+    {
+     "id": "drawer.opens-wide",
+     "pass": true,
+     "value": "data-mobile-open=true visibility=visible",
+     "expected": "drawer opens at 980 coarse"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 132.7,
+    "dockVisible": true,
+    "dockH": 153.7,
+    "chromeRatio": 14.3,
+    "viewport": {
+     "w": 980,
+     "h": 2000
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 739.44, 0)",
+    "navLinkPx": "30.81px",
+    "dockLabelPx": "27.255px",
+    "h1Px": "137.46px",
+    "bodyMaxPx": 37.9,
+    "codePx": "33.18px",
+    "tapCount": 31,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  },
+  {
+   "name": "980-coarse",
+   "route": "chat",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome980",
+     "pass": true,
+     "value": 14.3,
+     "expected": "≤ 15.5"
+    },
+    {
+     "id": "topbar.scaled-row",
+     "pass": true,
+     "value": 132.7,
+     "expected": "100–175px (56 × zoom)"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 1,
+     "expected": "≤ 1 (frozen cap)"
+    },
+    {
+     "id": "neverscale.body",
+     "pass": true,
+     "value": 14.03,
+     "expected": "≥ 14px effective"
+    },
+    {
+     "id": "neverscale.nav",
+     "pass": true,
+     "value": 13.02,
+     "expected": "≥ 12px effective (phone label parity)"
+    },
+    {
+     "id": "neverscale.dock",
+     "pass": true,
+     "value": 11.51,
+     "expected": "≥ 10px effective (phone caption parity)"
+    },
+    {
+     "id": "neverscale.h1",
+     "pass": true,
+     "value": 15.21,
+     "expected": "≥ 14px effective"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 132.7,
+    "dockVisible": true,
+    "dockH": 153.7,
+    "chromeRatio": 14.3,
+    "viewport": {
+     "w": 980,
+     "h": 2000
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 739.44, 0)",
+    "navLinkPx": "30.81px",
+    "dockLabelPx": "27.255px",
+    "h1Px": "36px",
+    "bodyMaxPx": 33.2,
+    "codePx": null,
+    "tapCount": 10,
+    "tapUnder44": 1,
+    "tapMinH": 1
+   }
+  },
+  {
+   "name": "980-coarse",
+   "route": "settings",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=drawer dock=true",
+     "expected": "drawer + dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "budget.chrome980",
+     "pass": true,
+     "value": 14.3,
+     "expected": "≤ 15.5"
+    },
+    {
+     "id": "topbar.scaled-row",
+     "pass": true,
+     "value": 132.7,
+     "expected": "100–175px (56 × zoom)"
+    },
+    {
+     "id": "targets.44px-floor",
+     "pass": true,
+     "value": 0,
+     "expected": "≤ 0 (frozen cap)"
+    },
+    {
+     "id": "neverscale.body",
+     "pass": true,
+     "value": 14.03,
+     "expected": "≥ 14px effective"
+    },
+    {
+     "id": "neverscale.nav",
+     "pass": true,
+     "value": 13.02,
+     "expected": "≥ 12px effective (phone label parity)"
+    },
+    {
+     "id": "neverscale.dock",
+     "pass": true,
+     "value": 11.51,
+     "expected": "≥ 10px effective (phone caption parity)"
+    },
+    {
+     "id": "neverscale.h1",
+     "pass": true,
+     "value": 34.04,
+     "expected": "≥ 14px effective"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "drawer",
+    "dataMobileOpen": "false",
+    "pointerCoarse": true,
+    "topbarH": 132.7,
+    "dockVisible": true,
+    "dockH": 153.7,
+    "chromeRatio": 14.3,
+    "viewport": {
+     "w": 980,
+     "h": 2000
+    },
+    "hOverflow": false,
+    "sidebarHidden": true,
+    "sidebarTransform": "matrix(1, 0, 0, 1, 739.44, 0)",
+    "navLinkPx": "30.81px",
+    "dockLabelPx": "27.255px",
+    "h1Px": "80.58px",
+    "bodyMaxPx": 33.2,
+    "codePx": null,
+    "tapCount": 12,
+    "tapUnder44": 0,
+    "tapMinH": 67
+   }
+  },
+  {
+   "name": "1024",
+   "route": "home",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=expanded dock=false",
+     "expected": "sidebar composition, no dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "targets.24px-absolute",
+     "pass": true,
+     "value": 44,
+     "expected": "≥ 24px"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "expanded",
+    "dataMobileOpen": "false",
+    "pointerCoarse": false,
+    "topbarH": 56,
+    "dockVisible": false,
+    "dockH": 0,
+    "chromeRatio": 7.3,
+    "viewport": {
+     "w": 1024,
+     "h": 768
+    },
+    "hOverflow": false,
+    "sidebarHidden": false,
+    "sidebarTransform": "none",
+    "navLinkPx": "13px",
+    "dockLabelPx": "16px",
+    "h1Px": "58px",
+    "bodyMaxPx": 16,
+    "codePx": "14px",
+    "tapCount": 31,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  },
+  {
+   "name": "1440",
+   "route": "home",
+   "pass": true,
+   "checks": [
+    {
+     "id": "composition.touch-shell",
+     "pass": true,
+     "value": "data-sidebar=expanded dock=false",
+     "expected": "sidebar composition, no dock"
+    },
+    {
+     "id": "overflow.none",
+     "pass": true,
+     "value": false,
+     "expected": false
+    },
+    {
+     "id": "targets.24px-absolute",
+     "pass": true,
+     "value": 44,
+     "expected": "≥ 24px"
+    }
+   ],
+   "measured": {
+    "dir": "rtl",
+    "dataSidebar": "expanded",
+    "dataMobileOpen": "false",
+    "pointerCoarse": false,
+    "topbarH": 56,
+    "dockVisible": false,
+    "dockH": 0,
+    "chromeRatio": 6.2,
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "hOverflow": false,
+    "sidebarHidden": false,
+    "sidebarTransform": "none",
+    "navLinkPx": "13px",
+    "dockLabelPx": "16px",
+    "h1Px": "58px",
+    "bodyMaxPx": 16,
+    "codePx": "14px",
+    "tapCount": 31,
+    "tapUnder44": 0,
+    "tapMinH": 44
+   }
+  }
+ ]
+}

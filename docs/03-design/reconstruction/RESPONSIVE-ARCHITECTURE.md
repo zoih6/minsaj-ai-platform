@@ -17,6 +17,22 @@ Responsive behavior is expressed as **structural decisions per band** — number
 
 Implementation: extend `useViewportMode` with `matchMedia('(pointer: coarse)')`; SSR-safe default remains mobile-first.
 
+> **Phase 6 implementation record (2026-09-24).** R-RES-1b is LIVE and measured
+> (`evidence/baselines/phase6/`): the hook carries the pointer guard (coarse →
+> mobile mode at any width) and the shell's tablet/desktop CSS blocks are gated
+> `and (pointer: fine)` while the dock/sheet blocks fire on `(pointer: coarse)`
+> too. R-RES-1a is enforced by the never-scale engine: a coarse-wide layer
+> (`(pointer: coarse) and (min-width: 768px)` in responsive.css) multiplies the
+> space scale, the 11-level type ramp, the control ladder and the gutters by
+> `--mj-coarse-zoom: 2.37` (414/980 — the RES-01 phone reference), with the
+> chrome raws scaled in shell.css. Measured at 980×2000 coarse: nav 5.49→13.0px
+> effective · body 6.76→16.0px · mono 5.91→12.5px · drawer opens · chromeRatio
+> 14.3% · tap floors clean — while 390/430 stay at 14.5%/13.1% and the
+> 1024/1440 fine-pointer controls prove zero coarse-layer leakage. Container
+> measures and shape tokens deliberately do not zoom (multi-column reflow within
+> the touch shell; shape is style, not readability). The whole band is guarded
+> in CI by Gate G-6 (`scripts/visual-qa/shell-probe.mjs`).
+
 ## 2. Band compositions
 
 | Band | Width | Navigation | Columns & panels | Type & spacing behavior |
