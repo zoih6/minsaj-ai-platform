@@ -6,14 +6,16 @@
  *
  * Semantic viewport bands:
  *   mobile  :            < 768px  → off-canvas drawer + bottom tab bar
- *   tablet  : 768px …   < 1024px → icon rail (auto), expandable overlay
- *   desktop : 1024px …  < 1440px → full sidebar
- *   wide    : 1440px+            → full sidebar, wider content max
+ *   tablet  : 768px …   < 1024px  → labeled expanded sidebar (push)
+ *   desktop : 1024px …  < 1440px  → full sidebar
+ *   wide    : 1440px+             → full sidebar, wider content max
  *
- * W-DS Phase 6 · R-RES-1b (matrix RES-01): the composition choice is
- * (width, pointer) — a COARSE pointer serves the mobile touch composition
- * regardless of width (desktop-site-on-phone never gets a shrunken desktop
- * UI). The bands above apply to fine pointers only.
+ * W-7 (W7-2 · owner decision D-6, §7.9): composition is chosen by WIDTH
+ * alone — a phone requesting the desktop site receives the desktop
+ * composition, exactly as standard websites behave. The Phase 6
+ * coarse-pointer guard (R-RES-1b) and the never-scale zoom (R-RES-1a)
+ * are retired; the 44px touch floor continues to apply at true phone
+ * widths (≤767.98px, enforced in CSS).
  */
 
 export const BREAKPOINTS = {

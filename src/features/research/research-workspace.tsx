@@ -12,7 +12,7 @@ import {
   type ResearchTopicId,
 } from "@minsaj/mock-api/services";
 import { ServiceWorkbenchProvider, useServiceWorkbench } from "@/features/service-workbench/state/workbench-provider";
-import { ServiceWorkbenchShell } from "@/features/service-workbench/components/service-workbench-shell";
+import { ServiceProductShell } from "@/features/service-workbench/components/service-product-shell";
 import type { ServiceDomainBlock, ServiceStoreStatus } from "@/features/service-workbench/storage/store";
 import type { ServiceWorkbenchSeed } from "@/features/service-workbench/state/reducer";
 import {
@@ -217,7 +217,7 @@ function ResearchWorkspaceInner({ locale, restoredResearchState = null, initialR
   const stageTitleKey = `services.research.stages.${stage}`;
 
   return (
-    <ServiceWorkbenchShell
+    <ServiceProductShell
       locale={locale}
       eyebrow={research.eyebrow}
       title={research.label}
@@ -329,7 +329,7 @@ function ResearchWorkspaceInner({ locale, restoredResearchState = null, initialR
         state={researchState}
         onClose={() => send({ type: "inspector/close" })}
       />
-    </ServiceWorkbenchShell>
+    </ServiceProductShell>
   );
 }
 

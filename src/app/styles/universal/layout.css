@@ -403,6 +403,11 @@
 .mj-section__aside { flex: 0 0 auto; }
 @container mj-flow (max-width: 640px) {
   .mj-section__head { align-items: flex-start; flex-direction: column; }
+  /* W-7 (W7-1, KI-7): the row-axis flex-basis 300px above becomes a HEIGHT
+     when this block flips the head to column — a measured 300px header holding
+     48px of content on every phone section (settings + ops pages). Reset the
+     basis on the column axis; the row layout above keeps its 300px width. */
+  .mj-section__head-copy { flex-basis: auto; }
   .mj-section__aside { width: 100%; }}
 
 /* ---- 15. Surface: the ONE elevation primitive (owner order v20).

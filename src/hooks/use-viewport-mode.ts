@@ -10,14 +10,12 @@ import { MEDIA, viewportModeFor, type ViewportMode } from "@/lib/viewports";
  * tracks the three semantic bands via matchMedia, staying in sync with the
  * CSS breakpoints in layout.css.
  *
- * W-DS Phase 6 · R-RES-1b pointer guard (RESPONSIVE-ARCHITECTURE §1,
- * matrix RES-01): the composition choice is (width, pointer) — a coarse
- * pointer serves the TOUCH composition regardless of width. A phone
- * requesting the desktop site (~980 CSS px) receives the touch shell on
- * the wide canvas (drawer + dock, rail hidden), never a shrunken desktop
- * UI; the coarse-wide token zoom (responsive.css) keeps every size
- * physically readable (never-scale rule R-RES-1a). Fine pointers keep the
- * width bands unchanged.
+ * W-7 (W7-2 · owner decision D-6, §7.9): composition is chosen by WIDTH
+ * alone. The Phase 6 coarse-pointer guard (R-RES-1b) is retired — a phone
+ * requesting the desktop site must receive the desktop composition, exactly
+ * as standard websites behave. The never-scale zoom (R-RES-1a) is retired
+ * with it; the 44px touch floor continues to apply at true phone widths
+ * (≤767.98px, enforced in CSS).
  */
 export function useViewportMode(): ViewportMode | null {
   const [mode, setMode] = useState<ViewportMode | null>(null);
@@ -26,22 +24,21 @@ export function useViewportMode(): ViewportMode | null {
     const tablet = window.matchMedia(MEDIA.tabletUp);
     const desktop = window.matchMedia(MEDIA.desktopUp);
     const wide = window.matchMedia(MEDIA.wideUp);
-    const coarse = window.matchMedia(MEDIA.coarsePointer);
 
     function read() {
-      setMode(coarse.matches ? "mobile" : viewportModeFor(window.innerWidth));
+      setMode(viewportModeFor(window.innerWidth));
     }
 
     read();
     tablet.addEventListener("change", read);
     desktop.addEventListener("change", read);
     wide.addEventListener("change", read);
-    coarse.addEventListener("change", read);
+    window.addEventListener("resize", read);
     return () => {
       tablet.removeEventListener("change", read);
       desktop.removeEventListener("change", read);
       wide.removeEventListener("change", read);
-      coarse.removeEventListener("change", read);
+      window.removeEventListener("resize", read);
     };
   }, []);
 

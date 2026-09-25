@@ -914,3 +914,157 @@
 @media (forced-colors: active) {
   .u2-explore__field, .u2-explore__nodes li, .u2-explore__visits li, .u2-explore__detail, .u2-explore__note, .u2-explore__error { border-color: CanvasText; }
   .u2-explore__primary { background: Highlight !important; color: HighlightText !important; }}
+
+/* ==========================================================================
+   W-7 · SERVICE PRODUCT SHELL (W7-3 / W7-4, §7.9)
+   --------------------------------------------------------------------------
+   The six domain workspaces (learn / research / create / code / analyze /
+   explore) are PRODUCT pages: they ride `.service-space` (the gateway
+   grammar the owner approved — canvas tokens, prose measure, ONE section
+   rhythm) and present ONE clean welcome header plus their stage surfaces.
+   The simulation affordance lives behind the single demo chip (panel).
+   The stage surfaces get ONE card grammar below — a stage is ONE coherent
+   record on ONE elevation (R-SURF-1), never a stack of loose blocks.
+   ========================================================================== */
+
+/* Per-service accent bridge — learn/research/create carry their jewel thread
+   through the platform `--service` tokens (foundations.css §service). */
+.u2-product[data-service="learn"]   { --sp-accent: var(--service); --sp-accent-strong: var(--service); --sp-accent-deep: var(--service-deep); --sp-accent-rgb: var(--service-rgb); }
+.u2-product[data-service="research"] { --sp-accent: var(--service); --sp-accent-strong: var(--service); --sp-accent-deep: var(--service-deep); --sp-accent-rgb: var(--service-rgb); }
+.u2-product[data-service="create"]  { --sp-accent: var(--service); --sp-accent-strong: var(--service); --sp-accent-deep: var(--service-deep); --sp-accent-rgb: var(--service-rgb); }
+
+/* The domain lede is a product sentence, not a card caption — give it the
+   reference reading measure (the gateway's 290px suits chip rows only). */
+.u2-product .service-welcome__lede { max-width: var(--mj-container-prose); }
+
+/* ---- Demo chip — ONE discreet door (the demo-note register, not a badge) */
+.u2-product__demo-chip {
+  width: fit-content;
+  margin-block-start: var(--mj-space-200);
+  min-height: var(--mj-control-dense);
+  padding-inline: var(--mj-space-150);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mj-space-25);
+  border: 1px solid var(--sp-hairline);
+  border-radius: 999px;
+  color: var(--sp-muted);
+  background: var(--sp-panel);
+  font-size: var(--mj-text-label-s);
+  font-weight: 600;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .u2-product__demo-chip:hover { border-color: var(--sp-hover-line); color: var(--sp-ink); }
+}
+.u2-product__demo-chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sp-amber);
+}
+.u2-product__demo-chip i[data-status="running"],
+.u2-product__demo-chip i[data-status="queued"] { background: var(--sp-blue); }
+.u2-product__demo-chip i[data-status="needs_input"] { background: var(--sp-amber); }
+.u2-product__demo-chip i[data-status="completed"],
+.u2-product__demo-chip i[data-status="completed_with_warnings"] { background: var(--sp-mint); }
+.u2-product__demo-chip i[data-status="failed"],
+.u2-product__demo-chip i[data-status="cancelled"] { background: var(--sp-red); }
+
+/* ---- Product body: the stage surfaces own the screen ------------------- */
+.u2-product__body { min-width: 0; display: flex; flex-direction: column; gap: var(--mj-space-600); }
+
+/* ---- W7-4 · the ONE stage-card grammar ----------------------------------
+   Every domain stage surface = ONE coherent card on ONE elevation: the
+   reference card values (white card, hairline, raise shadow, card radius).
+   No loose section blocks, no card-in-card (fields stay subtle insets). */
+.u2-product__body :is(
+  .u2-learn__surface,
+  .u2-research__surface,
+  .u2-create__surface,
+  .u2-code__surface,
+  .u2-analyze__surface,
+  .u2-explore__surface
+) {
+  padding: var(--mj-pad-card);
+  border: 1px solid var(--sp-line);
+  border-radius: var(--u-radius-card);
+  background: var(--sp-card);
+  box-shadow: var(--sp-raise-shadow);
+}
+
+/* Stage titles ride the ramp (the legacy clamps die with the card). */
+.u2-product__body :is(.u2-learn__surface, .u2-research__surface, .u2-create__surface, .u2-code__surface, .u2-analyze__surface, .u2-explore__surface) h2 {
+  font-size: var(--mj-text-h3);
+  line-height: var(--mj-leading-h3);
+}
+
+/* Surface action rows: one button grammar on the card's tokens. */
+.u2-product__body :is(.u2-learn__actions, .u2-research__actions, .u2-create__actions, .u2-code__actions, .u2-analyze__actions, .u2-explore__actions) {
+  padding-block-start: var(--mj-space-100);
+  border-block-start: 1px solid var(--sp-hairline);
+}
+.u2-product__body :is(.u2-learn__actions, .u2-research__actions, .u2-create__actions, .u2-code__actions, .u2-analyze__actions, .u2-explore__actions) button {
+  border-color: var(--sp-hover-line);
+  background: transparent;
+  color: var(--sp-ink-soft);
+}
+.u2-product__body :is(.u2-learn__actions, .u2-research__actions, .u2-create__actions, .u2-code__actions, .u2-analyze__actions, .u2-explore__actions) button:disabled { opacity: .55; }
+
+/* Subtle field/group insets keep their quiet register on the card. */
+.u2-product__body :is(.u2-learn__field, .u2-research__field, .u2-create__field, .u2-code__field, .u2-analyze__field, .u2-explore__field) {
+  background: var(--sp-surface);
+}
+.u2-product__body :is(.u2-learn__note, .u2-research__note, .u2-create__note, .u2-code__note, .u2-analyze__note, .u2-explore__note) {
+  border-color: var(--sp-hairline);
+  background: var(--sp-surface);
+  color: var(--sp-muted);
+}
+
+/* ---- Demo panel (rides .u2-overlay / .u2-overlay__content) ------------- */
+.u2-product__panel { display: flex; flex-direction: column; gap: var(--mj-space-200); }
+.u2-product__panel-title { margin: 0; font-size: var(--mj-text-h3); color: var(--u-ink); }
+.u2-product__panel-desc { margin: 0; color: var(--u-muted); font-size: var(--mj-text-label-m); line-height: 1.7; }
+.u2-product__panel-close {
+  position: absolute;
+  inset-block-start: var(--mj-space-150);
+  inset-inline-end: var(--mj-space-150);
+  width: var(--mj-touch);
+  height: var(--mj-touch);
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--u-radius-field);
+  color: var(--u-muted);
+  background: transparent;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .u2-product__panel-close:hover { background: var(--u-surface-subtle); color: var(--u-ink); }
+}
+.u2-product__panel-row { display: flex; flex-wrap: wrap; gap: var(--mj-space-50); }
+.u2-product__panel-action {
+  min-height: var(--u-touch);
+  padding-inline: var(--mj-space-150);
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--u-line-strong);
+  border-radius: var(--u-radius-field);
+  color: var(--u-ink-soft);
+  background: var(--u-surface-solid);
+  font-size: var(--mj-text-label-s);
+  font-weight: 600;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .u2-product__panel-action:hover { border-color: var(--u-primary); color: var(--u-primary-strong); }
+}
+.u2-product__artifact {
+  padding: var(--mj-space-150);
+  border-radius: var(--u-radius-field);
+  background: var(--u-surface-subtle);
+}
+.u2-product__artifact header { display: flex; align-items: center; gap: var(--mj-space-50); color: var(--u-ink-soft); }
+.u2-product__artifact h2 { margin: 0; font-size: var(--mj-text-label-m); }
+.u2-product__artifact ul { margin: var(--mj-space-100) 0 0; padding-inline-start: 17px; color: var(--u-muted); font-size: var(--mj-text-label-s); }
+.u2-product__panel-hint { margin: 0; color: var(--u-muted); font-size: var(--mj-text-label-s); }

@@ -4,7 +4,7 @@ import { useEffect, useReducer, useRef, useSyncExternalStore } from "react";
 import type { Locale, ServiceScenarioId, ServiceSession, ServiceStage, CreateSessionState } from "@minsaj/contracts/services";
 import { getServiceDictionary } from "@minsaj/i18n/services";
 import { ServiceWorkbenchProvider, useServiceWorkbench } from "@/features/service-workbench/state/workbench-provider";
-import { ServiceWorkbenchShell } from "@/features/service-workbench/components/service-workbench-shell";
+import { ServiceProductShell } from "@/features/service-workbench/components/service-product-shell";
 import {
   CreateBriefSurface,
   CreateCompleteSurface,
@@ -226,7 +226,7 @@ function CreateWorkspaceInner({ locale, initialRecords }: { locale: Locale; init
   );
 
   return (
-    <ServiceWorkbenchShell
+    <ServiceProductShell
       locale={locale}
       eyebrow={create.eyebrow}
       title={create.label}
@@ -371,7 +371,7 @@ function CreateWorkspaceInner({ locale, initialRecords }: { locale: Locale; init
           onCancel={() => send({ type: "pending/cancel" })}
         />
       </div>
-    </ServiceWorkbenchShell>
+    </ServiceProductShell>
   );
 }
 

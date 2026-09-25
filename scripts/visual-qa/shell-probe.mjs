@@ -11,14 +11,13 @@
 //                         budget ≤ 15.5% / ≤ 14.5% (B-5), zero horizontal
 //                         overflow (A-2), touch-target floor (A-4, frozen
 //                         per-route caps from the Phase 5 baseline).
-//   • 980 × 2000 coarse — desktop-site-on-phone (R-RES-1b, matrix RES-01):
-//                         the TOUCH composition regardless of width, and the
-//                         never-scale rule (R-RES-1a): effective text
-//                         (CSS px × physical scale) ≥ 14px body / 11px mono
-//                         at the 414px-phone reference scale 414/980.
-//   • 1024 / 1440 fine  — regression control: the sidebar composition and
-//                         pointer-blind invariance of the fine-pointer bands
-//                         (the coarse layer must never leak into fine bands).
+//   • 980 × 2000 coarse — desktop-site-on-phone (W-7/W7-2, owner decision
+//                         D-6 §7.9): the DESKTOP composition by width —
+//                         sidebar visible, dock hidden, native sizes. The
+//                         Phase 6 coarse guard (R-RES-1b) and never-scale
+//                         zoom (R-RES-1a) are retired.
+//   • 1024 / 1440 fine  — regression control: the sidebar composition
+//                         (width-based, pointer-blind).
 //
 // Usage:
 //   node scripts/visual-qa/shell-probe.mjs [--base http://localhost:3000]
@@ -92,11 +91,15 @@ const MEASURE = () => {
   const vh = window.innerHeight;
 
   // Touch-target census inside main (capture.mjs parity).
+  // W-7: visually-hidden native inputs (the 1x1 a11y pattern — e.g. the
+  // visually-hidden file input behind a labelled button) are exempt from
+  // both floors; they are not rendered touch targets.
   const targets = [];
   if (main) {
     main.querySelectorAll('button, a, [role="button"], input, [tabindex]:not([tabindex="-1"])').forEach((el) => {
       const r = el.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) return;
+      if (r.width <= 2 && r.height <= 2) return;
       targets.push({ w: +r.width.toFixed(0), h: +r.height.toFixed(0) });
     });
   }
@@ -118,6 +121,7 @@ const MEASURE = () => {
     dataSidebar: shell ? shell.getAttribute('data-sidebar') : null,
     dataMobileOpen: shell ? shell.getAttribute('data-mobile-open') : null,
     pointerCoarse: matchMedia('(pointer: coarse)').matches,
+    coarseZoom: getComputedStyle(de).getPropertyValue('--mj-coarse-zoom').trim() || null,
     topbarH: px(topbarH),
     dockVisible,
     dockH: px(dockH),
@@ -162,8 +166,10 @@ async function captureCell(browser, { name, route, width, height, coarse }) {
     await settle(page);
     let m = await page.evaluate(MEASURE);
 
-    // --- composition (B-6) ---
-    const expectTouch = coarse;
+    // --- composition (B-6, W-7/D-6: width-based) ---
+    // True phone widths (390/430) → touch shell. Desktop-mode-on-phone
+    // (980-coarse) → the DESKTOP composition, exactly like 1024/1440.
+    const expectTouch = name === '390' || name === '430';
     add('composition.touch-shell', expectTouch
       ? m.dataSidebar === 'drawer' && m.dockVisible
       : m.dataSidebar !== 'drawer' && !m.dockVisible,
@@ -176,53 +182,28 @@ async function captureCell(browser, { name, route, width, height, coarse }) {
     // --- chrome budget (B-5) ---
     if (name === '390') add('budget.chrome390', m.chromeRatio <= 15.5, m.chromeRatio, '≤ 15.5');
     if (name === '430') add('budget.chrome430', m.chromeRatio <= 14.5, m.chromeRatio, '≤ 14.5');
-    if (name === '980-coarse') add('budget.chrome980', m.chromeRatio <= 15.5, m.chromeRatio, '≤ 15.5');
+    if (name === '980-coarse') add('budget.chrome980', m.chromeRatio <= 15.5, m.chromeRatio, '≤ 15.5 (sidebar band)');
 
     // --- single-row topbar (B-5 / NAV-01) ---
     if (name === '390' || name === '430') add('topbar.single-row', m.topbarH <= 60, m.topbarH, '≤ 60px');
-    if (name === '980-coarse') add('topbar.scaled-row', m.topbarH >= 100 && m.topbarH <= 175, m.topbarH, '100–175px (56 × zoom)');
+    if (name === '980-coarse') add('topbar.single-row', m.topbarH <= 60, m.topbarH, '≤ 60px (native desktop row)');
 
     // --- touch targets (A-4) ---
-    if (coarse) {
+    if (name === '390' || name === '430') {
       const cap = route.tapUnder44Cap;
       add('targets.44px-floor', m.tapUnder44 <= cap, m.tapUnder44, `≤ ${cap} (frozen cap)`);
     }
-    if (name === '1024' || name === '1440') {
+    if (name === '980-coarse' || name === '1024' || name === '1440') {
       add('targets.24px-absolute', (m.tapMinH ?? 999) >= 24, m.tapMinH, '≥ 24px');
     }
 
-    // --- never-scale (R-RES-1a) — 980-coarse only --------------------------
+    // --- W-7 (D-6): desktop-mode-on-phone serves NATIVE desktop sizes -----
+    //     The never-scale rule (R-RES-1a) is retired with the zoom engine;
+    //     what must hold instead is that the sizes are the SAME native
+    //     values the fine-pointer desktop bands serve (pointer-blind).
     if (name === '980-coarse') {
-      const bodyEff = eff(m.bodyMaxPx);
-      const navEff = eff(parseFloat(m.navLinkPx));
-      const dockEff = eff(parseFloat(m.dockLabelPx));
-      const h1Eff = eff(parseFloat(m.h1Px));
-      add('neverscale.body', bodyEff != null && bodyEff >= 14, bodyEff, '≥ 14px effective');
-      add('neverscale.nav', navEff != null && navEff >= 12, navEff, '≥ 12px effective (phone label parity)');
-      add('neverscale.dock', dockEff != null && dockEff >= 10, dockEff, '≥ 10px effective (phone caption parity)');
-      add('neverscale.h1', h1Eff == null || h1Eff >= 14, h1Eff, '≥ 14px effective');
-      if (m.codePx) {
-        const codeEff = eff(parseFloat(m.codePx));
-        add('neverscale.mono', codeEff >= 11, codeEff, '≥ 11px effective');
-      }
-    }
-
-    // --- drawer opens on the touch shell (B-6, home only) ------------------
-    if (name === '980-coarse' && route.slug === 'home') {
-      try {
-        await page.click('.universal-shell-context > button');
-        await page.waitForTimeout(600);
-        const open = await page.evaluate(() => ({
-          open: document.querySelector('.universal-app-shell')?.getAttribute('data-mobile-open'),
-          vis: getComputedStyle(document.querySelector('.universal-shell-sidebar')).visibility,
-        }));
-        add('drawer.opens-wide', open.open === 'true' && open.vis === 'visible',
-          `data-mobile-open=${open.open} visibility=${open.vis}`, 'drawer opens at 980 coarse');
-        await page.keyboard.press('Escape');
-        await page.waitForTimeout(300);
-      } catch (e) {
-        add('drawer.opens-wide', false, String(e).split('\n')[0], 'drawer opens at 980 coarse');
-      }
+      add('d6mode.native-body', m.bodyMaxPx != null && m.bodyMaxPx >= 14, m.bodyMaxPx, '≥ 14px native (desktop ramp)');
+      add('d6mode.no-zoom-token', !m.coarseZoom, m.coarseZoom, 'no --mj-coarse-zoom token');
     }
 
     if (SHOTS && ['980-coarse', '390'].includes(name)) {

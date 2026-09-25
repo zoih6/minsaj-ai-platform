@@ -5,7 +5,7 @@ import type { Locale, ServiceScenarioId, ServiceSession, ServiceStage } from "@m
 import { getServiceDictionary } from "@minsaj/i18n/services";
 import { createDeterministicMockServiceClient, createServiceIdFactory } from "@minsaj/mock-api/services";
 import { ServiceWorkbenchProvider, useServiceWorkbench } from "@/features/service-workbench/state/workbench-provider";
-import { ServiceWorkbenchShell } from "@/features/service-workbench/components/service-workbench-shell";
+import { ServiceProductShell } from "@/features/service-workbench/components/service-product-shell";
 import type { ServiceDomainBlock, ServiceStoreStatus } from "@/features/service-workbench/storage/store";
 import type { ServiceWorkbenchSeed } from "@/features/service-workbench/state/reducer";
 import {
@@ -149,7 +149,7 @@ function CodeWorkspaceInner({ locale, scenarioId, restoredCodeState = null, init
   const stage = codeState.ui.stage;
 
   return (
-    <ServiceWorkbenchShell
+    <ServiceProductShell
       locale={locale}
       eyebrow={code.eyebrow}
       title={code.label}
@@ -218,7 +218,7 @@ function CodeWorkspaceInner({ locale, scenarioId, restoredCodeState = null, init
           />
         ) : null}
       </div>
-    </ServiceWorkbenchShell>
+    </ServiceProductShell>
   );
 }
 
