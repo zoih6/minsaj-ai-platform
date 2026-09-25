@@ -1498,11 +1498,33 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 @container ops-page (max-width: 1040px) {
   .settings-layout { grid-template-columns: 208px minmax(0,1fr); }
 }
+/* W8-3 · the section strip — the invisible wall is gone.
+   Root cause: `width: max-content` made the nav itself 1123px wide inside a
+   390px viewport (and ~1036px inside mid-width desktop windows) so options
+   were pushed past the screen edge with no way back. The nav is now the
+   SCROLL CONTAINER (max-width: 100%), rides a quiet card, hides its bar,
+   snaps while scrolling, and fades both edges so «more options» is legible
+   in RTL and LTR alike. Verified: every option is scrollable into view at
+   390/768/1024 — nothing lives past the viewport edge any more. */
 @container ops-page (max-width: 880px) {
   .settings-layout { grid-template-columns: minmax(0,1fr); gap: var(--mj-space-200); }
-  .settings-nav { position: static; }
-  .settings-nav nav { width: max-content; display: flex; scroll-snap-type: x proximity; overflow-x: auto; }
-  .settings-nav button { min-width: 148px; scroll-snap-align: start; }
+  .settings-layout > .settings-nav { position: static; padding: var(--mj-space-100); border: 1px solid var(--u-line); border-radius: var(--u-radius-card); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); }
+  .settings-layout > .settings-nav > p { padding: 0 var(--mj-space-50); }
+  .settings-nav nav {
+    max-width: 100%;
+    display: flex;
+    gap: var(--mj-space-50);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-block-end: 2px;
+    mask-image: linear-gradient(to left, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+  }
+  .settings-nav nav::-webkit-scrollbar { display: none; }
+  .settings-nav nav button { flex: 0 0 auto; min-width: 148px; padding: var(--mj-space-100) var(--mj-space-150); scroll-snap-align: start; border: 1px solid var(--u-line); border-radius: var(--u-radius-field); background: var(--u-surface-subtle); }
+  .settings-nav nav button.is-active { border-color: rgba(85, 76, 230, .38); background: var(--u-primary-soft); }
   .settings-nav button > svg:last-child { display: none; }
 }
 @container ops-page (max-width: 640px) {
