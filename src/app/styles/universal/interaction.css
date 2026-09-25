@@ -273,7 +273,9 @@
   border: 0;
   background: transparent;
   padding: 0;
-  margin-block-end: var(--mj-gap-md);
+  /* W-6 (SPC-02): no margin here — the .universal-library-page rhythm
+     column owns the breath (--mj-gap-block); this old --mj-gap-md
+     stacked on top of it (42.1px rendered). */
 }
 
 /* ---- 3c. Service tool row — retired: the de-boxed capability meta row

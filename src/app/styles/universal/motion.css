@@ -470,9 +470,11 @@
 }
 
 /* Keyboard focus rings that FOLLOW each surface's own radius.
-   Applies to cards and interactive tiles surfaced as links. */
+   Applies to cards and interactive tiles surfaced as links.
+   W-6 (ACC-02, R-ACC-1): values identical to the ONE focus treatment
+   (3px --u-primary-glow, offset 3px) — only the radius nicety is local. */
 :is(.universal-site, .universal-app-shell) :is(a, button):focus-visible {
-  outline: 2.5px solid var(--u-primary);
+  outline: 3px solid var(--u-primary-glow);
   outline-offset: 3px;
   border-radius: inherit;
 }
@@ -506,6 +508,8 @@
     --u-hover-veil: rgba(255, 255, 255, 0.16);
   }
   :is(.universal-site, .universal-app-shell) :is(a, button):focus-visible {
+    /* W-6 (ACC-02): the contrast-mode escalation is ONE width (3.5px) —
+       the previous 4px twin in responsive.css now matches this value. */
     outline-width: 3.5px;
   }
 }

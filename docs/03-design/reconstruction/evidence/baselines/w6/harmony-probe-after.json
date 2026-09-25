@@ -1,0 +1,1364 @@
+{
+  "base": "http://localhost:3100",
+  "generatedAt": "2026-09-24T23:57:46.992Z",
+  "cells": [
+    {
+      "route": "home",
+      "family": "home",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "800",
+        "lineHeight": "35.424px",
+        "text": "مرحبًا، ماذا تريد أن تنجز؟"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.adaptive-home",
+        "count": 2,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "chat",
+      "family": "gateway",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "اسأل وتحدّث"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.service-space",
+        "count": 2,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "learn",
+      "family": "domain",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "تعلّم بعمق"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 44.1,
+        "values": [
+          44.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "research",
+      "family": "domain",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "ابحث ووثّق"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 44.1,
+        "values": [
+          44.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "create",
+      "family": "domain",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "اكتب وصمّم"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 44.1,
+        "values": [
+          44.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "code",
+      "family": "domain",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "برمج وابنِ"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 44.1,
+        "values": [
+          44.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "analyze",
+      "family": "domain",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "حلّل وافهم"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 44.1,
+        "values": [
+          44.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "explore",
+      "family": "domain",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "35.424px",
+        "text": "استكشف واكتشف"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 44.1,
+        "values": [
+          44.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "library",
+      "family": "library",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "400",
+        "lineHeight": "45.1328px",
+        "text": "مكتبتي"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.universal-library-page",
+        "count": 2,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "settings",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "الإعدادات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 1,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "projects",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "المشاريع"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "agents",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "الوكلاء"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "flows",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "التدفقات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "knowledge",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "المعرفة"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 42.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1,
+          42.1
+        ]
+      }
+    },
+    {
+      "route": "models",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "النماذج والأدوات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 26.1,
+        "median": 28.1,
+        "max": 46.1,
+        "values": [
+          28.1,
+          46.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "runs",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "التشغيلات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "team",
+      "family": "ops",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "الفريق والأدوار"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 42.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1,
+          42.1
+        ]
+      }
+    },
+    {
+      "route": "usage",
+      "family": "usage",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "الاستخدام والتكلفة"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "billing",
+      "family": "usage",
+      "vp": "390",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "26.24px",
+        "fontWeight": "700",
+        "lineHeight": "36.736px",
+        "text": "الفوترة"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 26.1,
+        "median": 26.1,
+        "max": 26.1,
+        "values": [
+          26.1,
+          26.1,
+          26.1,
+          26.1
+        ]
+      }
+    },
+    {
+      "route": "home",
+      "family": "home",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "800",
+        "lineHeight": "45.9px",
+        "text": "مرحبًا، ماذا تريد أن تنجز؟"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.adaptive-home",
+        "count": 2,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "chat",
+      "family": "gateway",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "اسأل وتحدّث"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.service-space",
+        "count": 2,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "learn",
+      "family": "domain",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "تعلّم بعمق"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 66,
+        "values": [
+          66,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "research",
+      "family": "domain",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "ابحث ووثّق"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 66,
+        "values": [
+          66,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "create",
+      "family": "domain",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "اكتب وصمّم"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 66,
+        "values": [
+          66,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "code",
+      "family": "domain",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "برمج وابنِ"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 66,
+        "values": [
+          66,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "analyze",
+      "family": "domain",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "حلّل وافهم"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 66,
+        "values": [
+          66,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "explore",
+      "family": "domain",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "45.9px",
+        "text": "استكشف واكتشف"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "section.u2-workbench",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 66,
+        "values": [
+          66,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "library",
+      "family": "library",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "400",
+        "lineHeight": "58.48px",
+        "text": "مكتبتي"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.universal-library-page",
+        "count": 2,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "settings",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "الإعدادات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 1,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48
+        ]
+      }
+    },
+    {
+      "route": "projects",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "المشاريع"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "agents",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "الوكلاء"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "flows",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "التدفقات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "knowledge",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "المعرفة"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 64,
+        "values": [
+          48,
+          48,
+          48,
+          64
+        ]
+      }
+    },
+    {
+      "route": "models",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "النماذج والأدوات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 40,
+        "median": 48,
+        "max": 68,
+        "values": [
+          40,
+          68,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "runs",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "التشغيلات"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 3,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "team",
+      "family": "ops",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "الفريق والأدوار"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 64,
+        "values": [
+          48,
+          48,
+          48,
+          64
+        ]
+      }
+    },
+    {
+      "route": "usage",
+      "family": "usage",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "الاستخدام والتكلفة"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48,
+          48,
+          48
+        ]
+      }
+    },
+    {
+      "route": "billing",
+      "family": "usage",
+      "vp": "1440",
+      "hOverflow": false,
+      "h1": {
+        "fontSize": "34px",
+        "fontWeight": "700",
+        "lineHeight": "47.6px",
+        "text": "الفوترة"
+      },
+      "sectionGaps": {
+        "count": 0,
+        "min": null,
+        "median": null,
+        "max": null,
+        "values": []
+      },
+      "subSectionGaps": {
+        "root": "div.ops-page",
+        "count": 4,
+        "min": 48,
+        "median": 48,
+        "max": 48,
+        "values": [
+          48,
+          48,
+          48,
+          48
+        ]
+      }
+    }
+  ],
+  "shell": {
+    "768": {
+      "alertDot": "rgb(239, 68, 68)",
+      "kbd": {
+        "fontSize": "12.5px",
+        "text": "⌘K"
+      },
+      "tablet": {
+        "sidebarWidth": 264,
+        "sidebarVisible": true,
+        "mainInlineStartMargin": "0px",
+        "mainPushed": 264,
+        "labelVisible": true,
+        "dataSidebar": "expanded"
+      }
+    },
+    "1024": {
+      "alertDot": "rgb(239, 68, 68)",
+      "kbd": {
+        "fontSize": "12.5px",
+        "text": "⌘K"
+      },
+      "tablet": {
+        "sidebarWidth": 264,
+        "sidebarVisible": true,
+        "mainInlineStartMargin": "21.2656px",
+        "mainPushed": 285.3,
+        "labelVisible": true,
+        "dataSidebar": "expanded"
+      }
+    }
+  },
+  "focus": {
+    "home": {
+      "selector": "a.universal-shell-link",
+      "matchesFocusVisible": true,
+      "outlineWidth": "3px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(99, 102, 241, 0.25)",
+      "outlineOffset": "3px"
+    },
+    "settings": {
+      "selector": "a.universal-shell-link",
+      "matchesFocusVisible": true,
+      "outlineWidth": "3px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(99, 102, 241, 0.25)",
+      "outlineOffset": "3px"
+    }
+  },
+  "summary": {
+    "h1": {
+      "distinct390": [
+        "26.24px"
+      ],
+      "distinct390Count": 1,
+      "distinct1440": [
+        "34px"
+      ],
+      "distinct1440Count": 1
+    },
+    "rhythm": {
+      "families390": {
+        "home": {
+          "routes": 1,
+          "median": 26.1
+        },
+        "gateway": {
+          "routes": 1,
+          "median": 26.1
+        },
+        "domain": {
+          "routes": 6,
+          "median": 26.1
+        },
+        "library": {
+          "routes": 1,
+          "median": 26.1
+        },
+        "ops": {
+          "routes": 8,
+          "median": 26.1
+        },
+        "usage": {
+          "routes": 2,
+          "median": 26.1
+        }
+      },
+      "families1440": {
+        "home": {
+          "routes": 1,
+          "median": 48
+        },
+        "gateway": {
+          "routes": 1,
+          "median": 48
+        },
+        "domain": {
+          "routes": 6,
+          "median": 48
+        },
+        "library": {
+          "routes": 1,
+          "median": 48
+        },
+        "ops": {
+          "routes": 8,
+          "median": 48
+        },
+        "usage": {
+          "routes": 2,
+          "median": 48
+        }
+      },
+      "minGap390": 26.1
+    },
+    "overflow390": [],
+    "shell": {
+      "768": {
+        "alertDot": "rgb(239, 68, 68)",
+        "kbd": {
+          "fontSize": "12.5px",
+          "text": "⌘K"
+        },
+        "tablet": {
+          "sidebarWidth": 264,
+          "sidebarVisible": true,
+          "mainInlineStartMargin": "0px",
+          "mainPushed": 264,
+          "labelVisible": true,
+          "dataSidebar": "expanded"
+        }
+      },
+      "1024": {
+        "alertDot": "rgb(239, 68, 68)",
+        "kbd": {
+          "fontSize": "12.5px",
+          "text": "⌘K"
+        },
+        "tablet": {
+          "sidebarWidth": 264,
+          "sidebarVisible": true,
+          "mainInlineStartMargin": "21.2656px",
+          "mainPushed": 285.3,
+          "labelVisible": true,
+          "dataSidebar": "expanded"
+        }
+      }
+    },
+    "focus": {
+      "home": {
+        "selector": "a.universal-shell-link",
+        "matchesFocusVisible": true,
+        "outlineWidth": "3px",
+        "outlineStyle": "solid",
+        "outlineColor": "rgba(99, 102, 241, 0.25)",
+        "outlineOffset": "3px"
+      },
+      "settings": {
+        "selector": "a.universal-shell-link",
+        "matchesFocusVisible": true,
+        "outlineWidth": "3px",
+        "outlineStyle": "solid",
+        "outlineColor": "rgba(99, 102, 241, 0.25)",
+        "outlineOffset": "3px"
+      }
+    }
+  }
+}

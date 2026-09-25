@@ -57,9 +57,8 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   const viewport = useViewportMode();
   const isArabic = locale === "ar";
   const base = `/${locale}/app`;
-  const [collapsed, setCollapsed] = useState(false);          // desktop user preference
-  const [mobileOpen, setMobileOpen] = useState(false);        // mobile drawer
-  const [overlayOpen, setOverlayOpen] = useState(false);      // tablet expand-over-content
+  const [collapsed, setCollapsed] = useState(false);          // sidebar band preference (tablet + desktop — W-6/D-2)
+  const [mobileOpen, setMobileOpen] = useState(false);        // phone drawer (mobile band only — W-6/D-2: the tablet overlay died)
   const [commandOpen, setCommandOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [notificationsOpen, setNotificationsOpen] = useState(false);
@@ -189,17 +188,17 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   /* ------------------------------------------------------------------
      Sidebar state machine — one source of truth shared with shell.css
        mobile  → "drawer"   (off-canvas + overlay + bottom tab bar)
-       tablet  → overlayOpen ? "expanded"(overlay) : "rail"
+       tablet  → collapsed ? "rail" : "expanded"  (D-2/RES-02, W-6: the
+                 labeled expanded sidebar PUSHES content — same grammar as
+                 desktop; the old rail-default + expand-overlay died)
        desktop → collapsed ? "rail" : "expanded"
      ------------------------------------------------------------------ */
   const sidebarMode =
     viewport === "mobile" ? "drawer"
-    : viewport === "tablet" ? (overlayOpen ? "expanded" : "rail")
     : viewport === null ? "drawer" /* SSR first paint: mobile-safe */
     : (collapsed ? "rail" : "expanded");
-  const isOverlay = viewport === "tablet" && overlayOpen;
   const isDrawer = sidebarMode === "drawer";
-  const sidebarOpen = mobileOpen || isOverlay;
+  const sidebarOpen = mobileOpen;
   const railActive = sidebarMode === "rail";
 
   /* The deep-work routes (ask · code · analyze · explore) sit on the second
@@ -210,7 +209,10 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   const focusCanvasRoutes = [`${base}/chat`, `${base}/code`, `${base}/analyze`, `${base}/explore`];
   const focusCanvas = focusCanvasRoutes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
-  /* Restore desktop collapse preference (deferred — external system read) */
+  /* Restore the sidebar collapse preference (deferred — external system
+     read). W-6 (D-2): the preference now governs BOTH sidebar bands — the
+     tablet default is the labeled expanded sidebar; "collapsed" is the
+     user's rail choice, persisted exactly like the desktop band. */
   useEffect(() => {
     const stored = window.localStorage.getItem("minsaj.universal.sidebar");
     if (stored !== "collapsed") return;
@@ -231,13 +233,11 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
   if (lastRoute !== pathname) {
     setLastRoute(pathname);
     setMobileOpen(false);
-    setOverlayOpen(false);
   }
   const [lastViewport, setLastViewport] = useState(viewport);
   if (lastViewport !== viewport) {
     setLastViewport(viewport);
     setMobileOpen(false);
-    setOverlayOpen(false);
   }
 
   /* Scroll lock while drawer / overlay / dialogs are open */
@@ -257,7 +257,6 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
       }
       if (event.key === "Escape") {
         setMobileOpen(false);
-        setOverlayOpen(false);
         setNotificationsOpen(false);
       }
     }
@@ -281,14 +280,14 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
   function closeTransient() {
     setMobileOpen(false);
-    setOverlayOpen(false);
     setCommandOpen(false);
     setNotificationsOpen(false);
   }
 
   function toggleSidebar() {
     if (viewport === "mobile") { setMobileOpen((value) => !value); return; }
-    if (viewport === "tablet") { setOverlayOpen((value) => !value); return; }
+    /* W-6 (D-2): tablet joins the desktop grammar — collapse toggles the
+       persisted preference (rail ↔ labeled expanded, push). */
     setCollapsed((value) => {
       const next = !value;
       window.localStorage.setItem("minsaj.universal.sidebar", next ? "collapsed" : "expanded");
@@ -298,10 +297,10 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
 
   return (
     <Dialog.Root open={commandOpen} onOpenChange={setCommandOpen}>
-      <div className="universal-app-shell" data-sidebar={sidebarMode} data-overlay={isOverlay ? "true" : "false"} data-mobile-open={mobileOpen} data-canvas={focusCanvas ? "focus" : "standard"}>
+      <div className="universal-app-shell" data-sidebar={sidebarMode} data-mobile-open={mobileOpen} data-canvas={focusCanvas ? "focus" : "standard"}>
         <a className="skip-link" href="#main-content">{isArabic ? "انتقل إلى المحتوى" : "Skip to content"}</a>
 
-        <button type="button" className="universal-shell-backdrop" data-state={sidebarOpen ? "open" : "closed"} onClick={() => { setMobileOpen(false); setOverlayOpen(false); }} aria-label={labels.close} aria-hidden={!sidebarOpen} tabIndex={sidebarOpen ? 0 : -1} />
+        <button type="button" className="universal-shell-backdrop" data-state={sidebarOpen ? "open" : "closed"} onClick={() => { setMobileOpen(false); }} aria-label={labels.close} aria-hidden={!sidebarOpen} tabIndex={sidebarOpen ? 0 : -1} />
 
         <aside id="universal-shell-sidebar" className="universal-shell-sidebar" aria-label={isArabic ? "التنقل الرئيسي" : "Primary navigation"}>
           <div className="universal-shell-brand-row">
@@ -361,7 +360,7 @@ export function AppShell({ children, locale }: { children: ReactNode; locale: Lo
               above it (R-NAV-6 — the two-row search tray is gone). */}
           <header className="universal-shell-topbar">
             <div className="universal-shell-context">
-              <button type="button" onClick={toggleSidebar} aria-label={isDrawer ? labels.more : (railActive ? labels.expand : labels.collapse)} aria-expanded={sidebarOpen} aria-controls="universal-shell-sidebar"><Menu size={20} /></button>
+              <button type="button" onClick={toggleSidebar} aria-label={isDrawer ? labels.more : (railActive ? labels.expand : labels.collapse)} aria-expanded={mobileOpen} aria-controls="universal-shell-sidebar"><Menu size={20} /></button>
               <Link href={`/${locale}/app/home`} className="universal-shell-mark" aria-label={isArabic ? "منسج" : "Minsaj"}><MinsajMark size={28} /><b>{isArabic ? "منسج" : "Minsaj"}</b></Link>
             </div>
             <Dialog.Trigger asChild><button type="button" className="universal-shell-search" aria-label={labels.search} title={labels.search}><Search size={18} /><span>{labels.search}</span><kbd>⌘K</kbd></button></Dialog.Trigger>

@@ -1,7 +1,11 @@
 /* Adaptive home */
 /* W-DS Phase 5 (GRD-01): page container → ladder `full`; welcome lede →
    `prose`; the hero task card → `wide`. Was 1320/720/980 off-ladder. */
-.adaptive-home { width: min(var(--mj-container-full),100%); margin: 0 auto; container-type: inline-size; container-name: adaptive-home; }
+/* W-6 (HIE-01): the page container is a rhythm column — one breath
+   (--mj-gap-block, R-SPACE-2) between the hero and every section; the
+   sections' legacy top paddings (52–82px) are deleted so the tempo is
+   the SAME token every other route family rides. */
+.adaptive-home { width: min(var(--mj-container-full),100%); margin: 0 auto; container-type: inline-size; container-name: adaptive-home; display: flex; flex-direction: column; gap: var(--mj-space-600); }
 .adaptive-home__hero { position: relative; padding: clamp(22px,2.4vw,36px) clamp(18px,2.7vw,40px) clamp(26px,3vw,44px); overflow: hidden; border: 1px solid var(--u-glass-line); border-radius: var(--u-radius-card); background: var(--u-hero-surface); }
 .adaptive-home__hero::before { content: ""; position: absolute; inset: 0; opacity: .26; pointer-events: none; background-image: linear-gradient(rgba(var(--service-rgb),.08) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--service-rgb),.08) 1px,transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom,black,transparent 60%); }
 .adaptive-home__ambient { position: absolute; pointer-events: none; border-radius: 50%; }
@@ -10,7 +14,7 @@
 .adaptive-home__welcome { position: relative; display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 14px 30px; }
 .adaptive-home__eyebrow { display: flex; align-items: center; gap: var(--mj-gap-xs); color: var(--service); font-size: var(--u-text-md); font-weight: 700; }
 .adaptive-home__eyebrow > i { width: 3px; height: 3px; border-radius: 50%; background: var(--u-line-strong); }
-.adaptive-home__welcome h1 { margin: var(--mj-space-100) 0 0; color: var(--u-ink); font-size: var(--mj-text-hero); line-height: 1.25; }
+.adaptive-home__welcome h1 { margin: var(--mj-space-100) 0 0; color: var(--u-ink); font-size: var(--mj-text-h1); line-height: var(--mj-leading-h1); }
 /* R-RTL-1 (DESIGN-TOKENS §2): Arabic renders zero tracking at every level;
    the display level's Latin tracking (−0.02em) applies under [lang="en"] only. */
 html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
@@ -73,7 +77,7 @@ html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
 .adaptive-ready > div:last-child { display: grid; gap: var(--mj-gap-2xs); }
 .adaptive-ready > div:last-child a, .adaptive-ready > div:last-child button { min-height: var(--u-touch); padding-inline: var(--mj-space-150); display: inline-flex; align-items: center; justify-content: center; gap: var(--mj-gap-2xs); border: 0; border-radius: var(--u-radius-xs); text-decoration: none; font-size: var(--u-text-sm); cursor: pointer; }
 .adaptive-ready > div:last-child a { color: white; background: var(--service); }.adaptive-ready > div:last-child button { color: var(--u-muted); background: var(--u-raise); }
-.adaptive-section { padding: clamp(52px,6vw,82px) 2px 0; }
+.adaptive-section { padding: 0 2px; }
 .adaptive-section__head { margin-block-end: 20px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 25px; }
 .adaptive-section__head > div > span { color: var(--u-primary); font-size: var(--u-text-sm); font-weight: 700; text-transform: uppercase; }
 .adaptive-section__head h2 { margin: 5px 0 0; font-size: var(--mj-text-h2); }
@@ -152,7 +156,6 @@ html[lang="en"] .adaptive-home__welcome h1 { letter-spacing: -0.02em; }
   .adaptive-task-modes button.is-active { padding-inline: var(--mj-gap-sm); }
   .adaptive-task-composer__actions > div span { display: none; }
   .adaptive-task-submit { flex: 0 0 auto; }
-  .adaptive-home__welcome h1 { font-size: clamp(30px, 9.5vw, 38px); }
   .adaptive-ready { grid-template-columns: 38px minmax(0, 1fr); }
   .adaptive-ready > div:last-child { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }}
 

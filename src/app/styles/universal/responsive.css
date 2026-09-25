@@ -35,7 +35,9 @@
      (--u-line-strong base is now #8290b0 / 3.2:1 — the old #b9bccf
      override would have LOWERED boundary contrast). */
   :root { --u-line: #aab3cc; --u-line-strong: #5d6298; --u-muted: #4e5269; --u-faint: #555970; }
-  :is(.universal-site, .universal-app-shell) :focus-visible { outline-width: 4px; outline-color: var(--u-primary); }
+  /* W-6 (ACC-02): ONE contrast-mode ring width (3.5px — matches the
+     motion.css escalation); was a 4px twin of the same intent. */
+  :is(.universal-site, .universal-app-shell) :focus-visible { outline-width: 3.5px; outline-color: var(--u-primary); }
 }
 
 @media (forced-colors: active) {
@@ -117,10 +119,7 @@
     --mj-tabbar-reserve: calc(112px * var(--mj-coarse-zoom) + env(safe-area-inset-bottom, 0px));
   }
 
-  /* Legacy parallel system (IMP-02 debt): the ops family's .page-title
-     rides a raw clamp (globals.css) the token zoom cannot see — on this
-     band it would render BELOW the zoomed body text. Bind it to the ramp
-     token inside this band only; fine pointers keep the legacy value
-     (zero drift — the debt's retirement stays IMP-02's own wave). */
-  .page-title { font-size: var(--mj-text-h1); }
+  /* W-6 (HIE-01): .page-title now rides var(--mj-text-h1) globally
+     (globals.css), so the token zoom sees it on this band — the legacy
+     band-local rebind is retired. */
 }

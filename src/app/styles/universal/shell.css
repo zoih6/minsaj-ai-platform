@@ -289,7 +289,7 @@
     color: var(--u-faint); background: var(--u-surface-subtle);
   }
   .universal-shell-search span { display: block; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--mj-text-body-s); text-align: start; }
-  .universal-shell-search kbd { display: block; min-width: 36px; padding: 5px 8px; border: 1px solid var(--u-line); border-radius: var(--u-radius-xs); color: var(--u-faint); background: var(--u-surface-solid); font: 500 11px/1 "IBM Plex Mono", monospace; }
+  .universal-shell-search kbd { display: block; min-width: 36px; padding: 5px 8px; border: 1px solid var(--u-line); border-radius: var(--u-radius-xs); color: var(--u-faint); background: var(--u-surface-solid); /* W-6 (ACC-02): the kbd hint rides the ramp's code level — was a raw 11px under the 12.5px floor. */ font: 500 var(--mj-text-code)/1 "IBM Plex Mono", monospace; }
 }
 
 .universal-shell-actions { display: flex; align-items: center; justify-content: flex-end; gap: var(--mj-gap-xs); }
@@ -344,10 +344,24 @@
 .universal-shell-mobile-nav { display: none; }
 
 /* ==========================================================================
-   TABLET (≥768px, fine pointer): icon rail default · expanding overlays the content
+   TABLET (≥768px, fine pointer): labeled expanded sidebar (push) is the
+   DEFAULT — owner decision D-2 (matrix RES-02), accepted 2026-09-22 §7.1,
+   implemented in W-6: 19 destinations stay discoverable and the band reads
+   as one behavior (push, not overlay). The icon rail remains the
+   user-collapsed choice via the same preference the desktop band uses.
    ========================================================================== */
 @media (min-width: 768px) and (pointer: fine) {
   .universal-shell-close { display: none; }
+
+  .universal-app-shell[data-sidebar="expanded"] .universal-shell-sidebar {
+    width: var(--mj-sidebar-expanded);
+    transform: none; visibility: visible;
+    transition: width var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+  }
+  .universal-app-shell[data-sidebar="expanded"] .universal-shell-main {
+    margin-inline-start: var(--mj-sidebar-expanded);
+    transition: margin-inline-start var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
+  }
 
   .universal-app-shell[data-sidebar="rail"] .universal-shell-sidebar {
     width: var(--mj-sidebar-rail);
@@ -357,6 +371,7 @@
   }
   .universal-app-shell[data-sidebar="rail"] .universal-shell-main {
     margin-inline-start: var(--mj-sidebar-rail);
+    transition: margin-inline-start var(--u-motion-duration-moderate) var(--u-motion-ease-standard);
   }
   /* rail: center icons, hide all textual affordances
      (brand-row stacking handled by the .universal-shell-collapse rules above).
@@ -374,18 +389,7 @@
      other group — the disclosure affordance exists only in the drawer). */
   .universal-shell-nav__fold > summary { pointer-events: none; cursor: default; }
   .universal-shell-nav__fold > summary > svg { display: none; }
-
-  /* expanded on tablet = overlay drawer (content keeps rail offset) */
-  .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] .universal-shell-sidebar {
-    width: var(--mj-sidebar-expanded);
-    transform: none; visibility: visible;
-    box-shadow: 24px 0 70px rgba(9, 10, 25, 0.45);
-  }
-  .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] .universal-shell-main {
-    margin-inline-start: var(--mj-sidebar-rail);
-  }
-  .universal-app-shell[data-sidebar="expanded"][data-overlay="true"] ~ .mj-body-scroll-lock,
-  .universal-app-shell[data-overlay="true"] .universal-shell-backdrop[data-state="open"] { opacity: 1; visibility: visible; pointer-events: auto; }}
+}
 
 /* ==========================================================================
    DESKTOP (≥1024px, fine pointer): full sidebar pushes content; user may collapse to rail

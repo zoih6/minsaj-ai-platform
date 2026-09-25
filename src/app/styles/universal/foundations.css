@@ -457,7 +457,11 @@ a { color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 img, svg { max-width: 100%; height: auto; }
 
-:focus-visible { outline: 2.5px solid var(--u-primary); outline-offset: 3px; border-radius: 4px; }
+/* W-6 (ACC-02, R-ACC-1): the ONE focus treatment — 3px --u-primary-glow
+   ring, offset 3px, both themes. The per-surface variant in motion.css
+   carries these same values (plus its radius-inherit nicety) so every
+   matching rule agrees; the unlayered 2px globals duplicate is deleted. */
+:focus-visible { outline: 3px solid var(--u-primary-glow); outline-offset: 3px; }
 ::selection { background: #dde0fe; color: #1e1b4b; }
 :root[data-theme="dark"] ::selection { background: rgba(129, 140, 248, 0.34); color: #f4f5ff; }
 
@@ -512,7 +516,8 @@ img, svg { max-width: 100%; height: auto; }
 }
 html[lang="en"] :is(.universal-site, .universal-app-shell) { font-family: "Inter", "Tajawal", sans-serif; }
 
-:is(.universal-site, .universal-app-shell) :focus-visible { outline: 3px solid var(--u-primary-glow); outline-offset: 3px; }
+/* W-6 (ACC-02): deleted — the global :focus-visible rule above now carries
+   these exact values (one owner, identical declarations). */
 :is(.universal-site, .universal-app-shell) :is(h1, h2, h3, [id]) { scroll-margin-block-start: calc(var(--u-topbar) + 20px); }
 :is(.universal-site, .universal-app-shell) :is(button, input, textarea, select) { font: inherit; }
 :is(.universal-site, .universal-app-shell) :is(button, a, input, textarea, select) { -webkit-tap-highlight-color: transparent; }

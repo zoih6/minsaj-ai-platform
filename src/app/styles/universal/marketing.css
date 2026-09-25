@@ -194,4 +194,4 @@
 /* ---- Focus contract -------------------------------------------------------
    The global :focus-visible ring (globals.css) covers everything; keep
    utility-styled controls from dropping it. */
-.ms-site :is(a, button, input):focus-visible { outline-offset: 2px; }
+.ms-site :is(a, button, input):focus-visible { outline-offset: 3px; /* W-6 (ACC-02): one focus offset everywhere */ }

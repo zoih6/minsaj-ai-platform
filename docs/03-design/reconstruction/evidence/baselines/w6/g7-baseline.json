@@ -1,0 +1,5844 @@
+{
+ "_meta": {
+  "tool": "scripts/token-lint.mjs (G-7 custom checks · ERROR MODE since Phase 6 with --enforce)",
+  "spec": "docs/03-design/reconstruction/VISUAL-QA-CHECKLIST.md §4 · DESIGN-TOKENS.md",
+  "generatedAt": "2026-09-25T00:01:34.925Z",
+  "filesScanned": 16,
+  "auditBaseline": {
+   "distinctRawPaddings": 186,
+   "distinctShadows": 71,
+   "distinctRadii": 23,
+   "distinctFontSizes": 23,
+   "globalsSelectors": 1220
+  }
+ },
+ "headline": {
+  "files": [
+   "src/app/styles/universal/brand.css",
+   "src/app/styles/universal/foundations.css",
+   "src/app/styles/universal/home.css",
+   "src/app/styles/universal/interaction.css",
+   "src/app/styles/universal/layout.css",
+   "src/app/styles/universal/library.css",
+   "src/app/styles/universal/marketing.css",
+   "src/app/styles/universal/motion.css",
+   "src/app/styles/universal/radiance.css",
+   "src/app/styles/universal/responsive.css",
+   "src/app/styles/universal/shell.css",
+   "src/app/styles/universal/states.css",
+   "src/app/styles/universal/workbench.css",
+   "src/app/styles/universal/workspaces.css",
+   "src/app/globals.css"
+  ],
+  "rawSpacing": {
+   "occurrences": 769,
+   "distinct": 191
+  },
+  "rawPaddingOnly": {
+   "occurrences": 368,
+   "distinct": 129
+  },
+  "paddingAllDistinctPerFileSum": 189,
+  "undeclaredRadius": {
+   "occurrences": 27,
+   "distinct": 12
+  },
+  "rawShadow": {
+   "occurrences": 69,
+   "distinct": 58
+  },
+  "rawFontSize": {
+   "occurrences": 63,
+   "distinct": 18
+  },
+  "sub10Text": 0,
+  "trackingCandidates": 6,
+  "unpairedTracking": 0,
+  "globalsSelectors": 1614,
+  "componentClasses": [
+   "access-panel",
+   "adaptive-recent-card",
+   "adaptive-task-card",
+   "adaptive-why-card",
+   "agent-card",
+   "agent-preview-card",
+   "approval-decision-card",
+   "billing-balance-card",
+   "billing-plan-card",
+   "budget-policy-card",
+   "button",
+   "button--compact",
+   "button--danger",
+   "button--default",
+   "button--outline",
+   "button--primary",
+   "button--prominent",
+   "button--quiet",
+   "button--secondary",
+   "catalog-model-card",
+   "collection-sources-card",
+   "credit-balance-card",
+   "flow-canvas-panel",
+   "flow-card",
+   "glass-panel",
+   "icon-button",
+   "icon-button--danger",
+   "knowledge-collection-card",
+   "knowledge-sources-panel",
+   "learning-card",
+   "model-evaluation-card",
+   "model-limits-card",
+   "model-spec-card",
+   "payment-method-card",
+   "preview-panel-action",
+   "preview-panel-heading",
+   "preview-panel-heading--flow",
+   "preview-safety-card",
+   "preview-stage-panel",
+   "preview-status-card",
+   "processing-policy-card",
+   "project-brief-card",
+   "project-library-card",
+   "project-runs-card",
+   "provider-safety-card",
+   "retrieval-test-card",
+   "routing-mode-card",
+   "routing-payer-card",
+   "routing-sequence-card",
+   "run-output-card",
+   "run-plan-card",
+   "run-timeline-card",
+   "runs-table-card",
+   "send-button",
+   "service-start-button",
+   "skill-card",
+   "stop-button",
+   "team-member-card",
+   "team-table-card",
+   "tool-card",
+   "tool-catalog-card",
+   "u-skeleton-card",
+   "usage-breakdown-card",
+   "usage-chart-card",
+   "usage-cost-card",
+   "usage-ledger-card"
+  ],
+  "legacyTokenReferences": {
+   "total": 1095,
+   "byName": {
+    "u-text-md": 42,
+    "u-radius-sm": 151,
+    "mj-gap-xs": 184,
+    "mj-gap-md": 14,
+    "mj-gap-sm": 32,
+    "u-text-sm": 194,
+    "mj-gap-lg": 2,
+    "mj-gap-2xs": 31,
+    "u-text-xs": 357,
+    "u-text-xl": 7,
+    "u-text-lg": 13,
+    "u-radius": 30,
+    "u-radius-xs": 14,
+    "u-radius-lg": 13,
+    "mj-text-body": 9,
+    "mj-gap-block": 2
+   }
+  }
+ },
+ "totals": {
+  "rawSpacing": 769,
+  "undeclaredRadius": 27,
+  "rawShadow": 69,
+  "sub10Text": 0,
+  "rawFontSize": 63,
+  "trackingCandidates": 6,
+  "unpairedTracking": 0,
+  "legacyTokenReferences": 1095,
+  "componentClasses": 66
+ },
+ "perFile": {
+  "src/app/globals.css": {
+   "declarations": 4468
+  },
+  "src/app/styles/universal/brand.css": {
+   "declarations": 23
+  },
+  "src/app/styles/universal/foundations.css": {
+   "declarations": 141
+  },
+  "src/app/styles/universal/home.css": {
+   "declarations": 605
+  },
+  "src/app/styles/universal/interaction.css": {
+   "declarations": 290
+  },
+  "src/app/styles/universal/layout.css": {
+   "declarations": 200
+  },
+  "src/app/styles/universal/library.css": {
+   "declarations": 199
+  },
+  "src/app/styles/universal/marketing.css": {
+   "declarations": 98
+  },
+  "src/app/styles/universal/motion.css": {
+   "declarations": 342
+  },
+  "src/app/styles/universal/radiance.css": {
+   "declarations": 34
+  },
+  "src/app/styles/universal/responsive.css": {
+   "declarations": 9
+  },
+  "src/app/styles/universal/shell.css": {
+   "declarations": 717
+  },
+  "src/app/styles/universal/states.css": {
+   "declarations": 200
+  },
+  "src/app/styles/universal/workbench.css": {
+   "declarations": 2769
+  },
+  "src/app/styles/universal/workspaces.css": {
+   "declarations": 824
+  },
+  "src/app/universal.css": {
+   "declarations": 20
+  }
+ },
+ "findings": {
+  "rawSpacing": [
+   {
+    "file": "src/app/globals.css",
+    "line": 22,
+    "prop": "margin",
+    "value": "-1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 96,
+    "prop": "padding",
+    "value": "40px 24px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 98,
+    "prop": "margin",
+    "value": "10px 0 24px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 99,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 113,
+    "prop": "margin-block-end",
+    "value": "28px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 115,
+    "prop": "margin",
+    "value": "0 0 5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 123,
+    "prop": "margin",
+    "value": "7px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 124,
+    "prop": "gap",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 124,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 126,
+    "prop": "margin",
+    "value": "3px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 133,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 135,
+    "prop": "margin",
+    "value": "8px auto 26px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 136,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 138,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 139,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 140,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 140,
+    "prop": "padding-inline",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 146,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 147,
+    "prop": "padding",
+    "value": "12px 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 152,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 155,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 157,
+    "prop": "margin",
+    "value": "3px 5px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 157,
+    "prop": "padding",
+    "value": "5px 7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 157,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 162,
+    "prop": "padding",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 163,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 163,
+    "prop": "padding",
+    "value": "8px 9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 176,
+    "prop": "gap",
+    "value": "28px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 176,
+    "prop": "padding",
+    "value": "30px 0 90px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 177,
+    "prop": "padding",
+    "value": "12px 15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 180,
+    "prop": "margin-block-start",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 180,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 180,
+    "prop": "padding",
+    "value": "4px 7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 181,
+    "prop": "gap",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 184,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 186,
+    "prop": "margin",
+    "value": "9px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 187,
+    "prop": "margin-inline-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 190,
+    "prop": "margin-block-start",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 190,
+    "prop": "padding-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 192,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 230,
+    "prop": "gap",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 241,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 241,
+    "prop": "margin-inline-end",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 249,
+    "prop": "padding-block",
+    "value": "62px 42px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 261,
+    "prop": "margin",
+    "value": "18px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 262,
+    "prop": "gap",
+    "value": "8px 18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 263,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 265,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 268,
+    "prop": "margin",
+    "value": "18px 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 270,
+    "prop": "padding-block",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 270,
+    "prop": "gap",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 283,
+    "prop": "padding-inline",
+    "value": "14px 18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 291,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 295,
+    "prop": "margin-block-start",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 296,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 298,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 300,
+    "prop": "padding-inline-start",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 303,
+    "prop": "padding",
+    "value": "12px 9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 314,
+    "prop": "padding",
+    "value": "10px 20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 314,
+    "prop": "gap",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 319,
+    "prop": "padding",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 320,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 325,
+    "prop": "padding",
+    "value": "11px 15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 325,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 336,
+    "prop": "margin-inline-end",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 345,
+    "prop": "gap",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 348,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 349,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 350,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 354,
+    "prop": "margin-block-start",
+    "value": "26px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 354,
+    "prop": "padding",
+    "value": "13px 15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 359,
+    "prop": "margin-block-start",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 363,
+    "prop": "margin",
+    "value": "7px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 364,
+    "prop": "margin-block-start",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 365,
+    "prop": "padding",
+    "value": "11px 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 365,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 370,
+    "prop": "padding",
+    "value": "10px 11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 373,
+    "prop": "padding-block-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 373,
+    "prop": "gap",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 374,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 379,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 383,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 390,
+    "prop": "padding",
+    "value": "3px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 391,
+    "prop": "padding-block",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 393,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 395,
+    "prop": "margin",
+    "value": "3px 20px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 396,
+    "prop": "margin",
+    "value": "3px 0 0 20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 397,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 397,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 398,
+    "prop": "padding-inline",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 398,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 401,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 402,
+    "prop": "padding",
+    "value": "36px 22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 403,
+    "prop": "gap",
+    "value": "26px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 404,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 408,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 418,
+    "prop": "gap",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 422,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 423,
+    "prop": "padding",
+    "value": "11px 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 429,
+    "prop": "padding",
+    "value": "12px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 432,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 435,
+    "prop": "margin-block-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 440,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 442,
+    "prop": "padding",
+    "value": "15px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 451,
+    "prop": "gap",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 452,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 452,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 455,
+    "prop": "padding",
+    "value": "12px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 457,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 461,
+    "prop": "padding-block",
+    "value": "76px 84px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 461,
+    "prop": "gap",
+    "value": "36px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 468,
+    "prop": "gap",
+    "value": "34px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 479,
+    "prop": "padding-block",
+    "value": "46px 30px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 487,
+    "prop": "margin-block-start",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 495,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 496,
+    "prop": "padding-block",
+    "value": "38px 24px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 496,
+    "prop": "gap",
+    "value": "25px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 499,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 500,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 502,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 504,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 508,
+    "prop": "padding",
+    "value": "17px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 510,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 511,
+    "prop": "margin-block-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 512,
+    "prop": "margin-block-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 523,
+    "prop": "padding",
+    "value": "24px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 530,
+    "prop": "padding-block",
+    "value": "56px 62px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 532,
+    "prop": "margin-block-start",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 541,
+    "prop": "margin",
+    "value": "0 0 3px !important"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 542,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 542,
+    "prop": "margin-block-end",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 552,
+    "prop": "gap",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 552,
+    "prop": "margin",
+    "value": "0 0 20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 553,
+    "prop": "padding",
+    "value": "16px 18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 553,
+    "prop": "gap",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 579,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 583,
+    "prop": "padding",
+    "value": "30px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 584,
+    "prop": "margin-block-end",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 586,
+    "prop": "margin",
+    "value": "3px 0 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 587,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 587,
+    "prop": "padding",
+    "value": "12px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 601,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 603,
+    "prop": "margin-block",
+    "value": "14px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 605,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 606,
+    "prop": "padding-block",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 607,
+    "prop": "padding-inline",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 609,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 611,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 612,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 614,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 616,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 616,
+    "prop": "margin",
+    "value": "14px -17px -17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 616,
+    "prop": "padding",
+    "value": "11px 17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 624,
+    "prop": "padding",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 625,
+    "prop": "margin-block-end",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 628,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 628,
+    "prop": "margin-block-end",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 629,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 632,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 633,
+    "prop": "margin-block-end",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 634,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 636,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 639,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 640,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 640,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 640,
+    "prop": "padding",
+    "value": "9px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 642,
+    "prop": "margin-block-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 642,
+    "prop": "padding-block-start",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 645,
+    "prop": "gap",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 645,
+    "prop": "margin-block-end",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 646,
+    "prop": "gap",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 648,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 648,
+    "prop": "margin-block-end",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 651,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 652,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 653,
+    "prop": "margin-block-end",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 656,
+    "prop": "gap",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 657,
+    "prop": "gap",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 658,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 659,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 662,
+    "prop": "margin-block-start",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 664,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 664,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 665,
+    "prop": "margin-block-start",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 666,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 667,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 667,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 678,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 678,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 687,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 689,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 691,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 694,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 696,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 698,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 702,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 705,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 705,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 712,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 712,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 731,
+    "prop": "padding-block-end",
+    "value": "calc(92px + env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 734,
+    "prop": "padding-block-end",
+    "value": "calc(80px + env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 735,
+    "prop": "padding",
+    "value": "10px 16px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 736,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 742,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 743,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 746,
+    "prop": "padding",
+    "value": "15px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 747,
+    "prop": "padding",
+    "value": "0 8px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 749,
+    "prop": "gap",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 750,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 750,
+    "prop": "padding",
+    "value": "6px 8px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 758,
+    "prop": "margin",
+    "value": "20px 8px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 758,
+    "prop": "padding-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 760,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 762,
+    "prop": "padding",
+    "value": "30px clamp(20px,4vw,54px)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 767,
+    "prop": "margin",
+    "value": "3px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 771,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 774,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 775,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 775,
+    "prop": "padding",
+    "value": "7px 9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 778,
+    "prop": "padding-inline-start",
+    "value": "34px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 781,
+    "prop": "padding",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 787,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 787,
+    "prop": "padding",
+    "value": "9px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 802,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 808,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 810,
+    "prop": "margin-block-start",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 810,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 811,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 816,
+    "prop": "margin",
+    "value": "13px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 817,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 818,
+    "prop": "padding",
+    "value": "3px 7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 819,
+    "prop": "margin",
+    "value": "34px auto 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 819,
+    "prop": "padding-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 821,
+    "prop": "padding",
+    "value": "18px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 823,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 825,
+    "prop": "margin",
+    "value": "10px 0 3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 826,
+    "prop": "margin",
+    "value": "0 0 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 827,
+    "prop": "margin",
+    "value": "13px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 828,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 831,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 841,
+    "prop": "padding",
+    "value": "14px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 842,
+    "prop": "padding",
+    "value": "0 7px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 845,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 853,
+    "prop": "margin-block-start",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 855,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 855,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 855,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 859,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 861,
+    "prop": "padding-inline",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 869,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 872,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 876,
+    "prop": "margin-block-start",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 878,
+    "prop": "padding",
+    "value": "1px 5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 882,
+    "prop": "padding",
+    "value": "3px 6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 883,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 883,
+    "prop": "padding",
+    "value": "9px 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 890,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 893,
+    "prop": "padding",
+    "value": "15px 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 894,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 901,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 901,
+    "prop": "margin-block",
+    "value": "5px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 902,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 906,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 906,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 909,
+    "prop": "padding",
+    "value": "50px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 912,
+    "prop": "margin-block-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 912,
+    "prop": "padding-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 914,
+    "prop": "padding-block",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 919,
+    "prop": "gap",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 919,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 919,
+    "prop": "padding",
+    "value": "12px 14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 926,
+    "prop": "gap",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 928,
+    "prop": "padding",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 930,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 942,
+    "prop": "margin",
+    "value": "0 0 10px 8px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 942,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 943,
+    "prop": "margin",
+    "value": "0 8px 10px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 945,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 948,
+    "prop": "margin-block-start",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 949,
+    "prop": "margin-block-start",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 949,
+    "prop": "padding-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 952,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 952,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 957,
+    "prop": "padding",
+    "value": "8px 34px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 958,
+    "prop": "padding-block",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 960,
+    "prop": "padding-inline",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 961,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 966,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 968,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 969,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 972,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 972,
+    "prop": "padding-block",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 977,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 980,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 983,
+    "prop": "margin",
+    "value": "9px 0 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 984,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 985,
+    "prop": "margin",
+    "value": "0 0 6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 986,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 988,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 988,
+    "prop": "margin-block",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 988,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 991,
+    "prop": "margin",
+    "value": "1px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 992,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1001,
+    "prop": "margin-block-end",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1002,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1002,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1008,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1008,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1027,
+    "prop": "padding",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1037,
+    "prop": "margin-block",
+    "value": "15px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1039,
+    "prop": "margin",
+    "value": "14px -17px -17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1039,
+    "prop": "padding",
+    "value": "11px 17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1052,
+    "prop": "padding",
+    "value": "24px 18px 34px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1066,
+    "prop": "margin-block-start",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1079,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1081,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1082,
+    "prop": "padding",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1090,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1092,
+    "prop": "gap",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1119,
+    "prop": "padding",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1123,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1135,
+    "prop": "margin-block-start",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1142,
+    "prop": "margin-block",
+    "value": "-8px 20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1143,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1143,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1160,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1163,
+    "prop": "gap",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1163,
+    "prop": "margin-block-end",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1168,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1170,
+    "prop": "gap",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1171,
+    "prop": "gap",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1174,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1174,
+    "prop": "padding",
+    "value": "9px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1180,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1183,
+    "prop": "margin",
+    "value": "3px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1185,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1185,
+    "prop": "margin-block-end",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1189,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1190,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1190,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1194,
+    "prop": "padding",
+    "value": "9px 39px 9px 9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1195,
+    "prop": "padding",
+    "value": "9px 9px 9px 39px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1200,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1200,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1203,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1204,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1206,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1208,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1216,
+    "prop": "margin",
+    "value": "7px 0 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1218,
+    "prop": "padding",
+    "value": "2px 5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1221,
+    "prop": "gap",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1221,
+    "prop": "margin",
+    "value": "10px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1222,
+    "prop": "padding",
+    "value": "9px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1225,
+    "prop": "margin",
+    "value": "12px -15px -15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1225,
+    "prop": "padding",
+    "value": "10px 15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1227,
+    "prop": "gap",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1227,
+    "prop": "margin",
+    "value": "18px auto 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1227,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1232,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1233,
+    "prop": "padding",
+    "value": "4px 6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1235,
+    "prop": "padding",
+    "value": "21px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1239,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1244,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1247,
+    "prop": "gap",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1247,
+    "prop": "margin-block-end",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1250,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1253,
+    "prop": "gap",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1254,
+    "prop": "padding",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1255,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1256,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1261,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1263,
+    "prop": "margin",
+    "value": "0 0 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1265,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1268,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1268,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1268,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1271,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1272,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1275,
+    "prop": "margin",
+    "value": "13px 0 4px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1277,
+    "prop": "margin",
+    "value": "10px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1278,
+    "prop": "padding-block",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1281,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1281,
+    "prop": "margin-block-end",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1285,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1292,
+    "prop": "padding",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1294,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1296,
+    "prop": "margin",
+    "value": "3px 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1297,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1303,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1306,
+    "prop": "gap",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1306,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1312,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1313,
+    "prop": "margin",
+    "value": "0 0 7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1314,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1314,
+    "prop": "padding",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1316,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1325,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1326,
+    "prop": "padding-inline",
+    "value": "10px 30px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1327,
+    "prop": "gap",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1329,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1329,
+    "prop": "padding-block",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1331,
+    "prop": "gap",
+    "value": "clamp(4px,1vw,11px)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1336,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1337,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1342,
+    "prop": "margin",
+    "value": "15px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1344,
+    "prop": "margin-block",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1346,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1348,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1349,
+    "prop": "padding-block",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1350,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1353,
+    "prop": "margin-block-start",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1356,
+    "prop": "padding",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1357,
+    "prop": "padding-inline",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1359,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1360,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1366,
+    "prop": "margin-block-start",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1368,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1368,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1374,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1380,
+    "prop": "margin-block",
+    "value": "8px 15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1381,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1387,
+    "prop": "gap",
+    "value": "1px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1388,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1393,
+    "prop": "margin-block-start",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1394,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1395,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1399,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1399,
+    "prop": "margin-block-end",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1399,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1408,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1454,
+    "prop": "padding-inline-start",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1493,
+    "prop": "padding-inline",
+    "value": "var(--mj-space-100) 25px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1522,
+    "prop": "gap",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1523,
+    "prop": "padding",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1527,
+    "prop": "margin",
+    "value": "15px 0 0"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1529,
+    "prop": "margin-block",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1531,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1537,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1538,
+    "prop": "padding-block",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1541,
+    "prop": "margin-block-start",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1542,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1543,
+    "prop": "margin-block",
+    "value": "3px 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1543,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1546,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1546,
+    "prop": "margin-block-start",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1547,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1551,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1554,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1554,
+    "prop": "margin-block",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1554,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1560,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1562,
+    "prop": "margin",
+    "value": "0 0 10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1563,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1564,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1571,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1571,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1573,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1574,
+    "prop": "padding-inline",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1576,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1576,
+    "prop": "padding-inline-start",
+    "value": "25px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1577,
+    "prop": "margin-inline-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1579,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1580,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1581,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1599,
+    "prop": "gap",
+    "value": "0 20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1614,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1626,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1636,
+    "prop": "padding",
+    "value": "12px 12px 6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1638,
+    "prop": "padding",
+    "value": "7px 0 5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1646,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1647,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1740,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1770,
+    "prop": "margin",
+    "value": "15px -18px -18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1770,
+    "prop": "padding",
+    "value": "12px 18px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1799,
+    "prop": "margin-block-end",
+    "value": "26px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1843,
+    "prop": "padding",
+    "value": "18px 16px calc(18px + env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/styles/universal/foundations.css",
+    "line": 482,
+    "prop": "margin",
+    "value": "-1px"
+   },
+   {
+    "file": "src/app/styles/universal/foundations.css",
+    "line": 489,
+    "prop": "padding",
+    "value": "10px 16px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 9,
+    "prop": "padding",
+    "value": "clamp(22px,2.4vw,36px) clamp(18px,2.7vw,40px) clamp(26px,3vw,44px)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 14,
+    "prop": "gap",
+    "value": "14px 30px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 21,
+    "prop": "margin",
+    "value": "9px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 22,
+    "prop": "padding-inline",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 49,
+    "prop": "padding",
+    "value": "13px 13px 10px 55px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 50,
+    "prop": "padding",
+    "value": "13px 55px 10px 13px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 53,
+    "prop": "padding",
+    "value": "3px 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 62,
+    "prop": "margin-inline-start",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 63,
+    "prop": "padding-inline",
+    "value": "16px 13px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 64,
+    "prop": "padding-inline",
+    "value": "10px 13px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 68,
+    "prop": "padding",
+    "value": "8px 3px 2px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 69,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 74,
+    "prop": "margin",
+    "value": "8px 3px 2px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 80,
+    "prop": "padding",
+    "value": "0 2px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 81,
+    "prop": "margin-block-end",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 81,
+    "prop": "gap",
+    "value": "14px 25px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 83,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 84,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 94,
+    "prop": "padding-inline",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 96,
+    "prop": "margin",
+    "value": "17px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 96,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 97,
+    "prop": "padding-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 107,
+    "prop": "padding",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 109,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 109,
+    "prop": "margin-block-start",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 111,
+    "prop": "margin",
+    "value": "17px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 111,
+    "prop": "margin",
+    "value": "6px 0 17px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 115,
+    "prop": "padding",
+    "value": "clamp(18px,2.4vw,28px)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 119,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 120,
+    "prop": "margin",
+    "value": "20px 0 9px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 122,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 126,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 127,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 128,
+    "prop": "margin-block-start",
+    "value": "17px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 128,
+    "prop": "padding-block-start",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 144,
+    "prop": "margin-block",
+    "value": "6px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 150,
+    "prop": "padding",
+    "value": "14px 14px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 167,
+    "prop": "padding",
+    "value": "18px 16px calc(18px + env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 172,
+    "prop": "margin-inline",
+    "value": "-16px"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 172,
+    "prop": "padding",
+    "value": "12px 16px calc(12px + env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 33,
+    "prop": "padding-block-end",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 224,
+    "prop": "padding",
+    "value": "6px 0"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 455,
+    "prop": "padding",
+    "value": "16px 14px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 474,
+    "prop": "padding",
+    "value": "10px 10px 10px 14px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 482,
+    "prop": "padding",
+    "value": "10px 14px 10px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/layout.css",
+    "line": 220,
+    "prop": "padding",
+    "value": "10px clamp(12px, 1vw + 8px, 18px)"
+   },
+   {
+    "file": "src/app/styles/universal/layout.css",
+    "line": 245,
+    "prop": "padding",
+    "value": "var(--mj-space-150) clamp(12px, 1vw + 8px, 18px)"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 7,
+    "prop": "padding",
+    "value": "5px 2px 25px"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 7,
+    "prop": "gap",
+    "value": "14px 30px"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 7,
+    "prop": "margin",
+    "value": "6px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 9,
+    "prop": "margin",
+    "value": "7px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 19,
+    "prop": "gap",
+    "value": "clamp(10px,1.3vw,18px)"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "padding",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "margin",
+    "value": "5px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "padding-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "margin",
+    "value": "10px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 31,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 129,
+    "prop": "margin",
+    "value": "6px auto 0"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 133,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 150,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 153,
+    "prop": "margin-block-start",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 184,
+    "prop": "margin",
+    "value": "3px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 185,
+    "prop": "margin-block-start",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 201,
+    "prop": "margin-block-start",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 222,
+    "prop": "padding",
+    "value": "7px 7px 7px 13px"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 270,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 28,
+    "prop": "padding",
+    "value": "14px 12px max(14px, env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 54,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 59,
+    "prop": "padding",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 87,
+    "prop": "padding",
+    "value": "6px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 120,
+    "prop": "padding",
+    "value": "0 12px 1px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 121,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 152,
+    "prop": "padding",
+    "value": "6px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 211,
+    "prop": "padding",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 220,
+    "prop": "padding",
+    "value": "6px 9px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 292,
+    "prop": "padding",
+    "value": "5px 8px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 322,
+    "prop": "padding-block",
+    "value": "clamp(16px, 2vw, 32px) clamp(24px, 3vw, 56px)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 324,
+    "prop": "padding-block-end",
+    "value": "calc(clamp(24px, 3vw, 56px) + var(--mj-tabbar-reserve, 0px))"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 369,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 384,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 421,
+    "prop": "padding-block",
+    "value": "clamp(24px, 2vw, 40px)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 500,
+    "prop": "padding-inline",
+    "value": "15px 9px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 507,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 537,
+    "prop": "padding",
+    "value": "8px 9px 8px 17px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 538,
+    "prop": "padding",
+    "value": "8px 17px 8px 9px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 544,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 545,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 546,
+    "prop": "padding",
+    "value": "6px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 559,
+    "prop": "padding-block-end",
+    "value": "calc(14px + env(safe-area-inset-bottom))"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 52,
+    "prop": "margin-block",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 78,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 109,
+    "prop": "gap",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 110,
+    "prop": "padding",
+    "value": "14px 16px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 133,
+    "prop": "gap",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 142,
+    "prop": "gap",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 146,
+    "prop": "padding-block",
+    "value": "clamp(18px, 3vw, 40px)"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 152,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 166,
+    "prop": "margin",
+    "value": "-1px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 183,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 184,
+    "prop": "padding",
+    "value": "clamp(36px, 6vw, 72px) 20px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 217,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 221,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 242,
+    "prop": "gap",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 243,
+    "prop": "padding",
+    "value": "clamp(28px, 5vw, 56px) clamp(20px, 4vw, 44px)"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 286,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 294,
+    "prop": "margin-block-start",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 301,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 321,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/states.css",
+    "line": 322,
+    "prop": "padding",
+    "value": "3px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 10,
+    "prop": "padding-block-end",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 12,
+    "prop": "margin",
+    "value": "6px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 13,
+    "prop": "margin",
+    "value": "6px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 14,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 21,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 22,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 25,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 27,
+    "prop": "margin-block-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 27,
+    "prop": "padding",
+    "value": "clamp(14px, 1.6vw, 22px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 31,
+    "prop": "margin",
+    "value": "6px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 33,
+    "prop": "padding",
+    "value": "2px 6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 48,
+    "prop": "padding",
+    "value": "7px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 60,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 71,
+    "prop": "padding-inline-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 78,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 87,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 89,
+    "prop": "padding",
+    "value": "9px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 91,
+    "prop": "padding",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 93,
+    "prop": "margin",
+    "value": "3px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 94,
+    "prop": "margin",
+    "value": "0 0 5px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 96,
+    "prop": "padding-inline-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 97,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 98,
+    "prop": "margin",
+    "value": "-1px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 143,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 144,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 145,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 150,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 154,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 155,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 157,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 165,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 178,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 181,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 183,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 184,
+    "prop": "padding",
+    "value": "8px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 225,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 226,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 227,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 232,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 236,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 237,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 240,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 245,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 253,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 255,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 257,
+    "prop": "padding-inline-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 280,
+    "prop": "padding",
+    "value": "6px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 300,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 305,
+    "prop": "margin",
+    "value": "0 0 6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 306,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 356,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 357,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 358,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 362,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 365,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 369,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 373,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 374,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 379,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 386,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 388,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 394,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 395,
+    "prop": "padding",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 396,
+    "prop": "margin",
+    "value": "0 0 6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 398,
+    "prop": "padding",
+    "value": "3px 9px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 418,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 429,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 432,
+    "prop": "margin",
+    "value": "6px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 434,
+    "prop": "padding-inline-start",
+    "value": "22px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 440,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 446,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 455,
+    "prop": "margin-inline-end",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 458,
+    "prop": "padding",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 469,
+    "prop": "margin-top",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 483,
+    "prop": "margin-top",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 537,
+    "prop": "margin-block-start",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 538,
+    "prop": "padding-block-end",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 629,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 630,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 633,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 637,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 638,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 644,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 654,
+    "prop": "padding",
+    "value": "3px 7px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 659,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 662,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 663,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 665,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 667,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 670,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 675,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 685,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 687,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 702,
+    "prop": "padding",
+    "value": "4px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 711,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 738,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 739,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 740,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 743,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 747,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 748,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 754,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 760,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 761,
+    "prop": "padding",
+    "value": "3px 9px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 768,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 768,
+    "prop": "padding",
+    "value": "7px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 771,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 783,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 786,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 787,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 789,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 791,
+    "prop": "padding-inline-start",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 794,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 811,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 818,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 823,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 825,
+    "prop": "padding",
+    "value": "4px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 830,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 833,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 859,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 860,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 863,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 867,
+    "prop": "padding-inline",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 868,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 874,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 888,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 888,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 894,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 902,
+    "prop": "padding-inline",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 903,
+    "prop": "padding",
+    "value": "4px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 906,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 87,
+    "prop": "padding-block",
+    "value": "6px 24px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 150,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 158,
+    "prop": "padding-block-end",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 178,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 178,
+    "prop": "gap",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 185,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 189,
+    "prop": "margin",
+    "value": "10px 4px 0"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 197,
+    "prop": "padding",
+    "value": "12px 14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 255,
+    "prop": "padding",
+    "value": "14px 16px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 260,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 318,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 356,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 359,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 404,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 404,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 425,
+    "prop": "margin",
+    "value": "-1px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 437,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 442,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 443,
+    "prop": "padding",
+    "value": "5px 8px 5px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 477,
+    "prop": "padding-inline",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 519,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 631,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 636,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 636,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 639,
+    "prop": "padding",
+    "value": "4px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 642,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 658,
+    "prop": "padding",
+    "value": "10px 14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 683,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 686,
+    "prop": "padding-inline",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 704,
+    "prop": "padding-inline",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 726,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 733,
+    "prop": "padding",
+    "value": "9px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 813,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 814,
+    "prop": "padding",
+    "value": "5px 11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 826,
+    "prop": "padding",
+    "value": "10px 12px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 838,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 859,
+    "prop": "padding",
+    "value": "18px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 862,
+    "prop": "margin",
+    "value": "10px 0 0"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 864,
+    "prop": "margin-block",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 865,
+    "prop": "padding",
+    "value": "12px 14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 868,
+    "prop": "gap",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 878,
+    "prop": "margin-block-start",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 907,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 918,
+    "prop": "gap",
+    "value": "40px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 919,
+    "prop": "margin-block-end",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 919,
+    "prop": "gap",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 965,
+    "prop": "padding",
+    "value": "11px 14px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 993,
+    "prop": "gap",
+    "value": "5px"
+   }
+  ],
+  "undeclaredRadius": [
+   {
+    "file": "src/app/globals.css",
+    "line": 357,
+    "prop": "border-radius",
+    "value": "7px 7px 2px 7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 358,
+    "prop": "border-radius",
+    "value": "7px 7px 7px 2px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1770,
+    "prop": "border-radius",
+    "value": "0 0 18px 18px"
+   },
+   {
+    "file": "src/app/styles/universal/foundations.css",
+    "line": 473,
+    "prop": "border-radius",
+    "value": "99px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 55,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 78,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 98,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 122,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 147,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 170,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 203,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 238,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 254,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 489,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/interaction.css",
+    "line": 535,
+    "prop": "border-radius",
+    "value": "2px"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 151,
+    "prop": "border-radius",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 186,
+    "prop": "border-radius",
+    "value": "inherit"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 479,
+    "prop": "border-radius",
+    "value": "inherit"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 456,
+    "prop": "border-radius",
+    "value": "4px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 690,
+    "prop": "border-radius",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 691,
+    "prop": "border-radius",
+    "value": "3px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 806,
+    "prop": "border-radius",
+    "value": "6px 6px 2px 2px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 296,
+    "prop": "border-radius",
+    "value": "24px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 318,
+    "prop": "border-radius",
+    "value": "20px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 605,
+    "prop": "border-radius",
+    "value": "24px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 633,
+    "prop": "border-radius",
+    "value": "24px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 746,
+    "prop": "border-radius",
+    "value": "24px"
+   }
+  ],
+  "rawShadow": [
+   {
+    "file": "src/app/globals.css",
+    "line": 257,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px var(--u-primary-soft)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 297,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px var(--u-primary-soft)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 409,
+    "prop": "box-shadow",
+    "value": "0 0 0 2px var(--u-primary-soft)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 414,
+    "prop": "box-shadow",
+    "value": "0 0 0 2px var(--u-amber-soft)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 578,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-primary-soft-line)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 582,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-primary-soft-line)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 631,
+    "prop": "box-shadow",
+    "value": "0 0 0 2px var(--u-primary-glow)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 797,
+    "prop": "box-shadow",
+    "value": "0 1px 2px rgba(0,0,0,.2)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 871,
+    "prop": "box-shadow",
+    "value": "0 0 0 2px var(--u-primary-glow), var(--u-shadow-sm)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1150,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-primary-soft-line)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1151,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px rgba(129, 140, 248, 0.5)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1155,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px rgba(129, 140, 248, 0.5)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1205,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-primary)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1406,
+    "prop": "box-shadow",
+    "value": "0 0 0 2px var(--u-primary-glow)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1407,
+    "prop": "box-shadow",
+    "value": "none !important"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1677,
+    "prop": "box-shadow",
+    "value": "0 8px 20px rgba(85, 72, 224, .22), inset 0 1px rgba(255, 255, 255, .28)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1679,
+    "prop": "box-shadow",
+    "value": "0 10px 24px rgba(85, 72, 224, .28), inset 0 1px rgba(255, 255, 255, .28)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1682,
+    "prop": "box-shadow",
+    "value": "0 6px 16px rgba(20, 23, 46, .22)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1693,
+    "prop": "box-shadow",
+    "value": "0 8px 20px rgba(215, 55, 63, .22)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1729,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px rgba(85, 72, 224, .1)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1739,
+    "prop": "box-shadow",
+    "value": "0 0 0 5px rgba(85, 72, 224, .08), var(--u-shadow-sm)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1741,
+    "prop": "box-shadow",
+    "value": "0 7px 16px rgba(85, 72, 224, .28)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1742,
+    "prop": "box-shadow",
+    "value": "0 9px 20px rgba(85, 72, 224, .34)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 48,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px rgba(var(--service-rgb),.32)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 51,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px rgba(var(--service-rgb),.06)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 88,
+    "prop": "box-shadow",
+    "value": "0 3px 13px rgba(47,49,80,.03)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 89,
+    "prop": "box-shadow",
+    "value": "0 6px 18px rgba(var(--service-rgb),.07)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 107,
+    "prop": "box-shadow",
+    "value": "0 12px 25px rgba(69,68,118,.09)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 115,
+    "prop": "box-shadow",
+    "value": "0 36px 100px rgba(27,29,57,.28)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 125,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px rgba(var(--service-rgb),.08)"
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 128,
+    "prop": "box-shadow",
+    "value": "0 8px 18px rgba(99,91,255,.2)"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 15,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-primary-soft-line)"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 15,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-primary-soft-line)"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 18,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px rgba(129, 140, 248, 0.5)"
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 22,
+    "prop": "box-shadow",
+    "value": "0 14px 30px rgba(62,63,105,.1)"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 139,
+    "prop": "box-shadow",
+    "value": "0 18px 50px rgba(9, 13, 20, 0.16)"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 144,
+    "prop": "box-shadow",
+    "value": "0 18px 50px rgba(0, 0, 0, 0.55)"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 56,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px rgba(32,186,133,.13)"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 57,
+    "prop": "box-shadow",
+    "value": "0 0 0 7px rgba(32,186,133,.05)"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 205,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px rgba(182,61,84,.08)"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 434,
+    "prop": "box-shadow",
+    "value": "inset -2px 0 0 var(--u-primary)"
+   },
+   {
+    "file": "src/app/styles/universal/motion.css",
+    "line": 437,
+    "prop": "box-shadow",
+    "value": "inset 2px 0 0 var(--u-primary)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 58,
+    "prop": "box-shadow",
+    "value": "0 1px 2px rgba(16, 18, 40, .04), 0 6px 20px rgba(60, 58, 130, .06)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 63,
+    "prop": "box-shadow",
+    "value": "0 8px 24px rgba(4, 5, 14, .4), 0 0 0 1px rgba(129, 140, 248, .07), inset 0 1px 0 rgba(236, 238, 248, .06)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 68,
+    "prop": "box-shadow",
+    "value": "0 24px 70px rgba(69, 68, 119, .14), inset 0 1px 0 rgba(255, 255, 255, .5)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 71,
+    "prop": "box-shadow",
+    "value": "0 24px 70px rgba(4, 5, 14, .5), inset 0 1px 0 rgba(236, 238, 248, .05)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 78,
+    "prop": "box-shadow",
+    "value": "inset 0 1px 2px rgba(11, 15, 26, .05), 0 1px 0 rgba(255, 255, 255, .6)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 81,
+    "prop": "box-shadow",
+    "value": "inset 0 1px 0 rgba(236, 238, 248, .04), inset 0 8px 22px rgba(4, 5, 14, .25)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 85,
+    "prop": "box-shadow",
+    "value": "inset 0 1px 2px rgba(11, 15, 26, .04),\n    0 0 0 4px rgba(var(--service-rgb), .07),\n    0 10px 34px rgba(var(--service-rgb), .12)"
+   },
+   {
+    "file": "src/app/styles/universal/radiance.css",
+    "line": 130,
+    "prop": "box-shadow",
+    "value": "1px 0 0 rgba(148, 152, 200, .05), 18px 0 52px rgba(9, 10, 25, .3)"
+   },
+   {
+    "file": "src/app/styles/universal/responsive.css",
+    "line": 44,
+    "prop": "box-shadow",
+    "value": "none !important"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 35,
+    "prop": "box-shadow",
+    "value": "1px 0 0 rgba(148, 152, 200, 0.06), 8px 0 40px rgba(9, 10, 25, 0.18)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 94,
+    "prop": "box-shadow",
+    "value": "inset 0 1px rgba(255, 255, 255, 0.08), 0 8px 20px rgba(20, 22, 50, 0.3)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 98,
+    "prop": "box-shadow",
+    "value": "inset 0 1px rgba(255, 255, 255, 0.12), 0 10px 26px rgba(20, 22, 50, 0.36)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 102,
+    "prop": "box-shadow",
+    "value": "0 4px 10px rgba(85, 72, 224, 0.4)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 180,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px var(--u-shell-active-line)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 201,
+    "prop": "box-shadow",
+    "value": "inset 0 0 0 1px rgba(124, 110, 250, 0.3)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 203,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px var(--u-shell-online-halo)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 215,
+    "prop": "box-shadow",
+    "value": "0 6px 14px rgba(85, 72, 224, 0.45), inset 0 1px rgba(255, 255, 255, 0.25)"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 315,
+    "prop": "box-shadow",
+    "value": "0 5px 12px rgba(85, 72, 224, 0.35), inset 0 1px rgba(255, 255, 255, 0.25)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 543,
+    "prop": "box-shadow",
+    "value": "0 4px 14px rgba(85, 72, 224, 0.14), inset 0 0 0 1px rgba(85, 72, 224, 0.2)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 549,
+    "prop": "box-shadow",
+    "value": "0 8px 22px rgba(85, 72, 224, 0.24), inset 0 1px rgba(255, 255, 255, 0.26) !important"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 556,
+    "prop": "box-shadow",
+    "value": "0 10px 26px rgba(85, 72, 224, 0.3), inset 0 1px rgba(255, 255, 255, 0.26) !important"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 571,
+    "prop": "box-shadow",
+    "value": "0 0 0 4px rgba(85, 72, 224, 0.09)"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 499,
+    "prop": "box-shadow",
+    "value": "0 0 26px rgba(var(--sp-accent-rgb), 0.35)"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 588,
+    "prop": "box-shadow",
+    "value": "0 0 10px rgba(var(--sp-accent-rgb), 0.3)"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 681,
+    "prop": "box-shadow",
+    "value": "0 0 0 1px rgba(var(--sp-accent-rgb), 0.2)"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 700,
+    "prop": "box-shadow",
+    "value": "0 0 26px rgba(var(--sp-accent-rgb), 0.35)"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 894,
+    "prop": "box-shadow",
+    "value": "0 0 26px rgba(var(--sp-accent-rgb), 0.35)"
+   }
+  ],
+  "sub10Text": [],
+  "rawFontSize": [
+   {
+    "file": "src/app/globals.css",
+    "line": 134,
+    "prop": "font-size",
+    "value": "30px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 206,
+    "prop": "font-size",
+    "value": "25px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 258,
+    "prop": "font-size",
+    "value": "clamp(38px, 5vw, 58px)"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 295,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 298,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 300,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 317,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 337,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 338,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 355,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 368,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 374,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 381,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 385,
+    "prop": "font(size)",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 393,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 421,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 434,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 437,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 438,
+    "prop": "font-size",
+    "value": "27px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 447,
+    "prop": "font(size)",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 450,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 453,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 458,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 459,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 464,
+    "prop": "font-size",
+    "value": "30px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 497,
+    "prop": "font-size",
+    "value": "37px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 531,
+    "prop": "font-size",
+    "value": "25px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 610,
+    "prop": "font(size)",
+    "value": "12px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 756,
+    "prop": "font(size)",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 935,
+    "prop": "font(size)",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1102,
+    "prop": "font-size",
+    "value": "19px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1207,
+    "prop": "font(size)",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1343,
+    "prop": "font-size",
+    "value": "29px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1386,
+    "prop": "font(size)",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1528,
+    "prop": "font-size",
+    "value": "33px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1552,
+    "prop": "font(size)",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1558,
+    "prop": "font(size)",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1572,
+    "prop": "font(size)",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1582,
+    "prop": "font(size)",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1720,
+    "prop": "font-size",
+    "value": "13.5px"
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 153,
+    "prop": "font-size",
+    "value": "15px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 122,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 301,
+    "prop": "font(size)",
+    "value": "12px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 12,
+    "prop": "font-size",
+    "value": "clamp(26px, 3.4vw, 38px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 137,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 140,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 221,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 224,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 352,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 354,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 624,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 735,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 801,
+    "prop": "font-size",
+    "value": "clamp(22px, 3vw, 30px)"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 856,
+    "prop": "font-size",
+    "value": "clamp(19px, 2.2vw, 25px)"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 180,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 191,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 287,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 448,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 647,
+    "prop": "font-size",
+    "value": "10.5px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 651,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 738,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 818,
+    "prop": "font-size",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/styles/universal/workspaces.css",
+    "line": 993,
+    "prop": "font-size",
+    "value": "11px"
+   }
+  ],
+  "tracking": [
+   {
+    "file": "src/app/globals.css",
+    "line": 117,
+    "prop": "letter-spacing",
+    "value": "-.02em",
+    "selector": ".page-title",
+    "arOverrideInFile": true,
+    "paired": true
+   },
+   {
+    "file": "src/app/styles/universal/home.css",
+    "line": 18,
+    "prop": "letter-spacing",
+    "value": "-0.02em",
+    "selector": "html[lang=\"en\"] .adaptive-home__welcome h1",
+    "arOverrideInFile": false,
+    "paired": true
+   },
+   {
+    "file": "src/app/styles/universal/library.css",
+    "line": 8,
+    "prop": "letter-spacing",
+    "value": "-0.01em",
+    "selector": "html[lang=\"en\"] .universal-library-header h1",
+    "arOverrideInFile": false,
+    "paired": true
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 94,
+    "prop": "letter-spacing",
+    "value": "0.1em",
+    "selector": ".ms-site .ms-latin-track",
+    "arOverrideInFile": false,
+    "paired": true
+   },
+   {
+    "file": "src/app/styles/universal/marketing.css",
+    "line": 95,
+    "prop": "letter-spacing",
+    "value": "0.1em",
+    "selector": "[dir=\"rtl\"] .ms-site .ms-latin-track",
+    "arOverrideInFile": false,
+    "paired": true
+   },
+   {
+    "file": "src/app/styles/universal/shell.css",
+    "line": 122,
+    "prop": "letter-spacing",
+    "value": ".07em",
+    "selector": ".universal-shell-nav__label",
+    "arOverrideInFile": false,
+    "paired": true
+   }
+  ]
+ }
+}

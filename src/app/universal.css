@@ -58,7 +58,11 @@
 .ops-page > .library-toolbar { flex: 0 1 auto; }
 /* §1.2 Rhythm law completion: zero the stacked sibling margins so every
    top-level breath is exactly --mj-gap-block (48px at 1440) — measured
-   drift was 48/64/68px between sections before this rule. */
+   drift was 48/64/68px between sections before this rule.
+   W-6 (SPC-02/03): the usage/billing/team cards' 11px margin-block-start
+   STACKED with the column gap (37.1px rendered breaths vs the 26.1px
+   token @390) — they join the zeroed list; the column gap is the only
+   breath. */
 .ops-page > .ops-stats,
 .ops-page > .library-toolbar,
 .ops-page > .view-switch,
@@ -66,7 +70,12 @@
 .ops-page > .agent-library,
 .ops-page > .flow-library,
 .ops-page > .runs-table-card,
-.ops-page > section { margin-block-end: 0; }
+.ops-page > .usage-breakdown-card,
+.ops-page > .usage-ledger-card,
+.ops-page > .roles-explainer,
+.ops-page > .budget-policy-card,
+.ops-page > .payment-method-card,
+.ops-page > section { margin-block: 0; }
 
 /* Non-ops contexts (system pages) keep a token margin, not raw 28px. */
 .page-header { margin-block-end: var(--mj-gap-block); gap: var(--mj-gap-sm) var(--mj-gap-md); }

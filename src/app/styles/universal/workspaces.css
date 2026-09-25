@@ -85,6 +85,12 @@
   width: min(var(--mj-container-prose), 100%);
   margin-inline: auto;
   padding-block: 6px 24px;
+  /* W-6 (SPC-02, R-SPACE-2): the gateway breathes on the ONE section
+     rhythm token — same tempo as every other route family (the legacy
+     40px per-element margins were deleted above). */
+  display: flex;
+  flex-direction: column;
+  gap: var(--mj-space-600);
   color: var(--sp-ink-soft);
   container-type: inline-size;
   container-name: service-space;
@@ -139,7 +145,7 @@
    WELCOME — the L2 title block: eyebrow · animated gradient h1 · lede
    (§2.3: identity announced exactly once — no badge, no chrome)
    ========================================================================== */
-.service-welcome { margin-block-end: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.service-welcome { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .service-welcome__eyebrow {
   margin-block-end: 14px;
   color: var(--sp-accent);
@@ -150,7 +156,10 @@
 .service-welcome__title {
   margin: 0;
   padding-block-end: 5px;
-  font: 700 clamp(30px, 8.5vw, 36px) / 1.3 var(--sp-font-display);
+  font-family: var(--sp-font-display);
+  font-size: var(--mj-text-h1);
+  font-weight: 700;
+  line-height: var(--mj-leading-h1);
   background: linear-gradient(90deg, var(--sp-accent), var(--sp-title-mid), var(--sp-accent));
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -1016,7 +1025,6 @@
    (DESIGN-TOKENS §6.1 assigns the composer to 560 — was 840). Writing
    focus over a single readable column. */
 .service-composer-zone {
-  margin-block-end: 40px;
   width: 100%;
   max-width: var(--mj-container-narrow);
   margin-inline: auto;
@@ -1040,9 +1048,9 @@
 }
 
 @container service-space (min-width: 900px) {
-  /* The welcome hero breathes on the wide canvas */
-  .service-welcome { margin-block-end: 56px; }
-  .service-welcome__title { font-size: clamp(36px, 3vw, 44px); }
+  /* The welcome hero breathes on the wide canvas — the rhythm is the
+     column gap (--mj-gap-block), not a per-element margin. */
+  .service-welcome { margin-block-end: 0; }
   .service-welcome__lede { max-width: var(--mj-container-narrow); }
   .service-mini-library { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
