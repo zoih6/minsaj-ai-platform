@@ -366,7 +366,13 @@
 .u2-create__modes button { min-height: 64px; padding: 12px 14px; display: grid; gap: var(--mj-gap-2xs); align-content: center; border: 1px solid var(--u-line); border-radius: var(--u-radius-field); color: var(--u-ink-soft); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); text-align: start; font-size: var(--u-text-sm); font-weight: 700; cursor: pointer; }
 .u2-create__modes button small { color: var(--u-muted); font-size: var(--u-text-xs); font-weight: 500; }
 .u2-create__modes button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); box-shadow: inset 0 0 0 1px rgba(85, 76, 230, .14); }
-.u2-create__formats { display: grid; gap: var(--mj-gap-sm); margin: 0; padding: 0; list-style: none; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+/* W9-5/م1 · D-W9-G (Bible §6.5 + قيد الدمج): the compact format cards STAY
+   (a 3-option mode selector is not a content gallery — three 380px media
+   cards with competing primary CTAs would slow the composer-first flow that
+   W7-3/4 approved). Adopted from the Bible instead: the 1/2/3 column ladder
+   (min 300px → exactly 1 col @390, 2 @768, 3 @1024), the -2px card-family
+   hover lift, and a 3-line clamp on the hint so rows stay uniform. */
+.u2-create__formats { display: grid; gap: var(--mj-gap-sm); margin: 0; padding: 0; list-style: none; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); }
 /* W8-2: the format cards are ONE geometry family — li is a grid track and
    the button stretches to fill it (was shrink-to-fit: 260/231/266px at 390).
    Premium restyle: quiet line (not --u-line-strong), layered raise, icon chip
@@ -374,9 +380,9 @@
 .u2-create__formats li { display: grid; }
 .u2-create__formats button { width: 100%; min-height: 158px; padding: 16px; display: grid; gap: var(--mj-gap-xs); align-content: start; border: 1px solid var(--u-line); border-radius: var(--u-radius-card); color: var(--u-ink); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); text-align: start; font-size: var(--mj-text-body); font-weight: 700; cursor: pointer; transition: transform var(--u-motion-duration-fast) var(--u-motion-ease-standard), box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-standard), border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
 .u2-create__formats button > svg { width: 40px; height: 40px; padding: 9px; box-sizing: border-box; border-radius: var(--u-radius-field); color: var(--u-primary); background: var(--u-primary-soft); }
-.u2-create__formats button small { color: var(--u-muted); font-size: var(--u-text-xs); font-weight: 500; line-height: 1.7; }
+.u2-create__formats button small { color: var(--u-muted); font-size: var(--u-text-xs); font-weight: 500; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 @media (hover: hover) {
-  .u2-create__formats button:hover { border-color: var(--u-primary-soft-line); box-shadow: var(--u-shadow-sm); transform: translateY(-1px); }
+  .u2-create__formats button:hover { border-color: var(--u-primary-soft-line); box-shadow: var(--u-shadow-sm); transform: translateY(-2px); }
 }
 .u2-create__formats button:focus-visible { outline: 3px solid var(--u-primary-glow); outline-offset: 3px; }
 .u2-create__field { display: grid; gap: var(--mj-gap-xs); margin: 0; padding: var(--mj-space-150); border: 0; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); }

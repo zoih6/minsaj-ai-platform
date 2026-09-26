@@ -2,7 +2,7 @@
  "_meta": {
   "tool": "scripts/token-lint.mjs (G-7 custom checks · ERROR MODE since Phase 6 with --enforce)",
   "spec": "docs/03-design/reconstruction/VISUAL-QA-CHECKLIST.md §4 · DESIGN-TOKENS.md",
-  "generatedAt": "2026-09-25T03:03:09.789Z",
+  "generatedAt": "2026-09-26T20:31:46.545Z",
   "filesScanned": 16,
   "auditBaseline": {
    "distinctRawPaddings": 186,
@@ -31,14 +31,14 @@
    "src/app/globals.css"
   ],
   "rawSpacing": {
-   "occurrences": 775,
+   "occurrences": 772,
    "distinct": 195
   },
   "rawPaddingOnly": {
-   "occurrences": 374,
+   "occurrences": 373,
    "distinct": 132
   },
-  "paddingAllDistinctPerFileSum": 194,
+  "paddingAllDistinctPerFileSum": 195,
   "undeclaredRadius": {
    "occurrences": 27,
    "distinct": 12
@@ -54,7 +54,7 @@
   "sub10Text": 0,
   "trackingCandidates": 6,
   "unpairedTracking": 0,
-  "globalsSelectors": 1617,
+  "globalsSelectors": 1636,
   "componentClasses": [
    "access-panel",
    "adaptive-recent-card",
@@ -124,20 +124,20 @@
    "usage-ledger-card"
   ],
   "legacyTokenReferences": {
-   "total": 1069,
+   "total": 1076,
    "byName": {
     "u-text-md": 41,
-    "u-radius-sm": 129,
-    "mj-gap-xs": 179,
+    "u-radius-sm": 130,
+    "mj-gap-xs": 181,
     "mj-gap-md": 14,
     "mj-gap-sm": 36,
-    "u-text-sm": 189,
+    "u-text-sm": 188,
     "mj-gap-lg": 2,
-    "mj-gap-2xs": 31,
-    "u-text-xs": 363,
+    "mj-gap-2xs": 34,
+    "u-text-xs": 364,
     "u-text-xl": 7,
     "u-text-lg": 13,
-    "u-radius": 27,
+    "u-radius": 28,
     "u-radius-xs": 14,
     "u-radius-lg": 13,
     "mj-text-body": 9,
@@ -146,28 +146,28 @@
   }
  },
  "totals": {
-  "rawSpacing": 775,
+  "rawSpacing": 772,
   "undeclaredRadius": 27,
   "rawShadow": 77,
   "sub10Text": 0,
   "rawFontSize": 64,
   "trackingCandidates": 6,
   "unpairedTracking": 0,
-  "legacyTokenReferences": 1069,
+  "legacyTokenReferences": 1076,
   "componentClasses": 66
  },
  "perFile": {
   "src/app/globals.css": {
-   "declarations": 4488
+   "declarations": 4567
   },
   "src/app/styles/universal/brand.css": {
    "declarations": 23
   },
   "src/app/styles/universal/foundations.css": {
-   "declarations": 141
+   "declarations": 145
   },
   "src/app/styles/universal/home.css": {
-   "declarations": 634
+   "declarations": 636
   },
   "src/app/styles/universal/interaction.css": {
    "declarations": 290
@@ -176,7 +176,7 @@
    "declarations": 201
   },
   "src/app/styles/universal/library.css": {
-   "declarations": 199
+   "declarations": 223
   },
   "src/app/styles/universal/marketing.css": {
    "declarations": 98
@@ -197,7 +197,7 @@
    "declarations": 200
   },
   "src/app/styles/universal/workbench.css": {
-   "declarations": 2924
+   "declarations": 3054
   },
   "src/app/styles/universal/workspaces.css": {
    "declarations": 824
@@ -2796,295 +2796,295 @@
    },
    {
     "file": "src/app/globals.css",
-    "line": 1454,
+    "line": 1475,
     "prop": "padding-inline-start",
     "value": "17px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1493,
+    "line": 1514,
     "prop": "padding-inline",
     "value": "var(--mj-space-100) 25px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1521,
+    "line": 1562,
     "prop": "padding-block-end",
     "value": "2px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1544,
+    "line": 1616,
     "prop": "gap",
     "value": "11px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1545,
+    "line": 1617,
     "prop": "padding",
     "value": "17px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1549,
+    "line": 1621,
     "prop": "margin",
     "value": "15px 0 0"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1551,
+    "line": 1623,
     "prop": "margin-block",
     "value": "13px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1553,
+    "line": 1625,
     "prop": "margin-block-start",
     "value": "6px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1559,
+    "line": 1631,
     "prop": "margin",
     "value": "0 0 13px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1560,
+    "line": 1632,
     "prop": "padding-block",
     "value": "7px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1563,
+    "line": 1635,
     "prop": "margin-block-start",
     "value": "11px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1564,
+    "line": 1636,
     "prop": "gap",
     "value": "10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1565,
+    "line": 1637,
     "prop": "margin-block",
     "value": "3px 13px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1565,
+    "line": 1637,
     "prop": "padding",
     "value": "10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1568,
+    "line": 1640,
     "prop": "gap",
     "value": "10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1568,
+    "line": 1640,
     "prop": "margin-block-start",
     "value": "11px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1569,
+    "line": 1641,
     "prop": "gap",
     "value": "9px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1573,
+    "line": 1645,
     "prop": "gap",
     "value": "6px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1576,
+    "line": 1648,
     "prop": "gap",
     "value": "9px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1576,
+    "line": 1648,
     "prop": "margin-block",
     "value": "13px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1576,
+    "line": 1648,
     "prop": "padding",
     "value": "11px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1582,
+    "line": 1654,
     "prop": "gap",
     "value": "10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1584,
+    "line": 1656,
     "prop": "margin",
     "value": "0 0 10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1585,
+    "line": 1657,
     "prop": "gap",
     "value": "7px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1586,
-    "prop": "padding",
-    "value": "10px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1593,
-    "prop": "gap",
-    "value": "9px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1593,
-    "prop": "padding",
-    "value": "11px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1595,
-    "prop": "gap",
-    "value": "5px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1596,
-    "prop": "padding-inline",
-    "value": "9px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1598,
-    "prop": "gap",
-    "value": "9px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1598,
-    "prop": "padding-inline-start",
-    "value": "25px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1599,
-    "prop": "margin-inline-start",
-    "value": "13px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1601,
-    "prop": "margin",
-    "value": "0 0 13px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1602,
-    "prop": "margin",
-    "value": "0 0 13px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1603,
-    "prop": "gap",
-    "value": "7px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1621,
-    "prop": "gap",
-    "value": "0 20px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1636,
-    "prop": "margin-block-start",
-    "value": "13px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1648,
-    "prop": "margin-block-start",
-    "value": "14px"
    },
    {
     "file": "src/app/globals.css",
     "line": 1658,
     "prop": "padding",
-    "value": "12px 12px 6px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1660,
-    "prop": "padding",
-    "value": "7px 0 5px"
-   },
-   {
-    "file": "src/app/globals.css",
-    "line": 1668,
-    "prop": "margin-block-start",
     "value": "10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1669,
+    "line": 1665,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1665,
+    "prop": "padding",
+    "value": "11px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1667,
     "prop": "gap",
     "value": "5px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1762,
+    "line": 1668,
+    "prop": "padding-inline",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1670,
+    "prop": "gap",
+    "value": "9px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1670,
+    "prop": "padding-inline-start",
+    "value": "25px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1671,
+    "prop": "margin-inline-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1673,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1674,
+    "prop": "margin",
+    "value": "0 0 13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1675,
+    "prop": "gap",
+    "value": "7px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1693,
+    "prop": "gap",
+    "value": "0 20px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1708,
+    "prop": "margin-block-start",
+    "value": "13px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1720,
+    "prop": "margin-block-start",
+    "value": "14px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1730,
+    "prop": "padding",
+    "value": "12px 12px 6px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1732,
+    "prop": "padding",
+    "value": "7px 0 5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1740,
+    "prop": "margin-block-start",
+    "value": "10px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1741,
+    "prop": "gap",
+    "value": "5px"
+   },
+   {
+    "file": "src/app/globals.css",
+    "line": 1834,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1792,
+    "line": 1864,
     "prop": "margin",
     "value": "15px -18px -18px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1792,
+    "line": 1864,
     "prop": "padding",
     "value": "12px 18px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1821,
+    "line": 1893,
     "prop": "margin-block-end",
     "value": "26px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1865,
+    "line": 1937,
     "prop": "padding",
     "value": "18px 16px calc(18px + env(safe-area-inset-bottom))"
    },
    {
     "file": "src/app/styles/universal/foundations.css",
-    "line": 482,
+    "line": 489,
     "prop": "margin",
     "value": "-1px"
    },
    {
     "file": "src/app/styles/universal/foundations.css",
-    "line": 489,
+    "line": 499,
     "prop": "padding",
     "value": "10px 16px"
    },
@@ -3216,133 +3216,133 @@
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 99,
+    "line": 104,
     "prop": "padding-inline",
     "value": "7px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 101,
+    "line": 106,
     "prop": "margin",
     "value": "17px 0 0"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 101,
+    "line": 106,
     "prop": "margin",
     "value": "5px 0 0"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 102,
+    "line": 107,
     "prop": "padding-block-start",
     "value": "13px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 112,
+    "line": 117,
     "prop": "padding",
     "value": "13px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 114,
+    "line": 119,
     "prop": "padding",
     "value": "14px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 114,
+    "line": 123,
     "prop": "padding-block-start",
     "value": "11px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 116,
+    "line": 125,
     "prop": "margin",
     "value": "17px 0 0"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 116,
+    "line": 125,
     "prop": "margin",
     "value": "6px 0 17px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 120,
+    "line": 129,
     "prop": "padding",
     "value": "clamp(18px,2.4vw,28px)"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 124,
+    "line": 133,
     "prop": "margin",
     "value": "5px 0 0"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 125,
+    "line": 134,
     "prop": "margin",
     "value": "20px 0 9px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 127,
+    "line": 136,
     "prop": "padding",
     "value": "14px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 131,
+    "line": 140,
     "prop": "margin-block-start",
     "value": "3px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 132,
+    "line": 141,
     "prop": "padding",
     "value": "9px 11px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 133,
+    "line": 142,
     "prop": "margin-block-start",
     "value": "17px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 133,
+    "line": 142,
     "prop": "padding-block-start",
     "value": "15px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 149,
+    "line": 158,
     "prop": "margin-block",
     "value": "6px 12px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 155,
+    "line": 164,
     "prop": "padding",
     "value": "14px 14px 11px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 172,
+    "line": 181,
     "prop": "padding",
     "value": "18px 16px calc(18px + env(safe-area-inset-bottom))"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 177,
+    "line": 186,
     "prop": "margin-inline",
     "value": "-16px"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 177,
+    "line": 186,
     "prop": "padding",
     "value": "12px 16px calc(12px + env(safe-area-inset-bottom))"
    },
@@ -3378,13 +3378,13 @@
    },
    {
     "file": "src/app/styles/universal/layout.css",
-    "line": 220,
+    "line": 228,
     "prop": "padding",
     "value": "10px clamp(12px, 1vw + 8px, 18px)"
    },
    {
     "file": "src/app/styles/universal/layout.css",
-    "line": 245,
+    "line": 253,
     "prop": "padding",
     "value": "var(--mj-space-150) clamp(12px, 1vw + 8px, 18px)"
    },
@@ -3420,43 +3420,25 @@
    },
    {
     "file": "src/app/styles/universal/library.css",
-    "line": 22,
+    "line": 28,
     "prop": "padding",
     "value": "15px"
    },
    {
     "file": "src/app/styles/universal/library.css",
-    "line": 22,
-    "prop": "padding",
-    "value": "15px"
-   },
-   {
-    "file": "src/app/styles/universal/library.css",
-    "line": 22,
-    "prop": "margin",
-    "value": "5px 0 0"
-   },
-   {
-    "file": "src/app/styles/universal/library.css",
-    "line": 22,
-    "prop": "margin-block-start",
-    "value": "13px"
-   },
-   {
-    "file": "src/app/styles/universal/library.css",
-    "line": 22,
+    "line": 28,
     "prop": "padding-block-start",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/library.css",
-    "line": 22,
+    "line": 31,
     "prop": "margin",
     "value": "10px 0 0"
    },
    {
     "file": "src/app/styles/universal/library.css",
-    "line": 31,
+    "line": 40,
     "prop": "margin-block-start",
     "value": "14px"
    },
@@ -4104,441 +4086,429 @@
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 375,
+    "line": 381,
     "prop": "padding",
     "value": "16px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 376,
+    "line": 382,
     "prop": "padding",
     "value": "9px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 383,
+    "line": 389,
     "prop": "padding-inline",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 384,
+    "line": 390,
     "prop": "padding",
     "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 389,
+    "line": 395,
     "prop": "padding-inline",
     "value": "16px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 396,
+    "line": 402,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 398,
+    "line": 404,
     "prop": "padding-inline-start",
     "value": "20px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 404,
+    "line": 410,
     "prop": "padding-inline",
     "value": "16px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 405,
+    "line": 411,
     "prop": "padding",
     "value": "14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 406,
+    "line": 412,
     "prop": "margin",
     "value": "0 0 6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 408,
+    "line": 414,
     "prop": "padding",
     "value": "3px 9px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 428,
+    "line": 434,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 439,
+    "line": 445,
     "prop": "padding",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 442,
+    "line": 448,
     "prop": "margin",
     "value": "6px 0 0"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 444,
+    "line": 450,
     "prop": "padding-inline-start",
     "value": "22px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 450,
+    "line": 456,
     "prop": "padding",
     "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 456,
+    "line": 462,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 465,
+    "line": 471,
     "prop": "margin-inline-end",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 468,
+    "line": 474,
     "prop": "padding",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 479,
+    "line": 485,
     "prop": "margin-top",
     "value": "3px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 493,
+    "line": 499,
     "prop": "margin-top",
     "value": "3px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 547,
+    "line": 553,
     "prop": "margin-block-start",
     "value": "18px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 548,
+    "line": 554,
     "prop": "padding-block-end",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 639,
+    "line": 645,
     "prop": "padding",
     "value": "12px 14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 640,
+    "line": 646,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 643,
+    "line": 649,
     "prop": "padding",
     "value": "12px 14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 647,
+    "line": 653,
     "prop": "padding-inline",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 648,
+    "line": 654,
     "prop": "padding",
     "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 654,
+    "line": 660,
     "prop": "padding-inline",
     "value": "16px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 664,
+    "line": 670,
     "prop": "padding",
     "value": "3px 7px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 669,
+    "line": 675,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 672,
+    "line": 678,
     "prop": "gap",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 673,
+    "line": 679,
     "prop": "padding-inline",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 675,
+    "line": 681,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 677,
+    "line": 683,
     "prop": "padding-inline-start",
     "value": "20px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 680,
+    "line": 686,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 685,
+    "line": 691,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 695,
+    "line": 701,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 697,
+    "line": 703,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 712,
+    "line": 718,
     "prop": "padding",
     "value": "4px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 721,
+    "line": 727,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 748,
+    "line": 754,
     "prop": "padding",
     "value": "12px 14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 749,
+    "line": 755,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 750,
+    "line": 756,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 753,
+    "line": 759,
     "prop": "padding",
     "value": "12px 14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 757,
+    "line": 763,
     "prop": "padding-inline",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 758,
+    "line": 764,
     "prop": "padding",
     "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 764,
+    "line": 770,
     "prop": "padding-inline",
     "value": "16px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 770,
+    "line": 776,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 771,
+    "line": 777,
     "prop": "padding",
     "value": "3px 9px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 778,
+    "line": 784,
     "prop": "gap",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 778,
+    "line": 784,
     "prop": "padding",
     "value": "7px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 781,
+    "line": 787,
     "prop": "padding",
     "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 793,
+    "line": 799,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 796,
+    "line": 802,
     "prop": "gap",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 797,
+    "line": 803,
     "prop": "padding-inline",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 799,
+    "line": 805,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 801,
+    "line": 807,
     "prop": "padding-inline-start",
     "value": "20px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 804,
+    "line": 810,
     "prop": "padding",
     "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 821,
+    "line": 827,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 828,
+    "line": 834,
     "prop": "gap",
     "value": "6px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 833,
+    "line": 839,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 835,
+    "line": 841,
     "prop": "padding",
     "value": "4px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 840,
+    "line": 846,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 843,
+    "line": 849,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 869,
+    "line": 875,
     "prop": "padding",
     "value": "12px 14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 870,
+    "line": 876,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 873,
+    "line": 879,
     "prop": "padding",
     "value": "12px 14px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 877,
+    "line": 883,
     "prop": "padding-inline",
     "value": "6px"
-   },
-   {
-    "file": "src/app/styles/universal/workbench.css",
-    "line": 878,
-    "prop": "padding",
-    "value": "8px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
     "line": 884,
-    "prop": "padding-inline",
-    "value": "16px"
-   },
-   {
-    "file": "src/app/styles/universal/workbench.css",
-    "line": 898,
-    "prop": "gap",
-    "value": "6px"
-   },
-   {
-    "file": "src/app/styles/universal/workbench.css",
-    "line": 898,
     "prop": "padding",
     "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 890,
+    "prop": "padding-inline",
+    "value": "16px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
@@ -4548,25 +4518,37 @@
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 912,
+    "line": 904,
+    "prop": "padding",
+    "value": "8px 10px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 910,
+    "prop": "gap",
+    "value": "6px"
+   },
+   {
+    "file": "src/app/styles/universal/workbench.css",
+    "line": 918,
     "prop": "padding-inline",
     "value": "10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 913,
+    "line": 919,
     "prop": "padding",
     "value": "4px 10px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 916,
+    "line": 922,
     "prop": "padding",
     "value": "10px 12px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 1079,
+    "line": 1132,
     "prop": "padding-inline-start",
     "value": "17px"
    },
@@ -4874,13 +4856,13 @@
    },
    {
     "file": "src/app/globals.css",
-    "line": 1792,
+    "line": 1864,
     "prop": "border-radius",
     "value": "0 0 18px 18px"
    },
    {
     "file": "src/app/styles/universal/foundations.css",
-    "line": 473,
+    "line": 480,
     "prop": "border-radius",
     "value": "99px"
    },
@@ -4970,25 +4952,25 @@
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 466,
+    "line": 472,
     "prop": "border-radius",
     "value": "4px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 700,
+    "line": 706,
     "prop": "border-radius",
     "value": "3px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 701,
+    "line": 707,
     "prop": "border-radius",
     "value": "3px"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 816,
+    "line": 822,
     "prop": "border-radius",
     "value": "6px 6px 2px 2px"
    },
@@ -5116,49 +5098,49 @@
    },
    {
     "file": "src/app/globals.css",
-    "line": 1699,
+    "line": 1771,
     "prop": "box-shadow",
     "value": "0 8px 20px rgba(85, 72, 224, .22), inset 0 1px rgba(255, 255, 255, .28)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1701,
+    "line": 1773,
     "prop": "box-shadow",
     "value": "0 10px 24px rgba(85, 72, 224, .28), inset 0 1px rgba(255, 255, 255, .28)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1704,
+    "line": 1776,
     "prop": "box-shadow",
     "value": "0 6px 16px rgba(20, 23, 46, .22)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1715,
+    "line": 1787,
     "prop": "box-shadow",
     "value": "0 8px 20px rgba(215, 55, 63, .22)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1751,
+    "line": 1823,
     "prop": "box-shadow",
     "value": "0 0 0 4px rgba(85, 72, 224, .1)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1761,
+    "line": 1833,
     "prop": "box-shadow",
     "value": "0 0 0 5px rgba(85, 72, 224, .08), var(--u-shadow-sm)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1763,
+    "line": 1835,
     "prop": "box-shadow",
     "value": "0 7px 16px rgba(85, 72, 224, .28)"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1764,
+    "line": 1836,
     "prop": "box-shadow",
     "value": "0 9px 20px rgba(85, 72, 224, .34)"
    },
@@ -5176,25 +5158,25 @@
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 112,
+    "line": 117,
     "prop": "box-shadow",
     "value": "0 12px 25px rgba(69,68,118,.09)"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 120,
+    "line": 129,
     "prop": "box-shadow",
     "value": "0 36px 100px rgba(27,29,57,.28)"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 130,
+    "line": 139,
     "prop": "box-shadow",
     "value": "inset 0 0 0 1px rgba(var(--service-rgb),.08)"
    },
    {
     "file": "src/app/styles/universal/home.css",
-    "line": 133,
+    "line": 142,
     "prop": "box-shadow",
     "value": "0 8px 18px rgba(99,91,255,.2)"
    },
@@ -5218,7 +5200,7 @@
    },
    {
     "file": "src/app/styles/universal/library.css",
-    "line": 22,
+    "line": 28,
     "prop": "box-shadow",
     "value": "0 14px 30px rgba(62,63,105,.1)"
    },
@@ -5404,55 +5386,55 @@
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 391,
+    "line": 397,
     "prop": "box-shadow",
     "value": "0 6px 16px rgba(99, 91, 255, .22)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 401,
+    "line": 407,
     "prop": "box-shadow",
     "value": "inset 0 0 0 1px rgba(85, 76, 230, .12)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 553,
+    "line": 559,
     "prop": "box-shadow",
     "value": "0 4px 14px rgba(85, 72, 224, 0.14), inset 0 0 0 1px rgba(85, 72, 224, 0.2)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 559,
+    "line": 565,
     "prop": "box-shadow",
     "value": "0 8px 22px rgba(85, 72, 224, 0.24), inset 0 1px rgba(255, 255, 255, 0.26) !important"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 566,
+    "line": 572,
     "prop": "box-shadow",
     "value": "0 10px 26px rgba(85, 72, 224, 0.3), inset 0 1px rgba(255, 255, 255, 0.26) !important"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 581,
+    "line": 587,
     "prop": "box-shadow",
     "value": "0 0 0 4px rgba(85, 72, 224, 0.09)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 655,
+    "line": 661,
     "prop": "box-shadow",
     "value": "0 6px 16px rgba(99, 91, 255, .22)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 766,
+    "line": 772,
     "prop": "box-shadow",
     "value": "0 6px 16px rgba(99, 91, 255, .22)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 885,
+    "line": 891,
     "prop": "box-shadow",
     "value": "0 6px 16px rgba(99, 91, 255, .22)"
    },
@@ -5695,37 +5677,37 @@
    },
    {
     "file": "src/app/globals.css",
-    "line": 1550,
+    "line": 1622,
     "prop": "font-size",
     "value": "33px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1574,
+    "line": 1646,
     "prop": "font(size)",
     "value": "13px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1580,
+    "line": 1652,
     "prop": "font(size)",
     "value": "15px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1594,
+    "line": 1666,
     "prop": "font(size)",
     "value": "11px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1604,
+    "line": 1676,
     "prop": "font(size)",
     "value": "10px"
    },
    {
     "file": "src/app/globals.css",
-    "line": 1742,
+    "line": 1814,
     "prop": "font-size",
     "value": "13.5px"
    },
@@ -5797,25 +5779,25 @@
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 634,
+    "line": 640,
     "prop": "font-size",
     "value": "clamp(19px, 2.2vw, 25px)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 745,
+    "line": 751,
     "prop": "font-size",
     "value": "clamp(19px, 2.2vw, 25px)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 811,
+    "line": 817,
     "prop": "font-size",
     "value": "clamp(22px, 3vw, 30px)"
    },
    {
     "file": "src/app/styles/universal/workbench.css",
-    "line": 866,
+    "line": 872,
     "prop": "font-size",
     "value": "clamp(19px, 2.2vw, 25px)"
    },

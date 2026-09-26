@@ -1427,7 +1427,10 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .settings-nav button strong, .settings-nav button small { display: block; }
 .settings-nav button strong { font-size: var(--mj-text-label-m); font-weight: 600; }
 .settings-nav button small { color: var(--u-faint); font-size: var(--mj-text-label-s); }
-.settings-content { min-width: 0; display: flex; flex-direction: column; gap: var(--mj-space-600); }
+.settings-content { min-width: 0; max-width: 720px; display: flex; flex-direction: column; gap: var(--mj-space-600); }
+/* W9-5/م1 (Bible §6.19): the content column caps at the 720 reading measure —
+   forms and record lists breathe at the same line length; wide grid space
+   goes to the section rail, not to stretched inputs. */
 .profile-settings-grid { display: grid; grid-template-columns: 170px minmax(0, min(460px, 100%)); gap: var(--mj-space-300); }
 .settings-group { display: flex; flex-direction: column; gap: var(--mj-space-100); }
 .settings-group h3 { margin: var(--mj-space-200) 0 0; color: var(--u-faint); font-size: var(--mj-text-label-s); font-weight: 600; }
@@ -1441,8 +1444,26 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .settings-row strong { font-size: var(--mj-text-body-s); font-weight: 600; }
 .settings-row small { margin-block-start: var(--mj-space-25); color: var(--u-faint); font-size: var(--mj-text-label-s); }
 .settings-row select { min-width: 160px; min-height: var(--mj-control-compact); padding-inline: var(--mj-space-100); border: 1px solid var(--u-control-line); border-radius: var(--u-radius-field); background: var(--u-surface); color: var(--u-ink); font-size: var(--mj-text-body-s); }
-.settings-save-row { display: flex; align-items: center; justify-content: space-between; gap: var(--mj-space-150); margin-block-start: var(--mj-space-200); padding-block-start: var(--mj-space-200); border-block-start: 1px solid var(--u-line); }
+/* W9-5/م1 (Bible §6.19 "زر حفظ sticky bottom"): the save row is always
+   reachable — it sticks to the viewport bottom edge while its section is
+   taller than the screen and settles as a quiet footer chip when it isn't.
+   Floating skin (border + solid surface + sm shadow) keeps it legible over
+   scrolled form content in both themes. */
+.settings-save-row { position: sticky; inset-block-end: var(--mj-space-100); margin-block-start: var(--mj-space-200); padding: var(--mj-space-100) var(--mj-space-200); display: flex; align-items: center; justify-content: space-between; gap: var(--mj-space-150); border: 1px solid var(--u-line); border-radius: var(--u-radius-field); background: var(--u-surface-solid); box-shadow: var(--u-shadow-sm); }
 .settings-save-row > span { color: var(--u-faint); font-size: var(--mj-text-label-s); }
+/* W9-5/م1 (Bible §6.19): the danger zone — irreversible actions live in
+   their own fenced block at the bottom of the page, never inline with
+   ordinary rows. Radius stays on the ladder (field 12px; the Bible's 14px
+   is off-ladder — D-W9-F, delta -2px). */
+.settings-danger-zone { margin-block-start: var(--mj-space-200); padding: var(--mj-space-200); display: grid; gap: var(--mj-space-100); border: 1px solid var(--u-danger-soft-line); border-radius: var(--u-radius-field); background: var(--u-danger-soft); }
+.settings-danger-zone__head { display: flex; align-items: center; gap: var(--mj-gap-xs); color: var(--u-danger-ink); font-size: var(--mj-text-body-s); font-weight: 700; }
+.settings-danger-zone__row { display: flex; align-items: center; justify-content: space-between; gap: var(--mj-space-150); }
+.settings-danger-zone__row > div strong { display: block; color: var(--u-danger-ink); font-size: var(--mj-text-body-s); }
+.settings-danger-zone__row > div p { margin: var(--mj-space-25) 0 0; color: var(--u-danger-ink); font-size: var(--mj-text-label-m); line-height: var(--mj-leading-small); opacity: .88; }
+.settings-danger-zone .button { border-color: var(--u-danger-soft-line); background: var(--u-surface-solid); color: var(--u-danger); }
+@media (hover: hover) {
+  .settings-danger-zone .button:hover { border-color: var(--u-danger); color: var(--u-danger); background: var(--u-surface-solid); }
+}
 .profile-photo { display: grid; align-content: start; justify-items: center; gap: var(--mj-space-100); padding: var(--mj-space-200); border: 0; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); }
 .profile-photo > span { width: 76px; height: 76px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--u-primary), var(--u-primary-deep)); color: white; font-size: var(--u-text-xl); }
 .profile-photo small { color: var(--u-faint); font-size: var(--mj-text-label-s); text-align: center; }

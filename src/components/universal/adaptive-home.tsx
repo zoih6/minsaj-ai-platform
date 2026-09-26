@@ -306,7 +306,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
               const preferred = goals.includes(service.id);
               return (
                 <Link href={`/${locale}/app/${service.slug}`} data-service={service.id} className="adaptive-service-tile" key={service.id}>
-                  <div><span><Icon size={20} /></span>{preferred ? <small><Sparkles size={12} />{copy.recommended}</small> : null}<ArrowLeft size={16} /></div>
+                  <div><span><Icon size={24} /></span>{preferred ? <small><Sparkles size={12} />{copy.recommended}</small> : null}<ArrowLeft size={16} /></div>
                   <h3>{service.label}</h3><p>{service.description}</p>
                   <span className="adaptive-service-tile__sample">{service.starters[0]}</span>
                 </Link>
@@ -331,7 +331,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
               );
             })}
             <aside className="adaptive-why-card">
-              <span><Sparkles size={18} /></span><h3>{copy.why}</h3><p>{copy.whyBody}</p><Dialog.Trigger asChild><button type="button">{copy.change}<ArrowLeft size={14} /></button></Dialog.Trigger>
+              <span><Sparkles size={24} /></span><h3>{copy.why}</h3><p>{copy.whyBody}</p><Dialog.Trigger asChild><button type="button">{copy.change}<ArrowLeft size={14} /></button></Dialog.Trigger>
             </aside>
           </div>
         </section>
@@ -341,7 +341,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
         <Dialog.Overlay className="adaptive-dialog-overlay" />
         <Dialog.Content className="adaptive-dialog" aria-describedby="adaptive-dialog-description">
           <div className="adaptive-dialog__head">
-            <span><Sparkles size={20} /></span>
+            <span><Sparkles size={24} /></span>
             <div><Dialog.Title>{copy.onboardingTitle}</Dialog.Title><Dialog.Description id="adaptive-dialog-description">{copy.onboardingBody}</Dialog.Description></div>
             <Dialog.Close asChild><button type="button" aria-label={isArabic ? "إغلاق" : "Close"}><X size={18} /></button></Dialog.Close>
           </div>
@@ -350,7 +350,7 @@ export function AdaptiveHome({ locale }: { locale: Locale }) {
             {services.filter((service) => service.id !== "ask").map((service) => {
               const Icon = serviceIcons[service.id];
               const selected = draftGoals.includes(service.id);
-              return <button type="button" data-service={service.id} className={selected ? "is-selected" : ""} aria-pressed={selected} onClick={() => toggleDraftGoal(service.id)} key={service.id}><span><Icon size={18} /></span><div><strong>{service.label}</strong><small>{service.description}</small></div><i>{selected ? <Check size={14} /> : <Plus size={14} />}</i></button>;
+              return <button type="button" data-service={service.id} className={selected ? "is-selected" : ""} aria-pressed={selected} onClick={() => toggleDraftGoal(service.id)} key={service.id}><span><Icon size={24} /></span><div><strong>{service.label}</strong><small>{service.description}</small></div><i>{selected ? <Check size={14} /> : <Plus size={14} />}</i></button>;
             })}
           </div>
           <div className="adaptive-dialog__privacy"><CheckCircle2 size={16} />{copy.privacy}</div>
