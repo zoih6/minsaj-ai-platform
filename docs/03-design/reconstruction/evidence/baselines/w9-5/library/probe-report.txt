@@ -1,0 +1,8 @@
+PASS  M-1 grid rows share one height @1440 — [{"n":3,"equal":true,"h":392.5},{"n":3,"equal":true,"h":392.5}]
+PASS  M-2 unified min-height ≥ 320px — shortest card: 392.5px
+PASS  M-3 title line-clamp=2 · description=3 — title=2 desc=3
+PASS  M-4 footer pinned to the card bottom
+PASS  M-6 zero horizontal overflow @390
+PASS  M-5 list view compact (min-height exempt) — row height: 149px
+
+W9-5 library probe: 6/6 passed
