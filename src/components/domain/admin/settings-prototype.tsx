@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Bell, Check, ChevronLeft, ChevronRight, Database, Download, Eye, EyeOff, FileClock, KeyRound, Languages, Link2, LockKeyhole, Plus, Save, Settings2, ShieldCheck, Trash2, UserRound, Users, Webhook, X } from "lucide-react";
 import { Badge } from "@minsaj/ui";
@@ -33,6 +33,59 @@ export function SettingsPrototype({ locale }: { locale: Locale }) {
   const [denseMode, setDenseMode] = useState(false);
   const DirectionIcon = ar ? ChevronLeft : ChevronRight;
   useEffect(() => { if (!notice) return; const timer = window.setTimeout(() => setNotice(""), 2800); return () => window.clearTimeout(timer); }, [notice]);
+
+  /* W9-2 (Bible §4.4 + Errata E-1) — the section strip becomes a full
+     ScrollableTabs implementation on top of the W8-3 container: scroll
+     buttons that appear only when content is hidden past that edge, an
+     interactive fade mask driven by the same state, and a sliding underline
+     indicator. The E-1 math below is the CORRECTED version — in modern
+     RTL scrollers scrollLeft starts at 0 and goes NEGATIVE toward the end
+     (spec-compliant Chrome/Firefox/Safari), so position is derived as
+     `-scrollLeft` in RTL and `+scrollLeft` in LTR, giving one normalized
+     distance-from-start for both directions. */
+  const navRef = useRef<HTMLElement | null>(null);
+  const underlineRef = useRef<HTMLSpanElement | null>(null);
+  const [hiddenPast, setHiddenPast] = useState({ start: false, end: false });
+
+  const readEdges = useCallback(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const rtl = getComputedStyle(el).direction === "rtl";
+    const max = el.scrollWidth - el.clientWidth;
+    if (max <= 2) {
+      setHiddenPast({ start: false, end: false });
+      el.style.setProperty("--mi-start", "0px");
+      el.style.setProperty("--mi-end", "0px");
+      return;
+    }
+    const pos = rtl ? Math.max(0, -el.scrollLeft) : Math.max(0, el.scrollLeft);
+    const atStart = pos <= 2;
+    const atEnd = pos >= max - 2;
+    setHiddenPast({ start: !atStart, end: !atEnd });
+    el.style.setProperty("--mi-start", atStart ? "0px" : "18px");
+    el.style.setProperty("--mi-end", atEnd ? "0px" : "18px");
+  }, []);
+
+  const step = useCallback((towardEnd: boolean) => {
+    const el = navRef.current;
+    if (!el) return;
+    const rtl = getComputedStyle(el).direction === "rtl";
+    const max = el.scrollWidth - el.clientWidth;
+    const pos = rtl ? Math.max(0, -el.scrollLeft) : Math.max(0, el.scrollLeft);
+    const target = towardEnd ? Math.min(max, pos + 160) : Math.max(0, pos - 160);
+    el.scrollTo({ left: rtl ? -target : target, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    readEdges();
+    el.addEventListener("scroll", readEdges, { passive: true });
+    const observer = new ResizeObserver(readEdges);
+    observer.observe(el);
+    return () => { el.removeEventListener("scroll", readEdges); observer.disconnect(); };
+  }, [readEdges]);
+
   const sections: Array<[SettingsSection, string, string, typeof UserRound]> = [
     ["profile", ar ? "الملف الشخصي" : "Profile", ar ? "الاسم والحساب" : "Name and account", UserRound],
     ["preferences", ar ? "التفضيلات" : "Preferences", ar ? "اللغة والكثافة والتنبيهات" : "Language, density, alerts", Languages],
@@ -64,11 +117,29 @@ export function SettingsPrototype({ locale }: { locale: Locale }) {
     ["أمس", ar ? "نُشر الإصدار 6 من تدفق الرصد" : "Weekly watch flow version 6 published", "flow.published", "flw_weekly_watch"],
   ];
   function saved(message: string) { setNotice(message); }
+  function selectSection(id: SettingsSection, el?: HTMLElement | null) {
+    setSection(id);
+    el?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+  }
+
+  /* §4.4 underline: positioned INSIDE the scroller (absolute against the
+     scrolling content) so it rides along with the strip; physical `left`
+     matches offsetLeft in both RTL and LTR. */
+  useEffect(() => {
+    const nav = navRef.current;
+    const bar = underlineRef.current;
+    if (!nav || !bar) return;
+    const active = nav.querySelector<HTMLButtonElement>("button.is-active");
+    if (!active) { bar.style.opacity = "0"; return; }
+    bar.style.left = `${active.offsetLeft + 10}px`;
+    bar.style.width = `${Math.max(0, active.offsetWidth - 20)}px`;
+    bar.style.opacity = "1";
+  }, [section, hiddenPast]);
 
   const head = (title: string, desc: string) => <div className="mj-section__head"><div className="mj-section__head-copy"><h2 className="mj-section__title">{title}</h2><p className="mj-section__desc">{desc}</p></div></div>;
 
   return <div className="ops-page settings-page">
-    <ScrollFx /><header className="page-header"><div className="page-header__copy"><p className="page-eyebrow">{ar ? "سياسات المساحة" : "Workspace policy"}</p><h1 className="page-title">{ar ? "الإعدادات" : "Settings"}</h1><p className="page-description">{ar ? "اضبط الحساب والسياسات والمزودين والخصوصية دون إخفاء الأثر أو الصلاحية المطلوبة." : "Configure account, policy, providers, and privacy without hiding impact or required authority."}</p></div></header><div className="settings-layout"><aside className="settings-nav mj-surface"><p>{ar ? "إعدادات فريق أفق" : "Horizon Team settings"}</p><nav aria-label={ar ? "أقسام الإعدادات" : "Settings sections"}>{sections.map(([id, label, detail, Icon]) => <button key={id} type="button" className={section === id ? "is-active" : ""} aria-current={section === id ? "page" : undefined} onClick={() => setSection(id)}><Icon size={16} /><span><strong>{label}</strong><small>{detail}</small></span><DirectionIcon size={14} /></button>)}</nav></aside><main className="settings-content">
+    <ScrollFx /><header className="page-header"><div className="page-header__copy"><p className="page-eyebrow">{ar ? "سياسات المساحة" : "Workspace policy"}</p><h1 className="page-title">{ar ? "الإعدادات" : "Settings"}</h1><p className="page-description">{ar ? "اضبط الحساب والسياسات والمزودين والخصوصية دون إخفاء الأثر أو الصلاحية المطلوبة." : "Configure account, policy, providers, and privacy without hiding impact or required authority."}</p></div></header><div className="settings-layout"><aside className="settings-nav mj-surface"><p>{ar ? "إعدادات فريق أفق" : "Horizon Team settings"}</p><div className="settings-strip"><nav ref={navRef} aria-label={ar ? "أقسام الإعدادات" : "Settings sections"}>{sections.map(([id, label, detail, Icon]) => <button key={id} type="button" className={section === id ? "is-active" : ""} aria-current={section === id ? "page" : undefined} onClick={(event) => selectSection(id, event.currentTarget)}><Icon size={16} /><span><strong>{label}</strong><small>{detail}</small></span><DirectionIcon size={14} /></button>)}<span ref={underlineRef} className="settings-strip__underline" aria-hidden="true" /></nav><button type="button" className="settings-strip__btn settings-strip__btn--prev" data-visible={hiddenPast.start} aria-label={ar ? "تمرير إلى البداية" : "Scroll to start"} aria-hidden={!hiddenPast.start} tabIndex={hiddenPast.start ? 0 : -1} onClick={() => step(false)}>{ar ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}</button><button type="button" className="settings-strip__btn settings-strip__btn--next" data-visible={hiddenPast.end} aria-label={ar ? "تمرير إلى النهاية" : "Scroll to end"} aria-hidden={!hiddenPast.end} tabIndex={hiddenPast.end ? 0 : -1} onClick={() => step(true)}>{ar ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}</button></div></aside><main className="settings-content">
     {section === "profile" ? <section className="mj-section">{head(ar ? "الملف الشخصي" : "Profile", ar ? "الهوية التي تظهر في القرارات وسجلات التدقيق." : "The identity shown in decisions and audit records.")}<div className="mj-surface"><div className="profile-settings-grid"><div className="profile-photo"><span>س</span><button className="button button--outline button--compact" type="button">{ar ? "تغيير الصورة" : "Change photo"}</button><small>{ar ? "PNG أو JPG · حتى 2 م.ب" : "PNG or JPG · up to 2 MB"}</small></div><div><label className="field"><span>{ar ? "الاسم الظاهر" : "Display name"}</span><input defaultValue={ar ? "سارة الحربي" : "Sarah Alharbi"} /></label><label className="field"><span>{ar ? "البريد" : "Email"}</span><input value="sarah@minsaj.demo" readOnly /></label><label className="field"><span>{ar ? "المسمى" : "Job title"}</span><input defaultValue={ar ? "قائدة عمليات" : "Operations lead"} /></label></div></div><div className="settings-save-row"><span>{ar ? "تظهر التغييرات في القرارات اللاحقة فقط." : "Changes appear in future decisions only."}</span><button className="button button--primary button--default" type="button" onClick={() => saved(ar ? "حُفظ الملف الشخصي محليًا." : "Profile saved locally.")}><Save size={14} />{ar ? "حفظ التغييرات" : "Save changes"}</button></div></div></section> : null}
     {section === "preferences" ? <section className="mj-section">{head(ar ? "التفضيلات" : "Preferences", ar ? "لغة الواجهة وكثافتها وطريقة وصول التنبيهات." : "Interface language, density, and notification delivery.")}<div className="mj-surface"><div className="settings-group"><h3>{ar ? "الواجهة" : "Interface"}</h3><div className="settings-rows"><div className="settings-row"><span><strong>{ar ? "اللغة الأساسية" : "Primary language"}</strong><small>{ar ? "يمكن التبديل من الشريط العلوي دائمًا." : "You can always switch from the top bar."}</small></span><select defaultValue={locale}><option value="ar">العربية</option><option value="en">English</option></select></div><SettingToggle checked={denseMode} onChange={setDenseMode} label={ar ? "كثافة عالية" : "Dense mode"} detail={ar ? "صفوف أقصر ومساحة أكبر للمحتوى التشغيلي." : "Shorter rows and more room for operational content."} /></div></div><div className="settings-group"><h3>{ar ? "الإشعارات" : "Notifications"}</h3><div className="settings-rows"><SettingToggle checked={approvalAlerts} onChange={setApprovalAlerts} label={ar ? "طلبات الموافقة" : "Approval requests"} detail={ar ? "تنبيه داخل المنتج عند توقف تشغيل ينتظر قرارك." : "In-product alert when a run pauses for your decision."} /><SettingToggle checked={weeklyDigest} onChange={setWeeklyDigest} label={ar ? "ملخص أسبوعي" : "Weekly digest"} detail={ar ? "نشاط المشاريع والتكلفة والتنبيهات المفتوحة." : "Project activity, cost, and open alerts."} /></div></div><div className="settings-save-row"><span>{ar ? "المعاينة تطبق التبديلات محليًا." : "The preview applies toggles locally."}</span><button className="button button--primary button--default" type="button" onClick={() => saved(ar ? "حُفظت التفضيلات محليًا." : "Preferences saved locally.")}><Save size={14} />{ar ? "حفظ التفضيلات" : "Save preferences"}</button></div></div></section> : null}
     {section === "workspace" ? <section className="mj-section">{head(ar ? "مساحة العمل" : "Workspace", ar ? "الاسم والافتراضيات التي تحكم الموارد الجديدة." : "Name and defaults governing new resources.")}<div className="mj-surface"><label className="field"><span>{ar ? "اسم المساحة" : "Workspace name"}</span><input defaultValue={ar ? "فريق أفق" : "Horizon Team"} /></label><div className="data-action-list">{policies.map(({ icon: Icon, title, body, badge }) => <article key={title}><span><Icon size={16} /></span><div><strong>{title}</strong><p>{body}</p></div><Badge tone="success">{badge}</Badge></article>)}</div><div className="settings-save-row"><span>{ar ? "يتطلب تغيير السياسات دور المسؤول." : "Policy changes require an admin role."}</span><button className="button button--primary button--default" type="button" onClick={() => saved(ar ? "حُفظت سياسة المساحة في المحاكاة." : "Workspace policy saved in the simulation.")}><Save size={14} />{ar ? "حفظ السياسة" : "Save policy"}</button></div></div></section> : null}

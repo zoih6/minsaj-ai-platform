@@ -1,0 +1,36 @@
+PASS  [ar @390] 7 sections in the strip — got 7
+PASS  [ar @390] at start: next button visible — {"prev":false,"next":true}
+PASS  [ar @390] at start: fade only on the end edge — --mi-start=0px --mi-end=18px
+PASS  [ar @390] underline live under the active tab — width=148px
+PASS  [ar @390] E-1: RTL starts at scrollLeft 0 — scrollLeft=0
+PASS  [ar @390] E-1: next button advances toward the end — |scrollLeft| 0 → 160
+PASS  [ar @390] all 7 options reach scrollIntoView
+PASS  [ar @390] at end: prev button visible + fade flips to the start edge — {"prev":"true","miStart":"18px","miEnd":"0px"}
+PASS  [ar @768] 7 sections in the strip — got 7
+PASS  [ar @768] at start: next button visible — {"prev":false,"next":true}
+PASS  [ar @768] at start: fade only on the end edge — --mi-start=0px --mi-end=18px
+PASS  [ar @768] underline live under the active tab — width=148px
+PASS  [ar @768] E-1: RTL starts at scrollLeft 0 — scrollLeft=0
+PASS  [ar @768] E-1: next button advances toward the end — |scrollLeft| 0 → 160
+PASS  [ar @768] all 7 options reach scrollIntoView
+PASS  [ar @768] at end: prev button visible + fade flips to the start edge — {"prev":"true","miStart":"18px","miEnd":"0px"}
+PASS  [ar @1440] vertical nav, no strip affordances — buttons=7 horizontal=false
+PASS  [ar @1440] all 7 sections present
+PASS  [en @390] 7 sections in the strip — got 7
+PASS  [en @390] at start: next button visible — {"prev":false,"next":true}
+PASS  [en @390] at start: fade only on the end edge — --mi-start=0px --mi-end=18px
+PASS  [en @390] underline live under the active tab — width=163px
+PASS  [en @390] E-1: next button advances toward the end — |scrollLeft| 0 → 160
+PASS  [en @390] all 7 options reach scrollIntoView
+PASS  [en @390] at end: prev button visible + fade flips to the start edge — {"prev":"true","miStart":"18px","miEnd":"0px"}
+PASS  [en @768] 7 sections in the strip — got 7
+PASS  [en @768] at start: next button visible — {"prev":false,"next":true}
+PASS  [en @768] at start: fade only on the end edge — --mi-start=0px --mi-end=18px
+PASS  [en @768] underline live under the active tab — width=163px
+PASS  [en @768] E-1: next button advances toward the end — |scrollLeft| 0 → 160
+PASS  [en @768] all 7 options reach scrollIntoView
+PASS  [en @768] at end: prev button visible + fade flips to the start edge — {"prev":"true","miStart":"18px","miEnd":"0px"}
+PASS  [en @1440] vertical nav, no strip affordances — buttons=7 horizontal=false
+PASS  [en @1440] all 7 sections present
+
+W9-2 probe: 34/34 passed
