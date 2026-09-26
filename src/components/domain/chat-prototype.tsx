@@ -88,16 +88,22 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
           setStatus("completed");
           return length;
         }
-        return Math.min(length + 2, words.length);
+        /* W9-5/م2: one word per 70ms — a readable streaming pace (was 2 words
+           per 52ms, which finished before the eye could follow and raced the
+           scroll-takeover window). */
+        return Math.min(length + 1, words.length);
       });
-    }, 52);
+    }, 70);
     return () => window.clearInterval(timer);
   }, [status, words.length]);
 
-  /* While pinned, every streamed chunk keeps the caret inside the viewport. */
+  /* While pinned, every streamed chunk keeps the caret inside the viewport.
+     Instant — html{scroll-behavior:smooth} would turn "auto" into a smooth
+     animation that fights the user's own scroll jumps and can re-pin the
+     stream against their intent. */
   useEffect(() => {
     if (status !== "streaming" || !pinned) return;
-    caretRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    caretRef.current?.scrollIntoView({ behavior: "instant", block: "end" });
   }, [responseLength, status, pinned]);
 
   /* Distance-from-bottom drives the pin: >100px up = the user took over. */

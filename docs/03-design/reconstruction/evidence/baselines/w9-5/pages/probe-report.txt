@@ -1,0 +1,31 @@
+PASS  H-1 service tile = 44×44 with a 24px icon — 44×44 icon=24
+PASS  H-2 why-card tile joins the 44px family — 44px
+PASS  H-3 metadata 12px + tabular lining numerals — 12px · lining-nums tabular-nums
+PASS  H-4 zero horizontal overflow @390
+PASS  S-1 content column max-width 720px — 720px
+PASS  S-2 save row is sticky — sticky
+PASS  S-3 danger zone fenced (border + tinted bg + radius) — منطقة الخطر · radius 12px
+PASS  S-4 danger zone paints danger tokens — bg rgb(253, 236, 236)
+PASS  S-5 zero horizontal overflow @390
+PASS  C-1 format grid 1/2/3 columns @390/1024/1440 — 1/2/3
+PASS  C-2 hint clamps at 3 lines — clamp=3
+PASS  C-3 hover lift present (transform property wired)
+PASS  C-4 compact cards stay (D-W9-G keep decision) — min-height=158px
+PASS  A-1 empty state shows exactly 3 suggested prompts — starters=3
+PASS  A-2 stream column 720px + block caret ▍ @600ms — col=720px caret=0.6s w=8.8px
+PASS  A-3 sticky follow-up composer present — sticky
+PASS  A-4 ↓ resume button appears after >100px takeover — visible
+PASS  A-5 ↓ click re-pins the stream
+PASS  A-6 completed answer carries a [lang][copy] code block — lang=JSON copy=true copied=true
+PASS  R-1 every source carries a trust chip — chips=8
+PASS  R-2 trust tones paint success/warning/neutral — success,warning,neutral
+PASS  R-3 report citations are numbered refs [n] opening the inspector — refs=1 numbered=true inspector=true
+PASS  K-1 220px tree beside the diffs @1440 — col1=220px
+PASS  K-2 tree sticky + state dots (pending set) — sticky · pending,pending,pending,pending
+PASS  K-3 every file article still rendered — files=4 tree=4
+PASS  K-4 tree collapses to horizontal tabs @390 — row · scrollable
+PASS  Z-1 dropzone ≥120px · dashed · 1.5px authored — 120px dashed authored=1.5px dashed var(--u-line-strong)
+PASS  Z-2 overlay-grade rounding (ladder 22px) — radius=22px
+PASS  Z-3 dropping a file fills the label input (name only) — value="مبيعات-q3.csv"
+
+W9-5 pages probe (م1+م2): 29/29 passed
