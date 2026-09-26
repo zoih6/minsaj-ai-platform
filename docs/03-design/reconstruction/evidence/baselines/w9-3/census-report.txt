@@ -1,0 +1,7 @@
+PASS  C-1 container ladder = GRD-01 frozen (560/780/1040/1440) — 560px · 780px · 1040px · 1440px
+PASS  C-2 motion contract frozen (--u-motion-* resolves) — 80ms · .13s · .2s · .3s · .48s
+PASS  C-2 no raw ms outside the contract in transitions
+PASS  C-3 ONE base focus treatment (3px/3px, live-measured) — 3px solid / offset 3px
+PASS  C-4 h1 census: 34px page-title + 38px home hero exception only — 38px · 34px (home=38px, routes=18)
+
+W9-3 census: 5/5 passed
