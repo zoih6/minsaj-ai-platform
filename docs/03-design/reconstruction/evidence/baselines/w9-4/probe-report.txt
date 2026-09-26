@@ -1,0 +1,10 @@
+PASS  L-1 live stage strip on the product surface — 8 pills: done,done,done,done,done,active,pending,pending
+PASS  L-2 active pill carries the service tint + spinner — bg=rgb(241, 236, 253)
+PASS  L-2 pills are 32px-ish compact — 32.0px
+PASS  L-3 live status bar exists — status=running active=true
+PASS  L-3 sticky bar ~40px tall — 40.0px
+PASS  L-3 pulsing dot + mono run id present
+PASS  L-4 artifacts rail: 420px sticky column with divider — pos=sticky w=420 divider=1px cols=572px 420px
+PASS  L-5 idle service shows NO live chrome — {"strip":false,"bar":false,"rail":false}
+
+W9-4 probe: 8/8 passed

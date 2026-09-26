@@ -8,7 +8,7 @@ import { isTerminalServiceRunStatus } from "@minsaj/contracts/services";
 import { getServiceDictionary } from "@minsaj/i18n/services";
 import { useServiceWorkbench } from "../state/workbench-provider";
 import { selectPrimaryArtifact, selectCurrentReceipt, selectPendingHandoff } from "../state/reducer";
-import { ServiceRunStatusBar, ServiceStartButton, ServiceStageNavigation } from "./workbench-primitives";
+import { ServiceRunStatusBar, ServiceStartButton, ServiceStageNavigation, ServiceLiveStageStrip, ServiceLiveStatusBar } from "./workbench-primitives";
 import { ServiceHandoffPreview, ServiceSimulationReceiptPanel, ServiceStorageDisclosure } from "./workbench-overlays";
 
 /**
@@ -91,7 +91,27 @@ export function ServiceProductShell({
         <code>{state.session.id}</code>
       </p>
 
-      <div className="u2-product__body">{children}</div>
+      {/* W9-4 (Bible §5): the LIVE surface affordances — stage pills and the
+          artifacts rail exist on the product surface only while a run does;
+          the full control bar stays behind the demo door. */}
+      <div className="u2-product__body" data-live={status !== null} data-has-artifact={artifact !== undefined}>
+        {status !== null ? <ServiceLiveStageStrip locale={locale} stages={state.stages} /> : null}
+        <div className="u2-product__flow">{children}</div>
+        {artifact !== undefined ? (
+          <aside className="u2-live-artifacts" data-testid="u2-live-artifacts" aria-label={ar ? "المخرجات" : "Artifacts"}>
+            <header><ShieldAlert size={16} aria-hidden="true" /><h2>{artifact.title}</h2></header>
+            <ul>
+              <li>{dictionary.workbench.version} {artifact.versionIds.length}</li>
+              <li>{dictionary.services[artifact.serviceId].artifactKind}</li>
+              {artifact.warningCodes.map((code) => <li key={code}>{code}</li>)}
+            </ul>
+          </aside>
+        ) : null}
+      </div>
+
+      {/* W9-4 (§5.2-6): the sticky surface status bar — 40px, blur, pulsing
+          dot; sits above the mobile tabbar reserve. */}
+      {status !== null ? <ServiceLiveStatusBar locale={locale} status={status} stages={state.stages} runId={state.run?.id ?? ""} /> : null}
 
       {/* Demo panel — the entire simulation affordance behind ONE door. */}
       <Dialog.Root open={demoOpen} onOpenChange={setDemoOpen}>

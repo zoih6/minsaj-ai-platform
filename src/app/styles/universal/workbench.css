@@ -984,6 +984,53 @@
 /* ---- Product body: the stage surfaces own the screen ------------------- */
 .u2-product__body { min-width: 0; display: flex; flex-direction: column; gap: var(--mj-space-600); }
 
+/* ---- W9-4 (Bible §5) · the LIVE surface affordances ----------------------
+   Stage pills (§5.2-3, four VISUAL states), the sticky artifacts rail
+   (§5.2-5, 420px on lg+) and the sticky status bar (§5.2-6, 40px). All ride
+   the product surface ONLY while a run exists; the full control bar stays
+   behind the demo door. The contract carries five stage states — blocked and
+   skipped deliberately share the danger tint (the Bible specifies four). */
+.u2-live-strip ol { margin: 0; padding: 0; list-style: none; display: flex; align-items: center; gap: var(--mj-space-100); overflow-x: auto; scrollbar-width: none; }
+.u2-live-strip ol::-webkit-scrollbar { display: none; }
+.u2-live-strip li { flex: 0 0 auto; }
+.u2-live-strip li:not(:last-child)::after { content: ""; display: inline-block; width: var(--mj-space-600); height: 1px; margin-inline-start: var(--mj-space-100); vertical-align: middle; background: var(--u-line-strong); }
+.u2-live-strip__pill { min-height: 32px; display: inline-flex; align-items: center; gap: var(--mj-gap-2xs); padding-inline: var(--mj-space-150); border: 1px solid var(--u-line); border-radius: 999px; background: var(--u-surface-subtle); color: var(--u-ink-soft); font-size: var(--mj-text-label-m); font-weight: 600; white-space: nowrap; }
+.u2-live-strip li[data-status="active"] .u2-live-strip__pill { border-color: var(--service, var(--u-primary)); background: var(--service-soft, var(--u-primary-soft)); color: var(--u-ink); }
+.u2-live-strip li[data-status="done"] .u2-live-strip__pill { border-color: var(--u-mint-soft-line); background: var(--u-mint-soft); color: var(--u-mint-ink); }
+.u2-live-strip li[data-status="error"] .u2-live-strip__pill { border-color: var(--u-danger-soft-line); background: var(--u-danger-soft); color: var(--u-danger-ink); }
+.u2-live-strip__spin { animation: u2-live-spin var(--u-motion-duration-activity-cycle) linear infinite; }
+@keyframes u2-live-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .u2-live-strip__spin { animation: none; } }
+
+/* §5.2-6 — sticky status bar, 40px, translucent blur, above the tabbar. */
+.u2-live-bar { position: sticky; inset-block-end: calc(0px + var(--mj-tabbar-reserve, 0px)); z-index: 60; min-height: 40px; display: flex; align-items: center; margin-block-start: var(--mj-space-200); padding-inline: var(--mj-space-200); border-block-start: 1px solid var(--u-line); border-radius: var(--u-radius-control) var(--u-radius-control) 0 0; background: var(--u-veil, var(--u-surface-solid)); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.u2-live-bar > p { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--mj-space-150); width: 100%; font-size: var(--mj-text-code); }
+.u2-live-bar__dot { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--u-muted); }
+.u2-live-bar[data-active="true"] .u2-live-bar__dot { background: var(--service, var(--u-primary)); animation: u2-live-pulse 1.6s var(--u-motion-ease-standard) infinite; }
+.u2-live-bar[data-status="completed"] .u2-live-bar__dot, .u2-live-bar[data-status="completed_with_warnings"] .u2-live-bar__dot { background: var(--u-mint); animation: none; }
+.u2-live-bar[data-status="failed_final"] .u2-live-bar__dot, .u2-live-bar[data-status="cancelled"] .u2-live-bar__dot { background: var(--u-danger); animation: none; }
+@keyframes u2-live-pulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .u2-live-bar .u2-live-bar__dot { animation: none; } }
+.u2-live-bar__label { color: var(--u-ink); font-weight: 600; }
+.u2-live-bar__meta { color: var(--u-muted); }
+.u2-live-bar__disclosure { margin-inline-start: auto; color: var(--u-faint); }
+
+/* §5.2-5 — the artifacts rail: a second 420px sticky column on lg+ with an
+   inline-start divider. Below lg it stacks with the flow (mobile content
+   already shows results in the surfaces themselves). */
+.u2-live-artifacts { margin: 0; padding: var(--mj-space-300); border: 1px solid var(--u-line); border-radius: var(--u-radius); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); }
+.u2-live-artifacts header { display: flex; align-items: center; gap: var(--mj-gap-xs); color: var(--u-ink-soft); }
+.u2-live-artifacts h2 { margin: 0; font-size: var(--u-text-sm); font-weight: 600; color: var(--u-ink); }
+.u2-live-artifacts ul { margin: var(--mj-space-150) 0 0; padding: 0; list-style: none; display: grid; gap: var(--mj-gap-2xs); color: var(--u-muted); font-size: var(--u-text-xs); }
+.u2-live-artifacts li { padding: var(--mj-space-100) var(--mj-space-150); border: 1px solid var(--u-line); border-radius: var(--u-radius-sm); background: var(--u-surface-subtle); }
+@media (min-width: 1024px) {
+  .u2-product__body[data-has-artifact="true"] { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: var(--mj-space-600); align-items: start; }
+  .u2-product__body[data-has-artifact="true"] > .u2-live-strip { grid-column: 1 / -1; }
+  .u2-product__body[data-has-artifact="true"] > .u2-product__flow { grid-column: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--mj-space-600); }
+  .u2-live-artifacts { position: sticky; inset-block-start: var(--mj-space-200); grid-column: 2; grid-row: 2; border: 0; border-inline-start: 1px solid var(--u-line); border-radius: 0; background: transparent; box-shadow: none; max-height: calc(100dvh - 160px); overflow-y: auto; }
+}
+
+
 /* ---- W7-4 · the ONE stage-card grammar ----------------------------------
    Every domain stage surface = ONE coherent card on ONE elevation: the
    reference card values (white card, hairline, raise shadow, card radius).

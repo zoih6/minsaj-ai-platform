@@ -2,6 +2,7 @@
 
 import { AlertTriangle, Check, Circle, CircleDot, Info, LoaderCircle, Play, RotateCcw, ShieldAlert, X } from "lucide-react";
 import type { ServiceRunStatus, ServiceStage } from "@minsaj/contracts/services";
+import { isTerminalServiceRunStatus } from "@minsaj/contracts/services";
 import { getServiceDictionary } from "@minsaj/i18n/services";
 import type { Locale } from "@minsaj/contracts/services";
 
@@ -134,6 +135,84 @@ export function ServiceRunStatusBar({
         {validationKey === "retry" ? <small className="u2-run__notice" data-testid="u2-retry-blocked">{dictionary.workbench.noDeadControl}</small> : null}
       </div>
     </div>
+  );
+}
+
+/**
+ * W9-4 (Bible §5.2-3) — the SURFACE stage strip: compact pills with the four
+ * visual states (pending neutral · active service+spinner · completed mint+check
+ * · blocked/skipped danger) joined by connector lines, shown on the product
+ * surface only while a run exists. The contract carries five stage states; the
+ * two failure flavours (blocked, skipped) share the danger tint on purpose —
+ * the Bible specifies four VISUAL states.
+ */
+export function ServiceLiveStageStrip({
+  locale,
+  stages,
+}: {
+  locale: Locale;
+  stages: readonly ServiceStage[];
+}) {
+  const dictionary = getServiceDictionary(locale);
+  return (
+    <nav className="u2-live-strip" aria-label={dictionary.workbench.stageNavigation} data-testid="u2-live-stages">
+      <ol>
+        {stages.map((stage) => {
+          const title = resolveStageTitle(locale, stage.titleKey);
+          const failed = stage.status === "blocked" || stage.status === "skipped";
+          const visual = stage.status === "completed" ? "done" : failed ? "error" : stage.status;
+          return (
+            <li key={stage.id} data-status={visual} aria-current={stage.status === "active" ? "step" : undefined}>
+              <span className="u2-live-strip__pill">
+                {stage.status === "active" ? <LoaderCircle size={14} className="u2-live-strip__spin" aria-hidden="true" /> : null}
+                {stage.status === "completed" ? <Check size={14} aria-hidden="true" /> : null}
+                {failed ? <AlertTriangle size={14} aria-hidden="true" /> : null}
+                {stage.status === "pending" ? <Circle size={14} aria-hidden="true" /> : null}
+                <span>{title}</span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
+
+/**
+ * W9-4 (Bible §5.2-6) — the SURFACE status bar: a 40px sticky bottom strip
+ * that lives on the product surface while a run exists (the full control bar
+ * stays behind the demo door). Pulsing status dot + status text + stage
+ * counter + run id in mono + the honest simulation disclosure (0 network
+ * calls). Rides above the mobile tabbar reserve exactly like the legacy
+ * stop-button did.
+ */
+export function ServiceLiveStatusBar({
+  locale,
+  status,
+  stages,
+  runId,
+}: {
+  locale: Locale;
+  status: ServiceRunStatus | null;
+  stages: readonly ServiceStage[];
+  runId: string;
+}) {
+  const dictionary = getServiceDictionary(locale);
+  const done = stages.filter((s) => s.status === "completed").length;
+  const stageWord = locale === "ar" ? "المرحلة" : "Stage";
+  const label = status === null ? dictionary.workbench.noArtifactYet : dictionary.runStatus[status];
+  return (
+    <aside className="u2-live-bar" data-testid="u2-live-status" data-status={status ?? "idle"} data-active={status !== null && !isTerminalServiceRunStatus(status)}>
+      <p role="status" aria-live="polite">
+        <i className="u2-live-bar__dot" aria-hidden="true" />
+        <span className="u2-live-bar__label">{label}</span>
+        <span className="u2-live-bar__meta">
+          {stageWord} {done}/{stages.length}
+        </span>
+        <span className="u2-live-bar__meta mono" dir="ltr">{runId}</span>
+        <span className="u2-live-bar__meta u2-live-bar__disclosure">{locale === "ar" ? "محاكاة محلية · 0 نداء شبكة" : "local simulation · 0 network calls"}</span>
+      </p>
+    </aside>
   );
 }
 
