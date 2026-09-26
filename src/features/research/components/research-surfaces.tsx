@@ -2,6 +2,7 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { BookOpen, CircleAlert, ExternalLink, FileSearch, Filter, Play, ShieldQuestion, Square } from "lucide-react";
+import { Badge } from "@minsaj/ui";
 import type { Locale, ResearchPlan } from "@minsaj/contracts/services";
 import { formatServiceNumber, getServiceDictionary } from "@minsaj/i18n/services";
 import {
@@ -530,6 +531,16 @@ export function ResearchSourceActivitySurface({
   );
 }
 
+/** W9-5/م2 (Bible §6.4): trust chip derivation — high = relevance 3 AND a
+    retrievable source; medium = relevance 2 (or a 3 that is fixture-only);
+    low = the rest. Colors map success/warning/neutral (the Bible's
+    "tertiary" role) through the Badge tones. */
+function sourceTrust(source: { relevance: number; availability: string }): "high" | "medium" | "low" {
+  if (source.relevance >= 3 && source.availability === "available") return "high";
+  if (source.relevance >= 2) return "medium";
+  return "low";
+}
+
 export function ResearchSourceReviewSurface({
   locale,
   state,
@@ -600,7 +611,16 @@ export function ResearchSourceReviewSurface({
           return (
             <li key={source.id} data-testid={`u2-research-source-${source.id}`} data-excluded={source.excluded} data-relevance={source.relevance} data-availability={source.availability}>
               <div>
-                <h3>{sourceTitle(locale, source.id)}</h3>
+                <div className="u2-research__source-head">
+                  <h3>{sourceTitle(locale, source.id)}</h3>
+                  <Badge
+                    tone={sourceTrust(source) === "high" ? "success" : sourceTrust(source) === "medium" ? "warning" : "neutral"}
+                    data-testid={`u2-research-trust-${source.id}`}
+                    data-trust={sourceTrust(source)}
+                  >
+                    {ui(`trust${sourceTrust(source).charAt(0).toUpperCase()}${sourceTrust(source).slice(1)}`)}
+                  </Badge>
+                </div>
                 <p className="u2-research__source-meta">
                   {resolveResearchCopy(locale, `services.research.sourceTypes.${source.sourceType}`)}
                   {" · "}
@@ -790,12 +810,14 @@ export function ResearchReportEditSurface({
   onEditSection,
   onReviewSection,
   onComplete,
+  onOpenInspector,
 }: {
   locale: Locale;
   state: ResearchReducerState;
   onEditSection: (sectionId: string, body: string) => void;
   onReviewSection: (sectionId: string) => void;
   onComplete: () => void;
+  onOpenInspector: (evidenceId: string) => void;
 }) {
   const ui = (key: string) => resolveResearchCopy(locale, `services.research.ui.${key}`);
   const report = state.session.report;
@@ -845,14 +867,23 @@ export function ResearchReportEditSurface({
             <p className="u2-research__citations-label">{ui("reportCitations")}</p>
             <ul className="u2-research__citations">
               {section.evidenceIds.length === 0 ? <li className="u2-research__note">{ui("reportNoCitations")}</li> : null}
-              {section.evidenceIds.map((id) => {
+              {section.evidenceIds.map((id, index) => {
                 const item = evidence.find((candidate) => candidate.id === id);
                 if (item === undefined) return null;
                 return (
                   <li key={id}>
-                    <span data-testid={`u2-research-report-citation-${id}`}>
+                    {/* W9-5/م2 (Bible §6.4): the numbered ref [n] opens the
+                        citation inspector popover. */}
+                    <button
+                      type="button"
+                      className="u2-research__ref"
+                      data-testid={`u2-research-report-ref-${id}`}
+                      aria-label={`${ui("reportCitationOpens")}: ${item.sourceTitle} — ${item.locatorValue}`}
+                      onClick={() => onOpenInspector(id)}
+                    >
+                      <span className="u2-research__ref-index mono">[{formatServiceNumber(locale, index + 1)}]</span>
                       {item.sourceTitle} — {item.locatorValue}
-                    </span>
+                    </button>
                   </li>
                 );
               })}

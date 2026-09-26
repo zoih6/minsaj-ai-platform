@@ -264,6 +264,18 @@
 .u2-research__sources li[data-excluded="true"] { background: var(--u-tint-1); }
 .u2-research__sources li[data-availability="unavailable"] { background: var(--u-danger-soft); }
 .u2-research__sources h3 { margin: 0; font-size: var(--u-text-md); }
+/* W9-5/م2 (Bible §6.4): source head carries the trust chip beside the name —
+   high = success (mint), medium = warning (amber), low = neutral (the
+   Bible's tertiary role); the Badge tone classes own the colors. */
+.u2-research__source-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mj-gap-xs); }
+.u2-research__source-head .badge { flex: 0 0 auto; }
+/* §6.4: numbered reference [n] — a quiet citation button whose leading index
+   is a mono chip in the primary color; it opens the inspector popover. */
+.u2-research__ref { min-height: var(--u-touch); padding: var(--mj-space-100) var(--mj-space-150); display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-sm); color: var(--u-ink-soft); background: var(--u-surface-solid); text-align: start; font-size: var(--u-text-xs); cursor: pointer; }
+.u2-research__ref-index { color: var(--u-primary); font-size: var(--mj-text-code); font-weight: 600; }
+@media (hover: hover) {
+  .u2-research__ref:hover { border-color: var(--u-primary-glow); color: var(--u-ink); }
+}
 .u2-research__source-meta { margin: var(--mj-space-50) 0 0; color: var(--u-muted); font-size: var(--u-text-xs); }
 .u2-research__source-actions { display: flex; flex-wrap: wrap; gap: var(--mj-gap-xs); align-items: flex-start; }
 .u2-research__citations { display: grid; gap: var(--mj-gap-xs); margin: var(--mj-space-100) 0 0; padding: 0; list-style: none; }
@@ -683,6 +695,31 @@
 .u2-code__rationale ul { margin: var(--mj-space-100) 0 0; padding-inline-start: 20px; color: var(--u-muted); font-size: var(--u-text-xs); line-height: 1.8; }
 /* Proposal: file list with +/− chips. */
 .u2-code__files { display: grid; gap: var(--mj-gap-xs); margin: 0; padding: 0; list-style: none; }
+/* W9-5/م2 (Bible §6.6): the file tree — 220px sticky rail beside the diff
+   artifacts on lg+; horizontal tabs below. It is navigation + state only
+   (pending amber / reviewed mint / flagged danger); every file article stays
+   rendered so the review flow is untouched. */
+.u2-code__review-layout { display: grid; gap: var(--mj-gap-sm); }
+.u2-code__review-column { min-width: 0; display: grid; gap: var(--mj-gap-sm); }
+.u2-code__tree-label { margin: 0; color: var(--u-faint); font-size: var(--mj-text-label-s); font-weight: 600; }
+.u2-code__tree ul { display: flex; gap: var(--mj-gap-2xs); margin: var(--mj-gap-2xs) 0 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: none; }
+.u2-code__tree li { flex: 0 0 auto; }
+.u2-code__tree button { min-height: var(--u-touch); padding: var(--mj-space-100) var(--mj-space-150); display: inline-flex; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-line); border-radius: var(--u-radius-field); background: var(--u-surface-solid); cursor: pointer; }
+.u2-code__tree i { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--u-line-strong); }
+.u2-code__tree code { color: var(--u-ink); font-size: var(--mj-text-code); direction: ltr; unicode-bidi: isolate; }
+.u2-code__tree small { color: var(--u-faint); font-size: var(--mj-text-label-s); }
+.u2-code__tree li[data-state="pending"] i { background: var(--u-amber); }
+.u2-code__tree li[data-state="reviewed"] i { background: var(--u-mint); }
+.u2-code__tree li[data-state="flagged"] i { background: var(--u-danger); }
+@media (hover: hover) {
+  .u2-code__tree button:hover { border-color: var(--u-line-strong); }
+}
+@media (min-width: 1024px) {
+  .u2-code__review-layout { grid-template-columns: 220px minmax(0,1fr); align-items: start; gap: var(--mj-gap-md); }
+  .u2-code__tree { position: sticky; inset-block-start: 73px; }
+  .u2-code__tree ul { flex-direction: column; overflow: visible; margin-block-start: var(--mj-gap-xs); }
+  .u2-code__tree button { width: 100%; justify-content: flex-start; }
+}
 .u2-code__files li { display: flex; flex-wrap: wrap; gap: var(--mj-gap-sm); align-items: center; justify-content: space-between; padding: 10px 12px; border: 0; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); }
 .u2-code__files li[data-change="added"] { background: var(--u-mint-soft); }
 .u2-code__counts { display: inline-flex; gap: var(--mj-gap-xs); font-family: var(--u-font-mono, monospace); font-size: var(--u-text-xs); }
@@ -760,6 +797,16 @@
 .u2-analyze__modes button small { color: var(--u-muted); font-size: var(--u-text-xs); font-weight: 500; }
 .u2-analyze__modes button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); }
 .u2-analyze__field { display: grid; gap: var(--mj-gap-xs); margin: 0; padding: var(--mj-space-150); border: 0; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); }
+/* W9-5/م2 (Bible §6.7): the dropzone — 120px tall, 1.5px dashed, generous
+   overlay-grade rounding (the Bible's 20px maps to the ladder's 22px overlay,
+   delta +2px — D-W9-F), on the subtle field fill. Drag-over tints the line
+   and the primary glow; the hint stays honest about the simulation. */
+.u2-analyze__dropzone { min-height: 120px; padding: var(--mj-space-150); display: grid; place-content: center; justify-items: center; gap: var(--mj-gap-2xs); border: 1.5px dashed var(--u-line-strong); border-radius: var(--u-radius-overlay); color: var(--u-muted); background: var(--u-surface-subtle); text-align: center; transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
+.u2-analyze__dropzone svg { color: var(--u-faint); }
+.u2-analyze__dropzone strong { color: var(--u-ink-soft); font-size: var(--u-text-sm); font-weight: 700; }
+.u2-analyze__dropzone p { margin: 0; max-width: 46ch; color: var(--u-faint); font-size: var(--mj-text-label-s); line-height: var(--mj-leading-small); }
+.u2-analyze__dropzone[data-active="true"] { border-color: var(--u-primary); background: var(--u-primary-soft); color: var(--u-primary-strong); }
+.u2-analyze__dropzone[data-active="true"] svg { color: var(--u-primary); }
 .u2-analyze__field legend { padding-inline: 6px; color: var(--u-ink-soft); font-size: var(--u-text-sm); font-weight: 700; }
 .u2-analyze__field select, .u2-analyze__field input, .u2-analyze__field textarea { min-height: var(--u-touch); width: 100%; max-width: 100%; padding: 8px 10px; border: 1px solid var(--u-control-line); border-radius: var(--u-radius-sm); color: var(--u-ink); background: var(--u-surface-solid); font: inherit; font-size: var(--u-text-sm); }
 .u2-analyze__field textarea { min-height: 64px; resize: vertical; }

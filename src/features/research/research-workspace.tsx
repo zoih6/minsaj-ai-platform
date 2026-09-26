@@ -310,6 +310,7 @@ function ResearchWorkspaceInner({ locale, restoredResearchState = null, initialR
             onEditSection={(sectionId, body) => send({ type: "report/edit-section", sectionId, body })}
             onReviewSection={(sectionId) => send({ type: "report/review-section", sectionId })}
             onComplete={() => send({ type: "report/complete", at: now() })}
+            onOpenInspector={(evidenceId) => send({ type: "inspector/open", evidenceId })}
           />
         ) : null}
         {stage === "rsh_complete" ? (

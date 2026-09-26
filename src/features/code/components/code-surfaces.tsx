@@ -398,42 +398,76 @@ export function CodeDiffReviewSurface({
         {template(ui("diffRemaining"), { count: formatServiceNumber(locale, remaining) })}
       </p>
 
-      {proposal.fileChanges.map((change) => {
-        const reviewed = review.reviewedPaths.includes(change.path);
-        const flagged = review.flaggedPaths.some((entry) => entry.path === change.path);
-        return (
-          <article key={change.path} className="u2-code__file" data-reviewed={reviewed} data-flagged={flagged} data-testid={`u2-code-diff-file-${change.path}`}>
-            <header className="u2-code__file-head">
-              <code className="u2-code__path">{change.path}</code>
-              <div className="u2-code__file-actions">
-                {flagged ? <span className="u2-code__flag-badge">{ui("diffFlagged")}</span> : null}
-                <button
-                  type="button"
-                  data-testid={`u2-code-review-${change.path}`}
-                  aria-pressed={reviewed}
-                  onClick={() => onMarkReviewed(change.path)}
-                >
-                  <Check size={14} aria-hidden="true" />
-                  {reviewed ? ui("diffReviewed") : ui("diffMarkReviewed")}
-                </button>
-                <button
-                  type="button"
-                  data-testid={`u2-code-flag-${change.path}`}
-                  aria-pressed={flagged}
-                  onClick={() => onFlag(change.path)}
-                >
-                  <AlertTriangle size={14} aria-hidden="true" />
-                  {ui("diffFlag")}
-                </button>
-              </div>
-            </header>
-            {proposal.diffHunks
-              .filter((hunk) => hunk.filePath === change.path)
-              .map((hunk, index) => <DiffHunkView key={`${change.path}-${index}`} locale={locale} hunk={hunk} />)}
-            {flagged ? <p className="u2-code__flag-note">{resolveCodeCopy(locale, noteKey)}</p> : null}
-          </article>
-        );
-      })}
+      {/* W9-5/م2 (Bible §6.6): the file tree rides beside the artifacts on
+          lg+ (220px, sticky) and collapses to horizontal tabs below — it is
+          a navigation + state rail; every file article stays rendered so the
+          review flow and its testids are untouched. */}
+      <div className="u2-code__review-layout">
+        <nav className="u2-code__tree" aria-label={ui("diffTreeLabel")}>
+          <p className="u2-code__tree-label">{ui("diffTreeLabel")}</p>
+          <ul>
+            {proposal.fileChanges.map((change) => {
+              const reviewed = review.reviewedPaths.includes(change.path);
+              const flagged = review.flaggedPaths.some((entry) => entry.path === change.path);
+              const state = flagged ? "flagged" : reviewed ? "reviewed" : "pending";
+              return (
+                <li key={change.path} data-state={state}>
+                  <button
+                    type="button"
+                    data-testid={`u2-code-tree-${change.path}`}
+                    onClick={(event) => {
+                      document.querySelector<HTMLElement>(`[data-testid="u2-code-diff-file-${change.path}"]`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      event.currentTarget.blur();
+                    }}
+                  >
+                    <i aria-hidden="true" />
+                    <code>{change.path}</code>
+                    <small>{flagged ? ui("diffTreeFlagged") : reviewed ? ui("diffTreeReviewed") : ui("diffTreePending")}</small>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <div className="u2-code__review-column">
+          {proposal.fileChanges.map((change) => {
+            const reviewed = review.reviewedPaths.includes(change.path);
+            const flagged = review.flaggedPaths.some((entry) => entry.path === change.path);
+            return (
+              <article key={change.path} className="u2-code__file" data-reviewed={reviewed} data-flagged={flagged} data-testid={`u2-code-diff-file-${change.path}`}>
+                <header className="u2-code__file-head">
+                  <code className="u2-code__path">{change.path}</code>
+                  <div className="u2-code__file-actions">
+                    {flagged ? <span className="u2-code__flag-badge">{ui("diffFlagged")}</span> : null}
+                    <button
+                      type="button"
+                      data-testid={`u2-code-review-${change.path}`}
+                      aria-pressed={reviewed}
+                      onClick={() => onMarkReviewed(change.path)}
+                    >
+                      <Check size={14} aria-hidden="true" />
+                      {reviewed ? ui("diffReviewed") : ui("diffMarkReviewed")}
+                    </button>
+                    <button
+                      type="button"
+                      data-testid={`u2-code-flag-${change.path}`}
+                      aria-pressed={flagged}
+                      onClick={() => onFlag(change.path)}
+                    >
+                      <AlertTriangle size={14} aria-hidden="true" />
+                      {ui("diffFlag")}
+                    </button>
+                  </div>
+                </header>
+                {proposal.diffHunks
+                  .filter((hunk) => hunk.filePath === change.path)
+                  .map((hunk, index) => <DiffHunkView key={`${change.path}-${index}`} locale={locale} hunk={hunk} />)}
+                {flagged ? <p className="u2-code__flag-note">{resolveCodeCopy(locale, noteKey)}</p> : null}
+              </article>
+            );
+          })}
+        </div>
+      </div>
 
       {state.ui.validation === "diff_incomplete" ? <CodeValidationNote locale={locale} validationKey="diff_incomplete" /> : null}
 

@@ -168,13 +168,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .model-menu strong, .model-menu small { display: block; }
 .model-menu strong { font-size: var(--u-text-sm); }
 .model-menu small { margin-block-start: var(--mj-space-25); color: var(--u-muted); font-size: var(--u-text-xs); }
-.conversation-demo { width: min(var(--mj-container-wide),100%); min-height: calc(100vh - 150px); min-height: calc(100dvh - 150px); margin: 0 auto; }
+/* W9-5/م2 (Bible §6.2 "stream 720px center"): the conversation column caps
+   at the 720 stream measure — no side artifacts, the composer sticks to the
+   viewport bottom, and the column is a flex stack so the composer rides the
+   section floor when the thread is short. */
+.conversation-demo { width: min(720px,100%); min-height: calc(100vh - 150px); min-height: calc(100dvh - 150px); margin: 0 auto; display: flex; flex-direction: column; }
 .conversation-demo__header { min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: var(--mj-space-200); padding-block-end: var(--mj-space-150); border-block-end: 1px solid var(--u-line); }
 .conversation-demo__header strong, .conversation-demo__header span { display: block; }
 .conversation-demo__header strong { color: var(--u-ink); font-size: var(--u-text-sm); }
 .conversation-demo__header span { color: var(--u-faint); font-size: var(--u-text-xs); }
-.conversation-thread { display: grid; gap: 28px; padding: 30px 0 90px; }
-.user-message { justify-self: end; max-width: min(680px,88%); padding: 12px 15px; border: 1px solid var(--u-line); border-radius: var(--u-radius) 16px 6px 16px; background: var(--u-surface-subtle); }
+.conversation-thread { flex: 1 0 auto; display: grid; gap: 28px; align-content: start; padding: 30px 0 24px; }
+/* §6.2: user bubble max-width 80% (was 88%); radius stays on the frozen
+   ladder (card 16px + the 6px speaking corner — the Bible's 20px is
+   off-ladder, D-W9-F delta -4px). */
+.user-message { justify-self: end; max-width: min(680px,80%); padding: 12px 15px; border: 1px solid var(--u-line); border-radius: var(--u-radius) 16px 6px 16px; background: var(--u-surface-subtle); }
 [dir="ltr"] .user-message { border-radius: var(--u-radius) 16px 16px 6px; }
 .user-message p { margin: 0; line-height: 1.75; }
 .attachment-chip { width: fit-content; margin-block-start: 9px; display: flex; align-items: center; gap: 5px; padding: 4px 7px; border: 1px solid var(--u-line); background: var(--u-surface); color: var(--u-muted); font-size: var(--u-text-xs); }
@@ -184,13 +191,34 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .assistant-meta { min-height: 30px; display: flex; align-items: center; gap: 9px; }
 .assistant-meta strong { font-size: var(--u-text-sm); color: var(--u-ink); }
 .assistant-copy > p { max-width: var(--mj-measure-read); margin: 9px 0 0; font-size: var(--u-text-md); line-height: 1.9; }
-.stream-caret { display: inline-block; width: 2px; height: 1em; margin-inline-start: 3px; vertical-align: -.12em; background: var(--u-primary); animation: caret-pulse 900ms step-end infinite; }
+/* §6.2: block cursor ▍ blinking at 600ms (was a 2px bar at 900ms). */
+.stream-caret { display: inline-block; width: .55em; height: 1.05em; margin-inline-start: 3px; vertical-align: -.18em; background: var(--u-primary); animation: caret-pulse 600ms step-end infinite; }
 @keyframes caret-pulse { 50% { opacity: .15; }}
 .working-label { color: var(--u-faint); font-size: var(--u-text-xs) !important; }
 .response-receipt { max-width: var(--mj-container-prose); margin-block-start: 17px; padding-block-start: 10px; display: flex; align-items: center; justify-content: space-between; border-block-start: 1px solid var(--u-line); color: var(--u-faint); font-size: var(--u-text-xs); }
 .response-receipt strong { color: var(--u-muted); }
 .stop-button { position: fixed; z-index: 95; inset-block-end: calc(26px + var(--mj-tabbar-reserve, 0px)); inset-inline-start: 50%; transform: translateX(-50%); min-height: 34px; display: flex; align-items: center; gap: 7px; padding-inline: var(--mj-space-150); border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-sm); background: var(--u-surface-solid); color: var(--u-muted); box-shadow: var(--u-shadow-sm); cursor: pointer; }
 [dir="rtl"] .stop-button { transform: translateX(50%); }
+/* W9-5/م2 (Bible §6.2): the follow-up composer rides the viewport bottom —
+   sticky while the thread scrolls, resting on the section floor when short.
+   The tabbar reserve keeps it clear of the mobile dock. */
+.conversation-composer { position: sticky; inset-block-end: calc(10px + var(--mj-tabbar-reserve, 0px)); z-index: 40; margin-block-start: auto; }
+.conversation-composer__hint { color: var(--u-faint); font-size: var(--mj-text-label-s); }
+/* §6.2: code block with a [lang][copy] header — LTR always, mono ladder,
+   quiet line; the copy button confirms inline for 1.6s. */
+.chat-code-block { margin-block-start: var(--mj-space-150); max-width: var(--mj-measure-read); border: 1px solid var(--u-line); border-radius: var(--u-radius-field); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); overflow: hidden; direction: ltr; }
+.chat-code-block__head { min-height: 38px; padding: var(--mj-space-100) var(--mj-space-100) var(--mj-space-100) var(--mj-space-150); display: flex; align-items: center; gap: var(--mj-space-100); border-block-end: 1px solid var(--u-line); background: var(--u-surface-subtle); }
+.chat-code-block__lang { color: var(--u-muted); font-family: "IBM Plex Mono", monospace; font-size: var(--mj-text-code); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.chat-code-block__caption { margin-inline-end: auto; color: var(--u-faint); font-size: var(--mj-text-label-s); }
+.chat-code-block__copy { min-height: 28px; padding-inline: var(--mj-space-100); display: inline-flex; align-items: center; gap: var(--mj-space-50); border: 1px solid var(--u-line); border-radius: var(--u-radius-control); background: var(--u-surface-solid); color: var(--u-muted); font-size: var(--mj-text-label-s); cursor: pointer; }
+@media (hover: hover) {
+  .chat-code-block__copy:hover { border-color: var(--u-line-strong); color: var(--u-ink); }
+}
+.chat-code-block__copy[data-copied="true"] { border-color: var(--u-mint-soft-line); background: var(--u-mint-soft); color: var(--u-mint-ink); }
+.chat-code-block pre { margin: 0; padding: var(--mj-space-150) var(--mj-space-200); overflow-x: auto; font-family: "IBM Plex Mono", monospace; font-size: var(--mj-text-code); line-height: 1.7; color: var(--u-ink); }
+/* §6.2: ↓ resume button — visible only while the user holds the scroll. */
+.chat-scroll-down { position: fixed; z-index: 60; inset-block-end: calc(96px + var(--mj-tabbar-reserve, 0px)); inset-inline-start: 50%; transform: translateX(-50%); width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--u-line-strong); border-radius: 50%; background: var(--u-surface-solid); color: var(--u-muted); box-shadow: var(--u-shadow-sm); cursor: pointer; }
+[dir="rtl"] .chat-scroll-down { transform: translateX(50%); }
 .command-overlay { position: fixed; z-index: 100; inset: 0; background: rgba(9, 20, 15, .54); }
 
 @media (max-width: 1180px) {

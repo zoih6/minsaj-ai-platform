@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Locale, AnalyzeOperation } from "@minsaj/contracts/services";
 import { formatServiceNumber, getServiceDictionary } from "@minsaj/i18n/services";
 import { analyzeDatasetIds, isAnalyzeDatasetId } from "@minsaj/mock-api/services";
-import { ArrowDown, ArrowUp, BarChart3, Check, CircleAlert, Plus, Undo2, X } from "lucide-react";
+import { ArrowDown, ArrowUp, BarChart3, Check, CircleAlert, Plus, Undo2, UploadCloud, X } from "lucide-react";
 import type { AnalyzeReducerState } from "../state/analyze-reducer";
 
 /**
@@ -104,6 +104,7 @@ export function AnalyzeSourceSurface({
   onMode: (mode: "guided" | "fast") => void;
 }) {
   const ui = (key: string) => resolveAnalyzeCopy(locale, `services.analyze.ui.${key}`);
+  const [dropActive, setDropActive] = useState(false);
 
   return (
     <section className="u2-analyze__surface" data-testid="u2-analyze-source" data-stage="ana_source">
@@ -128,6 +129,27 @@ export function AnalyzeSourceSurface({
 
       <fieldset className="u2-analyze__field">
         <legend>{ui("sourceLocalFile")}</legend>
+        {/* W9-5/م2 (Bible §6.7): the dropzone — 120px dashed target. A real
+            drop reads the file NAME only (this simulation never reads
+            content) and fills the label input below, which keeps the
+            existing state machine and testid untouched. */}
+        <div
+          className="u2-analyze__dropzone"
+          data-testid="u2-analyze-dropzone"
+          data-active={dropActive ? "true" : "false"}
+          onDragOver={(event) => { event.preventDefault(); setDropActive(true); }}
+          onDragLeave={() => setDropActive(false)}
+          onDrop={(event) => {
+            event.preventDefault();
+            setDropActive(false);
+            const name = event.dataTransfer.files?.[0]?.name;
+            if (name) onLocalFile(name);
+          }}
+        >
+          <UploadCloud size={24} aria-hidden="true" />
+          <strong>{dropActive ? ui("sourceDropActive") : ui("sourceDropTitle")}</strong>
+          <p>{ui("sourceDropHint")}</p>
+        </div>
         <input
           type="text"
           value={state.ui.draftLocalFileName}

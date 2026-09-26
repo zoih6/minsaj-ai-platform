@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { createPortal } from "react-dom";
-import { Bot, ChevronDown, GitCompareArrows, Paperclip, RotateCcw, Send, Square, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Bot, Check, ChevronDown, Copy, GitCompareArrows, Paperclip, RotateCcw, Send, Square, X } from "lucide-react";
 import { Badge, MinsajMark } from "@minsaj/ui";
 import type { Locale } from "@minsaj/contracts";
 
@@ -19,7 +18,6 @@ const copy = {
       ["حلّل سوقًا", "قارن المنافسين وحدد الفرص مع مصادر."],
       ["راجع مستندًا", "استخرج المخاطر والأسئلة والقرارات المفتوحة."],
       ["خطط لمشروع", "حوّل الهدف إلى مراحل ومخرجات ومعايير قبول."],
-      ["اكتب مسودة", "أنشئ مسودة مهنية بنبرة وجمهور واضحين."],
     ],
     samplePrompt: "حلّل فرص إطلاق خدمة SaaS عربية في السوق السعودي، وميّز بين الأدلة والافتراضات.",
     response: "تشير المعطيات الأولية إلى فرصة واضحة في الفرق الصغيرة التي تستخدم عدة أدوات ذكاء اصطناعي دون سياق موحّد. أنصح بتقسيم الدراسة إلى ثلاثة محاور: حجم المشكلة الفعلية، استعداد الفرق للدفع مقابل التنظيم والحوكمة، وحساسية العملاء لمكان معالجة البيانات. هذه نتيجة أولية وليست تقديرًا لحجم السوق؛ الخطوة التالية هي جمع مصادر محلية ومقابلات مع مستخدمين محتملين قبل اتخاذ قرار تسعير.",
@@ -29,6 +27,11 @@ const copy = {
     context: "دراسة إطلاق السوق السعودي",
     demoNotice: "محاكاة تفاعلية — لا يُرسل المحتوى إلى مزود خارجي.",
     fileName: "ملخص-المقابلات.pdf",
+    codeLang: "JSON",
+    copyCode: "نسخ",
+    copied: "تم النسخ",
+    codeCaption: "هيكل الدراسة المقترح",
+    codeSnippet: ["{", "  \"axes\": [", "    \"fragmentation_cost\",", "    \"willingness_to_pay\",", "    \"data_location_sensitivity\"", "  ],", "  \"next_step\": \"local_sources + user_interviews\",", "  \"confidence\": \"preliminary\"", "}"].join("\n"),
   },
   en: {
     title: "What do you want to accomplish?",
@@ -42,7 +45,6 @@ const copy = {
       ["Analyze a market", "Compare competitors and identify sourced opportunities."],
       ["Review a document", "Extract risks, questions, and open decisions."],
       ["Plan a project", "Turn the goal into phases, outputs, and acceptance criteria."],
-      ["Draft content", "Create a professional draft for a clear audience and tone."],
     ],
     samplePrompt: "Analyze the opportunity for an Arabic SaaS product in Saudi Arabia and separate evidence from assumptions.",
     response: "The early signal suggests a clear opportunity among small teams that use several AI tools without shared context. I would structure the study around three questions: how costly the fragmentation is today, whether teams will pay for organization and governance, and how sensitive buyers are to data-processing location. This is an initial direction, not a market-size estimate; the next step is to collect local sources and interview representative users before setting pricing.",
@@ -52,6 +54,11 @@ const copy = {
     context: "Saudi market launch study",
     demoNotice: "Interactive simulation — content is not sent to an external provider.",
     fileName: "interview-summary.pdf",
+    codeLang: "JSON",
+    copyCode: "Copy",
+    copied: "Copied",
+    codeCaption: "Proposed study structure",
+    codeSnippet: ["{", "  \"axes\": [", "    \"fragmentation_cost\",", "    \"willingness_to_pay\",", "    \"data_location_sensitivity\"", "  ],", "  \"next_step\": \"local_sources + user_interviews\",", "  \"confidence\": \"preliminary\"", "}"].join("\n"),
   },
 } as const;
 
@@ -64,7 +71,13 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
   const [modelOpen, setModelOpen] = useState(false);
   const [compare, setCompare] = useState(false);
   const [attached, setAttached] = useState(false);
+  /* W9-5/م2 (Bible §6.2): auto-scroll stays pinned while the user rides the
+     bottom edge; scrolling up >100px unpins it, the ↓ button (or returning
+     to the bottom) re-pins. The copy checkmark is transient. */
+  const [pinned, setPinned] = useState(true);
+  const [codeCopied, setCodeCopied] = useState(false);
   const words = useMemo(() => t.response.split(" "), [t.response]);
+  const caretRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     if (status !== "streaming") return;
@@ -81,6 +94,38 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
     return () => window.clearInterval(timer);
   }, [status, words.length]);
 
+  /* While pinned, every streamed chunk keeps the caret inside the viewport. */
+  useEffect(() => {
+    if (status !== "streaming" || !pinned) return;
+    caretRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [responseLength, status, pinned]);
+
+  /* Distance-from-bottom drives the pin: >100px up = the user took over. */
+  useEffect(() => {
+    if (status !== "streaming") return;
+    const readPin = () => {
+      const gap = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+      setPinned(gap <= 100);
+    };
+    window.addEventListener("scroll", readPin, { passive: true });
+    return () => window.removeEventListener("scroll", readPin);
+  }, [status]);
+
+  function resumeAutoScroll() {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+    setPinned(true);
+  }
+
+  async function copyCode() {
+    try {
+      await navigator.clipboard.writeText(t.codeSnippet);
+      setCodeCopied(true);
+      window.setTimeout(() => setCodeCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable (permissions/iframe) — the demo degrades quietly */
+    }
+  }
+
   function submit() {
     const value = draft.trim();
     if (!value) return;
@@ -89,6 +134,11 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
     setResponseLength(0);
     setStatus("streaming");
     setModelOpen(false);
+    setPinned(true);
+  }
+
+  function stop() {
+    setStatus("stopped");
   }
 
   function reset() {
@@ -97,6 +147,7 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
     setResponseLength(0);
     setStatus("idle");
     setAttached(false);
+    setPinned(true);
   }
 
   if (status !== "idle") {
@@ -112,12 +163,44 @@ export function ChatPrototype({ locale }: { locale: Locale }) {
             <div className="assistant-mark"><MinsajMark size={28} /></div>
             <div className="assistant-copy">
               <div className="assistant-meta"><strong>{t.model}</strong><Badge tone="brand">{status === "streaming" ? (locale === "ar" ? "يكتب" : "Streaming") : (status === "stopped" ? t.stopped : (locale === "ar" ? "مكتمل" : "Completed"))}</Badge></div>
-              <p>{words.slice(0, responseLength).join(" ")}{status === "streaming" ? <span className="stream-caret" aria-hidden="true" /> : null}</p>
-              {status !== "streaming" ? <div className="response-receipt"><span>{locale === "ar" ? "إجابة تجريبية · 312 وحدة" : "Demo response · 312 units"}</span><strong className="ltr-value">$0.18</strong></div> : <p className="working-label">{t.working}</p>}
+              <p>{words.slice(0, responseLength).join(" ")}{status === "streaming" ? <span ref={caretRef} className="stream-caret" aria-hidden="true" /> : null}</p>
+              {status !== "streaming" ? (
+                <>
+                  {/* W9-5/م2 (Bible §6.2): code block with a [lang][copy] header */}
+                  <figure className="chat-code-block" data-testid="chat-code-block">
+                    <figcaption className="chat-code-block__head">
+                      <span className="chat-code-block__lang">{t.codeLang}</span>
+                      <span className="chat-code-block__caption">{t.codeCaption}</span>
+                      <button type="button" className="chat-code-block__copy" onClick={copyCode} data-copied={codeCopied} aria-label={codeCopied ? t.copied : t.copyCode}>
+                        {codeCopied ? <Check size={13} /> : <Copy size={13} />}{codeCopied ? t.copied : t.copyCode}
+                      </button>
+                    </figcaption>
+                    <pre><code>{t.codeSnippet}</code></pre>
+                  </figure>
+                  <div className="response-receipt"><span>{locale === "ar" ? "إجابة تجريبية · 312 وحدة" : "Demo response · 312 units"}</span><strong className="ltr-value">$0.18</strong></div>
+                </>
+              ) : <p className="working-label">{t.working}</p>}
             </div>
           </article>
         </div>
-        {status === "streaming" && typeof document !== "undefined" ? createPortal(<button className="stop-button" type="button" onClick={() => setStatus("stopped")}><Square size={12} fill="currentColor" />{locale === "ar" ? "إيقاف" : "Stop"}</button>, document.body) : null}
+        {/* §6.2: the composer stays reachable — sticky bottom, send becomes stop while streaming */}
+        <form className="composer-shell conversation-composer" onSubmit={(event) => { event.preventDefault(); submit(); }}>
+          <textarea value={draft} onChange={(event) => setDraft(event.target.value)} placeholder={t.placeholder} aria-label={t.placeholder} rows={2} />
+          <div className="composer-bottom">
+            <div className="composer-tools">
+              <span className="conversation-composer__hint">{locale === "ar" ? "محاكاة: الإرسال يعيد تشغيل الإجابة التجريبية" : "Simulation: sending replays the demo response"}</span>
+            </div>
+            {status === "streaming"
+              ? <button type="button" className="send-button" onClick={stop} aria-label={locale === "ar" ? "إيقاف" : "Stop"}><Square size={14} fill="currentColor" /></button>
+              : <button type="submit" className="send-button" disabled={!draft.trim()} aria-label={locale === "ar" ? "إرسال" : "Send"}><Send size={16} /></button>}
+          </div>
+        </form>
+        {/* §6.2: ↓ appears only when the user took over the scroll (>100px up) */}
+        {status === "streaming" && !pinned ? (
+          <button type="button" className="chat-scroll-down" onClick={resumeAutoScroll} aria-label={locale === "ar" ? "العودة إلى أحدث نص" : "Jump to latest"}>
+            <ChevronDown size={16} />
+          </button>
+        ) : null}
       </section>
     );
   }
