@@ -270,7 +270,7 @@
 .u2-research__citations button { min-height: var(--u-touch); padding: var(--mj-space-100) var(--mj-space-150); display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--mj-gap-xs); border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-sm); color: var(--u-ink-soft); background: var(--u-surface-solid); text-align: start; font-size: var(--u-text-xs); cursor: pointer; }
 .u2-research__preview { display: grid; gap: var(--mj-gap-xs); padding: var(--mj-space-150); border: 1px solid var(--u-amber-soft-line); border-radius: var(--u-radius); background: var(--u-amber-soft); }
 .u2-research__preview h3 { margin: 0; font-size: var(--u-text-sm); color: var(--u-amber-ink); }
-.u2-research__preview p { margin: 0; color: var(--u-amber-ink); font-size: var(--u-text-xs); }
+.u2-research__preview p { margin: 0; max-width: var(--mj-measure-read); color: var(--u-amber-ink); font-size: var(--u-text-xs); }
 .u2-research__matrix { width: 100%; border-collapse: collapse; }
 .u2-research__matrix-caption { text-align: start; color: var(--u-muted); font-size: var(--u-text-xs); }
 .u2-research__matrix th, .u2-research__matrix td { padding: var(--mj-space-150); border: 1px solid var(--u-line); vertical-align: top; text-align: start; }
@@ -808,7 +808,7 @@
 .u2-analyze__headline { display: grid; gap: var(--mj-gap-xs); margin: 0; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .u2-analyze__headline div { display: grid; gap: var(--mj-space-50); padding: var(--mj-space-150); border: 0; border-radius: var(--u-radius-field); background: var(--u-tint-1); }
 .u2-analyze__headline dt { color: var(--u-muted); font-size: var(--u-text-xs); font-weight: 600; }
-.u2-analyze__headline dd { margin: 0; font-size: clamp(22px, 3vw, 30px); font-weight: 800; font-family: var(--u-font-mono, monospace); color: var(--u-ink); }
+.u2-analyze__headline dd { margin: 0; font-size: clamp(22px, 3vw, 30px); font-weight: 700; font-family: var(--u-font-mono, monospace); color: var(--u-ink); }
 .u2-analyze__headline dd[data-direction="up"] { color: var(--u-mint-ink); }
 .u2-analyze__headline dd[data-direction="down"] { color: var(--u-danger-ink); }
 .u2-analyze__chart { display: flex; align-items: flex-end; gap: var(--mj-gap-xs); margin: 0; padding: var(--mj-space-150); border: 0; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); list-style: none; min-height: 160px; }

@@ -357,7 +357,7 @@ export const researchTopics = {
     labelKey: "services.research.topics.zero_match",
     summaryKey: "services.research.topics.zero_match_summary",
     defaultQuestion: {
-      ar: "ما توقعات سوق الأجهزة الطبية المنزلية لعام ٢٠٣١؟",
+      ar: "ما توقعات سوق الأجهزة الطبية المنزلية لعام 2031؟",
       en: "What are the 2031 forecasts for the home medical device market?",
     },
     defaultDecision: {

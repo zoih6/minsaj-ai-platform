@@ -4,7 +4,8 @@ import { Badge } from "@minsaj/ui";
 import type { Locale, RunStatus } from "@minsaj/contracts";
 
 export function formatMoney(amountMinor: number, currency: string, locale: Locale) {
-  return new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
+  // W9-1 (Bible §2.2 rule 3): Latin digits in the UI for both locales.
+  return new Intl.NumberFormat(locale === "ar" ? "ar-SA-u-nu-latn" : "en-US", {
     style: "currency",
     currency,
     minimumFractionDigits: 2,

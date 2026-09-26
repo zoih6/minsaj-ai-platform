@@ -106,6 +106,14 @@
   --mj-container-wide: 1040px;  /* workbench surfaces, data lists, grids */
   --mj-container-full: 1440px;  /* page content max */
 
+  /* W9-1 (Bible §2.2 rule 5): long-form READING paragraphs cap at 65ch so
+     an Arabic line never stretches past comfortable eye travel. Distinct
+     from --mj-container-prose (the 780px lede/description measure, frozen
+     in W-6): this token is applied per-paragraph to actual reading text —
+     assistant answers, quoted source previews — not to short ledes. `ch`
+     resolves against each paragraph's own font/size, so the cap scales. */
+  --mj-measure-read: 65ch;
+
   /* Control heights (§6.2, A2) — the height ladder. --mj-touch (44px)
      already exists and remains the coarse-pointer floor. */
   --mj-control-dense: 32px;      /* in-table/inline toolbars, fine pointer */

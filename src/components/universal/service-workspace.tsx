@@ -482,7 +482,7 @@ export function ServiceWorkspace({ locale, serviceId }: { locale: Locale; servic
      item enters the strip below and the state machine lands on `saved`.
      Cross-route persistence stays out of scope (KI-5, by design). */
   function saveToLibrary() {
-    const formatter = new Intl.DateTimeFormat(isArabic ? "ar" : "en", { hour: "2-digit", minute: "2-digit" });
+    const formatter = new Intl.DateTimeFormat(isArabic ? "ar-u-nu-latn" : "en", { hour: "2-digit", minute: "2-digit" });
     setSavedItems((current) => [
       { id: Date.now(), title: prompt.trim() || service.starters[0], when: formatter.format(new Date()) },
       ...current,

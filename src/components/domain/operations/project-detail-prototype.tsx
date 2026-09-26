@@ -46,7 +46,7 @@ export function ProjectDetailPrototype({ locale, project, agents, flows, runs }:
 
           {tab === "context" ? <section className="context-library"><div className="section-heading"><div><p className="section-kicker">{ar ? "مصادر مؤرشفة" : "Governed sources"}</p><h2>{ar ? "السياق الذي يراه الوكلاء" : "Context visible to agents"}</h2></div><button className="button button--outline button--compact" type="button"><Plus size={14} />{ar ? "إضافة مصدر" : "Add source"}</button></div><div className="context-callout"><ShieldCheck size={16} /><p>{ar ? "لا يصل أي وكيل إلى هذه المصادر إلا إذا منحته سياسته حق القراءة." : "No agent can access these sources unless its policy grants read access."}</p></div><div className="context-source-list">{[
             ["launch-brief.pdf", ar ? "موجز الإطلاق" : "Launch brief", "PDF · 14 pages"],
-            ["policy-library", ar ? "مكتبة السياسات" : "Policy library", ar ? "٨ مستندات" : "8 documents"],
+            ["policy-library", ar ? "مكتبة السياسات" : "Policy library", ar ? "8 مستندات" : "8 documents"],
             ["decision-log", ar ? "سجل القرارات" : "Decision log", ar ? "محدّث اليوم" : "Updated today"],
           ].map(([id, name, meta]) => <article key={id}><span><FileText size={16} /></span><div><strong>{name}</strong><small>{meta}</small></div><Badge tone="success">{ar ? "مفهرس" : "Indexed"}</Badge></article>)}</div></section> : null}
 

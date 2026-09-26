@@ -67,7 +67,7 @@ export const researchContentAr: ResearchCopy = {
     axis_forecast_reason: "المحور الوحيد المتاح لموضوع التوقعات.",
   },
   claims: {
-    clm_wait_drop: "زمن الانتظار انخفض ١٨٪ خلال الربع الثالث.",
+    clm_wait_drop: "زمن الانتظار انخفض 18% خلال الربع الثالث.",
     clm_csat_up: "رضا العملاء تحسّن مع انخفاض زمن الانتظار.",
     clm_peak_hours: "معظم الشكاوى تتركز في ساعات الذروة الصباحية.",
     clm_waiting_room_context: "بيئة غرفة الانتظار عامل سياقي يؤثر في إدراك الانتظار.",
@@ -148,8 +148,8 @@ export const researchContentAr: ResearchCopy = {
     plan_rule_audience_adds_news: "جمهور الفريق أضاف نوع الأخبار.",
     plan_rule_audience_public_adds_paper: "الجمهور العام أضاف الأوراق الأكاديمية.",
     plan_rule_scope_academic_adds_paper: "النطاق الأكاديمي أضاف الأوراق الأكاديمية.",
-    plan_rule_timebox_recent: "النطاق الحديث يقترح صندوق زمن ١٥ دقيقة.",
-    plan_rule_timebox_deep: "النطاق الواسع أو الأكاديمي يقترح ٣٠ دقيقة.",
+    plan_rule_timebox_recent: "النطاق الحديث يقترح صندوق زمن 15 دقيقة.",
+    plan_rule_timebox_deep: "النطاق الواسع أو الأكاديمي يقترح 30 دقيقة.",
   },
   planHints: {
     plan_hint_waiting_time_q3: "ركّز على أرقام الانتظار قبل أي تفسير.",
@@ -214,7 +214,7 @@ export const researchContentAr: ResearchCopy = {
     activityNext: "خطوة تالية",
     activityPlay: "تشغيل تلقائي",
     activityPause: "إيقاف التشغيل",
-    activitySteerNarrow: "وجّه: اقتصار على ٢٠٢٦",
+    activitySteerNarrow: "وجّه: اقتصار على 2026",
     activitySteerWiden: "وجّه: توسيع الأنواع",
     activityCancel: "ألغِ النشاط",
     activityResume: "استئناف من نفس الخطوة",

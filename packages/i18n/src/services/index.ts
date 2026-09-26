@@ -610,10 +610,15 @@ export function getServiceStageTitle(locale: Locale, titleKey: string): string |
 
 export type ServiceNumberOptions = { maximumFractionDigits?: number; minimumFractionDigits?: number; style?: "decimal" | "percent"; unit?: string };
 
-/** Locale-aware number formatting used by Analyze and by progress text. */
+/**
+ * Locale-aware number formatting used by Analyze and by progress text.
+ * W9-1 (Bible §2.2 rule 3): UI digits are Latin 0-9 in BOTH locales — the
+ * Arabic locale pins the numbering system via the `u-nu-latn` extension, so
+ * `ar` keeps its month/day phrasing and separators while rendering 0-9.
+ * Arabic-Indic ٠١٢ remain reserved for deliberate editorial content only.
+ */
 export function formatServiceNumber(locale: Locale, value: number, options: ServiceNumberOptions = {}): string {
-  const usesLatinDigits = locale === "en";
-  return new Intl.NumberFormat(usesLatinDigits ? "en-US" : "ar", {
+  return new Intl.NumberFormat(locale === "en" ? "en-US" : "ar-u-nu-latn", {
     maximumFractionDigits: options.maximumFractionDigits ?? 2,
     ...(options.minimumFractionDigits === undefined ? {} : { minimumFractionDigits: options.minimumFractionDigits }),
     ...(options.style === undefined ? {} : { style: options.style }),
@@ -622,5 +627,5 @@ export function formatServiceNumber(locale: Locale, value: number, options: Serv
 }
 
 export function formatServiceDate(locale: Locale, iso: string): string {
-  return new Intl.DateTimeFormat(locale === "ar" ? "ar" : "en-GB", { dateStyle: "medium" }).format(new Date(iso));
+  return new Intl.DateTimeFormat(locale === "ar" ? "ar-u-nu-latn" : "en-GB", { dateStyle: "medium" }).format(new Date(iso));
 }

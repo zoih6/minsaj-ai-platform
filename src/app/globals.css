@@ -183,7 +183,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .assistant-copy { min-width: 0; }
 .assistant-meta { min-height: 30px; display: flex; align-items: center; gap: 9px; }
 .assistant-meta strong { font-size: var(--u-text-sm); color: var(--u-ink); }
-.assistant-copy > p { max-width: var(--mj-container-prose); margin: 9px 0 0; font-size: var(--u-text-md); line-height: 1.9; }
+.assistant-copy > p { max-width: var(--mj-measure-read); margin: 9px 0 0; font-size: var(--u-text-md); line-height: 1.9; }
 .stream-caret { display: inline-block; width: 2px; height: 1em; margin-inline-start: 3px; vertical-align: -.12em; background: var(--u-primary); animation: caret-pulse 900ms step-end infinite; }
 @keyframes caret-pulse { 50% { opacity: .15; }}
 .working-label { color: var(--u-faint); font-size: var(--u-text-xs) !important; }

@@ -457,6 +457,13 @@ a { color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 img, svg { max-width: 100%; height: auto; }
 
+/* W9-1 (Bible §2.2 rule 6): Arabic headings balance their wrapping so no
+   heading strands a single short word on its own line, and body paragraphs
+   wrap "pretty" so their last line never orphans a word. Progressive
+   enhancement — engines without support render exactly as before. */
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
 /* W-6 (ACC-02, R-ACC-1): the ONE focus treatment — 3px --u-primary-glow
    ring, offset 3px, both themes. The per-surface variant in motion.css
    carries these same values (plus its radius-inherit nicety) so every
@@ -480,8 +487,11 @@ img, svg { max-width: 100%; height: auto; }
 
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.ltr-value { direction: ltr; unicode-bidi: isolate; display: inline-block; font-family: "Inter", sans-serif; }
-.mono { font-family: "IBM Plex Mono", monospace; direction: ltr; unicode-bidi: isolate; }
+/* W9-1 (Bible §2.2 rules 3+4): Latin runs inside RTL get real isolation,
+   and every UI digit renders Latin + tabular so live numbers (costs, counts,
+   timestamps) hold their column width while updating. */
+.ltr-value { direction: ltr; unicode-bidi: isolate; display: inline-block; font-family: "Inter", sans-serif; font-variant-numeric: tabular-nums lining-nums; }
+.mono { font-family: "IBM Plex Mono", monospace; direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums lining-nums; }
 
 .skip-link {
   position: fixed; z-index: 200; inset-block-start: 10px; inset-inline-start: 10px;
