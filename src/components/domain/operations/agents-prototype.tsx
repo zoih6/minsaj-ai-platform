@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Bot, Play, Plus } from "lucide-react";
-import { Badge } from "@minsaj/ui";
+import { ArrowLeft, ArrowRight, Play, Plus } from "lucide-react";
 import { localize, type AgentSummary, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "./shared";
 
@@ -49,15 +48,24 @@ export function AgentsPrototype({ locale, agents }: { locale: Locale; agents: Ag
         { id: "draft", label: ar ? "مسودة" : "Draft" },
       ]} />
 
-      {visibleAgents.length ? <div className="mj-data-list agents-data-list ops-data-list" role="table" aria-label={ar ? "مكتبة الوكلاء" : "Agent library"}><div className="mj-data-list__head" role="row"><span>{ar ? "الوكيل" : "Agent"}</span><span>{ar ? "النموذج" : "Model"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "إجراءات" : "Actions"}</span></div>{visibleAgents.map((agent) => (
+      {visibleAgents.length ? <div className="mj-data-list agents-data-list ops-data-list" role="table" aria-label={ar ? "مكتبة الوكلاء" : "Agent library"}><div className="mj-data-list__head" role="row"><span>{ar ? "الوكيل" : "Agent"}</span><span>{ar ? "النموذج" : "Model"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "إجراءات" : "Actions"}</span></div>{visibleAgents.map((agent) => {
+        // Bible §6.10: avatar 32 with the agent's initials (Arabic-aware:
+        // first letter of each of the first two words).
+        const initials = localize(agent.name, locale).split(/\s+/).slice(0, 2).map((word) => word.charAt(0)).join("");
+        const published = agent.status === "published";
+        return (
         <div className="mj-data-list__row" role="row" key={agent.id}>
-          <span className="ops-cell-id" data-label={ar ? "الوكيل" : "Agent"}><i><Bot size={16} /></i><span><strong>{localize(agent.name, locale)}</strong><small>{localize(agent.description, locale)}</small></span></span>
+          <span className="ops-cell-id" data-label={ar ? "الوكيل" : "Agent"}><i className="ops-avatar" aria-hidden="true">{initials}</i><span><strong>{localize(agent.name, locale)}</strong><small>{localize(agent.description, locale)}</small></span></span>
           <span className="mono" data-label={ar ? "النموذج" : "Model"}>{agent.model}</span>
           <span className="mono" data-label={ar ? "التشغيلات" : "Runs"}>{agent.runCount}</span>
-          <span data-label={ar ? "الحالة" : "Status"}><Badge tone={agent.status === "published" ? "success" : "warning"}>{agent.status === "published" ? (ar ? "منشور" : "Published") : (ar ? "مسودة" : "Draft")}</Badge></span>
+          <span data-label={ar ? "الحالة" : "Status"}>
+            {/* Bible §6.10: an 8px status dot with a text label. */}
+            <span className="ops-status" data-tone={published ? "success" : "warning"}><i aria-hidden="true" />{published ? (ar ? "منشور" : "Published") : (ar ? "مسودة" : "Draft")}</span>
+          </span>
           <span className="ops-cell-actions" data-label={ar ? "إجراءات" : "Actions"}><button className="button button--outline button--compact" type="button" onClick={() => setNotice(ar ? `جُهز تشغيل تجريبي للوكيل «${localize(agent.name, locale)}».` : `Demo run prepared for “${localize(agent.name, locale)}”.`)}><Play size={14} />{ar ? "تشغيل" : "Run"}</button><Link className="ops-row-link" href={`/${locale}/app/agents/${agent.id}/edit`}>{ar ? "المنشئ" : "Builder"}<DirectionArrow size={14} /></Link></span>
         </div>
-      ))}</div> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
+        );
+      })}</div> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}
       {notice ? <DemoToast message={notice} /> : null}
     </div>
   );

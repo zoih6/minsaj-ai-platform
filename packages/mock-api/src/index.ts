@@ -32,6 +32,7 @@ const homeFixture = {
       progress: 64,
       updatedAt: "2026-09-11T08:42:00.000Z",
       cost: { amountMinor: 86, currency: "USD" },
+      durationSeconds: 927,
     },
     {
       id: "run_weekly_watch",
@@ -41,6 +42,7 @@ const homeFixture = {
       progress: 72,
       updatedAt: "2026-09-11T08:38:00.000Z",
       cost: { amountMinor: 41, currency: "USD" },
+      durationSeconds: 252,
     },
     {
       id: "run_sources_review",
@@ -50,6 +52,7 @@ const homeFixture = {
       progress: 18,
       updatedAt: "2026-09-11T08:31:00.000Z",
       cost: { amountMinor: 12, currency: "USD" },
+      durationSeconds: 64,
     },
   ],
   approvals: [
@@ -210,6 +213,7 @@ const operationsFixture = {
       progress: 100,
       updatedAt: "2026-09-10T15:20:00.000Z",
       cost: { amountMinor: 63, currency: "USD" },
+      durationSeconds: 1368,
     },
     {
       id: "run_interview_themes",
@@ -219,6 +223,7 @@ const operationsFixture = {
       progress: 100,
       updatedAt: "2026-09-09T11:55:00.000Z",
       cost: { amountMinor: 74, currency: "USD" },
+      durationSeconds: 745,
     },
   ],
   pendingApprovalCount: 1,

@@ -46,6 +46,8 @@ export const runSummarySchema = z.object({
   progress: z.number().min(0).max(100).optional(),
   updatedAt: z.string(),
   cost: moneySchema,
+  /** Bible §6.14 (W9-5/م3): wall-clock run duration, when the run has one. */
+  durationSeconds: z.number().int().nonnegative().optional(),
 });
 export type RunSummary = z.infer<typeof runSummarySchema>;
 

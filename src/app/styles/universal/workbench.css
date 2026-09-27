@@ -146,6 +146,12 @@
 .u2-learn__progress { display: flex; gap: var(--mj-gap-xs); align-items: baseline; margin: 0; font-size: var(--u-text-sm); }
 .u2-learn__progress-label { color: var(--u-muted); font-weight: 600; }
 .u2-learn__progress-value { color: var(--u-primary-strong); font-weight: 700; }
+/* Bible §6.3 (via token bridge): visual path progress — 6px track, radius
+   full, accent fill. Track on surface-subtle keeps dark/light parity. */
+.u2-learn__progress-block { display: grid; gap: var(--mj-space-50); }
+.u2-learn__meter { height: 6px; border-radius: var(--u-radius-pill); background: var(--u-surface-subtle); overflow: hidden; }
+.u2-learn__meter-fill { display: block; height: 100%; border-radius: inherit; background: var(--u-primary-grad); transition: width var(--u-motion-duration-expressive) var(--u-motion-ease-enter); }
+@media (prefers-reduced-motion: reduce) { .u2-learn__meter-fill { transition: none; } }
 .u2-learn__modes { display: grid; gap: var(--mj-gap-xs); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 .u2-learn__modes button { min-height: 64px; padding: 12px 14px; display: grid; gap: var(--mj-gap-2xs); align-content: center; border: 1px solid var(--u-line); border-radius: var(--u-radius-field); color: var(--u-ink-soft); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); text-align: start; font-size: var(--u-text-sm); font-weight: 700; cursor: pointer; }
 .u2-learn__modes button small { color: var(--u-muted); font-size: var(--u-text-xs); font-weight: 500; }
@@ -173,7 +179,12 @@
 .u2-learn__modules li[data-completed="true"] { background: var(--u-mint-soft); }
 .u2-learn__modules h3 { margin: 0; font-size: var(--u-text-md); }
 .u2-learn__modules p { margin: var(--mj-space-50) 0 0; color: var(--u-muted); font-size: var(--u-text-xs); line-height: 1.7; }
-.u2-learn__minutes { color: var(--u-primary-strong) !important; font-weight: 600; }
+/* Bible §6.3: reading-time badge — a quiet chip (§4.7 anatomy: 24px, radius
+   full, 12px) with mono digits and an explicit unit, instead of a bare number. */
+.u2-learn__minutes { display: inline-flex; align-items: center; gap: var(--mj-gap-2xs); margin: var(--mj-space-100) 0 0; padding: var(--mj-space-50) var(--mj-space-150); width: fit-content; border: 1px solid var(--u-line); border-radius: var(--u-radius-pill); color: var(--u-ink-soft); background: var(--u-surface-solid); font-size: var(--u-text-xs); font-weight: 600; }
+.u2-learn__minutes svg { color: var(--u-muted); }
+.u2-learn__minutes .mono { font-size: var(--u-text-xs); font-weight: 600; }
+.u2-learn__minutes-unit { color: var(--u-muted); font-weight: 500; }
 .u2-learn__module-actions { display: flex; flex-wrap: wrap; gap: var(--mj-gap-xs); align-items: center; }
 .u2-learn__module-actions button { min-height: var(--u-touch); min-width: var(--u-touch); padding-inline: 10px; border: 1px solid var(--u-line); border-radius: var(--u-radius-control); color: var(--u-ink-soft); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); font-size: var(--u-text-sm); cursor: pointer; }
 .u2-learn__skip { display: flex; align-items: center; gap: var(--mj-gap-xs); color: var(--u-muted); font-size: var(--u-text-xs); }
@@ -930,6 +941,8 @@
 .u2-explore__field legend { padding-inline: 6px; color: var(--u-ink-soft); font-size: var(--u-text-sm); font-weight: 700; }
 .u2-explore__field select, .u2-explore__field textarea { min-height: var(--u-touch); width: 100%; max-width: 100%; padding: 8px 10px; border: 1px solid var(--u-control-line); border-radius: var(--u-radius-sm); color: var(--u-ink); background: var(--u-surface-solid); font: inherit; font-size: var(--u-text-sm); }
 .u2-explore__field textarea { min-height: 64px; resize: vertical; }
+/* Bible §6.8: the central-concept control — 18px centred presentation. */
+.u2-explore__seed-select { text-align: center; text-align-last: center; font-size: var(--mj-text-h3); font-weight: 700; }
 .u2-explore__summary { margin: 0; color: var(--u-muted); font-size: var(--u-text-xs); line-height: 1.7; }
 .u2-explore__chips button { border: 1px solid var(--u-line); color: var(--u-ink-soft); background: var(--u-surface-solid); }
 .u2-explore__chips button[aria-pressed="true"] { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); font-weight: 600; }
@@ -946,6 +959,33 @@
 .u2-explore__node-label { display: inline-flex; align-items: center; gap: var(--mj-gap-xs); color: var(--u-ink); font-size: var(--u-text-md); font-weight: 700; }
 .u2-explore__nodes li[data-visited="true"] .u2-explore__node-label { color: var(--u-mint-ink); }
 .u2-explore__node-summary { color: var(--u-muted); font-size: var(--u-text-xs); line-height: 1.7; }
+/* Bible §6.8 via token bridge — visual knowledge canvas: surface-2 fill
+   (--u-surface-subtle), radius 20 → nearest frozen degree overlay 22 (same
+   +2 deviation as the §6.7 dropzone), 44px circular nodes, 1.5px edges with
+   non-scaling strokes, suggested node = border 2px accent + shadow-md +
+   scale 1.05 (the card-hover lift language). Physical `left/top` coordinates
+   match the SVG edge geometry; the canvas is spatial, not directional. */
+.u2-explore__canvas { position: relative; min-height: 480px; border: 1px solid var(--u-line); border-radius: var(--u-radius-overlay); background: var(--u-surface-subtle); overflow: hidden; }
+/* B-11 critique (م3): a sparse graph reads as empty — the brand ghost weave
+   fills the field quietly (same asset as the library empty state) so the
+   canvas feels intentional rather than unloaded. */
+.u2-explore__canvas::after { content: ""; position: absolute; inset: 0; background-image: var(--mj-ghost-url); background-repeat: no-repeat; background-position: center; background-size: min(300px, 46%); opacity: .5; pointer-events: none; }
+.u2-explore__canvas-edges, .u2-explore__canvas-node { z-index: 1; }
+.u2-explore__canvas-edges { position: absolute; inset: 0; width: 100%; height: 100%; }
+.u2-explore__canvas-edges line { stroke: var(--u-line-strong); stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+.u2-explore__canvas-node { position: absolute; translate: -50% -50%; display: grid; justify-items: center; gap: var(--mj-gap-2xs); width: max-content; max-width: 112px; padding: 0; border: 0; background: none; cursor: pointer; }
+.u2-explore__canvas-dot { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-pill); background: var(--u-surface-solid); color: var(--u-ink-soft); box-shadow: var(--u-shadow-xs); transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-exit), box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-exit), transform var(--u-motion-duration-fast) var(--u-motion-ease-exit); }
+.u2-explore__canvas-node:hover .u2-explore__canvas-dot { border-color: rgba(85, 76, 230, .45); box-shadow: var(--u-shadow-sm); }
+.u2-explore__canvas-node[data-seed] .u2-explore__canvas-dot { border-color: rgba(85, 76, 230, .45); background: var(--u-primary-soft); color: var(--u-primary-strong); }
+.u2-explore__canvas-node[data-visited] .u2-explore__canvas-dot { border-color: var(--u-mint-soft-line); background: var(--u-mint-soft); color: var(--u-mint-ink); }
+.u2-explore__canvas-node[data-suggested] .u2-explore__canvas-dot { border: 2px solid var(--u-primary); box-shadow: var(--u-shadow-md); transform: scale(1.05); }
+.u2-explore__canvas-caption { max-width: 104px; color: var(--u-ink-soft); font-size: var(--u-text-xs); font-weight: 600; line-height: 1.5; text-align: center; text-wrap: balance; }
+.u2-explore__canvas-flag { padding: var(--mj-space-25) var(--mj-space-100); border-radius: var(--u-radius-pill); background: var(--u-primary-soft); color: var(--u-primary-strong); font-size: var(--mj-text-caption); font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .u2-explore__canvas-dot { transition: none; } }
+@media (max-width: 767px) {
+  .u2-explore__canvas { min-height: 420px; }
+  .u2-explore__canvas-caption { max-width: 88px; }
+}
 /* Edge rows: named relations, LTR-safe arrows in both directions. */
 .u2-explore__edges { display: grid; gap: var(--mj-gap-2xs); margin: 0; padding: 0; list-style: none; }
 .u2-explore__edges li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 10px; border-inline-start: 2px solid var(--u-line-strong); color: var(--u-ink-soft); font-size: var(--u-text-xs); }

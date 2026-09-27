@@ -4,7 +4,7 @@ import type { LearnLevel, LearnPathModule } from "@minsaj/contracts/services";
 import type { Locale } from "@minsaj/contracts/services";
 import { formatServiceNumber, getServiceDictionary } from "@minsaj/i18n/services";
 import { getLearnTopic, type LearnTopicId } from "@minsaj/mock-api/services";
-import { Check, CircleAlert, Lightbulb, ListOrdered, SkipForward, Sparkles } from "lucide-react";
+import { Check, CircleAlert, Clock3, Lightbulb, ListOrdered, SkipForward, Sparkles } from "lucide-react";
 import { learnHintKeyFor, type LearnReducerState } from "../state/learn-reducer";
 
 /**
@@ -64,16 +64,31 @@ export function LearnProgressBar({ locale, completed, total }: { locale: Locale;
   if (total <= 0) {
     return null;
   }
+  const percent = Math.max(0, Math.min(100, Math.round((completed / total) * 100)));
   return (
-    <p className="u2-learn__progress" data-testid="u2-learn-progress" data-completed={completed} data-total={total}>
-      <span className="u2-learn__progress-label">{resolveLearnCopy(locale, "services.learn.ui.progressLabel")}</span>
-      <span className="u2-learn__progress-value">
-        {template(resolveLearnCopy(locale, "services.learn.ui.progressText"), {
-          completed: formatServiceNumber(locale, completed),
-          total: formatServiceNumber(locale, total),
-        })}
-      </span>
-    </p>
+    <div className="u2-learn__progress-block" data-testid="u2-learn-progress" data-completed={completed} data-total={total}>
+      <p className="u2-learn__progress">
+        <span className="u2-learn__progress-label">{resolveLearnCopy(locale, "services.learn.ui.progressLabel")}</span>
+        <span className="u2-learn__progress-value">
+          {template(resolveLearnCopy(locale, "services.learn.ui.progressText"), {
+            completed: formatServiceNumber(locale, completed),
+            total: formatServiceNumber(locale, total),
+          })}
+        </span>
+      </p>
+      {/* Bible §6.3: visual path progress — 6px track, radius full, accent fill. */}
+      <div
+        className="u2-learn__meter"
+        role="progressbar"
+        aria-label={resolveLearnCopy(locale, "services.learn.ui.progressMeterLabel")}
+        aria-valuenow={completed}
+        aria-valuemin={0}
+        aria-valuemax={total}
+        data-percent={percent}
+      >
+        <span className="u2-learn__meter-fill" style={{ width: `${percent}%` }} />
+      </div>
+    </div>
   );
 }
 
@@ -261,12 +276,28 @@ export function LearnDiagnosticSurface({
   return (
     <section className="u2-learn__surface" data-testid="u2-learn-diagnostic" data-stage="lrn_diagnostic" data-question={question.id}>
       <h2>{ui("diagnosticTitle")}</h2>
-      <p className="u2-learn__progress" data-testid="u2-learn-diagnostic-progress">
-        {template(ui("diagnosticProgress"), {
-          current: formatServiceNumber(locale, state.ui.diagnosticIndex + 1),
-          total: formatServiceNumber(locale, topic.diagnostic.length),
-        })}
-      </p>
+      <div className="u2-learn__progress-block" data-testid="u2-learn-diagnostic-progress">
+        <p className="u2-learn__progress">
+          {template(ui("diagnosticProgress"), {
+            current: formatServiceNumber(locale, state.ui.diagnosticIndex + 1),
+            total: formatServiceNumber(locale, topic.diagnostic.length),
+          })}
+        </p>
+        {/* Same §6.3 meter, used here as a "where am I" stepper track. */}
+        <div
+          className="u2-learn__meter"
+          role="progressbar"
+          aria-label={ui("diagnosticTitle")}
+          aria-valuenow={state.ui.diagnosticIndex + 1}
+          aria-valuemin={0}
+          aria-valuemax={topic.diagnostic.length}
+        >
+          <span
+            className="u2-learn__meter-fill"
+            style={{ width: `${Math.round(((state.ui.diagnosticIndex + 1) / topic.diagnostic.length) * 100)}%` }}
+          />
+        </div>
+      </div>
       <fieldset className="u2-learn__field">
         <legend>{resolveLearnCopy(locale, question.promptKey)}</legend>
         {question.choices.map((choice) => (
@@ -357,7 +388,12 @@ export function LearnPathReviewSurface({
                   ? `${ui("pathSkip")}: ${resolveLearnCopy(locale, `services.learn.skipReasons.${module.skipReasonKey ?? ""}`)}`
                   : resolveLearnCopy(locale, module.reasonKey)}
               </p>
-              <p className="u2-learn__minutes">{formatServiceNumber(locale, module.estimatedMinutes)}</p>
+              {/* Bible §6.3: reading-time badge — mono 12px chip, unit included. */}
+              <p className="u2-learn__minutes" aria-label={`${resolveLearnCopy(locale, "services.learn.ui.minutesBadgeLabel")}: ${formatServiceNumber(locale, module.estimatedMinutes)}`}>
+                <Clock3 size={12} aria-hidden="true" />
+                <span className="mono">{formatServiceNumber(locale, module.estimatedMinutes)}</span>
+                <span className="u2-learn__minutes-unit">{resolveLearnCopy(locale, "services.learn.ui.minutesUnit")}</span>
+              </p>
             </div>
             <div className="u2-learn__module-actions">
               <button

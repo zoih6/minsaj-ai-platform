@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Activity, ArrowLeft, ArrowRight, FolderKanban, Grid2X2, List, MessageSquareText, Plus, X } from "lucide-react";
+import { Activity, ArrowLeft, ArrowRight, ArrowUpDown, FolderKanban, Grid2X2, List, MessageSquareText, Plus, X } from "lucide-react";
 import { Badge } from "@minsaj/ui";
 import { localize, type Locale, type ProjectSummary } from "@minsaj/contracts";
 import { DemoToast, LibraryToolbar, OperationsStats } from "./shared";
@@ -15,7 +15,8 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
   const [projects, setProjects] = useState(initialProjects);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
-  const [view, setView] = useState<"grid" | "list">("list");
+  const [view, setView] = useState<"grid" | "list">("grid");
+  const [sort, setSort] = useState<"recent" | "name" | "runs">("recent");
   const [createOpen, setCreateOpen] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -35,6 +36,13 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
     const matchesQuery = !normalized || `${localize(project.name, locale)} ${localize(project.description, locale)}`.toLocaleLowerCase(locale).includes(normalized);
     const matchesFilter = filter === "all" || (filter === "active" ? project.activeRuns > 0 : project.activeRuns === 0);
     return matchesQuery && matchesFilter;
+  });
+
+  // Bible §6.9: a sort select, not just filters — deterministic orders only.
+  const sortedProjects = [...visibleProjects].sort((a, b) => {
+    if (sort === "name") return localize(a.name, locale).localeCompare(localize(b.name, locale), locale);
+    if (sort === "runs") return b.activeRuns - a.activeRuns || a.name.en.localeCompare(b.name.en);
+    return b.updatedAt.localeCompare(a.updatedAt);
   });
 
   function resetFilters() {
@@ -101,7 +109,19 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
           { id: "active", label: ar ? "نشط" : "Active" },
           { id: "idle", label: ar ? "هادئ" : "Idle" },
         ]} />
-        <div className="view-switch" role="group" aria-label={ar ? "طريقة العرض" : "View mode"}><button type="button" className={view === "grid" ? "is-active" : ""} aria-pressed={view === "grid"} onClick={() => setView("grid")} aria-label={ar ? "شبكة" : "Grid"}><Grid2X2 size={16} /></button><button type="button" className={view === "list" ? "is-active" : ""} aria-pressed={view === "list"} onClick={() => setView("list")} aria-label={ar ? "قائمة" : "List"}><List size={16} /></button></div>
+        <div className="ops-view-row">
+          {/* Bible §6.9: sort select beside the view switch. */}
+          <label className="ops-sort-control">
+            <ArrowUpDown size={14} aria-hidden="true" />
+            <span className="sr-only">{ar ? "ترتيب المشاريع" : "Sort projects"}</span>
+            <select value={sort} onChange={(event) => setSort(event.target.value as typeof sort)}>
+              <option value="recent">{ar ? "الأحدث تحديثًا" : "Recently updated"}</option>
+              <option value="name">{ar ? "الاسم" : "Name"}</option>
+              <option value="runs">{ar ? "الأكثر تشغيلًا" : "Most runs"}</option>
+            </select>
+          </label>
+          <div className="view-switch" role="group" aria-label={ar ? "طريقة العرض" : "View mode"}><button type="button" className={view === "grid" ? "is-active" : ""} aria-pressed={view === "grid"} onClick={() => setView("grid")} aria-label={ar ? "شبكة" : "Grid"}><Grid2X2 size={16} /></button><button type="button" className={view === "list" ? "is-active" : ""} aria-pressed={view === "list"} onClick={() => setView("list")} aria-label={ar ? "قائمة" : "List"}><List size={16} /></button></div>
+        </div>
       </div>
 
       {scenario === "loading" ? (
@@ -126,7 +146,7 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
           body={ar ? "حدث خطأ مؤقت أثناء قراءة قائمة المشاريع. لم يفقد أي عمل محفوظ، ويمكنك إعادة المحاولة." : "A temporary error occurred while reading the project list. No saved work was lost — you can retry."}
           action={<button type="button" className="button button--primary button--compact" onClick={retrySurface}>{ar ? "إعادة المحاولة" : "Try again"}</button>}
         />
-      ) : visibleProjects.length ? (view === "list" ? <div className="mj-data-list projects-data-list ops-data-list" role="table" aria-label={ar ? "قائمة المشاريع" : "Project list"}><div className="mj-data-list__head" role="row"><span>{ar ? "المشروع" : "Project"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "المحادثات" : "Chats"}</span><span>{ar ? "الحالة" : "Status"}</span><span /></div>{visibleProjects.map((project) => (
+      ) : visibleProjects.length ? (view === "list" ? <div className="mj-data-list projects-data-list ops-data-list" role="table" aria-label={ar ? "قائمة المشاريع" : "Project list"}><div className="mj-data-list__head" role="row"><span>{ar ? "المشروع" : "Project"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "المحادثات" : "Chats"}</span><span>{ar ? "الحالة" : "Status"}</span><span /></div>{sortedProjects.map((project) => (
         <Link className="mj-data-list__row" role="row" key={project.id} href={`/${locale}/app/projects/${project.id}`}>
           <span className="ops-cell-id" data-label={ar ? "المشروع" : "Project"}><i><FolderKanban size={16} /></i><span><strong>{localize(project.name, locale)}</strong><small>{localize(project.description, locale)}</small></span></span>
           <span className="mono" data-label={ar ? "التشغيلات" : "Runs"}>{project.activeRuns}</span>
@@ -134,7 +154,7 @@ export function ProjectsPrototype({ locale, initialProjects, scenario = null }: 
           <span data-label={ar ? "الحالة" : "Status"}>{project.activeRuns ? <Badge tone="brand">{ar ? `${project.activeRuns} نشط` : `${project.activeRuns} active`}</Badge> : <Badge>{ar ? "هادئ" : "Idle"}</Badge>}</span>
           <span aria-hidden="true"><DirectionArrow size={16} /></span>
         </Link>
-      ))}</div> : <section className="project-library" aria-label={ar ? "قائمة المشاريع" : "Project list"}>{visibleProjects.map((project) => (
+      ))}</div> : <section className="project-library" aria-label={ar ? "قائمة المشاريع" : "Project list"}>{sortedProjects.map((project) => (
         <article className="project-library-card" key={project.id}>
           <div className="project-library-card__top"><span className="project-library-card__icon"><FolderKanban size={18} /></span>{project.activeRuns ? <Badge tone="brand">{ar ? `${project.activeRuns} تشغيل نشط` : `${project.activeRuns} active runs`}</Badge> : <Badge>{ar ? "هادئ" : "Idle"}</Badge>}</div>
           <div className="project-library-card__copy"><h2>{localize(project.name, locale)}</h2><p>{localize(project.description, locale)}</p></div>

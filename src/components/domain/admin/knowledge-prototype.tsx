@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, Database, FileText, FolderOpen, Globe2, LockKeyhole, Plus, Search, ShieldCheck, Sparkles, Upload, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, Database, FileText, FolderOpen, Globe2, LockKeyhole, MoreHorizontal, Plus, Search, ShieldCheck, Sparkles, Upload, X } from "lucide-react";
 import { Badge } from "@minsaj/ui";
 import { localize, type KnowledgeCollection, type KnowledgeSource, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "@/components/domain/operations/shared";
@@ -20,31 +20,54 @@ function CollectionStatus({ locale, status }: { locale: Locale; status: Knowledg
   return <Badge tone={config.tone}>{config.label}</Badge>;
 }
 
-function SourceStatus({ locale, status }: { locale: Locale; status: KnowledgeSource["status"] }) {
+/** Shared state copy for sources — used by the badge (collection detail)
+    and the §6.12 feed rows (dot + label). */
+function sourceState(locale: Locale, status: KnowledgeSource["status"]) {
   const ar = locale === "ar";
   const labels: Record<KnowledgeSource["status"], string> = {
     validating: ar ? "يتحقق" : "Validating", scanning: ar ? "يفحص" : "Scanning", extracting: ar ? "يستخرج" : "Extracting",
     indexing: ar ? "يفهرس" : "Indexing", ready: ar ? "جاهز" : "Ready", stale: ar ? "قديم" : "Stale", failed: ar ? "فشل" : "Failed",
   };
-  return <Badge tone={status === "ready" ? "success" : status === "stale" ? "warning" : status === "failed" ? "danger" : "brand"}>{labels[status]}</Badge>;
+  const tone = (status === "ready" ? "success" : status === "stale" ? "warning" : status === "failed" ? "danger" : "brand") as "success" | "warning" | "danger" | "brand";
+  return { label: labels[status], tone };
 }
 
-function AddSourceDialog({ locale, collections, onAdd }: { locale: Locale; collections: KnowledgeCollection[]; onAdd: (source: KnowledgeSource) => void }) {
+const sourceProcessingStates: readonly string[] = ["validating", "scanning", "extracting", "indexing"];
+const sourceKindLabels: Record<KnowledgeSource["kind"], { ar: string; en: string }> = {
+  file: { ar: "ملف", en: "File" }, url: { ar: "رابط", en: "URL" }, text: { ar: "نص", en: "Text" },
+};
+
+function SourceStatus({ locale, status }: { locale: Locale; status: KnowledgeSource["status"] }) {
+  const state = sourceState(locale, status);
+  return <Badge tone={state.tone}>{state.label}</Badge>;
+}
+
+function AddSourceDialog({ locale, collections, onAdd, open, onOpenChange, defaultKind = "file" }: { locale: Locale; collections: KnowledgeCollection[]; onAdd: (source: KnowledgeSource) => void; open: boolean; onOpenChange: (open: boolean) => void; defaultKind?: KnowledgeSource["kind"] }) {
   const ar = locale === "ar";
-  const [open, setOpen] = useState(false);
-  const [kind, setKind] = useState<KnowledgeSource["kind"]>("file");
+  const [kind, setKind] = useState<KnowledgeSource["kind"]>(defaultKind);
   const [name, setName] = useState("");
   const [origin, setOrigin] = useState("");
   const [collectionId, setCollectionId] = useState(collections[0]?.id ?? "col_launch");
+
+  // Reset on close (event handler, not an effect): every opening starts from
+  // the caller's intent — header button or the §6.12 dropzone — with a clean draft.
+  function handleOpenChange(next: boolean) {
+    if (!next) {
+      setKind(defaultKind);
+      setName("");
+      setOrigin("");
+    }
+    onOpenChange(next);
+  }
 
   function submit() {
     const label = name.trim() || (kind === "file" ? (origin.split(/[\\/]/).at(-1) ?? "") : origin).trim();
     if (!label) return;
     onAdd({ id: `src_demo_${Date.now()}`, collectionId, name: { ar: label, en: label }, origin: origin || "local-demo.txt", kind, status: "indexing", chunkCount: 0, sensitivity: "standard", updatedAt: new Date().toISOString() });
-    setOpen(false); setName(""); setOrigin("");
+    handleOpenChange(false);
   }
 
-  return <Dialog.Root open={open} onOpenChange={setOpen}><Dialog.Trigger asChild><button className="button button--primary button--default" type="button"><Plus size={16} />{ar ? "إضافة مصدر" : "Add source"}</button></Dialog.Trigger><Dialog.Portal><Dialog.Overlay className="command-overlay" /><Dialog.Content className="form-dialog source-dialog" aria-describedby="source-dialog-description"><div className="form-dialog__header"><div><Dialog.Title>{ar ? "إضافة مصدر معرفة" : "Add a knowledge source"}</Dialog.Title><Dialog.Description id="source-dialog-description">{ar ? "يُفحص المصدر ويُستخرج ثم يُفهرس قبل أن يصبح متاحًا للوكلاء." : "The source is scanned, extracted, and indexed before agents can use it."}</Dialog.Description></div><Dialog.Close asChild><button className="icon-button" type="button" aria-label={ar ? "إغلاق" : "Close"}><X size={16} /></button></Dialog.Close></div><div className="source-type-tabs" role="group" aria-label={ar ? "نوع المصدر" : "Source type"}>{([
+  return <Dialog.Root open={open} onOpenChange={handleOpenChange}><Dialog.Trigger asChild><button className="button button--primary button--default" type="button"><Plus size={16} />{ar ? "إضافة مصدر" : "Add source"}</button></Dialog.Trigger><Dialog.Portal><Dialog.Overlay className="command-overlay" /><Dialog.Content className="form-dialog source-dialog" aria-describedby="source-dialog-description"><div className="form-dialog__header"><div><Dialog.Title>{ar ? "إضافة مصدر معرفة" : "Add a knowledge source"}</Dialog.Title><Dialog.Description id="source-dialog-description">{ar ? "يُفحص المصدر ويُستخرج ثم يُفهرس قبل أن يصبح متاحًا للوكلاء." : "The source is scanned, extracted, and indexed before agents can use it."}</Dialog.Description></div><Dialog.Close asChild><button className="icon-button" type="button" aria-label={ar ? "إغلاق" : "Close"}><X size={16} /></button></Dialog.Close></div><div className="source-type-tabs" role="group" aria-label={ar ? "نوع المصدر" : "Source type"}>{([
     ["file", ar ? "ملف" : "File", Upload], ["url", ar ? "رابط" : "URL", Globe2], ["text", ar ? "نص" : "Text", FileText],
   ] as const).map(([id, label, Icon]) => <button type="button" key={id} className={kind === id ? "is-active" : ""} aria-pressed={kind === id} onClick={() => setKind(id)}><Icon size={16} />{label}</button>)}</div><label className="field"><span>{ar ? "اسم واضح" : "Clear name"}</span><input value={name} onChange={(event) => setName(event.target.value)} placeholder={ar ? "مثال: دليل الامتثال 2026" : "Example: Compliance guide 2026"} /></label><label className="field"><span>{kind === "file" ? (ar ? "اسم الملف التجريبي" : "Demo filename") : kind === "url" ? (ar ? "الرابط" : "URL") : (ar ? "النص" : "Text")}</span>{kind === "text" ? <textarea value={origin} onChange={(event) => setOrigin(event.target.value)} placeholder={ar ? "الصق النص هنا…" : "Paste text here…"} /> : <input value={origin} onChange={(event) => setOrigin(event.target.value)} placeholder={kind === "url" ? "https://example.com/policy" : "policy-guide.pdf"} />}</label><label className="field"><span>{ar ? "المجموعة" : "Collection"}</span><select value={collectionId} onChange={(event) => setCollectionId(event.target.value)}>{collections.map((collection) => <option key={collection.id} value={collection.id}>{localize(collection.name, locale)}</option>)}</select></label><div className="source-security-note"><ShieldCheck size={16} /><p>{ar ? "محاكاة آمنة: لا يُرفع ملف ولا يُجلب رابط فعلي. الروابط الخاصة وعناوين الشبكة الداخلية ستُرفض في المنتج الحقيقي." : "Safe simulation: no file is uploaded and no URL is fetched. Private and internal-network addresses will be rejected in the real product."}</p></div><div className="form-dialog__actions"><Dialog.Close asChild><button className="button button--quiet button--default" type="button">{ar ? "إلغاء" : "Cancel"}</button></Dialog.Close><button className="button button--primary button--default" type="button" disabled={!name.trim() && !origin.trim()} onClick={submit}>{ar ? "إضافة وبدء الفهرسة" : "Add and start indexing"}</button></div></Dialog.Content></Dialog.Portal></Dialog.Root>;
 }
@@ -55,6 +78,8 @@ export function KnowledgePrototype({ locale, initialCollections, initialSources 
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
   const [notice, setNotice] = useState("");
+  const [addOpen, setAddOpen] = useState(false);
+  const [menuFor, setMenuFor] = useState<string | null>(null);
   const DirectionArrow = ar ? ArrowLeft : ArrowRight;
 
   useEffect(() => { if (!notice) return; const timer = window.setTimeout(() => setNotice(""), 3000); return () => window.clearTimeout(timer); }, [notice]);
@@ -67,15 +92,23 @@ export function KnowledgePrototype({ locale, initialCollections, initialSources 
     window.setTimeout(() => setSources((items) => items.map((item) => item.id === source.id ? { ...item, status: "ready", chunkCount: 24 } : item)), 1200);
   }
 
+  /** Re-runs the same local indexing simulation as addSource — no network. */
+  function resimulateIndexing(source: KnowledgeSource) {
+    setMenuFor(null);
+    setSources((items) => items.map((item) => item.id === source.id ? { ...item, status: "indexing", chunkCount: 0 } : item));
+    setNotice(ar ? "بدأت إعادة فهرسة محلية للمصدر — محاكاة بلا شبكة." : "Local re-indexing started — a simulation with no network.");
+    window.setTimeout(() => setSources((items) => items.map((item) => item.id === source.id ? { ...item, status: "ready", chunkCount: 24 } : item)), 1200);
+  }
+
   return <div className="ops-page knowledge-page">
-    <ScrollFx /><header className="page-header ops-page-header"><div className="page-header__copy"><p className="page-eyebrow">{ar ? "معرفة محكومة" : "Governed knowledge"}</p><h1 className="page-title">{ar ? "المعرفة" : "Knowledge"}</h1><p className="page-description">{ar ? "نظّم المصادر في مجموعات واضحة، وراقب الفحص والفهرسة، واختبر ما يستطيع الوكيل استرجاعه." : "Organize sources into clear collections, monitor processing, and test exactly what an agent can retrieve."}</p></div><AddSourceDialog locale={locale} collections={initialCollections} onAdd={addSource} /></header><OperationsStats items={[
+    <ScrollFx /><header className="page-header ops-page-header"><div className="page-header__copy"><p className="page-eyebrow">{ar ? "معرفة محكومة" : "Governed knowledge"}</p><h1 className="page-title">{ar ? "المعرفة" : "Knowledge"}</h1><p className="page-description">{ar ? "نظّم المصادر في مجموعات واضحة، وراقب الفحص والفهرسة، واختبر ما يستطيع الوكيل استرجاعه." : "Organize sources into clear collections, monitor processing, and test exactly what an agent can retrieve."}</p></div><AddSourceDialog locale={locale} collections={initialCollections} onAdd={addSource} open={addOpen} onOpenChange={setAddOpen} /></header><OperationsStats items={[
     { label: ar ? "المجموعات" : "Collections", value: String(initialCollections.length), detail: ar ? "بسياق محدد" : "Scoped context" },
     { label: ar ? "المصادر" : "Sources", value: String(sources.length), detail: ar ? "ملفات وروابط ونصوص" : "Files, URLs, and text" },
     { label: ar ? "المقاطع الجاهزة" : "Ready chunks", value: String(initialCollections.reduce((sum, item) => sum + item.chunkCount, 0)), detail: ar ? "قابلة للاسترجاع" : "Retrievable" },
     { label: ar ? "تحتاج انتباهًا" : "Needs attention", value: String(initialCollections.filter((item) => item.status !== "ready").length), detail: ar ? "فهرسة أو تحديث" : "Indexing or refresh", tone: "attention" },
   ]} /><LibraryToolbar locale={locale} query={query} onQueryChange={setQuery} activeFilter={filter} onFilterChange={setFilter} resultCount={visible.length} filters={[
     { id: "all", label: ar ? "الكل" : "All" }, { id: "ready", label: ar ? "جاهز" : "Ready" }, { id: "indexing", label: ar ? "يفهرس" : "Indexing" }, { id: "stale", label: ar ? "قديم" : "Stale" },
-  ]} />{visible.length ? <div className="mj-data-list collections-data-list ops-data-list" role="table" aria-label={ar ? "مجموعات المعرفة" : "Knowledge collections"}><div className="mj-data-list__head" role="row"><span>{ar ? "المجموعة" : "Collection"}</span><span>{ar ? "مصادر" : "Sources"}</span><span>{ar ? "مقاطع" : "Chunks"}</span><span>{ar ? "وكلاء" : "Agents"}</span><span>{ar ? "الحالة" : "Status"}</span><span /></div>{visible.map((collection) => <div className="mj-data-list__row" role="row" key={collection.id}><span className="ops-cell-id" data-label={ar ? "المجموعة" : "Collection"}><i><Database size={16} /></i><span><strong>{localize(collection.name, locale)}</strong><small>{collection.visibility === "workspace" ? (ar ? "كل مساحة العمل" : "Whole workspace") : (ar ? "ضمن المشروع" : "Project scoped")} · {localize(collection.description, locale)}</small></span></span><span className="mono" data-label={ar ? "مصادر" : "Sources"}>{collection.sourceCount}</span><span className="mono" data-label={ar ? "مقاطع" : "Chunks"}>{collection.chunkCount}</span><span className="mono" data-label={ar ? "وكلاء" : "Agents"}>{collection.usedByAgents}</span><span data-label={ar ? "الحالة" : "Status"}><CollectionStatus locale={locale} status={collection.status} /></span><Link className="ops-row-link" href={`/${locale}/app/knowledge/${collection.id}`}>{ar ? "فتح" : "Open"}<DirectionArrow size={14} /></Link></div>)}</div> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}<section className="mj-section"><div className="mj-section__head"><div className="mj-section__head-copy"><h2 className="mj-section__title">{ar ? "آخر المصادر" : "Recent sources"}</h2><p className="mj-section__desc">{ar ? "الجاهز فقط يدخل الاسترجاع." : "Only ready sources enter retrieval."}</p></div></div><div className="mj-data-list sources-data-list ops-data-list" role="table" aria-label={ar ? "آخر المصادر" : "Recent sources"}><div className="mj-data-list__head" role="row"><span>{ar ? "المصدر" : "Source"}</span><span>{ar ? "المجموعة" : "Collection"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "المقاطع" : "Chunks"}</span></div>{sources.slice(0, 6).map((source) => { const collection = initialCollections.find((item) => item.id === source.collectionId); const Icon = source.kind === "url" ? Globe2 : source.kind === "text" ? FileText : FolderOpen; return <div className="mj-data-list__row" role="row" key={source.id}><span className="ops-cell-id" data-label={ar ? "المصدر" : "Source"}><i><Icon size={16} /></i><span><strong>{localize(source.name, locale)}</strong><small>{source.origin}</small></span></span><span data-label={ar ? "المجموعة" : "Collection"}>{collection ? localize(collection.name, locale) : "—"}</span><span data-label={ar ? "الحالة" : "Status"}><SourceStatus locale={locale} status={source.status} /></span><span className="mono" data-label={ar ? "المقاطع" : "Chunks"}>{source.chunkCount || "—"}</span></div>; })}</div></section>{notice ? <DemoToast message={notice} /> : null}</div>;
+  ]} />{visible.length ? <div className="mj-data-list collections-data-list ops-data-list" role="table" aria-label={ar ? "مجموعات المعرفة" : "Knowledge collections"}><div className="mj-data-list__head" role="row"><span>{ar ? "المجموعة" : "Collection"}</span><span>{ar ? "مصادر" : "Sources"}</span><span>{ar ? "مقاطع" : "Chunks"}</span><span>{ar ? "وكلاء" : "Agents"}</span><span>{ar ? "الحالة" : "Status"}</span><span /></div>{visible.map((collection) => <div className="mj-data-list__row" role="row" key={collection.id}><span className="ops-cell-id" data-label={ar ? "المجموعة" : "Collection"}><i><Database size={16} /></i><span><strong>{localize(collection.name, locale)}</strong><small>{collection.visibility === "workspace" ? (ar ? "كل مساحة العمل" : "Whole workspace") : (ar ? "ضمن المشروع" : "Project scoped")} · {localize(collection.description, locale)}</small></span></span><span className="mono" data-label={ar ? "مصادر" : "Sources"}>{collection.sourceCount}</span><span className="mono" data-label={ar ? "مقاطع" : "Chunks"}>{collection.chunkCount}</span><span className="mono" data-label={ar ? "وكلاء" : "Agents"}>{collection.usedByAgents}</span><span data-label={ar ? "الحالة" : "Status"}><CollectionStatus locale={locale} status={collection.status} /></span><Link className="ops-row-link" href={`/${locale}/app/knowledge/${collection.id}`}>{ar ? "فتح" : "Open"}<DirectionArrow size={14} /></Link></div>)}</div> : <LibraryEmpty locale={locale} onReset={() => { setQuery(""); setFilter("all"); }} />}<section className="mj-section knowledge-sources-section"><div className="mj-section__head"><div className="mj-section__head-copy"><h2 className="mj-section__title">{ar ? "المصادر" : "Sources"}</h2><p className="mj-section__desc">{ar ? "الجاهز فقط يدخل الاسترجاع؛ الفهرسة محاكاة محلية بلا شبكة." : "Only ready sources enter retrieval; indexing is a local simulation with no network."}</p></div></div>{/* Bible §6.12: an upload dropzone (120px, dashed) — opens the add dialog. */}<button type="button" className="knowledge-dropzone" data-testid="knowledge-dropzone" onClick={() => setAddOpen(true)}><Upload size={18} aria-hidden="true" /><strong>{ar ? "أفلت ملفًا هنا أو اضغط لإضافة مصدر" : "Drop a file here or click to add a source"}</strong><small>{ar ? "محاكاة آمنة: لا يُرفع أي ملف فعليًا." : "Safe simulation: no file is actually uploaded."}</small></button><ul className="knowledge-source-feed" aria-label={ar ? "آخر المصادر" : "Recent sources"}>{sources.slice(0, 6).map((source) => { const collection = initialCollections.find((item) => item.id === source.collectionId); const Icon = source.kind === "url" ? Globe2 : source.kind === "text" ? FileText : FolderOpen; const state = sourceState(locale, source.status); const processing = sourceProcessingStates.includes(source.status); return <li key={source.id} data-processing={processing || undefined} data-testid="knowledge-source-row"><span className="knowledge-source-feed__icon"><Icon size={20} aria-hidden="true" /></span><div className="knowledge-source-feed__id"><strong>{localize(source.name, locale)}</strong><small>{source.origin}</small></div><Badge>{localize(sourceKindLabels[source.kind], locale)}</Badge>{processing ? <span className="knowledge-source-feed__progress" role="status"><span className="knowledge-source-feed__progress-track" aria-hidden="true"><i /></span><small>{state.label}</small></span> : <span className="ops-status" data-tone={state.tone === "brand" ? undefined : state.tone}><i aria-hidden="true" />{state.label}</span>}<span className="mono knowledge-source-feed__chunks" data-label={ar ? "مقاطع" : "Chunks"}>{source.chunkCount || "—"}</span><div className="knowledge-source-feed__menu">{menuFor === source.id ? <><button type="button" className="knowledge-source-menu-backdrop" aria-hidden="true" tabIndex={-1} onClick={() => setMenuFor(null)} /><div className="knowledge-source-menu" role="menu"><Link role="menuitem" href={`/${locale}/app/knowledge/${source.collectionId}`}>{collection ? localize(collection.name, locale) : (ar ? "فتح المجموعة" : "Open collection")}</Link><button type="button" role="menuitem" onClick={() => resimulateIndexing(source)}>{ar ? "إعادة فهرسة (محاكاة)" : "Re-index (simulation)"}</button></div></> : null}<button type="button" className="icon-button" aria-label={ar ? `إجراءات ${localize(source.name, locale)}` : `${localize(source.name, locale)} actions`} aria-expanded={menuFor === source.id} aria-haspopup="menu" onClick={() => setMenuFor((current) => current === source.id ? null : source.id)}><MoreHorizontal size={16} /></button></div></li>; })}</ul></section>{notice ? <DemoToast message={notice} /> : null}</div>;
 }
 
 export function KnowledgeCollectionPrototype({ locale, collection, sources }: { locale: Locale; collection: KnowledgeCollection; sources: KnowledgeSource[] }) {

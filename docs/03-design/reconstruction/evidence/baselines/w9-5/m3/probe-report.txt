@@ -1,0 +1,34 @@
+PASS  LR-1 diagnostic position meter 6px + progressbar role — 6px · progressbar · fill 247.5px
+PASS  LR-2 reading-time badge: mono digits + unit, chip ≥ 24px — 29.5px · 5د · "IBM Plex Mono"
+PASS  LR-3 checkpoint keeps the §6.3 progress meter — 6px · progressbar · now 1 · fill 495px
+PASS  LR-4 learn path zero horizontal overflow @1440
+PASS  EX-1 knowledge canvas renders ≥480px @1440 — 480px
+PASS  EX-2 canvas nodes are 44px circles — 3 dots @ 44.0px
+PASS  EX-3 suggested node: 2px accent border + scale 1.05 + shadow — 2px · matrix(1.05, 0, 0, 1.05, 0, 0)
+PASS  EX-4 SVG edges + list parity (same node count) — 2 edges · canvas 3 = list 3
+PASS  EX-5 explore map zero horizontal overflow @390 — canvas 324×420
+PASS  PR-1 projects open in the card grid (§6.9 default)
+PASS  PR-2 grid card ≥280px + title clamps at 2 + footer pinned — 290px · clamp 2 · pinned true
+PASS  PR-3 sort select reorders the grid — إطلاق الخدمة في السوق السعودي|عمليات المحتوى للربع الرابع|صوت العميل → إطلاق الخدمة في السوق السعودي|صوت العميل|عمليات المحتوى للربع الرابع
+PASS  PR-3b sort by runs is a distinct order — إطلاق الخدمة في السوق السعودي|عمليات المحتوى للربع الرابع|صوت العميل
+PASS  AG-1 agent avatar 32px circle with initials — 32px · "با"
+PASS  AG-2 status dot 8px — 8.0px
+PASS  FL-1 flow preview toolbar ≥48px — 48.0px
+PASS  FL-2 preview nodes 160×80 — 160×80
+PASS  FL-3 connectors authored at 1.5px — authored 1.5px (Chromium computes 1px — documented rounding)
+PASS  FL-4 preview shows the REAL definition (5 nodes) — 5 nodes
+PASS  KN-1 upload dropzone ≥120px dashed — 120px · dashed
+PASS  KN-2 source rows ≥56px — 65px
+PASS  KN-3 row anatomy: type badge + state + menu — badge true · state true · menu true
+PASS  KN-4 dropzone opens the add-source dialog
+PASS  MD-1 exactly one «الموصى به» badge — 1 of 4 cards
+PASS  MD-2 model cards hold the 220px column floor — min column 261px
+PASS  RN-1 duration column mono m:ss — 5 cells · 15:27 / 4:12 / 1:04
+PASS  RN-2 rows hold the 48px floor — min row 66px
+PASS  RN-3 time tabs filter the table — 5 → 4
+PASS  US-1 usage: chart 240 · stats ≥120 · cost meter 8px — 240px · 120px · 8px
+PASS  BL-1 invoice table: 4 rows with mono $ amounts — 4 rows · $29.42
+PASS  BL-2 exactly ONE primary on the billing screen — 1: ترقية الخطة
+PASS  TM-1 member email mono at label size — 13px "IBM Plex Mono" · sarah@minsaj.demo
+
+w95-m3 probe: 32/32 PASS

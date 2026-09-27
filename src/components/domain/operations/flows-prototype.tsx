@@ -2,13 +2,88 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Play, Plus, Workflow } from "lucide-react";
+import { ArrowLeft, ArrowRight, Bot, CheckSquare2, GitFork, Mail, Play, Plus, TimerReset, Workflow } from "lucide-react";
 import { Badge } from "@minsaj/ui";
-import { localize, type FlowSummary, type Locale } from "@minsaj/contracts";
+import { localize, type FlowDefinition, type FlowNode, type FlowSummary, type Locale } from "@minsaj/contracts";
 import { DemoToast, LibraryEmpty, LibraryToolbar, OperationsStats } from "./shared";
 
 import { ScrollFx } from "@/components/universal/scroll-fx";
-export function FlowsPrototype({ locale, flows }: { locale: Locale; flows: FlowSummary[] }) {
+
+/** Bible §6.11 node glyphs — one icon family, semantic by node type. */
+const previewNodeIcons: Record<FlowNode["type"], typeof Workflow> = {
+  input: TimerReset, agent: Bot, transform: GitFork, approval: CheckSquare2, output: Mail,
+};
+const previewNodeTypeLabels: Record<FlowNode["type"], { ar: string; en: string }> = {
+  input: { ar: "مدخل", en: "Input" }, agent: { ar: "وكيل", en: "Agent" }, transform: { ar: "تحويل", en: "Transform" }, approval: { ar: "موافقة", en: "Approval" }, output: { ar: "مخرج", en: "Output" },
+};
+
+/** Lays the definition's nodes out in execution order (chain from the
+    root, then any unreached nodes in array order — honest to the edges). */
+function previewChainOrder(definition: FlowDefinition): FlowNode[] {
+  const byId = new Map(definition.nodes.map((node) => [node.id, node]));
+  const incoming = new Map<string, number>(definition.nodes.map((node) => [node.id, 0]));
+  for (const edge of definition.edges) incoming.set(edge.to, (incoming.get(edge.to) ?? 0) + 1);
+  const nextOf = new Map(definition.edges.map((edge) => [edge.from, edge.to] as const));
+  const ordered: FlowNode[] = [];
+  const seen = new Set<string>();
+  let current = definition.nodes.find((node) => (incoming.get(node.id) ?? 0) === 0)?.id;
+  while (current !== undefined && !seen.has(current)) {
+    seen.add(current);
+    const node = byId.get(current);
+    if (node) ordered.push(node);
+    current = nextOf.get(current);
+  }
+  for (const node of definition.nodes) if (!seen.has(node.id)) ordered.push(node);
+  return ordered;
+}
+
+/** Bible §6.11 — a real-structure horizontal canvas preview for the lead
+    flow: nodes 160×80 (radius on the frozen scale), 1.5px connectors, and a
+    48px toolbar. The definition comes from the same fixtures as the editor,
+    so the preview never invents structure. */
+function FlowStructurePreview({ locale, definition }: { locale: Locale; definition: FlowDefinition }) {
+  const ar = locale === "ar";
+  const DirectionArrow = ar ? ArrowLeft : ArrowRight;
+  const chain = previewChainOrder(definition);
+  const edgeKeys = new Set(definition.edges.map((edge) => `${edge.from}>${edge.to}`));
+  return (
+    <section className="flow-preview-card" aria-label={ar ? "معاينة بنية التدفق" : "Flow structure preview"}>
+      <div className="flow-preview-toolbar">
+        <div>
+          <Workflow size={16} aria-hidden="true" />
+          <strong>{localize(definition.summary.name, locale)}</strong>
+          <span className="mono">v{definition.summary.version}</span>
+          <Badge tone={definition.summary.status === "published" ? "success" : "warning"}>
+            {definition.summary.status === "published" ? (ar ? "نشط" : "Active") : (ar ? "مسودة" : "Draft")}
+          </Badge>
+        </div>
+        <Link className="ops-row-link" href={`/${locale}/app/flows/${definition.summary.id}/edit`}>{ar ? "فتح المحرر" : "Open editor"}<DirectionArrow size={14} /></Link>
+      </div>
+      <div className="flow-preview-strip">
+        <div className="flow-preview-track">
+          {chain.map((node, index) => {
+            const Icon = previewNodeIcons[node.type];
+            const previous = chain[index - 1];
+            const connected = previous !== undefined && edgeKeys.has(`${previous.id}>${node.id}`);
+            return (
+              <div className="flow-preview-track__slot" key={node.id}>
+                {index > 0 ? <span className={connected ? "flow-preview-link" : "flow-preview-link flow-preview-link--dashed"} aria-hidden="true" /> : null}
+                <Link className="flow-preview-node" data-type={node.type} href={`/${locale}/app/flows/${definition.summary.id}/edit`}>
+                  <span className="flow-preview-node__icon"><Icon size={16} aria-hidden="true" /></span>
+                  <span className="flow-preview-node__copy">
+                    <strong>{localize(node.label, locale)}</strong>
+                    <small>{localize(previewNodeTypeLabels[node.type], locale)}</small>
+                  </span>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+export function FlowsPrototype({ locale, flows, preview = null }: { locale: Locale; flows: FlowSummary[]; preview?: FlowDefinition | null }) {
   const ar = locale === "ar";
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
@@ -48,6 +123,8 @@ export function FlowsPrototype({ locale, flows }: { locale: Locale; flows: FlowS
         { id: "draft", label: ar ? "مسودة" : "Draft" },
         { id: "archived", label: ar ? "مؤرشف" : "Archived" },
       ]} />
+
+      {preview ? <FlowStructurePreview locale={locale} definition={preview} /> : null}
 
       {visibleFlows.length ? <div className="mj-data-list flows-data-list ops-data-list" role="table" aria-label={ar ? "مكتبة التدفقات" : "Flow library"}><div className="mj-data-list__head" role="row"><span>{ar ? "التدفق" : "Flow"}</span><span>{ar ? "العقد" : "Nodes"}</span><span>{ar ? "التشغيلات" : "Runs"}</span><span>{ar ? "الحالة" : "Status"}</span><span>{ar ? "إجراءات" : "Actions"}</span></div>{visibleFlows.map((flow) => (
         <div className="mj-data-list__row" role="row" key={flow.id}>

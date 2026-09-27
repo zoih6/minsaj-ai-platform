@@ -438,15 +438,19 @@
     }
   }
 
-  /* Project cards: consistent emphasis with library items (no lift) */
+  /* Project cards: unified §4.5 card language (W9-5/م3) — same emphasis AND
+     the -2px lift the library/create cards already use, so every media card
+     in the product reacts identically. */
   @media (hover: hover) {
     .project-library-card {
       transition: box-shadow var(--u-motion-duration-fast) var(--u-motion-ease-standard),
-                  border-color var(--u-motion-duration-fast) linear;
+                  border-color var(--u-motion-duration-fast) linear,
+                  transform var(--u-motion-duration-fast) var(--u-motion-ease-standard);
     }
     .project-library-card:hover {
       box-shadow: var(--u-shadow-xs);
       border-color: color-mix(in srgb, var(--u-primary) 26%, var(--u-line));
+      transform: translateY(-2px);
     }
   }
 }

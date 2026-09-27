@@ -578,13 +578,65 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
    v18.1 mobile QA: more generous cell padding + readable detail text
    (faint→muted) so the band stops feeling "glued to its own edges". */
 .ops-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(158px, 100%), 1fr)); gap: 1px; margin: 0 0 20px; border: 1px solid var(--u-line); background: var(--u-line); }
-.ops-stats > div { min-width: 0; padding: 16px 18px; background: var(--u-surface); display: grid; align-content: start; gap: 3px; }
+.ops-stats > div { min-width: 0; min-height: 120px; padding: 16px 18px; background: var(--u-surface); display: grid; align-content: start; gap: 3px; }
 .ops-stats > div.is-attention { background: var(--u-amber-soft); }
 .ops-stats dt { color: var(--u-muted); font-size: var(--u-text-xs); }
 .ops-stats dd { margin: var(--mj-space-25) 0 0; color: var(--u-ink); font: 600 var(--u-text-xl)/1.3 "Inter", "Tajawal", sans-serif; }
 .ops-stats .ops-stat-detail { color: var(--u-muted); font: inherit; font-size: var(--u-text-xs); }
 .ops-stats .is-attention dd:not(.ops-stat-detail) { color: var(--u-amber-ink); }
 .ops-stats .is-attention .ops-stat-detail { color: var(--u-amber-ink); opacity: .78; }
+
+/* Bible §6.12 — knowledge sources: a 120px dashed upload dropzone (same
+   geometry language as the §6.7 analyze dropzone) over a 56px-row feed with
+   the anatomy [icon 20][name][type badge][state/progress][chunks][menu]. */
+.knowledge-dropzone { width: 100%; min-height: 120px; display: grid; place-content: center; justify-items: center; gap: var(--mj-gap-2xs); margin-block-end: var(--mj-space-200); padding: var(--mj-space-150); border: 1.5px dashed var(--u-line-strong); border-radius: var(--u-radius-card); color: var(--u-muted); background: var(--u-surface-subtle); text-align: center; cursor: pointer; transition: border-color var(--u-motion-duration-fast) var(--u-motion-ease-standard), background-color var(--u-motion-duration-fast) var(--u-motion-ease-standard); }
+.knowledge-dropzone:hover { border-color: var(--u-primary); background: var(--u-primary-soft); }
+.knowledge-dropzone svg { color: var(--u-faint); }
+.knowledge-dropzone strong { color: var(--u-ink-soft); font-size: var(--u-text-sm); font-weight: 700; }
+.knowledge-dropzone small { color: var(--u-faint); font-size: var(--mj-text-label-s); }
+.knowledge-source-feed { display: grid; gap: var(--mj-gap-2xs); margin: 0; padding: 0; list-style: none; }
+.knowledge-source-feed li { position: relative; min-height: 56px; display: flex; flex-wrap: wrap; align-items: center; gap: var(--mj-gap-sm); padding: var(--mj-space-100) var(--mj-space-150); border: 1px solid var(--u-line); border-radius: var(--u-radius-field); background: var(--u-surface); }
+@media (hover: hover) { .knowledge-source-feed li:hover { background: var(--u-hover-veil); } }
+.knowledge-source-feed__icon { width: 32px; height: 32px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--u-line); border-radius: var(--u-radius-control); background: var(--u-surface-subtle); color: var(--u-primary); }
+.knowledge-source-feed__id { flex: 1 1 180px; min-width: 0; display: grid; gap: var(--mj-space-25); }
+.knowledge-source-feed__id strong { overflow: hidden; color: var(--u-ink); text-overflow: ellipsis; white-space: nowrap; font-size: var(--u-text-sm); font-weight: 600; }
+.knowledge-source-feed__id small { overflow: hidden; color: var(--u-faint); text-overflow: ellipsis; white-space: nowrap; font-size: var(--mj-text-label-s); }
+.knowledge-source-feed__progress { display: inline-flex; align-items: center; gap: var(--mj-gap-xs); min-width: 118px; }
+.knowledge-source-feed__progress small { color: var(--u-muted); font-size: var(--mj-text-label-s); }
+.knowledge-source-feed__progress-track { position: relative; flex: 1 1 52px; height: 4px; overflow: hidden; border-radius: var(--u-radius-pill); background: var(--u-line); }
+.knowledge-source-feed__progress-track > i { position: absolute; inset-block: 0; inset-inline-start: -40%; width: 40%; border-radius: inherit; background: var(--u-primary-grad); animation: knowledge-index-slide 1.2s var(--u-motion-ease-standard) infinite alternate; }
+@keyframes knowledge-index-slide { from { inset-inline-start: -40%; } to { inset-inline-start: 100%; } }
+@media (prefers-reduced-motion: reduce) { .knowledge-source-feed__progress-track > i { animation: none; inset-inline-start: 30%; } }
+.knowledge-source-feed__chunks { flex: 0 0 auto; min-width: 30px; color: var(--u-ink-soft); font-size: var(--mj-text-label-s); text-align: end; }
+.knowledge-source-feed__menu { position: relative; display: grid; place-items: center; }
+.knowledge-source-menu-backdrop { position: fixed; inset: 0; z-index: 30; border: 0; background: transparent; cursor: default; }
+.knowledge-source-menu { position: absolute; inset-inline-end: 0; top: calc(100% + var(--mj-space-50)); z-index: 31; min-width: 190px; display: grid; padding: var(--mj-space-50); border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-field); background: var(--u-surface-solid); box-shadow: var(--u-shadow-md); }
+.knowledge-source-menu a, .knowledge-source-menu button { min-height: 38px; display: flex; align-items: center; gap: var(--mj-gap-xs); padding-inline: var(--mj-space-150); border: 0; border-radius: var(--u-radius-control); color: var(--u-ink-soft); background: transparent; font-size: var(--u-text-sm); font-weight: 600; text-align: start; text-decoration: none; cursor: pointer; }
+@media (hover: hover) { .knowledge-source-menu a:hover, .knowledge-source-menu button:hover { background: var(--u-hover-veil); color: var(--u-ink); } }
+
+
+/* Bible §6.11 via token bridge — flow structure preview: a 48px toolbar over
+   a horizontally scrollable canvas; nodes 160×80 (radius 14 → nearest frozen
+   degree card 16, +2 like the §6.7 dropzone), 1.5px connectors (Chromium
+   rounds to 1/2px — same documented deviation as the dropzone border). */
+.flow-preview-card { margin-block-end: var(--mj-space-200); border: 1px solid var(--u-line); background: var(--u-surface); border-radius: var(--u-radius); overflow: hidden; }
+.flow-preview-toolbar { min-height: 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--mj-gap-xs); padding-inline: var(--mj-space-150); border-block-end: 1px solid var(--u-line); background: var(--u-surface); }
+.flow-preview-toolbar > div { display: flex; align-items: center; gap: var(--mj-gap-xs); color: var(--u-muted); }
+.flow-preview-toolbar strong { color: var(--u-ink); font-size: var(--u-text-sm); }
+.flow-preview-strip { overflow-x: auto; padding: var(--mj-space-300) var(--mj-space-200); background: var(--u-tint-1); }
+.flow-preview-track { display: flex; align-items: center; width: max-content; min-width: 100%; }
+.flow-preview-track__slot { display: flex; align-items: center; }
+.flow-preview-link { width: 26px; height: 0; border-block-start: 1.5px solid var(--u-line-strong); }
+.flow-preview-link--dashed { border-block-start-style: dashed; opacity: .65; }
+.flow-preview-node { width: 160px; min-height: 80px; display: flex; align-items: center; gap: var(--mj-gap-xs); padding: var(--mj-space-150); border: 1px solid var(--u-line-strong); border-radius: var(--u-radius-card); background: var(--u-surface-solid); box-shadow: var(--u-shadow-xs); text-decoration: none; }
+.flow-preview-node:hover { border-color: var(--u-primary); }
+.flow-preview-node__icon { width: 28px; height: 28px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--u-line); border-radius: var(--u-radius-control); background: var(--u-surface-subtle); color: var(--u-primary); }
+.flow-preview-node__copy { min-width: 0; display: grid; gap: var(--mj-space-25); }
+.flow-preview-node__copy strong { overflow: hidden; color: var(--u-ink); text-overflow: ellipsis; white-space: nowrap; font-size: var(--u-text-xs); font-weight: 700; }
+.flow-preview-node__copy small { color: var(--u-muted); font-size: var(--mj-text-label-s); }
+.flow-preview-node[data-type="approval"] { border-color: var(--u-amber-soft-line); }
+.flow-preview-node[data-type="approval"] .flow-preview-node__icon { border-color: var(--u-amber-soft-line); background: var(--u-amber-soft); color: var(--u-amber-ink); }
+
 
 .library-toolbar-row { display: flex; flex-wrap: wrap; align-items: stretch; gap: var(--mj-gap-sm); }
 .library-toolbar { min-height: calc(var(--u-touch) + 2 * var(--mj-gap-xs)); flex: 1 1 340px; min-width: min(100%, 280px); display: flex; flex-wrap: wrap; align-items: center; gap: var(--mj-gap-xs) var(--mj-gap-sm); margin-block-end: var(--mj-space-200); padding: var(--mj-gap-sm); border: 1px solid var(--u-line); background: var(--u-surface); }
@@ -606,6 +658,12 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .library-filters__chip.is-active { background: var(--u-primary-soft); color: var(--u-primary); box-shadow: inset 0 0 0 1px var(--u-primary-soft-line); font-weight: 600; }
 .library-count { min-width: 62px; padding-inline: 6px; color: var(--u-faint); text-align: end; font-size: var(--u-text-xs); }
 .view-switch { display: flex; align-items: center; margin-block-end: var(--mj-space-200); padding: var(--mj-gap-xs); border: 1px solid var(--u-line); background: var(--u-surface); }
+/* Bible §6.9: sort select beside the view switch — same height band as the
+   view-switch buttons so the toolbar reads as one control group. */
+.ops-view-row { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: flex-end; gap: var(--mj-gap-xs); margin-block-end: var(--mj-space-200); }
+.ops-view-row .view-switch { margin-block-end: 0; }
+.ops-sort-control { display: inline-flex; align-items: center; gap: var(--mj-gap-xs); padding-inline: var(--mj-space-150); border: 1px solid var(--u-line); background: var(--u-surface); color: var(--u-muted); }
+.ops-sort-control select { height: 40px; border: 0; background: transparent; color: var(--u-ink); font: inherit; font-size: var(--u-text-xs); font-weight: 600; cursor: pointer; }
 .view-switch button { width: var(--u-touch); height: var(--u-touch); display: grid; place-items: center; border: 0; border-radius: var(--u-radius-xs); background: transparent; color: var(--u-muted); cursor: pointer; }
 .view-switch button.is-active { background: var(--u-primary-soft); color: var(--u-primary); box-shadow: inset 0 0 0 1px var(--u-primary-soft-line); }
 .library-empty { min-height: 280px; display: grid; place-content: center; justify-items: center; padding: 30px; border: 1px dashed var(--u-line-strong); background: var(--u-surface); text-align: center; }
@@ -622,6 +680,11 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
    tallest), so visual consistency survives without dead vertical space. */
 .project-library { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: var(--mj-space-150); align-items: stretch; }
 .project-library.is-list { grid-template-columns: minmax(0, 1fr); }
+/* Bible §6.9 via §4.5 anatomy (session 22 library precedent): unified
+   min-height 280 in grid mode, title clamps at 2 lines, description at 3. */
+.project-library:not(.is-list) .project-library-card { min-height: 280px; }
+.project-library:not(.is-list) .project-library-card__copy h2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.project-library:not(.is-list) .project-library-card__copy p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .project-library-card { min-width: 0; display: flex; flex-direction: column; padding: var(--mj-space-200); border: 1px solid var(--u-line); background: var(--u-surface); transition: border-color 130ms ease, box-shadow 130ms ease, transform 130ms ease; }@media (hover: hover) {
   .project-library-card:hover { border-color: var(--u-line-strong); box-shadow: var(--u-shadow-xs); }
 }
@@ -1228,8 +1291,11 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .retrieval-safe-note { display: flex; align-items: center; gap: 5px; margin-block-start: 10px; color: var(--u-faint); font-size: var(--u-text-xs); }
 
 /* Models, tools, and skills */
-.model-catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 10px; }
+.model-catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 10px; }
 .catalog-model-card { min-width: 0; padding: 15px; border: 1px solid var(--u-line); background: var(--u-surface); }
+/* Bible §6.13: the recommended model carries one quiet brand ring — border
+   only; the badge already speaks. */
+.catalog-model-card.is-recommended { border-color: var(--u-primary-soft-line); }
 .catalog-model-card.is-selected { border-color: var(--u-primary); box-shadow: inset 0 0 0 1px var(--u-primary); }
 .catalog-model-card__head, .catalog-model-card__title { display: flex; align-items: center; justify-content: space-between; gap: 9px; }
 .model-provider-mark, .model-detail-hero__mark { width: 35px; height: 35px; display: grid; place-items: center; border: 1px solid var(--u-line); background: var(--u-inverse-surface); color: var(--u-on-inverse); font: 600 13px "Inter", sans-serif; }
@@ -1354,7 +1420,7 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .usage-header-actions select { height: 36px; padding-inline: 10px 30px; border: 1px solid var(--u-line-strong); background: var(--u-surface); color: var(--u-ink); font-size: var(--u-text-xs); }
 .usage-overview-grid { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(250px,.62fr); gap: 11px; }
 .usage-chart-card, .credit-balance-card, .usage-breakdown-card, .usage-ledger-card { padding: var(--mj-space-200); border: 1px solid var(--u-line); background: var(--u-surface); }
-.usage-chart { height: 210px; display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 9px; padding-block: 7px; }
+.usage-chart { height: 240px; display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 9px; padding-block: 7px; }
 .usage-chart__scale { display: flex; flex-direction: column; justify-content: space-between; color: var(--u-faint); font: var(--mj-text-code) "IBM Plex Mono", monospace; direction: ltr; }
 .usage-chart__plot { display: flex; align-items: flex-end; gap: clamp(4px,1vw,11px); border-block-end: 1px solid var(--u-line-strong); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='50'%3E%3Cpath d='M0 49.5H10' stroke='%23e0e4e1' stroke-width='1'/%3E%3C/svg%3E"); }
 .usage-chart__plot > span { flex: 1; min-width: 5px; max-width: 28px; background: var(--u-primary); opacity: .82; }@media (hover: hover) {
@@ -1371,8 +1437,9 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .credit-balance-card > strong { display: block; margin-block-start: var(--mj-space-25); color: var(--u-ink); font-size: 29px; font-weight: 600; }
 .credit-meter { margin-block: 14px; }
 .credit-meter > div:first-child { display: flex; justify-content: space-between; color: var(--u-faint); font-size: var(--u-text-xs); }
-.credit-meter [role="progressbar"] { height: 5px; margin-block-start: 6px; background: var(--u-line); }
-.credit-meter [role="progressbar"] span { display: block; width: 37%; height: 100%; background: var(--u-primary); }
+/* Bible §6.15: cost meters are 8px — one language across usage and billing. */
+.credit-meter [role="progressbar"] { height: 8px; margin-block-start: 6px; border-radius: var(--u-radius-pill); background: var(--u-line); }
+.credit-meter [role="progressbar"] span { display: block; width: 37%; height: 100%; border-radius: inherit; background: var(--u-primary); }
 .credit-balance-card dl { margin: 0 0 13px; border-block: 1px solid var(--u-line); }
 .credit-balance-card dl > div { display: flex; justify-content: space-between; padding-block: 7px; }
 .credit-balance-card dt { display: flex; align-items: center; gap: 5px; color: var(--u-faint); font-size: var(--u-text-xs); }
@@ -1525,7 +1592,22 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .flows-data-list { --mj-data-cols: minmax(0,1.7fr) minmax(90px,.6fr) minmax(90px,.6fr) minmax(110px,.8fr) 168px; }
 .projects-data-list { --mj-data-cols: minmax(0,1.7fr) minmax(90px,.6fr) minmax(90px,.6fr) minmax(110px,.8fr) 150px; }
 .runs-data-list { --mj-data-cols: minmax(0,1.6fr) minmax(120px,.8fr) minmax(80px,.5fr) minmax(100px,.6fr) minmax(100px,.7fr) 56px; }
+/* Bible §6.14: duration cell is mono 12px; the time-window tab row reads as
+   underlined tabs, separate from the status chips. */
+.ops-duration { font-size: var(--mj-text-label-s); font-weight: 600; }
+.ops-time-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--mj-space-100); margin-block-end: var(--mj-space-200); padding-block-end: 0; border-block-end: 1px solid var(--u-line); }
+.ops-time-tabs button { min-height: 40px; padding-inline: var(--mj-space-150); border: 0; border-block-end: 2px solid transparent; color: var(--u-muted); background: transparent; font-size: var(--u-text-xs); font-weight: 700; cursor: pointer; }
+.ops-time-tabs button:hover { color: var(--u-ink); }
+.ops-time-tabs button.is-active { color: var(--u-primary-strong); border-block-end-color: var(--u-primary); }
+.ops-time-tabs small { margin-inline-start: auto; color: var(--u-faint); font-size: var(--mj-text-label-s); }
 .team-data-list { --mj-data-cols: minmax(0,1.7fr) minmax(150px,1fr) minmax(110px,.8fr) minmax(100px,.7fr) 56px; }
+/* Bible §6.17: member emails read as data — mono at label size. The .mono
+   ride-along in ops tables sets --mj-text-code (12.5px), so this rule pairs
+   with it to hold the 13px label size. */
+.ops-member-email { font-family: "IBM Plex Mono", monospace; direction: ltr; unicode-bidi: isolate; }
+.ops-data-list .mono.ops-member-email { font-size: var(--mj-text-label-m); }
+.team-empty { display: grid; place-content: center; justify-items: center; gap: var(--mj-gap-2xs); }
+.team-empty p { margin: 0; max-width: 44ch; color: var(--u-muted); font-size: var(--u-text-sm); line-height: 1.7; }
 .collections-data-list { --mj-data-cols: minmax(0,1.7fr) minmax(80px,.5fr) minmax(80px,.5fr) minmax(80px,.5fr) minmax(110px,.8fr) 120px; }
 .sources-data-list { --mj-data-cols: minmax(0,1.7fr) minmax(140px,1fr) minmax(110px,.8fr) 70px; }
 .providers-data-list { --mj-data-cols: minmax(0,1.7fr) minmax(150px,1fr) minmax(100px,.7fr) 44px; }
@@ -1534,6 +1616,14 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .ops-cell-id strong { display: block; overflow: hidden; color: var(--u-ink); text-overflow: ellipsis; white-space: nowrap; font-size: var(--mj-text-body-s); font-weight: 600; }
 .ops-cell-id small { display: block; overflow: hidden; color: var(--u-faint); text-overflow: ellipsis; white-space: nowrap; font-size: var(--mj-text-label-s); }
 .ops-cell-id > i { width: 32px; height: 32px; flex: 0 0 auto; display: grid; place-items: center; border-radius: var(--u-radius-field); background: var(--u-surface-subtle); color: var(--u-primary); font-style: normal; }
+/* Bible §6.10: agents get a circular 32px initials avatar, and status reads
+   as an 8px dot + label (quiet, no filled badge) — identity stays primary. */
+.ops-cell-id > i.ops-avatar { border: 1px solid var(--u-primary-soft-line); border-radius: var(--u-radius-pill); background: var(--u-primary-soft); color: var(--u-primary-strong); font-size: var(--mj-text-label-m); font-weight: 700; letter-spacing: 0; }
+.ops-status { display: inline-flex; align-items: center; gap: var(--mj-gap-xs); color: var(--u-ink-soft); font-size: var(--u-text-xs); font-weight: 600; }
+.ops-status > i { width: 8px; height: 8px; flex: 0 0 auto; border-radius: var(--u-radius-pill); background: var(--u-muted); }
+.ops-status[data-tone="success"] > i { background: var(--u-mint); }
+.ops-status[data-tone="warning"] > i { background: var(--u-amber); }
+.ops-status[data-tone="danger"] > i { background: var(--u-danger); }
 .ops-cell-actions { display: flex; align-items: center; justify-content: flex-end; gap: var(--mj-space-100); }
 .ops-cell-actions .button { flex: 0 0 auto; }
 .ops-row-link { display: inline-flex; align-items: center; gap: var(--mj-space-50); color: var(--u-primary); text-decoration: none; font-size: var(--mj-text-label-m); font-weight: 600; white-space: nowrap; }
@@ -1643,6 +1733,14 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 /* Billing and model routing */
 .billing-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr); gap: 11px; }
 .billing-balance-card, .billing-plan-card, .budget-policy-card, .payment-method-card { padding: 17px; border: 1px solid var(--u-line); background: var(--u-surface); }
+/* Bible §6.16: the plan card holds a 200px floor; the upgrade primary is
+   the screen's single primary. */
+.billing-plan-card { display: flex; flex-direction: column; min-height: 200px; }
+.billing-plan-card__actions { margin-block-start: auto; display: flex; flex-wrap: wrap; gap: var(--mj-gap-xs); }
+.billing-plan-card__actions .button--primary { margin-inline-start: auto; }
+.billing-invoices-card { padding: var(--mj-space-200); border: 1px solid var(--u-line); background: var(--u-surface); }
+.billing-invoices-list { --mj-data-cols: minmax(120px,1fr) minmax(110px,.8fr) minmax(90px,.7fr) minmax(90px,.7fr); }
+.billing-invoices-note { display: flex; align-items: center; gap: var(--mj-gap-xs); margin: var(--mj-space-150) 0 0; color: var(--u-faint); font-size: var(--u-text-xs); }
 .billing-balance-card { border-block-start: 3px solid var(--u-primary); }
 .billing-balance-card__head { display: flex; align-items: center; justify-content: space-between; }
 .billing-balance-card__head > span { width: 38px; height: 38px; display: grid; place-items: center; background: var(--u-primary-soft); color: var(--u-primary); }
@@ -1650,8 +1748,9 @@ html[dir="ltr"] .preview-policy dd { margin: 3px 0 0 20px; }
 .billing-balance-card > strong { display: block; color: var(--u-ink); font-size: 33px; }
 .billing-balance-card__meter { margin-block: 13px; }
 .billing-balance-card__meter > div:first-child { display: flex; justify-content: space-between; color: var(--u-faint); font-size: var(--u-text-xs); }
-.billing-balance-card__meter [role="progressbar"] { height: 6px; margin-block-start: 6px; background: var(--u-line); }
-.billing-balance-card__meter [role="progressbar"] span { display: block; width: 37%; height: 100%; background: var(--u-primary); }
+/* Bible §6.15 cost-meter language (8px) carries into §6.16 billing. */
+.billing-balance-card__meter [role="progressbar"] { height: 8px; margin-block-start: 6px; border-radius: var(--u-radius-pill); background: var(--u-line); }
+.billing-balance-card__meter [role="progressbar"] span { display: block; width: 37%; height: 100%; border-radius: inherit; background: var(--u-primary); }
 .billing-balance-card > small { color: var(--u-faint); font-size: var(--u-text-xs); }
 .billing-plan-card > div { display: flex; align-items: center; justify-content: space-between; }
 .billing-plan-card h2 { margin: 0; color: var(--u-ink); font-size: var(--u-text-md); }

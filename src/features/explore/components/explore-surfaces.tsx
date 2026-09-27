@@ -3,7 +3,7 @@
 import type { Locale, ExploreNode } from "@minsaj/contracts/services";
 import { formatServiceNumber, getServiceDictionary } from "@minsaj/i18n/services";
 import { exploreTopicIds } from "@minsaj/mock-api/services";
-import { ArrowRight, BookmarkPlus, CircleDot, Compass, MapPin, Undo2 } from "lucide-react";
+import { ArrowRight, BookmarkPlus, Check, CircleDot, Compass, MapPin, Sparkle, Undo2 } from "lucide-react";
 import type { ExploreReducerState } from "../state/explore-reducer";
 
 /**
@@ -106,7 +106,9 @@ export function ExploreSeedSurface({
 
       <fieldset className="u2-explore__field">
         <legend>{ui("seedTopic")}</legend>
+        {/* Bible §6.8: the central concept — 44px control, 18px centred text. */}
         <select
+          className="u2-explore__seed-select"
           value={state.ui.draftSeed}
           data-testid="u2-explore-topic"
           aria-label={ui("seedTopic")}
@@ -176,6 +178,86 @@ function NodeRow({ locale, node, onOpen }: { locale: Locale; node: ExploreNode; 
   );
 }
 
+/**
+ * Bible §6.8 — the visual knowledge canvas: seed concept at the centre,
+ * satellite nodes on an ellipse, edges as 1.5px SVG lines, and the next
+ * unvisited node carrying the "suggested next" ring (border 2px + shadow +
+ * scale 1.05). The accessible list below stays the complete parity surface,
+ * so the canvas carries no exclusive information.
+ */
+function ExploreMapCanvas({
+  locale,
+  map,
+  onOpenNode,
+}: {
+  locale: Locale;
+  map: NonNullable<ExploreReducerState["session"]["map"]>;
+  onOpenNode: (nodeId: string) => void;
+}) {
+  const ui = (key: string) => resolveExploreCopy(locale, `services.explore.ui.${key}`);
+  const seed = map.nodes.find((node) => node.id === map.seedNodeId) ?? map.nodes[0]!;
+  const satellites = map.nodes.filter((node) => node.id !== seed.id);
+  // Deterministic "suggested next": first unvisited node in map order.
+  const suggestedId = map.nodes.find((node) => !node.visited && node.id !== seed.id)?.id ?? null;
+
+  // Ellipse geometry in percentages of the canvas box (positions are spatial,
+  // so RTL mirroring does not apply).
+  const positions = new Map<string, { x: number; y: number }>();
+  positions.set(seed.id, { x: 50, y: 50 });
+  satellites.forEach((node, index) => {
+    const angle = (index / satellites.length) * Math.PI * 2 - Math.PI / 2;
+    positions.set(node.id, {
+      x: 50 + 37 * Math.cos(angle),
+      y: 50 + 38 * Math.sin(angle),
+    });
+  });
+
+  return (
+    <div
+      className="u2-explore__canvas"
+      data-testid="u2-explore-canvas"
+      role="group"
+      aria-label={ui("canvasLabel")}
+      data-suggested={suggestedId ?? ""}
+    >
+      <svg className="u2-explore__canvas-edges" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+        {map.edges.map((edge, index) => {
+          const from = positions.get(edge.fromId);
+          const to = positions.get(edge.toId);
+          if (!from || !to) return null;
+          return <line key={index} x1={from.x} y1={from.y} x2={to.x} y2={to.y} />;
+        })}
+      </svg>
+      {map.nodes.map((node) => {
+        const position = positions.get(node.id)!;
+        const isSeed = node.id === seed.id;
+        const isSuggested = node.id === suggestedId;
+        const label = resolveExploreCopy(locale, node.labelKey);
+        return (
+          <button
+            key={node.id}
+            type="button"
+            className="u2-explore__canvas-node"
+            data-testid={`u2-explore-canvas-node-${node.id}`}
+            data-seed={isSeed || undefined}
+            data-visited={node.visited}
+            data-suggested={isSuggested || undefined}
+            style={{ left: `${position.x}%`, top: `${position.y}%` }}
+            aria-label={`${ui("mapOpenNode")}: ${label}${node.visited ? ` — ${ui("mapVisited")}` : ""}${isSuggested ? ` — ${ui("canvasSuggested")}` : ""}`}
+            onClick={() => onOpenNode(node.id)}
+          >
+            <span className="u2-explore__canvas-dot" aria-hidden="true">
+              {isSeed ? <Sparkle size={16} /> : node.visited ? <Check size={14} /> : <Compass size={16} />}
+            </span>
+            <span className="u2-explore__canvas-caption">{label}</span>
+            {isSuggested ? <span className="u2-explore__canvas-flag">{ui("canvasSuggested")}</span> : null}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function ExploreMapSurface({
   locale,
   state,
@@ -203,6 +285,8 @@ export function ExploreMapSurface({
     <section className="u2-explore__surface" data-testid="u2-explore-map" data-stage="exp_map" data-nodes={map.nodes.length}>
       <h2>{ui("mapTitle")}</h2>
       <p>{ui("mapIntro")}</p>
+      <ExploreMapCanvas locale={locale} map={map} onOpenNode={onOpenNode} />
+      <p className="u2-explore__legend" data-testid="u2-explore-canvas-note">{ui("canvasSuggestedNote")}</p>
       <p className="u2-explore__legend">{ui("mapLegend")}</p>
 
       {/* The list IS the map's accessibility parity — both render always. */}
